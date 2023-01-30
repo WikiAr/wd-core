@@ -1,0 +1,194 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+"""
+
+
+"""
+#
+# (C) Ibrahem Qasim, 2022
+#
+#
+import os
+import sys
+sys.dont_write_bytecode = True
+#---
+Test = { 1 : False }
+Ask = { 1 : False }
+#---
+if "ask" in sys.argv:   Ask[1] = True
+if "test" in sys.argv:  Test[1] = True
+#---
+def print_test(line, color=""):
+    colors = {
+    "red"  : "\033[91m%s\033[00m",
+    "blue" : "\033[94m%s\033[00m"
+    }
+    if color != "" and colors.get(color):
+        line = colors[color] % line
+    #---
+    if Ask[1] or Test[1]:
+        print(line)
+#---
+filepath = os.path.abspath(__file__)
+# print_test(filepath)
+#---
+core_yemen_path = '/data/project/yemen/core/'
+core_yemen_path2 = '/mnt/nfs/labstore-secondary-tools-project/yemen/.local/lib/python3.7/site-packages'
+#---
+if filepath.find("/data/project/") == -1 and filepath.find("labstore-secondary-tools-project") == -1 :
+    core_yemen_path = 'I:/core/core-yemen/'
+    core_yemen_path2 = 'I:/core/master/'
+#---
+# print_test(core_yemen_path)
+# print_test(core_yemen_path2)
+#---
+sys.path.append(os.path.abspath(core_yemen_path))
+if core_yemen_path2 != '':
+    sys.path.append(os.path.abspath(core_yemen_path2))
+#---
+import requests
+import json
+import urllib
+#---
+from wikidataintegrator2 import wdi_helpers
+#---
+def get_and_load(url):
+    #---
+    print_test( url )
+    #---
+    html = ''
+    try:
+        html = urllib.request.urlopen(url).read().strip().decode('utf-8')
+    except Exception as e:
+        print_test(e)
+        html = ''
+    #---
+    json1 = {}
+    #---
+    if html != "":
+        try:
+            json1 = json.loads(html)
+        except Exception as ee:
+            print_test(ee)
+            json1 = {}
+    #---
+    return json1
+#---
+from wikidataintegrator2 import wdi_login
+from API import useraccount
+username = useraccount.hiacc
+password = useraccount.hipass
+login = wdi_login.WDLogin(username, password)
+#---
+id_types = {"MED", "PMC", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA", "AGR", "DOI"}
+def get_article_info(ext_id , id_type):
+    if not id_type.upper() in id_types:
+        print( "id_type must be in {}".format(id_types) )
+    #---
+    urls = {}
+    #---
+    id_type = id_type.lower()
+    #---
+    print_test(' get_article_info for %s' % id_type)
+    if id_type == "pmc":
+        url =  'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
+        #url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:{}&resulttype=core&format=json'
+        #url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
+        urls["europepmc"] = url.format( ext_id )
+        
+    elif id_type == "doi":
+        #url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{}%22&resulttype=core&format=json"
+        url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:{}&resulttype=core&format=json"
+        urls["europepmc"] = url.format( ext_id )
+
+        url2 = "https://api.crossref.org/v1/works/http://dx.doi.org/{}"
+        urls["crossref"] = url2.format( ext_id )
+
+    elif id_type != "doi":
+        url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:{}%20AND%20SRC:{}&resulttype=core&format=json'
+        urls["europepmc"] = url.format( ext_id, id_type )
+    else:
+        print_test('ValueError')
+    #---
+    headers = {
+        'User-Agent': 'wikidataintegrator: github.com/SuLab/WikidataIntegrator'
+    }
+    #response = requests.get(url, headers=headers)
+    #response.raise_for_status()
+    #d = response.json()
+    for source, url in urls.items():
+        do = get_and_load(url)
+        # if do != '' and do != "Resource not found.":
+        #---
+        if type(do) != dict: continue
+        #---
+        if do.get('hitCount'):
+            if do.get('hitCount') != 1:
+                continue
+            else:
+                article = do.get('resultList',{}).get('result',[])
+                if len(article) > 0:
+                    article = article[0]
+                    return source
+        else:
+            #---
+            message = do.get("message",{})
+            if message != {}:
+                title = message.get("title",[""])[0]
+                print_test( f"title:{title}" )
+                #---
+                if title.find("افتتاحية") != -1 : 
+                    print("skip افتتاحية")
+                    return False
+                #---
+                author = message.get("author",[])
+                if len(author) == 0 :
+                    print("no author")
+                    return False
+            #---
+            # status": "ok"
+            status = do.get("status","")
+            if status == "ok":
+                print_test("status == ok")
+                return source
+            #---
+    print('No results')
+    return False
+#---
+def add(id, typee):
+    print_test('typee: "%s"' % typee)
+    source = get_article_info( id, typee )
+    typee = typee.lower()
+    if source:
+        qid, a, b, ty = wdi_helpers.PublicationHelper(id, id_type=typee, source=source).get_or_create(login)
+        if ty == "old":
+            print('already in wikidata: <a target="_blank" href="https://www.wikidata.org/wiki/%s">%s</a>' % (qid, qid))
+            print_test('already in wikidata:%s' % qid, "red")
+        elif ty == 'new':
+            print('Create success: <a target="_blank" href="https://www.wikidata.org/wiki/%s">%s</a>' % (qid, qid))
+            print_test('Create success:%s' % qid, "blue")
+        print_test('qid: %s' % qid)
+        print_test('a: %s' % a)
+        print_test('b: %s' % b)
+        print_test('ty: %s' % ty)
+#--- 
+if __name__ == "__main__":
+    br = '</br>'
+    #python pwb.py pub type:PMC id:4080339
+    print_test( 'TestMain:' + br)
+    typee =  "MED"
+    if sys.argv:
+        #lenth = len(sys.argv)
+        #print_test(str(lenth) + str(sys.argv) )
+        for arg in sys.argv:
+            arg, sep, value = arg.partition(':')
+            if arg == 'type' and value != '':
+                typee = value
+            if arg == 'id' and value != '':
+                id = value
+    #---
+    if id != "":
+        add(id, typee)
+    else:
+        print("id empty..")
+    #---
