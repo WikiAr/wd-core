@@ -12,20 +12,6 @@ python3 pwb.py dump/labels2 test nosave
 #
 #
 
-# Copyright (C) 2017 emijrp <emijrp@gmail.com>
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import sys
 import re
 import bz2
@@ -45,45 +31,45 @@ title = 'User:Mr. Ibrahem/Language statistics for items'
 if 'test' in sys.argv :
     title = 'User:Mr. Ibrahem/Language'
 #---
-Old = {}
-#---
-texts = himoBOT2.GetPageText(title.replace(' ','_') , 'www', family='wikidata')
-texts = texts.split('|}')[0]
-texts = texts.replace('|}','')
-texts = texts.replace(',','')
-for L in texts.split('|-'):
-    L = L.strip()
-    L = L.replace('\n','|')
-    if L.find('{{#language:') != -1 :
-        L = re.sub('\(\d+\.\d+\%\)','',L)
-        L = re.sub('\|\|\s*\+\d+\s*','',L)
-        L = re.sub('\|\|\s*\-\d+\s*','',L)
-        L = re.sub('\s*\{\{\#language\:.*?\}\}\s*','',L)
-        L = re.sub('\s*\|\|\s*','||',L)
-        L = re.sub('\s*\|\s*','|',L)
-        L = L.replace('||||||','||')
+def make_old_values():
+    Old = {}
+    #---
+    texts = himoBOT2.GetPageText(title.replace(' ','_') , 'www', family='wikidata')
+    texts = texts.split('|}')[0]
+    texts = texts.replace('|}','')
+    texts = texts.replace(',','')
+    for L in texts.split('|-'):
         L = L.strip()
-        #iu = re.search("(.*?)\|\|(.*?)\|\|(.*?)\|\|(.*?)", L)
-        #iu = re.search("\|(.*?)\|\|(\d+?|)\|\|(\d+?|)\|\|(\d+?|)", L)
-        iu = re.search("\|(.*?)\|\|(\d*)\|\|(\d*)\|\|(\d*)", L)
-        if iu :
-            #print(L)
-            lang = iu.group(1).strip()
-            Old[lang] = {'labels':0,'descriptions':0,'aliases':0}
-            
-            labels =  iu.group(2)
-            if labels:
-                Old[lang]['labels'] = int(labels )
-            
-            descriptions = iu.group(3)
-            if descriptions:
-                Old[lang]['descriptions'] = int(descriptions )
-            
-            aliases = iu.group(4)
-            if aliases:
-                Old[lang]['aliases'] = int(aliases )
-        #else:
-            #pywikibot.output( 'no iu ' )
+        L = L.replace('\n','|')
+        if L.find('{{#language:') != -1 :
+            L = re.sub('\(\d+\.\d+\%\)','',L)
+            L = re.sub('\|\|\s*\+\d+\s*','',L)
+            L = re.sub('\|\|\s*\-\d+\s*','',L)
+            L = re.sub('\s*\{\{\#language\:.*?\}\}\s*','',L)
+            L = re.sub('\s*\|\|\s*','||',L)
+            L = re.sub('\s*\|\s*','|',L)
+            L = L.replace('||||||','||')
+            L = L.strip()
+            #iu = re.search("(.*?)\|\|(.*?)\|\|(.*?)\|\|(.*?)", L)
+            #iu = re.search("\|(.*?)\|\|(\d+?|)\|\|(\d+?|)\|\|(\d+?|)", L)
+            iu = re.search("\|(.*?)\|\|(\d*)\|\|(\d*)\|\|(\d*)", L)
+            if iu :
+                #print(L)
+                lang = iu.group(1).strip()
+                Old[lang] = {'labels':0,'descriptions':0,'aliases':0}
+                
+                labels =  iu.group(2)
+                if labels:
+                    Old[lang]['labels'] = int(labels )
+                
+                descriptions = iu.group(3)
+                if descriptions:
+                    Old[lang]['descriptions'] = int(descriptions )
+                
+                aliases = iu.group(4)
+                if aliases:
+                    Old[lang]['aliases'] = int(aliases )
+    return Old
 #---
 All_items = { 1 : 0 } 
 Limit = { 1 : 500000000 } 
@@ -110,15 +96,12 @@ def make_cou( num , all ):
     fef = ( num / all) * 100
     return str(fef)[:4] + "%"
 #---
-def mainar():
+def get_data():
     #---
-    start = time.time()
     t1 = time.time()
-    #---
     Main_Table = {}
     #---
     c = 0
-    dumpdate = 'latest'
     f = bz2.open('/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2' , 'r')
     #---
     if 'lene' in sys.argv:
@@ -133,72 +116,63 @@ def mainar():
         line = line.decode('utf-8')
         line = line.strip('\n').strip(',')
         c += 1
-        if c < Limit[1] : 
-            if line.startswith('{') and line.endswith('}'):
-                #---
-                All_items[1] += 1
-                #---
-                if "printline" in sys.argv and c % 1000 == 0:
-                    pywikibot.output( line ) 
-                #---
-                json1 = json.loads(line)
-                #---
-                labels = json1.get('labels',{})
-                #---
-                for code in labels:
-                    if not code in Main_Table:
-                        Main_Table[code] = {'labels':0,'descriptions':0,'aliases':0}
-                    Main_Table[code]['labels'] += 1
-                #---
-                descriptions = json1.get('descriptions',{})
-                for code in descriptions:
-                    if not code in Main_Table:
-                        Main_Table[code] = {'labels':0,'descriptions':0,'aliases':0}
-                    Main_Table[code]['descriptions'] += 1
-                #---
-                aliases = json1.get('aliases',{})
-                for code in aliases:
-                    if not code in Main_Table:
-                        Main_Table[code] = {'labels':0,'descriptions':0,'aliases':0}
-                    Main_Table[code]['aliases'] += 1
-                #---
-            if c % 1000 == 0:
-                print(c, time.time()-t1)
-                t1 = time.time()
-            #pywikibot.output([[y, x] for x, y in p31.items()])
-        else:
-            break
+        #---
+        if c > Limit[1] :  break
+        #---
+        if line.startswith('{') and line.endswith('}'):
+            #---
+            All_items[1] += 1
+            #---
+            if "printline" in sys.argv and c % 1000 == 0:   pywikibot.output( line ) 
+            #---
+            json1 = json.loads(line)
+            #---
+            tats = [ 'labels', 'descriptions', 'aliases']
+            #---
+            for x in tats:
+                for code in json1.get(x,{}):
+                    if not code in Main_Table:  Main_Table[code] = {'labels':0,'descriptions':0,'aliases':0}
+                    Main_Table[code][x] += 1
+        #---
+        if c % 1000 == 0:
+            print(c, time.time()-t1)
+            t1 = time.time()
     #---
-    lisr_old = '''| %s || {{#language:%s|en}} || {{#language:%s}}
-| {{subst:formatnum:%d}} (%s) || {{subst:formatnum:%d}} (%s) || {{subst:formatnum:%d}}'''
+    return Main_Table
+#---
+def mainar():
     #---
+    dumpdate = 'latest'
+    start = time.time()
     #---
-    lisr = '''| %s || {{#language:%s|en}} || {{#language:%s}}
-| {{subst:formatnum:%d}} (%s) || +{{subst:formatnum:%s}} || {{subst:formatnum:%d}} (%s) || +{{subst:formatnum:%s}} || {{subst:formatnum:%d}} || +{{subst:formatnum:%s}}'''
+    Old = make_old_values()
     #---
-    p31list = list(Main_Table.keys())
-    p31list.sort()
+    Main_Table = get_data()
+    #---
+    langs = list(Main_Table.keys())
+    langs.sort()
     rows = []
     #---
     test_new_descriptions = 0
     #---
-    for code in p31list:
+    for code in langs:
         #---
         new_labels = 0
         new_descriptions = 0
         new_aliases = 0
         #---
         if code in Old:
-            new_labels = int( Main_Table[code]['labels'] - Old[code]['labels'] )
-            new_descriptions = int( Main_Table[code]['descriptions'] - Old[code]['descriptions'] )
-            new_aliases = int( Main_Table[code]['aliases'] - Old[code]['aliases'] )
+            new_labels          = int( Main_Table[code]['labels'] - Old[code]['labels'] )
+            new_descriptions    = int( Main_Table[code]['descriptions'] - Old[code]['descriptions'] )
+            new_aliases         = int( Main_Table[code]['aliases'] - Old[code]['aliases'] )
         else:
             pywikibot.output( 'code "%s" not in Old' % code )
         #---
         if new_descriptions != 0 :
             test_new_descriptions = 1
         #---
-        line = lisr % (
+        line = '''| %s || {{#language:%s|en}} || {{#language:%s}}
+| {{subst:formatnum:%d}} (%s) || +{{subst:formatnum:%s}} || {{subst:formatnum:%d}} (%s) || +{{subst:formatnum:%s}} || {{subst:formatnum:%d}} || +{{subst:formatnum:%s}}''' % (
             code,
             code,
             code,  
@@ -211,12 +185,13 @@ def mainar():
             str( new_descriptions ),
             
             Main_Table[code]['aliases'] ,
-            str( new_aliases )
-            
-        )
+            str( new_aliases )            
+            )
+        #---
         line = line.replace("+-" , "-" )
         line = line.replace("+{{subst:formatnum:-" , "-{{subst:formatnum:" )
         line = line.replace("{{subst:formatnum:0}}" , "0" )
+        #---
         rows.append( line )
     #---
     rows = '\n|-\n'.join(rows)
@@ -271,7 +246,7 @@ def mainar():
             pywikibot.output( text )
     #---
     if not 'test' in sys.argv :
-        with open( main_dir + 'dump/dump.labels2.txt' , 'w' ) as f:
+        with open( main_dir + 'dump/dumps/dump.labels2.txt' , 'w' ) as f:
             f.write(text)
 #---
 if __name__ == '__main__':

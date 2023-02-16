@@ -90,7 +90,7 @@ lamo = [
     'Main_Table',
     ]
 #---
-jsonname = main_dir + 'dump/claimsep31.json'
+jsonname = main_dir + 'dump/dumps/claimsep31.json'
 #---
 jsonname2 = jsonname
 #---python3 pwb.py dump/p31 jsonnew
@@ -102,11 +102,8 @@ if 'jsonnew' in sys.argv:
 elif not 'test' in sys.argv :
     try:
         ff = open( jsonname2 , 'r' ).read()
-        SS = JJson.loads( ff )
+        SS = json.loads( ff )
         tab = SS
-        #for x in lamo :
-            #g = SS.get(x)
-            #if g != {} and g != 0 : tab[x] = g
         pywikibot.output( "tab['done'] == %d" % tab['done'] )
     except:
         pywikibot.output('cant read %s ' % jsonname )
@@ -257,74 +254,72 @@ def workondata():
         if offset != 0 and done < offset: 
             continue
         #---
-        if tab['done'] < Limit[1] : 
+        if tab['done'] > Limit[1] :  break
+        #---
+        if "output" in sys.argv and tab['done'] < 2 : 
+            pywikibot.output( line )
+        #---
+        if line.startswith('{') and line.endswith('}'):
             #---
-            if "output" in sys.argv and tab['done'] < 2 : 
-                pywikibot.output( line )
+            done2 += 1
             #---
-            if line.startswith('{') and line.endswith('}'):
+            tab['All_items'] += 1
+            #---
+            if "printline" in sys.argv and tab['done'] % 1000 == 0:
+                pywikibot.output( line ) 
+            #---
+            json1 = json.loads(line)
+            #---
+            claimse = json1.get('claims',{})
+            #---
+            if len(claimse) == 1 :
+                tab['items_1_claims'] += 1
+            #---
+            if not 'P31' in claimse :
+                tab['items_no_P31'] += 1
+                tab['items_no_P31'] += 1
+                continue
+            elif len(claimse) == 0 :
+                tab['items_0_claims'] += 1
+                continue
+            #---
+            P31 = 'P31'
+            #---
+            if not P31 in tab['Main_Table']:
+                tab['Main_Table'][P31] = {'props' : {} , 'lenth_of_usage' : 0  , 'lenth_of_claims_for_property' : 0 }
+            #---
+            tab['Main_Table'][P31]['lenth_of_usage'] += 1
+            #---
+            tab['all_claims_2020'] += len(json1['claims'][P31])
+            #---
+            for claim in json1['claims'][P31]:
                 #---
-                done2 += 1
+                #tab['lenth_of_claims_for_property'][P31] += 1
+                tab['Main_Table'][P31]['lenth_of_claims_for_property'] += 1
                 #---
-                tab['All_items'] += 1
+                #pywikibot.output( claim ) 
+                #id = P31[claim].get('mainsnak',{}).get('datavalue',{}).get('value',{}).get('id')
                 #---
-                if "printline" in sys.argv and tab['done'] % 1000 == 0:
-                    pywikibot.output( line ) 
                 #---
-                json1 = json.loads(line)
+                datavalue = claim.get('mainsnak',{}).get('datavalue',{})#.get('value',{}).get('id')
+                ttype = datavalue.get('type')
                 #---
-                claimse = json1.get('claims',{})
+                val = datavalue.get('value',{})
                 #---
-                if len(claimse) == 1 :
-                    tab['items_1_claims'] += 1
-                #---
-                if not 'P31' in claimse :
-                    tab['items_no_P31'] += 1
-                    tab['items_no_P31'] += 1
-                    continue
-                elif len(claimse) == 0 :
-                    tab['items_0_claims'] += 1
-                    continue
-                #---
-                P31 = 'P31'
-                #---
-                if not P31 in tab['Main_Table']:
-                    tab['Main_Table'][P31] = {'props' : {} , 'lenth_of_usage' : 0  , 'lenth_of_claims_for_property' : 0 }
-                #---
-                tab['Main_Table'][P31]['lenth_of_usage'] += 1
-                #---
-                tab['all_claims_2020'] += len(json1['claims'][P31])
-                #---
-                for claim in json1['claims'][P31]:
-                    #---
-                    #tab['lenth_of_claims_for_property'][P31] += 1
-                    tab['Main_Table'][P31]['lenth_of_claims_for_property'] += 1
-                    #---
-                    #pywikibot.output( claim ) 
-                    #id = P31[claim].get('mainsnak',{}).get('datavalue',{}).get('value',{}).get('id')
-                    #---
-                    #---
-                    datavalue = claim.get('mainsnak',{}).get('datavalue',{})#.get('value',{}).get('id')
-                    ttype = datavalue.get('type')
-                    #---
-                    val = datavalue.get('value',{})
-                    #---
-                    if ttype == "wikibase-entityid":
-                        #pywikibot.output( datavalue['value'] ) 
-                        id = datavalue.get('value',{}).get('id')
-                        if id :
-                            if id in tab['Main_Table'][P31]['props']:
-                                tab['Main_Table'][P31]['props'][id] += 1 
-                            else:
-                                tab['Main_Table'][P31]['props'][id] = 1
-                    #---
-                #---
-                tab['done'] = done
+                if ttype == "wikibase-entityid":
+                    #pywikibot.output( datavalue['value'] ) 
+                    id = datavalue.get('value',{}).get('id')
+                    if id :
+                        if id in tab['Main_Table'][P31]['props']:
+                            tab['Main_Table'][P31]['props'][id] += 1 
+                        else:
+                            tab['Main_Table'][P31]['props'][id] = 1
                 #---
             #---
-            #pywikibot.output([[y, x] for x, y in p31.items()])
-        else:
-            break
+            tab['done'] = done
+            #---
+        #---
+        #pywikibot.output([[y, x] for x, y in p31.items()])
         #---
         if done % diff == 0 or done == 1000:
             pywikibot.output('{} : {}.'.format( done, time.time()-t1) )
@@ -338,7 +333,7 @@ def workondata():
         if done2 == 500000:
             done2 = 1
             log_dump()
-        #---
+#---
 dumpdate = 'latest'
 #---
 def mainar():
@@ -381,31 +376,28 @@ def mainar():
     #---
     # python3 pwb.py dump/claims2 test nosave saveto:ye
     if saveto[1] != '' :
-        with open( main_dir + 'dump/%s.txt' % saveto[1] , 'w' ) as f:
+        with open( main_dir + 'dump/dumps/%s.txt' % saveto[1] , 'w' ) as f:
             f.write(text)
     #---
-    if text != "" : 
+    if text == "" : return
+    #---
+    if 'test' in sys.argv and not 'noprint' in sys.argv :
+        pywikibot.output( text )
+    #---
+    if not "nosave" in sys.argv:
         #---
-        if 'test' in sys.argv and not 'noprint' in sys.argv :
-            pywikibot.output( text )
+        if 'test' in sys.argv : title = 'User:Mr. Ibrahem/p311'
         #---
-        if not "nosave" in sys.argv:
-            if 'test' in sys.argv :
-                title = 'User:Mr. Ibrahem/p311'
-                #text = text.replace('[[Category:Wikidata statistics|Language statistics]]','')
-            from API import himoAPI
-            himoAPI.page_putWithAsk( '' , text , 'Bot - Updating stats' , title, False)
-            #---
-            with open( jsonname , 'w' ) as fe:
-                fe.write('{}')
-            #---
-        #else:
+        from API import himoAPI
+        himoAPI.page_putWithAsk( '' , text , 'Bot - Updating stats' , title, False)
+        #---
+        # with open( jsonname, 'w' ) as fe: fe.write('{}')
     #---
     if not 'test' in sys.argv :
-        with open( main_dir + 'dump/p31.txt' , 'w' ) as f:
+        with open( main_dir + 'dump/dumps/p31.txt' , 'w' ) as f:
             f.write(text)
     else:
-        with open( main_dir + 'dump/p31_1.txt' , 'w' ) as f:
+        with open( main_dir + 'dump/dumps/p31_1.txt' , 'w' ) as f:
             f.write(text)
 #---
 if __name__ == '__main__':

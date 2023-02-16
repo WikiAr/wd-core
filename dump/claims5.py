@@ -4,8 +4,7 @@
 
 
 python3 pwb.py dump/claims5 jsonnew
-python3 pwb.py dump/claims5 claimse4
-python3 pwb.py dump/claims5 makereport claimse4
+python3 pwb.py dump/claims5 makereport
 python3 pwb.py dump/claims5
 python3 pwb.py dump/claims5 test nosave
 
@@ -72,11 +71,11 @@ lamo = [
     'Main_Table',
     ]
 #---
-jsonname = main_dir + 'dump/claimse.json'
+jsonname = main_dir + 'dump/dumps/claimse.json'
 #---
 #---claimse4.json
 jsonname2 = jsonname
-if 'claimse4' in sys.argv : jsonname2 = main_dir + 'dump/claimse4.json'
+if 'claimse4' in sys.argv : jsonname2 = main_dir + 'dump/dumps/claimse4.json'
 #---python3 pwb.py dump/claims5 jsonnew
 if 'jsonnew' in sys.argv:
     with open( jsonname , 'w' ) as fe:
@@ -86,7 +85,7 @@ if 'jsonnew' in sys.argv:
 elif not 'test' in sys.argv :
     try:
         ff = open( jsonname2 , 'r' ).read()
-        SS = JJson.loads( ff )
+        SS = json.loads( ff )
         tab = SS
         #for x in lamo :
             #g = SS.get(x)
@@ -241,141 +240,119 @@ def workondata():
         if offset != 0 and done < offset: 
             continue
         #---
-        if tab['done'] < Limit[1] : 
-            #---
-            if "output" in sys.argv and tab['done'] < 2 : 
-                pywikibot.output( line )
-            #---
-            if line.startswith('{') and line.endswith('}'):
-                #---
-                done2 += 1
-                #---
-                tab['All_items'] += 1
-                #---
-                if "printline" in sys.argv and tab['done'] % 1000 == 0:
-                    pywikibot.output( line ) 
-                #---
-                json1 = json.loads(line)
-                #---
-                claimse = json1.get('claims',{})
-                if claimse == {} :
-                    tab['items_no_claims'] += 1
-                #---
-                if len(claimse) == 1 :
-                    tab['items_1_claims'] += 1
-                #---
-                for P31 in claimse:
-                    #---
-                    if not P31 in tab['Main_Table']:
-                        tab['Main_Table'][P31] = {'props' : {} , 'lenth_of_usage' : 0  , 'lenth_of_claims_for_property' : 0 }
-                    #---
-                    #if not P31 in tab['lenth_of_usage']:
-                        #tab['lenth_of_usage'][P31] = 0
-                    #---
-                    #if not P31 in tab['lenth_of_claims_for_property']:
-                        #tab['lenth_of_claims_for_property'][P31] = 0
-                    #---
-                    #tab['lenth_of_usage'][P31] += 1
-                    tab['Main_Table'][P31]['lenth_of_usage'] += 1
-                    #---
-                    tab['all_claims_2020'] += len(json1['claims'][P31])
-                    #---
-                    for claim in json1['claims'][P31]:
-                        #---
-                        #tab['lenth_of_claims_for_property'][P31] += 1
-                        tab['Main_Table'][P31]['lenth_of_claims_for_property'] += 1
-                        #---
-                        #pywikibot.output( claim ) 
-                        #id = P31[claim].get('mainsnak',{}).get('datavalue',{}).get('value',{}).get('id')
-                        #---
-                        #---
-                        datavalue = claim.get('mainsnak',{}).get('datavalue',{})#.get('value',{}).get('id')
-                        ttype = datavalue.get('type')
-                        #---
-                        '''
-                        if ttype == "wikibase-entityid":
-                            #if ('value' in datavalue) and ('id' in datavalue['value']):
-                                #pywikibot.output( datavalue['value'] ) 
-                                id = datavalue['value']['id']
-                                if id in tab['Main_Table'][P31]:
-                                    tab['Main_Table'][P31][id] += 1 
-                                else:
-                                    tab['Main_Table'][P31][id] = 1
-                        #---
-                        '''
-                        #---
-                        #---
-                        #'''
-                        val = datavalue.get('value',{})
-                        #---
-                        if ttype == "wikibase-entityid":
-                            #pywikibot.output( datavalue['value'] ) 
-                            id = datavalue.get('value',{}).get('id')
-                            if id :
-                                if id in tab['Main_Table'][P31]['props']:
-                                    tab['Main_Table'][P31]['props'][id] += 1 
-                                else:
-                                    tab['Main_Table'][P31]['props'][id] = 1
-                        #---
-                        '''elif ttype in ttypes:
-                            continue
-                            #pywikibot.output( datavalue['value'] ) 
-                            #id = datavalue.get('value',{}).get('id')
-                            id = val.get('id') or val.get('time') or val.get('text') or val.get('amount')
-                            if id:
-                                if id in tab['Main_Table'][P31]['props']:
-                                    tab['Main_Table'][P31]['props'][id] += 1 
-                                else:
-                                    tab['Main_Table'][P31]['props'][id] = 1
-                        #---
-                        elif ttype == "string":
-                            value = datavalue.get('value')
-                            if value:
-                                if value in tab['Main_Table'][P31]['props']:
-                                    tab['Main_Table'][P31]['props'][value] += 1 
-                                else:
-                                    tab['Main_Table'][P31]['props'][value] = 1
-                                dd34535 = {"datavalue": {"value": "Landforms of Guatemala","type": "string"} }
-                        #---
-                        elif ttype == "globecoordinate":
-                            cord = str(val.get('latitude','')) + ',' + str(val.get('longitude',''))
-                            if cord:
-                                if cord in tab['Main_Table'][P31]['props']:
-                                    tab['Main_Table'][P31]['props'][cord] += 1 
-                                else:
-                                    tab['Main_Table'][P31]['props'][cord] = 1
-                                dddff = { "datavalue": {"value": {
-                                            "latitude": 15.5,
-                                            "longitude": 48,
-                                            "altitude": 'null',
-                                            "precision": 0.1,
-                                            "globe": "http://www.wikidata.org/entity/Q2"
-                                        },"type": "globecoordinate"}
-                                    }
-                        #---'''
-                        #'''
-                        #---
-                #---
-                tab['done'] = done
-                #---
-            #---
-            #pywikibot.output([[y, x] for x, y in p31.items()])
-        else:
-            break
-        #---
         if done % diff == 0 or done == 1000:
             pywikibot.output('{} : {}.'.format( done, time.time()-t1) )
             t1 = time.time()
-        #---
-        #if done2 % diff == 0 or done2 == 100000:
-            #if done2 != log_done :
-                #log_done = done2
-                #log_dump()
         #---
         if done2 == 500000:
             done2 = 1
             log_dump()
         #---
+        if tab['done'] > Limit[1] : break
+        #---
+        if "output" in sys.argv and tab['done'] < 2 : 
+            pywikibot.output( line )
+        #---
+        if not line.startswith('{') or not line.endswith('}'): continue
+        #---
+        done2 += 1
+        #---
+        tab['All_items'] += 1
+        #---
+        if "printline" in sys.argv and tab['done'] % 1000 == 0:
+            pywikibot.output( line ) 
+        #---
+        json1 = json.loads(line)
+        #---
+        claimse = json1.get('claims',{})
+        if claimse == {} :
+            tab['items_no_claims'] += 1
+        #---
+        if len(claimse) == 1 :
+            tab['items_1_claims'] += 1
+        #---
+        for P31 in claimse:
+            #---
+            if not P31 in tab['Main_Table']:
+                tab['Main_Table'][P31] = {'props' : {} , 'lenth_of_usage' : 0  , 'lenth_of_claims_for_property' : 0 }
+            #---
+            #if not P31 in tab['lenth_of_usage']:   tab['lenth_of_usage'][P31] = 0
+            #if not P31 in tab['lenth_of_claims_for_property']: tab['lenth_of_claims_for_property'][P31] = 0
+            #tab['lenth_of_usage'][P31] += 1
+            #---
+            tab['Main_Table'][P31]['lenth_of_usage'] += 1
+            tab['all_claims_2020'] += len(claimse[P31])
+            #---
+            for claim in claimse[P31]:
+                #---
+                tab['Main_Table'][P31]['lenth_of_claims_for_property'] += 1
+                #---
+                datavalue = claim.get('mainsnak',{}).get('datavalue',{})
+                ttype = datavalue.get('type')
+                #---
+                '''
+                if ttype == "wikibase-entityid":
+                    #if ('value' in datavalue) and ('id' in datavalue['value']):
+                        #pywikibot.output( datavalue['value'] ) 
+                        id = datavalue['value']['id']
+                        if id in tab['Main_Table'][P31]:
+                            tab['Main_Table'][P31][id] += 1 
+                        else:
+                            tab['Main_Table'][P31][id] = 1
+                #---
+                '''
+                #---
+                val = datavalue.get('value',{})
+                #---
+                if ttype == "wikibase-entityid":
+                    id = datavalue.get('value',{}).get('id')
+                    if id :
+                        if not id in tab['Main_Table'][P31]['props']: tab['Main_Table'][P31]['props'][id] = 0
+                        #---
+                        tab['Main_Table'][P31]['props'][id] += 1 
+
+                #---
+                '''elif ttype in ttypes:
+                    continue
+                    #pywikibot.output( datavalue['value'] ) 
+                    #id = datavalue.get('value',{}).get('id')
+                    id = val.get('id') or val.get('time') or val.get('text') or val.get('amount')
+                    if id:
+                        if id in tab['Main_Table'][P31]['props']:
+                            tab['Main_Table'][P31]['props'][id] += 1 
+                        else:
+                            tab['Main_Table'][P31]['props'][id] = 1
+                #---
+                elif ttype == "string":
+                    value = datavalue.get('value')
+                    if value:
+                        if value in tab['Main_Table'][P31]['props']:
+                            tab['Main_Table'][P31]['props'][value] += 1 
+                        else:
+                            tab['Main_Table'][P31]['props'][value] = 1
+                        dd34535 = {"datavalue": {"value": "Landforms of Guatemala","type": "string"} }
+                #---
+                elif ttype == "globecoordinate":
+                    cord = str(val.get('latitude','')) + ',' + str(val.get('longitude',''))
+                    if cord:
+                        if cord in tab['Main_Table'][P31]['props']:
+                            tab['Main_Table'][P31]['props'][cord] += 1 
+                        else:
+                            tab['Main_Table'][P31]['props'][cord] = 1
+                        dddff = { "datavalue": {"value": {
+                                    "latitude": 15.5,
+                                    "longitude": 48,
+                                    "altitude": 'null',
+                                    "precision": 0.1,
+                                    "globe": "http://www.wikidata.org/entity/Q2"
+                                },"type": "globecoordinate"}
+                            }
+                #---'''
+        #---
+        tab['done'] = done
+    #---
+    log_dump()
+#---
 dumpdate = 'latest'
 #---
 def mainar():
@@ -475,31 +452,29 @@ def mainar():
     #---
     # python3 pwb.py dump/claims2 test nosave saveto:ye
     if saveto[1] != '' :
-        with open( main_dir + 'dump/%s.txt' % saveto[1] , 'w' ) as f:
+        with open( main_dir + 'dump/dumps/%s.txt' % saveto[1] , 'w' ) as f:
             f.write(text)
     #---
-    if text != "" : 
+    if text == "" : return ''
+    #---
+    if 'test' in sys.argv and not 'noprint' in sys.argv :
+        pywikibot.output( text )
+    #---
+    if not "nosave" in sys.argv:
+        if 'test' in sys.argv : title = 'User:Mr. Ibrahem/claims1'
         #---
-        if 'test' in sys.argv and not 'noprint' in sys.argv :
-            pywikibot.output( text )
+        from API import himoAPI
         #---
-        if not "nosave" in sys.argv:
-            if 'test' in sys.argv :
-                title = 'User:Mr. Ibrahem/claims1'
-                #text = text.replace('[[Category:Wikidata statistics|Language statistics]]','')
-            from API import himoAPI
-            himoAPI.page_putWithAsk( '' , text , 'Bot - Updating stats' , title, False)
-            #---
-            with open( jsonname , 'w' ) as fe:
-                fe.write('{}')
-            #---
-        #else:
+        himoAPI.page_putWithAsk( '' , text , 'Bot - Updating stats' , title, False)
+        #---
+        # with open( jsonname , 'w' ) as fe:  fe.write('{}')
+        #---
     #---
     if not 'test' in sys.argv :
-        with open( main_dir + 'dump/claims.txt' , 'w' ) as f:
+        with open( main_dir + 'dump/dumps/claims.txt' , 'w' ) as f:
             f.write(text)
     else:
-        with open( main_dir + 'dump/claims1.txt' , 'w' ) as f:
+        with open( main_dir + 'dump/dumps/claims1.txt' , 'w' ) as f:
             f.write(text)
 #---
 if __name__ == '__main__':

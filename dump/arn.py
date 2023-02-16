@@ -9,6 +9,7 @@ python3 pwb.py dump/arn test nosave
 python3 pwb.py dump/arn test printline
 python3 pwb.py dump/arn test limit:5000000 -done2limit:200000
 
+انشاء ملفات dump/ar/%s.txt
 """
 #
 # (C) Ibrahem Qasim, 2017
