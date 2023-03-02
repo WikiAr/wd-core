@@ -8,15 +8,12 @@
 # (C) Ibrahem Qasim, 2022
 #
 #
+import requests
+import json
+import urllib
 import os
 import sys
 sys.dont_write_bytecode = True
-#---
-Test = { 1 : False }
-Ask = { 1 : False }
-#---
-if "ask" in sys.argv:   Ask[1] = True
-if "test" in sys.argv:  Test[1] = True
 #---
 def print_test(line, color=""):
     colors = {
@@ -30,27 +27,37 @@ def print_test(line, color=""):
         print(line)
 #---
 filepath = os.path.abspath(__file__)
-# print_test(filepath)
 #---
-core_yemen_path = '/data/project/yemen/core/'
-core_yemen_path2 = '/mnt/nfs/labstore-secondary-tools-project/yemen/.local/lib/python3.7/site-packages'
+paths = [
+    '/data/project/himo/core1/',
+    '/data/project/yemen/wd_core/',
+    '/data/project/yemen/.local/lib/python3.7/site-packages',
+]
 #---
 if filepath.find("/data/project/") == -1 and filepath.find("labstore-secondary-tools-project") == -1 :
-    core_yemen_path = 'I:/core/core-yemen/'
-    core_yemen_path2 = 'I:/core/master/'
+    paths = [
+        'I:/core/core-yemen/',
+        'I:/core/master/'
+    ]
 #---
-# print_test(core_yemen_path)
-# print_test(core_yemen_path2)
-#---
-sys.path.append(os.path.abspath(core_yemen_path))
-if core_yemen_path2 != '':
-    sys.path.append(os.path.abspath(core_yemen_path2))
-#---
-import requests
-import json
-import urllib
+for x in paths:
+    if os.path.isdir(x):
+        sys.path.append(x)
 #---
 from wikidataintegrator2 import wdi_helpers
+from wikidataintegrator2 import wdi_login
+#---
+from API import useraccount
+#---
+username = useraccount.hiacc
+password = useraccount.hipass
+login = wdi_login.WDLogin(username, password)
+#---
+Test = { 1 : False }
+Ask = { 1 : False }
+#---
+if "ask" in sys.argv:   Ask[1] = True
+if "test" in sys.argv:  Test[1] = True
 #---
 def get_and_load(url):
     #---
@@ -74,13 +81,8 @@ def get_and_load(url):
     #---
     return json1
 #---
-from wikidataintegrator2 import wdi_login
-from API import useraccount
-username = useraccount.hiacc
-password = useraccount.hipass
-login = wdi_login.WDLogin(username, password)
-#---
 id_types = {"MED", "PMC", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA", "AGR", "DOI"}
+#---
 def get_article_info(ext_id , id_type):
     if not id_type.upper() in id_types:
         print( "id_type must be in {}".format(id_types) )
@@ -191,4 +193,4 @@ if __name__ == "__main__":
         add(id, typee)
     else:
         print("id empty..")
-    #---
+#---
