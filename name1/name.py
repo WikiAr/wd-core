@@ -41,13 +41,9 @@ def logme(q , label):
     if verbose:
         pywikibot.output(formattedstring)  
 #---
-# start of himoAPI.py file
 #---
 #from API.useraccount import *
 from API import himoAPI
-#     himoAPI.New_Mult_Des(q, data2, summary)
-#     himoAPI.Labels_API(q , title , 'ar' )
-
 #---
 def AddLabel(item, title):
      data = { 'labels' : {'ar':{}} }

@@ -10,6 +10,7 @@
 #
 #
 import re
+import json
 import time
 import pywikibot
 #import Nationalities as aa
@@ -18,7 +19,6 @@ from API.maindir import main_dir
 #---
 import sys
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 HEAD = '''#!/usr/bin/python
@@ -104,14 +104,17 @@ def main2():
     #list = [x for x in jso["*"][0]["a"]["*"] ]
     #work(file , name , list)
 #---
+from API import open_url
+# open_url.getURL( url )
+#---
 def main1():
     #quarrr = '198879'
     quarrr = '205887'#199712#201191#205887
     file = 'FilmCat'
     name = 'FilmCat_list'
     url = 'https://quarry.wmflabs.org/run/' + quarrr + '/output/0/json'
-    sparql = himoBOT.getURL(url=url)
-    jso = himoBOT.load_SPARQL_New(sparql=sparql)
+    sparql = open_url.getURL(url=url)
+    jso = json.loads(sparql)
     list = [x[0] for x in jso['rows'] ]
     work(file , name , list)
 #---

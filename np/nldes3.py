@@ -100,7 +100,6 @@ import sys
 import re
 from datetime import timedelta
 #---
-# start of himoAPI.py file
 from API import himoAPI
 from API import himoBOT
 #---

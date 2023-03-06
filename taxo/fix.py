@@ -30,7 +30,6 @@ import urllib.request
 import urllib.parse
 
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 wikidatasite = pywikibot.Site('wikidata', 'wikidata')

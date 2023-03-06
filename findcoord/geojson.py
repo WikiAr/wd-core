@@ -32,7 +32,6 @@ import string
 import json
 from pywikibot.bot import (SingleSiteBot, ExistingPageBot, NoRedirectPageBot, AutomaticTWSummaryBot)
 #---
-# start of himoBOT2.py file
 from API import himoBOT2
 #---
 # This is required for the text that is shown when you run this script
@@ -40,7 +39,6 @@ from API import himoBOT2
 
 
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 def findtax(titl1value):
@@ -65,7 +63,10 @@ def log(item , Ttitle , coord ,fullname,  name , geonames , enwiki):
             logfile.write(so)
       except :
             pywikibot.output("Error writing")
-    
+#---
+from API import open_url
+# open_url.getURL( url )
+#---
 def findtext(id , adminCode1):
     #---
     fao = urllib.parse.quote(id)
@@ -73,8 +74,8 @@ def findtext(id , adminCode1):
     #url = 'geonames.org/search.html?q=' + fao + '&country=YE'
     url = 'api.geonames.org/searchJSON?formatted=true&maxRows=3&username=ibrahemqasim&q=' + fao + '&lang=ar&country=YE&dminCode1=' + adminCode1
     #url = 'geonames.org/advanced-search.html?q=' + 'Tawahi' + '&country=YE'
-    s = himoBOT.getURL(url= 'http://'+ url)
-    s = himoBOT.load_SPARQL_New(sparql = s )
+    s = open_url.getURL(url= 'http://'+ url)
+    s = json.loads(s)
     #pywikibot.output(s)
     pywikibot.output(url)
     #---

@@ -23,17 +23,9 @@ import urllib
 import urllib.request
 import urllib.parse
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
-# start of himoAPI.py file
 from API import himoAPI
-#himoAPI.Claim_API2( item_numeric , property, id)
-#himoAPI.Claim_API_With_Quall(q , pro ,numeric, quall_prop , quall_id)
-#himoAPI.New_API(data2, summary)
-#himoAPI.New_Mult_Des( q, data2, summary , ret )
-#himoAPI.Des_API( Qid, desc , lang )
-#himoAPI.Labels_API( Qid, desc , lang , False)
 #---
 site = pywikibot.Site('wikidata', 'wikidata')
 repo = site.data_repository()

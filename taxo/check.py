@@ -16,7 +16,6 @@ import json
 import codecs
 import sys
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 arabic={
@@ -223,7 +222,7 @@ def change():
     for item in arabic.keys():
         try:
             #---
-            json = himoBOT.sparql_generator_url2(qoqo % item)
+            json = himoBOT.sparql_generator_url(qoqo % item)
             lenth = len(json.keys())
             print('lenth : %d. %s' % (lenth , item) )
             #pywikibot.output(json)

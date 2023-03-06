@@ -17,7 +17,6 @@ from API import printe
 import sys
 import time
 #---
-# start of himoBOT.py file
 from API import himoBOT
 from API import himoBOT2
 from API import himoAPI

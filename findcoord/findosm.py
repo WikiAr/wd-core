@@ -36,7 +36,6 @@ from pywikibot.bot import (SingleSiteBot, ExistingPageBot, NoRedirectPageBot, Au
 
 
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 wikidatasite=pywikibot.Site('wikidata','wikidata') 
@@ -51,13 +50,16 @@ def log(item , Ttitle , coord , display_name , osm_id):
             logfile.write(so)
       except :
             pywikibot.output("Error writing")
-    
+#---
+from API import open_url
+# open_url.getURL( url )
+#---
 def findtext(id):
     #---
     fao = urllib.parse.quote(id)
     #---
     url = 'nominatim.openstreetmap.org/search/' + fao + '?format=xml&addressdetails=1&accept-language=ar'
-    s = himoBOT.getURL(url= 'http://'+ url)
+    s = open_url.getURL(url= 'http://'+ url)
     #s = re.sub( '\<\/name\>' , '</name>\n' , s)
     s = re.sub( '\>\<' , '>\n<' , s)
     #pywikibot.output(s)

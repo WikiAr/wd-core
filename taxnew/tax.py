@@ -27,7 +27,6 @@ import urllib.request
 import urllib.parse
 
 #---
-# start of himoBOT.py file
 from API import himoAPI
 from API import himoBOT2
 from API import himoBOT

@@ -44,7 +44,6 @@ message="update"
 pagetop='{| class="wikitable"\n|+«Arabic&nbsp;Description&nbsp;count»'
 pagedown='\n|-\n|}'
 #---
-# start of himoBOT2.py file
 from API import himoBOT2
 #---
 def loadSPARQL(sparql=''):

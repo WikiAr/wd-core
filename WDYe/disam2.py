@@ -30,7 +30,6 @@ import urllib.request
 import urllib.parse
 
 #---
-# start of himoBOT.py file
 from API import himoBOT
 from API.descraptions import *
 #---
@@ -95,12 +94,12 @@ limit 10000'''
 WHERE {VALUES (?item) {(wd:Q29976539) }  
 ?item ?s ?ss}
 limit 1'''
-    json = himoBOT.wd_sparql_generator_url(Quarry2)
-    lenth = len(json)
+    json1 = himoBOT.wd_sparql_generator_url(Quarry2)
+    lenth = len(json1)
     num = 0
     topic = 'Wikimedia disambiguation page'
     #---
-    for item in json:
+    for item in json1:
         num += 1
         q = item.title(as_link=False)
         pywikibot.output( '<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".'  % (num , lenth , topic, q))
@@ -109,14 +108,17 @@ limit 1'''
 wikidatasite = pywikibot.Site('wikidata','wikidata') 
 repo = wikidatasite.data_repository()
 #---
+from API import open_url
+# open_url.getURL( url )
+#---
 def mainfromQuarry2():
     pywikibot.output( '*<<lightyellow>> mainfromQuarry:' )
     #quarrr = '207388'
     quarrr = '207496'
     num = 0
     url = 'https://quarry.wmflabs.org/run/' + quarrr + '/output/1/json'
-    sparql = himoBOT.getURL(url=url)
-    jso = himoBOT.load_SPARQL_New(sparql=sparql)
+    sparql = open_url.getURL(url=url)
+    jso = json.loads(sparql)
     topic = 'Wikimedia disambiguation page'
     list = ["Q" + str(x[0]) for x in jso['rows'] if x[1] == "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا" ]
     for page in list:

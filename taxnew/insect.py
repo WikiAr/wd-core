@@ -15,7 +15,6 @@ python pwb.py taxnew/insect -file:taxnew/in4.csv
 #
 import pywikibot
 from pywikibot import pagegenerators
-from pywikibot import pagegenerators as pg
 
 import re
 import codecs
@@ -31,8 +30,10 @@ import urllib
 import urllib.request
 import urllib.parse
 #---
-# start of himoBOT.py file
 from API import himoBOT
+#---
+from API import wd_bot
+# wd_bot.wd_from_file(file)
 #---
 import tax
 from API.descraptions import Taxon_Descraptions
@@ -86,7 +87,7 @@ def main2(*args):
     num = 0
     if '-file' in options:
         file = options['-file']
-        json1 = himoBOT.wd_from_file('taxnew/in2.csv')
+        json1 = wd_bot.wd_from_file('taxnew/in2.csv')
         action( json1 , desc , taxondescs)
     else:
         pywikibot.output('-file not in options:' )     

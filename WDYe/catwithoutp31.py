@@ -26,22 +26,9 @@ import urllib.request
 import urllib.parse
 
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
-# start of himoAPI.py file
 from API import himoAPI
-#himoAPI.page_put(NewText , summary , title)
-
-#himoAPI.Claim_API2( item_numeric , property, id)
-#himoAPI.Claim_API_With_Quall(q , pro ,numeric, quall_prop , quall_id)
-#himoAPI.New_API(data2, summary)
-#himoAPI.New_Mult_Des( q, data2, summary , ret )
-#himoAPI.Des_API( Qid, desc , lang )
-#himoAPI.Labels_API( Qid, lab , lang , False, Or_Alii = False)
-#himoAPI.Alias_API( Qid, [Alias] , lang , False)
-#himoAPI.Merge( q1, q2)
-#himoAPI.Sitelink_API( Qid, title , wiki )
 #---
 from API.descraptions import DescraptionsTable
 Tras = {

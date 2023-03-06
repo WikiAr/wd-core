@@ -11,16 +11,7 @@ python pwb.py c40/death2 -file:c40/people.txt
 #
 #
 #---
-# start of himoAPI.py file
 from API import himoAPI
-#himoAPI.Claim_API2( item_numeric , property, id)
-#himoAPI.Claim_API_With_Quall(q , pro ,numeric, quall_prop , quall_id)
-#himoAPI.New_API(data2, summary)
-#himoAPI.New_Mult_Des( q, data2, summary , ret )
-#himoAPI.Des_API( Qid, desc , lang )
-#himoAPI.Labels_API( Qid, desc , lang , False)
-#himoAPI.Merge( q1, q2)
-#himoAPI.Sitelink_API( Qid, title , wiki )
 #---
 sa = {
     "Q8089068":"Q20967131",

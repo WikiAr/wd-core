@@ -24,16 +24,11 @@ import sys
 #---
 sys_argv = sys.argv or []
 #---
-# start of himoBOT2.py file
 from API import himoBOT2
 #---
-# start of himoBOT3.py file
 from API import himoBOT3 as himoBOT3wd
 himoBOT3wd.log('https://' + 'www.wikidata.org/w/api.php')
-# himoBOT3wd.Get_Newpages( sitecode, family, limit = "max", namespace = "0" )
 #---
-# himoBOT3wd.Get_Newpages( sitecode, family, limit = "max", namespace = "0" )
-# himoBOT3wd.Get_UserContribs( user, limit = "max", namespace = "*", ucshow = "" )
 #---
 from API.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)

@@ -30,10 +30,7 @@ except:
     pywikibot.output('<<lightred>> no MySQLdb')
 
 #---
-# start of himoAPI.py file
 from API import himoAPI
-# himoAPI.page_put(NewText , summary , title)
-
 #---
 pagetop='''
 {| class="wikitable sortable"

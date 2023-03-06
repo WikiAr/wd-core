@@ -10,7 +10,6 @@ import re
 from API import printe
 import sys
 #---
-# start of himoAPI.py file
 from API import himoAPI
 from API import himoBOT2
 #---

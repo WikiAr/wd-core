@@ -51,7 +51,6 @@ import re
 import sys
 import time
 #---
-# start of himoBOT.py file
 from API import printe
 from API import himoAPI
 from API import himoBOT2

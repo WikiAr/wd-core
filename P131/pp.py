@@ -31,17 +31,8 @@ import urllib.parse
 site = pywikibot.Site('wikidata', 'wikidata')
 repo = site.data_repository()
 #---
-# start of himoAPI.py file
 from API import himoAPI
-#himoAPI.Claim_API2( item_numeric , property, id)
-#himoAPI.Claim_API_With_Quall(q , pro ,numeric, quall_prop , quall_id)
-#himoAPI.New_API(data2, summary)
-#himoAPI.New_Mult_Des( q, data2, summary , ret )
-#himoAPI.Des_API( Qid, desc , lang )
-#himoAPI.Labels_API( Qid, desc , lang , False)
-#himoAPI.Merge( q1, q2)
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 def log(t , page):
@@ -52,7 +43,10 @@ def log(t , page):
             logfile.write(fo)
       except :
             pywikibot.output("Error writing")
-#---   
+#---
+from API import open_url
+# open_url.getURL( url )
+#--- 
 def getjson(geoname , values):
     url = 'http://' + 'api.geonames.org/getJSON?formatted=true&username=ibrahemqasim&geonameId=' + geoname 
     #---
@@ -60,8 +54,8 @@ def getjson(geoname , values):
     for va in values:
         tables[va] = ''
     #---
-    sparql = himoBOT.getURL(url=url)
-    js = himoBOT.load_SPARQL_New(sparql=sparql)
+    sparql = open_url.getURL(url=url)
+    js = json.loads(sparql)
     if js:
         if 'status' in js and 'message' in js['status']:
             pywikibot.output( '<<lightred>> "%s".' %  js['status']['message'])

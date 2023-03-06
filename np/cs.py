@@ -21,10 +21,7 @@ from API import himoAPI
 from API import himoBOT2
 from API import himoBOT3 as himoBOT3wd
 himoBOT3wd.log('https://' + 'www.wikidata.org/w/api.php')
-# himoBOT3wd.Get_Newpages( sitecode , family , limit = "max", namespace = "0" )
 #---
-# himoBOT3wd.Get_Newpages( sitecode , family , limit = "max", namespace = "0" )
-# himoBOT3wd.Get_UserContribs( user , limit = "max", namespace = "*" , ucshow = "" )
 #---
 #from trans import *  
 from API.descraptions import DescraptionsTable, Qid_Descraptions
@@ -38,7 +35,6 @@ MainTestTable = {1 : False}
 #--- 
 def wwdesc( NewDesc , q , i, fixlang , ask = ""):
     printe.output('* cs.py wwdesc "%s" try number:"%d" :' % ( str(q) , i )  )
-    # from API import himoAPI
     queries_list = []
     for x in NewDesc.keys():
         if not x in fixlang:

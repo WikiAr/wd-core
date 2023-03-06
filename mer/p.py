@@ -27,17 +27,10 @@ import urllib.request
 import urllib.parse
 
 #---
-# start of himoAPI.py 
+# start of himoAPI.py
 #from API import himoAPI
 from API import himoAPI_test as himoAPI
-#himoAPI.Claim_API2( item_numeric , property, id)
-#himoAPI.Claim_API_With_Quall(q , pro ,numeric, quall_prop , quall_id)
-#himoAPI.New_API(data2, summary)
-#himoAPI.New_Mult_Des( q, data2, summary , ret )
-#himoAPI.Des_API( Qid, desc , lang )
-#himoAPI.Labels_API( Qid, desc , lang , False)
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 
@@ -111,7 +104,7 @@ def main2(categories, wiki1, arwiki):
         #quarry2 = re.sub( 'YYY' , categories[category], quarry2)
         #quarry2 = re.sub( 'ceb\.wikipedia\.org' , 'ar.wikipedia.org', quarry2)
         #pywikibot.output(quarry2)
-        pagelist2 = himoBOT.sparql_generator_url2(quarry2) 
+        pagelist2 = himoBOT.sparql_generator_url(quarry2) 
         #pywikibot.output('--------')
         for pp in pagelist2:
             #pywikibot.output(pp)
@@ -135,7 +128,7 @@ def main2(categories, wiki1, arwiki):
         #pywikibot.output(quarry)
 
         #quarry = re.sub( 'ar\.wikipedia\.org' , 'ceb.wikipedia.org', quarry)
-        pagelist = himoBOT.sparql_generator_url2(quarry) 
+        pagelist = himoBOT.sparql_generator_url(quarry) 
         for ppp in pagelist:
             #pywikibot.output(ppp)
             if ppp['itemabel'] !='':

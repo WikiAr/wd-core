@@ -33,7 +33,6 @@ except:
     import urllib2  as GUrllib          #python 2.7  urllib2.urlopen
     python36 = False
 #---
-# start of himoBOT.py file
 from API import sql
 # sql.GET_SQL()
 # sql.Make_sql( queries )
@@ -41,19 +40,7 @@ from API import sql
 # sql.Make_sql_2_rows( queries , wiki = "" )
 # sql.Make_sql_many_rows( queries , wiki = "" )
 #---
-# start of himoAPI.py file
 from API import himoAPI_test as himoAPI
-#himoAPI.page_put(NewText , summary , title)
-
-#himoAPI.Claim_API2( item_numeric , property, id)
-#himoAPI.Claim_API_With_Quall(q , pro ,numeric, quall_prop , quall_id)
-#himoAPI.New_API(data2, summary)
-#himoAPI.New_Mult_Des( q, data2, summary , ret )
-#himoAPI.Des_API( Qid, desc , lang )
-#himoAPI.Labels_API( Qid, lab , lang , False, Or_Alii = False)
-#himoAPI.Alias_API( Qid, [Alias] , lang , False)
-#himoAPI.Merge( q1, q2)
-#himoAPI.Sitelink_API( Qid, title , wiki )
 #---
 Limit = { 1: '' }
 #---

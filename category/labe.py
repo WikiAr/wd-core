@@ -30,16 +30,8 @@ import urllib.parse
 site = pywikibot.Site('wikidata', 'wikidata')
 repo = site.data_repository()
 #---
-# start of himoAPI.py file
 from API import himoAPI_test as himoAPI
-#himoAPI.Claim_API2( item_numeric , property, id)
-#himoAPI.Claim_API_With_Quall(q , pro ,numeric, quall_prop , quall_id)
-#himoAPI.New_API(data2, summary)
-#himoAPI.New_Mult_Des( q, data2, summary , ret )
-#himoAPI.Des_API( Qid, desc , lang )
-#himoAPI.Labels_API( Qid, desc , lang , False)
 #---
-# start of himoBOT2.py file
 from API import himoBOT2
 #---
 from type.cate_type import pop_final_Without_Years as popstart

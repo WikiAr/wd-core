@@ -31,7 +31,6 @@ import urllib
 import urllib.request
 import urllib.parse
 #---
-# start of himoBOT.py file
 from API import himoBOT2
 from API import himoBOT
 #---

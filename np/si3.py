@@ -71,10 +71,7 @@ from API import himoBOT
 from API import himoBOT2
 from API import himoBOT3 as himoBOT3wd
 himoBOT3wd.log('https://' + 'www.wikidata.org/w/api.php')
-# himoBOT3wd.Get_Newpages( sitecode, family, limit = "max", namespace = "0" )
 #---
-# himoBOT3wd.Get_Newpages( sitecode, family, limit = "max", namespace = "0" )
-# himoBOT3wd.Get_UserContribs( user, limit = "max", namespace = "*", ucshow = "" )
 #---
 #from trans import *  
 from API.descraptions import DescraptionsTable, Qid_Descraptions
@@ -248,7 +245,6 @@ def make_scientific_art(item, P31, num):
 def wwdesc( NewDesc, q, i, fixlang, ask = ""):
     #---
     printe.output('* si3.py wwdesc "%s" try number:"%d" :' % ( str(q), i )  )
-    # from API import himoAPI
     queries_list = []
     for x in NewDesc.keys():
         if not x in fixlang:
@@ -628,19 +624,17 @@ def done_list_append(item):
 #---
 def ISRE( qitem, num, lenth, no_donelist = True, P31_list = False ):
     #---
-    printe.output( '--- *<<lightyellow>> >%d/%d:' %  (num, lenth) )
+    printe.output( f'--- *<<lightyellow>> >{num}/{lenth}: q:{qitem}' )
     #---
     if num < offsetbg[1] : 
         return ''
-    #---
-    #printe.output( '-------------------------------------------' )
     #---
     item = himoBOT2.Get_Item_API_From_Qid( qitem, sites = "", titles = "", props = "claims|descriptions|labels" )#claims
     if item:
         #---
         q = qitem
         #---
-        if item.get("q",q) != q :
+        if item.get("q", q) != q :
             q = item.get("q",q)
             print(f"new qid:{q}")
         #---

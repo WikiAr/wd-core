@@ -29,7 +29,6 @@ import urllib.parse
 #---
 #from name.list import *
 #---
-# start of himoBOT.py file
 #from API import sql
 # sql.Make_sql( queries )
 # sql.Make_sql_2_rows( queries  , wiki = "" )
@@ -37,32 +36,11 @@ import urllib.parse
 from API import himoBOT2
 from API import himoBOT
 try:
-    from API import himoBOT
-except:
-    pywikibot.output('<<lightred>> Can\'t import himoBOT')
-#---
-# start of himoAPI.py file
-try:
     from API import himoAPI_test as himoAPI
 except:
     pywikibot.output('<<lightred>> Can\'t import himoAPI_test as himoAPI')
 #---
-# start of himoAPI.py file
 #from API import himoAPI
-#himoAPI.page_put(NewText , summary , title)
-
-#himoAPI.Claim_API2( item_numeric , property, id)
-#himoAPI.Claim_API_With_Quall(q , pro ,numeric, quall_prop , quall_id)
-#himoAPI.New_API(data2, summary)
-#himoAPI.New_Mult_Des( q, data2, summary , ret )
-#himoAPI.Des_API( Qid, desc , lang )
-#himoAPI.Labels_API( Qid, lab , lang , False, Or_Alii = False, change_des = False)
-#himoAPI.Alias_API( Qid, [Alias] , lang , False)
-#himoAPI.Merge( q1, q2)
-#himoAPI.wbcreateredirect( From, To)
-#himoAPI.Sitelink_API( Qid, title , wiki )
-#himoAPI.Remove_Sitelink( Qid , wiki )
-#himoAPI.Add_Labels_if_not_there( Qid, label , lang , ASK = "")
 #---
 ask = {1 : True}
 OFFSET = { 1: '   '}

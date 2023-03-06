@@ -45,7 +45,6 @@ import random
 import sys
 sys_argv = sys.argv or []
 #---
-# start of himoBOT.py file
 from API import himoBOT
 from API import printe
 #---

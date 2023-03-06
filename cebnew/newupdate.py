@@ -252,7 +252,6 @@ def MakeP31(ss):
     else:
         return False
 #---
-# start of himoAPI.py file
 from API import himoAPI
 #---
 def fixtitle(title):

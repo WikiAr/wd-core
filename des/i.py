@@ -17,7 +17,6 @@ import codecs
 from API.maindir import main_dir
 import time
 #---
-# start of himoBOT.py file
 from API import himoBOT2
 from API import himoBOT
 #---
@@ -34,7 +33,7 @@ placesTable["Q29701762"] = {
 #---
 def check_quarry(qua):
     qua = qua + 'limit 1000'
-    json = himoBOT.sparql_generator_url2(qua)
+    json = himoBOT.sparql_generator_url(qua)
     if json and len(json) != 0:
         return True
     else:

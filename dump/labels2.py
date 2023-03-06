@@ -23,7 +23,6 @@ import pywikibot
 from API.maindir import main_dir
 if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
 #---
-# start of himoBOT2.py file
 from API import himoBOT2
 #---
 #ar_site = pywikibot.Site('ar', 'wikipedia')
@@ -240,8 +239,8 @@ def mainar():
             if 'test' in sys.argv :
                 #title = 'User:Mr. Ibrahem/Language'
                 text = text.replace('[[Category:Wikidata statistics|Language statistics]]','')
-            from API import himoAPI
-            himoAPI.page_putWithAsk('' , text , 'Bot - Updating stats' , title, False)
+                from API import himoAPI
+                himoAPI.page_putWithAsk('' , text , 'Bot - Updating stats' , title, False)
         else:
             pywikibot.output( text )
     #---

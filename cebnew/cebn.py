@@ -17,6 +17,7 @@ from API.maindir import main_dir
 
 import pywikibot
 #---
+import json
 import gent
 # generator = gent.get_gent(*args)
 # gent.gent_string2html( title , arsite.encoding() )
@@ -46,7 +47,6 @@ repo = wikidatasite.data_repository()
 from API.category import *
 import newupdate
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 references={
@@ -135,9 +135,9 @@ def mainwithcat(*args):
 def Get_P_API(q , P):
     url = 'https://www.wikidata.org/w/api.php?action=wbgetclaims&entity=' + q + '&property=' + P + '&format=json'
     html = urllib.request.urlopen(url).read().strip().decode('utf8','ignore')
-    json = himoBOT.load_SPARQL_New(sparql = html)
-    if P in json['claims']:
-        va =  json['claims'][P][0]['mainsnak']["datavalue"]
+    json1 = json.loads(html)
+    if P in json1['claims']:
+        va =  json1['claims'][P][0]['mainsnak']["datavalue"]
         if ('value' in va) and ('id' in va['value']):
             return va['value']['id']
     return False

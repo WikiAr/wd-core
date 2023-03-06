@@ -30,17 +30,10 @@ from pywikibot.bot import (SingleSiteBot, ExistingPageBot, NoRedirectPageBot, Au
 
 
 #---
-# start of himoAPI.py 
+# start of himoAPI.py
 #from API import himoAPI
 from API import himoAPI_test as himoAPI
-#himoAPI.Claim_API2( item_numeric , property, id)
-#himoAPI.Claim_API_With_Quall(q , pro ,numeric, quall_prop , quall_id)
-#himoAPI.New_API(data2, summary)
-#himoAPI.New_Mult_Des( q, data2, summary , ret )
-#himoAPI.Des_API( Qid, desc , lang )
-#himoAPI.Labels_API( Qid, desc , lang , False)
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 categories = {
@@ -99,7 +92,7 @@ def main(categories):
         #quarry = re.sub( 'Q4117509' , CategoryID , quarry)
         #---
         quarry2 = re.sub( 'YYY' , category, qua)
-        pagelist2 = himoBOT.sparql_generator_url2(quarry2) 
+        pagelist2 = himoBOT.sparql_generator_url(quarry2) 
         lenth = len(pagelist2)
         num = 0
         for pp in pagelist2:         

@@ -168,7 +168,6 @@ def Log(item, AddedLangsWithLab):
     #if verbose:
         #OOutPut(form % (total, translation, des) )   #, des
 #---
-# start of himoBOT.py file
 from API import himoBOT
 #---
 def Log2(Table):
