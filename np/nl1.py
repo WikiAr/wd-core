@@ -48,7 +48,10 @@ python3 pwb.py np/nldes3 sparql:Q96739634
 '''
 import sys
 import pywikibot
-from np.nldes3 import qura, SPARQLSE, wd_sparql_query, action_one_item, p50s
+from np.nldes3 import wd_sparql_query
+from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS, p50s
+from np.np_lists import bldiat, Space_tab, p50s, nationalities, songs_type, others_list, others_list_2, space_list_and_other, qura, Geo_entity
+#---
 #---
 taber = qura
 #---

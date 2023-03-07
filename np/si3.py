@@ -86,8 +86,8 @@ from API.taxones import tax_translationsNationalities, taxone_list, lab_for_p171
 from API.scientific_article_desc import Scientific_descraptions
 #---
 from np.np_lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
-from np.nldes3 import Make_space_desc, Make_others_desc
 from np.scientific_article import make_scientific_article
+from np.nldesc import Make_space_desc, Make_others_desc
 #---
 genders = {
     'Q6581097': 'male', 

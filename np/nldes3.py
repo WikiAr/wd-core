@@ -112,7 +112,7 @@ limit = { 1 : 0 }
 #---
 totallimit = { 1 : 10000 }
 #---
-from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS
+from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS, p50s
 from np.nldesc import *
 #---
 def lastXnewpages(maxp):

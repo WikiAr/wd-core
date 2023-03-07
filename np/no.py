@@ -50,8 +50,10 @@ python3 pwb.py np/nldes3 a3r sparql:Q783794 #شركة
 import sys
 import re
 import pywikibot
-from np.nldes3 import wd_sparql_query, action_one_item, p50s, songs_type
-from np.nldes3 import *
+from np.nldes3 import wd_sparql_query
+from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS, p50s
+from np.np_lists import bldiat, Space_tab, p50s, nationalities, songs_type, others_list, others_list_2, space_list_and_other, qura, Geo_entity
+#---
 #---
 taber = { 1 : p50s }
 #---

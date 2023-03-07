@@ -4,7 +4,7 @@
 from np.np_lists import *
 
 in si3.py :
-from np.np_lists import Make_space_desc, space_list_and_other, Make_others_desc, others_list, Space_tab, others_list_2
+from np.np_lists import space_list_and_other, others_list, Space_tab, others_list_2
 
 '''
 #---
