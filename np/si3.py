@@ -2,25 +2,25 @@
 # -*- coding: utf-8 -*-
 """
 
-python3 pwb.py np/si3 -family:wikidata -lang:wikidata -usercontribs:Ghuron
+python3 pwb.py np/si3 -usercontribs:Ghuron
 
 إضافة وصف لعناصر ويكي بيانات الجديدة
 
-python3 pwb.py np/si3 -family:wikidata -lang:wikidata -ns:0 -offset:5000 -newpages:10000
+python3 pwb.py np/si3 -ns:0 -offset:5000 -newpages:10000
 
 python3 pwb.py np/si3 mainwithcat2 -newpages:200 descqs
 python3 pwb.py np/si3 mainwithcat2 -newpages:100 ask
 
-python3 pwb.py np/si3 -lang:wikidata -family:wikidata -page:Q112167358
-python3 pwb.py np/si3 -lang:wikidata -family:wikidata -page:
-python3 pwb.py np/si3 -lang:wikidata -family:wikidata -page:Q113510544
-python3 pwb.py np/si3 -lang:wikidata -family:wikidata -page:Q111771063
-python3 pwb.py np/si3 -lang:wikidata -family:wikidata -start:Q98512481
-python3 pwb.py np/si3 -lang:wikidata -family:wikidata -start:Q97950000
-python3 pwb.py np/si3 -lang:wikidata -family:wikidata -start:Q97949000
-python3 pwb.py np/si3 -lang:wikidata -family:wikidata -start:Q111771064 err
+python3 pwb.py np/si3 -page:Q112167358
+python3 pwb.py np/si3 -page:
+python3 pwb.py np/si3 -page:Q113510544
+python3 pwb.py np/si3 -page:Q111771063
+python3 pwb.py np/si3 -start:Q98512481
+python3 pwb.py np/si3 -start:Q97950000
+python3 pwb.py np/si3 -start:Q97949000
+python3 pwb.py np/si3 -start:Q111771064 err
 
-python3 pwb.py np/si3 -lang:wikidata -family:wikidata -newpages:200
+python3 pwb.py np/si3 -newpages:200
 
 python pwb.py np/si3 -newpages:200
 python3 pwb.py np/si3 mainwithcat2 -newpages:200 ask
@@ -29,6 +29,10 @@ python3 pwb.py np/si3 mainwithcat2 -newpages:200 ask
 #
 # (C) Ibrahem Qasim, 2022
 #
+import sys
+sys.argv.append('-family:wikidata')
+sys.argv.append('-lang:wikidata')
+#---
 import json
 import urllib
 import codecs
@@ -51,11 +55,8 @@ import datetime
 import time
 import datetime
 from datetime import datetime
-import sys
 #---
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
-#---
-sys_argv = sys.argv or []
 #---
 import urllib
 import urllib.request
@@ -112,7 +113,7 @@ offsetbg = { 1 : 0 }
 #---
 QSlimit = { 1 : 3000 }
 #---
-for arg in sys_argv:
+for arg in sys.argv:
     #---
     arg, sep, value = arg.partition(':')
     #---
@@ -285,7 +286,7 @@ def wwdesc( NewDesc, q, i, fixlang, ask = ""):
         #---
         printe.output('*work_api_desc %s "%s": try "%d",%s:' % ( str(q), value, i, menet )  )
         #---
-        if 'printdisc' in sys_argv:
+        if 'printdisc' in sys.argv:
             printe.output( data3 )
         #---
         #item.editEntity(data, summary=summary)
@@ -344,7 +345,7 @@ def work_api_desc( NewDesc, q, fixlang ):
     #---
     g = ''
     #---
-    if not MainTestTable[1] or "dd" in sys_argv :
+    if not MainTestTable[1] or "dd" in sys.argv :
         g = ''
     else:
         printe.output( '<<lightyellow>> Without save:')
@@ -430,7 +431,7 @@ WHERE {
             if P171 in lab_for_p171.keys():
                 P171ar = lab_for_p171[P171]
                 ar_lab = P105ar + ' ' + P171ar
-                if "descqs" in sys_argv:
+                if "descqs" in sys.argv:
                     work_qs( q, { 'ar' : { 'value' : ar_lab } } )
                 else:
                     himoAPI.Des_API( q, ar_lab, 'ar' )
@@ -443,7 +444,7 @@ def work_taxon_desc( item, endesc ):
     printe.output( ' work_taxon_desc:ardesc:"%s"' % ardesc )
     if ardesc != '' :
         #---
-        if "descqs" in sys_argv:
+        if "descqs" in sys.argv:
             work_qs( q, { 'ar' : { 'value' : ardesc } } )
         else:
             himoAPI.Des_API( q, ardesc, 'ar' )
@@ -576,7 +577,7 @@ def work_qid_desc(item, topic, num):
 #---
 def log_new_types(lists):
     #---
-    if "nolog" in sys_argv: return ''
+    if "nolog" in sys.argv: return ''
     #---
     jsonfils = main_dir1 + 'np/new_types.json'
     #---
@@ -590,7 +591,7 @@ def log_new_types(lists):
     except:
         printe.output( '' )
     #---
-    if "log2" in sys_argv: jsonfils = main_dir1 + 'np/new_types2.json'
+    if "log2" in sys.argv: jsonfils = main_dir1 + 'np/new_types2.json'
     #---
     if Lalo_types["n"] == {} :
         with codecs.open(jsonfils, "r", encoding="utf-8-sig") as listt:
@@ -689,7 +690,7 @@ def ISRE( qitem, num, lenth, no_donelist = True, P31_list = False ):
                 elif P31 == 'Q13442814':
                     sc_desc = ['', 'مقالة علمية', 'مقالة بحثية'] 
                     if ardes in sc_desc:
-                        if not "workibrahem" in sys_argv:
+                        if not "workibrahem" in sys.argv:
                             make_scientific_art(item, P31, num)
                     break
                 #---
@@ -724,20 +725,20 @@ def print_new_types():
 def mainwithcat(*args):
     printe.output( '*<<lightred>> > mainwithcat:')
     #---
-    lenth = len(sys_argv)
+    lenth = len(sys.argv)
     printe.output(lenth)
     #if lenth == 0:  
         #args = {'-family:wikidata', '-lang:wikidata', '-ns:0', '-newpages:20000'}
-        #args = {'-family:wikidata -lang:wikidata -ns:0 -newpages:20000'}
+        #args = {'-ns:0 -newpages:20000'}
     printe.output(args)
-    # python3 pwb.py np/si3 -family:wikidata -lang:wikidata -usercontribs:LargeDatasetBot
-    # python3 pwb.py np/si3 -family:wikidata -lang:wikidata -usercontribs:Mr._Ibrahem
-    # python pwb.py np/si3 -family:wikidata -lang:wikidata -usercontribs:Emijrpbot
-    # python pwb.py np/si3 -family:wikidata -lang:wikidata -usercontribs:Research_Bot
-    # python3 pwb.py np/si3 -family:wikidata -lang:wikidata -ns:0 -offset:5000 -newpages:10000
-    # python3 pwb.py np/si3 -family:wikidata -lang:wikidata -ns:0 -page:Q111521953 ask
-    # python pwb.py np/si3 -family:wikidata -lang:wikidata -ns:0 -page:Q62076323
-    # python pwb.py np/si3 -family:wikidata -lang:wikidata -usercontribs:Succu
+    # python3 pwb.py np/si3 -usercontribs:LargeDatasetBot
+    # python3 pwb.py np/si3 -usercontribs:Mr._Ibrahem
+    # python pwb.py np/si3 -usercontribs:Emijrpbot
+    # python pwb.py np/si3 -usercontribs:Research_Bot
+    # python3 pwb.py np/si3 -ns:0 -offset:5000 -newpages:10000
+    # python3 pwb.py np/si3 -ns:0 -page:Q111521953 ask
+    # python pwb.py np/si3 -ns:0 -page:Q62076323
+    # python pwb.py np/si3 -usercontribs:Succu
     generator = gent.get_gent(*args)
     #---
     counter = 0
@@ -767,7 +768,7 @@ def mainwithcat2(*args):
     #---
     list = []
     #---
-    for arg in sys_argv:
+    for arg in sys.argv:
         arg, sep, value = arg.partition(':')
         #---
         if arg == "-limit" or arg == "limit" : 
@@ -831,19 +832,19 @@ def mainwithcat2(*args):
     printe.output( 'si3.py mainwithcat2 done in {} seconds'.format( delta ) )
 #---
 def main():
-    SysArgs = sys_argv
+    SysArgs = sys.argv
     printe.output(len(SysArgs))
     printe.output( SysArgs )
     #if SysArgs and len(SysArgs) > 1:
     if SysArgs:
         if '-family:wikidata' in SysArgs:
             mainwithcat()
-        #elif sys_argv[1] == 'death':
+        #elif sys.argv[1] == 'death':
             #args = {'-file:c40/birth.txt'}
         else: 
             WorkNew()
     else:
-        printe.output('no sys_argv')
+        printe.output('no sys.argv')
 #---
 #32500000   اكتمل حتى
 #32897048  متبقي حتى
@@ -853,31 +854,31 @@ def WorkNew():
     ATend = 32500000
     #---
     # python3 pwb.py np/si3 WorkNew list1
-    if "list1" in sys_argv:
+    if "list1" in sys.argv:
         start = 77196790
         ATend = 77038417 
     #---
     # python3 pwb.py np/si3 WorkNew  list2
-    if "list2" in sys_argv:
+    if "list2" in sys.argv:
         start = 80999999 
         ATend = 80000000 
     #---
     # python3 pwb.py np/si3 WorkNew  list3
-    if "list3" in sys_argv:
+    if "list3" in sys.argv:
         start = 79788588 
         ATend = 79000000 
     #---
     # python3 pwb.py np/si3 WorkNew  list4
-    if "list4" in sys_argv:
+    if "list4" in sys.argv:
         start = 78411675 
         ATend = 78000000 
     #---
     # python3 pwb.py np/si3 WorkNew  list5
-    if "list5" in sys_argv:
+    if "list5" in sys.argv:
         start = 78823351 
         ATend = 78412057
     #---
-    for arg in sys_argv:
+    for arg in sys.argv:
         #---
         arg, sep, value = arg.partition(':')
         #---
@@ -897,7 +898,7 @@ def WorkNew():
 
 
       
-    for arg in sys_argv:
+    for arg in sys.argv:
 
         arg, sep, value = arg.partition(':')
         value = value.replace(", ", "")
@@ -911,11 +912,11 @@ def WorkNew():
     #---
     # python3 pwb.py np/si3 WorkNew 
     #---
-    #if len(sys_argv) > 1:
-        #start = sys_argv[1]
+    #if len(sys.argv) > 1:
+        #start = sys.argv[1]
     #---
-    #if len(sys_argv) > 2:
-        #ATend = sys_argv[2]
+    #if len(sys.argv) > 2:
+        #ATend = sys.argv[2]
     #---
     num   = 0
     #---
@@ -947,7 +948,7 @@ def Main_Test():
     #---
     q = "Q95690374"
     #---
-    for arg in sys_argv:
+    for arg in sys.argv:
         #---
         arg, sep, value = arg.partition(':')
         #---
@@ -998,7 +999,7 @@ def read_new_types_file():
     file = 'np/new_types.json'
     number = 100
     #---
-    for arg in sys_argv:
+    for arg in sys.argv:
         arg, sep, value = arg.partition(':')
         #---
         if arg == "-number" or arg == "number" :  number = int(value)
@@ -1038,20 +1039,20 @@ def read_new_types_file():
 # python3 pwb.py np/si3 read
 #---
 if __name__ == "__main__":
-    if "read" in sys_argv:
+    if "read" in sys.argv:
         read_new_types_file()
-    elif "WorkNew" in sys_argv or "worknew" in sys_argv:
+    elif "WorkNew" in sys.argv or "worknew" in sys.argv:
         WorkNew()
-    elif "test" in sys_argv:
+    elif "test" in sys.argv:
         Main_Test()
-    elif "mainwithcat2" in sys_argv or "main2" in sys_argv:
+    elif "mainwithcat2" in sys.argv or "main2" in sys.argv:
         mainwithcat2()
     else:
         mainwithcat()
 #---
 # python3 pwb.py np/si3 main2 -newpages:50
 # python3 pwb.py np/si3 mainwithcat2 -newpages:500
-# python pwb.py np/si3 -family:wikidata -lang:wikidata -newpages:100
+# python pwb.py np/si3 -newpages:100
 # python3 ./core/pwb.py ./core/np/si3 mainwithcat2 -limit:3000 -ns:0 -usercontribs:Research_Bot
 # python3 pwb.py np/si3 mainwithcat2 -limit:6000 -ns:0 -usercontribs:Succu
 # python3 pwb.py np/si3 mainwithcat2 -limit:6000 -ns:0 -usercontribs:LargeDatasetBot
