@@ -23,16 +23,6 @@ import json
 import time
 import pywikibot
 #---
-# start of arAPI.py file
-#from API import arAPI 
-# arAPI.post( params, family="", lang="")
-# arAPI.purge(title)
-
-
-# arAPI.create_Page(text , summary , title, ask )
-# arAPI.Add_To_Bottom(appendtext , summary , title , ask)
-# arAPI.Add_To_Head(prependtext , summary , title, Ask)
-#---
 title = u'ويكيبيديا:مشروع_ويكي_بيانات/تقرير_P31/1'
 #---
 Table_no_ab2 = {}
