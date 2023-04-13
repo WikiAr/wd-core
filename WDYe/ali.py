@@ -27,9 +27,6 @@ import urllib
 import urllib.request
 import urllib.parse
 #---
-#from name.list import *
-#---
-#from API import sql
 # sql.Make_sql( queries )
 # sql.Make_sql_2_rows( queries  , wiki = "" )
 #---

@@ -31,7 +31,7 @@ from API import himoBOT
 #---
 def logme(q , label):
     verbose = False
-    with codecs.open("name/name.log.csv", "a", encoding="utf-8") as logfile:
+    with codecs.open("textfiles/name-logs/name.log.csv", "a", encoding="utf-8") as logfile:
         #formattedstring = ( '%s\tLar\t"""%s"""\n' % ( q , label) )
         formattedstring = ( '%s\t%s\n' % ( q , label) )
         try:   

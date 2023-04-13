@@ -86,7 +86,7 @@ Qlist['Q482994'] = {# ألبوم
 #---
 def logme(q, label):
     verbose = False
-    filename = main_dir + "name/name.log.csv"
+    filename = main_dir + "textfiles/name-logs/name.log.csv"
     with codecs.open(filename, "a", encoding="utf-8") as logfile:
         formattedstring = ( '%s\t%s\n' % ( q, label) )
         try:
