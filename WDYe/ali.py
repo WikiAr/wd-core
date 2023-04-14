@@ -27,8 +27,8 @@ import urllib
 import urllib.request
 import urllib.parse
 #---
-# sql.Make_sql( queries )
-# sql.Make_sql_2_rows( queries  , wiki = "" )
+
+
 #---
 from API import himoBOT2
 from API import himoBOT

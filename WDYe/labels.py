@@ -34,11 +34,11 @@ except:
     python36 = False
 #---
 from API import sql
-# sql.GET_SQL()
-# sql.Make_sql( queries )
-# sql.Make_sql_1_row( queries , wiki = "" )
-# sql.Make_sql_2_rows( queries , wiki = "" )
-# sql.Make_sql_many_rows( queries , wiki = "" )
+
+
+
+
+
 #---
 from API import himoAPI_test as himoAPI
 #---
@@ -84,7 +84,6 @@ WHERE
         Quaa = Quaa + 'limit %s' % Limit[1]
     #---
     pywikibot.output( Quaa )
-    #sparql = sql.sparql_generator_url(Quaa)
     sparql = sql.Make_sql_2_rows( Quaa , wiki = "wikidata" )
     #---
     Table = {}
