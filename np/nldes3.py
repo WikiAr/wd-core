@@ -100,7 +100,7 @@ import sys
 import re
 from datetime import timedelta
 #---
-from API import himoAPI
+from wd_API import himoAPI
 from API import himoBOT
 #---
 totaledits=0

@@ -463,7 +463,7 @@ def mainar():
     if not "nosave" in sys.argv:
         if 'test' in sys.argv : title = 'User:Mr. Ibrahem/claims1'
         #---
-        from API import himoAPI
+        from wd_API import himoAPI
         #---
         himoAPI.page_putWithAsk( '' , text , 'Bot - Updating stats' , title, False)
         #---

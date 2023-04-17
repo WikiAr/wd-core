@@ -10,11 +10,11 @@ import re
 from API import printe
 import sys
 #---
-from API import himoAPI
+from wd_API import himoAPI
 from API import himoBOT2
 #---
 #--- == == == == == == == == == == == ==
-from API.descraptions import Qid_Descraptions
+from likeapi.descraptions import Qid_Descraptions
 #---
 items2do = 0    #global parameter to print progress
 totaledits=0

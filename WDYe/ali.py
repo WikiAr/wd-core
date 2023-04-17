@@ -33,11 +33,11 @@ import urllib.parse
 from API import himoBOT2
 from API import himoBOT
 try:
-    from API import himoAPI_test as himoAPI
+    from wd_API import himoAPI_test as himoAPI
 except:
     pywikibot.output('<<lightred>> Can\'t import himoAPI_test as himoAPI')
 #---
-#from API import himoAPI
+#from wd_API import himoAPI
 #---
 ask = {1 : True}
 OFFSET = { 1: '   '}

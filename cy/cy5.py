@@ -95,7 +95,7 @@ Stage[""] = ""
 TEST = { 1:False, 2:False }
 #import pywikibot
 #---
-#from API import encode
+#from likeapi import encode
 # encode.encode_arabic(label)
 #---
 litters = {

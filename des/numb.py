@@ -19,7 +19,7 @@ import time
 #---
 from API import himoBOT
 from API import himoBOT2
-from API import himoAPI
+from wd_API import himoAPI
 #---
 limit = { 1 : 0 }
 quarry = '''SELECT (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)

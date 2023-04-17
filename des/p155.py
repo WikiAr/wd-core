@@ -30,7 +30,7 @@ import urllib.parse
 #---
 from API import himoBOT2
 #---
-from API import himoAPI_test as himoAPI
+from wd_API import himoAPI_test as himoAPI
 #---
 Usema = { 1: True }
 Ask = { 1: True }
@@ -42,23 +42,6 @@ from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, Interna
 from des.p155tables import keys_1, Sports_Keys_Lab,Sports_Keys_Team 
 #---
 log_done = []
-#---
-def log( en , ar , type ):
-    lio = '"%s":"%s",\n' %  ( en.lower() , ar )
-    loogfile = main_dir + "des/labels_to_add.csv.log"
-    #---
-    if type == "en":
-        lio = '%s\n' % en.lower()
-        loogfile = main_dir + "des/en_to_find_lab.csv.log"
-    #---
-    if not en.lower() in log_done or type == "en": 
-        if en != "" and ( ar != "" or type == "en" ) : 
-            with codecs.open( loogfile, "a", encoding="utf-8") as logfile:
-                try:
-                    logfile.write( lio )
-                    log_done.append( en.lower() )
-                except:
-                    printe.output("Error writing")
 #---
 years = "(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)"
 tests_en = '[abcdefghijklmnopqrstuvwxyz]'
@@ -96,10 +79,8 @@ def make_newlabel( label , ar , en ):
             newlabel = ar
         elif label.find( en.lower() ) != -1  : 
             newlabel = ar + " " + label.replace( en.lower() , '' )
-            log( en , ar  , "ar")
         elif en2 != en and label.find( en2 ) != -1  : 
             newlabel = ar + " " + label.replace( en2.lower() , '' )
-            log( en2 , ar , "ar")
         else : 
             newlabel = label
     else : 
@@ -182,7 +163,6 @@ def make_newlabel( label , ar , en ):
     leb_test = re.sub( tests_ar , "" , newlabel , flags = re.IGNORECASE )
     if leb_test.strip() != "" : 
         printe.output( '<<lightblue>> leb_test(%s) == '' '  % leb_test.strip() )
-        log( leb_test.strip() , ''  , "en")
         newlabel = ''
     #---
     newlabel = newlabel.replace("ألعاب أولمبية شتوية" , "الألعاب الأولمبية الشتوية")

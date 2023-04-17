@@ -14,11 +14,11 @@ python3 pwb.py des/fam
 #---
 from API import printe
 from API import himoBOT2
-from API.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
+from likeapi.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
 import sys
 import random
 #---
-from API import newdesc
+from wd_API import newdesc
 # newdesc.main_from_file(file, topic, translations2)
 # newdesc.mainfromQuarry2( topic, Quarry, translations)
 # newdesc.work22(q, topic, translations)

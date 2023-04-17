@@ -39,26 +39,6 @@ def check_quarry(qua):
     else:
         return False
 #---
-def log(lang , desc , contry , place):
-    fo  = '| {{Q|%s}}|| %s || || {{Q|%s}} \n|-\n' % (place , desc , contry)
-    with codecs.open("ydn/log/"+lang+".log.csv", "a", encoding="utf-8") as logfile:
-        #try:
-            logfile.write(fo)
-        #except :
-            #printe.output("Error writing")
-#---
-def logdone(tt , vaa):
-    form = 'donelist["%s"] = "%s"\n\n' % (tt,vaa)
-    printe.output(form)
-    with codecs.open("ydn/done.py", "a", encoding="utf-8") as logfile:
-      try:
-            logfile.write(str(form))
-      except:
-            printe.output("<<lightred>>---------------------\n")
-            printe.output("<<lightred>> Error writing:")
-            printe.output(form)
-            printe.output("<<lightred>>---------------------\n")
-#---
 def action(json1 , topic , translations):
     tatose = translations
     #total = len(json1['results']['bindings'])

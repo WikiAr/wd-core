@@ -37,7 +37,7 @@ import urllib.parse
 wikidatasite = pywikibot.Site('wikidata', 'wikidata')
 repo = wikidatasite.data_repository()
 #---
-from API.descraptions import DescraptionsTable
+from likeapi.descraptions import DescraptionsTable
 
 queries2 = {
           #'chemical compound': 'SELECT ?item   WHERE { ?item wdt:P31 wd:Q11173 ;      wdt:P31 ?instance .    ?item schema:description "chemical compound"@en.  }   GROUP BY ?item  HAVING(COUNT(?instance) = 1)', 
@@ -200,7 +200,7 @@ def OOutPut(ss):
 qq = {'Hebrew calendar year': SELECT + ' wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.' + GROUP, }
 #---
 # start of newdesc.py file
-from API import newdesc
+from wd_API import newdesc
 # newdesc.work22(q , topic, DescraptionsTable)
 # newdesc.main_from_file(file , topic , DescraptionsTable)
 # newdesc.mainfromQuarry2( topic , Quarry, DescraptionsTable)

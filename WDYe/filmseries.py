@@ -8,11 +8,11 @@
 
 #---
 # start of newdesc.py file
-from API import newdesc
+from wd_API import newdesc
 #   newdesc.main_from_file(file , topic , translations2)
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 #---
-from API.descraptions import DescraptionsTable
+from likeapi.descraptions import DescraptionsTable
 
 translations = {}
 translations['film series'] = DescraptionsTable['film series']

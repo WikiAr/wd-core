@@ -15,7 +15,7 @@ import sys
 from API import himoBOT
 from API import himoBOT2
 #---
-from API.ru_st_2_latin import make_en_label
+from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, Add=False)
 #---
 railway_tables = {

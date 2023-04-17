@@ -27,7 +27,7 @@ import urllib.parse
 #---
 from API import himoBOT2
 #---
-from API import himoAPI_test as himoAPI
+from wd_API import himoAPI_test as himoAPI
 #---
 Limit = { 1: "500"}
 #---

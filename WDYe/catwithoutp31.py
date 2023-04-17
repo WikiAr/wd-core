@@ -28,9 +28,9 @@ import urllib.parse
 #---
 from API import himoBOT
 #---
-from API import himoAPI
+from wd_API import himoAPI
 #---
-from API.descraptions import DescraptionsTable
+from likeapi.descraptions import DescraptionsTable
 Tras = {
     'Q4167836': DescraptionsTable.get('Wikimedia category') or Qid_Descraptions.get('Q4167836') or {}
     }

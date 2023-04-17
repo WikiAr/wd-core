@@ -388,7 +388,7 @@ def mainar():
         #---
         if 'test' in sys.argv : title = 'User:Mr. Ibrahem/p311'
         #---
-        from API import himoAPI
+        from wd_API import himoAPI
         himoAPI.page_putWithAsk( '' , text , 'Bot - Updating stats' , title, False)
         #---
         # with open( jsonname, 'w' ) as fe: fe.write('{}')

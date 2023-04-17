@@ -18,29 +18,12 @@ import re
 import time
 import pywikibot
 #---
-try:
-    import sys
-    reload(sys)  
-    sys.setdefaultencoding('utf8')
-except:
-    import sys
+import sys
 #---
 import urllib
-try:
-    import urllib.parse                 #python 3.6
-    python36 = True
-except:
-    import urllib2  as GUrllib          #python 2.7  urllib2.urlopen
-    python36 = False
-#---
-from API import sql
-
-
-
-
-
-#---
-from API import himoAPI_test as himoAPI
+import urllib.parse
+from api_sql import sql
+from wd_API import himoAPI_test as himoAPI
 #---
 Limit = { 1: '' }
 #---

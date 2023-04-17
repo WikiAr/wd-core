@@ -19,7 +19,7 @@ import string
 #---
 import sys
 #---
-from API import sql as c18sql
+from api_sql import sql as c18sql
 #---
 #use arwiki_p;
 mainquarry = '''
@@ -37,7 +37,7 @@ GROUP BY p.page_title
 #order by ll_from
 #LIMIT 2000;'''
 #---
-from API import himoAPI
+from wd_API import himoAPI
 #---
 WIKI = { 1 : "arwiki" }
 AutoSave = { 1: False}

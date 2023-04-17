@@ -62,12 +62,12 @@ import urllib
 import urllib.request
 import urllib.parse
 #---
-from API import read_json
-from API.ru_st_2_latin import make_en_label
+from likeapi import read_json
+from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)
 #---
 from API import printe
-from API import himoAPI
+from wd_API import himoAPI
 from API import himoBOT
 from API import himoBOT2
 from API import himoBOT3 as himoBOT3wd
@@ -75,7 +75,7 @@ himoBOT3wd.log('https://' + 'www.wikidata.org/w/api.php')
 #---
 #---
 #from trans import *  
-from API.descraptions import DescraptionsTable, Qid_Descraptions
+from likeapi.descraptions import DescraptionsTable, Qid_Descraptions
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
@@ -83,8 +83,8 @@ from des.railway import railway_tables, work_railway
 translations_o = { 1 : {}, 2 : {} }
 from people.new3 import translations_o
 #---
-from API.taxones import tax_translationsNationalities, taxone_list, lab_for_p171, labforP105
-from API.scientific_article_desc import Scientific_descraptions
+from likeapi.taxones import tax_translationsNationalities, taxone_list, lab_for_p171, labforP105
+from likeapi.scientific_article_desc import Scientific_descraptions
 #---
 from np.np_lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
 from np.scientific_article import make_scientific_article

@@ -22,7 +22,7 @@ FILTER NOT EXISTS {?item schema:description ?ar.
 limit 3000 
 '''
 #---
-from API import  newdesc
+from wd_API import  newdesc
 # newdesc.work22(q , topic, translations) 
 # newdesc.main_from_file(file , topic , translations) 
 # newdesc.mainfromQuarry2( topic , Quarry, translations) 

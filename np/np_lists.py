@@ -10,7 +10,7 @@ from np.np_lists import space_list_and_other, others_list, Space_tab, others_lis
 #---
 import sys
 #---
-from API.descraptions import Qid_Descraptions, Space_Descraptions
+from likeapi.descraptions import Qid_Descraptions, Space_Descraptions
 #---
 en_des_to_ar_no_lower = {
     "Royal Dutch East indies Army personel" : "أفراد جيش جزر الهند الشرقية الملكية الهولندية",

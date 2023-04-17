@@ -3,10 +3,10 @@
 #  python pwb.py wd/wikicatategory
 #
 #
-from API import newdesc
+from wd_API import newdesc
 #site = pywikibot.Site('wikidata', 'wikidata')
 #repo = site.data_repository()
-from API.descraptions import DescraptionsTable
+from likeapi.descraptions import DescraptionsTable
 
 translations = {}
 translations['Wikimedia category'] = DescraptionsTable['Wikimedia category']

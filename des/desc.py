@@ -52,7 +52,7 @@ import sys
 import time
 #---
 from API import printe
-from API import himoAPI
+from wd_API import himoAPI
 from API import himoBOT2
 from API import himoBOT
 #---
@@ -204,7 +204,7 @@ WHERE {
   }
 '''
 #---
-from API import get_property_for_list 
+from wd_API import get_property_for_list 
 #get_property_for_list.get_property_label_for_qids( [property], List )
 #---
 def work_one_item( start, lang, tab, c, total, findlab = False ) :

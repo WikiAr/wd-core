@@ -5,7 +5,7 @@
 
 #---
 # start of newdesc.py file
-# from API import newdesc
+# from wd_API import newdesc
 #   newdesc.main_from_file(file , topic , translations2)
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 #---
@@ -31,7 +31,7 @@ import urllib.parse
 
 #---
 from API import himoBOT
-from API.descraptions import *
+from likeapi.descraptions import *
 #---
 translations = {}
 translations['Wikimedia disambiguation page'] = DescraptionsTable['Wikimedia disambiguation page']
@@ -80,7 +80,7 @@ def work2(item , topic):
     #---
     #pywikibot.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
 
-    himoBOT.work_api_desc_with_fix( NewDesc , q)
+    himoBOT.work_api_desc( NewDesc , q)
 #---
 def mainfromQuarry():
     pywikibot.output( '*<<lightyellow>> mainfromQuarry:' )

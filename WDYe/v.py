@@ -11,7 +11,7 @@ lise = {
     }
 
 #---
-from API import himoAPI_test
+from wd_API import himoAPI_test
 #---
 for Qid in lise:
     Label = lise[Qid]

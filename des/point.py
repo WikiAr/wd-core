@@ -20,7 +20,7 @@ from API import printe
 import sys
     
 #---
-from API import himoAPI
+from wd_API import himoAPI
 #---
 from API import himoBOT2
 from API import himoBOT

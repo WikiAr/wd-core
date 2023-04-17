@@ -239,7 +239,7 @@ def mainar():
             if 'test' in sys.argv :
                 #title = 'User:Mr. Ibrahem/Language'
                 text = text.replace('[[Category:Wikidata statistics|Language statistics]]','')
-                from API import himoAPI
+                from wd_API import himoAPI
                 himoAPI.page_putWithAsk('' , text , 'Bot - Updating stats' , title, False)
         else:
             pywikibot.output( text )
