@@ -45,13 +45,9 @@ import gent
 # generator = gent.get_gent(*args)
 # gent.gent_string2html( title, arsite.encoding() )
 #---
-# 
-#import pwb
 import re
 import string
 import datetime 
-# import dateutil.parser
-#---
 import time
 import datetime
 from datetime import datetime
@@ -74,7 +70,6 @@ from API import himoBOT3 as himoBOT3wd
 himoBOT3wd.log('https://' + 'www.wikidata.org/w/api.php')
 #---
 #---
-#from trans import *  
 from likeapi.descraptions import DescraptionsTable, Qid_Descraptions
 from des.desc import work_one_item
 from des.places import placesTable
@@ -109,7 +104,6 @@ new_types = {}
 #---
 newpages_d = { 1 : 0 }
 offsetbg = { 1 : 0 }
-
 #---
 QSlimit = { 1 : 3000 }
 #---
@@ -397,16 +391,16 @@ def make_tax_des_new( item ):
     if P105ar == '' : return ''
     #---
     nan = '''SELECT DISTINCT ?item ?P171 ?item105
-WHERE {
-    BIND(wd:Q111771064 AS ?item)
-  VALUES ?P171 { 
-  %s
-  }
-    ?item wdt:P31 wd:Q16521.
-    ?item wdt:P171* ?P171.
-    ?P171 wdt:P105 wd:Q37517.
-    ?item wdt:P105 ?item105.
-}''' % ( " ".join( [ 'wd:%s' % x for x in lab_for_p171.keys() ] ) )
+    WHERE {
+        BIND(wd:Q111771064 AS ?item)
+    VALUES ?P171 { 
+    %s
+    }
+        ?item wdt:P31 wd:Q16521.
+        ?item wdt:P171* ?P171.
+        ?P171 wdt:P105 wd:Q37517.
+        ?item wdt:P105 ?item105.
+    }''' % ( " ".join( [ 'wd:%s' % x for x in lab_for_p171.keys() ] ) )
     nan = nan.replace("Q111771064", q)
     #---
     if "err" in sys.argv: printe.output(nan)
@@ -436,6 +430,7 @@ WHERE {
                 else:
                     himoAPI.Des_API( q, ar_lab, 'ar' )
         #---
+#---
 def work_taxon_desc( item, endesc ):
     #---
     ardesc = tax_translations_lower.get(endesc.lower(), '')#.get("ar", '')
@@ -612,6 +607,7 @@ def log_new_types(lists):
     with open( jsonfils, 'w' ) as nfile:
         json.dump( Lalo_types["n"], nfile )
     #---
+#---
 def dump_json_write():
     printe.output( 'dump_json_write Adding %d items: '  % len(dump['new']) )
     with open(jsonfile, 'w') as outfile:
@@ -722,6 +718,16 @@ def print_new_types():
         #---
         printe.output( "find:%d : P31:%s" % ( lenth, p31 ) )
     #---
+#---
+from newapi.page import NEW_API
+api_new  = NEW_API('www', family='wikidata')
+login    = api_new.Login_to_wiki()
+# pages    = api_new.Find_pages_exists_or_not(liste)
+# json1    = api_new.post_params(params)
+# pages    = api_new.Get_All_pages(start='', namespace="0", limit="max", apfilterredir='', limit_all=0)
+# search   = api_new.Search(value, ns="", offset='', srlimit="max", RETURN_dict=False, addparams={})
+# newpages = api_new.Get_Newpages(limit="max", namespace="0", rcstart="", user='')
+#---
 def mainwithcat(*args):
     printe.output( '*<<lightred>> > mainwithcat:')
     #---
@@ -813,10 +819,10 @@ def mainwithcat2(*args):
         list = [ x.strip() for x in oco if x.strip() != '' ]
     #---
     elif newpages != "":
-        list = himoBOT3wd.Get_Newpages( "www", "wikidata", limit = newpages, namespace = namespaces )
+        list    = api_new.Get_Newpages(limit=newpages, namespace=namespaces, rcstart="", user='')
     #---
     elif user != "":
-        list = himoBOT3wd.Get_UserContribs( user, limit = user_limit, namespace = namespaces, ucshow = "new" )
+        list = api_new.UserContribs( user, limit = user_limit, namespace = namespaces, ucshow = "new" )
     #---
     num = 0
     printe.output( '*<<lightred>> > mainwithcat2 :')
