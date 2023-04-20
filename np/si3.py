@@ -66,9 +66,6 @@ from API import printe
 from wd_API import himoAPI
 from API import himoBOT
 from API import himoBOT2
-from API import himoBOT3 as himoBOT3wd
-himoBOT3wd.log('https://' + 'www.wikidata.org/w/api.php')
-#---
 #---
 from likeapi.descraptions import DescraptionsTable, Qid_Descraptions
 from des.desc import work_one_item
