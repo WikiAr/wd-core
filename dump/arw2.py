@@ -246,12 +246,18 @@ def mainar():
     #---
     c = 0
     dumpdate = 'latest'
-    f = bz2.open('/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2' , 'r')
+    filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
+    #---
+    f = bz2.open(filename, 'r')
     #---
     try:
         pywikibot.output( 'len of f lines :%d ' % len(f) )
     except:
-        print('')
+        print("can't make len of file...")
+    #---
+    if f == None or f == '' or f == []:
+        print(f'file {filename} is empty')
+        return
     #---
     for line in f:
         line = line.decode('utf-8')
@@ -421,6 +427,10 @@ def mainar():
 |}""" % Table_no_ar 
     #---
     text = text + "\n" + P31_table_no
+    #---
+    if All_items[1] == 0 :
+        print('nothing to update')
+        return
     #---
     if text != "" : 
         pywikibot.output( text )
