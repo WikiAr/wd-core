@@ -23,12 +23,7 @@ except:
     import sys
 #---
 import urllib
-try:
-    import urllib.parse                 #python 3.6
-    python36 = True
-except:
-    import urllib2  as GUrllib          #python 2.7  urllib2.urlopen
-    python36 = False
+import urllib.parse                 #python 3.6
 #---
 from API import himoBOT2
 #---
@@ -37,13 +32,7 @@ from wd_API import himoAPI_test as himoAPI
 def dec(xx):
     xx = xx.replace(" " , "_")
     fao = xx
-    if python36:
-        fao = urllib.parse.quote(xx)        # python 3
-    else:
-        try:
-            fao = urllib.pathname2url(xx)       # python 2.7
-        except:
-            pywikibot.output('<<lightred>> except when urllib.pathname2url(%s)' % xx )
+    fao = urllib.parse.quote(xx)        # python 3
     return fao
 #---
 def fixrow(row):
