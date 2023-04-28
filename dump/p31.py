@@ -18,31 +18,18 @@ python3 pwb.py dump/p31 test nosave
 # (C) Ibrahem Qasim, 2022
 #
 #
-
-# Copyright (C) 2017 emijrp <emijrp@gmail.com>
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import sys
-import bz2
 import os
+import bz2
 #import gz
 import json
 import time
 import pywikibot
 #---
-from API.maindir import main_dir
-if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
+Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+if not Dump_Dir.endswith('/'): Dump_Dir += '/'
+#---
+print(f'Dump_Dir: {Dump_Dir}')
 #---
 #ar_site = pywikibot.Site('ar', 'wikipedia')
 title = 'User:Mr. Ibrahem/p31'
@@ -90,7 +77,7 @@ lamo = [
     'Main_Table',
     ]
 #---
-jsonname = main_dir + 'dump/dumps/claimsep31.json'
+jsonname = Dump_Dir + 'dumps/claimsep31.json'
 #---
 jsonname2 = jsonname
 #---python3 pwb.py dump/p31 jsonnew
@@ -231,7 +218,13 @@ def workondata():
     if 'test' in sys.argv:
         diff = 1000
     #---
-    fileeee = bz2.open('/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2' , 'r')
+    filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
+    #---
+    if not os.path.isfile(filename):
+        pywikibot.output( f'file {filename} <<lightred>> not found' )
+        return
+    #---
+    fileeee = bz2.open(filename, 'r')
     #---
     if 'lene' in sys.argv:
         pywikibot.output( 'len of bz2 lines :%d ' % len( json.loads( [ x for x in fileeee if x.startswith('{') and x.endswith('}') ] ) ) )
@@ -376,7 +369,7 @@ def mainar():
     #---
     # python3 pwb.py dump/claims2 test nosave saveto:ye
     if saveto[1] != '' :
-        with open( main_dir + 'dump/dumps/%s.txt' % saveto[1] , 'w' ) as f:
+        with open( Dump_Dir + 'dumps/%s.txt' % saveto[1] , 'w' ) as f:
             f.write(text)
     #---
     if text == "" : return
@@ -393,12 +386,13 @@ def mainar():
         #---
         # with open( jsonname, 'w' ) as fe: fe.write('{}')
     #---
-    if not 'test' in sys.argv :
-        with open( main_dir + 'dump/dumps/p31.txt' , 'w' ) as f:
-            f.write(text)
-    else:
-        with open( main_dir + 'dump/dumps/p31_1.txt' , 'w' ) as f:
-            f.write(text)
+    to_log = Dump_Dir + 'dumps/p31.txt'
+    #---
+    if 'test' in sys.argv :
+        to_log = Dump_Dir + 'dumps/p31_1.txt'
+    #---
+    with open( to_log , 'w' ) as f:
+        f.write(text)
 #---
 if __name__ == '__main__':
     #pywikibot.output(make_cou( 70900911 , 84601659 ))

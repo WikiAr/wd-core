@@ -17,6 +17,7 @@ python3 pwb.py dump/arn test limit:5000000 -done2limit:200000
 #
 
 import sys
+import os
 import bz2
 #import gz
 import json
@@ -24,6 +25,11 @@ import time
 import pywikibot
 #---
 title = u'ويكيبيديا:مشروع_ويكي_بيانات/تقرير_P31/1'
+#---
+Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+if not Dump_Dir.endswith('/'): Dump_Dir += '/'
+#---
+print(f'Dump_Dir: {Dump_Dir}')
 #---
 Table_no_ab2 = {}
 Table_no_ar_lab = {}
@@ -33,8 +39,6 @@ Offset = { 1 : 0 }
 Limit = { 1 : 500000000 } 
 #---
 # python3 pwb.py wd/dump test 
-#---
-sys_argv = sys.argv or []
 #---
 for arg in sys.argv:
     #---
@@ -60,10 +64,14 @@ if done2limit[2] != 0 : done2limit[1] = done2limit[2]
 def log_dump():
     #---
     hhh = 1000
-    file_l = u'dump/ar/%s.txt'
-    if 'test' in sys_argv : 
-        file_l = u'dump/artest/%s.txt'
+    file_l = u'ar/%s.txt'
+    if 'test' in sys.argv : 
+        file_l = u'artest/%s.txt'
         hhh = 100
+    #---
+    file_l = Dump_Dir + file_l
+    #---
+    pywikibot.output(f'file_l: {file_l}')
     #---
     pywikibot.output('len of Table_no_ab2 : %d' % len(Table_no_ab2) )
     #---
@@ -99,7 +107,14 @@ def mainr():
     done2 = 0
     c = 0
     dumpdate = 'latest'
-    f = bz2.open('/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2' , 'r')
+    #---
+    filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
+    #---
+    if not os.path.isfile(filename):
+        pywikibot.output( f'file {filename} <<lightred>> not found' )
+        return
+    #---
+    f = bz2.open(filename, 'r')
     #---
     others = 0
     #---
@@ -114,7 +129,7 @@ def mainr():
                     #---
                     done2 += 1
                     #---
-                    if "printline" in sys_argv and ( c % 1000 == 0 or c == 1 ) :
+                    if "printline" in sys.argv and ( c % 1000 == 0 or c == 1 ) :
                         pywikibot.output( line ) 
                     #---
                     json1 = json.loads(line)

@@ -18,13 +18,16 @@ python3 pwb.py dump/claims5 test nosave
 #
 #
 import sys
+import os
 import bz2
 import json
 import time
 import pywikibot
 #---
-from API.maindir import main_dir
-if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
+Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+if not Dump_Dir.endswith('/'): Dump_Dir += '/'
+#---
+print(f'Dump_Dir: {Dump_Dir}')
 #---
 title = 'User:Mr. Ibrahem/claims'
 #---
@@ -71,11 +74,11 @@ lamo = [
     'Main_Table',
     ]
 #---
-jsonname = main_dir + 'dump/dumps/claimse.json'
+jsonname = Dump_Dir + 'dumps/claimse.json'
 #---
 #---claimse4.json
 jsonname2 = jsonname
-if 'claimse4' in sys.argv : jsonname2 = main_dir + 'dump/dumps/claimse4.json'
+if 'claimse4' in sys.argv : jsonname2 = Dump_Dir + 'dumps/claimse4.json'
 #---python3 pwb.py dump/claims5 jsonnew
 if 'jsonnew' in sys.argv:
     with open( jsonname , 'w' ) as fe:
@@ -217,7 +220,13 @@ def workondata():
     if 'test' in sys.argv:
         diff = 1000
     #---
-    fileeee = bz2.open('/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2' , 'r')
+    filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
+    #---
+    if not os.path.isfile(filename):
+        pywikibot.output( f'file {filename} <<lightred>> not found' )
+        return
+    #---
+    fileeee = bz2.open(filename, 'r')
     #---
     if 'lene' in sys.argv:
         pywikibot.output( 'len of bz2 lines :%d ' % len( json.loads( [ x for x in fileeee if x.startswith('{') and x.endswith('}') ] ) ) )
@@ -452,7 +461,7 @@ def mainar():
     #---
     # python3 pwb.py dump/claims2 test nosave saveto:ye
     if saveto[1] != '' :
-        with open( main_dir + 'dump/dumps/%s.txt' % saveto[1] , 'w' ) as f:
+        with open( Dump_Dir + 'dumps/%s.txt' % saveto[1] , 'w' ) as f:
             f.write(text)
     #---
     if text == "" : return ''
@@ -471,10 +480,10 @@ def mainar():
         #---
     #---
     if not 'test' in sys.argv :
-        with open( main_dir + 'dump/dumps/claims.txt' , 'w' ) as f:
+        with open( Dump_Dir + 'dumps/claims.txt' , 'w' ) as f:
             f.write(text)
     else:
-        with open( main_dir + 'dump/dumps/claims1.txt' , 'w' ) as f:
+        with open( Dump_Dir + 'dumps/claims1.txt' , 'w' ) as f:
             f.write(text)
 #---
 if __name__ == '__main__':

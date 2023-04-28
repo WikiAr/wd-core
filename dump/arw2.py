@@ -15,14 +15,16 @@ python3 pwb.py dump/arw2 test nosave limit:5000
 
 
 import sys
+import os
 import bz2
-#import gz
 import json
 import time
 import pywikibot
 #---
-from API.maindir import main_dir
-if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
+Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+if not Dump_Dir.endswith('/'): Dump_Dir += '/'
+#---
+print(f'Dump_Dir: {Dump_Dir}')
 #---
 title = 'ويكيبيديا:مشروع_ويكي_بيانات/تقرير_P31'
 #---
@@ -248,6 +250,10 @@ def mainar():
     dumpdate = 'latest'
     filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
     #---
+    if not os.path.isfile(filename):
+        pywikibot.output( f'file {filename} <<lightred>> not found' )
+        return
+    #---
     f = bz2.open(filename, 'r')
     #---
     try:
@@ -439,13 +445,13 @@ def mainar():
             arAPI.page_put(oldtext="", newtext=text, summary='Bot - Updating stats', title=title)
     #---
     if not 'test' in sys_argv :
-        with open( main_dir +  'dump/dumps/arw2.txt' , 'w' ) as f:
+        with open( Dump_Dir +  'dumps/arw2.txt' , 'w' ) as f:
             f.write(text)
         #---
         for qid, List in Table_no_ab2.items() :
             if len(List) > 1000 :
                 tex = "\n".join( List )
-                with open( main_dir +  'dump/ar/%s.txt' % qid , 'w' ) as f:
+                with open( Dump_Dir +  'ar/%s.txt' % qid , 'w' ) as f:
                     f.write(tex)
 #---
 if __name__ == '__main__':

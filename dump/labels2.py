@@ -13,6 +13,7 @@ python3 pwb.py dump/labels2 test nosave
 #
 
 import sys
+import os
 import re
 import bz2
 #import gz
@@ -20,8 +21,10 @@ import json
 import time
 import pywikibot
 #---
-from API.maindir import main_dir
-if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
+Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+if not Dump_Dir.endswith('/'): Dump_Dir += '/'
+#---
+print(f'Dump_Dir: {Dump_Dir}')
 #---
 from API import himoBOT2
 #---
@@ -101,7 +104,14 @@ def get_data():
     Main_Table = {}
     #---
     c = 0
-    f = bz2.open('/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2' , 'r')
+    #---
+    filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
+    #---
+    if not os.path.isfile(filename):
+        pywikibot.output( f'file {filename} <<lightred>> not found' )
+        return
+    #---
+    f = bz2.open(filename, 'r')
     #---
     if 'lene' in sys.argv:
         pywikibot.output( 'len of bz2 lines :%d ' % len( json.loads( [ x for x in f if x.startswith('{') and x.endswith('}') ] ) ) )
@@ -245,7 +255,7 @@ def mainar():
             pywikibot.output( text )
     #---
     if not 'test' in sys.argv :
-        with open( main_dir + 'dump/dumps/dump.labels2.txt' , 'w' ) as f:
+        with open( Dump_Dir + 'dumps/dump.labels2.txt' , 'w' ) as f:
             f.write(text)
 #---
 if __name__ == '__main__':
