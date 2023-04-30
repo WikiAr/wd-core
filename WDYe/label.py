@@ -7,8 +7,6 @@ from pywikibot import pagegenerators
 from pywikibot import pagegenerators as pg
 import re
 import codecs
-from API.maindir import main_dir
-if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
 import sys
 import datetime
 from datetime import datetime, date, time
@@ -37,37 +35,8 @@ items2do = 0
 itemsdone= 0
 missing_dict={}
 
-def logme(wditem,ma):
-  form = '\n%s\tLar\t"%s"'
-  it = re.sub('\[\[wikidata\:', '', wditem)
-  it2 = re.sub('\]\]', '', it)
-  with codecs.open(main_dir+"label\label.log.csv", "a", encoding="utf-8") as logfile:
-    try:   
-        logfile.write(form % (it2,ma) )
-        #logfile.write('%s|%s%s' %  (id, en_desc, '\n'))
-    except :
-        pass
-        print(" Error writing to logfile on: [%s]" %  site)
-    verbose = True#True	#now I want to see what!   
-    logfile.close()
-    if verbose:
-       print(form % (it2,ma) )   #, des
-
 def preee(wditem, data, site):
-	if debug:
-		#print( ' %s' % site)
-		logme( wditem.title(), site)
-	else:
-		wditem.editEntity(data,summary='Bot: Add Arabic label: '+site)
-		#print( '%s Item done' % wditem.id)
-		#print( ': %s Item done: %s' % (lab, ar_dict[lang] ))
-		#print( ': Item done: %s' % lab)
-		#print( ' %s' % ar_dict[lang])
-		logme(wditem.title(), site)
-		#print( '%s Item done' % wditem.id)
-		#print( ': %s Item done: %s' % (lab, ar_dict[lang] ))
-		#print( ': item done: %s' % lab)
-		#print( ' %s' % des)
+    wditem.editEntity(data,summary='Bot: Add Arabic label: '+site)
 
 def action_one_item(wditem):
     global items2do
@@ -110,7 +79,6 @@ def action_one_item2(wditem):
         #data = {}
         #data.update({'labels':{'ar':ma}})
         #preee(wditem, data, site)
-        logme(str(wditem),ma)
 	  
     return 1
 	  
@@ -150,19 +118,7 @@ def wd_sparql_generator(query):
   for wd in generator:
     wd.get(get_redirect=True)
     yield wd
-                                         
-def wd_from_file():
-  repo=pywikibot.Site('wikidata','wikidata').data_repository()
-  csvfile=open(main_dir+'label/label.csv','r')
-  for alllines in csvfile:
-    qitem=alllines[alllines.find('Q'):alllines.find(',')]
-    if (len(qitem)>0):
-      wditem=pywikibot.ItemPage(repo,qitem)
-      if (not(wditem.isRedirectPage())):
-       if wditem.exists():
-        wditem.get(get_redirect=True)
-        yield wditem
-
+            
 def main():
     global itemsdone
     itemsdone = 0
@@ -172,7 +128,6 @@ def main():
     query = 'PREFIX schema: <http://schema.org/> PREFIX hint: <http://www.bigdata.com/queryHints#> SELECT ?item WHERE {  {    SELECT ?item WHERE {      hint:Query hint:optimizer "None".      {        SELECT ?item WHERE         {          ?sitelink schema:about ?item.          ?sitelink schema:isPartOf <https://ar.wikipedia.org/>.        }        LIMIT 27000      }      OPTIONAL { ?item rdfs:label ?nameLabelHE.  FILTER((LANG(?nameLabelHE)) = "ar") }     FILTER(!BOUND(?nameLabelHE))    }  }}LIMIT 100'
     print ("--- يتم الان تشغيل الاستعلام")
     pigenerator = wd_sparql_generator(query)
-    #pigenerator = wd_from_file()
     for wditem in pigenerator:
         #try:
             action_one_item(wditem)

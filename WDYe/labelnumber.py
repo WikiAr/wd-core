@@ -7,8 +7,6 @@ from pywikibot import pagegenerators as pg
 
 
 import codecs
-from API.maindir import main_dir
-if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
 import sys
 import datetime
 from datetime import datetime, date, time
@@ -21,19 +19,6 @@ items2do = 0
 itemsdone= 0
 missing_dict={}
 
-def logme(wditem, numberlabel):
-  form = '\n%s\tLar\t%s'
-  with codecs.open(main_dir+"wd/labelnumber.log.csv", "a", encoding="utf-8") as logfile:
-    try:   
-        logfile.write(form % (wditem, numberlabel) )
-    except :
-        pass
-        print(" Error writing to logfile on: [%s]" %  numberlabel)
-    verbose = True#True    #now I want to see what!   
-    logfile.close()
-    if verbose:
-       print(form % (wditem, numberlabel) )
-
 def action_one_item(wditem):
   global items2do
   ara = 'ar'
@@ -43,13 +28,7 @@ def action_one_item(wditem):
       numberlabel = wditem.labels['en'] #  اسم انجليزي
       data = {}
       data.update({'labels':{ara:numberlabel}})
-      if debug:
-        logme(wditem, numberlabel)
-      else:
-        wditem.editEntity(data,summary='Bot: add ar label: '+numberlabel)
-        logme(wditem, numberlabel)
-    else: # الوصف الإنجليزي غير موجود في القائمة
-      pass
+      wditem.editEntity(data,summary='Bot: add ar label: '+numberlabel)
   return 1     
   return 0
       
@@ -59,18 +38,6 @@ def wd_sparql_generator(query):
   for wd in generator:
     wd.get(get_redirect=True)
     yield wd
-                                         
-def wd_from_file():
-  repo=pywikibot.Site('wikidata','wikidata').data_repository()
-  csvfile=open(main_dir+'wd/LB.csv','r')
-  for alllines in csvfile:
-    qitem=alllines[alllines.find('Q'):alllines.find(',')]
-    if (len(qitem)>0):
-      wditem=pywikibot.ItemPage(repo,qitem)
-      if (not(wditem.isRedirectPage())):
-       if wditem.exists():
-        wditem.get(get_redirect=True)
-        yield wditem
 
 def main():
     global itemsdone

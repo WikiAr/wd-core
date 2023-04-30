@@ -14,7 +14,6 @@ import re
 import time
 import codecs
 from warnings import warn
-from API.maindir import main_dir
 from datetime import datetime
 #---
 from API import printe

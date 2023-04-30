@@ -244,15 +244,6 @@ def wd_sparql_query(spq, ddf=False):
     #---
     return New_List
 #---
-def wd_from_file(usefilename):
-  repo=pywikibot.Site('wikidata','wikidata').data_repository()
-  csvfile=open(usefilename,'r')
-  for alllines in csvfile:
-    qitem=alllines[alllines.find('Q'):alllines.find(',')]
-    if (len(qitem)>0):
-      wditem=pywikibot.ItemPage(repo,qitem)
-      yield wditem
-#---
 def wd_user_edits(username,ucsite,totaledits):
   repo=pywikibot.Site('wikidata','wikidata').data_repository()
   useredits=pg.UserContributionsGenerator(username,site=ucsite,total=totaledits,namespaces=[0])
@@ -444,7 +435,6 @@ def main(debug=False):
         items_processed=0
         if debug: printe.output('main-1')
         if (True):
-          #pigenerator = wd_from_file('/stack/query.csv')
           #pigenerator = wd_all_countries(sparql_query)
           #pigenerator = wd_all_without_description()
           #pigenerator=wd_one_without_description('Q189004')  #onderwijsinstelling

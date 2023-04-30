@@ -13,8 +13,6 @@ python pwb.py wd/common
 #
 import urllib
 import codecs
-from API.maindir import main_dir
-if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
 import pywikibot
 #import pwb
 import re
@@ -145,54 +143,7 @@ queriestest = {
     'family name': SELECT + ' wdt:P31 wd:Q101352 ; wdt:P31 ?instance .  OPTIONAL { ?item schema:description ?itemabel. FILTER((LANG(?itemabel)) = "ar") } FILTER(!BOUND(?itemabel))}', 
  }  
 #---
-def Log(item, AddedLangsWithLab):
-    text = ''
-    form = '%s\tD%s\t"%s"\n'
-    #---
-    for lang in AddedLangsWithLab:
-        Label = AddedLangsWithLab[lang]
-        line  = ( form %  ( item , lang , Label ) )
-        text = text + line
-    #---
-    #formattedstring = text + '\n'
-    with codecs.open(main_dir + "wd/common.log.csv", "a", encoding="utf-8") as logfile:
-        #try:
-        if text:   
-            #logfile.write(formattedstring %  (total, translation, des))
-            logfile.write(text)
-        else:#except#else
-            pass
-    logfile.close()
-    #---
-    verbose = True#True #now I want to see what!   
-    #if verbose:
-        #OOutPut(form % (total, translation, des) )   #, des
-#---
 from API import himoBOT
-#---
-def Log2(Table):
-    text = ''
-    OOutPut( '*<<lightyellow>> Log2: Table' )
-    OOutPut(Table)
-    OOutPut( '----------' )
-    #---
-    for line in Table:
-        #Label = Table[lang]
-        #line  = lang #+ '\n-----------------------\n'
-        text = text + line
-    #---
-    #text = text + '\nQ0\tLd4\t"-----------------------"'
-    #---
-    #formattedstring = text + '\n'
-    with codecs.open(main_dir + "wd/common.log.csv", "a", encoding="utf-8") as logfile:
-        #try:
-        if text:   
-            #logfile.write(formattedstring %  (total, translation, des))
-            logfile.write(text)
-            logfile.write('--------------------')
-        else:#except#else
-            pass
-    logfile.close()
 #---
 def OOutPut(ss):
     pywikibot.output(ss)

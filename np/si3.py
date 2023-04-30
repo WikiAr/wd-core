@@ -34,35 +34,38 @@ sys.argv.append('-family:wikidata')
 sys.argv.append('-lang:wikidata')
 #---
 import json
-import urllib
 import codecs
 import pywikibot
+import re
+import os
+import string
+import time
+import urllib
+import urllib.request
+import urllib.parse
+import datetime
+from datetime import datetime
 #---
-from API.maindir import main_dir as main_dir1
-if main_dir1 == "I:/core/master/": main_dir1 = "I:/core/core-yemen/"
+from API import printe
+#---
+Dir = os.path.dirname(os.path.abspath(__file__))
+main_dir1 = os.path.dirname(Dir) + '/'
+#---
+printe.output( '<<lightyellow>> main_dir1 = %s' % main_dir1 )
+printe.output( '<<lightyellow>> main_dir1 = %s' % main_dir1 )
+printe.output( '<<lightyellow>> main_dir1 = %s' % main_dir1 )
 #---
 import gent
 # generator = gent.get_gent(*args)
 # gent.gent_string2html( title, arsite.encoding() )
 #---
-import re
-import string
-import datetime 
-import time
-import datetime
-from datetime import datetime
 #---
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
-#---
-import urllib
-import urllib.request
-import urllib.parse
 #---
 from np import read_json
 from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)
 #---
-from API import printe
 from wd_API import himoAPI
 from API import himoBOT
 from API import himoBOT2

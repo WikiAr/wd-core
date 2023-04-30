@@ -19,8 +19,6 @@ import re
 import time
 import pywikibot
 import codecs
-from API.maindir import main_dir #used in logfiles, unicoded strings
-if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
 import datetime
 import json
 #---
@@ -83,23 +81,6 @@ Qlist['Q482994'] = {# ألبوم
     #'es' : 'álbum' ,
     'nl' : 'muziekalbum' ,
     }
-#---
-def logme(q, label):
-    verbose = False
-    filename = main_dir + "textfiles/name-logs/name.log.csv"
-    with codecs.open(filename, "a", encoding="utf-8") as logfile:
-        formattedstring = ( '%s\t%s\n' % ( q, label) )
-        try:
-            logfile.write(formattedstring)
-        except Exception as e:
-            pywikibot.output( '<<lightred>> Traceback (most recent call last):' )
-            pywikibot.output("Error writing to file: %s " % filename )
-            pywikibot.output( "<<lightred>> Exception:%s." % e )
-            pywikibot.output( 'CRITICAL:' )
-            verbose = True    #now I want to see what!
-        logfile.close()
-    if verbose:
-        printe.output(formattedstring)
 #---
 def action_one_item( Qid, pa, lang, keys):
     item = himoBOT2.Get_Item_API_From_Qid( pa['item'] )
@@ -388,7 +369,6 @@ def main():
     #language = [ 'fr']
     Queries = 0
     printe.output('start with query')
-    #logme('Q', 'label')
     #---
     for Qid in Qlist:
         Queries += 1

@@ -14,7 +14,6 @@ import pywikibot
 
 from API import printe
 import codecs
-from API.maindir import main_dir
 import time
 #---
 from API import himoBOT2

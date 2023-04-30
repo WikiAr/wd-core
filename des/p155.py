@@ -16,8 +16,6 @@
 
 import re
 import codecs
-from API.maindir import main_dir
-if main_dir == "I:/core/master/": main_dir = "I:/core/core-yemen/"
 import time
 import pywikibot
 #---
