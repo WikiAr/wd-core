@@ -24,8 +24,7 @@ import urllib
 import urllib
 import urllib.request
 import urllib.parse
-
-#---
+from wd_API import wd_bot
 from API import himoBOT
 #---
 from wd_API import himoAPI
@@ -127,7 +126,7 @@ def main(*args):
     for qua_a in quaries:
         c = 0
         qua = quaries[qua_a]
-        json1 = himoBOT.wd_sparql_generator_url(qua)
+        json1 = wd_bot.wd_sparql_generator_url(qua)
         total = len(json1)
         for item in json1:
             c += 1

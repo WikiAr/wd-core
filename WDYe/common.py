@@ -32,9 +32,6 @@ import urllib.parse
 #import urllib.request
 #import urllib.parse
 #---
-wikidatasite = pywikibot.Site('wikidata', 'wikidata')
-repo = wikidatasite.data_repository()
-#---
 from likeapi.descraptions import DescraptionsTable
 
 queries2 = {
@@ -186,6 +183,10 @@ def main():
     pywikibot.output("Finished successfully")
         
 def Main_Test():
+
+    wikidatasite = pywikibot.Site('wikidata', 'wikidata')
+    repo = wikidatasite.data_repository()
+    #---
     pywikibot.output( '**<<lightyellow>> test:')
     topic = 'chemical compound'
     q = 'Q27198088'

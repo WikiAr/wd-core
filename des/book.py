@@ -32,8 +32,8 @@ import urllib.parse
 from API import himoBOT2
 from API import himoBOT
 #---
-wikidatasite = pywikibot.Site('wikidata', 'wikidata')
-repo = wikidatasite.data_repository()
+# wikidatasite = pywikibot.Site('wikidata', 'wikidata')
+# repo = wikidatasite.data_repository()
 #---
 AskSave = { 1 : True }
 Qlist = {}
@@ -234,9 +234,6 @@ def wd_sparql_query( query, ddf = False ):
     #---
     #if limit[1] != 0 :
         #query = query + " limit " + str( limit[1] )
-    #---
-    #wikidatasite=pywikibot.Site('wikidata','wikidata')
-    #generator=pg.WikidataSPARQLPageGenerator(query,site=wikidatasite)
     #---
     Keep = True
     offset = 0

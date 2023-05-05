@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 اضافة تسميات بناءاً على الاسم الأول واسم العائلة
@@ -31,6 +30,7 @@ import urllib.parse
 
 #---
 from API import himoBOT2
+from api_sql import sql
 from API import himoBOT
 try:
     from wd_API import himoAPI_test as himoAPI
@@ -222,8 +222,8 @@ def mains():
         #---
         if arg.startswith("names") :  
             #---
-            #python pwb.py wd/ali names
-            #python pwb.py wd/ali fafafa
+            #python3 pwb.py wd/ali names
+            #python3 pwb.py wd/ali fafafa
             lala = ""   
             lala = [ x.strip() for x in names if x.strip() != "" ]
             pywikibot.output( 'lala: "%s"' % str(lala) )

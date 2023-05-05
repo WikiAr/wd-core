@@ -1,8 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-#  python pwb.py wd/wikinews
-#
-#
+
 from wd_API import newdesc
 #site = pywikibot.Site('wikidata', 'wikidata')
 #repo = site.data_repository()
@@ -25,7 +21,7 @@ list = [
 topic = 'Wikimedia template'
 
 quarry2 = 'SELECT ?item  WHERE {  ?item wdt:P31 wd:Q11266439.}'
-#   newdesc.mainfromQuarry( topic , quarry2, translations)
+#newdesc.mainfromQuarry( topic , quarry2, translations)
 
 for ll in list:
     quarry = 'SELECT ?item  WHERE {  ?item wdt:P31 wd:%s.}' % ll

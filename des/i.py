@@ -16,7 +16,7 @@ from API import printe
 import codecs
 import time
 #---
-from API import himoBOT2
+from wd_API import wd_bot
 from API import himoBOT
 #---
 #from correct import CorrectList
@@ -81,7 +81,7 @@ def action(json1 , topic , translations):
 def mainfromQuarry( topic , Quarry, translations):
     #printe.output( '*<<lightyellow>> mainfromQuarry:' )
     #Quarry = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q17633526.}'
-    json1 = himoBOT2.wd_sparql_generator_url(Quarry)
+    json1 = wd_bot.wd_sparql_generator_url(Quarry)
     action(json1 , topic , translations)
 #---
 def workOneplace(place , contry , topic , ConTable , placesTable , placenum):

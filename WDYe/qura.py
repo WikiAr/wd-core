@@ -9,22 +9,20 @@ import time
 import codecs
 import pywikibot
 import json
-from pywikibot import pagegenerators as pg
-import unicodedata
 #---
 import sys
 #---
 import urllib
 import urllib.request
 import urllib.parse
-
 #---
-# start of newdesc.py file
+from wd_API import wd_bot
+# wd_bot.wd_from_file(file)
+# wd_bot.GetItemFromQid(q)
+#---
 from wd_API import newdesc
-#   newdesc.main_from_file(file , topic , translations2)
-#   newdesc.mainfromQuarry2( topic , Quarry, translations)
-#---
-from API import himoBOT
+# newdesc.main_from_file(file , topic , translations2)
+# newdesc.mainfromQuarry2( topic , Quarry, translations)
 #---
 replacement_ke = {
     'ar' : [ 'قرية', 'مستوطنة' , "مديرية" ] ,
@@ -89,10 +87,11 @@ translations['Q28372019'] = {
         }
 #---
 def action_one_item( x , pa , new_translations):
-    item = himoBOT.GetItemFromQid( pa['item'] )
+    item = wd_bot.GetItemFromQid( pa['item'] )
     if item:
         ks = {}
         ks[x] = new_translations
+        #newdesc.work2(item , x, ks)
         newdesc.work2_with_replacement(item , x, ks, replacement_ke)
         #---
 def make_translations( x , pa ):
@@ -117,7 +116,7 @@ def make_translations( x , pa ):
     return descriptions
 #---
 def mainfromQuarry( x, Quarry, translations):
-    PageList = himoBOT.sparql_generator_url(Quarry)
+    PageList = wd_bot.sparql_generator_url(Quarry)
     total = len(PageList)
     num = 0
     #pywikibot.output('* PageList: ')

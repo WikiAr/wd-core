@@ -30,6 +30,7 @@ import urllib.request
 import urllib.parse
 
 #---
+from wd_API import wd_bot
 from API import himoBOT
 from likeapi.descraptions import *
 #---
@@ -94,7 +95,7 @@ limit 10000'''
 WHERE {VALUES (?item) {(wd:Q29976539) }  
 ?item ?s ?ss}
 limit 1'''
-    json1 = himoBOT.wd_sparql_generator_url(Quarry2)
+    json1 = wd_bot.wd_sparql_generator_url(Quarry2)
     lenth = len(json1)
     num = 0
     topic = 'Wikimedia disambiguation page'

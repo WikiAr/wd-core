@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+
 """
 
 إضافة تسميات عناصر تصنيفات في ويكي بيانات
@@ -9,19 +9,15 @@
 
 """
 #
-# (C) Ibrahem Qasim, 2022
+# (C) Ibrahem Qasim, 2023
 #
 #
-
-
 import re
 import time
 import pywikibot
-#---
 import sys
 #---
-import urllib
-import urllib.parse
+from API import printe
 from api_sql import sql
 from wd_API import himoAPI_test as himoAPI
 #---
@@ -33,13 +29,9 @@ def main():
     for arg in sys.argv:
         arg, sep, value = arg.partition(':')
         #---
-        if arg == 'always' or arg == 'save':
-            SaveR[1] = True
-            pywikibot.output('<<lightred>> SaveR = True.')
-        #---
         if arg == '-limit' or arg == 'limit':
             Limit[1] = value
-            pywikibot.output('<<lightred>> Limit = %s.' % value )
+            printe.output('<<lightred>> Limit = %s.' % value )
         #---#
     Quaa = '''#USE wikidatawiki_p;
 SELECT
@@ -66,8 +58,8 @@ WHERE
     if Limit[1] != '' :
         Quaa = Quaa + 'limit %s' % Limit[1]
     #---
-    pywikibot.output( Quaa )
-    sparql = sql.Make_sql_2_rows( Quaa , wiki = "wikidata" )
+    printe.output( Quaa )
+    sparql = sql.sparql_generator_url(Quaa)
     #---
     Table = {}
     for item in sparql:
@@ -76,7 +68,7 @@ WHERE
     num = 0
     for item in Table:
         num += 1
-        pywikibot.output( '<<lightgreen>> %d/%d item:"%s" ' % (num ,len(Table.keys() ),item) )
+        printe.output( '<<lightgreen>> %d/%d item:"%s" ' % (num ,len(Table.keys() ),item) )
         if Table[item] != "" : 
             himoAPI.Labels_API( item, Table[item] , "ar" , False, Or_Alii = True)
     #---

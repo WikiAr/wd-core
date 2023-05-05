@@ -42,12 +42,9 @@ import sys
 import urllib
 import urllib.request
 import urllib.parse
-
 #---
+from wd_API import wd_bot
 from API import himoBOT
-#---
-wikidatasite = pywikibot.Site('wikidata', 'wikidata')
-repo = wikidatasite.data_repository()
 #---
 quuu = {}
 quuu['species of beetle']= """
@@ -128,7 +125,7 @@ def mam():
     Quarry = quuu[topic]
     if sys.argv and "OFFSET" in sys.argv : 
         Quarry = Quarry + " OFFSET 100000"
-    json = himoBOT.wd_sparql_generator_url(Quarry)
+    json = wd_bot.wd_sparql_generator_url(Quarry)
     lenth = len(json)
     num = 0
     #topic = 'Wikinews article'
