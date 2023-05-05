@@ -49,7 +49,6 @@ printe.output( '<<lightyellow>> main_dir1 = %s' % main_dir1 )
 #---
 import gent
 # generator = gent.get_gent(*args)
-# gent.gent_string2html( title, arsite.encoding() )
 #---
 from newapi.page import NEW_API
 #---

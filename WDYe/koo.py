@@ -16,7 +16,6 @@ import pywikibot
 #---
 import gent
 # generator = gent.get_gent(*args)
-# gent.gent_string2html( title , arsite.encoding() )
 #---
 # 
 import codecs
