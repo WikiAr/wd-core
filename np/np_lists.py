@@ -5,7 +5,32 @@ from np.np_lists import *
 
 in si3.py :
 from np.np_lists import space_list_and_other, others_list, Space_tab, others_list_2
-
+'Q43305660':	{	'ar':'براءة اختراع أمريكية', 'en':'United States Patent' }, # 341036
+'Q191067':		{	'ar':'مقالة', 'en':'article' }, # 271264
+'Q47461344':	{	'ar':'عمل مكتوب', 'en':'written work' }, # 129452
+'Q101352':		{	'ar':'اسم عائلة', 'en':'family name' }, # 126817
+'Q105543609':	{	'ar':'عمل/مؤلف موسيقي', 'en':'musical work/composition' }, # 103157
+'Q1907875':		{	'ar':'أطروحة الماجستير', 'en':'master's thesis' }, # 102627
+'Q18593264':	{	'ar':'عنصر مجموعة أو معرض', 'en':'item of collection or exhibition' }, # 82828
+'Q37038':		{	'ar':'إعلان', 'en':'advertising' }, # 68972
+'Q22669850':	{	'ar':'تخطيط', 'en':'calligraphic work' }, # 62917
+#'Q732577':		{	'ar':'منشور', 'en':'publication' }, # 56024
+'Q61855877':	{	'ar':'حلقة بودكاست', 'en':'podcast episode' }, # 49335
+'Q1298668':		{	'ar':'مشروع بحثي', 'en':'research project' }, # 46027
+'Q20541692':	{	'ar':'مستوطنة في غاليسيا، إسبانيا', 'en':'settlement in Galicia, Spain' }, # 44303
+'Q5707594':		{	'ar':'مقالة إخبارية', 'en':'news article' }, # 43411
+'Q86442081':	{	'ar':'إدارة بلدية في فرنسا', 'en':'administration municipale en France' }, # 39149
+#'Q17315159':	{	'ar':'مباراة منتخب كرة قدم وطني ضد منتخب وطني آخر', 'en':'international association football match' }, # 27192
+#'Q294414':		{	'ar':'منصب عام', 'en':'public office' }, # 24185
+'Q65618976':	{	'ar':'هيروغليفية مصرية', 'en':'Egyptian hieroglyph' }, # 23477
+#'Q125191':		{	'ar':'صورة', 'en':'photograph' }, # 21894
+#'Q281460':		{	'ar':'الأرغن ذو الأنابيب', 'en':'pipe organ' }, # 21129
+#'Q11446':		{	'ar':'سفينة', 'en':'ship' }, # 21000
+'Q2311958':		{	'ar':'كانتون', 'en':'canton' }, # 19714
+'Q18131152':	{	'ar':'مرحلة', 'en':'round' }, # 19634
+'Q1697305':		{	'ar':'دالة', 'en':'narrative motif' }, # 19033
+'Q93184':		{	'ar':'رسم', 'en':'drawing' }, # 18784
+'Q163740':		{	'ar':'منظمة غير ربحية', 'en':'nonprofit organization' }, # 18634
 '''
 #---
 import sys
@@ -21,6 +46,7 @@ en_des_to_ar_no_lower = {
 en_des_to_ar = { x.lower() : z for x, z in en_des_to_ar_no_lower.items() }
 #---
 Space_tab = {
+    'Q18611609': 'كوكب غير مؤكد خارج المجموعة الشمسية',# unconfirmed exoplanet # 20689
     'Q13890': 'نجم مزدوج',
     'Q6999': 'جرم فلكي',
     'Q83373':'نجم زائف',
@@ -391,8 +417,6 @@ all_types_list=[
     'Q102496', #parochie
     'Q273057', #discografie
     'Q207628', #compositie
-
-
     ]
 #---
 simple_set_byP131=[
@@ -537,6 +561,7 @@ others_list_2 = [
     'Q7366', # أغنية
     'Q134556', # أغنية منفردة
     'Q11424', # فيلم
+    'Q24862', # فيلم قصير
     'Q3231690', # طراز سيارة
     ]
 #---
