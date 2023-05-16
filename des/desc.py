@@ -141,9 +141,6 @@ def wd_sparql_query( spq, ddf = False ):
     #---
     New_List = []
     #---
-    #wikidatasite=pywikibot.Site('wikidata','wikidata') 
-    #generator=pg.WikidataSPARQLPageGenerator(spq,site=wikidatasite)
-    #---
     Keep = True
     off = 0
     #---

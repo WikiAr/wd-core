@@ -41,12 +41,18 @@ SELECT * WHERE {
 #
 import re
 import codecs
+import time
 import random
 import sys
 sys_argv = sys.argv or []
 #---
 from API import himoBOT
 from API import printe
+#---
+#---
+from wd_API import wd_bot
+# wd_bot.sparql_generator_url(query)
+#---
 #---
 Testing = { 1 : False }
 #---
@@ -65,6 +71,10 @@ from people.Nationalities import translationsNationalities
 Tab = {}
 Tab["Nationalities"] = translationsNationalities
 Tab["Occupations"] = oc.translationsOccupations
+#---
+printe.output(f'len of Nationalities = {len(translationsNationalities.keys())}')
+printe.output(f'len of Occupations = {len(oc.translationsOccupations.keys())}')
+time.sleep(1)
 #---
 qualimit = { 1 : 20 }
 limit = { 1 : "" }
@@ -172,11 +182,11 @@ def check_quarry_new( tab ):
             qua +=  "\n limit %s" % limit[1]
         #---
         if "printcheck" in sys_argv or numb == 0 :
-            printe.output('qua :.')
-            printe.output( qua )
-            printe.output('qua .')
+            print('qua :.')
+            print( qua )
+            print('qua .')
         #---
-        json = himoBOT.sparql_generator_url(qua)
+        json = wd_bot.sparql_generator_url(qua)
         #---
         for x in json : 
             New_Json.append( x )
@@ -216,23 +226,24 @@ def make_Tabs( tabs ):
         for occupkey, occupdic in TraOc.items():  # المهن 
             kkkk = re.sub('~', natkey, occupkey)
             translations_o[1][kkkk] = {}
-            talang = occupdic.keys()
-            #talang = ['ar']
             #---
             male_k = ""
             female_k = ""
             #---
-            for translang in talang:                      # المهن حسب اللغة
+            for translang, occ_dict in occupdic.items():                      # المهن حسب اللغة
                 if translang in natdic:
                     #printe.output(occupkey + '\t' + natkey + '\t' + translang)
+                    #---	
+                    nat_ln = natdic[translang]   
                     #---
-                    malee , femalee = '' , ''
+                    femalee = ''
+                    malee = ''
                     #---
-                    if natdic[translang]['male'] != "" and occupdic[translang]['male'] != "":
-                        malee = re.sub('~', natdic[translang]['male'], occupdic[translang]['male'])
+                    if nat_ln['male'] != "" and occ_dict['male'] != "":
+                        malee = occ_dict['male'].replace('~', nat_ln['male'])
                     #---
-                    if natdic[translang]['female'] != "" and occupdic[translang]['female'] != "":
-                        femalee = re.sub('~', natdic[translang]['female'], occupdic[translang]['female'])
+                    if nat_ln['female'] != "" and occ_dict['female'] != "":
+                        femalee = occ_dict['female'].replace('~', nat_ln['female'])
                     #---
                     if translang == "en" :
                         male_k = malee
@@ -367,7 +378,7 @@ def Main_Test():
     qua = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097'
     qua = qua + ' . ?item schema:description "Argentinian actor"@en.  '
     qua = qua + 'OPTIONAL { ?item schema:description ?de. FILTER(LANG(?de) = "fr"). } FILTER (!BOUND(?de)) }'
-    json1 = himoBOT.sparql_generator_url(qua )
+    json1 = wd_bot.sparql_generator_url(qua )
 #---
 if __name__ == "__main__":
     if "test" in sys_argv:

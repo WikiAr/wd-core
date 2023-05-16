@@ -71,6 +71,9 @@ def main():
         qid  = item['qid']
         page = item['page']
         #---
+        if type(qid) == bytes:     qid = qid.decode("utf-8")
+        if type(page) == bytes:    page = page.decode("utf-8")
+        #---
         num += 1
         #---
         printe.output(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')

@@ -32,9 +32,6 @@ import urllib.parse
 from API import himoBOT2
 from API import himoBOT
 #---
-# wikidatasite = pywikibot.Site('wikidata', 'wikidata')
-# repo = wikidatasite.data_repository()
-#---
 AskSave = { 1 : True }
 Qlist = {}
 
