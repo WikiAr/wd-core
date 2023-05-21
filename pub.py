@@ -26,7 +26,7 @@ def print_test(line, color=""):
     if Ask[1] or Test[1]:
         print(line)
 #---
-filepath = os.path.abspath(__file__)
+filepath = str(os.path.abspath(__file__)).replace('\\', '/')
 #---
 paths = [
     '/data/project/himo/core1/',
