@@ -30,8 +30,8 @@ filepath = str(os.path.abspath(__file__)).replace('\\', '/')
 #---
 paths = [
     '/data/project/himo/core1/',
-    '/data/project/yemen/wd_core/',
-    '/data/project/yemen/.local/lib/python3.7/site-packages',
+    '/data/project/himowd/wd_core/',
+    '/data/project/himowd/.local/lib/python3.7/site-packages',
 ]
 #---
 if filepath.find("/data/project/") == -1 and filepath.find("labstore-secondary-tools-project") == -1 :
