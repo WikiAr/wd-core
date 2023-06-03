@@ -71,8 +71,12 @@ def main():
         qid  = item['qid']
         page = item['page']
         #---
-        if type(qid) == bytes:     qid = qid.decode("utf-8")
-        if type(page) == bytes:    page = page.decode("utf-8")
+        if type(qid) == bytes:
+            printe.output('type(qid) == bytes')
+            qid = qid.decode("utf-8")
+        if type(page) == bytes:
+            printe.output('type(page) == bytes')
+            page = page.decode("utf-8")
         #---
         num += 1
         #---
