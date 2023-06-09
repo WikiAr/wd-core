@@ -49,7 +49,7 @@ from des.railway import railway_tables, work_railway
 translations_o = { 1 : {}, 2 : {} }
 from people.new3 import translations_o
 #---
-from np.taxones import tax_translationsNationalities, taxone_list, lab_for_p171, labforP105
+from desc_dicts.taxones import tax_translationsNationalities, taxone_list, lab_for_p171, labforP105
 from desc_dicts.scientific_article_desc import Scientific_descraptions
 #---
 from np.np_lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
