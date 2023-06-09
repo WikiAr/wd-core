@@ -748,6 +748,7 @@ many_lang_qid_desc = {
     "Q21199" : { # natural number
         "af":"natuurlike getal",
         "als":"natürlige Zahle",
+        "sl":"naravno število",
         "an":"numero natural",
         "ar":"عدد طبيعي",
         "bn":"প্রাকৃতিক সংখ্যা",
