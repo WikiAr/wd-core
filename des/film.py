@@ -27,6 +27,7 @@ import urllib.request
 import urllib.parse
 #---
 from API import himoBOT
+from wd_API import wd_bot
 #---
 wikidatasite = pywikibot.Site('wikidata', 'wikidata')
 repo = wikidatasite.data_repository()
@@ -226,7 +227,7 @@ def WorkWithOneLang( Qid , lang , keys ):
     quary = quary + '\n limit %d' % limit
     printe.output(quary)
     #---
-    PageList = himoBOT.sparql_generator_url(quary , key='item')
+    PageList = wd_bot.sparql_generator_url(quary , key='item')
     #---
     total = len(PageList)
     num = 0

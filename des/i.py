@@ -16,8 +16,8 @@ from API import printe
 import codecs
 import time
 #---
-from wd_API import wd_bot
 from API import himoBOT
+from wd_API import wd_bot
 #---
 #from correct import CorrectList
 from des.contries2 import ContriesTable2
@@ -32,7 +32,7 @@ placesTable["Q29701762"] = {
 #---
 def check_quarry(qua):
     qua = qua + 'limit 1000'
-    json = himoBOT.sparql_generator_url(qua)
+    json = wd_bot.sparql_generator_url(qua)
     if json and len(json) != 0:
         return True
     else:

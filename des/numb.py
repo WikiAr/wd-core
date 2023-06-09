@@ -17,7 +17,7 @@ from API import printe
 import sys
 import time
 #---
-from API import himoBOT
+from wd_API import wd_bot
 from API import himoBOT2
 from wd_API import himoAPI
 #---
@@ -30,7 +30,7 @@ FILTER NOT EXISTS {?item schema:description ?ar filter (lang(?ar) = "ar")} .
 }
 '''
 c = 0
-json1 = himoBOT.sparql_generator_url( quarry )
+json1 = wd_bot.sparql_generator_url( quarry )
 total = len(json1)
 for q in json1:
     c += 1

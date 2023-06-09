@@ -37,8 +37,12 @@ from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)
 #---
 from wd_API import himoAPI
-from API import himoBOT
+from wd_API import wd_bot
 from API import himoBOT2
+#---
+from wd_API import wd_desc
+# wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
+# wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
 #---
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, replace_desc
 #---
@@ -194,91 +198,6 @@ def make_scientific_art(item, P31, num):
     #---
     work_api_desc( NewDesc, qid, rep_langs)
 #---
-def wwdesc( NewDesc, q, i, fixlang, ask = ""):
-    #---
-    printe.output('* si3.py wwdesc "%s" try number:"%d" :' % ( str(q), i )  )
-    queries_list = []
-    for x in NewDesc.keys():
-        if not x in fixlang:
-            queries_list.append(x)
-    queries_list.sort()
-    #---
-    data = { 'descriptions' : NewDesc }
-    data3 = json.JSONEncoder().encode( data )
-    #---
-    dlangs = ','.join(queries_list)
-    #summary = ('Bot: - Add descriptions:(%d langs) %s' % ( len(queries_list), str(dlangs) )) #ملخص العمل
-    summary = 'Bot: '
-    if queries_list:
-        summary = summary + '- Add descriptions:(%d langs).' % ( len(queries_list) )
-        #summary = summary + ' - /* wbsetdescription-add:%d|%s */ %s.' % ( len(queries_list), deso, simple )
-    #---
-    if fixlang:
-        for ii in fixlang:
-            if not ii in NewDesc.keys():
-                fixlang.remove(str(ii))
-                printe.output('remove "%s" from fixlang because it\'s not in NewDesc'  % ii )
-        fixed = ','.join(fixlang)
-        summary = summary + ('- fix descriptions:(%d: %s).' % (len(fixlang), str(fixed)) ) #ملخص العمل
-    printe.output(summary)
-    #---
-    skipplang = []
-    #---
-    if queries_list == [] or fixlang == []:
-        printe.output( '  *** no addedlangs')
-        return
-    #---
-    value = ''
-    if 'ar' in NewDesc:
-        value = NewDesc['ar']["value"]
-    else:
-        if queries_list:
-            try:
-                key = queries_list[1]
-                value = NewDesc[key]["value"] + '@%s' % key
-            except:
-                value = ''
-    #---
-    printe.output('*work_api_desc %s "%s": try "%d",%s:' % ( str(q), value, i, menet )  )
-    #---
-    if 'printdisc' in sys.argv:
-        printe.output( data3 )
-    #---
-    #item.editEntity(data, summary=summary)
-    skipp = himoAPI.New_Mult_Des_2(q, data3, summary, True, ask = ask)
-    #---
-    if not skipp:
-        printe.output('<<lightred>> - no skipp ')
-        return
-    #---
-    if 'success' in skipp:
-        #printe.output(summary)
-        printe.output('<<lightgreen>> **%s true. %s' % (q, summary) )
-        return False, NewDesc
-    #---
-    if ('using the same description text' in skipp) and ('associated with language code' in skipp):
-        skipp = skipp.split('using the same description text')[0].split('associated with language code')[1]
-        skipplang = skipp.strip().split(',')
-        #---
-        NewDesc2 = NewDesc
-        if len(skipplang) != 0:
-            printe.output( 'skiping languages: "%s"' % str(skipplang) )
-            #printe.output(keys)
-            for lango in skipplang :
-                if lango != '':
-                    del NewDesc2[lango]
-        #---
-        i += 1
-        printe.output("<<lightred>> try %d again with remove skipplang "  % i )
-        wwdesc( NewDesc2, q, i, fixlang, ask = ask)
-        #return True, NewDesc2
-        #---
-    elif 'wikibase-api-invalid-json' in skipp :
-        printe.output('<<lightred>> - "wikibase-api-invalid-json" ')
-        printe.output(NewDesc)
-    else:
-        printe.output(skipp)
-#---
 def work_qs( q, NewDesc ):
     qslinr = []
     #---
@@ -331,7 +250,7 @@ def work_api_desc( NewDesc, q, fixlang ):
                 fixlang.remove(str(fix))
         fixlang.sort()
         #---
-        wwdesc( NewDesc, q, 1, fixlang)
+        wd_desc.wwdesc( NewDesc, q, 1, fixlang)
 #---
 def make_tax_des_new( item ):
     q = item["q"]
@@ -364,7 +283,7 @@ def make_tax_des_new( item ):
     #---
     if "err" in sys.argv: printe.output(nan)
     #---
-    bs = himoBOT.sparql_generator_url(nan)
+    bs = wd_bot.sparql_generator_url(nan)
     #---
     if bs != [] :
         bs = bs[0]

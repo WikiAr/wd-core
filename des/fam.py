@@ -99,27 +99,27 @@ if len (desc_table) > 1 :
     desc_table = temp_table
 #---
 quarry_o = '''
-SELECT DISTINCT ?item ?langs
-WITH { SELECT ?item WHERE { 
-    ?item wdt:P31 wd:Q1457376 } ORDER BY DESC(xsd:integer(SUBSTR(STR(?item),33))) limit 10000
-    } AS %a
-WITH { SELECT ?item (COUNT(?l) as ?ls) (GROUP_CONCAT(DISTINCT(lang(?l)); separator=",") as ?langs) WHERE {  
-    INCLUDE %a.
-    ?item schema:description ?l } GROUP BY ?item HAVING( ?ls < 10) 
-    } as %b 
-WHERE {
-    INCLUDE %b
-}
-ORDER BY DESC(xsd:integer(SUBSTR(STR(?item),33)))
+    SELECT DISTINCT ?item ?langs
+    WITH { SELECT ?item WHERE { 
+        ?item wdt:P31 wd:Q1457376 } ORDER BY DESC(xsd:integer(SUBSTR(STR(?item),33))) limit 1000
+        } AS %a
+    WITH { SELECT ?item (COUNT(?l) as ?ls) (GROUP_CONCAT(DISTINCT(lang(?l)); separator=",") as ?langs) WHERE {  
+        INCLUDE %a.
+        ?item schema:description ?l } GROUP BY ?item HAVING( ?ls < 10) 
+        } as %b 
+    WHERE {
+        INCLUDE %b
+    }
+    ORDER BY DESC(xsd:integer(SUBSTR(STR(?item),33)))
 '''
 #---
 quarry_list = [
     quarry_o,
-    quarry_o.replace('limit 10000', 'limit 10000 offset 10000'), 
-    quarry_o.replace('limit 10000', 'limit 10000 offset 20000'), 
-    quarry_o.replace('limit 10000', 'limit 10000 offset 30000'), 
-    quarry_o.replace('limit 10000', 'limit 10000 offset 40000'), 
-    quarry_o.replace('limit 10000', 'limit 10000 offset 50000'), 
+    quarry_o.replace('limit 1000', 'limit 1000 offset 1000'), 
+    quarry_o.replace('limit 1000', 'limit 1000 offset 2000'), 
+    quarry_o.replace('limit 1000', 'limit 1000 offset 3000'), 
+    quarry_o.replace('limit 1000', 'limit 1000 offset 4000'), 
+    quarry_o.replace('limit 1000', 'limit 1000 offset 5000'), 
     ]
 #---
 qlist_done = []
@@ -167,19 +167,27 @@ for p31, p31_desc in desc_table.items():
         for item in json1:
             num += 1
             q = 'item' in item and item['item'].split('/entity/')[1]
-            printe.output( '<<lightyellow>>*mainfromQuarry: %d from %d p31:"%s", qid:"%s":<<lightblue>>%s'  % (num, json_lenth, p31, q, topic_ar))
             #---
             q_langs = item.get("langs", "").split(",")
             #---
             lang_to_add = list(set(p31_langs) - set(q_langs))
             #---
-            if len(lang_to_add) > 0:
-                #---
-                if p31 in railway_tables:
-                    work_railway( {}, p31, q=q )
-                # elif p31 in placesTable:
-                    # work_railway( {}, p31, q=q )
-                else:
-                    newdesc.work22(q, p31, desc_table)
-                #---
+            tp = '<<lightyellow>>*mainfromQuarry: %d from %d p31:"%s", qid:"%s":<<lightblue>>%s'  % (num, json_lenth, p31, q, topic_ar)
+            #---
+            if qu_numb == 1 : printe.output(tp)
+            #---
+            if len(lang_to_add) == 0:
+                printe.output(tp)
+                continue
+            #---
+            if num % 50 == 0:
+                printe.output(tp)
+            #---
+            if p31 in railway_tables:
+                work_railway( {}, p31, q=q )
+            # elif p31 in placesTable:
+                # work_railway( {}, p31, q=q )
+            else:
+                newdesc.work22(q, p31, desc_table)
+            #---
         #---

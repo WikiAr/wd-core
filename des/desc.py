@@ -54,7 +54,7 @@ import time
 from API import printe
 from wd_API import himoAPI
 from API import himoBOT2
-from API import himoBOT
+from wd_API import wd_bot
 #---
 #from correct import CorrectList
 ContriesTable2 = {}
@@ -165,7 +165,7 @@ def wd_sparql_query( spq, ddf = False ):
         #---
         printe.output( 'limit[1]:"%d"\t offset:"%d"' % ( limit[1], off ) )
         #---
-        generator = himoBOT.sparql_generator_url( quarr )
+        generator = wd_bot.sparql_generator_url( quarr )
         #---
         for x in generator:
             New_List.append( x )

@@ -7,8 +7,7 @@
 #
 # (C) Ibrahem Qasim, 2022
 #
-#
-from API import himoBOT
+from wd_API import wd_bot
 from api_sql import sql
 from API import himoBOT2
 import urllib.parse
@@ -194,7 +193,7 @@ def workqua(qua):
     qua = qua + Limit[1]
     pywikibot.output(qua)
     # ---
-    sparql = himoBOT.sparql_generator_url(qua)
+    sparql = wd_bot.sparql_generator_url(qua)
     total = len(sparql)
     # ---
     num = 0

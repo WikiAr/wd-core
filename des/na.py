@@ -22,7 +22,7 @@ import sys
 #---
 from wd_API import himoAPI_test as himoAPI 
 #---
-from API import himoBOT
+from wd_API import wd_bot
 #---
 bylangs = False#False#True
 #---
@@ -303,7 +303,7 @@ def main():
         printe.output("quuu : %d/%d key:%s" %  ( number , len(qya) , key ) ) 
         printe.output(quuu)
         #---
-        json1 = himoBOT.sparql_generator_url(quuu)
+        json1 = wd_bot.sparql_generator_url(quuu)
         action( json1 )
 #---
 if __name__ == "__main__":

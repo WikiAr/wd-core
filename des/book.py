@@ -31,6 +31,7 @@ import urllib.parse
 #---
 from API import himoBOT2
 from API import himoBOT
+from wd_API import wd_bot
 #---
 AskSave = { 1 : True }
 Qlist = {}
@@ -254,7 +255,7 @@ def wd_sparql_query( query, ddf = False ):
         #---
         printe.output( 'quarry "%s"' % quarry )
         #---
-        generator = himoBOT.sparql_generator_url( quarry )
+        generator = wd_bot.sparql_generator_url( quarry )
         #---
         for x in generator:
             New_List.append( x )

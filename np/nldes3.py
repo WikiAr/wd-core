@@ -101,7 +101,7 @@ import re
 from datetime import timedelta
 #---
 from wd_API import himoAPI
-from API import himoBOT
+from wd_API import wd_bot
 #---
 totaledits=0
 #---
@@ -217,7 +217,7 @@ def wd_sparql_query(spq, ddf=False):
         #---
         printe.output( 'limit[1]:"%d"\t offset:"%d"' % (limit[1] , offset ) )
         #---
-        generator = himoBOT.sparql_generator_url( quarry , printquary = False , geterror = True )
+        generator = wd_bot.sparql_generator_url( quarry , printquary = False , geterror = True )
         #---
         for x in generator:
             New_List.append( x )

@@ -12,7 +12,6 @@ python pwb.py wd/common
 # (C) Ibrahem Qasim, 2022
 #
 from wd_API import newdesc
-from API import himoBOT
 import urllib
 import codecs
 import pywikibot
