@@ -495,7 +495,7 @@ translationsOccupations = {
     },
     '~ pharmacist': {
         'ar': {'male': 'صيدلي ~', 'female': 'صيدلية ~'},
-        'en': {'male': 'pharmacist ~', 'female': 'pharmacist ~'},
+        'en': {'male': '~ pharmacist', 'female': '~ pharmacist'},
         'es': {'male': 'farmacéutico ~', 'female': 'farmacéutica ~'},
     },
     '~ archbishop': {
@@ -1378,6 +1378,8 @@ translationsOccupations = {
     },
 }
 # ---
+translations_all = {**translationsOccupations, **translationsOccupations}
+# ---
 # for x in translationsOccupations:
 # if not "ar" in translationsOccupations[x]:
 # print( x )
@@ -1385,6 +1387,7 @@ translationsOccupations = {
 for x, yy in translationsOccupations_new.items():
     if "ar" in yy:
         translationsOccupations[x] = yy
+    translations_all[x] = yy
 # ---
 '''
 from stub.list import tempse_all

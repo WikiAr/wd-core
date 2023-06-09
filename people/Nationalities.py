@@ -1864,19 +1864,6 @@ translationsNationalities = {
         'ro': {'male': 'nepalez', 'female': 'nepaleză'},
         'sq': {'male': 'nepalez', 'female': 'nepaleze'},
     },
-    'New Zealander': {
-        'ar': {'male': 'نيوزيلندي', 'female': 'نيوزيلندية'},
-        'bn': {'male': 'নিউজিল্যান্ডীয়', 'female': 'নিউজিল্যান্ডীয়'},
-        'ca': {'male': 'neozelandès', 'female': 'neozelandesa'},
-        'en': {'male': 'New Zealand', 'female': 'New Zealand'},
-        'es': {'male': 'neozelandés', 'female': 'neozelandesa'},
-        'et': {'male': 'Uus-Meremaa', 'female': 'Uus-Meremaa'},
-        'fr': {'male': 'néo-zélandais', 'female': 'néo-zélandaise'},
-        'gl': {'male': 'neozelandés', 'female': 'neozelandesa'},
-        'he': {'male': 'ניו זילנדי', 'female': 'ניו זילנדית'},
-        'ro': {'male': 'neozeelandez', 'female': 'neozeelandeză'},
-
-    },
     'New Zealand': {
         'ar': {'male': 'نيوزيلندي', 'female': 'نيوزيلندية'},
         'bn': {'male': 'নিউজিল্যান্ডীয়', 'female': 'নিউজিল্যান্ডীয়'},
@@ -2896,6 +2883,7 @@ translationsNationalities = {
 }
 # ---
 translationsNationalities['Luxembourgian'] = translationsNationalities['Luxembourg']
+translationsNationalities['New Zealander'] = translationsNationalities['New Zealand']
 # ---
 tra = translationsNationalities
 
