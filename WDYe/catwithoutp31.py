@@ -25,7 +25,7 @@ import urllib
 import urllib.request
 import urllib.parse
 from wd_API import wd_bot
-from API import himoBOT
+from wd_API import wd_desc
 # ---
 from wd_API import himoAPI
 # ---
@@ -123,7 +123,7 @@ def work_one_item(item):
     # ---
     if NewDesc:
         pywikibot.output('<<lightyellow>>* adding descriptions to :%s ' % q)
-        himoBOT.work_api_desc(NewDesc, q)
+        wd_desc.work_api_desc(NewDesc, q)
     else:
         pywikibot.output(
             '<<lightred>>* work 2 :%s no descriptions to add.' % q)

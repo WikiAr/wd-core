@@ -30,7 +30,7 @@ import urllib.request
 import urllib.parse
 #---
 from API import himoBOT2
-from API import himoBOT
+from wd_API import wd_desc
 from wd_API import wd_bot
 #---
 AskSave = { 1 : True }
@@ -125,11 +125,11 @@ def action_one_item( Qid, pa, lang, keys):
                 if saaa == 'y' or saaa == 'a' or saaa == '':
                     if saaa == 'a':
                         AskSave[1] = False
-                    himoBOT.work_api_desc( NewDesc, qitem)
+                    wd_desc.work_api_desc( NewDesc, qitem)
                 else:
                     printe.output('* rong answer' )
             else:
-                himoBOT.work_api_desc( NewDesc, qitem)
+                wd_desc.work_api_desc( NewDesc, qitem)
 #---
 Comma = {
         "an": " y ",

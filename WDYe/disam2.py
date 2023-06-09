@@ -32,7 +32,7 @@ import urllib.parse
 
 # ---
 from wd_API import wd_bot
-from API import himoBOT
+from wd_API import wd_desc
 from desc_dicts.descraptions import *
 # ---
 translations = {}
@@ -83,7 +83,7 @@ def work2(item, topic):
     # ---
     # pywikibot.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
 
-    himoBOT.work_api_desc(NewDesc, q)
+    wd_desc.work_api_desc(NewDesc, q)
 # ---
 
 

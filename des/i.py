@@ -16,7 +16,7 @@ from API import printe
 import codecs
 import time
 #---
-from API import himoBOT
+from wd_API import wd_desc
 from wd_API import wd_bot
 #---
 #from correct import CorrectList
@@ -74,7 +74,7 @@ def action(json1 , topic , translations):
         if addedlangs:
             printe.output( '<<lightyellow>>* work 2:%s ' % q )
             #printe.output(NewDesc)
-            himoBOT.work_api_desc( NewDesc , q)
+            wd_desc.work_api_desc( NewDesc , q)
         else:
             printe.output( '<<lightred>>* work 2 :%s nothing to add.' % q )
 #---

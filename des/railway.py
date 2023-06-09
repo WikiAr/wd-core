@@ -12,7 +12,7 @@ python3 pwb.py des/fam railway Q55488
 #
 #---
 import sys
-from API import himoBOT
+from wd_API import wd_desc
 from API import himoBOT2
 #---
 from des.ru_st_2_latin import make_en_label
@@ -141,7 +141,7 @@ def work_railway( wditem, p31, q = "" ):
             if not o in wditem_desc:
                 newdesc[o] = {"language" : o, "value" : newdesc["en"]["value"]}
     #---
-    himoBOT.work_api_desc( newdesc, q)
+    wd_desc.work_api_desc( newdesc, q)
     #---
     return ''
 #---

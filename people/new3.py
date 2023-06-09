@@ -43,7 +43,7 @@ from people.Nationalities import translationsNationalities
 import people.occupationsall as oc
 from wd_API import wd_bot
 from API import printe
-from API import himoBOT
+from wd_API import wd_desc
 import re
 import codecs
 import time
@@ -356,7 +356,7 @@ def start_one_nat(nat_tab):
                                  "value": x_table[lang][genderlabel]}
         # ---
         if NewDesc != {}:
-            himoBOT.work_api_desc(NewDesc, q)
+            wd_desc.work_api_desc(NewDesc, q)
 # ---
 
 
