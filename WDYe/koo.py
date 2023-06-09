@@ -31,10 +31,6 @@ import unicodedata
 # ---
 import sys
 # ---
-sys_argv = sys.argv or []
-# ---
-# ---
-# ---
 
 
 def PPPTemp(text):

@@ -161,9 +161,8 @@ def ns_stats():
     #---
     return texts
 #---
-sys_argv = sys.argv or []
 #---
-if "test" in sys_argv:
+if "test" in sys.argv:
     Limit[1] = 15000
 #---
 for arg in sys.argv:
@@ -286,7 +285,7 @@ def mainar():
             pywikibot.output( 'c:%d, time:%d' % (c, dii ) )
             t1 = time.time()
         #---
-        if "printline" in sys_argv and ( c % 1000 == 0 or c == 1 ) :
+        if "printline" in sys.argv and ( c % 1000 == 0 or c == 1 ) :
             pywikibot.output( line ) 
         #---
         # جميع عناصر ويكي بيانات المفحوصة
@@ -440,11 +439,11 @@ def mainar():
     #---
     if text != "" : 
         pywikibot.output( text )
-        if not "nosave" in sys_argv:
+        if not "nosave" in sys.argv:
             from API import arAPI 
             arAPI.page_put(oldtext="", newtext=text, summary='Bot - Updating stats', title=title)
     #---
-    if not 'test' in sys_argv :
+    if not 'test' in sys.argv :
         with open( Dump_Dir +  'dumps/arw2.txt' , 'w' ) as f:
             f.write(text)
         #---

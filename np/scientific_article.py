@@ -13,8 +13,6 @@ import re
 import dateutil.parser
 import sys
 #---
-sys_argv = sys.argv or []
-#---
 from API import printe
 from desc_dicts.scientific_article_desc import Scientific_descraptions
 #---
