@@ -11,17 +11,18 @@ python pwb.py c30/p31 enwiki
 #
 # (C) Ibrahem Qasim, 2022
 #
+from wd_API import himoAPI
 import urllib
 import pywikibot
 import codecs
 import re
 import string
-#---
+# ---
 import sys
-#---
+# ---
 from api_sql import sql as c18sql
-#---
-#use arwiki_p;
+# ---
+# use arwiki_p;
 mainquarry = '''
 select p.page_title , pp_value
 FROM page as p, page_props as pp, wikidatawiki_p.page as wdp
@@ -36,39 +37,45 @@ AND wdp.page_is_redirect = 0
 GROUP BY p.page_title
 #order by ll_from
 #LIMIT 2000;'''
-#---
-from wd_API import himoAPI
-#---
-WIKI = { 1 : "arwiki" }
-AutoSave = { 1: False}
-#---
-def treat_page( qid ):
-    himoAPI.Claim_API2( qid , "P31" , "Q4167836")
-#---
+# ---
+# ---
+WIKI = {1: "arwiki"}
+AutoSave = {1: False}
+# ---
+
+
+def treat_page(qid):
+    himoAPI.Claim_API2(qid, "P31", "Q4167836")
+# ---
+
+
 def main2(*args):
-    #---
+    # ---
     quarry = mainquarry
     result = []
-    #---
+    # ---
     for arg in sys.argv:
         arg, sep, value = arg.partition(':')
-        #---
-        if arg =='limit':
+        # ---
+        if arg == 'limit':
             quarry = quarry + "\n LIMIT %s;" % value
-    #---
+    # ---
         if arg == 'enwiki':
             WIKI[1] = "enwiki"
-    #---
-    pywikibot.output( quarry )
-    result = c18sql.Make_sql_2_rows( quarry , wiki = WIKI[1] )
-    pywikibot.output( "===============================" )
-    #---
+    # ---
+    pywikibot.output(quarry)
+    result = c18sql.Make_sql_2_rows(quarry, wiki=WIKI[1])
+    pywikibot.output("===============================")
+    # ---
     counter = 0
     for title in result:
         counter += 1
-        pywikibot.output( " <<lightblue>> page: %d/%d : %s:%s "  %  ( counter , len(result) , title , result[title] ) )
-        treat_page( result[title] )
-#---
+        pywikibot.output(" <<lightblue>> page: %d/%d : %s:%s " %
+                         (counter, len(result), title, result[title]))
+        treat_page(result[title])
+
+
+# ---
 if __name__ == '__main__':
     main2()
-#---
+# ---

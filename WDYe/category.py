@@ -17,34 +17,32 @@
 import re
 import time
 import pywikibot
-#---
+# ---
 import sys
-#---
+# ---
 import urllib
 import urllib.request
 import urllib.parse
 
-#---
+# ---
 from API import himoBOT2
-#---
+# ---
 from wd_API import himoAPI_test as himoAPI
-#---
-Limit = { 1: "500"}
-#---
+# ---
+Limit = {1: "500"}
+# ---
+
+
 def main():
-    #python pwb.py wd/category
-    #---
+    # python pwb.py wd/category
+    # ---
     for arg in sys.argv:
         arg, sep, value = arg.partition(':')
-        #---
-        if arg == 'always':
-            SaveR[1] = True
-            pywikibot.output('<<lightred>> SaveR = True.')
-        #---
+        # ---
         if arg == '-limit' or arg == 'limit':
             Limit[1] = value
-            pywikibot.output('<<lightred>> Limit = %s.' % value )
-        #---#
+            pywikibot.output('<<lightred>> Limit = %s.' % value)
+        # ---#
     Quaa = '''
 SELECT DISTINCT 
 ?cat
@@ -66,24 +64,26 @@ WHERE {
 }
 LIMIT '''
     Quaa = Quaa + Limit[1]
-    pywikibot.output( Quaa )
+    pywikibot.output(Quaa)
     sparql = himoBOT2.sparql_generator_url(Quaa)
-    #---
+    # ---
     Table = {}
     for item in sparql:
         q = item['cat'].split("/entity/")[1]
         Table[q] = item["ar_name"]
-    #---
+    # ---
     num = 0
     for item in Table:
         num += 1
-        #if num < 2:
-        pywikibot.output( '<<lightgreen>> %d/%d item:"%s" ' % (num ,len(Table.keys() ),item) )
-        #pywikibot.output( Table[item] )
-        if Table[item] != "" : 
+        # if num < 2:
+        pywikibot.output('<<lightgreen>> %d/%d item:"%s" ' %
+                         (num, len(Table.keys()), item))
+        # pywikibot.output( Table[item] )
+        if Table[item] != "":
             lab = 'تصنيف:' + Table[item]
-            himoAPI.Labels_API( item, lab , "ar" , False, Or_Alii = True)
-    #---
+            himoAPI.Labels_API(item, lab, "ar", False, Or_Alii=True)
+
+    # ---
 if __name__ == "__main__":
     main()
-#---
+# ---

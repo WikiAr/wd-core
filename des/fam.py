@@ -63,8 +63,8 @@ desc_table = {
     'Q19389637' : Qid_Descraptions.get('Q19389637', {}),
     
     'Q11753321' : DescraptionsTable.get('Wikimedia template', {}),
-    'Q15145755' : DescraptionsTable.get('Wikimedia module', {}),
-    'Q18711811' : DescraptionsTable.get('Wikimedia module', {}),
+    'Q15145755' : DescraptionsTable.get('Wikimedia module', {}),    #Module test cases
+    'Q18711811' : DescraptionsTable.get('Wikimedia module', {}),    #map data module
     'Q24046192' : DescraptionsTable.get('Wikimedia category', {}),
     
     
