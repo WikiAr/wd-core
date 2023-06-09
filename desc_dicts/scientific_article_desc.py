@@ -15,7 +15,8 @@ np/si3.py
 # from descs_dicts.scientific_article_desc import Scientific_descraptions
 #---
 Scientific_descraptions = {
-    # "ar":"مقالة علمية", 
+    # "ar":"مقالة علمية",
+    "sl":"znanstveni članek",
     "ar":"مقالة بحثية", 
     "ast":"artículu científicu",
     "bg":"научна статия",

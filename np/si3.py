@@ -40,7 +40,8 @@ from wd_API import himoAPI
 from API import himoBOT
 from API import himoBOT2
 #---
-from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
+from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, replace_desc
+#---
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
@@ -135,12 +136,6 @@ if True:
     for qid1 in others_list:
         if not qid1 in Qids_translate:
             Qids_translate[qid1] = others_list[qid1]
-    #---
-    replace_desc = {
-        "hu": { 
-            "férfi keresztnév" : "férfikeresztnév",
-        }
-        }
     #---
     Add_en_labels = { 1 : False }
     #---
