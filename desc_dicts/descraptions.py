@@ -296,6 +296,7 @@ many_lang_qid_desc = {
         "de":"chemische Verbindung",
         "de-ch":"chemische Verbindung",
         "en":"chemical compound",
+        "sl":"kemična spojina",
         "en-ca":"chemical compound",
         "en-gb":"chemical compound",
         "eo":"kemia kombinaĵo",
@@ -326,6 +327,7 @@ many_lang_qid_desc = {
     },
     "Q6979593" : { # national association football team
         "ar":"منتخب كرة قدم وطني", 
+        "sl":"nacionalna nogometna reprezentanca",
         "en":"national association football team",
         "nl":"nationaal voetbalteam",
         "en-ca":"national association football team",
@@ -335,6 +337,7 @@ many_lang_qid_desc = {
     },
     "Q24856" : { # film series
         "ar":"سلسلة أفلام", 
+        "sl":"filmska serija",
         "en":"film series",
         "en-ca":"film series",
         "en-gb":"film series",
@@ -345,6 +348,7 @@ many_lang_qid_desc = {
         "ar":"وحدة ويكيميديا",#
         "en":"Wikimedia module",#
         "fr":"Module Wikimedia",#
+        "sl":"modul Wikimedie",
         "en-ca":"Wikimedia module",#
         "en-gb":"Wikimedia module",#
         "nl":"Wikimedia-module",
@@ -625,6 +629,7 @@ many_lang_qid_desc = {
         "ar":"سنة في التقويم العبري",
         "bn":"হিব্রু পঞ্জিকার বছর", 
         "ca":"any de calendari hebreu", 
+        "sl":"hebrejsko koledarsko leto",
         "en":"Hebrew calendar year", 
         "es":"año del calendario hebreo", 
         "fa":"سال در گاه‌شماری عبری", 
@@ -642,6 +647,7 @@ many_lang_qid_desc = {
     "Q4146861":{
         "ar":"سنة في التقويم الهجري",
         "bn":"ইসলামী পঞ্জিকার বছর",
+        "sl":"islamsko koledarsko leto",
         "en":"Islamic calendar year", 
         "es":"año del calendario musulmán",
         "he":"שנה בלוח השנה המוסלמי", 
@@ -784,6 +790,7 @@ many_lang_qid_desc = {
         "de":"Dorf in China",
         "el":"οικισμός της Λαϊκής Δημοκρατίας της Κίνας",
         "en":"village in China",
+        "sl":"vas na Kitajskem",
         "eo":"vilaĝo en Ĉinujo",
         "es":"aldea de la República Popular China",
         "fi":"kylä Kiinassa",
@@ -874,7 +881,7 @@ many_lang_qid_desc = {
         "sco":"Wikimedia category",
         "se":"Wikimedia-kategoriija",
         "sk":"kategória projektov Wikimedia",
-        "sl":"kategorija Wikimedije",
+        "sl":"kategorija Wikimedie",    #kategorija Wikimedije  [[wd:Topic:Xjpu4y312bxi699q]]
         "sq":"kategori e Wikimedias",
         "sr":"категорија на Викимедији",
         "sv":"Wikimedia-kategori",
@@ -957,7 +964,7 @@ many_lang_qid_desc = {
         "ru":"страница значений в проекте Викимедиа",
         "sco":"Wikimedia disambiguation page",
         "sk":"rozlišovacia stránka",
-        "sl":"razločitvena stran Wikimedije",
+        "sl":"razločitvena stran Wikimedie", # razločitvena stran Wikimedije [[wd:Topic:Xjpu4y312bxi699q]]
         "sq":"faqe kthjelluese e Wikimedias",
         "sr":"вишезначна одредница на Викимедији",
         "sv":"Wikimedia-förgreningssida",
@@ -1036,7 +1043,7 @@ many_lang_qid_desc = {
         "sco":"Wikimedia leet airticle",
         "si":"විකිමීඩියා ලැයිස්තු ලිපිය",
         "sk":"zoznamový článok projektov Wikimedia",
-        "sl":"seznam Wikimedije",
+        "sl":"seznam Wikimedie",#seznam Wikimedije [[wd:Topic:Xjpu4y312bxi699q]]
         "sq":"artikull-listë e Wikimedias",
         "sr":"списак на Викимедији",
         "sv":"Wikimedia-listartikel",
@@ -1080,6 +1087,7 @@ many_lang_qid_desc = {
         "de":"Wikimedia-Vorlage", 
         "el":"Πρότυπο εγχειρήματος Wikimedia", 
         "en":"Wikimedia template", 
+        "sl":"predloga Wikimedie", 
         "en-ca":"Wikimedia template", 
         "en-gb":"Wikimedia template", 
         "eo":"Vikimedia ŝablono", 
@@ -1169,6 +1177,7 @@ many_lang_qid_desc = {
         "da":"Wikinews-artikel",
         "de":"Artikel bei Wikinews", 
         "el":"Άρθρο των Βικινέων", 
+        "sl":"članek Wikinovic", 
         "en":"Wikinews article", 
         "en-ca":"Wikinews article", 
         "en-gb":"Wikinews article", 
@@ -1329,7 +1338,7 @@ Space_Desc = {
     "Q1332364" :    { "ar":"متغير بيضاوي دوار",     "en":"rotating ellipsoidal variable"},
     "Q204194" :     { "ar":"سديم مظلم",             "en":"dark nebula"},
     "Q130019" :     { "ar":"نجم كربوني",            "en":"carbon star"},
-    "Q523":         { "ar":"نجم",                   "en":"star", "nl": "ster"},
+    "Q523":         { "ar":"نجم",                   "en":"star", "nl": "ster", "sl": "zvezda"},
     "Q6243":        { "ar":"نجم متغير",             "en":"variable star"},
     "Q115518":      { "ar":"مجرة ذات سطوع سطحي منخفض",  "en":"low-surface-brightness galaxy"},
     
@@ -1338,6 +1347,7 @@ Space_Desc = {
         "be":"галактыка",
         "be-tarask":"галяктыка",
         "en":"galaxy",
+        "sl":"galaksija",
         "id":"galaksi",
         "ne":"आकासगङ्गा",
         "en-ca":"galaxy",
@@ -1574,7 +1584,18 @@ Taxon_Descraptions = {
         "ro":"gen de reptile",
         "sq":"e zvarranikëve",
     },
-    }
+}
+#---
+replace_desc = {
+    "hu": { 
+        "férfi keresztnév" : "férfikeresztnév",
+    },
+    "sl": { 
+        "kategorija Wikimedije" : "kategorija Wikimedie",
+        "razločitvena stran Wikimedije" : "razločitvena stran Wikimedie",
+        "seznam Wikimedije" : "seznam Wikimedie",
+    },
+}
 #---
 if __name__ == "__main__":
     # python3 pwb.py desc_dicts/descraptions
