@@ -6,7 +6,7 @@
 from wd_API import newdesc
 #site = pywikibot.Site('wikidata', 'wikidata')
 #repo = site.data_repository()
-from likeapi.descraptions import DescraptionsTable
+from desc_dicts.descraptions import DescraptionsTable
 
 translations = {}
 translations['Wikimedia category'] = DescraptionsTable['Wikimedia category']

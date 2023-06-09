@@ -40,7 +40,7 @@ from wd_API import himoAPI
 from API import himoBOT
 from API import himoBOT2
 #---
-from likeapi.descraptions import DescraptionsTable, Qid_Descraptions
+from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
@@ -49,7 +49,7 @@ translations_o = { 1 : {}, 2 : {} }
 from people.new3 import translations_o
 #---
 from np.taxones import tax_translationsNationalities, taxone_list, lab_for_p171, labforP105
-from likeapi.scientific_article_desc import Scientific_descraptions
+from desc_dicts.scientific_article_desc import Scientific_descraptions
 #---
 from np.np_lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
 from np.scientific_article import make_scientific_article

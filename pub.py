@@ -36,7 +36,7 @@ paths = [
 #---
 if filepath.find("/data/project/") == -1 and filepath.find("labstore-secondary-tools-project") == -1 :
     paths = [
-        'I:/core/core-yemen/',
+        'I:/core/wd_core/',
         'I:/core/master/'
     ]
 #---

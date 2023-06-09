@@ -14,7 +14,7 @@ from wd_API import himoAPI
 from API import himoBOT2
 #---
 #--- == == == == == == == == == == == ==
-from likeapi.descraptions import Qid_Descraptions
+from desc_dicts.descraptions import Qid_Descraptions
 #---
 items2do = 0    #global parameter to print progress
 totaledits=0

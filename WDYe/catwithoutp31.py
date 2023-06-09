@@ -29,7 +29,7 @@ from API import himoBOT
 #---
 from wd_API import himoAPI
 #---
-from likeapi.descraptions import DescraptionsTable
+from desc_dicts.descraptions import DescraptionsTable
 Tras = {
     'Q4167836': DescraptionsTable.get('Wikimedia category') or Qid_Descraptions.get('Q4167836') or {}
     }

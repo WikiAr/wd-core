@@ -14,7 +14,7 @@ python3 pwb.py des/fam
 #---
 from API import printe
 from API import himoBOT2
-from likeapi.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
+from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
 import sys
 import random
 #---

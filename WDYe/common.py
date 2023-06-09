@@ -32,7 +32,7 @@ import urllib.parse
 #import urllib.request
 #import urllib.parse
 #---
-from likeapi.descraptions import DescraptionsTable
+from desc_dicts.descraptions import DescraptionsTable
 
 queries2 = {
           #'chemical compound': 'SELECT ?item   WHERE { ?item wdt:P31 wd:Q11173 ;      wdt:P31 ?instance .    ?item schema:description "chemical compound"@en.  }   GROUP BY ?item  HAVING(COUNT(?instance) = 1)', 

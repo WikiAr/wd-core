@@ -14,7 +14,7 @@ from wd_API import newdesc
 #---
 from API import himoBOT
 #---
-from likeapi.descraptions import DescraptionsTable
+from desc_dicts.descraptions import DescraptionsTable
 #---
 translations = {}
 translations["Q11173"] = Qid_Descraptions['Q11173']

@@ -16,7 +16,7 @@ import sys
 sys_argv = sys.argv or []
 #---
 from API import printe
-from likeapi.scientific_article_desc import Scientific_descraptions
+from desc_dicts.scientific_article_desc import Scientific_descraptions
 #---
 Desc_Just_year = {
     "zh":"%s年学术文章",#年论文

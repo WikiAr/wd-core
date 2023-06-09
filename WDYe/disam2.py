@@ -32,7 +32,7 @@ import urllib.parse
 #---
 from wd_API import wd_bot
 from API import himoBOT
-from likeapi.descraptions import *
+from desc_dicts.descraptions import *
 #---
 translations = {}
 translations['Wikimedia disambiguation page'] = DescraptionsTable['Wikimedia disambiguation page']

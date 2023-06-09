@@ -10,7 +10,7 @@ from wd_API import newdesc
 # newdesc.main_from_file(file , topic , translations2)
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 #---
-from likeapi.descraptions import DescraptionsTable, Qid_Descraptions
+from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 #--- 
 QS = {}
 #QS["Q6979593"] = Qid_Descraptions["Q6979593"]    national association football team
