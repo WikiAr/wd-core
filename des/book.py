@@ -347,7 +347,7 @@ def MakeDesc(Qid, pa, lang):
         description = description.replace("/", "، و" )
     #---
     if lang == 'ar':
-        if description and description != re.sub( '[abcdefghijklmnobqrstuvwxyz]', '', description):
+        if description and description != re.sub(r'[abcdefghijklmnobqrstuvwxyz]', '', description):
             printe.output( '<<lightred>> arabic description test failed "%s".' % description )
             description = False
     return description

@@ -371,7 +371,7 @@ def work_people(item, topic, num, ardes ):
     years = ''
     #---
     if topic.find("(") != -1:
-        hhh = re.match('^(.*?) (\([\d\–-]+\))', topic)
+        hhh = re.match(r'^(.*?) (\([\d\–-]+\))', topic)
         if hhh :
             topic = hhh.group(1)
             years = ' ' + hhh.group(2)

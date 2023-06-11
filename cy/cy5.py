@@ -210,29 +210,29 @@ Skip_items = ["Q4115189"]
 def fix_label(label):
     label = label.strip()
     
-    label = re.sub("بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
+    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
      "سباق الطريق في بطولة العالم \g<1>", label)
 
-    label = re.sub("ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – سيدات فردي سباق الطريق",
+    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – سيدات فردي سباق الطريق",
     "سباق الطريق للسيدات في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
 
-    label = re.sub("ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – فريق رجال سباق الطريق", "سباق الطريق لفرق الرجال في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
+    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – فريق رجال سباق الطريق", "سباق الطريق لفرق الرجال في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
 
     #بطولة العالم لسباق الدراجات على الطريق 1966 – سباق الطريق الفردي للرجال
-    label = re.sub("بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
+    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
     "سباق الطريق للرجال في بطولة العالم \g<1>", label)
 
-    label = re.sub("سباق الطريق المداري ", "سباق الطريق ", label)
-    label = re.sub("(بطولة [\s\w]+) الوطنية ", "\g<1> ", label)
-    label = re.sub("^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", "\g<1> \g<3>", label)
-    label = re.sub("^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", "\g<1> \g<3>", label)
+    label = re.sub(r"سباق الطريق المداري ", "سباق الطريق ", label)
+    label = re.sub(r"(بطولة [\s\w]+) الوطنية ", "\g<1> ", label)
+    label = re.sub(r"^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", "\g<1> \g<3>", label)
+    label = re.sub(r"^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", "\g<1> \g<3>", label)
 
     # سباق الطريق للسيدات في ركوب الدراجات في الألعاب الأولمبية الصيفية 2016
-    label = re.sub("في ركوب الدراجات في الألعاب الأولمبية ", "في ركوب الدراجات الأولمبية ", label)
+    label = re.sub(r"في ركوب الدراجات في الألعاب الأولمبية ", "في ركوب الدراجات الأولمبية ", label)
 
     # في ركوب الدراجات في دورة ألعاب الكومنولث
-    label = re.sub("ركوب الدراجات في دورة ألعاب الكومنولث", "ركوب الدراجات في دورة الكومنولث", label)
-    label = re.sub("\s+", " ", label)
+    label = re.sub(r"ركوب الدراجات في دورة ألعاب الكومنولث", "ركوب الدراجات في دورة الكومنولث", label)
+    label = re.sub(r"\s+", " ", label)
     return label
 #---
 def make_temp_lines( table, title ):
@@ -244,7 +244,7 @@ def make_temp_lines( table, title ):
             table[rr] = ''
     #---
     image = table['imagejersey']
-    image = re.sub('JOJOJO', JOJOJO, image)
+    image = re.sub(r'JOJOJO', JOJOJO, image)
     image = image.replace( '%20', "_" )
     #---
     date = table['Date'] 
@@ -274,8 +274,8 @@ def make_temp_lines( table, title ):
     #---
     sss = table['p642label'] 
     # الفائز وفقاً لترتيب النقاط للشباب
-    sss = re.sub( 'الفائز وفقاً لترتيب', 'الفائز في ترتيب', sss )
-    sss = re.sub( 'الفائز حسب التصنيف العام', 'الفائز في التصنيف العام', sss )
+    sss = re.sub(r'الفائز وفقاً لترتيب', 'الفائز في ترتيب', sss )
+    sss = re.sub(r'الفائز حسب التصنيف العام', 'الفائز في التصنيف العام', sss )
     #---
     ranke = table.get( 'rank', "" )
     #---
@@ -330,7 +330,7 @@ def make_temp_lines( table, title ):
             print_test2( 'remove_date[fanco] += 1 (%d) date == ""' % remove_date[fanco] )
             return "", table2
         else:
-            hhh = re.match('(\d\d\d\d)\-\d\d\-\d\dT\d\d\:\d\d\:\d\dZ', date )
+            hhh = re.match(r'(\d\d\d\d)\-\d\d\-\d\dT\d\d\:\d\d\:\d\dZ', date )
             if hhh :
                 if int( hhh.group(1) ) < Work_with_Year[fanco] :
                     remove_date[fanco] += 1
@@ -339,7 +339,7 @@ def make_temp_lines( table, title ):
     #---'''
     if ranke != "" and sss.strip() == "" :
         if Work_with_Stage[1] == False and Len_of_valid_results.get(title,0) > 10 :
-            if re.sub( "المرتبة 1 في", "", ranke) == ranke and re.sub( "الأول في", "", ranke) == ranke :
+            if re.sub(r"المرتبة 1 في", "", ranke) == ranke and re.sub(r"الأول في", "", ranke) == ranke :
                 printt( ' *** remove line with rank < 1.' )
                 return "", table2
     #---
@@ -653,8 +653,8 @@ def fix_results(table):
                 value = value.split('/entity/')[1]
             #---
             #if param == "p642label":
-                #value = re.sub( 'الفائز وفقاً ', 'الفائز في ', value )
-                #value = re.sub( 'الفائز حسب التصنيف العام ', 'الفائز في التصنيف العام', value )
+                #value = re.sub(r'الفائز وفقاً ', 'الفائز في ', value )
+                #value = re.sub(r'الفائز حسب التصنيف العام ', 'الفائز في التصنيف العام', value )
             #---
             if not param2 in NoAppend:
                 if not param2 in results2[q]:
@@ -691,7 +691,7 @@ def fix_date( data, title ):
                     #return ""
                     continue
                 else:
-                    hhh = re.match('(\d\d\d\d)\-\d\d\-\d\dT\d\d\:\d\d\:\d\dZ', date )
+                    hhh = re.match(r'(\d\d\d\d)\-\d\d\-\d\dT\d\d\:\d\d\:\d\dZ', date )
                     if hhh :
                         if int( hhh.group(1) ) < Work_with_Year[fanco] :
                             remove_date[fanco] += 1
@@ -785,7 +785,7 @@ def make_new_text(qid, title):
                 v, tab = make_temp_lines( table, title )
                 #---
                 if v != "" : 
-                    vvv =  re.sub( "\n", "", v )
+                    vvv =  re.sub(r"\n", "", v )
                     new_lines[title][qoo] = tab
                     new_lines[title][qoo]["qid"] = qoo
                     new_lines[title][qoo]["race"] = tab.get("race","")  #re.sub( regline, "\g<race>", vvv )
@@ -813,7 +813,7 @@ def GetSectionNew3( text ):
     #temp1 = '{{نتيجة سباق الدراجات/بداية|wikidatalist=t}}'
     #temptop = '{{نتيجة سباق الدراجات/بداية}}'
     #---
-    Frist = re.compile( '\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}')
+    Frist = re.compile(r'\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}')
     Fristsss = Frist.findall( text )
     if Fristsss:
         printt( 'Section: ' )
@@ -903,7 +903,7 @@ def work_tano( text, MainTitle ):
     fff = re.compile( reg_line )
     #pas = fff.findall( text )
     #---
-    #vf = re.compile( '\{\{نتيجة سباق الدراجات\/سطر4([^{]|\{[^{]|\{\{[^{}]+\}\})+\}\}' ).findall( text )
+    #vf = re.compile(r'\{\{نتيجة سباق الدراجات\/سطر4([^{]|\{[^{]|\{\{[^{}]+\}\})+\}\}' ).findall( text )
     if text.startswith("{{نتيجة سباق الدراجات/بداية}}\n<!-- هذه القائمة يقوم بوت: [[مستخدم:Mr._Ibrahembot]] بتحديثها من ويكي بيانات بشكل دوري. -->") : 
         text = text.replace("{{نتيجة سباق الدراجات/بداية}}\n<!-- هذه القائمة يقوم بوت: [[مستخدم:Mr._Ibrahembot]] بتحديثها من ويكي بيانات بشكل دوري. -->", "")
     text = text.replace( "{{نتيجة سباق الدراجات/نهاية}}", "")
@@ -918,13 +918,13 @@ def work_tano( text, MainTitle ):
                 pp = "{{نتيجة سباق الدراجات/سطر4" + pp
             #---
             q_id = ""
-            #q_id = re.sub( ".*(Q\d+).*", "\g<1>", pp )
-            ppr = re.sub( "\n", "", pp )
-            q_id = re.sub( "\{\{نتيجة سباق الدراجات\/سطر4\|qid\s*\=\s*(Q\d+)\|.*\}\}", "\g<1>", ppr )
+            #q_id = re.sub(r".*(Q\d+).*", "\g<1>", pp )
+            ppr = re.sub(r"\n", "", pp )
+            q_id = re.sub(r"\{\{نتيجة سباق الدراجات\/سطر4\|qid\s*\=\s*(Q\d+)\|.*\}\}", "\g<1>", ppr )
             #if TEST[1]:
                 #print( ppr )
             #print( ppr )
-            hhh = re.match('.*(Q\d+).*', ppr )
+            hhh = re.match(r'.*(Q\d+).*', ppr )
             if hhh :
                 if q_id != hhh.group(1):
                     q_id = hhh.group(1)
@@ -993,7 +993,7 @@ def puttext( text, MainTitle, Newsect):
     #---    
     text = text
     Newsect = Frist + '\n' + Newsect + '{{نتيجة سباق الدراجات/نهاية}}'
-    Newsect = re.sub('\n\n{{نتيجة سباق الدراجات/نهاية}}', '\n{{نتيجة سباق الدراجات/نهاية}}', Newsect )
+    Newsect = re.sub(r'\n\n{{نتيجة سباق الدراجات/نهاية}}', '\n{{نتيجة سباق الدراجات/نهاية}}', Newsect )
     NewText = text.replace( sect, Newsect )
     summ = 'بوت:تجربة تحديث بيانات اللاعب'
     if workibrahem: summ = ''
@@ -1005,29 +1005,29 @@ def puttext( text, MainTitle, Newsect):
             printo( 'nodiff' ) 
 #---
 def template_params(text, title):   
-    Frist = re.compile( '\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}')
+    Frist = re.compile(r'\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}')
     pas = Frist.findall( text )
     #---
     if not pas: 
         return False, False
     #---
     params = str(pas[0])
-    params = re.sub("\s*\=\s*", "=", params)
-    params = re.sub("\s*\|\s*", "|", params)
+    params = re.sub(r"\s*\=\s*", "=", params)
+    params = re.sub(r"\s*\|\s*", "|", params)
     #---
-    do = re.search('.*\|تاريخ\=(\d+)(\}\}|\|)', text)
+    do = re.search(r'.*\|تاريخ\=(\d+)(\}\}|\|)', text)
     if do :
         Work_with_Year[title] = int( do.group(1) )
         print_test2("Work_with_Year:%s" % do.group(1) )
     #---
-    if re.sub("مراحل\s*\=\s*نعم", "", params) != params:
+    if re.sub(r"مراحل\s*\=\s*نعم", "", params) != params:
         printt("Work with Stage")
         Work_with_Stage[1] = True
         Stage[title] = ""
     #---
-    if re.sub(".*id\s*\=\s*(Q\d+).*", "\g<1>", params)  != params:
+    if re.sub(r".*id\s*\=\s*(Q\d+).*", "\g<1>", params)  != params:
         printt('** found currect line' )
-        Qid = re.sub(".*id\=(Q\d+).*", "\g<1>", params)
+        Qid = re.sub(r".*id\=(Q\d+).*", "\g<1>", params)
         printt('id: ' + Qid)
         return Qid, True
     #---

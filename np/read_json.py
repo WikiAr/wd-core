@@ -47,7 +47,7 @@ def read_bad_list(file):
             printe.output( 'find %d cats in done_list7. "%s" , file:"%s"' % (len(done_list7[type]) , type , file) )
             for catee in done_list7[type]:
                 catee = catee.strip()
-                catee = re.sub('"', "" , catee)
+                catee = re.sub(r'"', "" , catee)
                 if not catee in List:
                     List.append(catee)
         print('Good JJson "%s"' % file )
@@ -66,7 +66,7 @@ def read_bad_list(file):
         listo = listo.split(",")
         for catee in listo:
             catee = catee.strip()
-            catee = re.sub('"', "" , catee)
+            catee = re.sub(r'"', "" , catee)
             if not catee in List:
                 List.append(catee)
         print('Bad JJson "%s"' % file )
@@ -86,7 +86,7 @@ def read_bad_json(file):
             printe.output( 'find %d cats in done_list7. "%s"' % (len(done_list7[type])  , type) )
             for catee in done_list7[type]:
                 catee = catee.strip()
-                catee = re.sub('"', "" , catee)
+                catee = re.sub(r'"', "" , catee)
                 if not catt in List:
                     List.append(catee)'''
     except Exception as e:

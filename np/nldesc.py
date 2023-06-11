@@ -538,7 +538,7 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
             if my_description == short :
                 my_description = its_a_generalthing( wditem , short,'مقالة سيرة ذاتية عن','P921' )
     #---
-    test = re.sub( "[abcdefghijklmnopqrstuvwxyz]" , '' , my_description.lower() )
+    test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]" , '' , my_description.lower() )
     if test.lower() != my_description.lower():
         my_description = ''
         printe.output('test:[%s] != my_description[%s]' % (test,my_description) )
@@ -798,7 +798,7 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
     #---
     if my_description == '' : return my_description
     #---
-    test = re.sub( "[abcdefghijklmnopqrstuvwxyz]" , '' , my_description.lower() )
+    test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]" , '' , my_description.lower() )
     if test.lower() != my_description.lower():
         my_description = ''
         printe.output('test:[%s] != my_description[%s]' % (test,my_description) )
@@ -1441,7 +1441,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
       if my_description == 'sds':
           my_description = make_nn(lng, wditem, type_of_item, orig_desc)
       #---
-      my_description = re.sub("\s+", " ", my_description)
+      my_description = re.sub(r"\s+", " ", my_description)
       my_description = my_description.strip()
       #---
       if my_description == '':
@@ -1462,7 +1462,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
       #---
       valuee = data['descriptions'][lng]['value']
       valuee = valuee.replace( ',' , '،' )
-      test = re.sub( "[abcdefghijklmnopqrstuvwxyz]" , '' , valuee.lower() )
+      test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]" , '' , valuee.lower() )
       #---
       if test.lower() == valuee.lower():
           Add_desc( q , valuee , data['descriptions'][lng]['language'] )

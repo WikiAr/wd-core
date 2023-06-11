@@ -95,7 +95,7 @@ def work_one_item(item):
     # ---
     for site in links.keys():
         label = links[site]
-        lang = re.sub("wiki$", "", site)
+        lang = re.sub(r"wiki$", "", site)
         if lang != label and lang not in labels.keys():
             data2['labels'][lang] = {'language': lang, 'value': label}
     # ---

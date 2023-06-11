@@ -43,14 +43,13 @@ def dec(xx):
 def fixrow(row):
     en, ar = False, False
     # printe.output( "===============================" )
-    row = re.sub("\n+", "", row)
-    row = re.sub("\t+", "", row)
-    row = re.sub("\s+", " ", row)
-    row = re.sub("</strong><strong>", " ", row)
-    row = re.sub("<strong>", "", row)
-    row = re.sub("</strong>", "", row)
-    row = re.sub(
-        '<td class="views-field views-field-field-hadaf-value views-align-center" >', "<tdss>", row)
+    row = re.sub(r"\n+", "", row)
+    row = re.sub(r"\t+", "", row)
+    row = re.sub(r"\s+", " ", row)
+    row = re.sub(r"</strong><strong>", " ", row)
+    row = re.sub(r"<strong>", "", row)
+    row = re.sub(r"</strong>", "", row)
+    row = re.sub(r'<td class="views-field views-field-field-hadaf-value views-align-center" >', "<tdss>", row)
     # printe.output( row )
     # ---
     if row.find('<td class="views-field views-field-title views-align-center" >') != -1:
@@ -58,7 +57,7 @@ def fixrow(row):
             '<td class="views-field views-field-title views-align-center" >')[1]
         row = row.split('</p>')[0]
         # if row.find('<tdss>') != -1:
-        row = re.sub('</td><tdss><p>', "<ssss>", row)
+        row = re.sub(r'</td><tdss><p>', "<ssss>", row)
         # printe.output( row )
     # ---
     if row.find("<ssss>") != -1:
@@ -91,11 +90,11 @@ def Fix_List(List):
     # ---
     for y in List:
         yy = y
-        yy = re.sub(";", "،", yy)
-        yy = re.sub("؛", "،", yy)
-        yy = re.sub("\‚", "،", yy)
-        yy = re.sub(",", "،", yy)
-        yy = re.sub("-->", "", yy)
+        yy = re.sub(r";", "،", yy)
+        yy = re.sub(r"؛", "،", yy)
+        yy = re.sub(r"\‚", "،", yy)
+        yy = re.sub(r",", "،", yy)
+        yy = re.sub(r"-->", "", yy)
         New_List.append(yy)
     # ---
     New_List2 = []
@@ -159,19 +158,19 @@ def Fix_List(List):
 
 def fixrow2(row):
     en, ar = False, False
-    row = re.sub(" <", "<", row)
-    row = re.sub("> ", ">", row)
-    row = re.sub("\n+", "", row)
-    row = re.sub("\t+", "", row)
-    row = re.sub("\s+", " ", row)
-    row = re.sub('\<tr bgcolor\=\"\#\w+\"\>', "", row)
+    row = re.sub(r" <", "<", row)
+    row = re.sub(r"> ", ">", row)
+    row = re.sub(r"\n+", "", row)
+    row = re.sub(r"\t+", "", row)
+    row = re.sub(r"\s+", " ", row)
+    row = re.sub(r'\<tr bgcolor\=\"\#\w+\"\>', "", row)
     # printe.output( "===============================" )
     rowss = row.split("</td>")
     # printe.output( rowss )
     # printe.output( "===============================" )
     # ---
-    # en = re.sub( '\<td class\=\"tden\"\>(.*)\<\/td\>' , '\g<1>', row )
-    # ar = re.sub( '\<td class\=\"tdar\"\>(.*)\<\/td\>' , '\g<1>', row )
+    # en = re.sub(r'\<td class\=\"tden\"\>(.*)\<\/td\>' , '\g<1>', row )
+    # ar = re.sub(r'\<td class\=\"tdar\"\>(.*)\<\/td\>' , '\g<1>', row )
     # ---
     for x in rowss:
         # printe.output( x )
@@ -200,10 +199,10 @@ def Get_item_table(enlab):
     # ---
     html = html.split('<table class="table">')[1]
     html = html.split("</table>")[0]
-    html = re.sub("\n+", "", html)
-    html = re.sub("\t+", "", html)
-    html = re.sub("\s+", " ", html)
-    html = re.sub("> <", "><", html)
+    html = re.sub(r"\n+", "", html)
+    html = re.sub(r"\t+", "", html)
+    html = re.sub(r"\s+", " ", html)
+    html = re.sub(r"> <", "><", html)
     # printe.output( html )
     # ---
     if enlab in Labels:
@@ -247,10 +246,10 @@ def Get_item_table2(enlab):
     # ---
     html = html.split("<tbody>")[1]
     html = html.split("</tbody>")[0]
-    html = re.sub("\n+", "", html)
-    html = re.sub("\t+", "", html)
-    html = re.sub("\s+", " ", html)
-    html = re.sub("> <", "><", html)
+    html = re.sub(r"\n+", "", html)
+    html = re.sub(r"\t+", "", html)
+    html = re.sub(r"\s+", " ", html)
+    html = re.sub(r"> <", "><", html)
     # printe.output( html )
     # ---
     if enlab in Labels:
@@ -318,7 +317,7 @@ def WORK(item, table):
     # ---
     arlab = table["ar"]
     enlab = table["en"]
-    enlab = re.sub("_", " ", enlab.lower())
+    enlab = re.sub(r"_", " ", enlab.lower())
     # ---
     Item_tab = Get_item_table2(enlab)
     if Item_tab == []:

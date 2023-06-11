@@ -89,28 +89,28 @@ def make_newlabel( label , ar , en ):
     for oll in olympics:
         newlabel = re.sub( oll , olympics[oll] , newlabel , flags = re.IGNORECASE )
     #---
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) time trial' , ' سباق \g<1> ضد الساعة للرجال ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race' , ' سباق الطريق \g<1> للرجال ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase' , ' رجال \g<1> متر حواجز خيول ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase' , ' رجال \g<1> متر حواجز خيول ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles' , ' رجال \g<1> متر حواجز ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk' , ' رجال \g<1> متر مشي ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+)\s*(?:metres|m)' , ' رجال \g<1> متر ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+) metre' , ' رجال \g<1> متر ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+) kg' , ' رجال \g<1> كجم ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' men\'s (\d+|\d+\.\d+) kilometres' , ' رجال \g<1> كيلوجرام ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) time trial' , ' سباق \g<1> ضد الساعة للرجال ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race' , ' سباق الطريق \g<1> للرجال ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase' , ' رجال \g<1> متر حواجز خيول ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase' , ' رجال \g<1> متر حواجز خيول ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles' , ' رجال \g<1> متر حواجز ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk' , ' رجال \g<1> متر مشي ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+)\s*(?:metres|m)' , ' رجال \g<1> متر ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+) metre' , ' رجال \g<1> متر ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+) kg' , ' رجال \g<1> كجم ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' men\'s (\d+|\d+\.\d+) kilometres' , ' رجال \g<1> كيلوجرام ' , newlabel , flags = re.IGNORECASE )
     #---
-    newlabel = re.sub( ' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) time trial' , ' سباق \g<1> ضد الساعة للسيدات ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race' , ' سباق الطريق \g<1> للسيدات ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase' , ' سيدات \g<1> متر حواجز خيول ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles' , ' سيدات \g<1> متر حواجز ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk' , ' سيدات \g<1> متر مشي ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' women\'s (\d+|\d+\.\d+)\s*(?:metres|m)' , ' سيدات \g<1> متر ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' women\'s (\d+|\d+\.\d+) metre' , ' سيدات \g<1> متر ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' women\'s (\d+|\d+\.\d+) kg' , ' سيدات \g<1> كجم ' , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( ' women\'s (\d+|\d+\.\d+) kilometres' , ' سيدات \g<1> كيلوجرام ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) time trial' , ' سباق \g<1> ضد الساعة للسيدات ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race' , ' سباق الطريق \g<1> للسيدات ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase' , ' سيدات \g<1> متر حواجز خيول ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles' , ' سيدات \g<1> متر حواجز ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' women\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk' , ' سيدات \g<1> متر مشي ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' women\'s (\d+|\d+\.\d+)\s*(?:metres|m)' , ' سيدات \g<1> متر ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' women\'s (\d+|\d+\.\d+) metre' , ' سيدات \g<1> متر ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' women\'s (\d+|\d+\.\d+) kg' , ' سيدات \g<1> كجم ' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' women\'s (\d+|\d+\.\d+) kilometres' , ' سيدات \g<1> كيلوجرام ' , newlabel , flags = re.IGNORECASE )
     #---
-    newlabel = re.sub( ' (\d|\d+|\d+\.\d+) to (\d|\d+|\d+\.\d+) ton' , ' \g<1> إلى \g<2> طن' , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r' (\d|\d+|\d+\.\d+) to (\d|\d+|\d+\.\d+) ton' , ' \g<1> إلى \g<2> طن' , newlabel , flags = re.IGNORECASE )
     #---
     #newlabel2 = newlabel
     #---
@@ -123,22 +123,22 @@ def make_newlabel( label , ar , en ):
     for xx in Mako_keys2:
         newlabel = re.sub( xx , Mako_keys2[xx] , newlabel , flags = re.IGNORECASE )
     #---
-    newlabel = re.sub( "at the summer olympics" , "في الألعاب الأولمبية الصيفية" , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( "at the summer youth olympics" , "في الألعاب الأولمبية الشبابية الصيفية" , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( "at the winter youth olympics" , "في الألعاب الأولمبية الشبابية الشتوية" , newlabel , flags = re.IGNORECASE )
-    newlabel = re.sub( "at the winter olympics" , "في الألعاب الأولمبية الشتوية" , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r"at the summer olympics" , "في الألعاب الأولمبية الصيفية" , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r"at the summer youth olympics" , "في الألعاب الأولمبية الشبابية الصيفية" , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r"at the winter youth olympics" , "في الألعاب الأولمبية الشبابية الشتوية" , newlabel , flags = re.IGNORECASE )
+    newlabel = re.sub(r"at the winter olympics" , "في الألعاب الأولمبية الشتوية" , newlabel , flags = re.IGNORECASE )
     #---
     for aeo in Mako_keys_4:
-        newlabel = re.sub( " " + aeo , " " + Mako_keys_4[aeo] , newlabel , flags = re.IGNORECASE )
+        newlabel = re.sub(r" " + aeo , " " + Mako_keys_4[aeo] , newlabel , flags = re.IGNORECASE )
     #---
     for rrr in International_Federation:
-        newlabel = re.sub( " " + rrr , " " + International_Federation[rrr] , newlabel , flags = re.IGNORECASE )
+        newlabel = re.sub(r" " + rrr , " " + International_Federation[rrr] , newlabel , flags = re.IGNORECASE )
     #---
     for ccc in Sports_Keys_Lab:
-        newlabel = re.sub( " " + ccc , " " + Sports_Keys_Lab[ccc] , newlabel , flags = re.IGNORECASE )
+        newlabel = re.sub(r" " + ccc , " " + Sports_Keys_Lab[ccc] , newlabel , flags = re.IGNORECASE )
     #---
     for hgh in keys_1:
-        newlabel = re.sub( " " + hgh , " " + keys_1[hgh] , newlabel , flags = re.IGNORECASE )
+        newlabel = re.sub(r" " + hgh , " " + keys_1[hgh] , newlabel , flags = re.IGNORECASE )
     #---
     newlabel = newlabel.replace("  " , " ")
     #---
@@ -152,11 +152,11 @@ def make_newlabel( label , ar , en ):
         return ''
     #---
     newlabel = newlabel.strip()
-    mat = re.match( "^" + years + "\sفي\s.*" , newlabel )
+    mat = re.match(r"^" + years + "\sفي\s.*" , newlabel )
     if not mat :
-        newlabel = re.sub( "^" + years + "\s*(.*)\-(.*)" , "\g<2> \g<1> - \g<3>" , newlabel , flags = re.IGNORECASE ).strip()
-        newlabel = re.sub( "^" + years + "\s*(.*)\–(.*)" , "\g<2> \g<1> - \g<3>" , newlabel , flags = re.IGNORECASE ).strip()
-        newlabel = re.sub( "^" + years + "\s*(.*)" , "\g<2> \g<1>" , newlabel , flags = re.IGNORECASE ).strip()
+        newlabel = re.sub(r"^" + years + "\s*(.*)\-(.*)" , "\g<2> \g<1> - \g<3>" , newlabel , flags = re.IGNORECASE ).strip()
+        newlabel = re.sub(r"^" + years + "\s*(.*)\–(.*)" , "\g<2> \g<1> - \g<3>" , newlabel , flags = re.IGNORECASE ).strip()
+        newlabel = re.sub(r"^" + years + "\s*(.*)" , "\g<2> \g<1>" , newlabel , flags = re.IGNORECASE ).strip()
     #---
     leb_test = re.sub( tests_ar , "" , newlabel , flags = re.IGNORECASE )
     if leb_test.strip() != "" : 
@@ -173,23 +173,23 @@ def Item( item ):
     #---
     q = item['item']
     #---#
-    #item[''] = re.sub("shooting at the 2016 summer olympics"  , "" , item['dden'], flags = re.IGNORECASE  )
-    item['dden'] = re.sub("(.*) at the (\d+) (Winter|summer) olympics"  , "\g<2> \g<1> at the \g<3> olympics" , item['dden'] , flags = re.IGNORECASE )
-    item['label'] = re.sub("(.*) at the (\d+) (Winter|summer) olympics"  , "\g<2> \g<1> at the \g<3> olympics" , item['label'], flags = re.IGNORECASE  )
-    item['dden'] = re.sub("(.*) at the (\d+) (Winter|summer) youth olympics"  , "\g<2> \g<1> at the \g<3> youth olympics" , item['dden'] , flags = re.IGNORECASE )
-    item['label'] = re.sub("(.*) at the (\d+) (Winter|summer) youth olympics"  , "\g<2> \g<1> at the \g<3> youth olympics" , item['label'], flags = re.IGNORECASE  )
+    #item[''] = re.sub(r"shooting at the 2016 summer olympics"  , "" , item['dden'], flags = re.IGNORECASE  )
+    item['dden'] = re.sub(r"(.*) at the (\d+) (Winter|summer) olympics"  , "\g<2> \g<1> at the \g<3> olympics" , item['dden'] , flags = re.IGNORECASE )
+    item['label'] = re.sub(r"(.*) at the (\d+) (Winter|summer) olympics"  , "\g<2> \g<1> at the \g<3> olympics" , item['label'], flags = re.IGNORECASE  )
+    item['dden'] = re.sub(r"(.*) at the (\d+) (Winter|summer) youth olympics"  , "\g<2> \g<1> at the \g<3> youth olympics" , item['dden'] , flags = re.IGNORECASE )
+    item['label'] = re.sub(r"(.*) at the (\d+) (Winter|summer) youth olympics"  , "\g<2> \g<1> at the \g<3> youth olympics" , item['label'], flags = re.IGNORECASE  )
     #---
     lline = ",".join( [ "%s:%s" % ( x , item[x] ) for x in item ] )
     printe.output( lline )
     #---
-    en = re.sub("^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) "  , "" , item['dden'] , flags = re.IGNORECASE)
+    en = re.sub(r"^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) "  , "" , item['dden'] , flags = re.IGNORECASE)
     if en == item['dden'] :
-        en = re.sub(" (\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)$"  , "" , item['dden'] , flags = re.IGNORECASE)
+        en = re.sub(r" (\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)$"  , "" , item['dden'] , flags = re.IGNORECASE)
     en = en.strip()
     #---
-    ar = re.sub("^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) "  , "" , item['ddar'] , flags = re.IGNORECASE)
+    ar = re.sub(r"^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) "  , "" , item['ddar'] , flags = re.IGNORECASE)
     if ar == item['ddar'] :
-        ar = re.sub(" (\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)$"  , "" , ar , flags = re.IGNORECASE)
+        ar = re.sub(r" (\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)$"  , "" , ar , flags = re.IGNORECASE)
     ar = ar.strip()
     #---
     if Usema[1] :
@@ -206,7 +206,7 @@ def Item( item ):
     newlabel = make_newlabel( label , ar , en )
     #---
     year = ''
-    mat = re.match( ".*" + years + ".*" , item['label'] )
+    mat = re.match(r".*" + years + ".*" , item['label'] )
     if mat :
         year = mat.group(1)
     #---

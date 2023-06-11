@@ -297,15 +297,15 @@ def MakeDesc(Qid, pa, lang):
                 auth2 = Comma[lang].join(auth)
                 #---
                 #d = d + ' '                        # الرابط by 
-                d = re.sub( '~AUTHOR~'  , auth2 , des)
-                d = re.sub( '~YEAR~'  , true_year, d)
+                d = re.sub(r'~AUTHOR~'  , auth2 , des)
+                d = re.sub(r'~YEAR~'  , true_year, d)
                 #printe.output( 'd' )
                 #printe.output( d )
                 description = d
     #else:
         #description = False
     if lang == 'ar':
-        if description and description != re.sub( '[abcdefghijklmnobqrstuvwxyz]'  , '' , description):
+        if description and description != re.sub(r'[abcdefghijklmnobqrstuvwxyz]'  , '' , description):
             printe.output( '<<lightred>> arabic description test failed "%s".' % description )
             description = False
     return description

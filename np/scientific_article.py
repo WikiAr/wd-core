@@ -172,7 +172,7 @@ def bnyear( date ):
 #---
 def Monthname( lang , month ):
     if not month in ["10" , "11" , "12"]:
-        month = re.sub('0' , '' , month)
+        month = re.sub(r'0' , '' , month)
     #---
     #if lang == "bn":
         #return month
@@ -191,7 +191,7 @@ def Make_uk_desc( desc ):
 #---
 def fixdate(date):
     table = {'year':'','month':'','day':''}
-    date = re.sub('\+0000000' , '+' , date)
+    date = re.sub(r'\+0000000' , '+' , date)
     #date = date.split('T')[0]
     #printe.output(date)
     try:
@@ -228,13 +228,13 @@ def make_scientific_desc(lang, date, precision):
     desc = ""
     #---
     if not month in ["10" , "11" , "12"]:
-        month = re.sub('0' , '' , month)
+        month = re.sub(r'0' , '' , month)
     #---
     if day == "01":
         day = "1"
     #---
     # إذا لم يوجد في التاريخ سنة 
-    if re.sub('\d\d\d\d' , '' , year) != '':
+    if re.sub(r'\d\d\d\d' , '' , year) != '':
         Correctdate = False
         printe.output( '<<lightred>> year:%s, month:%s, day:%s' % (year , month, day)   )
         printe.output( '<<lightred>> unCorrect date:' )

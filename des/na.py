@@ -45,7 +45,7 @@ def action( json1 ):
             item_en = tab["item_en"]
             ar_lab = tab["ar_name"]
             #---
-            kaka =  re.sub( "[abcdefghijklmnopqrstuvwxyz]" , "" , ar_lab)
+            kaka =  re.sub(r"[abcdefghijklmnopqrstuvwxyz]" , "" , ar_lab)
             if ar_lab != "" and kaka == ar_lab :
                 printe.output( '  * ar_lab:"%s",en_name:"%s"' % (ar_lab  , en_name) )
                 c += 1

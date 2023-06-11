@@ -46,8 +46,8 @@ def action( json1 ):
             printe.output( 'action %d/%d "%s"' % ( c , total , q) )
             label = tab["label"]
             #---
-            #year =  re.match( '(\d\d\d\d)', label)
-            year = re.sub( '.*(\d+\d+\d+\d+).*' , "\g<1>", label)
+            #year =  re.match(r'(\d\d\d\d)', label)
+            year = re.sub(r'.*(\d+\d+\d+\d+).*' , "\g<1>", label)
             #---
             if year ==label:
                 year = ""

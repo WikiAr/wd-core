@@ -435,7 +435,7 @@ for topic in topics:
                 lang2 = 'en'
             wal = descraption.replace('1', str(topics[topic][lang]))
             wal = wal.replace('2', str(taop[city][lang2]))
-            #re.sub('2' , taop[city][lang2] ,topics[topic][lang] )
+            #re.sub(r'2' , taop[city][lang2] ,topics[topic][lang] )
             translations[topic][lang] = wal
         pywikibot.output(translations)
         newdesc.mainfromQuarry2( topic , quarry, translations)

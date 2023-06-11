@@ -389,7 +389,7 @@ def just_get_ar(labe):
     claimstr = ''
     #---
     for o in lab:
-        test = re.sub( "[abcdefghijklmnopqrstuvwxyz@]" , '' , o.lower() )
+        test = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]" , '' , o.lower() )
         if test.lower() == o.lower() and o != '' :
             tab.append(o)
     #---

@@ -229,7 +229,7 @@ def make_Tabs(tabs):
         newkeys = 0
         # ---
         for occupkey, occupdic in TraOc.items():  # المهن
-            kkkk = re.sub('~', natkey, occupkey)
+            kkkk = re.sub(r'~', natkey, occupkey)
             translations_o[1][kkkk] = {}
             # ---
             male_k = ""

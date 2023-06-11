@@ -65,8 +65,8 @@ def WORK(item, table, type):
     if type in allise:
         pywikibot.output('<<lightgreen>> type:"%s" in allise:"%s" ' %
                          (type,  allise[type]))
-        arlab2 = re.sub("^%s " % type, allise[type] + " ", arlab2)
-        arlab2 = re.sub(" %s " % type, " " + allise[type] + " ", arlab2)
+        arlab2 = re.sub(r"^%s " % type, allise[type] + " ", arlab2)
+        arlab2 = re.sub(r" %s " % type, " " + allise[type] + " ", arlab2)
     # ---
     if arlab2 != arlab:
         pywikibot.output("arlab2 : %s" % arlab2)

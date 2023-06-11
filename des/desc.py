@@ -236,7 +236,7 @@ def work_one_item( start, lang, tab, c, total, findlab = False ) :
                 placear = df.get(q,{}).get("P276","").split('@@')[0]
             #---
     #---
-    placeartest = re.sub( "[abcdefghijklmnopqrstuvwxyz@]", "", placear.lower() )
+    placeartest = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", placear.lower() )
     #---
     if placeartest.lower() != placear.lower():
         printe.output('placeartest:[%s] != placear[%s]' % (placeartest,placear) )
@@ -269,7 +269,7 @@ def work_one_item( start, lang, tab, c, total, findlab = False ) :
     if arlabel2 == "":
         return ''
     #---
-    test = re.sub( "[abcdefghijklmnopqrstuvwxyz@]", "", arlabel2.lower() )
+    test = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", arlabel2.lower() )
     if test.lower() != arlabel2.lower():
         printe.output('test:[%s] != arlabel2[%s]')
         return ''
