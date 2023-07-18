@@ -326,10 +326,10 @@ def mainar():
         return
     if text != "":
         pywikibot.output(text)
-        if not "nosave" in sys.argv:
+        if "nosave" not in sys.argv:
             from API import arAPI
             arAPI.page_put(oldtext="", newtext=text, summary='Bot - Updating stats', title=title)
-    if not 'test' in sys.argv:
+    if 'test' not in sys.argv:
         with open(Dump_Dir + 'dumps/arw2.txt', 'w') as f:
             f.write(text)
         for qid, List in Table_no_ab2.items():

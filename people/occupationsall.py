@@ -1381,7 +1381,7 @@ translationsOccupations = {
 translations_all = {**translationsOccupations, **translationsOccupations}
 # ---
 # for x in translationsOccupations:
-# if not "ar" in translationsOccupations[x]:
+# if "ar" not in translationsOccupations[x]:
 # print( x )
 # ---
 for x, yy in translationsOccupations_new.items():
@@ -1397,7 +1397,7 @@ for x in tempse_all:
     arl[x.strip().lower()] = tempse_all[x]["ar"]
 #---
 for x in New_Keys_occ:
-    if not "ar" in translationsOccupations[x]:
+    if "ar" not in translationsOccupations[x]:
         x2 = x.replace("~","").strip().lower()
         ar2 = arl.get(x2)
         if ar2:

@@ -123,7 +123,10 @@ def dump_new_data():
         return
     # ---
     file = f'{Dump_Dir}/new_data.json'
-    json.dump(new_data_to_dump, codecs.open(file, 'w', 'utf-8'), indent=4)
+    try:
+        json.dump(new_data_to_dump, codecs.open(file, 'w', 'utf-8'), indent=4)
+    except Exception as e:
+        json.dump(new_data_to_dump, codecs.open(f'{Dump_Dir}/new_data1.json', 'w', 'utf-8'), indent=4)
 
 
 def save_counts_template():
@@ -202,7 +205,7 @@ def mainar():
     # ----
     table += "\n|}\n[[Category:Wikidata statistics|Language statistics]]"
     # ----
-    if test_new_descs == 0 and not 'test' in sys.argv:
+    if test_new_descs == 0 and 'test' not in sys.argv:
         pywikibot.output('nothing new.. ')
         return ''
     # ----
@@ -221,9 +224,9 @@ def mainar():
         return
 
     pywikibot.output(text)
-    if not 'test' in sys.argv:
+    if 'test' not in sys.argv:
 
-        if not "nosave" in sys.argv:
+        if "nosave" not in sys.argv:
             text = text.replace('[[Category:Wikidata statistics|Language statistics]]', '')
             save(text, title)
         with open(f'{Dump_Dir}/dumps/dump.labels2.txt', 'w') as f:

@@ -64,7 +64,7 @@ if 'jsonnew' in sys.argv:
     with open( jsonname , 'w' ) as fe:
         fe.write('{}')
         pywikibot.output( "clear jsonname:%s" % jsonname )
-elif not 'test' in sys.argv :
+elif 'test' not in sys.argv :
     try:
         ff = open( jsonname2 , 'r' ).read()
         SS = json.loads( ff )
@@ -156,7 +156,7 @@ ttypes = [
     ]
 dump_done = { 1 : 0 }
 def log_dump():
-    if not 'test' in sys.argv :
+    if 'test' not in sys.argv :
         with open(jsonname, 'w') as outfile:
             json.dump( tab , outfile )
         dump_done[1] += 1
@@ -288,7 +288,7 @@ def mainar():
 }}
 |-
 |}"""
-    if not 'makereport' in sys.argv :
+    if 'makereport' not in sys.argv :
         workondata()
     property_other = 0
     tab['len_of_all_properties'] = 0 
@@ -350,14 +350,14 @@ def mainar():
         with open( Dump_Dir + 'dumps/%s.txt' % saveto[1] , 'w' ) as f:
             f.write(text)
     if text == "" : return ''
-    if 'test' in sys.argv and not 'noprint' in sys.argv :
+    if 'test' in sys.argv and 'noprint' not in sys.argv :
         pywikibot.output( text )
-    if not "nosave" in sys.argv:
+    if "nosave" not in sys.argv:
         if 'test' in sys.argv : title = 'User:Mr. Ibrahem/claims1'
         from wd_API import himoAPI
         himoAPI.page_putWithAsk( '' , text , 'Bot - Updating stats' , title, False)
         # with open( jsonname , 'w' ) as fe:  fe.write('{}')
-    if not 'test' in sys.argv :
+    if 'test' not in sys.argv :
         with open( Dump_Dir + 'dumps/claims.txt' , 'w' ) as f:
             f.write(text)
     else:

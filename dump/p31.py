@@ -66,7 +66,7 @@ if 'jsonnew' in sys.argv:
     with open(jsonname, 'w') as fe:
         fe.write('{}')
         pywikibot.output("clear jsonname:%s" % jsonname)
-elif not 'test' in sys.argv:
+elif 'test' not in sys.argv:
     try:
         ff = open(jsonname2, 'r').read()
         SS = json.loads(ff)
@@ -141,6 +141,7 @@ def make_section(P, table, Len):
     tables += "\n|}\n{{clear}}\n"
     # ---
     texts += Chart.replace("=,", "=")
+    texts += "\n\n"
     texts += tables
     # ---
     sections_done[1] += 1
@@ -159,7 +160,7 @@ dump_done = {1: 0}
 
 
 def log_dump():
-    if not 'test' in sys.argv:
+    if 'test' not in sys.argv:
         with open(jsonname, 'w') as outfile:
             json.dump(tab, outfile)
         dump_done[1] += 1
@@ -216,7 +217,7 @@ def workondata():
             # ---
             if len(claimse) == 1:
                 tab['items_1_claims'] += 1
-            if not 'P31' in claimse:
+            if 'P31' not in claimse:
                 tab['items_no_P31'] += 1
                 tab['items_no_P31'] += 1
                 continue
@@ -266,7 +267,7 @@ def mainar():
     pywikibot.output('time_start:%s' % str(time_start))
     sections = ''
     # ---s
-    if not 'makereport' in sys.argv:
+    if 'makereport' not in sys.argv:
         workondata()
     property_other = 0
     p31list = [[y['lenth_of_usage'], x] for x, y in tab['Main_Table'].items() if y['lenth_of_usage'] != 0]
@@ -302,9 +303,9 @@ def mainar():
             f.write(text)
     if text == "":
         return
-    if 'test' in sys.argv and not 'noprint' in sys.argv:
+    if 'test' in sys.argv and 'noprint' not in sys.argv:
         pywikibot.output(text)
-    if not "nosave" in sys.argv:
+    if "nosave" not in sys.argv:
         if 'test' in sys.argv:
             title = 'User:Mr. Ibrahem/p311'
         from wd_API import himoAPI

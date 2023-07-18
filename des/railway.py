@@ -42,7 +42,7 @@ def Get_P_API_id(claims, P, onlyone=False):
 #---
 def work_railway( wditem, p31, q = "" ):
     #---
-    if not "railway" in sys.argv: return 
+    if "railway" not in sys.argv: return 
     #---
     if wditem == {}:
         wditem = himoBOT2.Get_Item_API_From_Qid( q )

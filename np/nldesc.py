@@ -1353,7 +1353,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
     claims = wditem['claims']
     items2do -= 1
     #---
-    if not 'P31' in claims: return
+    if 'P31' not in claims: return
     #---
     type_ids = claims.get( 'P31', {} )
     #---
