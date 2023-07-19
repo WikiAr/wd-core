@@ -5,8 +5,6 @@ python3 pwb.py dump/claims5 jsonnew
 python3 pwb.py dump/claims5 makereport
 python3 pwb.py dump/claims5
 python3 pwb.py dump/claims5 test nosave
-67474000 : 0.4667012691497803.
-67475000 : 0.410783052444458.
 """
 #
 # (C) Ibrahem Qasim, 2022
@@ -41,8 +39,9 @@ for arg in sys.argv:
 tab = {
     'done': 0,
     'len_of_all_properties': 0,
+    'items_0_claims': 0,
     'items_1_claims': 0,
-    'items_no_claims': 0,
+    'items_no_P31': 0,
     'All_items': 0,
     'all_claims_2020': 0,
     'Main_Table': {},
@@ -68,7 +67,7 @@ elif 'test' not in sys.argv:
         print('cant read %s ' % jsonname)
 
 
-def make_section(P, table, Len):
+def make_section(P, table, Len, max_n=51):
     """
     Creates a section for a given property in a table.
 
@@ -121,7 +120,7 @@ def make_section(P, table, Len):
             return ''
         # ---
         num += 1
-        if num < 51:
+        if num < max_n:
             Q = x
             if x.startswith('Q'):
                 Q = "{{Q|%s}}" % x
@@ -186,25 +185,27 @@ def workondata():
     fileeee = bz2.open(filename, 'r')
     if 'lene' in sys.argv:
         print('len of bz2 lines :%d ' % len(json.loads([x for x in fileeee if x.startswith('{') and x.endswith('}')])))
-    #---
+    # ---
     done2 = 0
     done = 0
     offset = 0
     if tab['done'] != 0:
         offset = tab['done']
         print('offset == %d' % offset)
-    #---
+    # ---
     log_done = 0
-    #---
+    # ---
     for line in fileeee:
         line = line.decode('utf-8')
         line = line.strip('\n').strip(',')
         done += 1
         if offset != 0 and done < offset:
             continue
+        # ---
         if done % diff == 0 or done == 1000:
             print('{} : {}.'.format(done, time.time()-t1))
             t1 = time.time()
+        # ---
         if done2 == 500000:
             done2 = 1
             log_dump()
@@ -216,33 +217,40 @@ def workondata():
             continue
         done2 += 1
         tab['All_items'] += 1
-            # ---
+        # ---
         if "printline" in sys.argv and tab['done'] % 1000 == 0:
             print(line)
-            # ---
+        # ---
         json1 = json.loads(line)
         claimse = json1.get('claims', {})
-		#---
-        if claimse == {}:
-            tab['items_no_claims'] += 1
-        #---
+        # ---
+        if len(claimse) == 0:
+            tab['items_0_claims'] += 1
+            continue
+        # ---
         if len(claimse) == 1:
             tab['items_1_claims'] += 1
-        #---
-        for P31 in claimse:
+        # ---
+        if 'P31' not in claimse:
+            tab['items_no_P31'] += 1
+            continue
+        # ---
+        claims_to_work = claimse.keys()
+        # ---
+        for P31 in claims_to_work:
             if not P31 in tab['Main_Table']:
                 tab['Main_Table'][P31] = {'props': {}, 'lenth_of_usage': 0, 'lenth_of_claims_for_property': 0}
             # ---
             tab['Main_Table'][P31]['lenth_of_usage'] += 1
             tab['all_claims_2020'] += len(claimse[P31])
-            #---
+            # ---
             for claim in claimse[P31]:
                 tab['Main_Table'][P31]['lenth_of_claims_for_property'] += 1
 
                 datavalue = claim.get('mainsnak', {}).get('datavalue', {})
                 ttype = datavalue.get('type')
                 val = datavalue.get('value', {})
-                #---
+                # ---
                 if ttype == "wikibase-entityid":
 
                     id = datavalue.get('value', {}).get('id')
@@ -250,9 +258,9 @@ def workondata():
                         if not id in tab['Main_Table'][P31]['props']:
                             tab['Main_Table'][P31]['props'][id] = 0
                         tab['Main_Table'][P31]['props'][id] += 1
-        #---
+        # ---
         tab['done'] = done
-    #---
+    # ---
     log_dump()
 
 
@@ -263,17 +271,14 @@ def save_to_wd(text):
     title = 'User:Mr. Ibrahem/claims'
     # ---
     if 'test' in sys.argv:
-        title = 'User:Mr. Ibrahem/claims1'
+        title = 'User:Mr. Ibrahem/claims_test'
     # ---
     from wd_API import himoAPI
     himoAPI.page_putWithAsk('', text, 'Bot - Updating stats', title, False)
     # ---
 
 
-def mainar():
-    time_start = time.time()
-    print('time_start:%s' % str(time_start))
-    sections = ''
+def make_chart(p31list):
     xline = ''
     yline = ''
     # ---
@@ -281,28 +286,19 @@ def mainar():
     Chart2 += "{{Graph:Chart|width=900|height=100|xAxisTitle=property|yAxisTitle=usage|type=rect\n|x=%s\n|y1=%s\n}}"
     Chart2 += "|-\n|}"
     # ---
-    if 'makereport' not in sys.argv:
-        workondata()
-    # ---
-    property_other = 0
-    tab['len_of_all_properties'] = 0
-    #---
-    p31list = [[y['lenth_of_usage'], x] for x, y in tab['Main_Table'].items() if y['lenth_of_usage'] != 0]
-    p31list.sort(reverse=True)
-    #---
     rows = []
-    #---
+    # ---
     for Len, P in p31list:
         tab['len_of_all_properties'] += 1
         if tab['len_of_all_properties'] < 27:
             xline += f",{P}"
             yline += f",{Len}"
-        sections += make_section(P, tab['Main_Table'][P], Len)
+        # ---
         if len(rows) < 51:
             rows.append('| %d || {{P|%s}} || {{subst:formatnum:%d}} ' % (tab['len_of_all_properties'], P, Len))
         else:
             property_other += int(Len)
-    #---
+    # ---
     Chart2 = Chart2.replace('|x=%s', f'|x={xline}')
     Chart2 = Chart2.replace('|y1=%s', f'|y1={yline}')
     Chart2 = Chart2.replace("=,", "=")
@@ -311,23 +307,50 @@ def mainar():
     rows = '\n|-\n'.join(rows)
     table = '\n{| ' + f'class="wikitable sortable"\n|-\n! #\n! property\n! usage\n|-\n{rows}\n' + '|}'
     # ---
+    text += (
+        "== Numbers ==\n"
+        f"\n{Chart2}\n{table}"
+    )
+    # ---
+    return text
+
+
+def mainar():
+    time_start = time.time()
+    print('time_start:%s' % str(time_start))
+    sections = ''
+    # ---
+    if 'makereport' not in sys.argv:
+        workondata()
+    # ---
+    property_other = 0
+    # ---
+    p31list = [[y['lenth_of_usage'], x] for x, y in tab['Main_Table'].items() if y['lenth_of_usage'] != 0]
+    p31list.sort(reverse=True)
+    # ---
+    for Len, P in p31list:
+        sections += make_section(P, tab['Main_Table'][P], Len)
+    # ---
     final = time.time()
     delta = int(final - time_start)
     # ---
     text = (
         "<onlyinclude>latest</onlyinclude>.\n"
         "* Total items: {All_items:,}\n"
-        "* Items without claims: {items_no_claims:,}\n"
+        "* Items without P31: {items_no_P31:,} \n"
+        "* Items without claims: {items_0_claims:,}\n"
         "* Items with 1 claim only: {items_1_claims:,}\n"
         "* Total number of claims: {all_claims_2020:,}\n"
         "* Number of properties of the report: {len_of_all_properties:,}\n"
     ) .format_map(tab)
     # ---
+    chart = make_chart(p31list)
+    # ---
     text += (
         f"<!-- bots work done in {delta} secounds --> \n"
         "--~~~~~\n"
-        "== Numbers ==\n"
-        f"\n{Chart2}\n{table}\n{sections}"
+        f"{chart}\n"
+        f"{sections}"
     )
     # ---
     text = text.replace("0 (0000)", "0")
@@ -350,11 +373,11 @@ def mainar():
     # ---
     save_to_wd(text)
     # ---
-    file = f'{Dump_Dir}/dumps/claims.txt'
-    if 'test' not in sys.argv:
-        file = f'{Dump_Dir}/dumps/claims1.txt'
+    to_log = f'{Dump_Dir}/dumps/claims.txt'
+    if 'test' in sys.argv:
+        to_log = f'{Dump_Dir}/dumps/claims_test.txt'
     # ---
-    with open(file, 'w') as f:
+    with open(to_log, 'w') as f:
         f.write(text)
 
 
