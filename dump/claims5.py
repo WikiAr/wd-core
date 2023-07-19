@@ -18,15 +18,18 @@ import bz2
 import json
 import time
 import pywikibot
+# ---
 Dump_Dir = os.path.dirname(os.path.realpath(__file__))
-if not Dump_Dir.endswith('/'):
-    Dump_Dir += '/'
-print(f'Dump_Dir: {Dump_Dir}')
-title = 'User:Mr. Ibrahem/claims'
-Limit = {1: 500000000}
+# ---
+Limit = {1: 900000000}
 saveto = {1: ''}
+sections_done = {1: 0}
+sections_false = {1: 0}
+dump_done = {1: 0}
+# ---
 if sys.argv and "test" in sys.argv:
     Limit[1] = 30010
+# ---
 for arg in sys.argv:
     arg, sep, value = arg.partition(':')
     if arg.startswith('-'):
@@ -35,48 +38,56 @@ for arg in sys.argv:
         Limit[1] = int(value)
     if arg == "saveto":
         saveto[1] = value
-# python3 pwb.py dump/dump limit:1000000
-tab = {}
-tab['done'] = 0
-tab['len_of_all_properties'] = 0
-tab['items_1_claims'] = 0
-tab['items_no_claims'] = 0
-tab['All_items'] = 0
-tab['all_claims_2020'] = 0
-tab['Main_Table'] = {}
-lamo = [
-    'done',
-    'len_of_all_properties',
-    'items_1_claims',
-    'items_no_claims',
-    'All_items',
-    'all_claims_2020',
-    'Main_Table',
-]
-jsonname = Dump_Dir + 'dumps/claimse.json'
 # ---
-jsonname2 = jsonname
+# python3 pwb.py dump/dump limit:1000000
+tab = {
+    'done': 0,
+    'len_of_all_properties': 0,
+    'items_1_claims': 0,
+    'items_no_claims': 0,
+    'All_items': 0,
+    'all_claims_2020': 0,
+    'Main_Table': {},
+}
+# ---
+tab2 = tab.copy()
+# ---
+jsonname = f'{Dump_Dir}/dumps/claimse.json'
 # ---
 if 'jsonnew' in sys.argv:
-    with open(jsonname, 'w') as fe:
-        fe.write('{}')
-        pywikibot.output("clear jsonname:%s" % jsonname)
+    # dump tab to json
+    json.dump(tab, open(jsonname, 'w'))
+    pywikibot.output("clear jsonname:%s" % jsonname)
 elif 'test' not in sys.argv:
     try:
-        ff = open(jsonname2, 'r').read()
-        SS = json.loads(ff)
-        tab = SS
+        # read json
+        tab = json.loads(open(jsonname, 'r').read())
+        for k, v in tab2.items():
+            if not k in tab:
+                tab[k] = v
         pywikibot.output("tab['done'] == %d" % tab['done'])
     except:
         pywikibot.output('cant read %s ' % jsonname)
-sections_done = {1: 0}
-sections_false = {1: 0}
 
 
 def make_section(P, table, Len):
-    texts = '== {{P|%s}}  ==' % P
+    """
+    Creates a section for a given property in a table.
+
+    Args:
+        P (str): The property value.
+        table (dict): The table data.
+        Len (int): The length of the property.
+
+    Returns:
+        str: The section text.
+
+    """
+    # ---
     if sections_done[1] == 50:
         return ''
+    # ---
+    texts = '== {{P|%s}}  ==' % P
     pywikibot.output(f'make_section for property:{P}')
     texts += f'\n* Total items use these property:{Len}'
     # ---
@@ -87,73 +98,62 @@ def make_section(P, table, Len):
     texts += '\n'
     pywikibot.output(texts)
     if table['props'] == {}:
-        pywikibot.output('%s table["props"] == {} ' % P)
+        pywikibot.output(f'{P} table["props"] == empty.')
         return ''
-    xline = ''
-    yline = ''
-    Chart = """
-{| class="floatright sortable" 
-|-
-|
-{{Graph:Chart|width=140|height=140|xAxisTitle=value|yAxisTitle=Number
-|type=pie|showValues1=offset:8,angle:45
-|x=%s
-|y1=%s
-|legend=value
-}}
-|-
-|}"""
-    tables = """
-{| class="wikitable sortable plainrowheaders"
-|-
-! class="sortable" | #
-! class="sortable" | value
-! class="sortable" | Numbers
-|-
-"""
+    # ---
+    Chart = '{| class="floatright sortable"\n|-\n|\n'
+    Chart += "{{Graph:Chart|width=140|height=140|xAxisTitle=value|yAxisTitle=Number\n|type=pie|showValues1=offset:8,angle:45"
+    Chart += "\n|x=%s\n|y1=%s\n|legend=value\n}}\n|-\n|}"
+    # ---
+    tables = '''{| class="wikitable sortable plainrowheaders"\n|-\n! class="sortable" | #\n! class="sortable" | value\n! class="sortable" | Numbers\n|-\n'''
+    # ---
     lists = [[y, xff] for xff, y in table['props'].items()]
     lists.sort(reverse=True)
+    # ---
+    xline = ''
+    yline = ''
+    # ---
     num = 0
     other = 0
+    # ---
     for ye, x in lists:
         if ye == 0 and sections_false[1] < 100:
-            pywikibot.output('p(%s),x(%s) ye == 0 or ye == 1 ' % (P, x))
+            pywikibot.output(f'p({P}), x({x}) ye == 0 or ye == 1 ')
             sections_false[1] += 1
             return ''
+        # ---
         num += 1
         if num < 51:
-            tables += '\n'
+            # ---
             if x.startswith('Q'):
-                row = "| %d || {{Q|%s}} || {{subst:formatnum:%d}} " % (num, x, ye)
-            else:
-                row = "| %d || %s || {{subst:formatnum:%d}} " % (num, x, ye)
-            xline += ",%s" % x
-            yline += ",%d" % ye
-            tables += row
-            tables += '\n|-'
+                x = "{{Q|%s}}" % x
+            # ---
+            row = f"| {num} || {x} || {ye:,}"
+            # ---
+            xline += f",{x}"
+            yline += f",{ye:,}"
+            # ---
+            tables += f"\n{row}\n|-\n"
         else:
             other += ye
+    # ---
     num += 1
+    # ---
     tables += f"\n| {num} || others || {other:,}\n|-"
     Chart = Chart % (xline, yline)
     tables += "\n|}\n{{clear}}\n"
+    # ---
     texts += Chart.replace("=,", "=")
     texts += tables
+    # ---
     sections_done[1] += 1
     return texts
 
 
-ttypes = [
-    "wikibase-entityid",
-    "time",
-    "monolingualtext",
-    "quantity",
-    # "string",
-]
-dump_done = {1: 0}
-
-
 def log_dump():
+    """
+    Logs the dump of the current process.
+    """
     if 'test' not in sys.argv:
         with open(jsonname, 'w') as outfile:
             json.dump(tab, outfile)
@@ -162,10 +162,23 @@ def log_dump():
 
 
 def workondata():
+    """
+    This function performs some operations on data.
+    It reads a JSON file, processes the lines, and counts various statistics.
+    The function takes no parameters.
+
+    Parameters:
+        None
+
+    Returns:
+        None
+    """
     t1 = time.time()
     diff = 20000
+    # ---
     if 'test' in sys.argv:
         diff = 1000
+    # ---
     filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
     if not os.path.isfile(filename):
         pywikibot.output(f'file {filename} <<lightred>> not found')
@@ -228,6 +241,20 @@ def workondata():
     log_dump()
 
 
+def save_to_wd(text):
+    if "nosave" in sys.argv:
+        return
+    # ---
+    title = 'User:Mr. Ibrahem/claims'
+    # ---
+    if 'test' in sys.argv:
+        title = 'User:Mr. Ibrahem/claims1'
+    # ---
+    from wd_API import himoAPI
+    himoAPI.page_putWithAsk('', text, 'Bot - Updating stats', title, False)
+    # ---
+
+
 def mainar():
     time_start = time.time()
     pywikibot.output('time_start:%s' % str(time_start))
@@ -268,48 +295,43 @@ def mainar():
     # ---
     final = time.time()
     delta = int(final - time_start)
-    text = ""
-    all_itms = tab['All_items']
-    no_itms = tab['items_no_claims']
-    items_1_claims = tab['items_1_claims']
-    all_claims_2020 = tab['all_claims_2020']
-    len_of_all_properties = tab['len_of_all_properties']
-
-    text = f"Update: <onlyinclude>latest</onlyinclude>.\n"
-    text += f"* Total items:{all_itms:,}\n"
-    text += f"* Items without claims:{no_itms:,}\n"
-    text += f"* Items with 1 claim only:{items_1_claims:,}\n"
-    text += f"* Total number of claims:{all_claims_2020:,} \n"
-    text += f"* Number of properties of the report:{len_of_all_properties:,} \n"
-    text += f"<!-- bots work done in {delta} secounds --> \n"
-    text += "--~~~~~\n"
-    text = text + "== Numbers ==\n"
-    text = text + f"\n{Chart2}\n{table}\n{sections}"
+    # ---
+    text = (
+        "<onlyinclude>latest</onlyinclude>.\n"
+        "* Total items: {All_items:,}\n"
+        "* Items without claims: {items_no_claims:,}\n"
+        "* Items with 1 claim only: {items_1_claims:,}\n"
+        "* Total number of claims: {all_claims_2020:,}\n"
+        "* Number of properties of the report: {len_of_all_properties:,}\n"
+    ) .format_map(tab)
+    # ---
+    text += (
+        f"<!-- bots work done in {delta} secounds --> \n"
+        "--~~~~~\n"
+        "== Numbers ==\n"
+        f"\n{Chart2}\n{table}\n{sections}"
+    )
     text = text.replace("0 (0000)", "0")
     text = text.replace("0 (0)", "0")
     # ---
-    title = 'User:Mr. Ibrahem/claims'
-    # ---
     # python3 pwb.py dump/claims2 test nosave saveto:ye
     if saveto[1] != '':
-        with open(Dump_Dir + 'dumps/%s.txt' % saveto[1], 'w') as f:
+        with open(f'{Dump_Dir}/dumps/%s.txt' % saveto[1], 'w') as f:
             f.write(text)
     # ---
     if text == "":
         return ''
+    # ---
     if 'test' in sys.argv and 'noprint' not in sys.argv:
         pywikibot.output(text)
-    if "nosave" not in sys.argv:
-        if 'test' in sys.argv:
-            title = 'User:Mr. Ibrahem/claims1'
-        from wd_API import himoAPI
-        himoAPI.page_putWithAsk('', text, 'Bot - Updating stats', title, False)
-        # ---
+    # ---
+    save_to_wd(text)
+    # ---
     if 'test' not in sys.argv:
-        with open(Dump_Dir + 'dumps/claims.txt', 'w') as f:
+        with open(f'{Dump_Dir}/dumps/claims.txt', 'w') as f:
             f.write(text)
     else:
-        with open(Dump_Dir + 'dumps/claims1.txt', 'w') as f:
+        with open(f'{Dump_Dir}/dumps/claims1.txt', 'w') as f:
             f.write(text)
 
 
