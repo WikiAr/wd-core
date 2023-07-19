@@ -278,6 +278,43 @@ def save_to_wd(text):
     # ---
 
 
+def make_chart(p31list):
+    xline = ''
+    yline = ''
+    # ---
+    Chart2 = "{| class='floatright sortable' \n|-\n|"
+    Chart2 += "{{Graph:Chart|width=900|height=100|xAxisTitle=property|yAxisTitle=usage|type=rect\n|x=%s\n|y1=%s\n}}"
+    Chart2 += "|-\n|}"
+    # ---
+    rows = []
+    # ---
+    for Len, P in p31list:
+        tab['len_of_all_properties'] += 1
+        if tab['len_of_all_properties'] < 27:
+            xline += f",{P}"
+            yline += f",{Len}"
+        # ---
+        if len(rows) < 51:
+            rows.append('| %d || {{P|%s}} || {{subst:formatnum:%d}} ' % (tab['len_of_all_properties'], P, Len))
+        else:
+            property_other += int(Len)
+    # ---
+    Chart2 = Chart2.replace('|x=%s', f'|x={xline}')
+    Chart2 = Chart2.replace('|y1=%s', f'|y1={yline}')
+    Chart2 = Chart2.replace("=,", "=")
+    # ---
+    rows.append(f'| 52 || others || {property_other:,}')
+    rows = '\n|-\n'.join(rows)
+    table = '\n{| ' + f'class="wikitable sortable"\n|-\n! #\n! property\n! usage\n|-\n{rows}\n' + '|}'
+    # ---
+    text += (
+        "== Numbers ==\n"
+        f"\n{Chart2}\n{table}"
+    )
+    # ---
+    return text
+
+
 def mainar():
     time_start = time.time()
     print('time_start:%s' % str(time_start))
@@ -307,11 +344,12 @@ def mainar():
         "* Number of properties of the report: {len_of_all_properties:,}\n"
     ) .format_map(tab)
     # ---
-    # chart = make_chart(p31list)
+    chart = make_chart(p31list)
     # ---
     text += (
         f"<!-- bots work done in {delta} secounds --> \n"
         "--~~~~~\n"
+        f"{chart}\n"
         f"{sections}"
     )
     # ---
