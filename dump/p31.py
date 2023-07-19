@@ -287,7 +287,7 @@ def mainar():
     text = f"Update: <onlyinclude>{dumpdate}</onlyinclude>.\n"
     text += f"* Total items:{All_items:,} \n"
     text += f"* Items without P31:{items_no_P31:,} \n"
-    text += "* Items with 1 claim only:{items_1_claims:,} \n"
+    text += f"* Items with 1 claim only:{items_1_claims:,} \n"
     text += f"* Items with no claim:{items_0_claims:,} \n"
     text += f"* Total number of claims:{all_claims_2020:,} \n"
     text += "<!-- bots work done in %d secounds --> \n" % delta
