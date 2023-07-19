@@ -17,7 +17,6 @@ import os
 import bz2
 import json
 import time
-import pywikibot
 # ---
 Dump_Dir = os.path.dirname(os.path.realpath(__file__))
 # ---
@@ -39,7 +38,6 @@ for arg in sys.argv:
     if arg == "saveto":
         saveto[1] = value
 # ---
-# python3 pwb.py dump/dump limit:1000000
 tab = {
     'done': 0,
     'len_of_all_properties': 0,
@@ -57,7 +55,7 @@ jsonname = f'{Dump_Dir}/dumps/claimse.json'
 if 'jsonnew' in sys.argv:
     # dump tab to json
     json.dump(tab, open(jsonname, 'w'))
-    pywikibot.output("clear jsonname:%s" % jsonname)
+    print("clear jsonname:%s" % jsonname)
 elif 'test' not in sys.argv:
     try:
         # read json
@@ -65,9 +63,9 @@ elif 'test' not in sys.argv:
         for k, v in tab2.items():
             if not k in tab:
                 tab[k] = v
-        pywikibot.output("tab['done'] == %d" % tab['done'])
+        print("tab['done'] == %d" % tab['done'])
     except:
-        pywikibot.output('cant read %s ' % jsonname)
+        print('cant read %s ' % jsonname)
 
 
 def make_section(P, table, Len):
@@ -88,7 +86,7 @@ def make_section(P, table, Len):
         return ''
     # ---
     texts = '== {{P|%s}}  ==' % P
-    pywikibot.output(f'make_section for property:{P}')
+    print(f'make_section for property:{P}')
     texts += f'\n* Total items use these property:{Len}'
     # ---
     lnnn = tab['Main_Table'].get(P, {}).get('lenth_of_claims_for_property')
@@ -96,14 +94,14 @@ def make_section(P, table, Len):
         texts += f'\n* Total number of claims with these property:{lnnn}'
     # ---
     texts += '\n'
-    pywikibot.output(texts)
+    print(texts)
     if table['props'] == {}:
-        pywikibot.output(f'{P} table["props"] == empty.')
+        print(f'{P} table["props"] == empty.')
         return ''
     # ---
     Chart = '{| class="floatright sortable"\n|-\n|\n'
-    Chart += "{{Graph:Chart|width=140|height=140|xAxisTitle=value|yAxisTitle=Number\n|type=pie|showValues1=offset:8,angle:45"
-    Chart += "\n|x=%s\n|y1=%s\n|legend=value\n}}\n|-\n|}"
+    Chart += "{{Graph:Chart|width=140|height=140|xAxisTitle=value|yAxisTitle=Number\n"
+    Chart += "|type=pie|showValues1=offset:8,angle:45\n|x=%s\n|y1=%s\n|legend=value\n}}\n|-\n|}"
     # ---
     tables = '''{| class="wikitable sortable plainrowheaders"\n|-\n! class="sortable" | #\n! class="sortable" | value\n! class="sortable" | Numbers\n|-\n'''
     # ---
@@ -118,35 +116,37 @@ def make_section(P, table, Len):
     # ---
     for ye, x in lists:
         if ye == 0 and sections_false[1] < 100:
-            pywikibot.output(f'p({P}), x({x}) ye == 0 or ye == 1 ')
+            print(f'p({P}), x({x}) ye == 0 or ye == 1 ')
             sections_false[1] += 1
             return ''
         # ---
         num += 1
         if num < 51:
-            # ---
+            Q = x
             if x.startswith('Q'):
-                x = "{{Q|%s}}" % x
+                Q = "{{Q|%s}}" % x
             # ---
-            row = f"| {num} || {x} || {ye:,}"
+            tables += f"\n| {num} || {Q} || {ye:,} \n|-"
             # ---
             xline += f",{x}"
             yline += f",{ye:,}"
-            # ---
-            tables += f"\n{row}\n|-\n"
         else:
             other += ye
     # ---
     num += 1
     # ---
-    tables += f"\n| {num} || others || {other:,}\n|-"
     Chart = Chart % (xline, yline)
+    # ---
+    tables += f"\n| {num} || others || {other:,} \n|-"
+    # ---
     tables += "\n|}\n{{clear}}\n"
     # ---
     texts += Chart.replace("=,", "=")
+    texts += "\n\n"
     texts += tables
     # ---
     sections_done[1] += 1
+    # ---
     return texts
 
 
@@ -158,7 +158,7 @@ def log_dump():
         with open(jsonname, 'w') as outfile:
             json.dump(tab, outfile)
         dump_done[1] += 1
-        pywikibot.output('log_dump %d done ' % dump_done[1])
+        print('log_dump %d done ' % dump_done[1])
 
 
 def workondata():
@@ -181,18 +181,21 @@ def workondata():
     # ---
     filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
     if not os.path.isfile(filename):
-        pywikibot.output(f'file {filename} <<lightred>> not found')
+        print(f'file {filename} <<lightred>> not found')
         return
     fileeee = bz2.open(filename, 'r')
     if 'lene' in sys.argv:
-        pywikibot.output('len of bz2 lines :%d ' % len(json.loads([x for x in fileeee if x.startswith('{') and x.endswith('}')])))
+        print('len of bz2 lines :%d ' % len(json.loads([x for x in fileeee if x.startswith('{') and x.endswith('}')])))
+    #---
     done2 = 0
     done = 0
     offset = 0
     if tab['done'] != 0:
         offset = tab['done']
-        pywikibot.output('offset == %d' % offset)
+        print('offset == %d' % offset)
+    #---
     log_done = 0
+    #---
     for line in fileeee:
         line = line.decode('utf-8')
         line = line.strip('\n').strip(',')
@@ -200,7 +203,7 @@ def workondata():
         if offset != 0 and done < offset:
             continue
         if done % diff == 0 or done == 1000:
-            pywikibot.output('{} : {}.'.format(done, time.time()-t1))
+            print('{} : {}.'.format(done, time.time()-t1))
             t1 = time.time()
         if done2 == 500000:
             done2 = 1
@@ -208,36 +211,48 @@ def workondata():
         if tab['done'] > Limit[1]:
             break
         if "output" in sys.argv and tab['done'] < 2:
-            pywikibot.output(line)
+            print(line)
         if not line.startswith('{') or not line.endswith('}'):
             continue
         done2 += 1
         tab['All_items'] += 1
+            # ---
         if "printline" in sys.argv and tab['done'] % 1000 == 0:
-            pywikibot.output(line)
+            print(line)
+            # ---
         json1 = json.loads(line)
         claimse = json1.get('claims', {})
+		#---
         if claimse == {}:
             tab['items_no_claims'] += 1
+        #---
         if len(claimse) == 1:
             tab['items_1_claims'] += 1
+        #---
         for P31 in claimse:
             if not P31 in tab['Main_Table']:
                 tab['Main_Table'][P31] = {'props': {}, 'lenth_of_usage': 0, 'lenth_of_claims_for_property': 0}
+            # ---
             tab['Main_Table'][P31]['lenth_of_usage'] += 1
             tab['all_claims_2020'] += len(claimse[P31])
+            #---
             for claim in claimse[P31]:
                 tab['Main_Table'][P31]['lenth_of_claims_for_property'] += 1
+
                 datavalue = claim.get('mainsnak', {}).get('datavalue', {})
                 ttype = datavalue.get('type')
                 val = datavalue.get('value', {})
+                #---
                 if ttype == "wikibase-entityid":
+
                     id = datavalue.get('value', {}).get('id')
                     if id:
                         if not id in tab['Main_Table'][P31]['props']:
                             tab['Main_Table'][P31]['props'][id] = 0
                         tab['Main_Table'][P31]['props'][id] += 1
+        #---
         tab['done'] = done
+    #---
     log_dump()
 
 
@@ -257,7 +272,7 @@ def save_to_wd(text):
 
 def mainar():
     time_start = time.time()
-    pywikibot.output('time_start:%s' % str(time_start))
+    print('time_start:%s' % str(time_start))
     sections = ''
     xline = ''
     yline = ''
@@ -271,9 +286,12 @@ def mainar():
     # ---
     property_other = 0
     tab['len_of_all_properties'] = 0
+    #---
     p31list = [[y['lenth_of_usage'], x] for x, y in tab['Main_Table'].items() if y['lenth_of_usage'] != 0]
     p31list.sort(reverse=True)
+    #---
     rows = []
+    #---
     for Len, P in p31list:
         tab['len_of_all_properties'] += 1
         if tab['len_of_all_properties'] < 27:
@@ -284,7 +302,7 @@ def mainar():
             rows.append('| %d || {{P|%s}} || {{subst:formatnum:%d}} ' % (tab['len_of_all_properties'], P, Len))
         else:
             property_other += int(Len)
-
+    #---
     Chart2 = Chart2.replace('|x=%s', f'|x={xline}')
     Chart2 = Chart2.replace('|y1=%s', f'|y1={yline}')
     Chart2 = Chart2.replace("=,", "=")
@@ -311,6 +329,7 @@ def mainar():
         "== Numbers ==\n"
         f"\n{Chart2}\n{table}\n{sections}"
     )
+    # ---
     text = text.replace("0 (0000)", "0")
     text = text.replace("0 (0)", "0")
     # ---
@@ -323,17 +342,22 @@ def mainar():
         return ''
     # ---
     if 'test' in sys.argv and 'noprint' not in sys.argv:
-        pywikibot.output(text)
+        print(text)
+    # ---
+    if tab['All_items'] == 0:
+        print(f'no data')
+        return
     # ---
     save_to_wd(text)
     # ---
+    file = f'{Dump_Dir}/dumps/claims.txt'
     if 'test' not in sys.argv:
-        with open(f'{Dump_Dir}/dumps/claims.txt', 'w') as f:
-            f.write(text)
-    else:
-        with open(f'{Dump_Dir}/dumps/claims1.txt', 'w') as f:
-            f.write(text)
+        file = f'{Dump_Dir}/dumps/claims1.txt'
+    # ---
+    with open(file, 'w') as f:
+        f.write(text)
 
 
 if __name__ == '__main__':
+    # print(make_cou( 70900911 , 84601659 ))
     mainar()

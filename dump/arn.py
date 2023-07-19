@@ -54,8 +54,8 @@ def log_dump():
         file_l = u'artest/%s.txt'
         hhh = 100
     file_l = Dump_Dir + file_l
-    pywikibot.output(f'file_l: {file_l}')
-    pywikibot.output('len of Table_no_ab2 : %d' % len(Table_no_ab2))
+    print(f'file_l: {file_l}')
+    print('len of Table_no_ab2 : %d' % len(Table_no_ab2))
     for qid, List in Table_no_ab2.items():
         if len(List) > hhh:
             fille = file_l % qid
@@ -67,7 +67,7 @@ def log_dump():
                 oldtext = []
             Listn = [o for o in List if not o in oldtext]
             newtex = "\n".join(Listn)
-            pywikibot.output('write %d line to file:%s' % (len(Listn), fille))
+            print('write %d line to file:%s' % (len(Listn), fille))
             with open(fille, 'w') as f:
                 f.write(newtex)
             Table_no_ab2[qid] = []
@@ -82,7 +82,7 @@ def mainr():
     dumpdate = 'latest'
     filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
     if not os.path.isfile(filename):
-        pywikibot.output(f'file {filename} <<lightred>> not found')
+        print(f'file {filename} <<lightred>> not found')
         return
     f = bz2.open(filename, 'r')
     others = 0
@@ -95,7 +95,7 @@ def mainr():
                 if line.startswith('{') and line.endswith('}'):
                     done2 += 1
                     if "printline" in sys.argv and (c % 1000 == 0 or c == 1):
-                        pywikibot.output(line)
+                        print(line)
                     json1 = json.loads(line)
                     q = json1.get('id', '')
                     ar_desc = json1.get('descriptions', {}).get('ar', False)
@@ -109,12 +109,12 @@ def mainr():
                                 Table_no_ab2[p31d] = [q]
                 if c % 1000 == 0:
                     dii = time.time()-t1
-                    pywikibot.output('c:%d, time:%d' % (c, dii))
+                    print('c:%d, time:%d' % (c, dii))
                     t1 = time.time()
             else:
                 if c % 1000 == 0:
                     dii = time.time()-t1
-                    pywikibot.output('Offset c:%d, time:%d' % (c, dii))
+                    print('Offset c:%d, time:%d' % (c, dii))
                     t1 = time.time()
             if done2 == done2limit[1]:
                 done2 = 1

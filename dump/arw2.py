@@ -154,8 +154,8 @@ def make_textP31():
         try:
             p31list.sort(reverse=True)
         except:
-            pywikibot.output('p31list.sort(reverse=True)')
-            pywikibot.output(p31list)
+            print('p31list.sort(reverse=True)')
+            print(p31list)
         rows = []
         c = 1
         li = 100
@@ -188,11 +188,11 @@ def mainar():
     dumpdate = 'latest'
     filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
     if not os.path.isfile(filename):
-        pywikibot.output(f'file {filename} <<lightred>> not found')
+        print(f'file {filename} <<lightred>> not found')
         return
     f = bz2.open(filename, 'r')
     try:
-        pywikibot.output('len of f lines :%d ' % len(f))
+        print('len of f lines :%d ' % len(f))
     except:
         print("can't make len of file...")
     if f == None or f == '' or f == []:
@@ -209,14 +209,14 @@ def mainar():
         if c < Offset[1]:
             if c % 1000 == 0:
                 dii = time.time()-t1
-                pywikibot.output('Offset c:%d, time:%d' % (c, dii))
+                print('Offset c:%d, time:%d' % (c, dii))
             continue
         if c % 1000 == 0:
             dii = time.time()-t1
-            pywikibot.output('c:%d, time:%d' % (c, dii))
+            print('c:%d, time:%d' % (c, dii))
             t1 = time.time()
         if "printline" in sys.argv and (c % 1000 == 0 or c == 1):
-            pywikibot.output(line)
+            print(line)
         # جميع عناصر ويكي بيانات المفحوصة
         All_items[1] += 1
         json1 = json.loads(line)
@@ -325,7 +325,7 @@ def mainar():
         print('nothing to update')
         return
     if text != "":
-        pywikibot.output(text)
+        print(text)
         if "nosave" not in sys.argv:
             from API import arAPI
             arAPI.page_put(oldtext="", newtext=text, summary='Bot - Updating stats', title=title)

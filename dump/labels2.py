@@ -79,15 +79,15 @@ def get_data():
     filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
     # ---
     if not os.path.isfile(filename):
-        pywikibot.output(f'file {filename} <<lightred>> not found')
+        print(f'file {filename} <<lightred>> not found')
         return
     # ---
     f = bz2.open(filename, 'r')
     # ---
     try:
-        pywikibot.output('len of bz2 lines :%d ' % len(f))
+        print('len of bz2 lines :%d ' % len(f))
     except:
-        pywikibot.output("can't print the lenth of file lines")
+        print("can't print the lenth of file lines")
     # ---
     for line in f:
         line = line.decode('utf-8')
@@ -101,7 +101,7 @@ def get_data():
             All_items[1] += 1
             # ---
             if "printline" in sys.argv and c % 1000 == 0 or c == 1:
-                pywikibot.output(line)
+                print(line)
             # ---
             json1 = json.loads(line)
             tats = ['labels', 'descriptions', 'aliases']
@@ -177,7 +177,7 @@ def mainar():
             new_descs = _descriptions_ - Old[code]['descriptions']
             new_aliases = _aliases_ - Old[code]['aliases']
         else:
-            pywikibot.output('code "%s" not in Old' % code)
+            print('code "%s" not in Old' % code)
         if new_descs != 0:
             test_new_descs = 1
 
@@ -206,7 +206,7 @@ def mainar():
     table += "\n|}\n[[Category:Wikidata statistics|Language statistics]]"
     # ----
     if test_new_descs == 0 and 'test' not in sys.argv:
-        pywikibot.output('nothing new.. ')
+        print('nothing new.. ')
         return ''
     # ----
     final = time.time()
@@ -223,7 +223,7 @@ def mainar():
     if text == "":
         return
 
-    pywikibot.output(text)
+    print(text)
     if 'test' not in sys.argv:
 
         if "nosave" not in sys.argv:
