@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 python pwb.py wd/koo -page:مارك_فان_بوميل
@@ -58,13 +57,13 @@ def woo(page):
                 if key == "1":
                     id = y[key]
     # ---
-    pywikibot.output("koora id:%s" % id)
+    pywikibot.output(f"koora id:{id}")
     # ---
     P31 = himoBOT2.Get_Claim_API(qid, "P31")
     iin = himoBOT2.Get_Property_API(qid, "P8021", titles=title, sites="arwiki")
     # pywikibot.output( "iin:%s" % iin )
     # ---
-    pywikibot.output("P31:%s" % P31)
+    pywikibot.output(f"P31:{P31}")
     # ---
     if P31 != "Q5":
         return ''

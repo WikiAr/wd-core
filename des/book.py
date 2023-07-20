@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 إضافة وصف للكتب والقصص
@@ -110,17 +109,17 @@ def action_one_item( Qid, pa, lang, keys):
                     dns = ''
                     if 'endes' in pa:
                         dns = pa['endes']
-                    printe.output('newar:%s,en:%s' % (des, dns) )
+                    printe.output(f'newar:{des},en:{dns}' )
                     addedlangs.append(lang)
                 else:
-                    printe.output('*no desc for "%s"' % lang)
+                    printe.output(f'*no desc for "{lang}"')
         #---
         if addedlangs:
             qitem = Qid#item.title(as_link=False)
             if AskSave[1]:
                 printe.output('================== + '  + str(addedlangs))
                 for lan in NewDesc.keys():
-                    printe.output( 'lang:%s, value: "%s"'  % (lan, NewDesc[lan]['value'] ) )
+                    printe.output( f"lang:{lan}, value: \"{NewDesc[lan]['value']}\"" )
                 saaa = pywikibot.input('<<lightyellow>> Add as descriptions? ' )
                 if saaa == 'y' or saaa == 'a' or saaa == '':
                     if saaa == 'a':
@@ -167,26 +166,26 @@ def GetQuery(Qid, lang, keys):
         P50 = 'P175'
     #---
     #sa = ('?item wdt:P136 wd:Q8261 . ?item wdt:P31* wd:Q7725634 .\n')
-    sa = ('?item wdt:P31 wd:%s .\n' % Qid )
+    sa = (f'?item wdt:P31 wd:{Qid} .\n' )
     if Qid == 'novel':
         sa = ('?item wdt:P136 wd:Q8261 . ?item wdt:P31 wd:Q7725634 .\n')
     #---
-    ur = ('SELECT ?item (GROUP_CONCAT(DISTINCT(?auth%s); separator="%s") as ?%s) '% ( lang, Comma[lang],lang ) )
+    ur = (f'SELECT ?item (GROUP_CONCAT(DISTINCT(?auth{lang}); separator="{Comma[lang]}") as ?{lang}) ' )
     #---
     for lan in keys:
         if lan != lang:
-            ur = ur + ('\n(GROUP_CONCAT(DISTINCT(?auth%s); separator="%s") as ?%s) '% ( lan, Comma[lan], lan ) )
+            ur = ur + (f'\n(GROUP_CONCAT(DISTINCT(?auth{lan}); separator="{Comma[lan]}") as ?{lan}) ' )
     #---
     ur = ur  + ('WHERE { ?item wdt:%s ?auths .\n' % P50 )+ sa
     #---
     for lan in keys:
         if lan != lang:
-            ur = ur + ('OPTIONAL {?auths rdfs:label ?auth%s filter (lang(?auth%s) = "%s")} .\n' % (lan, lan, lan) )
+            ur = ur + (f'OPTIONAL {{?auths rdfs:label ?auth{lan} filter (lang(?auth{lan}) = "{lan}")}} .\n' )
     #---
     if sys.argv and 'optional' in sys.argv:
-        ur = ur + (' OPTIONAL { ?auths rdfs:label ?auth%s filter (lang(?auth%s) = "%s") } .' % (lang, lang, lang) )
+        ur = ur + (f' OPTIONAL {{ ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") }} .' )
     else:
-        ur = ur + (' ?auths rdfs:label ?auth%s filter (lang(?auth%s) = "%s") .' % (lang, lang, lang) )
+        ur = ur + (f' ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") .' )
     #---
     ur = ur + ('\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang )
     ur = ur + 'FILTER(!BOUND(?itemDes))  }\n GROUP BY ?item '
@@ -253,7 +252,7 @@ def wd_sparql_query( query, ddf = False ):
         #---
         #printe.output( quarry )
         #---
-        printe.output( 'quarry "%s"' % quarry )
+        printe.output( f'quarry "{quarry}"' )
         #---
         generator = wd_bot.sparql_generator_url( quarry )
         #---
@@ -320,7 +319,7 @@ def MakeDesc(Qid, pa, lang):
         lang = 'en'
     #---
     if not lang in by_list:
-        printe.output('<<lightblue>>> cant find "by" in by_list for lang: "%s"'  % lang )
+        printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"' )
         return False
     #---
     co = by_list[lang] + ' '
@@ -348,7 +347,7 @@ def MakeDesc(Qid, pa, lang):
     #---
     if lang == 'ar':
         if description and description != re.sub(r'[abcdefghijklmnobqrstuvwxyz]', '', description):
-            printe.output( '<<lightred>> arabic description test failed "%s".' % description )
+            printe.output( f'<<lightred>> arabic description test failed "{description}".' )
             description = False
     return description
 #---
@@ -372,7 +371,7 @@ def main():
         keys = [ 'ar' ]
 
         totalqueries = len(Qlist.keys()) * len(Qlist[Qid].keys())
-        printe.output('*Qid "%s":'  % Qid )
+        printe.output(f'*Qid "{Qid}":' )
         out = '<<lightgreen>>  *== Quary:"%s", %d/%d. =='
         printe.output(out % (Qlist[Qid]['ar'], Queries, totalqueries,  ))
         #printe.output( 'lab: "%s". ' % Qlist[Qid]['ar'] )

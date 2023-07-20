@@ -83,7 +83,7 @@ def get_data():
     f = bz2.open(filename, 'r')
     # ---
     try:
-        print('len of bz2 lines :%d ' % len(f))
+        print(f'len of bz2 lines :{len(f)} ')
     except:
         print("can't print the lenth of file lines")
     # ---
@@ -177,7 +177,7 @@ def mainar():
             new_descs = _descriptions_ - Old[code]['descriptions']
             new_aliases = _aliases_ - Old[code]['aliases']
         else:
-            print('code "%s" not in Old' % code)
+            print(f'code "{code}" not in Old')
         if new_descs != 0:
             test_new_descs = 1
 

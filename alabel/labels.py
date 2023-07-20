@@ -53,10 +53,10 @@ for arg in sys.argv:
     #---
     if arg == '-limit' or arg == 'limit':
         Limit[1] = value
-        printe.output('<<lightred>> Limit = %s.' % value )
+        printe.output(f'<<lightred>> Limit = {value}.' )
 #---
 if Limit[1] != '' :
-    Quaa = Quaa + 'limit %s' % Limit[1]
+    Quaa = Quaa + f'limit {Limit[1]}'
 #---
 def main():
     #python3 ./core8/pwb.py alabel/labels -limit:20

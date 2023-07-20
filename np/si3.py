@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 """
@@ -28,7 +27,7 @@ from API import printe
 Dir = os.path.dirname(os.path.abspath(__file__))
 main_dir1 = os.path.dirname(Dir) + '/'
 #---
-printe.output( '<<lightyellow>> main_dir1 = %s' % main_dir1 )
+printe.output( f'<<lightyellow>> main_dir1 = {main_dir1}' )
 #---
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 #---
@@ -87,7 +86,7 @@ if True:
             QSlimit[1] = int(value)
         #---
         if arg.lower() == 'offset' or arg.lower() == 'off':
-            printe.output( 'offsetbg[1] = int(%s)' % value )
+            printe.output( f'offsetbg[1] = int({value})' )
             offsetbg[1] = int(value)
     #---
     New_QS = { 1 : [] }
@@ -202,14 +201,14 @@ def work_qs( q, NewDesc ):
     qslinr = []
     #---
     for lang in NewDesc:
-        qslinr.append( '%s|D%s|"%s"' % ( q, lang, NewDesc[lang]['value'] ) ) 
+        qslinr.append( f"{q}|D{lang}|\"{NewDesc[lang]['value']}\"" ) 
     #---
     for qsline in qslinr:
         if len(New_QS[1]) < QSlimit[1]:
             New_QS[1].append( qsline )
             printe.output( "<<lightyellow>>a %d\t%d:add %s to qlline " % (len(New_QS[1]), QSlimit[1], qsline  )  )
         else:
-            printe.output( "<<lightgreen>> Add %d line to quickstatements" % len(New_QS[1]) )
+            printe.output( f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements" )
             himoAPI.QS_line( "||".join( New_QS[1] ), user = "Mr.Ibrahembot" )
             New_QS[1] = []
 #---
@@ -233,14 +232,14 @@ def work_api_desc( NewDesc, q, fixlang ):
         lang = [ x for x in NewDesc.keys()][0]
         #---
         if lang in lang_to_skip:
-            printe.output('work_api_desc:"%s" only en-gb and en-ca, Skipp... ' % q )
+            printe.output(f'work_api_desc:"{q}" only en-gb and en-ca, Skipp... ' )
             return
         #---
         onedesc = NewDesc[lang]['value']
-        printe.output('work_api_desc:"%s" only one desc"%s:%s"' % ( q, lang, onedesc))
+        printe.output(f'work_api_desc:"{q}" only one desc"{lang}:{onedesc}"')
         himoAPI.Des_API( q, onedesc, lang )
     elif len(langes) == 2 and langes[0] in lang_to_skip and langes[1] in lang_to_skip:
-        printe.output('work_api_desc:"%s" only en-gb and en-ca, Skipp... ' % q )
+        printe.output(f'work_api_desc:"{q}" only en-gb and en-ca, Skipp... ' )
         return        
     else:
         #Desc = NewDesc
@@ -314,7 +313,7 @@ def work_taxon_desc( item, endesc ):
     ardesc = tax_translations_lower.get(endesc.lower(), '')#.get("ar", '')
     q = item["q"]
     #printe.output( ' work_taxon_desc:endesc:"%s", ardesc:"%s"' % (endesc, ardesc) )
-    printe.output( ' work_taxon_desc:ardesc:"%s"' % ardesc )
+    printe.output( f' work_taxon_desc:ardesc:"{ardesc}"' )
     if ardesc != '' :
         #---
         if "descqs" in sys.argv:
@@ -322,7 +321,7 @@ def work_taxon_desc( item, endesc ):
         else:
             himoAPI.Des_API( q, ardesc, 'ar' )
     else:
-        print(' no ardesc for en:%s.' %  endesc )
+        print(f' no ardesc for en:{endesc}.' )
         make_tax_des_new(item)
 #---
 def work_new_list( item, p31, ardes ):
@@ -354,7 +353,7 @@ def work_new_list( item, p31, ardes ):
     #---
     #printe.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
     if NewDesc != {} :
-        printe.output( '<<lightyellow>> ** work_new_list p31:%s' % p31 )
+        printe.output( f'<<lightyellow>> ** work_new_list p31:{p31}' )
         work_api_desc( NewDesc, q, [])
     else:
         print('work_new_list nothing to add. ')
@@ -390,7 +389,7 @@ def work_people(item, topic, num, ardes ):
     printe.output( ' work_people:' )
     #---
     if taber == {}:
-        printe.output( ' no table descraptions for topic:%s' % topic )
+        printe.output( f' no table descraptions for topic:{topic}' )
         return ''
     #---
     printe.output( taber )
@@ -471,7 +470,7 @@ def log_new_types(lists):
             try:
                 Lalo_types["n"] = json.load(listt)
             except:
-                printe.output( 'Cant read %s ' % jsonfils )
+                printe.output( f'Cant read {jsonfils} ' )
                 Lalo_types["n"] = read_json.read_bad_json(jsonfils)
         listt.close()
     #---
@@ -480,7 +479,7 @@ def log_new_types(lists):
             Lalo_types["n"][p31] += lenth
         else:
             Lalo_types["n"][p31] = lenth
-            printe.output( 'log new types Adding %s. '  % p31 )
+            printe.output( f'log new types Adding {p31}. ' )
     #---
     with open( jsonfils, 'w' ) as nfile:
         json.dump( Lalo_types["n"], nfile )
@@ -532,7 +531,7 @@ def ISRE( qitem, num, lenth, no_donelist = True, P31_list = False ):
             continue
         #---
         #printe.output( item )
-        printe.output( 'q:"%s", P31:"%s", en:"%s", ar:"%s"' % ( q, P31, endes, ardes ) )
+        printe.output( f'q:"{q}", P31:"{P31}", en:"{endes}", ar:"{ardes}"' )
         #---d
         if P31 == "Q5" :
             #printe.output( 'endes "%s"' % endes )
@@ -568,7 +567,7 @@ def ISRE( qitem, num, lenth, no_donelist = True, P31_list = False ):
         #---
         else:
             if ardes == '' :
-                printe.output( '*<<lightred>> >P31 :%s not in Qids_translate.' % P31 )
+                printe.output( f'*<<lightred>> >P31 :{P31} not in Qids_translate.' )
                 #---
                 if not P31 in new_types :   new_types[P31] = 0
                 #---

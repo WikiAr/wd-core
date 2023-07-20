@@ -47,7 +47,7 @@ tests_ar = '[ابتثجحخدذرزسشصضطظعغفقكلمنهويأآإىء�
 #---
 def make_newlabel( label , ar , en ):
     #---
-    printe.output( '<<lightblue>>make_newlabel label:"%s",ar:"%s",en:"%s" ' % ( label , ar , en ) )
+    printe.output( f'<<lightblue>>make_newlabel label:"{label}",ar:"{ar}",en:"{en}" ' )
     newlabel = ''
     #---
     label = label.lower() + " "
@@ -84,7 +84,7 @@ def make_newlabel( label , ar , en ):
     else : 
         newlabel = label
     #---
-    printe.output( '<<lightblue>>olympics newlabel:"%s" ' % newlabel )
+    printe.output( f'<<lightblue>>olympics newlabel:"{newlabel}" ' )
     #---
     for oll in olympics:
         newlabel = re.sub( oll , olympics[oll] , newlabel , flags = re.IGNORECASE )
@@ -145,7 +145,7 @@ def make_newlabel( label , ar , en ):
     #if newlabel2 != newlabel:
         #printe.output( '<<lightblue>> newlabel2:%s, newlabel:"%s" ' % ( newlabel2 , newlabel ) )
     #---
-    printe.output( '<<lightblue>> label:%s, newlabel:"%s" ' % ( label , newlabel ) )
+    printe.output( f'<<lightblue>> label:{label}, newlabel:"{newlabel}" ' )
     #---
     if newlabel.strip() == "" : 
         printe.output( '<<lightblue>> newlabel = "" ' )
@@ -160,7 +160,7 @@ def make_newlabel( label , ar , en ):
     #---
     leb_test = re.sub( tests_ar , "" , newlabel , flags = re.IGNORECASE )
     if leb_test.strip() != "" : 
-        printe.output( '<<lightblue>> leb_test(%s) == '' '  % leb_test.strip() )
+        printe.output( f'<<lightblue>> leb_test({leb_test.strip()}) ==  ' )
         newlabel = ''
     #---
     newlabel = newlabel.replace("ألعاب أولمبية شتوية" , "الألعاب الأولمبية الشتوية")
@@ -179,7 +179,7 @@ def Item( item ):
     item['dden'] = re.sub(r"(.*) at the (\d+) (Winter|summer) youth olympics"  , "\g<2> \g<1> at the \g<3> youth olympics" , item['dden'] , flags = re.IGNORECASE )
     item['label'] = re.sub(r"(.*) at the (\d+) (Winter|summer) youth olympics"  , "\g<2> \g<1> at the \g<3> youth olympics" , item['label'], flags = re.IGNORECASE  )
     #---
-    lline = ",".join( [ "%s:%s" % ( x , item[x] ) for x in item ] )
+    lline = ",".join( [ f"{x}:{item[x]}" for x in item ] )
     printe.output( lline )
     #---
     en = re.sub(r"^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) "  , "" , item['dden'] , flags = re.IGNORECASE)
@@ -195,8 +195,8 @@ def Item( item ):
     if Usema[1] :
         if (ar == item['ddar'].strip() and ar.lower().strip() != "" ) or ( en == item['dden'].strip() and en.lower().strip() != "" ) :
             printe.output( "<<lightred>> ar == item['ddar'] or en == item['dden'] " )
-            printe.output( "<<lightred>> en:%s,dden:%s " % (en , item['dden']) )
-            printe.output( "<<lightred>> ar:%s,ddar:%s " % (ar , item['ddar']) )
+            printe.output( f"<<lightred>> en:{en},dden:{item['dden']} " )
+            printe.output( f"<<lightred>> ar:{ar},ddar:{item['ddar']} " )
             #return ''
             ar = ''
             en = ''
@@ -211,12 +211,12 @@ def Item( item ):
         year = mat.group(1)
     #---
     if newlabel.strip() != '' and year.strip() != "" and newlabel.find( year.strip() ) == -1  : 
-        printe.output( "<<lightred>> cant find year:%s, at newlabel (%s) " % ( year , newlabel ) )
+        printe.output( f"<<lightred>> cant find year:{year}, at newlabel ({newlabel}) " )
         return ''
     #---
     if newlabel.strip() != "" :
         if Ask[1]:
-            sa = pywikibot.input('<<lightyellow>>himoAPI: Labels_API Add "%s" as label to "%s"? ([y]es, [N]o):'  % (newlabel,q))
+            sa = pywikibot.input(f'<<lightyellow>>himoAPI: Labels_API Add "{newlabel}" as label to "{q}"? ([y]es, [N]o):')
             if sa in yes_answer:
                 himoAPI.Labels_API( q , newlabel , "ar" , False , Or_Alii = True)
             if sa == "a" :
@@ -438,18 +438,18 @@ def main():
         #---
         if arg == '-limit' or arg == 'limit':
             Limit[1] = value
-            printe.output('<<lightred>> Limit = %s.' % value )
+            printe.output(f'<<lightred>> Limit = {value}.' )
         #---#
         # python pwb.py des/p155 qua0 P279:Q1079023
         if arg == '-P279':
-            tart = "?item wdt:P31/wdt:P279* wd:%s."  % value
-            printe.output( 'tart: "%s"' % tart )
+            tart = f"?item wdt:P31/wdt:P279* wd:{value}."
+            printe.output( f'tart: "{tart}"' )
             Quarry['use'] = Quarry['use'].replace("#sr" , tart + "\n#sr")
         #---#
         # python pwb.py des/p155 qua2 P31:Q18536594
         elif arg.startswith("P") and value.startswith("Q"):
-            tart = "?item wdt:%s wd:%s."  % (arg , value)
-            printe.output( 'tart: "%s"' % tart )
+            tart = f"?item wdt:{arg} wd:{value}."
+            printe.output( f'tart: "{tart}"' )
             Quarry['use'] = Quarry['use'].replace("#sr" , tart + "\n#sr")
         #---#
     Quaa = Quarry['use'] + Limit[1]

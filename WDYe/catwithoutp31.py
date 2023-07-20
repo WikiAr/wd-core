@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 إضافة حالة خاصة من تصنيف ويكيميديا
@@ -99,11 +98,11 @@ def work_one_item(item):
         if lang != label and lang not in labels.keys():
             data2['labels'][lang] = {'language': lang, 'value': label}
     # ---
-    pywikibot.output('<<lightred>>* links :%s' % links)
-    pywikibot.output('<<lightred>>* labels :%s' % labels)
-    pywikibot.output('<<lightred>>* data2["labels"] :%s' % data2["labels"])
+    pywikibot.output(f'<<lightred>>* links :{links}')
+    pywikibot.output(f'<<lightred>>* labels :{labels}')
+    pywikibot.output(f"<<lightred>>* data2[\"labels\"] :{data2['labels']}")
     if len(data2["labels"].keys()) > 0:
-        summary = 'Bot: - Add labels:(%d langs).' % (len(data2["labels"]))
+        summary = f"Bot: - Add labels:({len(data2['labels'])} langs)."
         himoAPI.New_Mult_Des(q, data2, summary, False)
     # ---
     # ---
@@ -122,11 +121,11 @@ def work_one_item(item):
             NewDesc[lang] = {"language": lang, "value": catdesc[lang]}
     # ---
     if NewDesc:
-        pywikibot.output('<<lightyellow>>* adding descriptions to :%s ' % q)
+        pywikibot.output(f'<<lightyellow>>* adding descriptions to :{q} ')
         wd_desc.work_api_desc(NewDesc, q)
     else:
         pywikibot.output(
-            '<<lightred>>* work 2 :%s no descriptions to add.' % q)
+            f'<<lightred>>* work 2 :{q} no descriptions to add.')
 # ---
 
 

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 python3 pwb.py dump/claims5 jsonnew
 python3 pwb.py dump/claims5 makereport
@@ -68,17 +67,17 @@ def load_tab(ty):
     if "jsonnew" in sys.argv:
         # dump tab to json
         json.dump(tab, open(jsonname, "w"))
-        print("clear jsonname:%s" % jsonname)
+        print(f"clear jsonname:{jsonname}")
     elif "test" not in sys.argv:
         try:
             # read json
-            tab = json.loads(open(jsonname, "r").read())
+            tab = json.loads(open(jsonname).read())
             for k, v in tab2.items():
                 if not k in tab:
                     tab[k] = v
             print("tab['done'] == %d" % tab["done"])
         except:
-            print("cant read %s " % jsonname)
+            print(f"cant read {jsonname} ")
     # ---
     return tab
 
@@ -229,7 +228,7 @@ def workondata(props_tos="all"):
             continue
         # ---
         if done % diff == 0 or done == 1000:
-            print("{} : {}.".format(done, time.time() - t1))
+            print(f"{done} : {time.time() - t1}.")
             t1 = time.time()
         # ---
         if done2 == 500000:
@@ -360,7 +359,7 @@ def make_chart(p31list):
 
 def mainar(ty="all"):
     time_start = time.time()
-    print("time_start:%s" % str(time_start))
+    print(f"time_start:{str(time_start)}")
     # ---
     tab = load_tab(ty)
     # ---

@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 python3 pwb.py people/new3 
@@ -104,14 +103,14 @@ for arg in sys.argv:
         if value in translationsNationalities:
             Tab["Nationalities"] = {value: translationsNationalities[value]}
         else:
-            print("nat value:(%s) not in translationsNationalities" % value)
+            print(f"nat value:({value}) not in translationsNationalities")
     # ---
     if arg == 'job' or arg == '-job':
         value = "~ " + value.replace("_", " ")
         if value in oc.translationsOccupations:
             Tab["Occupations"] = {value: oc.translationsOccupations[value]}
         else:
-            print("job value:(%s) not in oc.translationsOccupations" % value)
+            print(f"job value:({value}) not in oc.translationsOccupations")
 # ---
 targetlangs2 = ['ar']
 targetlangs = ['ar', 'bn', 'ca', 'es', 'fr', 'gl', 'he']
@@ -122,7 +121,7 @@ W_check = {1: True}
 
 def check_quarry_new(tab):
     # ---
-    printe.output('check quarry_new: %d jobs' % len(tab))
+    printe.output(f'check quarry_new: {len(tab)} jobs')
     # printe.output( tab  )
     # ---
     tabe = {}
@@ -160,7 +159,7 @@ def check_quarry_new(tab):
         # ---
         # printe.output( en_list )
         # printe.output( "@@".join( tabe[numb] ) )
-        printe.output("find qua for %d description." % len(tabe[numb]))
+        printe.output(f"find qua for {len(tabe[numb])} description.")
         # ---
         qua = '''SELECT 
     (concat(strafter(str(?item),"/entity/")) as ?q)#?item
@@ -176,10 +175,10 @@ def check_quarry_new(tab):
     }
     group by ?item
     #limit 1000
-    ''' % " ".join('"%s"@en "%s"@en' % (f, f.lower()) for f in tabe[numb])
+    ''' % " ".join(f'"{f}"@en "{f.lower()}"@en' for f in tabe[numb])
         # ---
         if limit[1] != "":
-            qua += "\n limit %s" % limit[1]
+            qua += f"\n limit {limit[1]}"
         # ---
         if "printcheck" in sys.argv or numb == 0:
             print('qua :.')
@@ -330,7 +329,7 @@ def start_one_nat(nat_tab):
         endesc = x["desc"]
         # ---
         if q in q_dones:
-            printe.output('<<lightpurple>>*q %s in q_dones' % q)
+            printe.output(f'<<lightpurple>>*q {q} in q_dones')
             continue
         # ---
         q_dones.append(q)

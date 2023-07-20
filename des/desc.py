@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 #!/usr/bin/env python3
 
@@ -109,11 +108,11 @@ New_QS = { 1 : [] }
 #---
 def descqs( q, value, lang ):
     if len(New_QS[1]) < QSlimit[1]:
-        qsline = '%s|D%s|"%s"' % ( q, lang, value )
+        qsline = f'{q}|D{lang}|"{value}"'
         New_QS[1].append( qsline )
         printe.output( "<<lightyellow>>a %d\t%d:add %s to qlline " % (len(New_QS[1]), QSlimit[1], qsline  )  )
     else:
-        printe.output( "<<lightgreen>> Add %d line to quickstatements" % len(New_QS[1]) )
+        printe.output( f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements" )
         himoAPI.QS_line( "||".join( New_QS[1] ), user = "Mr.Ibrahembot" )
         New_QS[1] = []
 #---
@@ -147,7 +146,7 @@ def wd_sparql_query( spq, ddf = False ):
     if offset[1] != 0 :
         off = offset[1]
     #---
-    printe.output( 'qua "%s"' % qua )
+    printe.output( f'qua "{qua}"' )
     #---
     while Keep:
         #---
@@ -239,7 +238,7 @@ def work_one_item( start, lang, tab, c, total, findlab = False ) :
     placeartest = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", placear.lower() )
     #---
     if placeartest.lower() != placear.lower():
-        printe.output('placeartest:[%s] != placear[%s]' % (placeartest,placear) )
+        printe.output(f'placeartest:[{placeartest}] != placear[{placear}]' )
         placear = ''
     #---
     placecount = int( tab.get('placecount',1) )
@@ -257,7 +256,7 @@ def work_one_item( start, lang, tab, c, total, findlab = False ) :
         p17lab = ''
     #---
     if placear != "" and p17lab != "":
-        asd = "%s، %s" % ( placear, p17lab )
+        asd = f"{placear}، {p17lab}"
         arlabel2 = arlabel.format(  asd  )
     elif placear != "" and placear != p17lab :
         arlabel2 = arlabel.format( placear )
@@ -281,7 +280,7 @@ def work_one_item( start, lang, tab, c, total, findlab = False ) :
     #addedlangs = []
     #---
     if lang in descriptions:
-        printe.output('lang:ar in descriptions(%s)' % descriptions[lang] )
+        printe.output(f'lang:ar in descriptions({descriptions[lang]})' )
         if descriptions[lang] != start:
             return ''
     #---

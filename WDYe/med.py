@@ -35,7 +35,7 @@ def dec(xx):
     try:
         fao = urllib.parse.quote(xx)
     except:
-        printe.output('<<lightred>> except when urllib.parse.quote(%s)' % xx)
+        printe.output(f'<<lightred>> except when urllib.parse.quote({xx})')
     return fao
 # ---
 
@@ -116,11 +116,11 @@ def Fix_List(List):
         for coma in comas:
             if ar.find(coma) != -1:
                 Conn = False
-                printe.output('ca "%s" , .find("%s") != -1' % (ar, coma))
+                printe.output(f'ca "{ar}" , .find("{coma}") != -1')
                 # New_List.remove(ar)
                 ars = ar.split(coma)
                 # ---
-                printe.output('ars:"%s"' % "|".join(ars))
+                printe.output(f"ars:\"{'|'.join(ars)}\"")
                 for aa in ars:
                     if not aa.strip() in New_List2:
                         New_List2.append(fixo(aa))
@@ -137,7 +137,7 @@ def Fix_List(List):
                     # ---
                     ar1 = re.sub(mate, '\g<4>', ar)
                     ar2 = re.sub(mate, '\g<1>', ar)
-                    printe.output('ar2:"%s",ar1:"%s" ' % (ar2, ar1))
+                    printe.output(f'ar2:"{ar2}",ar1:"{ar1}" ')
                     # ---
                     if not ar1.strip() in New_List2:
                         New_List2.append(fixo(ar1))
@@ -187,7 +187,7 @@ def Get_item_table(enlab):
     Item_tab = []
     so = enlab
     so = so.replace(" ", "+")
-    url = "http://tbeeb.net/med/search.php?q={}".format(so)
+    url = f"http://tbeeb.net/med/search.php?q={so}"
     printe.output(url)
     # ---
     if url == "http://tbeeb.net/med/search.php?q=":
@@ -232,8 +232,7 @@ def Get_item_table(enlab):
 def Get_item_table2(enlab):
     Item_tab = []
     # url = "http://www.alqamoos.org/?search_fulltext={}&field_magal=Medical".format( dec(enlab) )
-    url = "http://www.alqamoos.org/?search_fulltext={}&field_magal=All".format(
-        dec(enlab))
+    url = f"http://www.alqamoos.org/?search_fulltext={dec(enlab)}&field_magal=All"
     printe.output(url)
     # ---
     # if url == "http://www.alqamoos.org/?search_fulltext=&field_magal=Medical" :
@@ -328,11 +327,11 @@ def WORK(item, table):
     for alia in Item_tab:
         if alia in table["alias"]:
             Item_tab.remove(alia)
-            printe.output('alia : "%s" in alias' % alia)
+            printe.output(f'alia : "{alia}" in alias')
         # ---
         elif alia == table["ar"]:
             Item_tab.remove(alia)
-            printe.output('alia : "%s" == ar label' % alia)
+            printe.output(f'alia : "{alia}" == ar label')
     # ---
     if Item_tab != Item_tab2:
         printe.output(",".join(Item_tab))
@@ -346,7 +345,7 @@ def WORK(item, table):
                 Looogs[item].append(ali)
             else:
                 sa = pywikibot.input(
-                    '<<lightyellow>>add ali : "%s" as label to item :%s? ' % (ali, item))
+                    f'<<lightyellow>>add ali : "{ali}" as label to item :{item}? ')
                 if sa == 'y' or sa == 'a' or sa == '':
                     himoAPI.Labels_API(item, ali, "ar", False)
                     Looogs[item].append(ali)
@@ -361,10 +360,10 @@ def WORK(item, table):
     for uu in NewALLi_to_add:
         if uu in table["alias"]:
             NewALLi_to_add.remove(uu)
-            printe.output('uu : "%s" in table["alias"]' % uu)
+            printe.output(f'uu : "{uu}" in table["alias"]')
         elif SaveR[1] and uu.find("(") != -1:
             NewALLi_to_add.remove(uu)
-            printe.output('uu : "%s" in table["alias"]' % uu)
+            printe.output(f'uu : "{uu}" in table["alias"]')
     # ---
     if NewALLi_to_add != []:
         printe.output("|".join(NewALLi_to_add))
@@ -374,7 +373,7 @@ def WORK(item, table):
             Looogs[item].append(",".join(NewALLi_to_add))
         else:
             sa = pywikibot.input(
-                '<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item %s' % item)
+                f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
             if sa == 'y' or sa == 'a' or sa == '':
                 himoAPI.Alias_API(item, NewALLi_to_add, "ar", False)
                 Looogs[item].append(",".join(NewALLi_to_add))
@@ -419,7 +418,7 @@ def main():
         # ---#limit[1]
         if arg == '-limit' or arg == 'limit':
             Limit[1] = value
-            printe.output('<<lightred>> Limit = %s.' % value)
+            printe.output(f'<<lightred>> Limit = {value}.')
         # ---#
     sat = sat % (pp, qq)
     # ?item wdt:P1343 ?P1343.

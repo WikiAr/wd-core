@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 from np.scientific_article import make_scientific_article
@@ -236,7 +235,7 @@ def make_scientific_desc(lang, date, precision):
     # إذا لم يوجد في التاريخ سنة 
     if re.sub(r'\d\d\d\d' , '' , year) != '':
         Correctdate = False
-        printe.output( '<<lightred>> year:%s, month:%s, day:%s' % (year , month, day)   )
+        printe.output( f'<<lightred>> year:{year}, month:{month}, day:{day}'   )
         printe.output( '<<lightred>> unCorrect date:' )
     #---
     # إضافة اسم الشهر
@@ -373,7 +372,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
         translations['en-ca'] = translations['en']
     #---
     if TestTable: 
-        printe.output( '<<lightgreen>> %s:%s' % (translations["en"] , translations["da"]) )
+        printe.output( '<<lightgreen>> {}:{}'.format(translations["en"] , translations["da"]) )
         printe.output( translations["en"] )
         printe.output( translations["da"] )
         printe.output( translations["ar"] )
@@ -395,7 +394,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
         #---
         elif item_desc == ses_desc or ( lang == "ar" and item_desc in ar_descs ):# or (lang == "bn"  and ):  # to fix bn descraptions
             if lang_e != item_desc:
-                printe.output( '<<lightyellow>> replace desc "%s"@%s.' % (item_desc , lang ) )
+                printe.output( f'<<lightyellow>> replace desc "{item_desc}"@{lang}.' )
                 NewDesc[lang] = {"language": lang ,"value": lang_e }
                 #if lang == "bn":
                     #replacelang.append(lang)
@@ -405,7 +404,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
         # fix some error
         elif pubdate['month'] == '11' and lang in Month_Table:
             if item_desc.find(Month_Table[lang]['12']) != -1:
-                printe.output( '<<lightyellow>> find error desc "%s"@%s.' % (item_desc , lang ) )
+                printe.output( f'<<lightyellow>> find error desc "{item_desc}"@{lang}.' )
                 NewDesc[lang] = {"language": lang ,"value": lang_e }
                 replacelang.append(lang)
     #---

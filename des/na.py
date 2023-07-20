@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 
@@ -47,7 +46,7 @@ def action( json1 ):
             #---
             kaka =  re.sub(r"[abcdefghijklmnopqrstuvwxyz]" , "" , ar_lab)
             if ar_lab != "" and kaka == ar_lab :
-                printe.output( '  * ar_lab:"%s",en_name:"%s"' % (ar_lab  , en_name) )
+                printe.output( f'  * ar_lab:"{ar_lab}",en_name:"{en_name}"' )
                 c += 1
                 printe.output( '  * action %d/%d "%s"' % ( c , total , q) )
                 himoAPI.Labels_API( q, ar_lab , "ar" , False, Or_Alii = True)
@@ -268,11 +267,11 @@ def main():
         arg, sep, value = arg.partition(':')
         #---
         if arg =='-limit' :
-            printe.output( '<<lightred>>>>  limit ( %s )  ' %  value  )
+            printe.output( f'<<lightred>>>>  limit ( {value} )  '  )
             limits[1] = value
         #---
         if arg in Quarry :
-            printe.output( '<<lightred>>>>  use Quarry:%s . ' % arg)
+            printe.output( f'<<lightred>>>>  use Quarry:{arg} . ')
             qya[arg] = Quarry[arg]
     #---
     if qya == {} : 
@@ -286,8 +285,8 @@ def main():
             arg, sep, value = arg.partition(':')
             #---
             if arg == 'P31' or arg == '-P31' :
-                printe.output( '<<lightred>>>>  P31:%s. ' % value  )
-                taxose = "?item wdt:P31/wdt:P279* wd:%s."  % value
+                printe.output( f'<<lightred>>>>  P31:{value}. '  )
+                taxose = f"?item wdt:P31/wdt:P279* wd:{value}."
             #---
             if arg == 'lang' or arg == '-lang' :
                 if value == "fr":
@@ -298,7 +297,7 @@ def main():
         quuu = quuu % taxose
         #---
         if limits[1] != "" : 
-            quuu = quuu + '\n LIMIT %s' % limits[1]
+            quuu = quuu + f'\n LIMIT {limits[1]}'
         #---
         printe.output("quuu : %d/%d key:%s" %  ( number , len(qya) , key ) ) 
         printe.output(quuu)

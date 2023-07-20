@@ -44,13 +44,13 @@ def read_bad_list(file):
             listt.close()
         #---
         for type in done_list7:
-            printe.output( 'find %d cats in done_list7. "%s" , file:"%s"' % (len(done_list7[type]) , type , file) )
+            printe.output( f'find {len(done_list7[type])} cats in done_list7. "{type}" , file:"{file}"' )
             for catee in done_list7[type]:
                 catee = catee.strip()
                 catee = re.sub(r'"', "" , catee)
                 if not catee in List:
                     List.append(catee)
-        print('Good JJson "%s"' % file )
+        print(f'Good JJson "{file}"' )
         return List
     except Exception as e:
         pywikibot.output( '<<lightred>> Traceback (most recent call last):' )
@@ -69,7 +69,7 @@ def read_bad_list(file):
             catee = re.sub(r'"', "" , catee)
             if not catee in List:
                 List.append(catee)
-        print('Bad JJson "%s"' % file )
+        print(f'Bad JJson "{file}"' )
         return List
     #---
     return False
@@ -80,7 +80,7 @@ def read_bad_json(file):
             done_list7 = JJson.load(listt)
             listt.close()
         #---
-        print('Good JJson "%s"' % file )
+        print(f'Good JJson "{file}"' )
         return done_list7
         '''for type in done_list7:
             printe.output( 'find %d cats in done_list7. "%s"' % (len(done_list7[type])  , type) )
@@ -102,7 +102,7 @@ def read_bad_json(file):
         fa = fa.split("{")[1].split("}")[0]
         fa = "{" + fa + "}"
         wd_file = JJson.loads(fa)
-        print('Bad JJson "%s"' % file )
+        print(f'Bad JJson "{file}"' )
         return wd_file
     #---
     return {}
@@ -114,10 +114,10 @@ def main(file , Type):
         elif Type == "list":
             return read_bad_list(file)
         else:
-            print("* unknow type :%s"  % Type)
+            print(f"* unknow type :{Type}")
     except Exception as e:
         pywikibot.output( '<<lightred>> Traceback (most recent call last):' )
-        pywikibot.output('* Cant work file:"%s" , Type:"%s"'  % (file , Type ) )
+        pywikibot.output(f'* Cant work file:"{file}" , Type:"{Type}"' )
         warn('Exception:' + str(e), UserWarning)
         pywikibot.output( 'CRITICAL:' )
     return False

@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """ 
 
 بوت إضافة الوصوف عن الأشخاص في ويكي بيانات 
@@ -1410,7 +1409,7 @@ for x in New_Keys_occ:
 # ---
 for x, yy in translationsOccupations.items():
     if "ar" in yy and yy["ar"]["male"] == yy["ar"]["female"]:
-        print(' male:%s == female' % yy["ar"]["male"])
+        print(f" male:{yy['ar']['male']} == female")
 # ---
 
 

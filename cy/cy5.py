@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 python pwb.py cy/cy5 -page:باتريك_كونراد
 python pwb.py cy/cy5 -page:جويل_سوتير 
@@ -211,21 +210,21 @@ def fix_label(label):
     label = label.strip()
     
     label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
-     "سباق الطريق في بطولة العالم \g<1>", label)
+     r"سباق الطريق في بطولة العالم \g<1>", label)
 
     label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – سيدات فردي سباق الطريق",
-    "سباق الطريق للسيدات في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
+    r"سباق الطريق للسيدات في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
 
-    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – فريق رجال سباق الطريق", "سباق الطريق لفرق الرجال في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
+    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – فريق رجال سباق الطريق", r"سباق الطريق لفرق الرجال في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
 
     #بطولة العالم لسباق الدراجات على الطريق 1966 – سباق الطريق الفردي للرجال
     label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
-    "سباق الطريق للرجال في بطولة العالم \g<1>", label)
+    r"سباق الطريق للرجال في بطولة العالم \g<1>", label)
 
     label = re.sub(r"سباق الطريق المداري ", "سباق الطريق ", label)
-    label = re.sub(r"(بطولة [\s\w]+) الوطنية ", "\g<1> ", label)
-    label = re.sub(r"^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", "\g<1> \g<3>", label)
-    label = re.sub(r"^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", "\g<1> \g<3>", label)
+    label = re.sub(r"(بطولة [\s\w]+) الوطنية ", r"\g<1> ", label)
+    label = re.sub(r"^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label)
+    label = re.sub(r"^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label)
 
     # سباق الطريق للسيدات في ركوب الدراجات في الألعاب الأولمبية الصيفية 2016
     label = re.sub(r"في ركوب الدراجات في الألعاب الأولمبية ", "في ركوب الدراجات الأولمبية ", label)
@@ -317,7 +316,7 @@ def make_temp_lines( table, title ):
         printt( ' *** remove line startswith q.' )
         return "", table2
     #---
-    '''
+    r'''
     fanco = title
     #fanco = qid
     #---
@@ -344,7 +343,7 @@ def make_temp_lines( table, title ):
                 return "", table2
     #---
     if flag != newflag :
-        printt(' *** race:"%s", flag:"%s", newflag:"%s"' % (race, flag, newflag))
+        printt(f' *** race:"{race}", flag:"{flag}", newflag:"{newflag}"')
     #---
     if not title in Len_of_valid_results: Len_of_valid_results[title] = 0
     Len_of_valid_results[title] += 1
@@ -884,22 +883,22 @@ states = {}
 #---
 #new_lines
 #---
-regline = "\{\{نتيجة سباق الدراجات/سطر4"
-regline += "\|\s*qid\s*\=(?P<qid>Q\d+)"
-regline += "\|\s*السباق\s*\=(?P<race>.*)"
-regline += "\|\s*البلد\s*\=(?P<p17>.*)"
-regline += "\|\s*التاريخ\s*\=(?P<date>.*)"
-regline += "\|\s*المركز\s*\=(?P<poss>.*)"
-regline += "\|\s*(?:rank|المرتبة)\s*\=(?P<rank>.*)"
-regline += "\|\s*جيرسي\s*\=(?P<jersey>.*)"
-regline += "\s*\|\}\}"
+regline = r"\{\{نتيجة سباق الدراجات/سطر4"
+regline += r"\|\s*qid\s*\=(?P<qid>Q\d+)"
+regline += r"\|\s*السباق\s*\=(?P<race>.*)"
+regline += r"\|\s*البلد\s*\=(?P<p17>.*)"
+regline += r"\|\s*التاريخ\s*\=(?P<date>.*)"
+regline += r"\|\s*المركز\s*\=(?P<poss>.*)"
+regline += r"\|\s*(?:rank|المرتبة)\s*\=(?P<rank>.*)"
+regline += r"\|\s*جيرسي\s*\=(?P<jersey>.*)"
+regline += r"\s*\|\}\}"
 #---
 def work_tano( text, MainTitle ):
     #---
     lines[MainTitle] = {}#[]
     #---
     # reg_line2 = '\{\{نتيجة سباق الدراجات\/سطر4\s*?.*?\}\}'
-    reg_line = '\{\{نتيجة سباق الدراجات\/سطر4([^{]|\{[^{]|\{\{[^{}]+\}\})+\}\}'
+    reg_line = r'\{\{نتيجة سباق الدراجات\/سطر4([^{]|\{[^{]|\{\{[^{}]+\}\})+\}\}'
     fff = re.compile( reg_line )
     #pas = fff.findall( text )
     #---
@@ -920,7 +919,7 @@ def work_tano( text, MainTitle ):
             q_id = ""
             #q_id = re.sub(r".*(Q\d+).*", "\g<1>", pp )
             ppr = re.sub(r"\n", "", pp )
-            q_id = re.sub(r"\{\{نتيجة سباق الدراجات\/سطر4\|qid\s*\=\s*(Q\d+)\|.*\}\}", "\g<1>", ppr )
+            q_id = re.sub(r"\{\{نتيجة سباق الدراجات\/سطر4\|qid\s*\=\s*(Q\d+)\|.*\}\}", r"\g<1>", ppr )
             #if TEST[1]:
                 #print( ppr )
             #print( ppr )
@@ -931,10 +930,10 @@ def work_tano( text, MainTitle ):
             #lines[MainTitle].append( q_id )
             lines[MainTitle][q_id] = {}
             lines[MainTitle][q_id]["qid"] = q_id
-            lines[MainTitle][q_id]["poss"] = re.sub( regline, "\g<poss>", ppr )
-            lines[MainTitle][q_id]["rank"] = re.sub( regline, "\g<rank>", ppr )
-            lines[MainTitle][q_id]["race"] = re.sub( regline, "\g<race>", ppr )
-            lines[MainTitle][q_id]["p17"] = re.sub( regline, "\g<p17>", ppr )
+            lines[MainTitle][q_id]["poss"] = re.sub( regline, r"\g<poss>", ppr )
+            lines[MainTitle][q_id]["rank"] = re.sub( regline, r"\g<rank>", ppr )
+            lines[MainTitle][q_id]["race"] = re.sub( regline, r"\g<race>", ppr )
+            lines[MainTitle][q_id]["p17"] = re.sub( regline, r"\g<p17>", ppr )
             #---
             #print( q_id )
             #print( "========================" )
@@ -1025,9 +1024,9 @@ def template_params(text, title):
         Work_with_Stage[1] = True
         Stage[title] = ""
     #---
-    if re.sub(r".*id\s*\=\s*(Q\d+).*", "\g<1>", params)  != params:
+    if re.sub(r".*id\s*\=\s*(Q\d+).*", r"\g<1>", params)  != params:
         printt('** found currect line' )
-        Qid = re.sub(r".*id\=(Q\d+).*", "\g<1>", params)
+        Qid = re.sub(r".*id\=(Q\d+).*", r"\g<1>", params)
         printt('id: ' + Qid)
         return Qid, True
     #---
@@ -1037,11 +1036,11 @@ def CheckTempalteInPageText(text):
     printt( '**CheckTempalteInPageText: ' + br)
     #---
     #\{\{template_tesult(\|id\=Q\d+|)\}\}
-    Topname = 'نتيجة سباق الدراجات\/بداية'
-    Top = '\{\{' + Topname + '\}\}'
-    Top2 = '\{\{' + Topname + '\s*\|\s*id\s*\=\s*Q\d+\s*\}\}'
-    Top3 = '\{\{' + Topname + '\s*?.*?\}\}'
-    Bottom = '\{\{نتيجة سباق الدراجات\/نهاية\}\}'
+    Topname = r'نتيجة سباق الدراجات\/بداية'
+    Top = r'\{\{' + Topname + r'\}\}'
+    Top2 = r'\{\{' + Topname + r'\s*\|\s*id\s*\=\s*Q\d+\s*\}\}'
+    Top3 = r'\{\{' + Topname + r'\s*?.*?\}\}'
+    Bottom = r'\{\{نتيجة سباق الدراجات\/نهاية\}\}'
     if text != '':
         #---
         Check_Top = re.sub( Top, '', text )
@@ -1164,7 +1163,7 @@ def StartOnePage(title):
         printt( '**puttext::: ')
         puttext(text, title, NewText)
     else:
-        ur = ('<a href="https://www.wikidata.org/wiki/%s">%s</a>.' % (item, item) )
+        ur = (f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.' )
         printo('لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: %s.' % ur)
         #print(ur)
     #---

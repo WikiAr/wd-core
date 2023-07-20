@@ -178,7 +178,7 @@ WHERE {
 
 
 def action_one_item(q, ar):
-    pywikibot.output('<<lightblue>>> %s:%s ' % (q, ar))
+    pywikibot.output(f'<<lightblue>>> {q}:{ar} ')
     ar2 = ar
     if ar.find("عبد ") != -1:
         ar2 = ar.replace("عبد ", "عبد")
@@ -232,22 +232,22 @@ def mains():
             # python3 pwb.py wd/ali fafafa
             lala = ""
             lala = [x.strip() for x in names if x.strip() != ""]
-            pywikibot.output('lala: "%s"' % str(lala))
+            pywikibot.output(f'lala: "{str(lala)}"')
             acd = "  wd:".join(lala)
             tart = "?item (wdt:P734|wdt:P735) ?name. VALUES ?name { wd:" + acd + " } ."
-            pywikibot.output('acd: "%s"' % tart)
+            pywikibot.output(f'acd: "{tart}"')
             Quarry[1] = Quarry[1].replace("#sr", tart + "\n#sr")
         # ---fafafa
         elif arg.startswith("c"):
             tart = "FILTER (CONTAINS(?label, 'عبد الله')) ."
-            pywikibot.output('acd: "%s"' % tart)
+            pywikibot.output(f'acd: "{tart}"')
             Quarry[1] = Quarry[1].replace("#sr", tart + "\n#sr")
         # ---
         elif arg.startswith("fafafa"):
             for uu in fafafa.split("\n"):
                 if uu != "":
-                    tart = "FILTER (CONTAINS(?label, '%s')) ." % uu
-                    pywikibot.output('acd: "%s"' % tart)
+                    tart = f"FILTER (CONTAINS(?label, '{uu}')) ."
+                    pywikibot.output(f'acd: "{tart}"')
                     qsa = Quarry[1].replace("#sr", tart + "\n#sr")
                     workqua(qsa)
         # ---
@@ -256,7 +256,7 @@ def mains():
                 if uu != "":
                     fff = queries.replace("عبد_", uu)
                     tart3 = sql.Make_sql_2_rows(fff, wiki="wikidata")
-                    pywikibot.output('tart3: "%s"' % tart3)
+                    pywikibot.output(f'tart3: "{tart3}"')
                     for te in tart3:
                         action_one_item(te[1], te[2])
         # ---

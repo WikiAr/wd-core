@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 إضافة تسميات عناصر ويكي بيانات
@@ -395,20 +394,20 @@ olympics = {
 #---
 for fff, ffflab in Sports_Keys_Team.items(): #– winter youth olympics
     #cccccups["%s world Championships" %  fff.lower() ] = "بطولة العالم %s"  % ffflab
-    cccccups["%s world championships" %  fff.lower() ] = "بطولة العالم %s"  % ffflab
-    cccccups["world team %s championships" %  fff.lower() ] = "بطولة العالم %s للفرق"  % ffflab
-    cccccups["%s world team championships" %  fff.lower() ] = "بطولة العالم %s للفرق"  % ffflab
-    cccccups["world men's %s championships" %  fff.lower() ] = "بطولة العالم %s للرجال"  % ffflab
-    cccccups["%s world men's championships" %  fff.lower() ] = "بطولة العالم %s للرجال"  % ffflab
-    cccccups["world women's %s championships" %  fff.lower() ] = "بطولة العالم %s للسيدات"  % ffflab
-    cccccups["%s world women's championships" %  fff.lower() ] = "بطولة العالم %s للسيدات"  % ffflab
+    cccccups[f"{fff.lower()} world championships" ] = f"بطولة العالم {ffflab}"
+    cccccups[f"world team {fff.lower()} championships" ] = f"بطولة العالم {ffflab} للفرق"
+    cccccups[f"{fff.lower()} world team championships" ] = f"بطولة العالم {ffflab} للفرق"
+    cccccups[f"world men's {fff.lower()} championships" ] = f"بطولة العالم {ffflab} للرجال"
+    cccccups[f"{fff.lower()} world men's championships" ] = f"بطولة العالم {ffflab} للرجال"
+    cccccups[f"world women's {fff.lower()} championships" ] = f"بطولة العالم {ffflab} للسيدات"
+    cccccups[f"{fff.lower()} world women's championships" ] = f"بطولة العالم {ffflab} للسيدات"
 #---
 for fff, ffflab in Sports_Keys_Lab.items(): #– winter youth olympics
-    olympics["%s at the summer olympics" %  fff.lower() ] = "%s في الألعاب الأولمبية الصيفية"  % ffflab
-    olympics["%s at the winter youth olympics" %  fff.lower() ] = "%s في الألعاب الأولمبية الشبابية الشتوية"  % ffflab
-    olympics["%s at the winter olympics" %  fff.lower() ] = "%s في الألعاب الأولمبية الشتوية"  % ffflab
-    Mako_keys_4[" mens's %s" %  fff.lower() ] = "%s للرجال"  % ffflab
-    Mako_keys_4[" womens's %s" %  fff.lower() ] = "%s للسيدات"  % ffflab
+    olympics[f"{fff.lower()} at the summer olympics" ] = f"{ffflab} في الألعاب الأولمبية الصيفية"
+    olympics[f"{fff.lower()} at the winter youth olympics" ] = f"{ffflab} في الألعاب الأولمبية الشبابية الشتوية"
+    olympics[f"{fff.lower()} at the winter olympics" ] = f"{ffflab} في الألعاب الأولمبية الشتوية"
+    Mako_keys_4[f" mens's {fff.lower()}" ] = f"{ffflab} للرجال"
+    Mako_keys_4[f" womens's {fff.lower()}" ] = f"{ffflab} للسيدات"
     #Mako_keys_4[ fff.lower() ] = ffflab
 #---
 #individual 
@@ -462,22 +461,22 @@ keys_3 = {
 #---
 for start in keys_1: #–
     for suff in keys_2:#–
-        lab_ke = "%s %s" % (  keys_2[suff] , keys_1[start] )
+        lab_ke = f"{keys_2[suff]} {keys_1[start]}"
         #---
-        ke = "%s %s" % ( start , suff )
+        ke = f"{start} {suff}"
         Mako_keys2[ ke.lower() ] = lab_ke
         #---
-        ke44 = "%s %s" % ( suff , start )
+        ke44 = f"{suff} {start}"
         Mako_keys2[ ke44.lower() ] = lab_ke
         for su3 in keys_3:
-            lab_ke3 = "%s %s %s" % (  keys_2[suff] , keys_1[start] , keys_3[su3] )
+            lab_ke3 = f"{keys_2[suff]} {keys_1[start]} {keys_3[su3]}"
             #---
-            ke3 = "%s %s %s" % ( start , suff , su3 )
+            ke3 = f"{start} {suff} {su3}"
             Mako_keys2[ ke3.lower() ] = lab_ke3
             #---
-            lab_ke2 = "%s %s" % (  keys_2[suff] , keys_3[su3] )
+            lab_ke2 = f"{keys_2[suff]} {keys_3[su3]}"
             #---
-            ke2 = "%s %s" % (suff , su3 )
+            ke2 = f"{suff} {su3}"
             Mako_keys2[ ke2.lower() ] = lab_ke2
 #---
 

@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 # (C) Edoderoo/Edoderoobot (meta.wikimedia.org), 2016–2019
 # Distributed under the terms of the CC-BY-SA 3.0 licence.
 #Q13005188 mandal
@@ -86,7 +85,7 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=''):
     if claimstr == '':
         return shortstr
     #---
-    laste = '%s %s' % ( longdescrstr.strip(), claimstr )
+    laste = f'{longdescrstr.strip()} {claimstr}'
     laste = laste.replace( 'جين في إنسان عاقل', 'جين من أنواع جينات الإنسان العاقل' )
     #---
     printe.output('laste:(%s)' % laste)
@@ -111,7 +110,7 @@ def get_label_txt(lng, wdi, property, array=0, fallback=False):
 def its_a_headquarted_thing(lng, wdi,thing):
   where=get_label_txt( lng, wdi,'P159',fallback=True)
   if where != '':
-    return '{} {}'.format(thing,where)
+    return f'{thing} {where}'
   return ''
 #---
 def its_something_in_an_entity(wdi, something):
@@ -128,11 +127,11 @@ def its_something_in_an_entity(wdi, something):
         prnCountry = Get_label( LNKcountry )
     #---
     if prnCountry != '' and prnEntity != '' :
-        return '%s %s، %s' % (something, prnEntity, prnCountry)
+        return f'{something} {prnEntity}، {prnCountry}'
     elif prnCountry != '' :
-        return '%s %s' % (something, prnCountry)
+        return f'{something} {prnCountry}'
     elif prnEntity != '' :
-        return '%s %s' % (something, prnEntity)
+        return f'{something} {prnEntity}'
     #---
     return ''
     #---
@@ -335,7 +334,7 @@ def action_one_P131_item(lng, oneitem):
    if (adminname == ''):
      newdescription = '%s' % isaname
    else:
-     newdescription='%s in %s, %s' % (shortname,adminname,countryname)
+     newdescription=f'{shortname} in {adminname}, {countryname}'
    if (isaname != '') and (nld in['','قرية','dorp in China','gemeente','gemeente in China']):
      data.update({'descriptions': { lng: newdescription }})
    #---
@@ -432,7 +431,7 @@ New_QS = { 1 : [] }
 #---
 def descqs(q, value, lang):
     if len(New_QS[1]) < QSlimit[1]:
-        qsline = '%s|D%s|"%s"' % ( q, lang , value )
+        qsline = f'{q}|D{lang}|"{value}"'
         New_QS[1].append( qsline )
         printe.output( "<<lightyellow>>a %d\t%d:add %s to qlline." % (len(New_QS[1]) , QSlimit[1] , qsline  )  )
     else:
@@ -541,7 +540,7 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]" , '' , my_description.lower() )
     if test.lower() != my_description.lower():
         my_description = ''
-        printe.output('test:[%s] != my_description[%s]' % (test,my_description) )
+        printe.output(f'test:[{test}] != my_description[{my_description}]' )
     #---
     printe.output('Make_space_desc:[%s]' % my_description )
     #---
@@ -604,7 +603,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=''):
     claimstr = claimstr.strip()
     #---
     if claimstr != '':
-        laste = '%s من أداء %s' % ( shortstr.strip(), claimstr )
+        laste = f'{shortstr.strip()} من أداء {claimstr}'
     #---
     sooo = [
         'Q1573906',   # جولة موسيقية
@@ -624,7 +623,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=''):
                 break
         #---
         if directorname != '' :
-            laste = '%s من إخراج %s' % ( shortstr, directorname )
+            laste = f'{shortstr} من إخراج {directorname}'
     #---
     printe.output( "its_songs:(%s)" % laste )
     #---
@@ -669,8 +668,8 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=''):
     elif shortstr.strip().find("مقالة") != -1 : 
         sus = 'كتبها'
     #---
-    laste = '%s %s %s' % ( shortstr.strip() , sus ,  claimstr )
-    if len(P50) > 1 : laste = '%s %s %s وآخرون' % ( shortstr.strip() , sus , claimstr )
+    laste = f'{shortstr.strip()} {sus} {claimstr}'
+    if len(P50) > 1 : laste = f'{shortstr.strip()} {sus} {claimstr} وآخرون'
     #---
     #laste = laste.replace("كوكبة  ","كوكبة ")
     #---
@@ -794,14 +793,14 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
         if orig_desc in [labr , '']:
             my_description = its_something_in_a_country(wditem , labr)
             if type_of_item in qura and my_description in [ qura[type_of_item]['P31'] , ''] :
-                my_description = '%s في %s' % ( qura[type_of_item]['P31'] , qura[type_of_item]['P17'] )
+                my_description = '{} في {}'.format( qura[type_of_item]['P31'] , qura[type_of_item]['P17'] )
     #---
     if my_description == '' : return my_description
     #---
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]" , '' , my_description.lower() )
     if test.lower() != my_description.lower():
         my_description = ''
-        printe.output('test:[%s] != my_description[%s]' % (test,my_description) )
+        printe.output(f'test:[{test}] != my_description[{my_description}]' )
     #---
     #printe.output('Make others desc:[%s]' % my_description )
     #---
@@ -1349,7 +1348,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
         orig_desc = ''
     #---
     en_description = get_lng_description('en',wditem)
-    printe.output( "orig_desc:%s,en_description:%s" % (orig_desc,en_description) )
+    printe.output( f"orig_desc:{orig_desc},en_description:{en_description}" )
     claims = wditem['claims']
     items2do -= 1
     #---
@@ -1445,7 +1444,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
       my_description = my_description.strip()
       #---
       if my_description == '':
-          printe.output('type of item: %s, orig_desc: [%s], new: [%s]' % (type_of_item,orig_desc,my_description))
+          printe.output(f'type of item: {type_of_item}, orig_desc: [{orig_desc}], new: [{my_description}]')
           continue
       #---
       if my_description.find('n/a') != -1 : continue
@@ -1470,7 +1469,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
           items_found += 1
           break
       else:
-          printe.output('test:[%s] != value[%s]' % (test,valuee) )
+          printe.output(f'test:[{test}] != value[{valuee}]' )
       #---
     #---
     return items_found,items_written

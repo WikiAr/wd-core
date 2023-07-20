@@ -1,9 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 # (C) Edoderoo/Edoderoobot (meta.wikimedia.org), 2016–2019
 # Distributed under the terms of the CC-BY-SA 3.0 licence.
 #Q13005188 mandal
-'''
+r'''
 jsub -N aa python3 ./core/pwb.py ./core/np/nldes3 a3r sparql:Q23038290
 python3 pwb.py np/nldes3 allkeys
 python3 pwb.py np/nldes3 sparql:Q820655
@@ -163,14 +162,14 @@ def wd_all_without_description():
 def wd_all_simple_P131():
   for onesimpleitem in simple_set_byP131:
     query = 'select ?item where {?item wdt:P31 wd:%s}' % onesimpleitem
-    printe.output('\n\nQuery: %s\n\n' % query)
+    printe.output(f'\n\nQuery: {query}\n\n')
     for oneitem in wd_sparql_query(query):
       try:
         if oneitem.exists():
           yield oneitem
           #action_one_P131_item()
         else:
-          printe.output('Else wd-simple: %s' % oneitem.title())
+          printe.output(f'Else wd-simple: {oneitem.title()}')
           pass
       except:
         pass
@@ -201,7 +200,7 @@ def wd_sparql_query(spq, ddf=False):
     if Off[1] != 0 :
         offset = Off[1]
     #---
-    printe.output( 'qua "%s"' % qua )
+    printe.output( f'qua "{qua}"' )
     #---
     while Keep:
         #---
@@ -291,7 +290,7 @@ def generator_last_hour():
           #print(item.title())
           yield item
       else:
-        printe.output('Klaar: {}'.format(item.oldest_revision.timestamp) )
+        printe.output(f'Klaar: {item.oldest_revision.timestamp}' )
         break
 #---
 def wd_all_items():
@@ -395,7 +394,7 @@ def just_get_ar(labe):
     #---
     if tab != []:
         claimstr = '، و'.join(tab)
-        printe.output( "just_get_ar:%s." % claimstr )
+        printe.output( f"just_get_ar:{claimstr}." )
     #---
     return claimstr
     #---
@@ -408,13 +407,13 @@ def main(debug=False):
     sasa = SPARQLSE.get( sparqler[1].strip() , '' )
     #---
     if sasa == '':
-        printe.output( '%s not in SPARQLSE' % sparqler[1] )
+        printe.output( f'{sparqler[1]} not in SPARQLSE' )
         sasa = '''SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') } } '''  % sparqler[1]
     #---
     ssqq = [sasa]
     if sparqler[1].strip() == '' or 'allkeys' in sys.argv :
         ssqq = [ SPARQLSE[x] for x in SPARQLSE.keys() ]
-        printe.output( 'work in all SPARQLSE.keys() len: %d' % len(ssqq) )
+        printe.output( f'work in all SPARQLSE.keys() len: {len(ssqq)}' )
     #---
     numg = 0
     #---
@@ -455,7 +454,7 @@ def main(debug=False):
             #printe.output( wd )
             q = wd['item'].split("/entity/")[1]
             totalreads+=1
-            if debug: printe.output('Found: %s' % q )
+            if debug: printe.output(f'Found: {q}' )
             printe.output( "p%d/%d q:%s" % ( totalreads , len(pigenerator) , q ) )
             #---
             claimstr = just_get_ar(wd.get( 'lab' , '' ))
@@ -466,7 +465,7 @@ def main(debug=False):
             #if ((items_processed>maxwrites) and (maxwrites>0)): break
         if New_QS[1] != []:
             himoAPI.QS_line( "||".join( New_QS[1] ) , user = 'Mr.Ibrahembot' )
-        printe.output('Klaar: %s' % items_processed )
+        printe.output(f'Klaar: {items_processed}' )
 
 print(' start np/nldes.py ')
 forcehourly=False

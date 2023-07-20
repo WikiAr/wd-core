@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 إضافة تسميات عناصر تصنيفات في ويكي بيانات
@@ -41,7 +40,7 @@ def main():
         # ---
         if arg == '-limit' or arg == 'limit':
             Limit[1] = value
-            pywikibot.output('<<lightred>> Limit = %s.' % value)
+            pywikibot.output(f'<<lightred>> Limit = {value}.')
         # ---#
     Quaa = '''
 SELECT DISTINCT 

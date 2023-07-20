@@ -1,4 +1,3 @@
-
 from wd_API import newdesc
 # site = pywikibot.Site('wikidata', 'wikidata')
 # repo = site.data_repository()

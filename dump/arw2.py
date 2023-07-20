@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 python3 pwb.py dump/arw2
 python3 pwb.py dump/arw2 test nosave

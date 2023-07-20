@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 python3 pwb.py np/si3g -usercontribs:Ghuron
@@ -45,7 +44,7 @@ from API import printe
 Dir = os.path.dirname(os.path.abspath(__file__))
 main_dir1 = os.path.dirname(Dir) + '/'
 #---
-printe.output( '<<lightyellow>> main_dir1 = %s' % main_dir1 )
+printe.output( f'<<lightyellow>> main_dir1 = {main_dir1}' )
 #---
 import gent
 # generator = gent.get_gent(*args)
@@ -92,7 +91,7 @@ def mainwithcat2():
         #---
         # python3 pwb.py np/si3g -arfile:Q7187
         if arg == "-arfile" : 
-            file = 'dump/ar/%s.txt' % value
+            file = f'dump/ar/{value}.txt'
         #---
         # python3 pwb.py np/si3g -file:dump/artest/Q7187.txt
         # python3 pwb.py np/si3g -file:dump/artest/Q1457376.txt
@@ -108,7 +107,7 @@ def mainwithcat2():
         # python3 pwb.py np/si3g -artest:Q79007
         # python3 pwb.py np/si3g -artest:Q7187
         if arg == "-artest" : 
-            file = 'dump/artest/%s.txt' % value
+            file = f'dump/artest/{value}.txt'
         #---
         if arg == '-page': lista.append(value)
         #---
@@ -148,7 +147,7 @@ def mainwithcat2():
     final = time.time()
     delta = int(final - start)
     #---
-    printe.output( 'si3.py mainwithcat2 done in {} seconds'.format( delta ) )
+    printe.output( f'si3.py mainwithcat2 done in {delta} seconds' )
 #---
 if __name__ == "__main__":
     mainwithcat2()

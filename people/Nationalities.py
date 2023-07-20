@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 
@@ -2891,7 +2890,7 @@ tra = translationsNationalities
 def main():
     for k in tra.keys():
         if "ar" in tra[k] and "female" in tra[k]["ar"]:
-            pywikibot.output('   , "%s" : "%s"' % (k, tra[k]["ar"]["female"]))
+            pywikibot.output(f"   , \"{k}\" : \"{tra[k]['ar']['female']}\"")
 
 
 # ---

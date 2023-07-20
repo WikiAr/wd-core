@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding:utf-8 -*-
 #
 '''
 from des.railway import railway_tables, work_railway#work_railway( item, P31, q='' )
@@ -49,7 +48,7 @@ def work_railway( wditem, p31, q = "" ):
     #---
     q = wditem.get("q","")
     #---
-    print('Make_railway_desc: q:%s, [p31:%s]' % (q, p31))
+    print(f'Make_railway_desc: q:{q}, [p31:{p31}]')
     #---
     labels = wditem.get("labels", {})
     if labels.get("en","") == "":
@@ -104,9 +103,9 @@ def work_railway( wditem, p31, q = "" ):
         #---
         if p17_desc == "" and p131_desc == "" and lang != "ar" : continue
         #---
-        o1 = ", %s" % p17_desc
-        o2 = "، %s" % p17_desc
-        o3 = "(%s)" % p17_desc
+        o1 = f", {p17_desc}"
+        o2 = f"، {p17_desc}"
+        o3 = f"({p17_desc})"
         #---
         if p131_desc.endswith(o1): p131_desc = p131_desc.replace(o1,'')
         if p131_desc.endswith(o2): p131_desc = p131_desc.replace(o2,'')

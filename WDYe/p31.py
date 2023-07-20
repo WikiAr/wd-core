@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 إضافة خاصية P31 للتصنيفات
@@ -58,7 +57,7 @@ def main2(*args):
         arg, sep, value = arg.partition(':')
         # ---
         if arg == 'limit':
-            quarry = quarry + "\n LIMIT %s;" % value
+            quarry = quarry + f"\n LIMIT {value};"
     # ---
         if arg == 'enwiki':
             WIKI[1] = "enwiki"

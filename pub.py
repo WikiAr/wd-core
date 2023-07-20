@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 
@@ -85,13 +84,13 @@ id_types = {"MED", "PMC", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA",
 #---
 def get_article_info(ext_id , id_type):
     if not id_type.upper() in id_types:
-        print( "id_type must be in {}".format(id_types) )
+        print( f"id_type must be in {id_types}" )
     #---
     urls = {}
     #---
     id_type = id_type.lower()
     #---
-    print_test(' get_article_info for %s' % id_type)
+    print_test(f' get_article_info for {id_type}')
     if id_type == "pmc":
         url =  'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
         #url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:{}&resulttype=core&format=json'
@@ -158,21 +157,21 @@ def get_article_info(ext_id , id_type):
     return False
 #---
 def add(id, typee):
-    print_test('typee: "%s"' % typee)
+    print_test(f'typee: "{typee}"')
     source = get_article_info( id, typee )
     typee = typee.lower()
     if source:
         qid, a, b, ty = wdi_helpers.PublicationHelper(id, id_type=typee, source=source).get_or_create(login)
         if ty == "old":
-            print('already in wikidata: <a target="_blank" href="https://www.wikidata.org/wiki/%s">%s</a>' % (qid, qid))
-            print_test('already in wikidata:%s' % qid, "red")
+            print(f'already in wikidata: <a target="_blank" href="https://www.wikidata.org/wiki/{qid}">{qid}</a>')
+            print_test(f'already in wikidata:{qid}', "red")
         elif ty == 'new':
-            print('Create success: <a target="_blank" href="https://www.wikidata.org/wiki/%s">%s</a>' % (qid, qid))
-            print_test('Create success:%s' % qid, "blue")
-        print_test('qid: %s' % qid)
-        print_test('a: %s' % a)
-        print_test('b: %s' % b)
-        print_test('ty: %s' % ty)
+            print(f'Create success: <a target="_blank" href="https://www.wikidata.org/wiki/{qid}">{qid}</a>')
+            print_test(f'Create success:{qid}', "blue")
+        print_test(f'qid: {qid}')
+        print_test(f'a: {a}')
+        print_test(f'b: {b}')
+        print_test(f'ty: {ty}')
 #--- 
 if __name__ == "__main__":
     br = '</br>'

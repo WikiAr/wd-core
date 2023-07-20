@@ -72,11 +72,11 @@ def action(json1 , topic , translations):
                 addedlangs.append(lang)
         #---
         if addedlangs:
-            printe.output( '<<lightyellow>>* work 2:%s ' % q )
+            printe.output( f'<<lightyellow>>* work 2:{q} ' )
             #printe.output(NewDesc)
             wd_desc.work_api_desc( NewDesc , q)
         else:
-            printe.output( '<<lightred>>* work 2 :%s nothing to add.' % q )
+            printe.output( f'<<lightred>>* work 2 :{q} nothing to add.' )
 #---
 def mainfromQuarry( topic , Quarry, translations):
     #printe.output( '*<<lightyellow>> mainfromQuarry:' )
@@ -105,8 +105,8 @@ def workOneplace(place , contry , topic , ConTable , placesTable , placenum):
     #---
     #table = tras[topic]
     qua ='SELECT ?item WHERE {'
-    qua = qua + ( '?item wdt:P31 wd:%s.' %  place )
-    qua = qua + ( '?item wdt:P17 wd:%s.' %  contry )
+    qua = qua + ( f'?item wdt:P31 wd:{place}.' )
+    qua = qua + ( f'?item wdt:P17 wd:{contry}.' )
     #---
     aaaa = '<<lightred>> %d/%d contry:"%s", place:"%s", tao:"%s". '
     xa =  aaaa % (placenum , lenth_place ,  contry , place  ,tao)

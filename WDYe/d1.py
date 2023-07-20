@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 #  python pwb.py wd/wikinews
 #
 '''
@@ -116,7 +115,7 @@ def work2(item, topic):
                     if value != replacement[lang]:
                         NewDesc[lang] = {"language": lang,
                                          "value": replacement[lang]}
-                        pywikibot.output('<<lightyellow>> %s:replace "%s" by: "%s".' % (
+                        pywikibot.output('<<lightyellow>> {}:replace "{}" by: "{}".'.format(
                             lang, value, replacement[lang]))
                         fixlang.append(lang)
                 else:

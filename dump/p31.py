@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 python3 pwb.py dump/p31 jsonnew
 python3 pwb.py dump/p31 makereport

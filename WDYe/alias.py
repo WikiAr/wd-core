@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 إضافة تسميات مواضيع طبية
@@ -63,18 +62,17 @@ def WORK(item, table, type):
     arlab2 = arlab
     alias = table["alias"]
     if type in allise:
-        pywikibot.output('<<lightgreen>> type:"%s" in allise:"%s" ' %
-                         (type,  allise[type]))
+        pywikibot.output(f'<<lightgreen>> type:"{type}" in allise:"{allise[type]}" ')
         arlab2 = re.sub(r"^%s " % type, allise[type] + " ", arlab2)
         arlab2 = re.sub(r" %s " % type, " " + allise[type] + " ", arlab2)
     # ---
     if arlab2 != arlab:
-        pywikibot.output("arlab2 : %s" % arlab2)
+        pywikibot.output(f"arlab2 : {arlab2}")
         if SaveR[1]:
             himoAPI.Alias_API(item, [arlab2], "ar", False)
         else:
             sa = pywikibot.input(
-                '<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item %s' % item)
+                f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
             if sa == 'y' or sa == 'a' or sa == '':
                 himoAPI.Alias_API(item, [arlab2], "ar", False)
             else:
@@ -159,7 +157,7 @@ def main():
         # ---#limit[1]
         if arg == '-limit' or arg == 'limit':
             Limit[1] = value
-            pywikibot.output('<<lightred>> Limit = %s.' % value)
+            pywikibot.output(f'<<lightred>> Limit = {value}.')
     # ---
     if val != "":
         val2 = allise.get(val, "")

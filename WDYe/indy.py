@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8  -*-
 #
 import pywikibot
 from pywikibot import pagegenerators as pg
@@ -37,7 +36,7 @@ def action_one_item(wditem):
             data = {}
             data.update({'labels': {ara: newlabel}})
             wditem.editEntity(
-                data, summary='Bot: update Arabic label: %s to %s' % (oldlabel, newlabel))
+                data, summary=f'Bot: update Arabic label: {oldlabel} to {newlabel}')
         else:
             pass
     return 1
