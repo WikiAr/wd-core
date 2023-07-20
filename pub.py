@@ -13,7 +13,7 @@ import json
 import urllib
 import os
 import sys
-sys.dont_write_bytecode = True
+
 #---
 def print_test(line, color=""):
     colors = {

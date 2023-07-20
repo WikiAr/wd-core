@@ -24,7 +24,7 @@ except:
     pywikibot = False
 #---
 import sys
-sys.dont_write_bytecode = True
+
 #---
 import urllib
 import urllib.request

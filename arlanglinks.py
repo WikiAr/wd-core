@@ -1,9 +1,6 @@
 """
-https://dumps.wikimedia.org/arwiki/20230701/arwiki-20230701-langlinks.sql.gz
-
 python3 core8/pwb.py dump/arlanglinks
 """
-from api_sql import wiki_sql
 import gzip
 import sqlite3
 import sys
@@ -11,10 +8,12 @@ import os
 import json
 import pywikibot
 import shutil
+# ---
 Dump_Dir = os.path.dirname(os.path.realpath(__file__))
 # ---
-dump_file = f'{Dump_Dir}/langlinks.json'
+from api_sql import wiki_sql
 # ---
+dump_file = f'{Dump_Dir}/langlinks.json'
 # ---
 qua = '''select  
 CONCAT('"Category:', p1.page_title, '"') AS en, CONCAT(':"',ll_title, '",') AS ar

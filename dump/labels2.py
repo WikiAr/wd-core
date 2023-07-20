@@ -9,16 +9,14 @@ python3 core8/pwb.py dump/labels2 test nosave
 # (C) Ibrahem Qasim, 2023
 #
 #
-from dump.bots.labels_old_values import make_old_values  # make_old_values()
 import sys
 import os
 import codecs
-import re
 import bz2
 import json
 import time
-import pywikibot
 
+from dump.bots.labels_old_values import make_old_values  # make_old_values()
 Dump_Dir = os.path.dirname(os.path.realpath(__file__))
 
 title = 'User:Mr. Ibrahem/Language statistics for items'
@@ -57,17 +55,17 @@ for arg in sys.argv:
 himo_API = {1: False}
 
 
-def save(text, title):
+def save(text, title_):
     if not himo_API[1]:
         from wd_API import himoAPI
         himo_API[1] = himoAPI
-    himo_API[1].page_putWithAsk('', text, 'Bot - Updating stats', title, False)
+    himo_API[1].page_putWithAsk('', text, 'Bot - Updating stats', title_, False)
 
 
-def make_cou(num, all):
+def make_cou(num, _all):
     if num == 0:
         return 0
-    fef = (num / all) * 100
+    fef = (num / _all) * 100
     return str(fef)[:4] + "%"
 
 
@@ -117,32 +115,34 @@ def get_data():
     return Main_Table
 
 
-def dump_new_data():
+def dump_new_data(): 
     # ---
-    if "nosave" in sys.argv or 'test' in sys.argv:
-        return
+    if "nosave" in sys.argv or 'test' in sys.argv: return
     # ---
     file = f'{Dump_Dir}/new_data.json'
     try:
         json.dump(new_data_to_dump, codecs.open(file, 'w', 'utf-8'), indent=4)
-    except Exception as e:
+    except IOError:
         json.dump(new_data_to_dump, codecs.open(f'{Dump_Dir}/new_data1.json', 'w', 'utf-8'), indent=4)
 
 
 def save_counts_template():
-    # ---
+    """
+    Generate a template containing language code counts and save it.
+
+    Args:
+        new_data_to_dump (dict): A dictionary containing the language code counts.
+
+    Returns:
+        None
+    """
     if "nosave" in sys.argv or 'test' in sys.argv:
         return
-    # ---
     titlex = 'Template:Tr langcodes counts'
-    # ---
     counts = "{{#switch:{{{c}}}"
-    # ---
     for x, tab in new_data_to_dump.items():
         counts += f"\n|{x}=" + str(tab['labels'])
-    # ---
     counts += "\n}}"
-    # ---
     save(counts, titlex)
 
 
@@ -229,7 +229,7 @@ def mainar():
         if "nosave" not in sys.argv:
             text = text.replace('[[Category:Wikidata statistics|Language statistics]]', '')
             save(text, title)
-        with open(f'{Dump_Dir}/dumps/dump.labels2.txt', 'w') as f:
+        with open(f'{Dump_Dir}/dumps/dump.labels2.txt', 'w', encoding='utf-8') as f:
             f.write(text)
 
 
