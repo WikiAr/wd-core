@@ -1151,7 +1151,7 @@ def make_nn(lng, wditem, p31, orig_desc):
   }
     #---
     if entities.get(p31):
-      p31_tab = entities.get[p31]
+      p31_tab = entities[p31]
       if orig_desc in p31_tab["org"]:
         desc = its_something_in_an_entity( wditem, p31_tab["desc"])
     #---

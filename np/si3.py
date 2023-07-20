@@ -494,11 +494,11 @@ def ISRE( qitem, num, lenth, no_donelist = True, P31_list = False ):
     #---
     item = himoBOT2.Get_Item_API_From_Qid( qitem, sites = "", titles = "", props = "claims|descriptions|labels" )#claims
     #---
+    q = qitem
+    #---
     if not item:
         printe.output( '*<<lightred>> >%d error with item "%s" < :' % ( num, q ) )
         return
-    #---
-    q = qitem
     #---
     if item.get("q", q) != q :
         q = item.get("q",q)

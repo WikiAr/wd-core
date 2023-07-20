@@ -28,7 +28,7 @@ from wd_API import wd_desc
 # ---
 from wd_API import himoAPI
 # ---
-from desc_dicts.descraptions import DescraptionsTable
+from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 Tras = {
     'Q4167836': DescraptionsTable.get('Wikimedia category') or Qid_Descraptions.get('Q4167836') or {}
 }

@@ -379,15 +379,6 @@ def main():
             #printe.output( Qlist[Qid][lang] )
             WorkWithOneLang( Qid, lang, keys )
 #---
-test=False
-def test():
-        printe.output("debug is on")
-        Q = 'film'
-        #for lang in language:
-        keys = Qlist[Q].keys()
-        #printe.output( 'lang: "%s" with value: ' % 'fr' )
-        WorkWithOneLang( Q, 'ar', keys)
-#---
 if __name__ == "__main__":
-     main()
+    main()
 #---

@@ -8,14 +8,14 @@ translations = {}
 translations['Wikimedia module'] = DescraptionsTable.get(
     'Wikimedia module', {})
 # ---
-list = [
+LIST = [
     "Q15145755",    # Module test cases
     "Q18711811"     # map data module
 ]
 # ---
 topic = 'Wikimedia module'
 # ---
-for ll in list:
+for ll in LIST:
     quarry = 'SELECT ?item  WHERE {  ?item wdt:P31 wd:%s.}' % ll
     newdesc.mainfromQuarry2(topic, quarry, translations)
 # ---

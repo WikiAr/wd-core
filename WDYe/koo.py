@@ -31,12 +31,6 @@ import unicodedata
 import sys
 # ---
 
-
-def PPPTemp(text):
-    return named
-
-
-# ---
 done = []
 # ---
 

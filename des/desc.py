@@ -386,10 +386,10 @@ def work_one_place(place):
             printe.output("q in q_list_done")
             continue
         #---
-        if place == '':
-            Add_desc( q, arlabel2, lang  )
-        else:
-            work_one_item( start, lang, tab, c, total )
+        # if place == '':
+        # Add_desc( q, arlabel2, lang  )
+        # else:
+        work_one_item( start, lang, tab, c, total )
         #---
 def mainoo():
     #---
@@ -414,11 +414,6 @@ def mainoo():
     if New_QS[1] != [] :
         himoAPI.QS_line( "||".join( New_QS[1] ), user = "Mr.Ibrahembot" )
         New_QS[1] = []
-    #---
-def test():
-    co1 = {"Q55" : ContriesTable2["Q55"]}
-    pT = {"Q44782" : placesTable["Q44782"]}
-    main(co1, placesTable, bylangs)
 #---
 if __name__ == "__main__":
     mainoo()
