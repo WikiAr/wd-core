@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 python3 core8/pwb.py dump/labels2
 python3 core8/pwb.py dump/labels2 test
@@ -122,7 +121,7 @@ def dump_new_data():
     file = f'{Dump_Dir}/new_data.json'
     try:
         json.dump(new_data_to_dump, codecs.open(file, 'w', 'utf-8'), indent=4)
-    except IOError:
+    except OSError:
         json.dump(new_data_to_dump, codecs.open(f'{Dump_Dir}/new_data1.json', 'w', 'utf-8'), indent=4)
 
 

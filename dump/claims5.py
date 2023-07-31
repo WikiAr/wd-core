@@ -2,7 +2,7 @@
 """
 python3 pwb.py dump/claims5 jsonnew
 python3 pwb.py dump/claims5 makereport
-python3 pwb.py dump/claims5
+python3 core8/pwb.py dump/claims5 makereport ask
 python3 pwb.py dump/claims5 test nosave
 """
 #
@@ -20,7 +20,7 @@ Dump_Dir = os.path.dirname(os.path.realpath(__file__))
 # ---
 Limit = {1: 900000000}
 saveto = {1: ""}
-sections_done = {1: 0}
+sections_done = {1: 0, 'max': 100}
 sections_false = {1: 0}
 dump_done = {1: 0}
 # ---
@@ -66,46 +66,58 @@ def load_tab(ty):
     # ---
     if "jsonnew" in sys.argv:
         # dump tab to json
-        json.dump(tab, open(jsonname, "w"))
+        json.dump(tab, open(jsonname, "w"), indent=4)
         print(f"clear jsonname:{jsonname}")
     elif "test" not in sys.argv:
-        try:
+        if 'read' in sys.argv:
             # read json
+            print(f'read file: {jsonname}')
             tab = json.loads(open(jsonname).read())
             for k, v in tab2.items():
                 if not k in tab:
                     tab[k] = v
-            print("tab['done'] == %d" % tab["done"])
-        except:
-            print(f"cant read {jsonname} ")
+            print("tab['done'] == %d" % tab.get('done', 0))
+        else:
+            try:
+                # read json
+                print(f'read file: {jsonname}')
+                tab = json.loads(open(jsonname).read())
+                for k, v in tab2.items():
+                    if not k in tab:
+                        tab[k] = v
+                print("tab['done'] == %d" % tab.get('done', 0))
+            except Exception as e:
+                print(f"cant read {jsonname} ")
+                print(f"error: {e}")
     # ---
     return tab
 
 
-def make_section(P, table, Len, max_n=51):
+def make_section(P, table, max_n=51):
     """
     Creates a section for a given property in a table.
 
     Args:
         P (str): The property value.
         table (dict): The table data.
-        Len (int): The length of the property.
 
     Returns:
         str: The section text.
 
     """
     # ---
-    if sections_done[1] == 50:
-        return ""
+    # if sections_done[1] >= sections_done['max']:    return ""
     # ---
-    texts = "== {{P|%s}}  ==" % P
+    Len = table['lenth_of_usage']
+    # --- 
+    texts = "== {{P|%s}} ==" % P
+    # ---
     print(f"make_section for property:{P}")
-    texts += f"\n* Total items use these property:{Len}"
+    texts += f"\n* Total items use these property:{Len:,}"
     # ---
     lnnn = table.get("lenth_of_claims_for_property")
     if lnnn:
-        texts += f"\n* Total number of claims with these property:{lnnn}"
+        texts += f"\n* Total number of claims with these property:{lnnn:,}"
     # ---
     texts += "\n"
     print(texts)
@@ -140,7 +152,7 @@ def make_section(P, table, Len, max_n=51):
             if x.startswith("Q"):
                 Q = "{{Q|%s}}" % x
             # ---
-            tables += f"\n| {num} || {Q} || {ye:,} \n|-"
+            tables += f"\n! {num} \n| {Q} \n| {ye:,} \n|-"
             # ---
             xline += f",{x}"
             yline += f",{ye:,}"
@@ -151,7 +163,7 @@ def make_section(P, table, Len, max_n=51):
     # ---
     Chart = Chart % (xline, yline)
     # ---
-    tables += f"\n| {num} || others || {other:,} \n|-"
+    tables += f"\n! {num} \n| others \n| {other:,} \n|-"
     # ---
     tables += "\n|}\n{{clear}}\n"
     # ---
@@ -199,24 +211,13 @@ def workondata(props_tos="all"):
         print(f"file {filename} <<lightred>> not found")
         return
     fileeee = bz2.open(filename, "r")
-    if "lene" in sys.argv:
-        print(
-            "len of bz2 lines :%d "
-            % len(
-                json.loads(
-                    [x for x in fileeee if x.startswith("{") and x.endswith("}")]
-                )
-            )
-        )
     # ---
     done2 = 0
     done = 0
     offset = 0
     if tab["done"] != 0:
         offset = tab["done"]
-        print("offset == %d" % offset)
-    # ---
-    log_done = 0
+        print(f"offset == {offset}")
     # ---
     for line in fileeee:
         line = line.decode("utf-8")
@@ -231,7 +232,7 @@ def workondata(props_tos="all"):
             print(f"{done} : {time.time() - t1}.")
             t1 = time.time()
         # ---
-        if done2 == 500000:
+        if done2 == 5000000:
             done2 = 1
             log_dump()
         # ---
@@ -266,7 +267,7 @@ def workondata(props_tos="all"):
         # ---
         if props_tos != "all":
             claims_to_work = [props_tos]
-        # --- 
+        # ---
         for P31 in claims_to_work:
             if P31 not in tab["Main_Table"]:
                 tab["Main_Table"][P31] = {
@@ -283,14 +284,14 @@ def workondata(props_tos="all"):
 
                 datavalue = claim.get("mainsnak", {}).get("datavalue", {})
                 ttype = datavalue.get("type")
-                val = datavalue.get("value", {})
+                # val = datavalue.get("value", {})
                 # ---
                 if ttype == "wikibase-entityid":
-                    id = datavalue.get("value", {}).get("id")
-                    if id:
+                    idd = datavalue.get("value", {}).get("id")
+                    if idd:
                         if not id in tab["Main_Table"][P31]["props"]:
-                            tab["Main_Table"][P31]["props"][id] = 0
-                        tab["Main_Table"][P31]["props"][id] += 1
+                            tab["Main_Table"][P31]["props"][idd] = 0
+                        tab["Main_Table"][P31]["props"][idd] += 1
         # ---
         tab["done"] = done
     # ---
@@ -314,37 +315,39 @@ def save_to_wd(text, ta):
 
 
 # ---
-def make_chart(p31list):
+def make_numbers_section(p31list):
     xline = ""
     yline = ""
-    # ---
-    Chart2 = "{| class='floatright sortable' \n|-\n|"
-    Chart2 += "{{Graph:Chart|width=900|height=100|xAxisTitle=property|yAxisTitle=usage|type=rect\n|x=%s\n|y1=%s\n}}"
-    Chart2 += "|-\n|}"
     # ---
     rows = []
     # ---
     property_other = 0
     # ---
+    n = 0
+    # ---
     for Len, P in p31list:
-        tab["len_of_all_properties"] += 1
-        if tab["len_of_all_properties"] < 27:
+        n += 1
+        if n < 27:
             xline += f",{P}"
             yline += f",{Len}"
         # ---
-        if len(rows) < 51:
-            rows.append(
-                "| %d || {{P|%s}} || {{subst:formatnum:%d}} "
-                % (tab["len_of_all_properties"], P, Len)
-            )
+        if len(rows) < 101:
+            Len = f"{Len:,}"
+            P = "{{P|%s}}" % P
+            lune = f"| {n} || {P} || {Len} "
+            rows.append(lune)
         else:
             property_other += int(Len)
     # ---
-    Chart2 = Chart2.replace("|x=%s", f"|x={xline}")
-    Chart2 = Chart2.replace("|y1=%s", f"|y1={yline}")
+    Chart2 = "{| class='floatright sortable' \n|-\n|"
+    Chart2 += "{{Graph:Chart|width=900|height=100|xAxisTitle=property|yAxisTitle=usage|type=rect\n"
+    Chart2 += f"|x={xline}\n|y1={yline}"
+    Chart2 += "\n}}"
+    Chart2 += "\n|-\n|}"
+    # ---
     Chart2 = Chart2.replace("=,", "=")
     # ---
-    rows.append(f"| 52 || others || {property_other:,}")
+    rows.append(f"! {n} \n| others \n| {property_other:,}")
     rows = "\n|-\n".join(rows)
     table = (
         "\n{| "
@@ -361,26 +364,29 @@ def mainar(ty="all"):
     time_start = time.time()
     print(f"time_start:{str(time_start)}")
     # ---
+    global tab
+    # ---
     tab = load_tab(ty)
     # ---
     if "makereport" not in sys.argv:
         workondata(props_tos=ty)
     # ---
-    p31list = [
-        [y["lenth_of_usage"], x]
-        for x, y in tab["Main_Table"].items()
-        if y["lenth_of_usage"] != 0
-    ]
+    p31list = [ [y["lenth_of_usage"], x] for x, y in tab["Main_Table"].items() if y["lenth_of_usage"] != 0 ]
     p31list.sort(reverse=True)
     # ---
     mxn = 51 if ty == "all" else 501
     # ---
     sections = ""
     for Len, P in p31list:
-        sections += make_section(P, tab["Main_Table"][P], Len, max_n=mxn)
+        if sections_done[1] >= sections_done['max']:
+            break
+        #---
+        sections += make_section(P, tab["Main_Table"][P], max_n=mxn)
     # ---
     final = time.time()
     delta = int(final - time_start)
+    # ---
+    tab['len_of_all_properties'] = len(tab["Main_Table"])
     # ---
     text = (
         "<onlyinclude>latest</onlyinclude>.\n"
@@ -392,21 +398,25 @@ def mainar(ty="all"):
         "* Number of properties of the report: {len_of_all_properties:,}\n"
     ).format_map(tab)
     # ---
-    chart = make_chart(p31list)
+    text += f"<!-- bots work done in {delta} secounds --> \n--~~~~~\n"
+    chart = make_numbers_section(p31list)
     # ---
-    text += (
-        f"<!-- bots work done in {delta} secounds --> \n"
-        "--~~~~~\n"
-        f"{chart}\n"
-        f"{sections}"
-    )
+    if tab["Main_Table"].get('P31'):
+        text_p31 = text + make_section('P31', tab["Main_Table"]['P31'], max_n=501)
+        #---
+        with open(f"{Dump_Dir}/dumps/p31_new.txt", "w", encoding="utf-8") as f:
+            f.write(text_p31)
+        #---
+        save_to_wd(text_p31, 'p31')
     # ---
-    text = text.replace("0 (0000)", "0")
-    text = text.replace("0 (0)", "0")
+    text += f"{chart}\n{sections}"
+    # ---
+    # text = text.replace("0 (0000)", "0")
+    # text = text.replace("0 (0)", "0")
     # ---
     # python3 pwb.py dump/claims2 test nosave saveto:ye
     if saveto[1] != "":
-        with open(f"{Dump_Dir}/dumps/{saveto[1]}.txt", "w") as f:
+        with open(f"{Dump_Dir}/dumps/{saveto[1]}.txt", "w", encoding="utf-8") as f:
             f.write(text)
     # ---
     if text == "":
@@ -417,7 +427,7 @@ def mainar(ty="all"):
         print(text)
     # ---
     if tab["All_items"] == 0:
-        print(f"no data")
+        print("no data")
         return
     # ---
     ta = "claims" if ty == "all" else ty
@@ -428,7 +438,7 @@ def mainar(ty="all"):
     if "test" in sys.argv:
         to_log = f"{Dump_Dir}/dumps/{ta}_test.txt"
     # ---
-    with open(to_log, "w") as f:
+    with open(to_log, "w", encoding="utf-8") as f:
         f.write(text)
 
 
