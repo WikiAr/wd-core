@@ -1,13 +1,14 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <json/json.h>
-#include <bzlib.h>
 #include <ctime>
 
 std::string jsonname = "dumps/claims.json";
-std::map<std::string, int> tab = {
+
+std::unordered_map<std::string, int> tab = {
     {"done", 0},
     {"len_of_all_properties", 0},
     {"items_0_claims", 0},
@@ -16,53 +17,83 @@ std::map<std::string, int> tab = {
     {"All_items", 0},
     {"all_claims_2020", 0},
 };
-void workondata()
-{
-    std::time_t t1 = std::time(nullptr);
+
+void workondata() {
+    std::clock_t t1 = std::clock();
     std::string filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2";
-    if (!std::ifstream(filename))
-    {
+    if (!std::ifstream(filename)) {
         std::cout << "file " << filename << " not found" << std::endl;
         return;
     }
-    BZFILE *fileeee = BZ2_bzopen(filename.c_str(), "r");
-    char line[4096];
+    std::ifstream fileeee(filename, std::ios::binary);
+    std::string line;
+
     int done = 0;
-    while (BZ2_bzread(fileeee, line, sizeof(line)) > 0)
-    {
-        std::string lineStr(line);
-        lineStr = lineStr.substr(0, lineStr.find_last_not_of("\n") + 1);
-        if (!lineStr.starts_with("{") || !lineStr.ends_with("}"))
-        {
+
+    while (std::getline(fileeee, line)) {
+        line = line.substr(0, line.size() - 1);
+
+        if (line[0] != '{' || line[line.size() - 1] != '}') {
             continue;
         }
+
         tab["All_items"] += 1;
+
         Json::Value json1;
         Json::Reader reader;
-        reader.parse(lineStr, json1);
-        Json::Value claimse = json1.get("claims", Json::Value());
-        if (claimse.size() == 0)
-        {
+        reader.parse(line, json1);
+        Json::Value claimse = json1["claims"];
+
+        if (claimse.size() == 0) {
             tab["items_0_claims"] += 1;
             continue;
         }
-        if (claimse.size() == 1)
-        {
+
+        if (claimse.size() == 1) {
             tab["items_1_claims"] += 1;
         }
-        if (!claimse.isMember("P31"))
-        {
+
+        if (!claimse.isMember("P31")) {
             tab["items_no_P31"] += 1;
             continue;
         }
+
         Json::Value claims_to_work = claimse.getMemberNames();
-        for (const std::string &P31 : claims_to_work)
-        {
-            if (!tab["Main_Table"].count(P31))
-            {
-                tab["Main_Table"][P31] = 0;
+
+        for (const auto& P31 : claims_to_work) {
+            if (tab["Main_Table"].find(P31.asString()) == tab["Main_Table"].end()) {
+                tab["Main_Table"][P31.asString()] = {
+                    {"props", {}},
+                    {"lenth_of_usage", 0},
+                    {"lenth_of_claims_for_property", 0},
+                };
+            }
+
+            tab["Main_Table"][P31.asString()]["lenth_of_usage"] += 1;
+            tab["all_claims_2020"] += claimse[P31].size();
+
+            for (const auto& claim : claimse[P31]) {
+                tab["Main_Table"][P31.asString()]["lenth_of_claims_for_property"] += 1;
+
+                Json::Value datavalue = claim["mainsnak"]["datavalue"];
+                std::string ttype = datavalue["type"].asString();
+
+                if (ttype == "wikibase-entityid") {
+                    std::string idd = datavalue["value"]["id"].asString();
+                    if (idd != "") {
+                        if (tab["Main_Table"][P31.asString()]["props"].find(idd) == tab["Main_Table"][P31.asString()]["props"].end()) {
+                            tab["Main_Table"][P31.asString()]["props"][idd] = 0;
+                        }
+                        tab["Main_Table"][P31.asString()]["props"][idd] += 1;
+                    }
+                }
             }
         }
+
+        tab["done"] = done;
     }
-    BZ2_bzclose(fileeee);
+
+    std::ofstream outfile(jsonname);
+    outfile << tab;
+    outfile.close();
 }
