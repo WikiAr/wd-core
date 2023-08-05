@@ -3,97 +3,111 @@
 #include <sstream>
 #include <string>
 #include <unordered_map>
-#include <json/json.h>
-#include <ctime>
+#include <boost/filesystem.hpp>
+#include <bzlib.h>
+#include <nlohmann/json.hpp>
 
+using json = nlohmann::json;
+
+std::string filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2";
 std::string jsonname = "dumps/claims.json";
 
-std::unordered_map<std::string, int> tab = {
-    {"done", 0},
-    {"len_of_all_properties", 0},
-    {"items_0_claims", 0},
-    {"items_1_claims", 0},
-    {"items_no_P31", 0},
-    {"All_items", 0},
-    {"all_claims_2020", 0},
+struct Property {
+    std::unordered_map<std::string, int> props;
+    int length_of_usage = 0;
+    int length_of_claims_for_property = 0;
 };
 
+std::unordered_map<std::string, Property> Main_Table;
+int done = 0;
+int len_of_all_properties = 0;
+int items_0_claims = 0;
+int items_1_claims = 0;
+int items_no_P31 = 0;
+int All_items = 0;
+int all_claims_2020 = 0;
+
 void workondata() {
-    std::clock_t t1 = std::clock();
-    std::string filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2";
-    if (!std::ifstream(filename)) {
-        std::cout << "file " << filename << " not found" << std::endl;
+    if (!boost::filesystem::exists(filename)) {
+        std::cout << "File " << filename << " not found" << std::endl;
         return;
     }
-    std::ifstream fileeee(filename, std::ios::binary);
-    std::string line;
 
-    int done = 0;
+    FILE* file = fopen(filename.c_str(), "rb");
+    int bzerror;
+    BZFILE* bzf = BZ2_bzReadOpen(&bzerror, file, 0, 0, NULL, 0);
+    char buf[4096];
 
-    while (std::getline(fileeee, line)) {
-        line = line.substr(0, line.size() - 1);
+    while (BZ2_bzRead(&bzerror, bzf, buf, sizeof(buf)) > 0) {
+        std::string line(buf);
+        line = line.substr(0, line.find_last_not_of(",\n") + 1);
 
-        if (line[0] != '{' || line[line.size() - 1] != '}') {
+        if (line.front() != '{' || line.back() != '}')
+            continue;
+
+        All_items++;
+
+        json json1 = json::parse(line);
+        auto claims = json1.value("claims", json::object());
+
+        if (claims.empty()) {
+            items_0_claims++;
             continue;
         }
 
-        tab["All_items"] += 1;
+        if (claims.size() == 1)
+            items_1_claims++;
 
-        Json::Value json1;
-        Json::Reader reader;
-        reader.parse(line, json1);
-        Json::Value claimse = json1["claims"];
-
-        if (claimse.size() == 0) {
-            tab["items_0_claims"] += 1;
+        if (claims.find("P31") == claims.end()) {
+            items_no_P31++;
             continue;
         }
 
-        if (claimse.size() == 1) {
-            tab["items_1_claims"] += 1;
-        }
+        for (auto& [P31, claim_array] : claims.items()) {
+            if (Main_Table.find(P31) == Main_Table.end())
+                Main_Table[P31] = Property();
 
-        if (!claimse.isMember("P31")) {
-            tab["items_no_P31"] += 1;
-            continue;
-        }
+            Main_Table[P31].length_of_usage++;
+            all_claims_2020 += claim_array.size();
 
-        Json::Value claims_to_work = claimse.getMemberNames();
+            for (auto& claim : claim_array) {
+                Main_Table[P31].length_of_claims_for_property++;
 
-        for (const auto& P31 : claims_to_work) {
-            if (tab["Main_Table"].find(P31.asString()) == tab["Main_Table"].end()) {
-                tab["Main_Table"][P31.asString()] = {
-                    {"props", {}},
-                    {"lenth_of_usage", 0},
-                    {"lenth_of_claims_for_property", 0},
-                };
-            }
-
-            tab["Main_Table"][P31.asString()]["lenth_of_usage"] += 1;
-            tab["all_claims_2020"] += claimse[P31].size();
-
-            for (const auto& claim : claimse[P31]) {
-                tab["Main_Table"][P31.asString()]["lenth_of_claims_for_property"] += 1;
-
-                Json::Value datavalue = claim["mainsnak"]["datavalue"];
-                std::string ttype = datavalue["type"].asString();
+                auto datavalue = claim.value("mainsnak", json::object()).value("datavalue", json::object());
+                auto ttype = datavalue.value("type", "");
 
                 if (ttype == "wikibase-entityid") {
-                    std::string idd = datavalue["value"]["id"].asString();
-                    if (idd != "") {
-                        if (tab["Main_Table"][P31.asString()]["props"].find(idd) == tab["Main_Table"][P31.asString()]["props"].end()) {
-                            tab["Main_Table"][P31.asString()]["props"][idd] = 0;
-                        }
-                        tab["Main_Table"][P31.asString()]["props"][idd] += 1;
+                    auto idd = datavalue.value("value", json::object()).value("id", "");
+                    if (!idd.empty()) {
+                        Main_Table[P31].props[idd]++;
                     }
                 }
             }
         }
 
-        tab["done"] = done;
+        done++;
     }
 
+    BZ2_bzReadClose(&bzerror, bzf);
+    fclose(file);
+
+    json tab = {
+        {"done", done},
+        {"len_of_all_properties", len_of_all_properties},
+        {"items_0_claims", items_0_claims},
+        {"items_1_claims", items_1_claims},
+        {"items_no_P31", items_no_P31},
+        {"All_items", All_items},
+        {"all_claims_2020", all_claims_2020},
+        {"Main_Table", Main_Table}
+    };
+
     std::ofstream outfile(jsonname);
-    outfile << tab;
+    outfile << tab.dump(4);
     outfile.close();
+}
+
+int main() {
+    workondata();
+    return 0;
 }
