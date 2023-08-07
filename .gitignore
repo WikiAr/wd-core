@@ -45,3 +45,4 @@ testoo.py
 0not_used/**
 people/compare_files/**
 *.c
+dump/colab.py

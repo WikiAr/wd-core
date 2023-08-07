@@ -9,7 +9,7 @@ import sys
 import bz2
 import json
 dump_done = 0
-# Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+Dump_Dir = os.path.dirname(os.path.realpath(__file__))
 
 tab = {
     "done": 0,
@@ -27,9 +27,9 @@ def log_dump():
     global dump_done
     if "test" in sys.argv:
         return
-    # jsonname = f"{Dump_Dir}/dumps/claims_c.json"
-    jsonname = "dumps/claims_c.json"
-    with open(jsonname, "w", encoding="utf-8") as outfile:
+    jsonname = f"{Dump_Dir}/dumps/claims.json"
+    # jsonname = "dumps/claims_c.json"
+    with open(jsonname, "w") as outfile:
         json.dump(tab, outfile)
     dump_done += 1
     print(f"log_dump %d done {dump_done}")

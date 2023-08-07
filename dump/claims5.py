@@ -9,19 +9,20 @@ python3 pwb.py dump/claims5 test nosave
 # (C) Ibrahem Qasim, 2022
 #
 #
+from dump.do_text import make_text
+from dump.read_dump import read_file
 import sys
 import os
 import json
 import time
 # ---
-from dump.read_dump import read_file
+time_start = time.time()
+print(f"time_start:{str(time_start)}")
 # ---
 Dump_Dir = os.path.dirname(os.path.realpath(__file__))
 # ---
 Limit = {1: 900000000}
 saveto = {1: ""}
-sections_done = {1: 0, 'max': 100}
-sections_false = {1: 0}
 dump_done = {1: 0}
 # ---
 jsonname = ""
@@ -93,89 +94,6 @@ def load_tab(ty):
     return tab
 
 
-def make_section(P, table, max_n=51):
-    """
-    Creates a section for a given property in a table.
-
-    Args:
-        P (str): The property value.
-        table (dict): The table data.
-
-    Returns:
-        str: The section text.
-
-    """
-    # ---
-    # if sections_done[1] >= sections_done['max']:    return ""
-    # ---
-    Len = table['lenth_of_usage']
-    # ---
-    texts = "== {{P|%s}} ==" % P
-    # ---
-    print(f"make_section for property:{P}")
-    texts += f"\n* Total items use these property:{Len:,}"
-    # ---
-    lnnn = table.get("lenth_of_claims_for_property")
-    if lnnn:
-        texts += f"\n* Total number of claims with these property:{lnnn:,}"
-    # ---
-    texts += "\n"
-    print(texts)
-    if table["props"] == {}:
-        print(f'{P} table["props"] == empty.')
-        return ""
-    # ---
-    Chart = '{| class="floatright sortable"\n|-\n|\n'
-    Chart += "{{Graph:Chart|width=140|height=140|xAxisTitle=value|yAxisTitle=Number\n"
-    Chart += "|type=pie|showValues1=offset:8,angle:45\n|x=%s\n|y1=%s\n|legend=value\n}}\n|-\n|}"
-    # ---
-    tables = """{| class="wikitable sortable plainrowheaders"\n|-\n! class="sortable" | #\n! class="sortable" | value\n! class="sortable" | Numbers\n|-\n"""
-    # ---
-    lists = [[y, xff] for xff, y in table["props"].items()]
-    lists.sort(reverse=True)
-    # ---
-    xline = ""
-    yline = ""
-    # ---
-    num = 0
-    other = 0
-    # ---
-    for ye, x in lists:
-        if ye == 0 and sections_false[1] < 100:
-            print(f"p({P}), x({x}) ye == 0 or ye == 1 ")
-            sections_false[1] += 1
-            return ""
-        # ---
-        num += 1
-        if num < max_n:
-            Q = x
-            if x.startswith("Q"):
-                Q = "{{Q|%s}}" % x
-            # ---
-            tables += f"\n! {num} \n| {Q} \n| {ye:,} \n|-"
-            # ---
-            xline += f",{x}"
-            yline += f",{ye:,}"
-        else:
-            other += ye
-    # ---
-    num += 1
-    # ---
-    Chart = Chart % (xline, yline)
-    # ---
-    tables += f"\n! {num} \n| others \n| {other:,} \n|-"
-    # ---
-    tables += "\n|}\n{{clear}}\n"
-    # ---
-    texts += Chart.replace("=,", "=")
-    texts += "\n\n"
-    texts += tables
-    # ---
-    sections_done[1] += 1
-    # ---
-    return texts
-
-
 def log_dump():
     """
     Logs the dump of the current process.
@@ -210,56 +128,7 @@ def save_to_wd(text, ta):
     himoAPI.page_putWithAsk("", text, "Bot - Updating stats", title, False)
 
 
-# ---
-def make_numbers_section(p31list):
-    xline = ""
-    yline = ""
-    # ---
-    rows = []
-    # ---
-    property_other = 0
-    # ---
-    n = 0
-    # ---
-    for Len, P in p31list:
-        n += 1
-        if n < 27:
-            xline += f",{P}"
-            yline += f",{Len}"
-        # ---
-        if len(rows) < 101:
-            Len = f"{Len:,}"
-            P = "{{P|%s}}" % P
-            lune = f"| {n} || {P} || {Len} "
-            rows.append(lune)
-        else:
-            property_other += int(Len)
-    # ---
-    Chart2 = "{| class='floatright sortable' \n|-\n|"
-    Chart2 += "{{Graph:Chart|width=900|height=100|xAxisTitle=property|yAxisTitle=usage|type=rect\n"
-    Chart2 += f"|x={xline}\n|y1={yline}"
-    Chart2 += "\n}}"
-    Chart2 += "\n|-\n|}"
-    # ---
-    Chart2 = Chart2.replace("=,", "=")
-    # ---
-    rows.append(f"! {n} \n| others \n| {property_other:,}")
-    rows = "\n|-\n".join(rows)
-    table = (
-        "\n{| "
-        + f'class="wikitable sortable"\n|-\n! #\n! property\n! usage\n|-\n{rows}\n'
-        + "|}"
-    )
-    # ---
-    text = "== Numbers ==\n" f"\n{Chart2}\n{table}"
-    # ---
-    return text
-
-
 def mainar(ty="all"):
-    time_start = time.time()
-    print(f"time_start:{str(time_start)}")
-    # ---
     global tab
     # ---
     tab = load_tab(ty)
@@ -267,48 +136,13 @@ def mainar(ty="all"):
     if "makereport" not in sys.argv:
         workondata(props_tos=ty)
     # ---
-    p31list = [[y["lenth_of_usage"], x] for x, y in tab["Main_Table"].items() if y["lenth_of_usage"] != 0]
-    p31list.sort(reverse=True)
+    text, text_p31 = make_text(tab, ty=ty)
     # ---
-    mxn = 51 if ty == "all" else 501
-    # ---
-    sections = ""
-    for Len, P in p31list:
-        if sections_done[1] >= sections_done['max']:
-            break
-        # ---
-        sections += make_section(P, tab["Main_Table"][P], max_n=mxn)
-    # ---
-    final = time.time()
-    delta = int(final - time_start)
-    # ---
-    tab['len_of_all_properties'] = len(tab["Main_Table"])
-    # ---
-    text = (
-        "<onlyinclude>latest</onlyinclude>.\n"
-        "* Total items: {All_items:,}\n"
-        "* Items without P31: {items_no_P31:,} \n"
-        "* Items without claims: {items_0_claims:,}\n"
-        "* Items with 1 claim only: {items_1_claims:,}\n"
-        "* Total number of claims: {all_claims_2020:,}\n"
-        "* Number of properties of the report: {len_of_all_properties:,}\n"
-    ).format_map(tab)
-    # ---
-    text += f"<!-- bots work done in {delta} secounds --> \n--~~~~~\n"
-    chart = make_numbers_section(p31list)
-    # ---
-    if tab["Main_Table"].get('P31'):
-        text_p31 = text + make_section('P31', tab["Main_Table"]['P31'], max_n=501)
-        # ---
+    if text_p31 != "":
         with open(f"{Dump_Dir}/dumps/p31_new.txt", "w", encoding="utf-8") as f:
             f.write(text_p31)
         # ---
         save_to_wd(text_p31, 'p31')
-    # ---
-    text += f"{chart}\n{sections}"
-    # ---
-    # text = text.replace("0 (0000)", "0")
-    # text = text.replace("0 (0)", "0")
     # ---
     # python3 pwb.py dump/claims2 test nosave saveto:ye
     if saveto[1] != "":
