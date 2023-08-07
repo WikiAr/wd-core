@@ -8,9 +8,12 @@ import os
 import sys
 import bz2
 import json
+# ---
 dump_done = 0
 Dump_Dir = os.path.dirname(os.path.realpath(__file__))
-
+# ---
+test_limit = {1: 30000}
+# ---
 tab = {
     "done": 0,
     "len_of_all_properties": 0,
@@ -28,6 +31,8 @@ def log_dump():
     if "test" in sys.argv:
         return
     jsonname = f"{Dump_Dir}/dumps/claims.json"
+    if 'test' in sys.argv:
+        jsonname = f"{Dump_Dir}/dumps/claims_test.json"
     # jsonname = "dumps/claims_c.json"
     with open(jsonname, "w") as outfile:
         json.dump(tab, outfile)
@@ -73,6 +78,7 @@ def read_file():
     print(f"read file: {filename}")
 
     fileeee = bz2.open(filename, "r")
+    c = 0
 
     for line in fileeee:
         line = line.decode("utf-8")
@@ -81,6 +87,11 @@ def read_file():
         if line.startswith("{") and line.endswith("}"):
 
             tab["All_items"] += 1
+
+            c += 1
+            if c > test_limit[1]:
+                print('c>test_limit[1]')
+                break
 
             json1 = json.loads(line)
 

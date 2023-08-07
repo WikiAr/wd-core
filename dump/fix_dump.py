@@ -6,6 +6,7 @@ python3 wd_core/dump/fix_dumps.py
 import os
 import sys
 import json
+import tqdm
 
 
 def start():
@@ -22,7 +23,7 @@ def start():
 
     data2['Main_Table'] = {}
     len_props = 0
-    for p, pap in data['Main_Table'].items():
+    for p, pap in tqdm.tqdm(data['Main_Table'].items()):
         # "props": {},"lenth_of_usage": 0,"lenth_of_claims_for_property": 0,
         len_props += 1
         tab = {}
@@ -46,9 +47,23 @@ def start():
                 tab['props'][k] = v
             else:
                 tab['props']['others'] += v
-        print(f'len_props:{len_props}')
+        # print(f'len_props:{len_props}')
 
         data2['Main_Table'][p] = tab
+        
+    P31_tab = data2['Main_Table']['P31']
+
+    data2['Main_Table'] = { k:v for k, v in sorted(data2['Main_Table'].items(), key=lambda item: item[1]['lenth_of_usage'], reverse=True)}
+
+    if '100' in sys.argv:
+        # get only first 100 properties
+        first_100 = data2['Main_Table'][:100]
+        if 'P31' not in first_100:
+            first_100['P31'] = P31_tab
+
+        # first_100['other'] = data2['Main_Table'][-100:]
+
+        data2['Main_Table'] = first_100
 
     json.dump(data2, open(f'{Dump_Dir}/dumps/claims2.json', 'w'))
 
