@@ -29,6 +29,8 @@ def start():
         tab = {}
         tab['lenth_of_usage'] = pap['lenth_of_usage']
         tab['lenth_of_claims_for_property'] = pap['lenth_of_claims_for_property']
+        
+        tab['len_of_qids'] = len(pap['props'])
 
         tab['props'] = {}
         tab['props']['others'] = 0
@@ -43,14 +45,14 @@ def start():
         n = 0
         for k, v in props.items():
             n += 1
-            if n <= maxx:
+            if n <= maxx and v > 1000:
                 tab['props'][k] = v
             else:
                 tab['props']['others'] += v
         # print(f'len_props:{len_props}')
 
         data2['Main_Table'][p] = tab
-        
+
     P31_tab = data2['Main_Table']['P31']
 
     data2['Main_Table'] = { k:v for k, v in sorted(data2['Main_Table'].items(), key=lambda item: item[1]['lenth_of_usage'], reverse=True)}

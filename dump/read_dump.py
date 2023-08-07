@@ -28,8 +28,6 @@ tab = {
 
 def log_dump():
     global dump_done
-    if "test" in sys.argv:
-        return
     jsonname = f"{Dump_Dir}/dumps/claims.json"
     if 'test' in sys.argv:
         jsonname = f"{Dump_Dir}/dumps/claims_test.json"
@@ -66,6 +64,8 @@ def do_claims(claimse):
                     if not id in tab["Main_Table"][p]["props"]:
                         tab["Main_Table"][p]["props"][idd] = 0
                     tab["Main_Table"][p]["props"][idd] += 1
+
+        tab["Main_Table"][p]["len_of_qids"] = len(tab["Main_Table"][p]["props"])
 
 
 def read_file():
