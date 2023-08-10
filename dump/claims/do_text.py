@@ -1,10 +1,12 @@
 """
+python3 wd_core/dump/do_text.py claims2
 """
 #
 # (C) Ibrahem Qasim, 2023
 #
 #
 import os
+import sys
 import time
 import codecs
 import json
@@ -12,7 +14,10 @@ import json
 time_start = time.time()
 print(f"time_start:{str(time_start)}")
 # ---
-Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+try:
+    Dump_Dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+except Exception as e:
+    Dump_Dir = '/content'
 # ---
 sections_done = {1: 0, 'max': 100}
 sections_false = {1: 0}
@@ -44,9 +49,17 @@ def make_section(P, table, max_n=51):
     if lnnn:
         texts += f"\n* Total number of claims with these property:{lnnn:,}"
     # ---
+    len_of_qids = table.get("len_of_qids")
+    if len_of_qids:
+        texts += f"\n* Number of unique qids:{len_of_qids:,}"
+    # ---
     texts += "\n"
     print(texts)
     if table["props"] == {}:
+        print(f'{P} table["props"] == empty.')
+        return ""
+    # ---
+    if len(table["props"]) == 1 and table["props"].get("others"):
         print(f'{P} table["props"] == empty.')
         return ""
     # ---
@@ -56,7 +69,7 @@ def make_section(P, table, max_n=51):
     # ---
     tables = """{| class="wikitable sortable plainrowheaders"\n|-\n! class="sortable" | #\n! class="sortable" | value\n! class="sortable" | Numbers\n|-\n"""
     # ---
-    lists = { k: v for k, v in sorted(table["props"].items(), key=lambda item: item[1], reverse=True) }
+    lists = {k: v for k, v in sorted(table["props"].items(), key=lambda item: item[1], reverse=True)}
     # ---
     xline = ""
     yline = ""
@@ -71,7 +84,7 @@ def make_section(P, table, max_n=51):
             continue
         # ---
         num += 1
-        if num < max_n and ye > 1000:
+        if num < max_n:
             Q = x
             if x.startswith("Q"):
                 Q = "{{Q|%s}}" % x
@@ -87,12 +100,12 @@ def make_section(P, table, max_n=51):
     # ---
     Chart = Chart % (xline, yline)
     # ---
-    tables += f"\n! {num} \n| others \n| {other:,} \n|-"
+    tables += f"\n! {num} \n! others \n! {other:,} \n|-"
     # ---
     tables += "\n|}\n{{clear}}\n"
     # ---
-    texts += Chart.replace("=,", "=")
-    texts += "\n\n"
+    # texts += Chart.replace("=,", "=") + "\n\n"
+    # ---
     texts += tables
     # ---
     sections_done[1] += 1
@@ -133,7 +146,7 @@ def make_numbers_section(p31list):
     # ---
     Chart2 = Chart2.replace("=,", "=")
     # ---
-    rows.append(f"! {n} \n| others \n| {property_other:,}")
+    rows.append(f"! {n} \n! others \n! {property_other:,}")
     rows = "\n|-\n".join(rows)
     table = (
         "\n{| "
@@ -150,22 +163,16 @@ def make_text(tab, ty=''):
     p31list = [[y["lenth_of_usage"], x] for x, y in tab["Main_Table"].items() if y["lenth_of_usage"] != 0]
     p31list.sort(reverse=True)
     # ---
-    mxn = 51 if ty == "all" else 501
-    # ---
-    sections = ""
-    for Len, P in p31list:
-        if sections_done[1] >= sections_done['max']:
-            break
-        # ---
-        sections += make_section(P, tab["Main_Table"][P], max_n=mxn)
-    # ---
     final = time.time()
     delta = int(final - time_start)
     # ---
     tab['len_of_all_properties'] = len(tab["Main_Table"])
     # ---
+    if not tab.get('file_date'):
+        tab['file_date'] = 'latest'
+    # ---
     text = (
-        "<onlyinclude>latest</onlyinclude>.\n"
+        "<onlyinclude>;dump date {file_date}</onlyinclude>.\n"
         "* Total items: {All_items:,}\n"
         "* Items without P31: {items_no_P31:,} \n"
         "* Items without claims: {items_0_claims:,}\n"
@@ -183,6 +190,16 @@ def make_text(tab, ty=''):
         text_p31 = text + make_section('P31', tab["Main_Table"]['P31'], max_n=501)
         # ---
     # ---
+    if 'onlyp31' in sys.argv or ty == "onlyp31":
+        return text, text_p31
+    # ---
+    sections = ""
+    for Len, P in p31list:
+        if sections_done[1] >= sections_done['max']:
+            break
+        # ---
+        sections += make_section(P, tab["Main_Table"][P], max_n=51)
+    # ---
     text += f"{chart}\n{sections}"
     # ---
     # text = text.replace("0 (0000)", "0")
@@ -190,8 +207,20 @@ def make_text(tab, ty=''):
     # ---
     return text, text_p31
 
+
 if __name__ == "__main__":
-    data = json.load(open(f'{Dump_Dir}/dumps/claims.json'))
-    text, text_p31 = make_text(data)
+    filename = f"{Dump_Dir}/dumps/claims.json"
+    
+    if 'claims2' in sys.argv:
+        filename = f"{Dump_Dir}/dumps/claims2.json"
+
+    if 'test' in sys.argv:
+        filename = f"{Dump_Dir}/dumps/claims_test.json"
+
+    data = json.load(open(filename))
+
+    text, text_p31 = make_text(data, ty='')
     codecs.open(f'{Dump_Dir}/dumps/claims_new.txt', 'w', 'utf-8').write(text)
     codecs.open(f'{Dump_Dir}/dumps/claims_p31.txt', 'w', 'utf-8').write(text_p31)
+    print(text_p31)
+    print("log_dump done")

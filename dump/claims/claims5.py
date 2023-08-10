@@ -19,7 +19,7 @@ import time
 time_start = time.time()
 print(f"time_start:{str(time_start)}")
 # ---
-Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+Dump_Dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 # ---
 Limit = {1: 900000000}
 saveto = {1: ""}

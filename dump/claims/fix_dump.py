@@ -11,7 +11,7 @@ import tqdm
 
 def start():
     try:
-        Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+        Dump_Dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     except Exception as e:
         Dump_Dir = '/content'
 
@@ -33,7 +33,7 @@ def start():
         tab['len_of_qids'] = len(pap['props'])
 
         tab['props'] = {}
-        tab['props']['others'] = 0
+        others = 0
         # ---
         # sort by usage
         props = pap['props']
@@ -45,13 +45,15 @@ def start():
         n = 0
         for k, v in props.items():
             n += 1
-            if n <= maxx and v > 1000:
+            if n <= maxx:
                 tab['props'][k] = v
             else:
-                tab['props']['others'] += v
+                others += v
         # print(f'len_props:{len_props}')
-
-        data2['Main_Table'][p] = tab
+        if others > 0:
+            tab['props']['others'] = others
+        if len(tab['props']) > 0:
+            data2['Main_Table'][p] = tab
 
     P31_tab = data2['Main_Table']['P31']
 

@@ -1,29 +1,52 @@
 """
 from dump.bots.labels_old_values import make_old_values# make_old_values()
 """
-from API import himoBOT2
 import os
 import json
 import sys
+import codecs
+import urllib.parse
 import re
+import requests
+Session = requests.Session()
 dir2 = os.path.dirname(os.path.realpath(__file__))
-dir2 = os.path.dirname(dir2)
 
 file = f'{dir2}/new_data.json'
+
 if not os.path.isfile(file):
     # create it
-    with open(file, 'w') as f:
-        f.write('{}')
+    open(file, 'w').write('{}')
 
 _old_data = json.load(open(file))
+_old_data = _old_data.get('langs') or _old_data
 
-title = 'User:Mr. Ibrahem/Language statistics for items'
+
+def GetPageText(title):
+    params = {"action": "parse", "prop": "wikitext|sections", "page": title, 'format': 'json', 'utf8': 1}
+    # ---
+    end_point = 'https://www.wikidata.org/w/api.php?'
+    # ---
+    json1 = Session.post(end_point, data=params).json()
+    # ---
+    if not json1 or json1 == {}:
+        return ''
+    # ---
+    text = json1.get("parse", {}).get("wikitext", {}).get("*", "")
+    # ---
+    if text == "":
+        print(f'no text for {title}')
+    # ---
+    return text
+# ---
+
 
 def from_wiki():
     # ---
+    title = 'User:Mr. Ibrahem/Language statistics for items'
+    # ---
     Old = {}
     # ---
-    texts = himoBOT2.GetPageText(title.replace(' ', '_'), 'www', family='wikidata')
+    texts = GetPageText(title)
     # ---
     texts = texts.split('|}')[0]
     texts = texts.replace('|}', '')
@@ -58,17 +81,26 @@ def from_wiki():
 
                 if iu.group(4):
                     Old[lang]['aliases'] = int(iu.group(4))
+
+    print(f'get data from page len of old data:{len(Old)}')
     return Old
 
 
 def make_old_values():
     # ---
     if len(_old_data) > 5:
+        print('data in the file..')
+        json.dump(_old_data, codecs.open(f'{dir2}/old_data.json', 'w', 'utf-8'), indent=4)
         return _old_data
+    # ---
+    print('get data from page')
     # ---
     Old = from_wiki()
     # ---
+    json.dump(Old, codecs.open(f'{dir2}/old_data.json', 'w', 'utf-8'), indent=4)
+    # ---
     return Old
 
+
 if __name__ == "__main__":
-    from_wiki()
+    make_old_values()
