@@ -7,12 +7,13 @@ python3 wd_core/dump/save.py
 #
 import sys
 import os
+from pathlib import Path
 import json
 import time
 # ---
 from wd_API import himoAPI
 # ---
-Dump_Dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+Dump_Dir = Path(__file__).parent.parent
 # ---
 file_to_title = {
     'claims_new.txt': 'User:Mr. Ibrahem/claims',

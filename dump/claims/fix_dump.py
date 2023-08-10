@@ -4,6 +4,7 @@ python3 wd_core/dump/fix_dumps.py
 
 """
 import os
+from pathlib import Path
 import sys
 import json
 import tqdm
@@ -11,7 +12,7 @@ import tqdm
 
 def start():
     try:
-        Dump_Dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        Dump_Dir = Path(__file__).parent.parent
     except Exception as e:
         Dump_Dir = '/content'
 

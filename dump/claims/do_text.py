@@ -6,6 +6,7 @@ python3 wd_core/dump/do_text.py claims2
 #
 #
 import os
+from pathlib import Path
 import sys
 import time
 import codecs
@@ -15,7 +16,7 @@ time_start = time.time()
 print(f"time_start:{str(time_start)}")
 # ---
 try:
-    Dump_Dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    Dump_Dir = Path(__file__).parent.parent
 except Exception as e:
     Dump_Dir = '/content'
 # ---
@@ -218,7 +219,22 @@ if __name__ == "__main__":
         filename = f"{Dump_Dir}/dumps/claims_test.json"
 
     data = json.load(open(filename))
-
+        
+    tab = {
+        "done": 0,
+        "len_of_all_properties": 0,
+        "items_0_claims": 0,
+        "items_1_claims": 0,
+        "items_no_P31": 0,
+        "All_items": 0,
+        "all_claims_2020": 0,
+        "Main_Table": {},
+    }
+    # ---
+    for x, g in tab.items():
+        if not x in data:
+            data[x] = g
+    # ---
     text, text_p31 = make_text(data, ty='')
     codecs.open(f'{Dump_Dir}/dumps/claims_new.txt', 'w', 'utf-8').write(text)
     codecs.open(f'{Dump_Dir}/dumps/claims_p31.txt', 'w', 'utf-8').write(text_p31)

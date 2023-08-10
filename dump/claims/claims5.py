@@ -9,17 +9,20 @@ python3 pwb.py dump/claims5 test nosave
 # (C) Ibrahem Qasim, 2022
 #
 #
-from dump.do_text import make_text
-from dump.read_dump import read_file
+from dump.claims.do_text import make_text
+from dump.claims.read_dump import read_file
 import sys
 import os
+from pathlib import Path
 import json
 import time
 # ---
 time_start = time.time()
 print(f"time_start:{str(time_start)}")
 # ---
-Dump_Dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+Dump_Dir = Path(__file__).parent.parent
+# ---
+print(f'Dump_Dir:{Dump_Dir}')
 # ---
 Limit = {1: 900000000}
 saveto = {1: ""}
@@ -74,22 +77,20 @@ def load_tab(ty):
             # read json
             print(f'read file: {jsonname}')
             tab = json.loads(open(jsonname).read())
-            for k, v in tab2.items():
-                if not k in tab:
-                    tab[k] = v
             print("tab['done'] == %d" % tab.get('done', 0))
         else:
             try:
                 # read json
                 print(f'read file: {jsonname}')
                 tab = json.loads(open(jsonname).read())
-                for k, v in tab2.items():
-                    if not k in tab:
-                        tab[k] = v
                 print("tab['done'] == %d" % tab.get('done', 0))
             except Exception as e:
                 print(f"cant read {jsonname} ")
                 print(f"error: {e}")
+    # ---
+    for k, v in tab2.items():
+        if not k in tab:
+            tab[k] = v
     # ---
     return tab
 

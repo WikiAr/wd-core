@@ -7,8 +7,8 @@
 import json
 import codecs
 import os
-Dir = os.path.dirname(__file__)
-#---
+from pathlib import Path
+Dir = Path(__file__).parent
 #---
 from people.compare_files._occ import tota as tota2
 from people.occupationsall import translations_all as tota1

@@ -13,7 +13,7 @@ import json as JJson
 import re
 import time
 import codecs
-from warnings import warn
+import traceback
 from datetime import datetime
 #---
 from API import printe
@@ -54,7 +54,7 @@ def read_bad_list(file):
         return List
     except Exception as e:
         pywikibot.output( '<<lightred>> Traceback (most recent call last):' )
-        warn('Exception:' + str(e), UserWarning)
+        pywikibot.output(traceback.format_exc())
         pywikibot.output( 'CRITICAL:' )
         #---
         List = []
@@ -91,7 +91,7 @@ def read_bad_json(file):
                     List.append(catee)'''
     except Exception as e:
         pywikibot.output( '<<lightred>> Traceback (most recent call last):' )
-        warn('Exception:' + str(e), UserWarning)
+        pywikibot.output(traceback.format_exc())
         pywikibot.output( 'CRITICAL:' )
         lala = {}
         with codecs.open(file, "r", encoding="utf-8-sig") as listt2:
@@ -118,7 +118,7 @@ def main(file , Type):
     except Exception as e:
         pywikibot.output( '<<lightred>> Traceback (most recent call last):' )
         pywikibot.output(f'* Cant work file:"{file}" , Type:"{Type}"' )
-        warn('Exception:' + str(e), UserWarning)
+        pywikibot.output(traceback.format_exc())
         pywikibot.output( 'CRITICAL:' )
     return False
 #---

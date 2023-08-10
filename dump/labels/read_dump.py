@@ -10,12 +10,13 @@ python3 core8/pwb.py dump/labels2 test nosave
 #
 import sys
 import os
+from pathlib import Path
 import bz2
 import json
 import time
 from datetime import datetime
 # ---
-Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+Dump_Dir = Path(__file__).parent
 # ---
 print(Dump_Dir)
 # ---

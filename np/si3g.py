@@ -38,11 +38,12 @@ import pywikibot
 import re
 import time
 import os
+from pathlib import Path
 #---
 from API import printe
 #---
-Dir = os.path.dirname(os.path.abspath(__file__))
-main_dir1 = os.path.dirname(Dir) + '/'
+Dir = Path(__file__).parent
+main_dir1 = Path(__file__).parent.parent + '/'
 #---
 printe.output( f'<<lightyellow>> main_dir1 = {main_dir1}' )
 #---

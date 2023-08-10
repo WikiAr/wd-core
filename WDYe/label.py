@@ -2,7 +2,6 @@
 #
 
 import pywikibot
-from pywikibot import pagegenerators
 from pywikibot import pagegenerators as pg
 import re
 import codecs

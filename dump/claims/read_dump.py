@@ -1,8 +1,9 @@
 """
-from dump.read_dump import read_file
+from dump.claims.read_dump import read_file
 python3 wd_core/dump/read_dump.py test
 """
 import os
+from pathlib import Path
 import sys
 import bz2
 import json
@@ -10,7 +11,7 @@ import time
 from datetime import datetime
 
 # ---
-Dump_Dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+Dump_Dir = Path(__file__).parent.parent
 # ---
 print(Dump_Dir)
 # ---
@@ -38,12 +39,12 @@ def read_file():
     filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2"
     print(f"read file: {filename}")
 
-    file_date = get_file_info(filename)
-    print(f'file date: {file_date}')
-
     if not os.path.isfile(filename):
         print(f"file {filename} <<lightred>> not found")
-        return
+        return {}
+
+    file_date = get_file_info(filename)
+    print(f'file date: {file_date}')
 
     print(f"file {filename} found, read it:")
     fileeee = bz2.open(filename, "r")

@@ -1,7 +1,6 @@
 #!/usr/bin/python
 #
 import pywikibot
-from pywikibot import pagegenerators
 from pywikibot import pagegenerators as pg
 
 

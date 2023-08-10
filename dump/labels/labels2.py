@@ -10,12 +10,13 @@ python3 core8/pwb.py dump/labels2 test nosave
 #
 import sys
 import os
+from pathlib import Path
 import codecs
 import bz2
 import json
 import time
 
-Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+Dump_Dir = Path(__file__).parent
 
 main_table_head = """
 == Number of labels, descriptions and aliases for items per language ==

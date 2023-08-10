@@ -10,11 +10,12 @@ python3 pwb.py dump/arw2 test nosave limit:5000
 # (C) Ibrahem Qasim, 2017
 import sys
 import os
+from pathlib import Path
 import bz2
 import json
 import time
 # ---
-Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+Dump_Dir = Path(__file__).parent
 print(f'Dump_Dir: {Dump_Dir}')
 # ---
 priffixeso = [

@@ -4,12 +4,12 @@
 import sys
 import json
 import os
+from pathlib import Path
 import codecs
 import pywikibot
 import re
 #---
-Dir = os.path.dirname(os.path.abspath(__file__))
-main_dir1 = os.path.dirname(Dir) + '/'
+Dir = Path(__file__).parent
 #---
 from np import si3
 #---

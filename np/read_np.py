@@ -6,12 +6,13 @@ from np import read_json
 import sys
 import json
 import os
+from pathlib import Path
 import codecs
 import pywikibot
 import re
 # ---
-Dir = os.path.dirname(os.path.abspath(__file__))
-main_dir1 = os.path.dirname(Dir) + '/'
+Dir = Path(__file__).parent
+main_dir1 = Path(__file__).parent.parent + '/'
 # ---
 # ---
 # ---

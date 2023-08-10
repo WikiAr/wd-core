@@ -5,11 +5,12 @@ import gzip
 import sqlite3
 import sys
 import os
+from pathlib import Path
 import json
 import pywikibot
 import shutil
 # ---
-Dump_Dir = os.path.dirname(os.path.realpath(__file__))
+Dump_Dir = Path(__file__).parent
 # ---
 from api_sql import wiki_sql
 # ---

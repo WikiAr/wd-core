@@ -2,6 +2,7 @@
 from dump.bots.labels_old_values import make_old_values# make_old_values()
 """
 import os
+from pathlib import Path
 import json
 import sys
 import codecs
@@ -9,7 +10,7 @@ import urllib.parse
 import re
 import requests
 Session = requests.Session()
-dir2 = os.path.dirname(os.path.realpath(__file__))
+dir2 = Path(__file__).parent
 
 file = f'{dir2}/new_data.json'
 
