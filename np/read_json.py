@@ -39,7 +39,7 @@ def printo(s):
 def read_bad_list(file):
     try:
         List = []
-        with open(file, "r") as listt:
+        with open(file) as listt:
             done_list7 = JJson.load(listt)
             listt.close()
         #---
@@ -58,7 +58,7 @@ def read_bad_list(file):
         pywikibot.output( 'CRITICAL:' )
         #---
         List = []
-        with open(file, "r") as listt:
+        with open(file) as listt:
             list2 = listt.read()
             listt.close()
         #---
@@ -76,7 +76,7 @@ def read_bad_list(file):
 #---
 def read_bad_json(file):
     try:
-        with open(file, "r") as listt:
+        with open(file) as listt:
             done_list7 = JJson.load(listt)
             listt.close()
         #---

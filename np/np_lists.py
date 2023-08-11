@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''
 from np.np_lists import *
 
@@ -684,13 +683,13 @@ for scdw in others_list :
         prop = 'wdt:P175'
     #---
     if not scdw in SPARQLSE:
-        SPARQLSE[scdw] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . ?item %s ?constellation. FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }} ' % ( scdw , prop )
+        SPARQLSE[scdw] = 'SELECT ?item WHERE {' + f'?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation.' + ' FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
         #---
         if "a2r" in sys.argv: 
-            SPARQLSE[scdw] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . ?item %s ?constellation. ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }} '  % ( scdw , prop )
+            SPARQLSE[scdw] = 'SELECT ?item WHERE {' + f'?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation.' + ' ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
         #---
         if "a3r" in sys.argv: 
-            SPARQLSE[scdw] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '  % scdw
+            SPARQLSE[scdw] = 'SELECT ?item WHERE { ?item wdt:P31 wd:' + scdw + ' . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
 #---
 # python3 pwb.py np/nldes3 sparql:Q44559
 # python3 pwb.py np/nldes3 sparql:Q19389637

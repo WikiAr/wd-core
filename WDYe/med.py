@@ -1,4 +1,5 @@
 #!/usr/bin/python
+#!/usr/bin/python
 
 """
 
@@ -63,7 +64,6 @@ def fixrow(row):
     if row.find("<ssss>") != -1:
         en = row.split('<ssss>')[0].strip()
         ar = row.split('<ssss>')[1].strip()
-        # printe.output( 'en:"%s",ar:"%s"' % (en,ar) )
         if en != "" and ar != "":
             return en, ar
     # ---
@@ -292,9 +292,8 @@ def looog():
     text2 = ""
     # ---
     for x in log2:
-        text2 = text2 + \
-            "\n|-\n| {{Q|%s}} || {{Label | %s | en }} || %s\n" % (
-                x, x, ",".join(log2[x]))
+        text2 += "\n|-\n| {{Q|%s}} || {{Label | %s | en }} ||" % (x, x)
+        text2 += ",".join(log2[x]) + "\n"
     # ---
     if text2 != "":
         text2 = '''\n=={{subst:date}}==\n{| class="wikitable sortable"\n|-\n! item\n! en \n! ar\n|-''' + text2
@@ -425,15 +424,17 @@ def main():
     # {?P1343 wdt:P629 wd:Q200306.} UNION {?item wdt:P1343 wd:Q19558994. }
     # sat = "{?item wdt:P31/wdt:P279* wd:Q27043950. }"#Q4936952.}
     # SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
-    Quaa = ''' SELECT ?item ?en ?ar ?alias WHERE { '''
-    Quaa = Quaa + sat + '''
+    Quaa  = ''' SELECT ?item ?en ?ar ?alias WHERE { '''
+    
+    Quaa += sat + '''
     ?item rdfs:label ?en. FILTER(LANG(?en) = "en").
     FILTER NOT EXISTS { ?item rdfs:label ?ar. FILTER(LANG(?ar) = "ar"). }
     FILTER NOT EXISTS  { ?item skos:altLabel ?alias FILTER (LANG (?alias) = "ar") }
     }
     LIMIT '''
 
-    Quaa = Quaa + Limit[1]
+    Quaa += Limit[1]
+    
     printe.output(Quaa)
     sparql = himoBOT2.sparql_generator_url(Quaa)
     # ---
@@ -457,8 +458,7 @@ def main():
     for item in Tab_l:
         num += 1
         # if num < 2:
-        printe.output('<<lightgreen>> %d/%d item:"%s" ' %
-                      (num, len(Tab_l.keys()), item))
+        printe.output('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Tab_l.keys()), item))
         # item['item'] = item['item'].split("/entity/")[1]
         WORK(item, Tab_l[item])
     # ---

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 #  python pwb.py wd/wikinews
 #
 #
@@ -24,15 +23,15 @@ for p31 in translations:
     WHERE { 
       SELECT ?item ?desc
     WHERE {  
-      ?item wdt:P31 wd:%s. 
+      ?item wdt:P31 wd:''' + p31 + '''. 
       ?item schema:description ?itemDes . 
-      ?item schema:description "%s"@en 
+      ?item schema:description "''' + en_desc + '''"@en 
       BIND(lang(?itemDes) AS ?desc)
           }
     limit 1000000
           }
     GROUP BY ?item
-    limit 30000''' % (p31, en_desc)
+    limit 30000'''
     # ---
     newdesc.Quarry_with_item_langs(p31, quarry, translations)
     # newdesc.mainfromQuarry2( p31, quarry, translations)

@@ -7,7 +7,7 @@ def execute_sql_file(filename, db_name):
     cursor = conn.cursor()
 
     # Open and read the file as a single buffer
-    sql_file = open(filename, 'r').read()
+    sql_file = open(filename).read()
 
     # Execute the SQL commands
     sql_commands = sql_file.split(';')

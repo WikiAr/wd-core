@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 #  
 #
 #
@@ -422,12 +421,13 @@ translations = {}
 for topic in topics:
     for city in taop:
         translations[topic] = {}
-        quarry = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s. ?item wdt:P17 wd:Q55. ?item wdt:P131 wd:%s.' % ( topic , city )
-        #quarry = quarry + '\nFILTER NOT EXISTS {' #?item wdt:P31 wd:Q523166. ?item wdt:P31 wd:Q174782.?item wdt:P31 wd:Q1484611.'
+        quarry = 'SELECT ?item WHERE { ' + f'?item wdt:P31 wd:{topic}. ?item wdt:P17 wd:Q55. ?item wdt:P131 wd:{city}.'
+
         for prop in iop:
             if prop != topic:
-                quarry = quarry + '\nFILTER NOT EXISTS {?item wdt:P31 wd:%s. }' % prop
-        quarry = quarry + '\nOPTIONAL { ?item schema:description ?des. FILTER((LANG(?des)) = "ar")  } FILTER(!BOUND(?des))\n}'
+                quarry += '\nFILTER NOT EXISTS {' + f'?item wdt:P31 wd:{prop}.' + '}'
+                
+        quarry += '\nOPTIONAL { ?item schema:description ?des. FILTER((LANG(?des)) = "ar")  } FILTER(!BOUND(?des))\n}'
         for lang in topics[topic]:
             descraption = Format[lang]
             lang2 = lang

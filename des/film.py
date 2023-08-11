@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """
 
 إضافة وصف الأفلام
@@ -67,17 +66,17 @@ def action_one_item( Qid, pa , lang , keys):
                     dns = ''
                     if 'endes' in pa:
                         dns = pa['endes']
-                    printe.output('newar:%s,en:%s' % (des , dns) )
+                    printe.output(f'newar:{des},en:{dns}' )
                     addedlangs.append(lang)
                 else:
-                    printe.output('*no desc for "%s"' % lang)
+                    printe.output(f'*no desc for "{lang}"')
         #---
         if addedlangs:
             qitem = item.title(as_link=False)
             if AskSave[1]:
                 printe.output('================== + '  + str(addedlangs))
                 for lan in NewDesc.keys():
-                    printe.output( 'lang:%s, value: "%s"'  % (lan , NewDesc[lan]['value'] ) )
+                    printe.output( f"lang:{lan}, value: \"{NewDesc[lan]['value']}\"" )
                 saaa = pywikibot.input(' Add as descriptions? ' )
                 if saaa == 'y' or saaa == 'a' or saaa == '':
                     if saaa == 'a':
@@ -129,29 +128,35 @@ def GetQuery(Qid , lang , keys):
     #---
     P50 = 'P57'
     #---
-    #sa = ('?item wdt:P31 wd:%s .\n' % Qid )
-    ur = 'SELECT ?item ?%s '% lang 
+    ur = f'SELECT ?item ?{lang} ' 
     head = '?' + ' ?'.join([ x for x in keys if x != lang])
     ur = ur + head
-    #ur = ur + ('\n(GROUP_CONCAT(DISTINCT(?date); separator=",") as ?dates) ?endes ' )
-    ur = ur + ' ?endes  ?dates \n' 
-    ur = ur  + 'WHERE { \n?item wdt:%s ?auths . \n?item wdt:%s ?auths2 .\n' % (P50 , P50)
+    ur = ur + ' ?endes  ?dates \n WHERE {' 
+    ur = ur + ' \n?item wdt:%s ?auths . \n?item wdt:%s ?auths2 .\n' % (P50 , P50)
     #---
     sa = ' ?item wdt:P31 wd:Q11424 .\n?item wdt:P577 ?date2.\nBIND(year(?date2) AS ?dates). \n'
     sa = sa + 'OPTIONAL { ?item schema:description ?endes. FILTER((LANG(?endes)) = "en") }\n'
-    ur = ur  + sa
+    ur = ur + sa
     #---
-    row = 'OPTIONAL {?auths rdfs:label ?%s filter (lang(?%s) = "%s")} .'
-    OPTIONAL = '\n'.join([(row % (x,x,x)) for x in keys if x != lang])
-    '''for lan in keys:
-        if lan != lang:
-            ur = ur + 'OPTIONAL {?auths rdfs:label ?%s filter (lang(?%s) = "%s")} .\n' % (lan, lan, lan) '''
+    def fofo(x):
+        xx  = 'OPTIONAL {'
+        xx +=  '?auths rdfs:label ?%s filter (lang(?%s) = "%s")' % (x,x,x)
+        xx += '} .'
+        return xx
+    #---
+    row = 
+    OPTIONAL = '\n'.join([fofo(x) for x in keys if x != lang])
     ur = ur + OPTIONAL
     #---
-    ur = ur + ' \n{?auths2 rdfs:label ?%s2 filter (lang(?%s2) = "%s")} .' % (lang, lang, lang) 
-    ur = ur + '\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang 
-    ur = ur + 'FILTER(!BOUND(?itemDes))\n'# GROUP BY ?item '
-    ur = ur + 'SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?%s }}\n'  % lang 
+    ur = ur + ' \n{'
+    ur = ur + '?auths2 rdfs:label ?%s2 filter (lang(?%s2) = "%s") .' % (lang, lang, lang)
+    ur = ur + "}\n"
+    ur = ur + 'OPTIONAL {'
+    ur = ur + '   ?item schema:description ?itemDes filter(lang(?itemDes) = "%s")' % lang 
+    ur = ur + '} FILTER(!BOUND(?itemDes))\n'# GROUP BY ?item '
+    ur = ur + 'SERVICE wikibase:label { ' 
+    ur = ur + '     bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?%s'  % lang 
+    ur = ur + ' }}\n'
     #printe.output(ur)
     #---
     return ur
@@ -238,7 +243,7 @@ def WorkWithOneLang( Qid , lang , keys ):
         PageList[pa]['item'] = pa.split('/entity/')[1]
         num += 1
         SAO = filmform[Qid][lang]
-        printe.output('<<lightblue>>> %s "%s" :%s/%d : %s'  % ( lang , SAO , num , total , PageList[pa]['item'] ) )
+        printe.output('<<lightblue>>> %s (%s) :%s/%d : %s'  % ( lang , SAO , num , total , PageList[pa]['item'] ) )
         #---
         action_one_item( Qid, PageList[pa] , lang , keys)
 #---
@@ -270,7 +275,7 @@ def MakeDesc(Qid, pa, lang):
         lang = 'en'
     #---
     if not lang in by_list:
-        printe.output('<<lightblue>>> cant find "by" in by_list for lang: "%s"'  % lang )
+        printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"' )
         return False
     #---
     co = by_list[lang] + ' '
@@ -306,7 +311,7 @@ def MakeDesc(Qid, pa, lang):
         #description = False
     if lang == 'ar':
         if description and description != re.sub(r'[abcdefghijklmnobqrstuvwxyz]'  , '' , description):
-            printe.output( '<<lightred>> arabic description test failed "%s".' % description )
+            printe.output( f'<<lightred>> arabic description test failed "{description}".' )
             description = False
     return description
 #---
@@ -315,7 +320,6 @@ def films():
         Q = 'film'  
         #for lang in language:
         keys = filmform[Q].keys()
-        #printe.output( 'lang: "%s" with value: ' % 'fr' )
         WorkWithOneLang( Q , 'ar' , keys)
 #---
 if __name__ == "__main__":  
