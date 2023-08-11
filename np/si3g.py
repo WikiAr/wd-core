@@ -43,7 +43,7 @@ from pathlib import Path
 from API import printe
 #---
 Dir = Path(__file__).parent
-main_dir1 = Path(__file__).parent.parent + '/'
+main_dir1 = str(Path(__file__).parent.parent) + '/'
 #---
 printe.output( f'<<lightyellow>> main_dir1 = {main_dir1}' )
 #---

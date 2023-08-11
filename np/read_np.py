@@ -12,7 +12,7 @@ import pywikibot
 import re
 # ---
 Dir = Path(__file__).parent
-main_dir1 = Path(__file__).parent.parent + '/'
+main_dir1 = str(Path(__file__).parent.parent) + '/'
 # ---
 # ---
 # ---
