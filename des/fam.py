@@ -10,21 +10,21 @@ python3 pwb.py des/fam Q318
 python3 pwb.py des/fam
 
 '''
-#---
+# ---
 from API import printe
 from API import himoBOT2
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
 import sys
 import random
-#---
+# ---
 from wd_API import newdesc
 # newdesc.main_from_file(file, topic, translations2)
 # newdesc.mainfromQuarry2( topic, Quarry, translations)
 # newdesc.work22(q, topic, translations)
-#---
+# ---
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
-#---
+# ---
 desc_table = {
     'Q318' : Space_Descraptions.get('Q318', {}),
     'Q523' : Space_Descraptions.get('Q523', {}),
@@ -71,22 +71,22 @@ desc_table = {
     # 'Q39614' : placesTable.get('Q39614', {}),   # مقبرة    
     # 'Q79007' : placesTable.get('Q79007', {}),   # شارع
     }
-#---
+# ---
 desc_table["Q726242"] = { "ar":"نجم" }
 desc_table["Q2247863"] = { "ar":"نجم" }
 desc_table["Q66619666"] = { "ar":"نجم" }
 desc_table["Q72803622"] = { "ar":"نجم" }
-#---
+# ---
 for x,dd in railway_tables.items():
     desc_table[x] = dd
-#---
+# ---
 for x in desc_table : 
     if x in sys.argv:
         desc_table = { x : desc_table[x] }
         break
-#---
+# ---
 temp_table = {}
-#---
+# ---
 if len (desc_table) > 1 :
     # chose randomly 5 of the desc_table
     liste = list(desc_table.keys())
@@ -94,9 +94,9 @@ if len (desc_table) > 1 :
     print(list2)
     for x in list2 :
         temp_table[x] = desc_table[x]
-    #---
+    # ---
     desc_table = temp_table
-#---
+# ---
 quarry_o = '''
     SELECT DISTINCT ?item ?langs
     WITH { SELECT ?item WHERE { 
@@ -111,7 +111,7 @@ quarry_o = '''
     }
     ORDER BY DESC(xsd:integer(SUBSTR(STR(?item),33)))
 '''
-#---
+# ---
 quarry_list = [
     quarry_o,
     quarry_o.replace('limit 1000', 'limit 1000 offset 1000'), 
@@ -120,73 +120,73 @@ quarry_list = [
     quarry_o.replace('limit 1000', 'limit 1000 offset 4000'), 
     quarry_o.replace('limit 1000', 'limit 1000 offset 5000'), 
     ]
-#---
+# ---
 qlist_done = []
-#---
+# ---
 # lenth of desc_table and quarry_list
 all_lenth = len(quarry_list) * len(desc_table)
-#---
+# ---
 numb = 0
-#---
+# ---
 for p31, p31_desc in desc_table.items():
-    #---
+    # ---
     quarry_result_lenth = 0
-    #---
+    # ---
     qu_numb = 0
-    #---
+    # ---
     for quarry in quarry_list:
-        #---
+        # ---
         qu_numb += 1
         if quarry_result_lenth == 0 and qu_numb > 1:
             printe.output('<<lightred>> len of first quarry == 0 continue')
             continue
-        #---
+        # ---
         numb += 1
-        #---
+        # ---
         printe.output("work in %d from %d querirs" % (numb, all_lenth))
-        #---
+        # ---
         quarry = quarry.replace( "wd:Q1457376", "wd:" + p31 )
-        #---
+        # ---
         if qu_numb == 1 :
             printe.output('<<lightred>> first quarry')
             printe.output(quarry)            
-        #---
+        # ---
         json1 = himoBOT2.sparql_generator_url(quarry)
-        #---
+        # ---
         json_lenth = len(json1)
-        #---
+        # ---
         quarry_result_lenth = len(json1)
-        #---
+        # ---
         num = 0
-        #---
+        # ---
         topic_ar = p31_desc.get('ar') or p31_desc.get('en') or ''
-        #---
+        # ---
         p31_langs = list(p31_desc.keys())
-        #---
+        # ---
         for item in json1:
             num += 1
             q = 'item' in item and item['item'].split('/entity/')[1]
-            #---
+            # ---
             q_langs = item.get("langs", "").split(",")
-            #---
+            # ---
             lang_to_add = list(set(p31_langs) - set(q_langs))
-            #---
+            # ---
             tp = '<<lightyellow>>*mainfromQuarry: %d from %d p31:"%s", qid:"%s":<<lightblue>>%s'  % (num, json_lenth, p31, q, topic_ar)
-            #---
+            # ---
             if qu_numb == 1 : printe.output(tp)
-            #---
+            # ---
             if len(lang_to_add) == 0:
                 printe.output(tp)
                 continue
-            #---
+            # ---
             if num % 50 == 0:
                 printe.output(tp)
-            #---
+            # ---
             if p31 in railway_tables:
                 work_railway( {}, p31, q=q )
             # elif p31 in placesTable:
                 # work_railway( {}, p31, q=q )
             else:
                 newdesc.work22(q, p31, desc_table)
-            #---
-        #---
+            # ---
+        # ---

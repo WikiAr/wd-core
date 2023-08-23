@@ -278,7 +278,7 @@ def mains():
     #pywikibot.output( 'tart3: "%s"' % tart3 )
     for te in tart3 :
         action_one_item( te , tart3[ te ] )
-    #---'''
+    # ---'''
     if FFF:
         workqua(Quarry[1])
 

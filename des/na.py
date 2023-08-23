@@ -13,29 +13,29 @@ import pywikibot
 import codecs
 import time
 import re
-#---
+# ---
 
 from API import printe
 import sys
     
-#---
+# ---
 from wd_API import himoAPI_test as himoAPI 
-#---
+# ---
 from wd_API import wd_bot
-#---
+# ---
 bylangs = False#False#True
-#---
+# ---
 limits = { 1: "1000"}
-#---
+# ---
 items_done = []
-#---
+# ---
 def action( json1 ):
     try:
         total = len(json1)
     except:
         total = 0
     c = 1
-    #---
+    # ---
     lang = "ar"
     for tab in json1:    # عنصر ويكي بيانات
         q = tab["item_q"]
@@ -43,7 +43,7 @@ def action( json1 ):
             en_name = tab["en_name"]
             item_en = tab["item_en"]
             ar_lab = tab["ar_name"]
-            #---
+            # ---
             kaka =  re.sub(r"[abcdefghijklmnopqrstuvwxyz]" , "" , ar_lab)
             if ar_lab != "" and kaka == ar_lab :
                 printe.output( f'  * ar_lab:"{ar_lab}",en_name:"{en_name}"' )
@@ -52,7 +52,7 @@ def action( json1 ):
                 himoAPI.Labels_API( q, ar_lab , "ar" , False, Or_Alii = True)
         else:
             printe.output( ' <<lightred>> * q in items_done. ' % q )
-#---
+# ---
 def make_quarry( ar_suff = "", item_p31_cat = "" , en_suff  = "", en_priff  = "") :
     quaaa = '''
 #تسمية تصانيف مواليد في
@@ -75,9 +75,9 @@ WHERE {
 '''
     quaaa = quaaa % ( ar_suff , "%s" , item_p31_cat , en_suff , en_priff ) 
     return quaaa
-#---
+# ---
 Quarry = {
-    #---
+    # ---
     'items' : '''# تسمية  عناصر طبقاً لاسم التصنيف
 SELECT DISTINCT #?item ?label ?cat_ar
 (concat("" , strafter(str(?item),"/entity/") , "")  as ?item_q)
@@ -101,73 +101,73 @@ WHERE {
     BIND( concat("Category:" , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
 }'''
-    #---
+    # ---
     ,'from' : make_quarry( 
         ar_suff = "تصنيف:أشخاص من ", 
         item_p31_cat = "?item wdt:P1792 ?cat." , 
         en_suff  = "Category:People from ", 
         )
-    #---
+    # ---
     ,'alumni' : make_quarry( 
         ar_suff = "تصنيف:خريجو ", 
         item_p31_cat = "?item wdt:P3876 ?cat." , 
         en_suff  = "Category:", 
         en_priff  = " alumni", 
         )
-    #---
+    # ---
     ,'Taken' : make_quarry( 
         ar_suff = "تصنيف:صور التقطت باستخدام ", 
         item_p31_cat = "?item wdt:P2033 ?cat." , 
         en_suff  = "Category:Taken with ", 
         en_priff  = "", 
         )
-    #---
+    # ---
     ,'basin' : make_quarry( 
         ar_suff = "تصنيف:حوض ", 
         item_p31_cat = "?item wdt:P1200 ?cat." , 
         en_suff  = "Category:", 
         en_priff  = " basin", 
         )
-    #---
+    # ---
     ,'shot' : make_quarry( 
         ar_suff = "تصنيف:أفلام مصورة في ", 
         item_p31_cat = "?item wdt:P1740 ?cat." , 
         en_suff  = "Category:Films shot in ", 
         en_priff  = "", 
         )
-    #---
+    # ---
     ,'employees' : make_quarry( 
         ar_suff = "تصنيف:موظفي ", 
         item_p31_cat = "?item wdt:P4195 ?cat." , 
         en_suff  = "Category:", 
         en_priff  = " employees", 
         )
-    #---
+    # ---
     ,'faculty' : make_quarry( 
         ar_suff = "تصنيف:هيئة تدريس ", 
         item_p31_cat = "?item wdt:P4195 ?cat." , 
         en_suff  = "Category:", 
         en_priff  = " faculty", 
         )
-    #---
+    # ---
     ,'buried' : make_quarry( 
         ar_suff = "تصنيف:مدفونون في ", 
         item_p31_cat = "?item wdt:P1791 ?cat." , 
         en_suff  = "Category:Burials at ", 
         )
-    #---
+    # ---
     ,'Births' : make_quarry( 
         ar_suff = "تصنيف:مواليد في ", 
         item_p31_cat = "?item wdt:P1464 ?cat." , 
         en_suff  = "Category:Births in ", 
         )
-    #---
+    # ---
     ,'Deaths' : make_quarry( 
         ar_suff = "تصنيف:وفيات في ", 
         item_p31_cat = "?item wdt:P1465 ?cat." , 
         en_suff  = "Category:Deaths in ", 
         )
-    #---
+    # ---
     }
 Quarry[1] = '''
 #تسمية تصانيف طبقاً لاسماء العناصر
@@ -190,7 +190,7 @@ WHERE {
     FILTER ( str(?cat_en) = str(?change_name) )
 }
 '''
-#---
+# ---
 Quarry["Births2"] = '''
 #تسمية تصانيف مواليد في
 SELECT DISTINCT  #?item ?label ?item_ar
@@ -210,7 +210,7 @@ WHERE {
     FILTER ( str(?cat_en) = str(?change_name) )
 }
 '''
-#---
+# ---
 Quarry["items"] = '''
 # تسمية  عناصر طبقاً لاسم التصنيف
 SELECT DISTINCT #?item ?label ?cat_ar
@@ -236,9 +236,9 @@ WHERE {
     FILTER ( str(?cat_en) = str(?change_name) )
 }
 '''
-#---
+# ---
 def main():
-    #---
+    # ---
     #python pwb.py des/na
     #python pwb.py des/na Deaths
     #python pwb.py des/na Births 
@@ -259,52 +259,52 @@ def main():
     #python pwb.py des/na items -P31:Q15221623
     #python pwb.py des/na items -limit:10 lang:fr
     #python pwb.py des/na -limit:1000
-    #---
+    # ---
     taxose = ""
     qya = {}
-    #---
+    # ---
     for arg in sys.argv:
         arg, sep, value = arg.partition(':')
-        #---
+        # ---
         if arg =='-limit' :
             printe.output( f'<<lightred>>>>  limit ( {value} )  '  )
             limits[1] = value
-        #---
+        # ---
         if arg in Quarry :
             printe.output( f'<<lightred>>>>  use Quarry:{arg} . ')
             qya[arg] = Quarry[arg]
-    #---
+    # ---
     if qya == {} : 
         qya = Quarry
-    #---
+    # ---
     number = 0 
     for key in qya:
         number += 1
         quuu = qya[key]
         for arg in sys.argv:
             arg, sep, value = arg.partition(':')
-            #---
+            # ---
             if arg == 'P31' or arg == '-P31' :
                 printe.output( f'<<lightred>>>>  P31:{value}. '  )
                 taxose = f"?item wdt:P31/wdt:P279* wd:{value}."
-            #---
+            # ---
             if arg == 'lang' or arg == '-lang' :
                 if value == "fr":
                     quuu = quuu.replace('"en"' , '"fr"' )
                     quuu = quuu.replace('"Category:"' , '"Catégorie:"' )
                     printe.output( '<<lightred>>>> change lang to france. ' )
-        #---
+        # ---
         quuu = quuu % taxose
-        #---
+        # ---
         if limits[1] != "" : 
             quuu = quuu + f'\n LIMIT {limits[1]}'
-        #---
+        # ---
         printe.output("quuu : %d/%d key:%s" %  ( number , len(qya) , key ) ) 
         printe.output(quuu)
-        #---
+        # ---
         json1 = wd_bot.sparql_generator_url(quuu)
         action( json1 )
-#---
+# ---
 if __name__ == "__main__":
     main()
-#---
+# ---

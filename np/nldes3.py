@@ -38,7 +38,7 @@ SELECT ?item2 ?item2Label (COUNT(?item) AS ?count) WHERE {
   }
 }
 group by ?item2 ?item2Label
-#---
+# ---
 pywikibot\.ItemPage\(repo\,(.*?)\.title\(\)\)
 python3 pwb.py np/nldes3 a3r sparql:Q184188      #كانتون فرنسي
 python3 pwb.py np/nldes3 a3r sparql:Q7930614     #قرية في تايوان
@@ -71,7 +71,7 @@ python3 pwb.py np/nldes3 a3r sparql:Q180958    #كلية
 python3 pwb.py np/nldes3 a3r sparql:Q179700    #تمثال
 python3 pwb.py np/nldes3 a3r sparql:Q30022    #مقهى
 python3 pwb.py np/nldes3 a3r sparql:Q4989906    #معلم تذكاري
-#---
+# ---
 python3 pwb.py np/nldes3 a3r sparql:Q184188 ask #كانتون فرنسي
 python3 pwb.py np/nldes3 a3r sparql:Q783866 ask #
 python3 pwb.py np/nldes3 a3r sparql:Q783866 ask #
@@ -98,22 +98,22 @@ from API import printe
 import sys
 import re
 from datetime import timedelta
-#---
+# ---
 from wd_API import himoAPI
 from wd_API import wd_bot
-#---
+# ---
 totaledits=0
-#---
+# ---
 sparqler = { 1 : '' }
 Offq = { 1 : 0 }
 Off = { 1 : 0 }
 limit = { 1 : 0 }
-#---
+# ---
 totallimit = { 1 : 10000 }
-#---
+# ---
 from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS, p50s
 from np.nldesc import *
-#---
+# ---
 def lastXnewpages(maxp):
   printe.output('Begonnen')
   site=pywikibot.Site('nl')
@@ -128,7 +128,7 @@ def lastXnewpages(maxp):
        except:
         pass
   printe.output('Klaar')
-#---
+# ---
 def testrun():
  repo = pywikibot.Site().data_repository()
  item2get = 'Q92924911'
@@ -140,14 +140,14 @@ def testrun():
    #print('[%s][%s]' % (x.get('descriptions',{})['nl'],''))
  else:
    printe.output('no action!')
-#---
+# ---
 def wd_one_without_description(item):
   base_sparql = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . OPTIONAL {?item schema:description ?itemdescription filter (lang(?itemdescription) = \"nl\").  } FILTER (!BOUND(?itemdescription))}'
   one_sparql = base_sparql % item
   for wditem in wd_sparql_query(one_sparql):
     if (wditem.exists()):
       yield wditem
-#---
+# ---
 def wd_all_without_description():
   base_sparql = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . OPTIONAL {?item schema:description ?itemdescription filter (lang(?itemdescription) = \"nl\").  } FILTER (!BOUND(?itemdescription))}'
   for item in all_types_list:
@@ -158,7 +158,7 @@ def wd_all_without_description():
       if (wditem.exists()):
         yield wditem
     '''
-#---
+# ---
 def wd_all_simple_P131():
   for onesimpleitem in simple_set_byP131:
     query = 'select ?item where {?item wdt:P31 wd:%s}' % onesimpleitem
@@ -174,7 +174,7 @@ def wd_all_simple_P131():
       except:
         pass
   yield 'Q5'
-#---
+# ---
 def wd_all_countries(spq):
   country_query = 'select ?item where {?item wdt:P31 wd:Q6256}'
   country_generator = wd_sparql_query(country_query)
@@ -184,52 +184,52 @@ def wd_all_countries(spq):
     for item in one_country_generator:
         if (item.exists()):
           yield item
-#---
+# ---
 def wd_sparql_query(spq, ddf=False):
-    #---
+    # ---
     New_List = []
-    #---
+    # ---
     qua = spq
-    #---
+    # ---
     if qua == '':
         return New_List
-    #---
+    # ---
     Keep = True
     offset = 0
-    #---
+    # ---
     if Off[1] != 0 :
         offset = Off[1]
-    #---
+    # ---
     printe.output( f'qua "{qua}"' )
-    #---
+    # ---
     while Keep:
-        #---
+        # ---
         quarry = qua
-        #---
+        # ---
         #if ddf:
         if limit[1] != 0 :
             quarry = quarry + "\n limit " + str( limit[1] )
         if offset != 0 :
             quarry = quarry + " offset " + str( offset )
-        #---
+        # ---
         #printe.output( quarry )
-        #---
+        # ---
         printe.output( 'limit[1]:"%d"\t offset:"%d"' % (limit[1] , offset ) )
-        #---
+        # ---
         generator = wd_bot.sparql_generator_url( quarry , printquary = False , geterror = True )
-        #---
+        # ---
         for x in generator:
             New_List.append( x )
-        #---
+        # ---
         offset = int( offset + limit[1] )
-        #---
+        # ---
         if not generator or generator == [] or 'nokeep' in sys.argv :
             Keep = False
-        #---
+        # ---
         # ناتج الاستعلام أقل من تحديد limit
         if len(generator) < limit[1] and 'hhh' in sys.argv :
             Keep = False
-        #---
+        # ---
         #
         if len(New_List) > 1 :
             fandi = ( len(New_List) / totallimit[1] ) * 100
@@ -237,12 +237,12 @@ def wd_sparql_query(spq, ddf=False):
             if fandi > 89:
                 Keep = False
                 printe.output( 'return New_List..' )
-        #---
+        # ---
         if not ddf or limit[1] == 0 :
             Keep = False
-    #---
+    # ---
     return New_List
-#---
+# ---
 def wd_user_edits(username,ucsite,totaledits):
   repo=pywikibot.Site('wikidata','wikidata').data_repository()
   useredits=pg.UserContributionsGenerator(username,site=ucsite,total=totaledits,namespaces=[0])
@@ -251,10 +251,10 @@ def wd_user_edits(username,ucsite,totaledits):
       wd=pywikibot.ItemPage( repo , oneedit.title() )
       if (wd.exists()):
         yield wd
-#---
+# ---
 def sparql_nodescription(sparql):
   return 'select distinct ?item where {{%s}filter (!bound(?itemDescription))}' % sparql
-#---
+# ---
 def some_items():
   repo=pywikibot.Site('wikidata','wikidata').data_repository()
   do_these=['Q52504095','Q52501574']  #scenografino / dramaturgino
@@ -263,7 +263,7 @@ def some_items():
     wd=pywikibot.ItemPage(repo,one_item)
     if (wd.exists()):
       yield wd
-#---
+# ---
 def newest_items(repo,site):
     for item in pg.NewPagesPageGenerator(site):
         break
@@ -271,7 +271,7 @@ def newest_items(repo,site):
     for itemno in range(startno,0,-1):
         item=pywikibot.ItemPage(repo,'Q%d'%itemno)
         yield(item)
-#---
+# ---
 def generator_last_hour():
     timenow=None
     site=pywikibot.Site('wikidata','wikidata')
@@ -292,7 +292,7 @@ def generator_last_hour():
       else:
         printe.output(f'Klaar: {item.oldest_revision.timestamp}' )
         break
-#---
+# ---
 def wd_all_items():
   startrange= 80999999
   stoprange = 80000000
@@ -314,7 +314,7 @@ def wd_all_items():
     else:
       pass
     itemno -= 1
-#---
+# ---
 '''
 query = 'link[nlwiki]'
 sparql_query4 = 'SELECT * {{SELECT ?item WHERE { ?wiki0 <http://schema.org/about> ?item . ?wiki0 <http://schema.org/isPartOf> <https://nl.wikipedia.org/> {service wikibase:label{bd:serviceParam wikibase:language 'nl' . }}}} filter (!bound(?itemDescription))}   '
@@ -380,54 +380,54 @@ sparql_query3 = 'select ?item where {?item wdt:P31 wd:Q5633421 }'
 #sparql_query = 'SELECT ?item {?item wdt:P31 wd:Q13442814 . OPTIONAL { ?item schema:description ?d . FILTER(lang(?d)='nl') }  FILTER( !BOUND(?d) )} LIMIT 1000'
 #sparql_query='SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P106 ?dummy0 . ?wiki0 <http://schema.org/about> ?item . ?wiki0 <http://schema.org/isPartOf> <https://nl.wikipedia.org/> {service wikibase:label{bd:serviceParam wikibase:language 'nl' . }}}'  #claim[31:5] and claim[106] and link[nlwiki]
 '''
-#---
+# ---
 def just_get_ar(labe):
     lab = labe.split('@@')
     tab = []
-    #---
+    # ---
     claimstr = ''
-    #---
+    # ---
     for o in lab:
         test = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]" , '' , o.lower() )
         if test.lower() == o.lower() and o != '' :
             tab.append(o)
-    #---
+    # ---
     if tab != []:
         claimstr = '، و'.join(tab)
         printe.output( f"just_get_ar:{claimstr}." )
-    #---
+    # ---
     return claimstr
-    #---
+    # ---
 def main(debug=False):
     maxwrites=1
     print ('main')
     sasa = ''
     pigenerator=None
-    #---
+    # ---
     sasa = SPARQLSE.get( sparqler[1].strip() , '' )
-    #---
+    # ---
     if sasa == '':
         printe.output( f'{sparqler[1]} not in SPARQLSE' )
         sasa = '''SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') } } '''  % sparqler[1]
-    #---
+    # ---
     ssqq = [sasa]
     if sparqler[1].strip() == '' or 'allkeys' in sys.argv :
         ssqq = [ SPARQLSE[x] for x in SPARQLSE.keys() ]
         printe.output( f'work in all SPARQLSE.keys() len: {len(ssqq)}' )
-    #---
+    # ---
     numg = 0
-    #---
+    # ---
     ssqq = random.sample(ssqq, int(len(ssqq)))
-    #---
+    # ---
     for sparql_query in ssqq :
-        #---
+        # ---
         numg +=1
-        #---
+        # ---
         printe.output( '-------------------------' )
         printe.output("<<lightblue>> query %d from %d :" % (numg , len(ssqq)) )
-        #---
+        # ---
         if Offq[1] > 0 and Offq[1] > numg : continue
-        #---
+        # ---
         #sparql_query = 'select ?item where {?item wdt:P31 wd:Q3508250}' #
         #site=pywikibot.Site('wikidata','wikidata')
         repo={}#site.data_repository()
@@ -456,9 +456,9 @@ def main(debug=False):
             totalreads+=1
             if debug: printe.output(f'Found: {q}' )
             printe.output( "p%d/%d q:%s" % ( totalreads , len(pigenerator) , q ) )
-            #---
+            # ---
             claimstr = just_get_ar(wd.get( 'lab' , '' ))
-            #---
+            # ---
             thisfound, thisone = action_one_item( 'ar', q, claimstr=claimstr )
             items_processed += thisone
             #if (items_processed>12): break
@@ -469,10 +469,10 @@ def main(debug=False):
 
 print(' start np/nldes.py ')
 forcehourly=False
-#---
+# ---
 if __name__ == '__main__':
     if 'test' in sys.argv:
         action_one_item('ar', 'Q162210' )
     else:
         main()
-#---
+# ---

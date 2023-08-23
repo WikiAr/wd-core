@@ -11,18 +11,18 @@
 # (C) Ibrahem Qasim, 2022
 #
 #
-#---
+# ---
 from make.lists import Sport_key
 #from make.Sport_key import Sports_Keys_For_Label #Sports_Keys_For_Team#Sports_Keys_For_Jobs#Sports_Keys_For_Label
-#---
+# ---
 Sports_Keys_Lab = Sport_key.Sports_Keys_For_Label
 Sports_Keys_Team = Sport_key.Sports_Keys_For_Team
-#---
+# ---
 cccccups = {
     "FIS Alpine Ski World Cup" : "كأس العالم للتزلج على المنحدرات الثلجية" ,
     "alpine skiing world cup" : "كأس العالم للتزلج على المنحدرات الثلجية" ,
     }
-#---
+# ---
 Mako_keys_4 = {
     "ice dance" : "الرقص على الجليد" ,
     "freestyle pursuit" : "مطاردة حرة" ,
@@ -39,7 +39,7 @@ Mako_keys_4 = {
     "Cross country" : "التزلج الريفي" ,
     "team race" : "سباق الفريق" ,
     }
-#---
+# ---
 Mako_keys2 = {
     "free skating" : "تزلج حر" ,
     #"pair skating" : "التزلج الفني على الجليد" ,
@@ -68,9 +68,9 @@ Mako_keys2 = {
     "cruiserweight": "وزن الطراد",
     "Atomweight": "وزن الذرة",
     "super cruiserweight": "وزن الطراد سوبر",
-    #---
+    # ---
     }
-#---
+# ---
 Mako_keys = {#
     "tennis at the summer olympics" : "كرة المضرب في الألعاب الأولمبية الصيفية" ,
     "tennis at the winter olympics" : "كرة المضرب في الألعاب الأولمبية الشتوية" ,
@@ -84,7 +84,7 @@ Mako_keys = {#
     "ladies' singles free skating" : "تزلج حر فردي للسيدات" ,
     "men's singles free skating" : "تزلج حر فردي للرجال" ,
     }
-#---
+# ---
 International_Federation = {
 
     "FIL World Luge Championships":"كأس العالم للزحف الثلجي",
@@ -359,7 +359,7 @@ International_Federation = {
     "FINA World Aquatics Championships":"بطولة العالم للألعاب المائية",
     
     }
-#---
+# ---
 olympics = {
     "Women's 500 m time trial" : "سباق 500 متر ضد الساعة للسيدات",
     "Women's individual pursuit" : "سباق المطاردة الفردية للسيدات",
@@ -371,12 +371,12 @@ olympics = {
     "Women's sprint" : "سباق السرعة الفردية للسيدات",
     "Women's team pursuit" : "سباق المطاردة الفرقية للسيدات",
     "Women's team sprint" : "سباق السرعة الفردية لفرق السيدات",
-    #---
+    # ---
     "Women's road race" : "سباق الطريق للسيدات",
     "Women's time trial" : "سباق الطريق ضد الساعة للسيدات",
     "Women's road race" : "سباق الطريق للسيدات",
     "Women's time trial" : "سباق الطريق ضد الساعة للسيدات",
-    #---
+    # ---
     
     "Men's road race" : "سباق الطريق",
     "Men's team time trial" : "سباق الطريق ضد الساعة للفرق",
@@ -391,7 +391,7 @@ olympics = {
     "Men's team pursuit" : "سباق المطاردة الفرقية",
     "Men's team sprint" : "سباق السرعة الفردية للفرق",
     }
-#---
+# ---
 for fff, ffflab in Sports_Keys_Team.items(): #– winter youth olympics
     #cccccups["%s world Championships" %  fff.lower() ] = "بطولة العالم %s"  % ffflab
     cccccups[f"{fff.lower()} world championships" ] = f"بطولة العالم {ffflab}"
@@ -401,7 +401,7 @@ for fff, ffflab in Sports_Keys_Team.items(): #– winter youth olympics
     cccccups[f"{fff.lower()} world men's championships" ] = f"بطولة العالم {ffflab} للرجال"
     cccccups[f"world women's {fff.lower()} championships" ] = f"بطولة العالم {ffflab} للسيدات"
     cccccups[f"{fff.lower()} world women's championships" ] = f"بطولة العالم {ffflab} للسيدات"
-#---
+# ---
 for fff, ffflab in Sports_Keys_Lab.items(): #– winter youth olympics
     olympics[f"{fff.lower()} at the summer olympics" ] = f"{ffflab} في الألعاب الأولمبية الصيفية"
     olympics[f"{fff.lower()} at the winter youth olympics" ] = f"{ffflab} في الألعاب الأولمبية الشبابية الشتوية"
@@ -409,7 +409,7 @@ for fff, ffflab in Sports_Keys_Lab.items(): #– winter youth olympics
     Mako_keys_4[f" mens's {fff.lower()}" ] = f"{ffflab} للرجال"
     Mako_keys_4[f" womens's {fff.lower()}" ] = f"{ffflab} للسيدات"
     #Mako_keys_4[ fff.lower() ] = ffflab
-#---
+# ---
 #individual 
 #jumping
 keys_1 = {
@@ -424,9 +424,9 @@ keys_1 = {
     "ladies" : "سيدات",
     "mens" : "رجال",
     "men's" : "رجال",
-    #---
+    # ---
     }#men's individual road race
-#---
+# ---
 keys_2 = {
     "tournament" : "مسابقة",
     #"single" : "فردي",
@@ -448,7 +448,7 @@ keys_2 = {
     "coxless" : "رباعي",
     "jumping" : "قفز",
     }
-#---
+# ---
 keys_3 = {
     "road race" : "سباق الطريق",
     "pursuit" : "مطاردة",
@@ -458,25 +458,25 @@ keys_3 = {
     "sculls" : "تجديف",
     "pair" : "مزدوج",
     }
-#---
+# ---
 for start in keys_1: #–
     for suff in keys_2:#–
         lab_ke = f"{keys_2[suff]} {keys_1[start]}"
-        #---
+        # ---
         ke = f"{start} {suff}"
         Mako_keys2[ ke.lower() ] = lab_ke
-        #---
+        # ---
         ke44 = f"{suff} {start}"
         Mako_keys2[ ke44.lower() ] = lab_ke
         for su3 in keys_3:
             lab_ke3 = f"{keys_2[suff]} {keys_1[start]} {keys_3[su3]}"
-            #---
+            # ---
             ke3 = f"{start} {suff} {su3}"
             Mako_keys2[ ke3.lower() ] = lab_ke3
-            #---
+            # ---
             lab_ke2 = f"{keys_2[suff]} {keys_3[su3]}"
-            #---
+            # ---
             ke2 = f"{suff} {su3}"
             Mako_keys2[ ke2.lower() ] = lab_ke2
-#---
+# ---
 

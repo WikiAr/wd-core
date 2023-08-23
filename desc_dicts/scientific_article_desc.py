@@ -12,7 +12,7 @@ np/si3.py
 #
 #
 # from descs_dicts.scientific_article_desc import Scientific_descraptions
-#---
+# ---
 Scientific_descraptions = {
     # "ar":"مقالة علمية",
     "sl":"znanstveni članek",
@@ -65,19 +65,19 @@ Scientific_descraptions = {
     "zh":"年学术文章",#年论文
     "zh-hant":"年學術文章",#年論文
     }
-#---
+# ---
 Scientific_descraptions['en-gb'] = Scientific_descraptions['en']
 Scientific_descraptions['en-ca'] = Scientific_descraptions['en']
-#---
+# ---
 Scientific_descraptions['zh-hk'] = Scientific_descraptions['zh-hant']
 Scientific_descraptions['zh-mo'] = Scientific_descraptions['zh-hant']
 Scientific_descraptions['zh-tw'] = Scientific_descraptions['zh-hant']
 Scientific_descraptions['yue'] = Scientific_descraptions['zh-hant']
-#---
+# ---
 Scientific_descraptions['zh-hans'] = Scientific_descraptions['zh']
 Scientific_descraptions['zh-cn'] = Scientific_descraptions['zh']
 Scientific_descraptions['zh-sg'] = Scientific_descraptions['zh']
 Scientific_descraptions['zh-my'] = Scientific_descraptions['zh']
 Scientific_descraptions['wuu'] = Scientific_descraptions['zh']
-#---
-#---
+# ---
+# ---

@@ -20,18 +20,18 @@ import pywikibot
 import codecs
 import datetime
 import json
-#---
+# ---
 from API import printe
 import sys
-#---
+# ---
 import urllib
 import urllib.request
 import urllib.parse
-#---
+# ---
 from API import himoBOT2
 from wd_API import wd_desc
 from wd_API import wd_bot
-#---
+# ---
 AskSave = { 1 : True }
 Qlist = {}
 
@@ -78,7 +78,7 @@ Qlist['Q482994'] = {# ألبوم
     #'es' : 'álbum' ,
     'nl' : 'muziekalbum' ,
     }
-#---
+# ---
 def action_one_item( Qid, pa, lang, keys):
     item = himoBOT2.Get_Item_API_From_Qid( pa['item'] )
     if item:
@@ -86,23 +86,23 @@ def action_one_item( Qid, pa, lang, keys):
         #Summary= 'Bot: - Add descriptions: '+ lang
         keys = list(keys)
         keys.sort()
-        #---
+        # ---
         if 'en' in keys:
             keys.append('en-gb')
             keys.append('en-ca')
         printe.output('keys:' + str(keys))
-        #---
+        # ---
         descriptions = item["descriptions"]
         NewDesc = {}
         addedlangs = []
-        #---
+        # ---
         for lang in keys:
             if lang not in descriptions.keys():
-                #---
+                # ---
                 lang2 = lang
                 if lang in ('en-ca', 'en-gb'):
                     lang2 = 'en'
-                #---
+                # ---
                 des =  MakeDesc(Qid, pa, lang2)
                 if des :
                     NewDesc[lang] = {"language":lang,"value": des }
@@ -113,7 +113,7 @@ def action_one_item( Qid, pa, lang, keys):
                     addedlangs.append(lang)
                 else:
                     printe.output(f'*no desc for "{lang}"')
-        #---
+        # ---
         if addedlangs:
             qitem = Qid#item.title(as_link=False)
             if AskSave[1]:
@@ -129,7 +129,7 @@ def action_one_item( Qid, pa, lang, keys):
                     printe.output('* rong answer' )
             else:
                 wd_desc.work_api_desc( NewDesc, qitem)
-#---
+# ---
 Comma = {
         "an": " y ",
         "ar": "/" ,
@@ -158,42 +158,42 @@ Comma2 = {
         'fr' : ", ",
         'nl' : ", "
     }
-#---
+# ---
 def GetQuery(Qid, lang, keys):
-    #---
+    # ---
     P50 = 'P50'
     if Qid == 'Q482994':
         P50 = 'P175'
-    #---
+    # ---
     #sa = ('?item wdt:P136 wd:Q8261 . ?item wdt:P31* wd:Q7725634 .\n')
     sa = (f'?item wdt:P31 wd:{Qid} .\n' )
     if Qid == 'novel':
         sa = ('?item wdt:P136 wd:Q8261 . ?item wdt:P31 wd:Q7725634 .\n')
-    #---
+    # ---
     ur = (f'SELECT ?item (GROUP_CONCAT(DISTINCT(?auth{lang}); separator="{Comma[lang]}") as ?{lang}) ' )
-    #---
+    # ---
     for lan in keys:
         if lan != lang:
             ur = ur + (f'\n(GROUP_CONCAT(DISTINCT(?auth{lan}); separator="{Comma[lan]}") as ?{lan}) ' )
-    #---
+    # ---
     ur = ur  + ('WHERE { ?item wdt:%s ?auths .\n' % P50 )+ sa
-    #---
+    # ---
     for lan in keys:
         if lan != lang:
             ur = ur + (f'OPTIONAL {{?auths rdfs:label ?auth{lan} filter (lang(?auth{lan}) = "{lan}")}} .\n' )
-    #---
+    # ---
     if sys.argv and 'optional' in sys.argv:
         ur = ur + (f' OPTIONAL {{ ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") }} .' )
     else:
         ur = ur + (f' ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") .' )
-    #---
+    # ---
     ur = ur + ('\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang )
     ur = ur + 'FILTER(!BOUND(?itemDes))  }\n GROUP BY ?item '
-    #---
+    # ---
     #printe.output(ur)
-    #---
+    # ---
     return ur
-#---
+# ---
 def Gquery2(json1):
     table = {}
     #table = []
@@ -206,42 +206,42 @@ def Gquery2(json1):
         s['item'] = q
         table[q] = s
     return table
-#---
+# ---
 Off = { 1 : 0 }
 limit = { 1 : 0 }
-#---
+# ---
 for arg in sys.argv:
-    #---
+    # ---
     arg, sep, value = arg.partition(':')
-    #---
+    # ---
     if arg == 'off':
         Off[1] = int(value)
-    #---
+    # ---
     if arg == 'limit':
         limit[1] = int(value)
-    #---
+    # ---
 def wd_sparql_query( query, ddf = False ):
-    #---
+    # ---
     New_List = []
-    #---
+    # ---
     qua = query
-    #---
+    # ---
     if qua == '':
         return New_List
-    #---
+    # ---
     #if limit[1] != 0 :
         #query = query + " limit " + str( limit[1] )
-    #---
+    # ---
     Keep = True
     offset = 0
-    #---
+    # ---
     if Off[1] != 0 :
         offset = Off[1]
-    #---
+    # ---
     while Keep:
-        #---
+        # ---
         quarry = qua
-        #---
+        # ---
         #if ddf:
         if limit[1] != 0 :
             quarry = quarry + "\n limit " + str( limit[1] )
@@ -249,48 +249,48 @@ def wd_sparql_query( query, ddf = False ):
             quarry = quarry + " offset " + str( offset )
         #else: Off[1] != 0 :
             #quarry = quarry + " offset " + str( Off[1] )
-        #---
+        # ---
         #printe.output( quarry )
-        #---
+        # ---
         printe.output( f'quarry "{quarry}"' )
-        #---
+        # ---
         generator = wd_bot.sparql_generator_url( quarry )
-        #---
+        # ---
         for x in generator:
             New_List.append( x )
-        #---
+        # ---
         offset = int( offset + limit[1] )
-        #---
+        # ---
         if not generator or generator == [] or "nokeep" in sys.argv :
             Keep = False
-        #---
+        # ---
         if not ddf or limit[1] == 0 :
             Keep = False
-    #---
+    # ---
     return New_List
-#---
+# ---
 def WorkWithOneLang( Qid, lang, keys ):
     printe.output( '*<<lightyellow>> WorkWithOneLang: ')
-    #---
+    # ---
     query = GetQuery(Qid, lang, keys)
-    #---
+    # ---
     #printe.output(query)
-    #---
+    # ---
     PageList = wd_sparql_query( query, ddf = True )
-    #---
+    # ---
     printe.output('* PageList: ')
     SAO = Qlist[Qid][lang]
-    #---
+    # ---
     total = len(PageList)
     num = 0
-    #---
+    # ---
     for pa in PageList:
         #printe.output(pa)
         num += 1
         pa['item'] = pa['item'].split('/entity/')[1]
         printe.output('<<lightblue>>> %s "%s" :%s/%d : %s'  % ( lang, SAO, num, total, pa['item'] ) )
         action_one_item( Qid, pa, lang, keys )
-#---
+# ---
 by_list = {
     'ar' : "من تأليف",
     'en' : "by",
@@ -309,7 +309,7 @@ by_list = {
     'es' : "por",
     'sv' : "av"
     }
-#---
+# ---
 def MakeDesc(Qid, pa, lang):
     #for lang in language:
     #auth
@@ -317,16 +317,16 @@ def MakeDesc(Qid, pa, lang):
     english = ['en-gb', 'en-ca' ]
     if lang in english:
         lang = 'en'
-    #---
+    # ---
     if not lang in by_list:
         printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"' )
         return False
-    #---
+    # ---
     co = by_list[lang] + ' '
     if (Qid == 'Q482994') and (lang == 'ar'):
         #co = 'ل'
         co = 'من أداء '
-    #---
+    # ---
     if (lang in pa) and (pa[lang] != ''):
         auth = pa[lang]
         if auth:
@@ -341,29 +341,29 @@ def MakeDesc(Qid, pa, lang):
                     description = d
     #else:
         #description = False
-    #---
+    # ---
     if description and lang == "ar" :
         description = description.replace("/", "، و" )
-    #---
+    # ---
     if lang == 'ar':
         if description and description != re.sub(r'[abcdefghijklmnobqrstuvwxyz]', '', description):
             printe.output( f'<<lightred>> arabic description test failed "{description}".' )
             description = False
     return description
-#---
+# ---
 def main():
-    #---
+    # ---
     for arg in sys.argv:
-        #---
+        # ---
         arg, sep, value = arg.partition(':')
-        #---
+        # ---
         if arg == 'save':
             AskSave[1] = False
-    #---
+    # ---
     #language = [ 'fr']
     Queries = 0
     printe.output('start with query')
-    #---
+    # ---
     for Qid in Qlist:
         Queries += 1
 
@@ -378,7 +378,7 @@ def main():
         for lang in keys:
             #printe.output( Qlist[Qid][lang] )
             WorkWithOneLang( Qid, lang, keys )
-#---
+# ---
 if __name__ == "__main__":
     main()
-#---
+# ---

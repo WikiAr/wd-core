@@ -1,8 +1,8 @@
 '''
-#---
+# ---
 from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)
-#---
+# ---
 python3 pwb.py des/ru_st_2_latin test
 
 '''
@@ -10,7 +10,7 @@ from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
 from wd_API import himoAPI
 import pywikibot
 import sys
-#---
+# ---
 letters_to_latin = { 
     "ru": {
         "а": "a",
@@ -298,82 +298,82 @@ letters_to_latin = {
         "": "",
     }
 }
-#---
+# ---
 def add_new_label(q, enlabel):
-    #---
+    # ---
     if enlabel == "": return
-    #---
+    # ---
     labels = {}
-    #---
+    # ---
     labels["en"] = { "language": "en", "value": enlabel }
     labels["en-ca"] = { "language": "en-ca", "value": enlabel }
     labels["en-gb"] = { "language": "en-gb", "value": enlabel }
-    #---
+    # ---
     data = { "labels" : labels }
-    #---
+    # ---
     add = himoAPI.New_Mult_Des( q, data, "Bot: cyrillic2latin-labels", False )
-#---
+# ---
 # abcd = "abcdefghijklmnopqrstuvwxyz".split('')
 abcd = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(',')
-#---
+# ---
 liste = {
     'ru': list(set(letters_to_latin['ru'].keys()) - set(letters_to_latin['ru'].values()) - set(abcd)),
     'sr': list(set(letters_to_latin['sr'].keys()) - set(letters_to_latin['sr'].values()) - set(abcd)),
 }
-#---
+# ---
 def change_one_lab(text, lang):
     table = letters_to_latin[lang]
-    #---
+    # ---
     new_lab = "".join( [ table.get(i, i) for i in text] )
-    #---
+    # ---
     # if lang ==  'ru': new_lab = new_lab.replace("ь","")
-    #---
+    # ---
     new_lab2 = new_lab.lower()
-    #---
+    # ---
     for x in liste[lang]:
         if x != '' and new_lab2.find(x.lower()) != -1 :
             print(f'<<lightred>> new_lab has {x}')
             if table.get(x):
                 new_lab = new_lab.replace(x, table.get(x))
-    #---
+    # ---
     print(f'get new lab from org_lab:[{lang}:{text}] : new:{new_lab}')
-    #---
+    # ---
     return new_lab
-#---
+# ---
 def make_en_label(labels, q, Add=False):
     org_lab = ''  
     new_lab = ''
-    #---
+    # ---
     liste = []
-    #---
+    # ---
     for lang in ['ru','sr']:
         if lang in labels:
             org_lab = labels[lang]
-            #---
+            # ---
             new_lab = change_one_lab( org_lab, lang )
-            #---
+            # ---
             break
-    #---
+    # ---
     if new_lab != "":
         if Add :
             add_new_label(q, new_lab)
-    #---
+    # ---
     return new_lab
-#---
+# ---
 def main():
-    #---
+    # ---
     query = '''SELECT ?item 
 WHERE {  ?item wdt:P495 wd:Q403.
 ?item ^schema:about ?article . ?article schema:isPartOf <https://sr.wikipedia.org/>; 
 }
 limit 10''' #country of origin=Srbia  #xxxx items
-    #---
-    #---
+    # ---
+    # ---
     generator = WikidataSPARQLPageGenerator(
         query, 
         site = pywikibot.Site('wikidata'),
     )
-    #---
+    # ---
     for item in generator:
         # print(item)
         labels = item.labels
@@ -381,7 +381,7 @@ limit 10''' #country of origin=Srbia  #xxxx items
         if item.exists():
             item.get(get_redirect=True)
             newlab = make_en_label(labels, q)
-#---
+# ---
 if __name__ == "__main__": 
     if 'test' in sys.argv:
         change_one_lab('Уркальту', 'ru')

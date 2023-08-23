@@ -38,14 +38,14 @@ WHERE {
 group by ?P31
 
 """
-#---
+# ---
 # from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
 from desc_dicts.scientific_article_desc import Scientific_descraptions
-#---
+# ---
 DescraptionsTable = {
     "scientific article": Scientific_descraptions,
     }
-#---
+# ---
 Qid_Desc = {
     "Q13424466" :   {"ar":"ميناء طبيعي",        "en":"natural harbor"},
     "Q13433827" :   {"ar":"مقالة موسوعية",      "en":"encyclopedia article"},# 209000
@@ -100,7 +100,7 @@ Qid_Desc = {
     "Q10870555" :   {"ar":"تقرير",              "en":"report"},
     "Q4502142" :    {"ar":"عمل فني مرئي",       "en":"visual artwork"},
 }
-#---
+# ---
 tiny_wrwr = {
     'Q1260524':{'ar':'وقت من اليوم', 'en':'' },         # 68707
     'Q5633421':{'ar':'دورية علمية', 'en':'' },          # 55353
@@ -269,17 +269,17 @@ tiny_wrwr = {
     'Q8362':{'ar':'منمنمة', 'en':'' },          # 506
     'Q5527082':{'ar':'', 'en':'' },         # 505
     }
-#---
+# ---
 for ps in tiny_wrwr.keys():
     if ps in Qid_Desc:
         print(ps)
-#---
+# ---
 Qid_Descraptions = {} # مستخدم في عدة بوتات
-#---
+# ---
 for qid, labs in Qid_Desc.items():
     Qid_Descraptions[qid] = { "ar" : labs['ar'] }
     DescraptionsTable[labs['en']] = { "ar" : labs['ar'] }
-#---
+# ---
 many_lang_qid_desc = {
     "Q13442814": Scientific_descraptions, # scientific article
     "Q11173":{
@@ -1307,9 +1307,9 @@ many_lang_qid_desc = {
         "tg-latn":"sol",
     },
     }
-#---
+# ---
 # merge 2 dictionaries
-#---
+# ---
 for q2, labse in many_lang_qid_desc.items():
     Qid_Descraptions[q2] = labse
     # if labse.get("uk", '') != '':
@@ -1318,7 +1318,7 @@ for q2, labse in many_lang_qid_desc.items():
         # pkrint(f'*{en}\t{uk}')
     if labse.get("en", '') != '':
         DescraptionsTable[labse['en']] = labse
-#---
+# ---
 #'Q7278',   #حزب سياسي
 Space_Desc = {
     "Q44559":       {"ar":"كوكب خارج المجموعة الشمسية", "en":"extrasolar planet"},
@@ -1365,26 +1365,26 @@ Space_Desc = {
         "ga": "réaltra"
     },
 }
-#---
+# ---
 Space_Descraptions = {}
-#---
+# ---
 for k, val in Space_Desc.items():
     if len(val.keys()) > 2 :
         Space_Descraptions[k] = val
     else:
         Space_Descraptions[k] = { "ar" : val["ar"] }
-#---
+# ---
 # enlab:primary school, q:Q9842
 # enlab:taxon, q:Q16521
-#---
+# ---
 #Space_Descraptions["Q726242"] = { "ar":"نجم","en":"RR Lyrae variable" }
 #Space_Descraptions["Q2247863"] = { "ar":"نجم", "en":"high proper-motion star" }
 #Space_Descraptions["Q66619666"] = { "ar":"نجم","en":"Red Giant Branch star" }
 #Space_Descraptions["Q72803622"] = { "ar":"نجم","en":"emission-line star" }
-#---
+# ---
 for xd in Space_Descraptions:
    DescraptionsTable[xd] = Space_Descraptions[xd]
-#---
+# ---
 Taxon_Descraptions = {
     "species of insect":{
         "ar":"نوع من الحشرات",
@@ -1585,7 +1585,7 @@ Taxon_Descraptions = {
         "sq":"e zvarranikëve",
     },
 }
-#---
+# ---
 replace_desc = {
     "hu": { 
         "férfi keresztnév" : "férfikeresztnév",
@@ -1596,7 +1596,7 @@ replace_desc = {
         "seznam Wikimedije" : "seznam Wikimedie",
     },
 }
-#---
+# ---
 if __name__ == "__main__":
     # python3 pwb.py desc_dicts/descraptions
     u1 = ''; u2 = ''
@@ -1606,8 +1606,8 @@ if __name__ == "__main__":
         line = f'\n|-\n| {en_d} || {sl_d}'
         if "sl" in taba:    u1 += line
         elif len(taba) > 2:   u2 += line
-    #---
+    # ---
     print(u1)
     print(u2)
-    #---
-#---
+    # ---
+# ---

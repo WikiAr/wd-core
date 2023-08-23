@@ -17,10 +17,10 @@
     
 '''
 #
-#---
+# ---
 # (.*)\t(.*)
 # , "$1" : {"ar" : "$2" }
-#--- 
+# --- 
 faft = {
     "Q5633421" : {"ar" : "دورية علمية" },
     "Q5" : {"ar" : "إنسان" },
@@ -84,7 +84,7 @@ faft = {
     "Q72803622" : {"ar" : "emission-line star" },
     "Q88965416" : {"ar" : "school unit" },
     }
-#--- 
+# --- 
 asdasd = '''
 SELECT ?item ?placear WHERE {
   ?item wdt:P279* wd:Q2221906.
@@ -93,7 +93,7 @@ SELECT ?item ?placear WHERE {
 }
 LIMIT 1000
 '''
-#---
+# ---
 yuxxx = '''
 
 SELECT 
@@ -137,7 +137,7 @@ WHERE { {
 ORDER BY DESC (?ct) (?value)
 
 '''
-#---
+# ---
 placesTable = {
     "Q108325" : {'ar': 'مصلى كنسي'},
     "Q1093829" : {'ar': 'مدينة'},
@@ -351,9 +351,9 @@ placesTable = {
     "Q569500":{ "ar":"مركز صحي", "en":"" },
     "Q39614":{"ar":"مقبرة", "en":"cemetery"},
     }
-#---
+# ---
 placesTable["Q8054"] = { "ar" : "بروتين" }
-#---
+# ---
 placesTable["Q207524"] = { "ar" : "جزيرة صغيرة" , "en" : "islet" }
 placesTable["Q22698"] = { "ar" : "متنزه" , "en" : "park" }
 #placesTable["Q34795826"] = { "ar" : "" , "en" : "moor" }
@@ -380,10 +380,10 @@ placesTable["Q44782"] = { "ar" : "ميناء" , "en" : "port" }
 #placesTable[""] = { "ar" : "" , "en" : "" }
 #placesTable[""] = { "ar" : "" , "en" : "" }
 placesTable["Q34379419"] = {"ar": "منطقة رملية","en": "sand area"}
-#---
+# ---
 
 
 
 
 
-#---
+# ---

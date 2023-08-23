@@ -15,11 +15,11 @@ import re
 from API import printe
 import sys
 import time
-#---
+# ---
 from wd_API import wd_bot
 from API import himoBOT2
 from wd_API import himoAPI
-#---
+# ---
 limit = { 1 : 0 }
 quarry = '''SELECT (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
  WHERE {
@@ -38,7 +38,7 @@ for q in json1:
     descriptions = himoBOT2.Get_item_descriptions_or_labels( Qid  , "descriptions" )
     if "ar" not in descriptions:
         himoAPI.Des_API( Qid , 'عدد أولي' , 'ar' , ask = "")
-#---
+# ---
 
 
 
@@ -56,4 +56,4 @@ for q in json1:
 
 
 
-#---
+# ---

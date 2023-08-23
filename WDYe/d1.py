@@ -43,11 +43,11 @@ import urllib.request
 import urllib.parse
 # ---
 from wd_API import wd_bot
-#---
+# ---
 from wd_API import wd_desc
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
 # wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
-#---
+# ---
 quuu = {}
 quuu['species of beetle'] = """
 SELECT DISTINCT 

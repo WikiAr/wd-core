@@ -7,12 +7,12 @@ import time
 import codecs
 import pywikibot
 import json
-#---
+# ---
 # start of newdesc.py file
 from wd_API import newdesc
 # newdesc.main_from_file(file , topic , translations2)
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
-#---
+# ---
 taop = {
         "Q2680952": {"ar":"روتردام", "en":"Rotterdam"},#5191
         "Q9899": {"ar":"أمستردام", "en":"Amsterdam"},#4513
@@ -400,23 +400,23 @@ xsxsxsx = {
         "Q858607": {"ar":"ستراين", "en":"Strijen"},#157
         "Q204412": {"ar":"تيرشخيلينج", "en":"Terschelling"},#154
     }
-#---
+# ---
 pokn = {
         "Q204412": {"ar":"تيرشخيلينج", "en":"Terschelling"},#154
     }
-#---
+# ---
 Format = {
     'ar' : '1 في 2، هولندا' 
 	, 'nl' : '1 in 2'
 	, 'en' : '1 in 2, the Netherlands'
     }
-#---
+# ---
 topics = {}
 topics['Q79007'] = {'ar' : 'شارع' , 'nl' : 'straat', 'en' : 'street' }
 #topics['Q174782'] = {'ar' : 'ميدان' , 'nl' : 'plein', 'en' : 'square' }
-#---
+# ---
 iop = [ 'Q79007' , 'Q523166' , 'Q174782' , 'Q1484611']
-#---
+# ---
 translations = {}
 for topic in topics:
     for city in taop:
@@ -439,6 +439,6 @@ for topic in topics:
             translations[topic][lang] = wal
         pywikibot.output(translations)
         newdesc.mainfromQuarry2( topic , quarry, translations)
-#---
+# ---
 
 

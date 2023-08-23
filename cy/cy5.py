@@ -19,26 +19,26 @@ import time
 #import Nationalities as aa
 #import codecs
 #from datetime import datetime
-#---
+# ---
 import sys
 
-#---
+# ---
 AskToSave = True
 import urllib
 import urllib.request
 import urllib.parse
-#---
+# ---
 import requests
 import datetime
 from datetime import datetime
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
-#---
+# ---
 #from API.useraccount import *
 import useraccount
 api_url = 'https://' + 'ar.wikipedia.org/w/api.php'
 username = useraccount.username
 password = useraccount.password
-#---
+# ---
 workibrahem = False
 if 'workibrahem' in sys.argv:
     from API import useraccount
@@ -46,11 +46,11 @@ if 'workibrahem' in sys.argv:
     password = useraccount.hipass
     workibrahem = True
     print('workibrahem active')
-#---
+# ---
 session = {}
 session[1] = requests.Session()
 session["csrftoken"] = ""
-#---
+# ---
 def login():
     # get login token
     r1 = session[1].get(api_url, params={
@@ -82,21 +82,21 @@ def login():
         'meta': 'tokens',
     })
     session["csrftoken"] = r3.json()['query']['tokens']['csrftoken']
-#---
+# ---
 login()
-#---
+# ---
 remove_date = {}
 Work_with_Year = {}
 Work_with_Stage = { 1 : False }
 Stage = {  }
 Stage[""] = ""
-#---
+# ---
 TEST = { 1:False, 2:False }
 #import pywikibot
-#---
+# ---
 #from likeapi import encode
 # encode.encode_arabic(label)
-#---
+# ---
 litters = {
     "ا":"%D8%A7",
     "ب":"%D8%A8",
@@ -136,13 +136,13 @@ litters = {
     " ":"%20",
     "_":"%20",
     }
-#---
+# ---
 def encode_arabic( label ) :
     label2 = label
     for x in litters:
         label2 = label2.replace( x, litters[x] ) 
     return label2
-#---
+# ---
 def ec_de_code(tt, type):
     fao = tt
     if type == 'encode' :
@@ -150,18 +150,18 @@ def ec_de_code(tt, type):
     elif type == 'decode' :
         fao = urllib.parse.unquote(tt)
     return fao
-#---
+# ---
 def print_test2(s):
     if TEST[2]:
         #pywikibot.output(s)
         print(s)
-#---
+# ---
 def printt(s):
     SS = False
     if SS or 'test' in sys.argv or 'test2' in sys.argv:
         #pywikibot.output(s)
         print(s)
-#---
+# ---
 def printo(s):
     SS = True
     if SS:
@@ -171,10 +171,10 @@ def printo(s):
         print("")
         if workibrahem:
             print(s)
-#---
+# ---
 HeadVars = ['imagejersey']
 JOJOJO = 'نتيجة سباق الدراجات/جيرسي'
-#---
+# ---
 def findflag(race, flag):
     flage = { 
         'إيطاليا' : '{{رمز علم|إيطاليا}}',
@@ -193,19 +193,19 @@ def findflag(race, flag):
         'سويسرا' : '{{رمز علم|سويسرا}}',
         'باريس-نايس' : '{{رمز علم|فرنسا}}',
         }
-    #---
+    # ---
     race = str(race)
-    #---
+    # ---
     for ff in flage.keys():
         te = re.sub( str(ff), '', race)
-        #---
+        # ---
         if te != race:
             flag = flage[ff]
-    #---
+    # ---
     return flag
-#---
+# ---
 Skip_items = ["Q4115189"]
-#---
+# ---
 def fix_label(label):
     label = label.strip()
     
@@ -233,36 +233,36 @@ def fix_label(label):
     label = re.sub(r"ركوب الدراجات في دورة ألعاب الكومنولث", "ركوب الدراجات في دورة الكومنولث", label)
     label = re.sub(r"\s+", " ", label)
     return label
-#---
+# ---
 def make_temp_lines( table, title ):
-    #---
+    # ---
     table2 = { "qid" : "", "race" : "", "p17" : "", "poss" : "" }
-    #---
+    # ---
     for rr in HeadVars:
         if not rr in table:
             table[rr] = ''
-    #---
+    # ---
     image = table['imagejersey']
     image = re.sub(r'JOJOJO', JOJOJO, image)
     image = image.replace( '%20', "_" )
-    #---
+    # ---
     date = table['Date'] 
     flag = table['p17lab']
-    #---
+    # ---
     qid  = table['item']
     table2["qid"] = qid
-    #---
+    # ---
     if qid in Skip_items:
         return "", table2
-    #---
+    # ---
     link = table.get('title','')
     label = table.get('itemlab','')
     if link != '' :
         race  = '[[' + link + ']]'
         label  = link.split(" (")[0]
-    #---
+    # ---
     label = fix_label( label )
-    #---
+    # ---
     if link != "" :
         if label != link:
             race = '[[' + link + '|' + label + ']]'
@@ -270,14 +270,14 @@ def make_temp_lines( table, title ):
             race  = '[[' + link + ']]'
     else:
         race = label
-    #---
+    # ---
     sss = table['p642label'] 
     # الفائز وفقاً لترتيب النقاط للشباب
     sss = re.sub(r'الفائز وفقاً لترتيب', 'الفائز في ترتيب', sss )
     sss = re.sub(r'الفائز حسب التصنيف العام', 'الفائز في التصنيف العام', sss )
-    #---
+    # ---
     ranke = table.get( 'rank', "" )
-    #---
+    # ---
     ranke_tab = {
         "المرتبة 1 في" : "الأول في",
         "المرتبة 2 في" : "الثاني في",
@@ -295,13 +295,13 @@ def make_temp_lines( table, title ):
     for kk in ranke_tab:
         if ranke.find(kk) >= 0:
             ranke = re.sub( kk, ranke_tab[kk], ranke )
-    #---
+    # ---
     newflag = findflag(race, flag )
-    #---
+    # ---
     table2["race"] = race
     table2["p17"] = newflag
     table2["poss"] = sss
-    #---
+    # ---
     so = '{{نتيجة سباق الدراجات/سطر4'
     so = so + '\n|qid = ' + qid
     so = so + '\n|السباق = ' + race
@@ -311,18 +311,18 @@ def make_temp_lines( table, title ):
     so = so + '\n|المرتبة = ' + ranke
     so = so + '\n|جيرسي = ' + image
     so = so + '\n}}'
-    #---
+    # ---
     if race and race.lower().strip().startswith("q") :
         printt( ' *** remove line startswith q.' )
         return "", table2
-    #---
+    # ---
     r'''
     fanco = title
     #fanco = qid
-    #---
+    # ---
     if not fanco in remove_date :
         remove_date[fanco] = 0
-    #---
+    # ---
     if fanco in Work_with_Year :
         if date == '' :
             remove_date[fanco] += 1
@@ -335,21 +335,21 @@ def make_temp_lines( table, title ):
                     remove_date[fanco] += 1
                     print_test2( 'remove_date[fanco] += 1 (%d) date == "%s"' % (remove_date[fanco], date) )
                     return "", table2
-    #---'''
+    # ---'''
     if ranke != "" and sss.strip() == "" :
         if Work_with_Stage[1] == False and Len_of_valid_results.get(title,0) > 10 :
             if re.sub(r"المرتبة 1 في", "", ranke) == ranke and re.sub(r"الأول في", "", ranke) == ranke :
                 printt( ' *** remove line with rank < 1.' )
                 return "", table2
-    #---
+    # ---
     if flag != newflag :
         printt(f' *** race:"{race}", flag:"{flag}", newflag:"{newflag}"')
-    #---
+    # ---
     if not title in Len_of_valid_results: Len_of_valid_results[title] = 0
     Len_of_valid_results[title] += 1
-    #---
+    # ---
     return so, table2
-#---
+# ---
 qu_2018 = """SELECT
 ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?jersey_3 ?jersey_4 ?p642label ?p585 ?p582 ?p580 ?title
 WHERE {
@@ -389,7 +389,7 @@ SELECT ?item  ?itemlab ?jerseylab ?p17lab
                                     } 
     
 } } """
-#---
+# ---
 q22u = """SELECT
     ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?p642label ?p585 ?p582 ?p580
     WHERE {
@@ -420,42 +420,42 @@ q22u = """SELECT
                                         } 
         
     }   } """
-#---
+# ---
 def get_query_results(query):
-    #---
+    # ---
     query = re.sub(r'\n\s+', '\n', query)
-    #---
+    # ---
     fao = urllib.parse.quote(query)
-    #---
+    # ---
     url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query=' + fao
-    #---
+    # ---
     if "printurl" in sys.argv:
         printt(url)
-    #---
+    # ---
     req = False
-    #---
+    # ---
     try:
         req = session[1].get(url)
     except Exception as e:
         print( '<<lightred>> Traceback (most recent call last):' )
         print( "<<lightred>> Exception:%s." % e )
         print( 'CRITICAL:' )
-    #---
+    # ---
     json1 = {}
     if req:
         try:
             json1 = req.json()
         except Exception as e:
             json1 = {}
-            #---
+            # ---
             print( '<<lightred>> Traceback (most recent call last):' )
             e = str(e)
             if e.find('java.util.concurrent') != -1 : e = "java.util.concurrent"
             print( "<<lightred>> Exception:%s." % e )
             print( 'CRITICAL:' )
-    #---
+    # ---
     return json1
-#---
+# ---
 def GetSparql(qid, title):
     old_qu = """SELECT
     ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?p642label ?p585 ?p582 ?p580 ?title
@@ -490,7 +490,7 @@ def GetSparql(qid, title):
                                         } 
         
     } } """
-    #---
+    # ---
     qu_2019 = """SELECT DISTINCT ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?jersey_3 ?jersey_4 ?p642label ?p585 ?p582 ?p580 ?rankP4323 ?rankP2321 ?rankP4320 ?rankP3494 ?title
     WHERE {     SELECT DISTINCT ?item ?itemlab ?jerseylab ?p17lab ?rankP4323 ?rankP2321 ?rankP4320 ?rankP3494 
                ?jersey1lab ?image1 ?image2  ?image3 ?image4
@@ -541,59 +541,59 @@ OPTIONAL { ?sitelink schema:about ?item
     } 
         
     } } """
-    #---
+    # ---
     qu_2019 = qu_2019.replace('Q447532', qid ) 
     qu2 = qu_2019
-    #---
+    # ---
     if title in Stage:
         qu2 = qu2.replace('FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 }', "" ) 
         qu2 = qu2.replace('FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q18131152 }', "" ) 
     #}Limit 10  } """
-    #---
+    # ---
     json1 = get_query_results(qu2)
-    #---
+    # ---
     for rr in json1.get('head',{}).get('vars',[]):
         HeadVars.append(rr)
-    #---
+    # ---
     bindings = json1.get('results',{}).get('bindings',[])
-    #---
+    # ---
     if len(bindings) > 1:
         return json1
     else:
         # one result or no result
         if title in Stage : 
             return {}
-        #---
+        # ---
         qua3 = qu_2019
         qua3 = qua3.replace('FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 }', "" ) 
         qua3 = qua3.replace('FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q18131152 }', "" ) 
         qua3 = qua3.replace('FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q18131152 }', "" ) 
         qua3 = qua3 + "\n#%s" % menet
-        #---
+        # ---
         json2 = get_query_results(qua3)
-        #---
+        # ---
         print( "try 2" )
-        #---
+        # ---
         return json2
-#---
+# ---
 #import dateutil.parser
 #import operator
-#---
+# ---
 NoAppend = [ 'p585', 'p582', 'p580']
-#---
+# ---
 ranks_label = {
     "P4323" : "المرتبة %s في تصنيف أفضل شاب", 
     "P2321" : "المرتبة %s في التصنيف العام", 
     "P4320" : "المرتبة %s في تصنيف الجبال", 
     "P3494" : "المرتبة %s في تصنيف النقاط", 
     }
-#---
+# ---
 Len_of_results = {}
 Len_of_valid_results = {}
-#---
+# ---
 def fix_results(table):
     results2 = {}
-    #---
+    # ---
     tata = {
     "head" : { "vars" : [ "item", "p17lab", "itemlab", "jersey_1", "jersey_2", "jersey_3", "jersey_4", "p642label", "p585", "p582", "p580", "rankP4323", "rankP2321", "rankP4320", "rankP3494", "title" ] },
     "results" : {
@@ -613,75 +613,75 @@ def fix_results(table):
       "jersey_4" : 	{ "type" : "literal", "value" : "{{JOJOJO|Jersey%20red.svg|قميص أحمر، تصنيف النقاط}}"
       }
     } ] }}
-    #---
+    # ---
     printt( "* Lenth fix_results: '%d' ."  % len(table) )
     for params in table:
-        #---
+        # ---
         if params.get('itemlab',{}).get("value","").lower().strip().startswith("q") :
             printt( ' *** remove line startswith q---.' )
             continue
-        #---
+        # ---
         q = 'item' in params and params['item']['value'].split('/entity/')[1]
-        #---
+        # ---
         if not q in results2:
             results2[q] = {'Date' : [], 'imagejersey' : [], 'item' : [], "rank" : [] }
-        #---
+        # ---
         date = params.get('p585') or params.get('p582') or params.get('p585') or {}
         date = date.get('value') or ''
-        #---
+        # ---
         if not date in results2[q]['Date']:
             results2[q]['Date'].append(date)
-        #---
+        # ---
         for param in params:
-            #---
+            # ---
             value = params[param]['value']
-            #---
+            # ---
             param2 = param
             if param.startswith('rank') :
                 param2 = 'rank'
                 value2 = param.replace( 'rank', "")
                 if value2 in ranks_label : 
                     value = ranks_label[value2] % value
-            #---
+            # ---
             if param.startswith( 'jersey_') :
                 param2 = 'imagejersey'
-            #---
+            # ---
             if param == 'p17lab' :
                 value = '{{رمز علم|' + value + '}}'
             elif param == 'item' :
                 value = value.split('/entity/')[1]
-            #---
+            # ---
             #if param == "p642label":
                 #value = re.sub(r'الفائز وفقاً ', 'الفائز في ', value )
                 #value = re.sub(r'الفائز حسب التصنيف العام ', 'الفائز في التصنيف العام', value )
-            #---
+            # ---
             if not param2 in NoAppend:
                 if not param2 in results2[q]:
                     results2[q][param2] = []
-                #---
+                # ---
                 if not value in results2[q][param2]:
                     results2[q][param2].append(value)
-            #---
+            # ---
     return results2
-#---
+# ---
 def fix_date( data, title ):
     data2 = {}
-    #---
+    # ---
     p642label = 0
-    #---
+    # ---
     for ta in data:
-        #---
+        # ---
         datn = data[ta].get('Date',[])
-        #---
+        # ---
         if type(datn) == list and len(datn) > 0 :
             ddds = [ x.strip() for x in datn if x.strip() != '' ]
-            #---
+            # ---
             #print(date)
-            #---
+            # ---
             fanco = title
             if not fanco in remove_date :
                 remove_date[fanco] = 0
-            #---
+            # ---
             if fanco in Work_with_Year :
                 date = ''
                 if ddds != [] : date = ddds[0]
@@ -697,46 +697,46 @@ def fix_date( data, title ):
                             #print_test2( 'remove_date[fanco] += 1 (%d) date == "%s"' % (remove_date[fanco], date) )
                             #return ""
                             continue
-        #---
+        # ---
         data2[ta] = data[ta]
         if data2[ta].get('p642label', False) :
             p642label += 1
-        #---
+        # ---
         if remove_date[fanco] != 0 :
             print_test2( 'remove_date[fanco] += 1 (%d)' % remove_date[fanco] )
-    #---
+    # ---
     # Len_of_results[title] = len(data2)
     Len_of_results[title] = p642label
-    #---
+    # ---
     return data2
-#---
+# ---
 def make_new_text(qid, title):
     Date_List2 = []
     #new_lines[title] = []
     new_lines[title] = {}
     json1 = GetSparql(qid, title)
-    #---
+    # ---
     if not json1: return False
-    #---
+    # ---
     bindings = json1.get('results',{}).get('bindings',[])
-    #---
+    # ---
     if len(bindings) < 1:
         return False
-    #---
+    # ---
     results = fix_results(bindings)
-    #---
+    # ---
     Len_results = len(results)
     printt( "* Lenth results: '%d' ."  % Len_results )
-    #---
+    # ---
     #Len_of_results[title] = Len_results
-    #---
+    # ---
     qidso = {}
     num = 0 
     for qq in results:
         num += 1
-        #---
+        # ---
         if not qq in qidso: qidso[qq] = {}
-        #---
+        # ---
         date = results[qq]['Date'][0]
         if date != '' :
             if date not in Date_List2:
@@ -744,45 +744,45 @@ def make_new_text(qid, title):
         else:
             if qq not in Date_List2:
                 Date_List2.append(qq)
-        #---
+        # ---
         qidso[qq] = results[qq]
-    #---
+    # ---
     qids_2 = fix_date( qidso, title )
-    #---
+    # ---
     Date_List2.sort()
     printt( '**Date_List2: ')
-    #---
+    # ---
     texxt = ''
     for dd in Date_List2:
         for qoo, tao in qids_2.items():
-            #---
+            # ---
             if qoo in Skip_items: continue
-            #---
+            # ---
             date = tao['Date'][0]
-            #---
+            # ---
             if dd == date:
                 table = {}
-                #---
+                # ---
                 for ss in tao:
                     space = '، '
                     if ss == 'imagejersey' or ss == 'p17lab' :
                         space = ''
-                    #---
+                    # ---
                     faso = tao[ss]
                     faso.sort()
-                    #---
+                    # ---
                     if len( faso ) > 0:
                         if len( faso ) == 1 or ss == 'p17lab' :
                             k = faso[0]
                         elif len( faso ) > 1:
                             k = space.join( faso )
-                        #---
+                        # ---
                         if ss == 'Date' :  k = faso[0]
-                        #---
+                        # ---
                         table[ss] = k
-                #---
+                # ---
                 v, tab = make_temp_lines( table, title )
-                #---
+                # ---
                 if v != "" : 
                     vvv =  re.sub(r"\n", "", v )
                     new_lines[title][qoo] = tab
@@ -790,20 +790,20 @@ def make_new_text(qid, title):
                     new_lines[title][qoo]["race"] = tab.get("race","")  #re.sub( regline, "\g<race>", vvv )
                     new_lines[title][qoo]["p17"]  = tab.get("p17","")   #re.sub( regline, "\g<p17>", vvv )
                     new_lines[title][qoo]["poss"] = tab.get("poss","")  #re.sub( regline, "\g<poss>", vvv )
-                    #---
+                    # ---
                     texxt = texxt + v + '\n'
-                #---
+                # ---
     note = '<!-- هذه القائمة يقوم بوت: [[مستخدم:Mr._Ibrahembot]] بتحديثها من ويكي بيانات بشكل دوري. -->\n'
     texxt = note + texxt
-    #---
+    # ---
     t24 = Len_of_valid_results.get(title,0)
     t23 = Len_of_results.get(title,0)
     printt(f"Len_of_valid_results : {t24}, Len_of_results : {t23}")
     printt(f"Len_of_valid_results : {t24}, Len_of_results : {t23}")
-    #---
-    #---
+    # ---
+    # ---
     return texxt
-#---
+# ---
 def GetSectionNew3( text ):
     printt( '**GetSectionNew3: ' )
     text = text
@@ -811,25 +811,25 @@ def GetSectionNew3( text ):
     FirsPart = ''
     #temp1 = '{{نتيجة سباق الدراجات/بداية|wikidatalist=t}}'
     #temptop = '{{نتيجة سباق الدراجات/بداية}}'
-    #---
+    # ---
     Frist = re.compile(r'\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}')
     Fristsss = Frist.findall( text )
     if Fristsss:
         printt( 'Section: ' )
         FirsPart = Fristsss[0]
         printt(FirsPart)
-    #---
+    # ---
     if FirsPart != '':
         text2 = text2.split(FirsPart)[1]
         text2 = FirsPart + text2
-    #---
+    # ---
     text2 = text2.split('{{نتيجة سباق الدراجات/نهاية}}')[0]
     text2 = text2 + '{{نتيجة سباق الدراجات/نهاية}}'
-    #---
+    # ---
     return text2, FirsPart
-#---
+# ---
 returntext = { 1 : True }
-#---
+# ---
 def make_dada( NewText, MainTitle):
     url = "https://" + "ar.wikipedia.org/w/index.php?title=" + ec_de_code(MainTitle, 'decode') + '&action=submit'
     t = "<form id='editform' name='editform' method='POST' action='" + url + "'>"
@@ -841,15 +841,15 @@ def make_dada( NewText, MainTitle):
 <input id='wpDiff' type='submit' class='btn-lg' tabindex='7' name='wpDiff' value='show changes' accesskey='v' title='show changes.'/>
 </form>'''
     return t
-#---
+# ---
 def page_put( NewText, summ, MainTitle):
     printt(' page_put: ' + br)
     #try:
     title = ec_de_code(MainTitle, 'decode')
-    #---
+    # ---
     printt(' page_put %s:' % (MainTitle)  + br)
     #print_test2( NewText )
-    #---
+    # ---
     if (not TEST[1] and not TEST[2]) or workibrahem:
         r4 = session[1].post(api_url, data={
             "action": "edit",
@@ -876,13 +876,13 @@ def page_put( NewText, summ, MainTitle):
             printo( texts )
         else:
             printo( r4.text )
-#---
+# ---
 lines = {}
 new_lines = {}
 states = {}
-#---
+# ---
 #new_lines
-#---
+# ---
 regline = r"\{\{نتيجة سباق الدراجات/سطر4"
 regline += r"\|\s*qid\s*\=(?P<qid>Q\d+)"
 regline += r"\|\s*السباق\s*\=(?P<race>.*)"
@@ -892,30 +892,30 @@ regline += r"\|\s*المركز\s*\=(?P<poss>.*)"
 regline += r"\|\s*(?:rank|المرتبة)\s*\=(?P<rank>.*)"
 regline += r"\|\s*جيرسي\s*\=(?P<jersey>.*)"
 regline += r"\s*\|\}\}"
-#---
+# ---
 def work_tano( text, MainTitle ):
-    #---
+    # ---
     lines[MainTitle] = {}#[]
-    #---
+    # ---
     # reg_line2 = '\{\{نتيجة سباق الدراجات\/سطر4\s*?.*?\}\}'
     reg_line = r'\{\{نتيجة سباق الدراجات\/سطر4([^{]|\{[^{]|\{\{[^{}]+\}\})+\}\}'
     fff = re.compile( reg_line )
     #pas = fff.findall( text )
-    #---
+    # ---
     #vf = re.compile(r'\{\{نتيجة سباق الدراجات\/سطر4([^{]|\{[^{]|\{\{[^{}]+\}\})+\}\}' ).findall( text )
     if text.startswith("{{نتيجة سباق الدراجات/بداية}}\n<!-- هذه القائمة يقوم بوت: [[مستخدم:Mr._Ibrahembot]] بتحديثها من ويكي بيانات بشكل دوري. -->") : 
         text = text.replace("{{نتيجة سباق الدراجات/بداية}}\n<!-- هذه القائمة يقوم بوت: [[مستخدم:Mr._Ibrahembot]] بتحديثها من ويكي بيانات بشكل دوري. -->", "")
     text = text.replace( "{{نتيجة سباق الدراجات/نهاية}}", "")
     text = text.strip()
     vf = text.split( "{{نتيجة سباق الدراجات/سطر4" )
-    #---
+    # ---
     if vf :
         for pp in vf :
             if pp == "" :  continue
-            #---
+            # ---
             if not pp.startswith( "{{نتيجة سباق الدراجات/سطر4" ) :
                 pp = "{{نتيجة سباق الدراجات/سطر4" + pp
-            #---
+            # ---
             q_id = ""
             #q_id = re.sub(r".*(Q\d+).*", "\g<1>", pp )
             ppr = re.sub(r"\n", "", pp )
@@ -934,22 +934,22 @@ def work_tano( text, MainTitle ):
             lines[MainTitle][q_id]["rank"] = re.sub( regline, r"\g<rank>", ppr )
             lines[MainTitle][q_id]["race"] = re.sub( regline, r"\g<race>", ppr )
             lines[MainTitle][q_id]["p17"] = re.sub( regline, r"\g<p17>", ppr )
-            #---
+            # ---
             #print( q_id )
             #print( "========================" )
-    #---
+    # ---
     #print( "lenth sections : %d"  % len( lines[MainTitle] ) )
-    #---
+    # ---
     new_line = 0
     same_line = 0
     removed_line = 0
-    #---
+    # ---
     if MainTitle in new_lines:
         for line in new_lines[MainTitle].keys():
-            #---
+            # ---
             if line == "Q49164584" and TEST[1] : 
                 print(new_lines[MainTitle][line])
-            #---
+            # ---
             #print( "new_lines:%s" % line )
             same = 0 
             new = 0 
@@ -961,35 +961,35 @@ def work_tano( text, MainTitle ):
                         new = 1
             else:
                 new = 1
-            #---
+            # ---
             if same == 1 :
                 same_line += 1
             elif new == 1 :
                 new_line += 1
-            #---
-        #---
+            # ---
+        # ---
         for liner in lines[MainTitle].keys():
             #print( "lines:%s" % liner )
             if not liner in new_lines[MainTitle].keys():
                 removed_line += 1
-    #---
+    # ---
     removed_line_date = 0
     states[MainTitle] = { "new_line" : new_line, "same_line" : same_line ,"removed_line" : removed_line } 
-    #---
+    # ---
     liner = "new_line:%d,same_line:%d,removed_line:%d"  % ( new_line, same_line ,removed_line  )
-    #---
+    # ---
     if MainTitle in remove_date and remove_date[MainTitle] != 0 :
         liner += ',removed_line_date:%d' % remove_date[MainTitle]
         states[MainTitle]['removed_line_date'] = remove_date[MainTitle]
-    #---
+    # ---
     return liner
-    #---
+    # ---
 def puttext( text, MainTitle, Newsect):
     printt( '**puttext: '  + br)
     sect, Frist = GetSectionNew3( text )
-    #---    
+    # ---    
     liner = work_tano( sect, MainTitle )
-    #---    
+    # ---    
     text = text
     Newsect = Frist + '\n' + Newsect + '{{نتيجة سباق الدراجات/نهاية}}'
     Newsect = re.sub(r'\n\n{{نتيجة سباق الدراجات/نهاية}}', '\n{{نتيجة سباق الدراجات/نهاية}}', Newsect )
@@ -1002,39 +1002,39 @@ def puttext( text, MainTitle, Newsect):
             page_put(NewText, summ, MainTitle)
         else:
             printo( 'nodiff' ) 
-#---
+# ---
 def template_params(text, title):   
     Frist = re.compile(r'\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}')
     pas = Frist.findall( text )
-    #---
+    # ---
     if not pas: 
         return False, False
-    #---
+    # ---
     params = str(pas[0])
     params = re.sub(r"\s*\=\s*", "=", params)
     params = re.sub(r"\s*\|\s*", "|", params)
-    #---
+    # ---
     do = re.search(r'.*\|تاريخ\=(\d+)(\}\}|\|)', text)
     if do :
         Work_with_Year[title] = int( do.group(1) )
         print_test2("Work_with_Year:%s" % do.group(1) )
-    #---
+    # ---
     if re.sub(r"مراحل\s*\=\s*نعم", "", params) != params:
         printt("Work with Stage")
         Work_with_Stage[1] = True
         Stage[title] = ""
-    #---
+    # ---
     if re.sub(r".*id\s*\=\s*(Q\d+).*", r"\g<1>", params)  != params:
         printt('** found currect line' )
         Qid = re.sub(r".*id\=(Q\d+).*", r"\g<1>", params)
         printt('id: ' + Qid)
         return Qid, True
-    #---
+    # ---
     return False, False
-#---
+# ---
 def CheckTempalteInPageText(text):
     printt( '**CheckTempalteInPageText: ' + br)
-    #---
+    # ---
     #\{\{template_tesult(\|id\=Q\d+|)\}\}
     Topname = r'نتيجة سباق الدراجات\/بداية'
     Top = r'\{\{' + Topname + r'\}\}'
@@ -1042,12 +1042,12 @@ def CheckTempalteInPageText(text):
     Top3 = r'\{\{' + Topname + r'\s*?.*?\}\}'
     Bottom = r'\{\{نتيجة سباق الدراجات\/نهاية\}\}'
     if text != '':
-        #---
+        # ---
         Check_Top = re.sub( Top, '', text )
         Check_Top2 = re.sub( Top2, '', text )
         Check_Top3 = re.sub( Top3, '', text )
         Check_Bottom = re.sub( Bottom, '', text )
-        #---
+        # ---
         if (text == Check_Top) and (text == Check_Top2) and (text == Check_Top3):
             po = 'لا يمكن إيجاد ' + '{{نتيجة سباق الدراجات/بداية ' + 'في الصفحة. '
             printo( po )
@@ -1061,16 +1061,16 @@ def CheckTempalteInPageText(text):
             return True
     else:
         printt( ' * no text.' + br)
-#---
+# ---
 def GetPageText(title):
     text, item = '', False
     printt( '**GetPageText: ' + br)
-    #---
+    # ---
     tit = title#ec_de_code(title, 'encode')
-    #---
+    # ---
     url = 'https://' + 'ar.wikipedia.org/w/api.php?action=parse&prop=wikitext|properties&utf8=1&format=json&page=' + tit 
     printt('url:' + url)
-    #---
+    # ---
     json1 = {}
     try:
         json1 = session[1].get(url).json()
@@ -1078,23 +1078,23 @@ def GetPageText(title):
         print( '<<lightred>> Traceback (most recent call last):' )
         print( "<<lightred>> Exception:%s." % e )
         print( 'CRITICAL:' )
-    #---
+    # ---
     if not json1:
         return text, item
-    #---
+    # ---
     printt('find json1:' + br)
-    #---
+    # ---
     parse = json1.get('parse',{})
     if parse != {}:
         printt('find parse in json1:' + br)
-        #---
+        # ---
         text = parse.get('wikitext',{}).get('*','')
         if text != '':
             printt('find wikitext in parse:' + br)
             printt('find * in parse.wikitext :' + br)
-        #---
+        # ---
         properties = parse.get('properties',[])
-        #---
+        # ---
         if properties != [] :
             printt('find properties in parse:' + br)
             for prop in properties:
@@ -1103,7 +1103,7 @@ def GetPageText(title):
                         item = prop['*']
                         printt('find item in parse.wikitext :' + item + br)
                         break
-    #---
+    # ---
     elif 'error' in json1:
         text = False
         if 'info' in json1['error']:
@@ -1113,39 +1113,39 @@ def GetPageText(title):
     else:
         printt('no parse in json1:' + br)
         printt(json1)
-    #---
+    # ---
     return text, item
-#---
+# ---
 def StartOnePage(title):
     printt( '**StartOnePage: ' + br)
-    #---
+    # ---
     title = title.replace('_', ' ')
-    #---
+    # ---
     title_orginal = title
     if title.find("%") == -1 : 
         title = ec_de_code(title, 'encode')
         #print( 'title encode: ' + title )
-    #---
+    # ---
     text, item = GetPageText(title)
-    #---
+    # ---
     if not text or text == '' :
         printo('الصفحة المطلوبة غير موجودة أو أن محتواها فارغ.')
         return 
-    #---
+    # ---
     Check = CheckTempalteInPageText(text)
-    #---
+    # ---
     if not Check:
         printt( 'no Check: pass....' + br)
         return
-    #---
+    # ---
     printt( '**Isre: ')
-    #---
+    # ---
     Qid, QidinTemplate = template_params(text, title)
     if QidinTemplate:
         item = Qid
     #if not Qid:
         #Qid = getwditem(title)
-    #---
+    # ---
     if not item :
         if QidinTemplate:  
             NewText = "<!-- Can't find item by item :\"" + item + "\" --> "
@@ -1153,12 +1153,12 @@ def StartOnePage(title):
         else:
             NewText = "<!-- Can't find item in page :\"" + title + "\" --> "
             printt( "**" + NewText )
-    #---
+    # ---
     if not item: return
-    #---
+    # ---
     printt( '**item: ' + item)
     NewText = make_new_text(item, title)
-    #---
+    # ---
     if NewText:
         printt( '**puttext::: ')
         puttext(text, title, NewText)
@@ -1166,28 +1166,28 @@ def StartOnePage(title):
         ur = (f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.' )
         printo('لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: %s.' % ur)
         #print(ur)
-    #---
+    # ---
 br = '</br>'
-#---
+# ---
 def main():
-    #---
+    # ---
     title = ''
-    #---
+    # ---
     for arg in sys.argv:
         arg, sep, value = arg.partition(':')
-        #---
+        # ---
         if arg == 'test':
             TEST[1] = True
-        #---
+        # ---
         if arg == '-title' or arg == '-page':
             title = value
-        #---
+        # ---
         if arg == 'test2':
             TEST[2] = True
-        #---
+        # ---
         if arg == "text":
             returntext[1] = True
-    #---
+    # ---
     if TEST[1]:
         printt( 'TestMain:' + br)
         # python pwb.py cy5 test
@@ -1197,13 +1197,13 @@ def main():
         #StartOnePage('%D8%A2%D8%B4%D9%84%D9%8A_%D9%85%D9%88%D9%84%D9%85%D8%A7%D9%86')
         StartOnePage('%D8%B1%D9%8A%D8%AA%D8%B4%D9%8A_%D8%A8%D9%88%D8%B1%D8%AA')
     #make_new_text('Q286183')#
-    #---
+    # ---
     #StartOnePage('%D8%B3%D9%8A%D9%84%D9%81%D8%A7%D9%86_%D8%AA%D8%B4%D8%A7%D9%81%D8%A7%D9%86%D9%8A%D9%84')
     if title != '' :
         StartOnePage(title)
     else:
         printo( 'title==""' ) 
-#---
+# ---
 tty = """
 ===سباقات أو مراحل فاز بها===
 {{نتيجة سباق الدراجات/بداية|مراحل=نعم | id = Q623 
@@ -1233,4 +1233,4 @@ if __name__ == "__main__":
     main()
     #s, o = template_params(tty, "dfdfdf")
     #print(s)
-#---
+# ---

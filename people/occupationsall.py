@@ -1390,11 +1390,11 @@ for x, yy in translationsOccupations_new.items():
 # ---
 '''
 from stub.list import tempse_all
-#---
+# ---
 arl = {}
 for x in tempse_all:
     arl[x.strip().lower()] = tempse_all[x]["ar"]
-#---
+# ---
 for x in New_Keys_occ:
     if "ar" not in translationsOccupations[x]:
         x2 = x.replace("~","").strip().lower()
@@ -1402,7 +1402,7 @@ for x in New_Keys_occ:
         if ar2:
             print( "        '%s': {" % x )
             print("            'ar': { 'male': '%s ~', 'female': '%s ~' },\n" % ( ar2 , ar2 ) )
-#---
+# ---
 '''
 
 

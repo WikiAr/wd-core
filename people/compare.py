@@ -9,15 +9,15 @@ import codecs
 import os
 from pathlib import Path
 Dir = Path(__file__).parent
-#---
+# ---
 from people.compare_files._occ import tota as tota2
 from people.occupationsall import translations_all as tota1
-#---
-#---
+# ---
+# ---
 # from people.compare_files._tra import tatonew as tota2
 # from people.Nationalities import translationsNationalities as tota1
-#---
-#---
+# ---
+# ---
 # dump tota1 to tota1.json with sorting and utf8
 json.dump(tota1, codecs.open(f'{Dir}/compare_files/tota1old.json', 'w', encoding='utf-8'), sort_keys=True, indent=4, ensure_ascii=False)
 
