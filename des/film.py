@@ -132,7 +132,7 @@ def GetQuery(Qid, lang, keys):
     head = '?' + ' ?'.join([x for x in keys if x != lang])
     ur = ur + head
     ur = ur + ' ?endes  ?dates \n WHERE {'
-    ur = ur + ' \n?item wdt:%s ?auths . \n?item wdt:%s ?auths2 .\n' % (P50, P50)
+    ur = ur + f' \n?item wdt:{P50} ?auths . \n?item wdt:{P50} ?auths2 .\n'
     # ---
     sa = ' ?item wdt:P31 wd:Q11424 .\n?item wdt:P577 ?date2.\nBIND(year(?date2) AS ?dates). \n'
     sa = sa + 'OPTIONAL { ?item schema:description ?endes. FILTER((LANG(?endes)) = "en") }\n'
@@ -140,7 +140,7 @@ def GetQuery(Qid, lang, keys):
     # ---
     def fofo(x):
         xx = 'OPTIONAL {'
-        xx += '?auths rdfs:label ?%s filter (lang(?%s) = "%s")' % (x, x, x)
+        xx += f'?auths rdfs:label ?{x} filter (lang(?{x}) = "{x}")'
         xx += '} .'
         return xx
     # ---
@@ -148,13 +148,13 @@ def GetQuery(Qid, lang, keys):
     ur = ur + OPTIONAL
     # ---
     ur = ur + ' \n{'
-    ur = ur + '?auths2 rdfs:label ?%s2 filter (lang(?%s2) = "%s") .' % (lang, lang, lang)
+    ur = ur + f'?auths2 rdfs:label ?{lang}2 filter (lang(?{lang}2) = "{lang}") .'
     ur = ur + "}\n"
     ur = ur + 'OPTIONAL {'
-    ur = ur + '   ?item schema:description ?itemDes filter(lang(?itemDes) = "%s")' % lang
+    ur = ur + f'   ?item schema:description ?itemDes filter(lang(?itemDes) = "{lang}")'
     ur = ur + '} FILTER(!BOUND(?itemDes))\n'# GROUP BY ?item '
     ur = ur + 'SERVICE wikibase:label { '
-    ur = ur + '     bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?%s' % lang
+    ur = ur + f'     bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?{lang}'
     ur = ur + ' }}\n'
     #printe.output(ur)
     # ---

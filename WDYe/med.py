@@ -294,7 +294,7 @@ def looog():
     for x in log2:
         q = '{{Q| ' + x + '}}'
         text2 += "\n|-\n| %s || {{" % q
-        text2 += "Label | %s | en" % x
+        text2 += f"Label | {x} | en"
         text2 += "}} ||"
         text2 += ",".join(log2[x]) + "\n"
     # ---
