@@ -345,7 +345,8 @@ def make_temp_lines(table, title):
     if flag != newflag:
         printt(f' *** race:"{race}", flag:"{flag}", newflag:"{newflag}"')
     # ---
-    if not title in Len_of_valid_results: Len_of_valid_results[title] = 0
+    if not title in Len_of_valid_results:
+        Len_of_valid_results[title] = 0
     Len_of_valid_results[title] += 1
     # ---
     return so, table2
@@ -450,7 +451,8 @@ def get_query_results(query):
             # ---
             print('<<lightred>> Traceback (most recent call last):')
             e = str(e)
-            if e.find('java.util.concurrent') != -1: e = "java.util.concurrent"
+            if e.find('java.util.concurrent') != -1:
+                e = "java.util.concurrent"
             print("<<lightred>> Exception:%s." % e)
             print('CRITICAL:')
     # ---
@@ -684,7 +686,8 @@ def fix_date(data, title):
             # ---
             if fanco in Work_with_Year:
                 date = ''
-                if ddds != []: date = ddds[0]
+                if ddds != []:
+                    date = ddds[0]
                 if date == '':
                     remove_date[fanco] += 1
                     #return ""
@@ -716,7 +719,8 @@ def make_new_text(qid, title):
     new_lines[title] = {}
     json1 = GetSparql(qid, title)
     # ---
-    if not json1: return False
+    if not json1:
+        return False
     # ---
     bindings = json1.get('results', {}).get('bindings', [])
     # ---
@@ -735,7 +739,8 @@ def make_new_text(qid, title):
     for qq in results:
         num += 1
         # ---
-        if not qq in qidso: qidso[qq] = {}
+        if not qq in qidso:
+            qidso[qq] = {}
         # ---
         date = results[qq]['Date'][0]
         if date != '':
@@ -756,7 +761,8 @@ def make_new_text(qid, title):
     for dd in Date_List2:
         for qoo, tao in qids_2.items():
             # ---
-            if qoo in Skip_items: continue
+            if qoo in Skip_items:
+                continue
             # ---
             date = tao['Date'][0]
             # ---
@@ -777,7 +783,8 @@ def make_new_text(qid, title):
                         elif len(faso) > 1:
                             k = space.join(faso)
                         # ---
-                        if ss == 'Date': k = faso[0]
+                        if ss == 'Date':
+                            k = faso[0]
                         # ---
                         table[ss] = k
                 # ---
@@ -911,7 +918,8 @@ def work_tano(text, MainTitle):
     # ---
     if vf:
         for pp in vf:
-            if pp == "": continue
+            if pp == "":
+                continue
             # ---
             if not pp.startswith("{{نتيجة سباق الدراجات/سطر4"):
                 pp = "{{نتيجة سباق الدراجات/سطر4" + pp
@@ -995,7 +1003,8 @@ def puttext(text, MainTitle, Newsect):
     Newsect = re.sub(r'\n\n{{نتيجة سباق الدراجات/نهاية}}', '\n{{نتيجة سباق الدراجات/نهاية}}', Newsect)
     NewText = text.replace(sect, Newsect)
     summ = 'بوت:تجربة تحديث بيانات اللاعب'
-    if workibrahem: summ = ''
+    if workibrahem:
+        summ = ''
     printt('showDiff of page: ' + MainTitle + br)
     if MainTitle in states:
         if states[MainTitle]["new_line"] != 0 or states[MainTitle]["removed_line"] != 0 and text != NewText:
@@ -1154,7 +1163,8 @@ def StartOnePage(title):
             NewText = "<!-- Can't find item in page :\"" + title + "\" --> "
             printt("**" + NewText)
     # ---
-    if not item: return
+    if not item:
+        return
     # ---
     printt('**item: ' + item)
     NewText = make_new_text(item, title)
