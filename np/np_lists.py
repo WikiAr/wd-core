@@ -869,16 +869,23 @@ for sw in Taton_list:
         const = space_list_and_other_2.get(sw, {}).get('P', '')
         # ---
         if "a2r" in sys.argv and const != '':
-            SPARQLSE[sw] = '''SELECT ?item WHERE {
-?item wdt:P31 wd:%s.
-FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }
+            gtg = 'SELECT ?item WHERE {'
 
-?item wdt:%s ?const.
-?const rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")
-}
-''' % (sw, const)
+            gtg += '''
+                ?item wdt:P31 wd:%s.
+                ?item wdt:%s ?const.
+                ''' % (sw, const)
+
+            gtg += '''
+                FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }
+                ?const rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")
+                }
+            '''
+            SPARQLSE[sw] = gtg
+            
         if "a3r" in sys.argv:
-            SPARQLSE[sw] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % sw
+            gtg = 'SELECT ?item WHERE { ?item wdt:P31 wd:' + sw + '. FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
+            SPARQLSE[sw] = gtg
 # ---
 for st in Space_tab:
     if not st in SPARQLSE:

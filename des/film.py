@@ -144,7 +144,6 @@ def GetQuery(Qid, lang, keys):
         xx += '} .'
         return xx
     # ---
-    row =
     OPTIONAL = '\n'.join([fofo(x) for x in keys if x != lang])
     ur = ur + OPTIONAL
     # ---
@@ -202,7 +201,7 @@ filmform['film'] = {#
     }
 
 # ---
-quaua = '''SELECT #DISTINCT 
+quaua = '''SELECT #DISTINCT
 ?item ?ar ?nl ?en ?endes  ?dates ?auths
 WHERE {
 ?item wdt:P57 ?auths .
