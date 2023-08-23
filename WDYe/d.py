@@ -5,7 +5,7 @@ import pywikibot
 # ---
 quuu = {}
 quuu['species of beetle'] = """
-SELECT DISTINCT 
+SELECT DISTINCT
 ?item ?en2 WHERE {
   BIND("espèce de coléoptères"@fr AS ?fr) ?item schema:description ?fr.
   BIND("specie di coleottero"@it AS ?it) ?item schema:description ?it.
@@ -14,7 +14,7 @@ SELECT DISTINCT
 }
 LIMIT 20000"""
 quuu['species of insect'] = """
-SELECT DISTINCT 
+SELECT DISTINCT
 ?item ?en2 WHERE {
   BIND("espèce de coléoptères"@fr AS ?fr) ?item schema:description ?fr.
   BIND("specie di coleottero"@it AS ?it) ?item schema:description ?it.

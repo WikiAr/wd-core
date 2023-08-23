@@ -21,7 +21,7 @@ main_table_head = """
 == Number of labels, descriptions and aliases for items per language ==
 {| class="wikitable sortable"
 ! rowspan="2" |Language code
-! colspan="2" |Language 
+! colspan="2" |Language
 ! colspan="3" data-sort-type="number" |Labels
 ! colspan="3" data-sort-type="number" |Descriptions
 ! colspan="2" data-sort-type="number" |Aliases

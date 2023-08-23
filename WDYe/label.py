@@ -111,8 +111,8 @@ def addorreplace(wditem):
         missing_dict[en_desc] += 1
       else:
         missing_dict.update({en_desc:1})
-    return 1     
-    
+    return 1
+
     return 0
 	"""
 

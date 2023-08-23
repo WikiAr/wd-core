@@ -1,8 +1,8 @@
 #!/usr/bin/python
 """
 python pwb.py cy/cy5 -page:باتريك_كونراد
-python pwb.py cy/cy5 -page:جويل_سوتير 
-python pwb.py cy/cy5 -page:كريس_فروم 
+python pwb.py cy/cy5 -page:جويل_سوتير
+python pwb.py cy/cy5 -page:كريس_فروم
 
 python pwb.py cy/cy5 workibrahem test2 -title:خوان_سباستيان_مولانو
 python pwb.py cy/cy5 workibrahem test2 -title:إليسا_ونغو_بورغيني ask
@@ -355,10 +355,10 @@ qu_2018 = """SELECT
 WHERE {
 SELECT ?item  ?itemlab ?jerseylab ?p17lab
            ?jersey1lab ?image1 ?image2  ?image3 ?image4
-           (CONCAT("{{JOJOJO|", STRAFTER(STR(?image1), "/Special:FilePath/"), "|", ?jersey1lab, "}}") AS ?jersey_1) 
-           (CONCAT("{{JOJOJO|", STRAFTER(STR(?image2), "/Special:FilePath/"), "|", ?jersey2lab, "}}") AS ?jersey_2) 
-           (CONCAT("{{JOJOJO|", STRAFTER(STR(?image3), "/Special:FilePath/"), "|", ?jersey3lab, "}}") AS ?jersey_3) 
-           (CONCAT("{{JOJOJO|", STRAFTER(STR(?image4), "/Special:FilePath/"), "|", ?jersey4lab, "}}") AS ?jersey_4) 
+           (CONCAT("{{JOJOJO|", STRAFTER(STR(?image1), "/Special:FilePath/"), "|", ?jersey1lab, "}}") AS ?jersey_1)
+           (CONCAT("{{JOJOJO|", STRAFTER(STR(?image2), "/Special:FilePath/"), "|", ?jersey2lab, "}}") AS ?jersey_2)
+           (CONCAT("{{JOJOJO|", STRAFTER(STR(?image3), "/Special:FilePath/"), "|", ?jersey3lab, "}}") AS ?jersey_3)
+           (CONCAT("{{JOJOJO|", STRAFTER(STR(?image4), "/Special:FilePath/"), "|", ?jersey4lab, "}}") AS ?jersey_4)
            ?p642label ?p585 ?p582 ?p580 ?title
            WHERE {
              BIND(wd:Q447532 AS ?aa)
@@ -367,58 +367,58 @@ SELECT ?item  ?itemlab ?jerseylab ?p17lab
              OPTIONAL {  ?item p:P2321 ?statment2.    ?statment2 ps:P2321 ?aa.    ?statment2 pq:P2912 ?jersey2.    ?jersey2 wdt:P18 ?image2.  }
              OPTIONAL {  ?item p:P4320 ?statment3.    ?statment3 ps:P4320 ?aa.    ?statment3 pq:P2912 ?jersey3.    ?jersey3 wdt:P18 ?image3.  }
              OPTIONAL {  ?item p:P3494 ?statment4.    ?statment4 ps:P3494 ?aa.    ?statment4 pq:P2912 ?jersey4.    ?jersey4 wdt:P18 ?image4.  }
-             
+
              OPTIONAL { ?item wdt:P17 ?p17.}
-             OPTIONAL { ?item wdt:P585 ?p585.} 
-             OPTIONAL { ?item wdt:P582 ?p582.} 
+             OPTIONAL { ?item wdt:P585 ?p585.}
+             OPTIONAL { ?item wdt:P582 ?p582.}
              OPTIONAL { ?item wdt:P580 ?p580.}
-    FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 } 
+    FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 }
     FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q53534649 }
     FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q18131152 }
-             OPTIONAL { ?sitelink schema:about ?item 
-                       . ?sitelink schema:isPartOf <https://ar.wikipedia.org/> 
+             OPTIONAL { ?sitelink schema:about ?item
+                       . ?sitelink schema:isPartOf <https://ar.wikipedia.org/>
                                                       . ?sitelink schema:name ?title }
              SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en,fr".
-                                     ?p17 rdfs:label ?p17lab. 
-                                     ?item rdfs:label ?itemlab. 
-                                     ?jersey1 rdfs:label ?jersey1lab. 
-                                     ?jersey2 rdfs:label ?jersey2lab. 
-                                     ?jersey3 rdfs:label ?jersey3lab. 
-                                     ?jersey4 rdfs:label ?jersey4lab. 
-                                     ?P642 rdfs:label ?p642label. 
-                                    } 
-    
+                                     ?p17 rdfs:label ?p17lab.
+                                     ?item rdfs:label ?itemlab.
+                                     ?jersey1 rdfs:label ?jersey1lab.
+                                     ?jersey2 rdfs:label ?jersey2lab.
+                                     ?jersey3 rdfs:label ?jersey3lab.
+                                     ?jersey4 rdfs:label ?jersey4lab.
+                                     ?P642 rdfs:label ?p642label.
+                                    }
+
 } } """
 # ---
 q22u = """SELECT
     ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?p642label ?p585 ?p582 ?p580
     WHERE {
     SELECT ?item  ?itemlab ?jerseylab ?image  ?p17lab
-               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image), "/Special:FilePath/"), "|", ?jerseylab, "}}") AS ?jersey_1) 
-               ?jersey1lab ?image1 
-               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image1), "/Special:FilePath/"), "|", ?jersey1lab, "}}") AS ?jersey_2) 
+               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image), "/Special:FilePath/"), "|", ?jerseylab, "}}") AS ?jersey_1)
+               ?jersey1lab ?image1
+               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image1), "/Special:FilePath/"), "|", ?jersey1lab, "}}") AS ?jersey_2)
                ?p642label  ?p585 ?p582 ?p580
                WHERE {
                  BIND(wd:Q518222 AS ?aa)
                  OPTIONAL {    ?item p:P2417 ?statment.    ?statment ps:P2417 ?aa.    ?statment pq:P2912 ?jersey.    ?jersey wdt:P18 ?image.  }
                  OPTIONAL {    ?item p:P2321 ?statment1.    ?statment1 ps:P2321 ?aa.    ?statment1 pq:P2912 ?jersey1.    ?jersey1 wdt:P18 ?image1.  }
                  OPTIONAL { ?item wdt:P17 ?p17.}
-                 OPTIONAL { ?item wdt:P585 ?p585.} 
-                 OPTIONAL { ?item wdt:P582 ?p582.} 
+                 OPTIONAL { ?item wdt:P585 ?p585.}
+                 OPTIONAL { ?item wdt:P582 ?p582.}
                  OPTIONAL { ?item wdt:P580 ?p580.}
-                 ?item wdt:P1346 ?aa.  ?item p:P1346 ?winner.  ?winner ps:P1346 ?aa. 
+                 ?item wdt:P1346 ?aa.  ?item p:P1346 ?winner.  ?winner ps:P1346 ?aa.
                  ?winner pq:P642 ?P642.
-        FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 } 
+        FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 }
         FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q53534649 }
         FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q18131152 }
                  SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en,fr".
-                                         ?p17 rdfs:label ?p17lab. 
-                                         ?item rdfs:label ?itemlab. 
-                                         ?jersey rdfs:label ?jerseylab. 
-                                         ?jersey1 rdfs:label ?jersey1lab. 
-                                         ?P642 rdfs:label ?p642label. 
-                                        } 
-        
+                                         ?p17 rdfs:label ?p17lab.
+                                         ?item rdfs:label ?itemlab.
+                                         ?jersey rdfs:label ?jerseylab.
+                                         ?jersey1 rdfs:label ?jersey1lab.
+                                         ?P642 rdfs:label ?p642label.
+                                        }
+
     }   } """
 # ---
 def get_query_results(query):
@@ -461,85 +461,85 @@ def GetSparql(qid, title):
     ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?p642label ?p585 ?p582 ?p580 ?title
     WHERE {
     SELECT ?item  ?itemlab ?jerseylab ?image  ?p17lab
-               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image), "/Special:FilePath/"), "|", ?jerseylab, "}}") AS ?jersey_1) 
-               ?jersey1lab ?image1 
-               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image1), "/Special:FilePath/"), "|", ?jersey1lab, "}}") AS ?jersey_2) 
+               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image), "/Special:FilePath/"), "|", ?jerseylab, "}}") AS ?jersey_1)
+               ?jersey1lab ?image1
+               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image1), "/Special:FilePath/"), "|", ?jersey1lab, "}}") AS ?jersey_2)
                ?p642label  ?p585 ?p582 ?p580 ?title
                WHERE {
                  BIND(wd:Q518222 AS ?aa)
                  OPTIONAL {    ?item p:P2417 ?statment.    ?statment ps:P2417 ?aa.    ?statment pq:P2912 ?jersey.    ?jersey wdt:P18 ?image.  }
                  OPTIONAL {    ?item p:P2321 ?statment1.    ?statment1 ps:P2321 ?aa.    ?statment1 pq:P2912 ?jersey1.    ?jersey1 wdt:P18 ?image1.  }
                  OPTIONAL { ?item wdt:P17 ?p17.}
-                 OPTIONAL { ?item wdt:P585 ?p585.} 
-                 OPTIONAL { ?item wdt:P582 ?p582.} 
+                 OPTIONAL { ?item wdt:P585 ?p585.}
+                 OPTIONAL { ?item wdt:P582 ?p582.}
                  OPTIONAL { ?item wdt:P580 ?p580.}
-                 ?item wdt:P1346 ?aa.  ?item p:P1346 ?winner.  ?winner ps:P1346 ?aa. 
+                 ?item wdt:P1346 ?aa.  ?item p:P1346 ?winner.  ?winner ps:P1346 ?aa.
                  ?winner pq:P642 ?P642.
-        FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 } 
+        FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 }
         FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q53534649 }
         FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q18131152 }
-                 OPTIONAL { ?sitelink schema:about ?item 
-                           . ?sitelink schema:isPartOf <https://ar.wikipedia.org/> 
+                 OPTIONAL { ?sitelink schema:about ?item
+                           . ?sitelink schema:isPartOf <https://ar.wikipedia.org/>
                                                           . ?sitelink schema:name ?title }
                  SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en,fr".
-                                         ?p17 rdfs:label ?p17lab. 
-                                         ?item rdfs:label ?itemlab. 
-                                         ?jersey rdfs:label ?jerseylab. 
-                                         ?jersey1 rdfs:label ?jersey1lab. 
-                                         ?P642 rdfs:label ?p642label. 
-                                        } 
-        
+                                         ?p17 rdfs:label ?p17lab.
+                                         ?item rdfs:label ?itemlab.
+                                         ?jersey rdfs:label ?jerseylab.
+                                         ?jersey1 rdfs:label ?jersey1lab.
+                                         ?P642 rdfs:label ?p642label.
+                                        }
+
     } } """
     # ---
     qu_2019 = """SELECT DISTINCT ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?jersey_3 ?jersey_4 ?p642label ?p585 ?p582 ?p580 ?rankP4323 ?rankP2321 ?rankP4320 ?rankP3494 ?title
-    WHERE {     SELECT DISTINCT ?item ?itemlab ?jerseylab ?p17lab ?rankP4323 ?rankP2321 ?rankP4320 ?rankP3494 
+    WHERE {     SELECT DISTINCT ?item ?itemlab ?jerseylab ?p17lab ?rankP4323 ?rankP2321 ?rankP4320 ?rankP3494
                ?jersey1lab ?image1 ?image2  ?image3 ?image4
-               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image1), "/Special:FilePath/"), "|", ?jersey1lab, "}}") AS ?jersey_1) 
-               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image2), "/Special:FilePath/"), "|", ?jersey2lab, "}}") AS ?jersey_2) 
-               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image3), "/Special:FilePath/"), "|", ?jersey3lab, "}}") AS ?jersey_3) 
-               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image4), "/Special:FilePath/"), "|", ?jersey4lab, "}}") AS ?jersey_4) 
+               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image1), "/Special:FilePath/"), "|", ?jersey1lab, "}}") AS ?jersey_1)
+               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image2), "/Special:FilePath/"), "|", ?jersey2lab, "}}") AS ?jersey_2)
+               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image3), "/Special:FilePath/"), "|", ?jersey3lab, "}}") AS ?jersey_3)
+               (CONCAT("{{JOJOJO|", STRAFTER(STR(?image4), "/Special:FilePath/"), "|", ?jersey4lab, "}}") AS ?jersey_4)
                ?p642label ?p585 ?p582 ?p580 ?title
                WHERE {
                  BIND(wd:Q447532 AS ?aa)
-                  ?item wdt:P31 ?a1a. 
+                  ?item wdt:P31 ?a1a.
                  OPTIONAL {  ?item wdt:P1346 ?aa.  ?item p:P1346 ?winner.  ?winner ps:P1346 ?aa.  ?winner pq:P642 ?P642.  }
-                  ?item (p:P1346|p:P4323|p:P2321|p:P4320|p:P3494) ?statment0.  
-                 ?statment0 (ps:P1346|ps:P4323|ps:P2321|ps:P4320|ps:P3494) ?aa.     
-                 OPTIONAL {  ?item p:P4323 ?statment1 .  ?statment1  ps:P4323 ?aa. 
+                  ?item (p:P1346|p:P4323|p:P2321|p:P4320|p:P3494) ?statment0.
+                 ?statment0 (ps:P1346|ps:P4323|ps:P2321|ps:P4320|ps:P3494) ?aa.
+                 OPTIONAL {  ?item p:P4323 ?statment1 .  ?statment1  ps:P4323 ?aa.
                            OPTIONAL {?statment1 pq:P2912 ?jersey1.    ?jersey1 wdt:P18 ?image1.  }
                            OPTIONAL {?statment1 pq:P1352 ?rankP4323. }
                           }
-                 OPTIONAL {  ?item p:P2321 ?statment2 .  ?statment2 ps:P2321 ?aa.  
+                 OPTIONAL {  ?item p:P2321 ?statment2 .  ?statment2 ps:P2321 ?aa.
                            OPTIONAL {?statment2 pq:P2912 ?jersey2.    ?jersey2 wdt:P18 ?image2.  }
                            OPTIONAL {?statment2 pq:P1352 ?rankP2321. }
                           }
-                 OPTIONAL {  ?item p:P4320 ?statment3 .  ?statment3 ps:P4320 ?aa.  
+                 OPTIONAL {  ?item p:P4320 ?statment3 .  ?statment3 ps:P4320 ?aa.
                            OPTIONAL {?statment3 pq:P2912 ?jersey3.    ?jersey3 wdt:P18 ?image3.  }
                            OPTIONAL {?statment3 pq:P1352 ?rankP4320. }
                           }
-                 OPTIONAL {  ?item p:P3494 ?statment4 .  ?statment4 ps:P3494 ?aa.  
+                 OPTIONAL {  ?item p:P3494 ?statment4 .  ?statment4 ps:P3494 ?aa.
                            OPTIONAL {?statment4 pq:P2912 ?jersey4.    ?jersey4 wdt:P18 ?image4.  }
                            OPTIONAL {?statment4 pq:P1352 ?rankP3494. }
                           }
 OPTIONAL { ?item wdt:P17 ?p17.} OPTIONAL { ?item wdt:P585 ?p585.}  OPTIONAL { ?item wdt:P582 ?p582.}  OPTIONAL { ?item wdt:P580 ?p580.}
 FILTER NOT EXISTS { ?item wdt:P31 wd:Q20646667. } # plain stage
 FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q53534649 }
-FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 } 
+FILTER NOT EXISTS { ?item wdt:P2417 ?P2417 }
 FILTER NOT EXISTS { ?item wdt:P31 ?P31 . ?P31 wdt:P279 wd:Q18131152 }
 FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q18131152 }
-OPTIONAL { ?sitelink schema:about ?item 
-                           . ?sitelink schema:isPartOf <https://ar.wikipedia.org/> 
+OPTIONAL { ?sitelink schema:about ?item
+                           . ?sitelink schema:isPartOf <https://ar.wikipedia.org/>
                                                           . ?sitelink schema:name ?title }
     SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en,fr".
-    ?p17 rdfs:label ?p17lab. 
-    ?item rdfs:label ?itemlab. 
-    ?jersey1 rdfs:label ?jersey1lab. 
-    ?jersey2 rdfs:label ?jersey2lab. 
-    ?jersey3 rdfs:label ?jersey3lab. 
-    ?jersey4 rdfs:label ?jersey4lab. 
-    ?P642 rdfs:label ?p642label. 
-    } 
-        
+    ?p17 rdfs:label ?p17lab.
+    ?item rdfs:label ?itemlab.
+    ?jersey1 rdfs:label ?jersey1lab.
+    ?jersey2 rdfs:label ?jersey2lab.
+    ?jersey3 rdfs:label ?jersey3lab.
+    ?jersey4 rdfs:label ?jersey4lab.
+    ?P642 rdfs:label ?p642label.
+    }
+
     } } """
     # ---
     qu_2019 = qu_2019.replace('Q447532', qid)
@@ -1206,7 +1206,7 @@ def main():
 # ---
 tty = """
 ===سباقات أو مراحل فاز بها===
-{{نتيجة سباق الدراجات/بداية|مراحل=نعم | id = Q623 
+{{نتيجة سباق الدراجات/بداية|مراحل=نعم | id = Q623
 }}
 <!-- هذه القائمة يقوم بوت: [[مستخدم:Mr._Ibrahembot]] بتحديثها من ويكي بيانات بشكل دوري. -->
 {{نتيجة سباق الدراجات/سطر4
@@ -1215,7 +1215,7 @@ tty = """
 |البلد = {{رمز علم|سويسرا}}
 |التاريخ = 2013-06-09T00:00:00Z
 |المركز = المركز الثاني
-|جيرسي = 
+|جيرسي =
 |}}
 {{نتيجة سباق الدراجات/سطر4
 |qid = Q28948862
@@ -1223,7 +1223,7 @@ tty = """
 |البلد = {{رمز علم|سويسرا}}
 |التاريخ = 2017-06-11T00:00:00Z
 |المركز = المركز الثاني
-|جيرسي = 
+|جيرسي =
 |}}
 {{نتيجة سباق الدراجات/نهاية}}
 

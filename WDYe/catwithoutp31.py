@@ -54,20 +54,20 @@ def Get_P_API2(item, P):
 # python pwb.py np/d -family:wikidata -lang:wikidata -ns:0 -start:Q32000000
 # ---
 quaries = {}
-quaries["ar"] = """ SELECT ?item 
+quaries["ar"] = """ SELECT ?item
 WHERE
-{  
-  ?item wikibase:statements 0 .  
-  ?article schema:about ?item ; schema:isPartOf <https://ar.wikipedia.org/> ; schema:name ?title . 
+{
+  ?item wikibase:statements 0 .
+  ?article schema:about ?item ; schema:isPartOf <https://ar.wikipedia.org/> ; schema:name ?title .
   FILTER(strstarts(str(?title),"تصنيف:") )
 }
 LIMIT 1000"""
 
-quaries["en"] = """ SELECT ?item 
+quaries["en"] = """ SELECT ?item
 WHERE
-{  
-  ?item wikibase:statements 0 .  
-  ?article schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> ; schema:name ?title . 
+{
+  ?item wikibase:statements 0 .
+  ?article schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> ; schema:name ?title .
   FILTER(strstarts(str(?title),"Category:") )
 }
 LIMIT 1000"""

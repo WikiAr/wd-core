@@ -43,7 +43,7 @@ def main():
             pywikibot.output(f'<<lightred>> Limit = {value}.')
         # ---#
     Quaa = '''
-SELECT DISTINCT 
+SELECT DISTINCT
 ?cat
 (concat("" , str(?item_ar) , ''  )  as ?ar_name)
 WHERE {
@@ -58,7 +58,7 @@ WHERE {
    ?item rdfs:label ?item_en filter (lang(?item_en) = "en") .
    ?cat rdfs:label ?cat_en filter (lang(?cat_en) = "en") .
    BIND( concat("Category:" , str(?item_en)) as ?change_name)
-  
+
   FILTER ( str(?cat_en) = str(?change_name) )
 }
 LIMIT '''

@@ -6,7 +6,7 @@
 جميع الأوصاف
 python3 pwb.py des/fam Q55678
 python3 pwb.py des/fam Q7889
-python3 pwb.py des/fam Q318 
+python3 pwb.py des/fam Q318
 python3 pwb.py des/fam
 
 '''
@@ -99,13 +99,13 @@ if len(desc_table) > 1:
 # ---
 quarry_o = '''
     SELECT DISTINCT ?item ?langs
-    WITH { SELECT ?item WHERE { 
+    WITH { SELECT ?item WHERE {
         ?item wdt:P31 wd:Q1457376 } ORDER BY DESC(xsd:integer(SUBSTR(STR(?item),33))) limit 1000
         } AS %a
-    WITH { SELECT ?item (COUNT(?l) as ?ls) (GROUP_CONCAT(DISTINCT(lang(?l)); separator=",") as ?langs) WHERE {  
+    WITH { SELECT ?item (COUNT(?l) as ?ls) (GROUP_CONCAT(DISTINCT(lang(?l)); separator=",") as ?langs) WHERE {
         INCLUDE %a.
-        ?item schema:description ?l } GROUP BY ?item HAVING( ?ls < 10) 
-        } as %b 
+        ?item schema:description ?l } GROUP BY ?item HAVING( ?ls < 10)
+        } as %b
     WHERE {
         INCLUDE %b
     }

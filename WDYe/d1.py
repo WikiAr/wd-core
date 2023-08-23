@@ -4,7 +4,7 @@
 '''
 #استعلام خنافس
 
-SELECT DISTINCT 
+SELECT DISTINCT
 ?en  (COUNT(?en) AS ?count) WHERE {
   ?item wdt:P171* wd:Q22671.
   ?item wdt:P105 wd:Q7432.
@@ -50,18 +50,18 @@ from wd_API import wd_desc
 # ---
 quuu = {}
 quuu['species of beetle'] = """
-SELECT DISTINCT 
+SELECT DISTINCT
 ?item WHERE {
     BIND("species of beetle"@en AS ?en) ?item schema:description ?en.
-    
-    BIND("espèces de coléoptères"@fr AS ?fr) 
-    BIND("specie di coleottero"@it AS ?it) 
+
+    BIND("espèces de coléoptères"@fr AS ?fr)
+    BIND("specie di coleottero"@it AS ?it)
     {?item schema:description ?it. } UNION {?item schema:description ?fr.}
     #OPTIONAL { ?item schema:description ?en2. FILTER((LANG(?en2)) = "en") }
 }
 LIMIT 20000"""
 quuu['species of insect'] = """
-SELECT DISTINCT 
+SELECT DISTINCT
 ?item WHERE {
     BIND("species of insect"@en AS ?en) ?item schema:description ?en.
     BIND("espèce de coléoptères"@fr AS ?fr)

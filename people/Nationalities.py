@@ -2,8 +2,8 @@
 """
 
 
-بوت إضافة الوصوف عن الأشخاص في ويكي بيانات 
- 
+بوت إضافة الوصوف عن الأشخاص في ويكي بيانات
+
 جميع اللغات
 
 https://github.com/emijrp/wikidata/blob/core/master/human.descriptions.py

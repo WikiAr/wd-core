@@ -62,9 +62,9 @@ from np.nldesc import Make_space_desc, Make_others_desc
 # ---
 if True:
     genders = {
-        'Q6581097': 'male', 
+        'Q6581097': 'male',
         'Q2449503': 'male', # transgender male
-        'Q6581072': 'female', 
+        'Q6581072': 'female',
         'Q1052281': 'female', #  transgender female
         }
     # ---
@@ -97,16 +97,16 @@ if True:
     # ---
     for tax_key, tax_lab in taxone_list.items():      # الأصنوفة
         if tax_lab.strip() != '' and tax_key.strip() != '' :
-            for natkey in Nationalities_list :            # النوع 
+            for natkey in Nationalities_list :            # النوع
                 natar = tax_translationsNationalities[natkey]
                 if natkey.strip() != '' and natar.strip() != '' :
                     kkey = tax_key.replace('~', natkey)
-                    tax_translations_lower[kkey.lower()] = tax_lab.replace('~',natar ) 
+                    tax_translations_lower[kkey.lower()] = tax_lab.replace('~',natar )
     # ---
     Qids_translate = {
         'Q13442814 ': Scientific_descraptions,
-        'Q21014462' : DescraptionsTable['cell line'], 
-        'Q11173' : DescraptionsTable['chemical compound'], 
+        'Q21014462' : DescraptionsTable['cell line'],
+        'Q11173' : DescraptionsTable['chemical compound'],
         # 'Q101352' : DescraptionsTable['family name'], # family name
         'Q3409032' : DescraptionsTable['unisex given name'],
         'Q11879590' : DescraptionsTable['female given name'],
@@ -124,14 +124,14 @@ if True:
         'Q8054':  DescraptionsTable['protein'],
         'Q21199':  DescraptionsTable['natural number'],
         'Q24856':  DescraptionsTable['film series'],
-        'Q49008':  DescraptionsTable['prime number'], 
+        'Q49008':  DescraptionsTable['prime number'],
         'Q4502142':  DescraptionsTable['visual artwork'],
         'Q6979593':  DescraptionsTable['national association football team'],
         'Q10870555':  DescraptionsTable['report'],
         'Q13100073':  DescraptionsTable['village in China'],
         'Q19389637':  DescraptionsTable['biographical article'],
-        
-        # space 
+
+        # space
         }
     # ---
     for x, taba in Qid_Descraptions.items():
@@ -151,7 +151,7 @@ def Get_P_API_id(item, P):
     # ---
     #q = 'claims' in item and item['claims'][P]['mainsnak']['datavalue']['value']['id'] or False
     lista = []
-    claims = item.get("claims", {} ) .get( P, {} ) 
+    claims = item.get("claims", {} ) .get( P, {} )
     for c in claims:
         #print(c)
         q = c.get('mainsnak', {} ).get('datavalue', {} ).get('value', {} ).get('id', False )
@@ -202,7 +202,7 @@ def work_qs( q, NewDesc ):
     qslinr = []
     # ---
     for lang in NewDesc:
-        qslinr.append( f"{q}|D{lang}|\"{NewDesc[lang]['value']}\"" ) 
+        qslinr.append( f"{q}|D{lang}|\"{NewDesc[lang]['value']}\"" )
     # ---
     for qsline in qslinr:
         if len(New_QS[1]) < QSlimit[1]:
@@ -229,7 +229,7 @@ def work_api_desc( NewDesc, q, fixlang ):
     # ---
     lang_to_skip = [ "tg-latn", 'en-gb', 'en-ca']
     # ---
-    if len(langes) == 1: 
+    if len(langes) == 1:
         lang = [ x for x in NewDesc.keys()][0]
         # ---
         if lang in lang_to_skip:
@@ -241,7 +241,7 @@ def work_api_desc( NewDesc, q, fixlang ):
         himoAPI.Des_API( q, onedesc, lang )
     elif len(langes) == 2 and langes[0] in lang_to_skip and langes[1] in lang_to_skip:
         printe.output(f'work_api_desc:"{q}" only en-gb and en-ca, Skipp... ' )
-        return        
+        return
     else:
         #Desc = NewDesc
         #ca = True
@@ -271,7 +271,7 @@ def make_tax_des_new( item ):
     nan = '''SELECT DISTINCT ?item ?P171 ?item105
     WHERE {
         BIND(wd:Q111771064 AS ?item)
-    VALUES ?P171 { 
+    VALUES ?P171 {
     %s
     }
         ?item wdt:P31 wd:Q16521.
@@ -291,8 +291,8 @@ def make_tax_des_new( item ):
         printe.output(bs)
         # ---
         #[
-            # {'P171': 'http://www.wikidata.org/entity/Q1390', 
-            # 'item': 'http://www.wikidata.org/entity/Q111771066', 
+            # {'P171': 'http://www.wikidata.org/entity/Q1390',
+            # 'item': 'http://www.wikidata.org/entity/Q111771066',
             # 'item105': 'http://www.wikidata.org/entity/Q7432'}
         # ]
         itq = bs['item'].split('/entity/')[1]
@@ -382,7 +382,7 @@ def work_people(item, topic, num, ardes ):
         # ---
         if years != '' : ara += ' ' + years
         # ---
-        himoAPI.Des_API( q, ara , 'ar' )    
+        himoAPI.Des_API( q, ara , 'ar' )
         return ""
     # ---
     taber = translations.get( topic, {} )
@@ -426,14 +426,14 @@ def work_qid_desc(item, topic, num):
     q = item["q"]
     descriptions = item.get("descriptions", {})
     NewDesc = {}
-    addedlangs = [] 
+    addedlangs = []
     # ---
     for lang in Qids_translate[topic].keys():
         # ---
         des_for_lang = replace_desc.get(lang, {})
         # ---
         if not lang in descriptions.keys():
-            #descriptions[lang] = Qids_translate[topic][lang] 
+            #descriptions[lang] = Qids_translate[topic][lang]
             NewDesc[lang] = {"language":lang, "value":Qids_translate[topic][lang]}
             addedlangs.append(lang)
         elif descriptions[lang] in des_for_lang:
@@ -456,10 +456,10 @@ def log_new_types(lists):
     # ---
     try:
         listo = codecs.open( jsonfils, "r", encoding="utf-8-sig").read()
-        if listo == '' : 
+        if listo == '' :
             printe.output( 'file: %s == {} ' % jsonfils )
             with codecs.open( jsonfils, "a", encoding="utf-8-sig") as dfsdf:
-                dfsdf.write( '{}' ) 
+                dfsdf.write( '{}' )
             dfsdf.close()
     except:
         printe.output( '' )
@@ -490,7 +490,7 @@ def ISRE( qitem, num, lenth, no_donelist = True, P31_list = False ):
     # ---
     printe.output( f'--- *<<lightyellow>> >{num}/{lenth}: q:{qitem}' )
     # ---
-    if num < offsetbg[1] : 
+    if num < offsetbg[1] :
         return ''
     # ---
     item = himoBOT2.Get_Item_API_From_Qid( qitem, sites = "", titles = "", props = "claims|descriptions|labels" )#claims
@@ -556,7 +556,7 @@ def ISRE( qitem, num, lenth, no_donelist = True, P31_list = False ):
             break
         # ---
         elif P31 == 'Q13442814':
-            sc_desc = ['', 'مقالة علمية', 'مقالة بحثية'] 
+            sc_desc = ['', 'مقالة علمية', 'مقالة بحثية']
             if ardes in sc_desc:
                 if "workibrahem" not in sys.argv:
                     make_scientific_art(item, P31, num)

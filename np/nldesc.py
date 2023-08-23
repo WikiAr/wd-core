@@ -592,7 +592,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=''):
             LNKitem = x.get('mainsnak',{}).get('datavalue',{}).get('value',{}).get('id','')
             claimstr = Get_label( LNKitem )
             printe.output(f"claimstr of {LNKitem}=[{claimstr}]")
-            if claimstr != '' : 
+            if claimstr != '' :
               if len(P175) > 1 :
                   claimstr += ' وآخرون'
               break
@@ -663,9 +663,9 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=''):
     # ---
     sus = 'بواسطة'
     # ---
-    if shortstr.strip() in jjj : 
+    if shortstr.strip() in jjj :
         sus = 'من تأليف'
-    elif shortstr.strip().find("مقالة") != -1 : 
+    elif shortstr.strip().find("مقالة") != -1 :
         sus = 'كتبها'
     # ---
     laste = f'{shortstr.strip()} {sus} {claimstr}'
@@ -698,7 +698,7 @@ def its_a_film(wditem):
       q = x.get('mainsnak',{}).get('datavalue',{}).get('value',{}).get('id','')
       directorname = Get_label( q )
       printe.output(f"directorname of {q}=[{directorname}]")
-      if directorname != '' : 
+      if directorname != '' :
         if len(P57) > 1 :
             directorname += ' وآخرون'
         break
@@ -963,7 +963,7 @@ str_descs = {
     },
     # ---
     'Q79529': {
-      "org" : ['chemische samenstelling','chemische verbinding'],         
+      "org" : ['chemische samenstelling','chemische verbinding'],
       "desc" : 'chemische stof',
     },
     # ---
@@ -1333,7 +1333,7 @@ def make_nn(lng, wditem, p31, orig_desc):
         if orig_desc in p31_tab["org"]:
             desc = its_a_generalthing( wditem, p31_tab["desc"], p31_tab["desc_in"], p31_tab["pid"])
     # ---
-    return desc      
+    return desc
 # ---
 def action_one_item(lngr, q, item={}, claimstr=''):
     global items2do

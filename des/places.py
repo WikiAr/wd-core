@@ -14,7 +14,7 @@
 "Q3558970" : {"ar" : "قرية في بولندا" }, # 56111
 "Q13220204" : {"ar" : "المستوى الثاني من التقسيم الإداري" }, # 10141
 "Q2389082" : {"ar" : "جماعة قروية فيتنامية" }, #   10001
-    
+
 '''
 #
 # ---
@@ -96,7 +96,7 @@ LIMIT 1000
 # ---
 yuxxx = '''
 
-SELECT 
+SELECT
 #?value ?valueLabel ?ct
 (CONCAT('    \"', STRAFTER(STR(?value), "/entity/"), '" : {"ar" : "') AS ?qq)
 ?valueLabel
@@ -116,7 +116,7 @@ WHERE { {
 ORDER BY DESC (?ct) (?value)
 
 
-SELECT 
+SELECT
 #?value ?valueLabel ?ct
 (CONCAT('    \"', STRAFTER(STR(?value), "/entity/"), '" : {"ar" : "') AS ?qq)
 ?valueLabel
@@ -125,7 +125,7 @@ SELECT
 WHERE { {
     SELECT ?value (COUNT(*) AS ?ct) (SAMPLE(?item) AS ?sampleitem) WHERE {
       ?item wdt:P31 ?value.
-  
+
       ?item (wdt:P131|wdt:P17) ?sd.
     }
     GROUP BY ?value

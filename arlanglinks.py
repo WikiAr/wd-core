@@ -16,11 +16,11 @@ from api_sql import wiki_sql
 # ---
 dump_file = f'{Dump_Dir}/langlinks.json'
 # ---
-qua = '''select  
+qua = '''select
 CONCAT('"Category:', p1.page_title, '"') AS en, CONCAT(':"',ll_title, '",') AS ar
 from page AS p1, langlinks
 where p1.page_id = ll_from
-AND ll_lang = "ar" 
+AND ll_lang = "ar"
 AND p1.page_namespace = 14
 
 '''

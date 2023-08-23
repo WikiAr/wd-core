@@ -100,11 +100,11 @@ def Fix_List(List):
     New_List2 = []
     # if ar.find(" (الجمع:") != -1 :
     # ---
-    FFA = "(الجمع|ج|جمعها|)(\=|\:)(.*)"
+    FFA = r"(الجمع|ج|جمعها|)(\=|\:)(.*)"
     mattes = [
-        "^(.*)\(" + FFA + "\)$",
-        "^(.*)\[" + FFA + "\]$",
-        "^(.*)\[" + FFA + "\]$"
+        r"^(.*)\(" + FFA + r"\)$",
+        r"^(.*)\[" + FFA + r"\]$",
+        r"^(.*)\[" + FFA + r"\]$"
     ]
     # ---
     comas = ["،", ";", "؛"]
@@ -135,8 +135,8 @@ def Fix_List(List):
                     Dodo = False
                     Conn = False
                     # ---
-                    ar1 = re.sub(mate, '\g<4>', ar)
-                    ar2 = re.sub(mate, '\g<1>', ar)
+                    ar1 = re.sub(mate, r'\g<4>', ar)
+                    ar2 = re.sub(mate, r'\g<1>', ar)
                     printe.output(f'ar2:"{ar2}",ar1:"{ar1}" ')
                     # ---
                     if not ar1.strip() in New_List2:
@@ -292,7 +292,10 @@ def looog():
     text2 = ""
     # ---
     for x in log2:
-        text2 += "\n|-\n| {{Q|%s}} || {{Label | %s | en }} ||" % (x, x)
+        q = '{{Q| ' + x + '}}'
+        text2 += "\n|-\n| %s || {{" % q
+        text2 += "Label | %s | en" % x
+        text2 += "}} ||"
         text2 += ",".join(log2[x]) + "\n"
     # ---
     if text2 != "":

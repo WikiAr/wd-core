@@ -1,14 +1,14 @@
 #!/usr/bin/python
 """
 
-python3 pwb.py people/new3 
+python3 pwb.py people/new3
 python3 pwb.py people/new3 -nat:Yemeni ask
 python3 pwb.py people/new3 -nat:American limit:200
 
 SELECT *
 WHERE {
-  values ?lowerdesc { "yemeni footballer"@en } 
-  values ?ddes { "Yemeni footballer"@en } 
+  values ?lowerdesc { "yemeni footballer"@en }
+  values ?ddes { "Yemeni footballer"@en }
   {SELECT * WHERE {
     ?item wdt:P31 wd:Q5;
           wdt:P21 wd:Q6581097.
@@ -24,7 +24,7 @@ WHERE {
 
 
 SELECT * WHERE {
-    values (?lowerdesc) { ("yemeni footballer"@en) } 
+    values (?lowerdesc) { ("yemeni footballer"@en) }
     ?item wdt:P31 wd:Q5;
           wdt:P21 wd:Q6581097.
     ?item schema:description ?ddes
@@ -32,7 +32,7 @@ SELECT * WHERE {
           bind(lcase(?ddes) as ?lowerdesc)
           # FILTER(!(BOUND(?de)))
   }
-  
+
 """
 #
 # (C) Ibrahem Qasim, 2022
@@ -161,7 +161,7 @@ def check_quarry_new(tab):
         # printe.output( "@@".join( tabe[numb] ) )
         printe.output(f"find qua for {len(tabe[numb])} description.")
         # ---
-        qua = '''SELECT 
+        qua = '''SELECT
     (concat(strafter(str(?item),"/entity/")) as ?q)#?item
     (GROUP_CONCAT(DISTINCT(LANG(?des2)); separator=",") as ?deskey)
     (GROUP_CONCAT(DISTINCT(?des); separator=",") as ?desc)

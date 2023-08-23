@@ -5,7 +5,7 @@ likeapi.descraptions
 
 "([\w\s]+)"(\s*\:\s*{\s*"ar"\s*\:\s*"[\w\s]+")\s*\}\s*\,\s*\#(Q\d+)
 "$3"$2, "en":"$1"},
- 
+
 new pages from file
 
 python3 pwb.py API/descraptions
@@ -13,7 +13,7 @@ python3 pwb.py update/update
 
 
 SELECT ?P31 (count(*) as ?d)
-WHERE { 
+WHERE {
   VALUES ?P31 { wd:Q10870555 wd:Q1457376 wd:Q39614 wd:Q19389637 wd:Q15917122 wd:Q4502142
                               wd:Q1332364
                               wd:Q204194
@@ -34,7 +34,7 @@ WHERE {
                               wd:Q13100073
                               wd:Q4167836
               }
-  ?item wdt:P31 ?P31. } 
+  ?item wdt:P31 ?P31. }
 group by ?P31
 
 """

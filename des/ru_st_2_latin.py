@@ -362,9 +362,9 @@ def make_en_label(labels, q, Add=False):
 # ---
 def main():
     # ---
-    query = '''SELECT ?item 
+    query = '''SELECT ?item
 WHERE {  ?item wdt:P495 wd:Q403.
-?item ^schema:about ?article . ?article schema:isPartOf <https://sr.wikipedia.org/>; 
+?item ^schema:about ?article . ?article schema:isPartOf <https://sr.wikipedia.org/>;
 }
 limit 10''' #country of origin=Srbia  #xxxx items
     # ---

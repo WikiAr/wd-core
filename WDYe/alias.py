@@ -85,8 +85,8 @@ Limit = {1: "10"}
 Quaa = '''SELECT ?item ?label ?alias
     WHERE
     {
-      #?item wdt:P31 wd:Q4167836. 
-      ?item wdt:P31 wd:%s. 
+      #?item wdt:P31 wd:Q4167836.
+      ?item wdt:P31 wd:%s.
       ?item rdfs:label ?label.
       OPTIONAL { ?item skos:altLabel ?alias FILTER (LANG (?alias) = "ar") }
       FILTER(LANG(?label) = "ar").

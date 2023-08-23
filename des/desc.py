@@ -36,7 +36,7 @@ WHERE {
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})FILTER (?statementcount > 50 ) .
   #FILTER (count(?p17) = 1 ) .
   #FILTER (count(?place) = 1 ) .
-} 
+}
 GROUP BY ?item
 limit 100
 """
@@ -303,9 +303,9 @@ WHERE {
   ?place wdt:P17 ?p17.
   }  union {?item wdt:P17 ?p17.}
   #{?place wdt:P17 ?p17. } union {?item wdt:P17 ?p17.}
-  
+
   ?p17 rdfs:label ?p17lab.FILTER((LANG(?p17lab)) = "ar")
-  
+
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
 }
 '''
@@ -320,11 +320,11 @@ WHERE {
   ?item wdt:P31 wd:%s.
   {?item wdt:P702 ?p17. }  union {?item wdt:P703 ?p17.}
   #{?place wdt:P17 ?p17. } union {?item wdt:P17 ?p17.}
-  
+
   ?p17 rdfs:label ?p17lab.FILTER((LANG(?p17lab)) = "ar")
-  
+
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
-} 
+}
 '''
 # ---
 Quase[2020] = '''SELECT #DISTINCT
@@ -342,7 +342,7 @@ WHERE {
   ?p17 rdfs:label ?p17labe.FILTER((LANG(?p17labe)) = "ar")
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
 }
-GROUP BY ?item# HAVING ( ?p17count = 1 ) 
+GROUP BY ?item# HAVING ( ?p17count = 1 )
 '''
 # ---
 if 'optional' in sys.argv:
@@ -351,7 +351,7 @@ if 'optional' in sys.argv:
     Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', '''
 optional { ?item (wdt:P131|wdt:P276) ?place. }
 SERVICE wikibase:label {
-    bd:serviceParam wikibase:language "ar" . 
+    bd:serviceParam wikibase:language "ar" .
     ?place rdfs:label ?placeare
   }''')
 # ---

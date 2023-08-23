@@ -170,8 +170,8 @@ WHERE {
     FILTER((LANG(?label)) = "ar")
     #sr
     #FILTER (CONTAINS(?label, 'عبد الله')) .
-    
-    
+
+
     }
 '''}
 # ---
@@ -205,10 +205,10 @@ def workqua(qua):
 
 
 # ---
-queries = '''use wikidatawiki_p; 
+queries = '''use wikidatawiki_p;
 SELECT term_full_entity_id , term_text
-from wb_terms 
-WHERE term_entity_type = 'item' 
+from wb_terms
+WHERE term_entity_type = 'item'
 AND term_language = 'ar'#en#ar#
 AND term_type = 'label' #description#label#
 AND term_text like "%عبد_%"
@@ -272,7 +272,7 @@ def mains():
         if arg == 'limit':
             Limit[1] = " limit " + value
     # ---
-    '''fff = queries 
+    '''fff = queries
     tart3 = himoBOT2.getquarry2_raws( "340662" )
     FFF = False
     #pywikibot.output( 'tart3: "%s"' % tart3 )

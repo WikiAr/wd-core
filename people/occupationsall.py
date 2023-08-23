@@ -1,8 +1,8 @@
 #!/usr/bin/python
-""" 
+"""
 
-بوت إضافة الوصوف عن الأشخاص في ويكي بيانات 
- 
+بوت إضافة الوصوف عن الأشخاص في ويكي بيانات
+
 جميع اللغات
 
 https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
@@ -12,7 +12,7 @@ https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
 ~ ski jumper
 ~ troubadour
 ~ bishop
-    
+
 """
 #
 # (C) Ibrahem Qasim, 2022

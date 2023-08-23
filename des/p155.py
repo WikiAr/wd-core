@@ -271,7 +271,7 @@ WHERE {
     }
   FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
   #sr
-  
+
 }
 LIMIT  '''
 # ---
@@ -286,8 +286,8 @@ WHERE {
     ?item rdfs:label ?label filter (lang(?label) = "en") .
     FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
   #sr
-  
-} 
+
+}
 LIMIT  '''
 
 # ---
@@ -302,7 +302,7 @@ WHERE {
     ?item rdfs:label ?label filter (lang(?label) = "en") .
     FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
     #sr
-} 
+}
 LIMIT  '''
 # ---
 #python pwb.py des/p155 qua5 P31:Q18536594 limit:1000
@@ -320,7 +320,7 @@ WHERE {
     }
   FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
   #sr
-  
+
 }
 LIMIT  '''
 # ---
@@ -340,7 +340,7 @@ WHERE {
 #sr
 
 }
-LIMIT 
+LIMIT
 '''
 # ---
 Quarry[7] = '''
@@ -353,7 +353,7 @@ WHERE {
   ?dd rdfs:label ?dden filter (lang(?dden) = "en") .
     #sr
     FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
-} 
+}
 LIMIT  '''
 # ---
 Quarry[8] = '''
@@ -368,9 +368,9 @@ WHERE {
   FILTER NOT EXISTS {?item rdfs:label ?ara filter (lang(?ara) = "ar")} .
   ?item rdfs:label ?label filter (lang(?label) = "en") .
   #sr
-  
+
 }
-LIMIT 
+LIMIT
 '''
 # ---
 Quarry['use'] = Quarry[2]

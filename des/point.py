@@ -78,10 +78,10 @@ SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
     #?item wdt:P641/wdt:P279 wd:Q2215841.
     FILTER NOT EXISTS { ?item wdt:P585 ?P585. }
     FILTER NOT EXISTS { ?item wdt:P580 ?P580. }
-    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007C20)\\d\\d") ) 
+    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007C20)\\d\\d") )
     ?item rdfs:label ?label . FILTER( REGEX(?label, "(\\d\\d\\d\\d)") )
     #%s
-    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007C20)\\d\\d") ) 
+    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007C20)\\d\\d") )
 }
 #LIMIT 2
 '''

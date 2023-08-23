@@ -94,8 +94,8 @@ WHERE {
 }
 limit 10000'''
 
-    Quarry2 = '''SELECT ?item 
-WHERE {VALUES (?item) {(wd:Q29976539) }  
+    Quarry2 = '''SELECT ?item
+WHERE {VALUES (?item) {(wd:Q29976539) }
 ?item ?s ?ss}
 limit 1'''
     json1 = wd_bot.wd_sparql_generator_url(Quarry2)

@@ -71,7 +71,7 @@ stats_tab = {
 Offset = {1: 0}
 Limit = {1: 900000000}
 # ---
-if "test" in sys.argv: 
+if "test" in sys.argv:
     Limit[1] = 15000
 # ---
 for arg in sys.argv:
@@ -214,7 +214,7 @@ def save_to_wp(text):
     arAPI.page_put(oldtext="", newtext=text, summary='Bot - Updating stats', title=title)
 
 
-def read_data(): 
+def read_data():
     filename = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2'
     if not os.path.isfile(filename):
         print(f'file {filename} <<lightred>> not found')
@@ -233,7 +233,7 @@ def read_data():
         line = line.strip('\n').strip(',')
         if not line.startswith('{') or not line.endswith('}'):
             continue
-        c += 1 
+        c += 1
         if c > Limit[1]:
             print('c>Limit[1]')
             break

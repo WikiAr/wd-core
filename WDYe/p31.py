@@ -29,10 +29,10 @@ WHERE p.page_namespace = 14
 #and not exists (select * from wikidatawiki_p.pagelinks wdpl where wdpl.pl_from = wdp.page_id  AND wdpl.pl_title = 'P31' )
 and p.page_id not in (select tl_from from templatelinks, linktarget where lt_namespace = 10 and tl_target_id = lt_id and lt_title = "تحويل_تصنيف" )
 
-and p.page_is_redirect = 0 
+and p.page_is_redirect = 0
 AND pp_page = p.page_id AND pp_propname = 'wikibase_item' AND wdp.page_title = pp_value AND wdp.page_namespace = 0
 and wdp.page_id not in (select wdpl.pl_from from wikidatawiki_p.pagelinks wdpl where wdpl.pl_title = 'P31' and wdpl.pl_from = wdp.page_id)
-AND wdp.page_is_redirect = 0 
+AND wdp.page_is_redirect = 0
 GROUP BY p.page_title
 #order by ll_from
 #LIMIT 2000;'''

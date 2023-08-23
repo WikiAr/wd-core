@@ -12,14 +12,14 @@ import unicodedata
 import sys
 # ---
 quuu = {}
-quuu['month'] = ''' 
+quuu['month'] = '''
 SELECT DISTINCT ?item
-WHERE { 
+WHERE {
 ?item schema:description "%s"@en  .
 FILTER NOT EXISTS {?item schema:description ?ar.
              FILTER((LANG(?ar)) = "ar" ) }
-} 
-limit 3000 
+}
+limit 3000
 '''
 # ---
 # newdesc.work22(q , topic, translations)
