@@ -20,7 +20,7 @@ import sys
 from API import printe
 from wd_API import himoAPI_test as himoAPI
 # ---
-Limit = { 1: '' }
+Limit = {1: ''}
 # ---
 from api_sql import wiki_sql
 # ---
@@ -53,9 +53,9 @@ for arg in sys.argv:
     # ---
     if arg == '-limit' or arg == 'limit':
         Limit[1] = value
-        printe.output(f'<<lightred>> Limit = {value}.' )
+        printe.output(f'<<lightred>> Limit = {value}.')
 # ---
-if Limit[1] != '' :
+if Limit[1] != '':
     Quaa = Quaa + f'limit {Limit[1]}'
 # ---
 def main():
@@ -68,7 +68,7 @@ def main():
     num = 0
     # ---
     for item in result:
-        qid  = item['qid']
+        qid = item['qid']
         page = item['page']
         # ---
         if type(qid) == bytes:
@@ -82,7 +82,7 @@ def main():
         # ---
         printe.output(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')
         # ---
-        if page != "" : 
+        if page != "":
             himoAPI.Labels_API(qid, page, "ar", False, Or_Alii=True)
 # ---
 if __name__ == "__main__":

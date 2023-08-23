@@ -49,7 +49,7 @@ def read_file():
     print(f"file {filename} found, read it:")
     fileeee = bz2.open(filename, "r")
     c = 0
-        
+
     done = 0
     len_of_all_properties = 0
     items_0_claims = 0
@@ -68,7 +68,7 @@ def read_file():
             All_items += 1
             c += 1
 
-            if 'test' in sys.argv :
+            if 'test' in sys.argv:
                 if c % 1000 == 0:
                     print(f'c:{c}')
                     print(f'done:{done}')
@@ -76,7 +76,7 @@ def read_file():
                 if c > test_limit[1]:
                     print('c>test_limit[1]')
                     break
-                
+
             json1 = json.loads(line)
             claims = json1.get("claims", {})
             if len(claims) == 0:
@@ -109,7 +109,7 @@ def read_file():
                                         Main_Table[p]["props"][idd] = 0
                                     Main_Table[p]["props"][idd] += 1
                         Main_Table[p]["len_of_qids"] = len(Main_Table[p]["props"])
-        
+
     tab = {
         "done": done,
         "file_date": file_date,

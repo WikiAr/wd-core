@@ -211,7 +211,7 @@ def make_text(tab, ty=''):
 
 if __name__ == "__main__":
     filename = f"{Dump_Dir}/dumps/claims.json"
-    
+
     if 'claims2' in sys.argv:
         filename = f"{Dump_Dir}/dumps/claims2.json"
 
@@ -219,7 +219,7 @@ if __name__ == "__main__":
         filename = f"{Dump_Dir}/dumps/claims_test.json"
 
     data = json.load(open(filename))
-        
+
     tab = {
         "done": 0,
         "len_of_all_properties": 0,

@@ -424,8 +424,8 @@ def main():
     # {?P1343 wdt:P629 wd:Q200306.} UNION {?item wdt:P1343 wd:Q19558994. }
     # sat = "{?item wdt:P31/wdt:P279* wd:Q27043950. }"#Q4936952.}
     # SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
-    Quaa  = ''' SELECT ?item ?en ?ar ?alias WHERE { '''
-    
+    Quaa = ''' SELECT ?item ?en ?ar ?alias WHERE { '''
+
     Quaa += sat + '''
     ?item rdfs:label ?en. FILTER(LANG(?en) = "en").
     FILTER NOT EXISTS { ?item rdfs:label ?ar. FILTER(LANG(?ar) = "ar"). }
@@ -434,7 +434,7 @@ def main():
     LIMIT '''
 
     Quaa += Limit[1]
-    
+
     printe.output(Quaa)
     sparql = himoBOT2.sparql_generator_url(Quaa)
     # ---

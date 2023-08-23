@@ -30,7 +30,7 @@ def start():
         tab = {}
         tab['lenth_of_usage'] = pap['lenth_of_usage']
         tab['lenth_of_claims_for_property'] = pap['lenth_of_claims_for_property']
-        
+
         tab['len_of_qids'] = len(pap['props'])
 
         tab['props'] = {}
@@ -58,7 +58,7 @@ def start():
 
     P31_tab = data2['Main_Table']['P31']
 
-    data2['Main_Table'] = { k:v for k, v in sorted(data2['Main_Table'].items(), key=lambda item: item[1]['lenth_of_usage'], reverse=True)}
+    data2['Main_Table'] = {k: v for k, v in sorted(data2['Main_Table'].items(), key=lambda item: item[1]['lenth_of_usage'], reverse=True)}
 
     if '100' in sys.argv:
         # get only first 100 properties

@@ -11,9 +11,9 @@ import time
 import sys
 # ---
 def main():
-    print( 'main:')
+    print('main:')
     numb = 0
-    type =  "MED"
+    type = "MED"
     start = 0
     ATend = 10
     # ---
@@ -26,11 +26,11 @@ def main():
     #list  = range(62700,62710)
     start = int(start)
     end = start + int(ATend)
-    list  = range(start , end)
+    list = range(start, end)
     for id in list:
         numb += 1
         id = str(id)
-        print( '%d : id: %s'  % (numb , id) )
+        print('%d : id: %s' % (numb, id))
         pub.add(id, type)
         time.sleep(2)
 # ---

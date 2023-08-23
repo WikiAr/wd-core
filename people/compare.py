@@ -24,7 +24,7 @@ json.dump(tota1, codecs.open(f'{Dir}/compare_files/tota1old.json', 'w', encoding
 json.dump(tota2, codecs.open(f'{Dir}/compare_files/tota2new.json', 'w', encoding='utf-8'), sort_keys=True, indent=4, ensure_ascii=False)
 
 # keys in tota2 but not in tota1
-new_keys = [ x for x in tota2.keys() if not x in tota1.keys()]
+new_keys = [x for x in tota2.keys() if not x in tota1.keys()]
 
 # print the number of keys present in old translations file but not in the new one
 
@@ -32,7 +32,7 @@ print(f"{len(new_keys)} keys present in old translations file but not in the new
 
 # print the keys present in old translations file but not in the new one
 
-for key in new_keys: 
+for key in new_keys:
     print(key)
 
 print('compare values:')
