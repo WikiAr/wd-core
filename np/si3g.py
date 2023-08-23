@@ -110,7 +110,8 @@ def mainwithcat2():
         if arg == "-artest":
             file = f'dump/artest/{value}.txt'
         # ---
-        if arg == '-page': lista.append(value)
+        if arg == '-page':
+            lista.append(value)
         # ---
         # python3 pwb.py np/si3g -ns:0 -usercontribs:Edoderoobot
         # python3 pwb.py np/si3g -ns:0 -usercontribs:Ghuron
@@ -121,7 +122,8 @@ def mainwithcat2():
             namespaces = value
     # ---
     if file != "":
-        if not file.startswith(main_dir1): file = main_dir1 + file
+        if not file.startswith(main_dir1):
+            file = main_dir1 + file
         oco = codecs.open(file, "r", encoding="utf-8").read().split('\n')
         lista = [x.strip() for x in oco if x.strip() != '']
     # ---

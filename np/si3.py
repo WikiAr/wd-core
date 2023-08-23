@@ -81,7 +81,8 @@ if True:
         # ---
         arg, sep, value = arg.partition(':')
         # ---
-        if arg.startswith('-') : arg = arg[1:]#print('change arg to %s ' % arg )
+        if arg.startswith('-') :
+            arg = arg[1:]#print('change arg to %s ' % arg )
         # ---
         if arg == 'qslimit':
             QSlimit[1] = int(value)
@@ -143,7 +144,8 @@ if True:
     # ---
     Add_en_labels = { 1 : False }
     # ---
-    if "addenlabel" in sys.argv: Add_en_labels[1] = True
+    if "addenlabel" in sys.argv:
+        Add_en_labels[1] = True
     # ---
     Geo_List = list( placesTable.keys() )
 # ---
@@ -257,7 +259,8 @@ def make_tax_des_new( item ):
     # ---
     P171 = Get_P_API_id(item, "P171")
     # ---
-    if P171 == []: return ''
+    if P171 == []:
+        return ''
     # ---
     P105 = Get_P_API_id(item, "P105")
     P105ar = ''
@@ -266,7 +269,8 @@ def make_tax_des_new( item ):
             P105ar = labforP105[p]
             break
     # ---
-    if P105ar == '' : return ''
+    if P105ar == '' :
+        return ''
     # ---
     nan = '''SELECT DISTINCT ?item ?P171 ?item105
     WHERE {
@@ -281,7 +285,8 @@ def make_tax_des_new( item ):
     }''' % ( " ".join( [ 'wd:%s' % x for x in lab_for_p171.keys() ] ) )
     nan = nan.replace("Q111771064", q)
     # ---
-    if "err" in sys.argv: printe.output(nan)
+    if "err" in sys.argv:
+        printe.output(nan)
     # ---
     bs = wd_bot.sparql_generator_url(nan)
     # ---
@@ -366,7 +371,8 @@ def work_people(item, topic, num, ardes ):
     # ---
     topic = topic.lower().strip()
     # ---
-    if topic == '' : return ''
+    if topic == '' :
+        return ''
     # ---
     years = ''
     # ---
@@ -380,7 +386,8 @@ def work_people(item, topic, num, ardes ):
     if en_des_to_ar.get(topic, '') != '':
         ara = en_des_to_ar[topic]
         # ---
-        if years != '' : ara += ' ' + years
+        if years != '' :
+            ara += ' ' + years
         # ---
         himoAPI.Des_API( q, ara , 'ar' )
         return ""
@@ -450,7 +457,8 @@ def work_qid_desc(item, topic, num):
 # ---
 def log_new_types(lists):
     # ---
-    if "nolog" in sys.argv: return ''
+    if "nolog" in sys.argv:
+        return ''
     # ---
     jsonfils = main_dir1 + 'np/new_types.json'
     # ---
@@ -464,7 +472,8 @@ def log_new_types(lists):
     except:
         printe.output( '' )
     # ---
-    if "log2" in sys.argv: jsonfils = main_dir1 + 'np/new_types2.json'
+    if "log2" in sys.argv:
+        jsonfils = main_dir1 + 'np/new_types2.json'
     # ---
     if Lalo_types["n"] == {} :
         with codecs.open(jsonfils, "r", encoding="utf-8-sig") as listt:
@@ -520,7 +529,8 @@ def ISRE( qitem, num, lenth, no_donelist = True, P31_list = False ):
     # ---
     descriptions = item.get("descriptions", {})
     endes = descriptions.get("en", "")
-    if endes  == "" : endes = descriptions.get("nl", "")
+    if endes  == "" :
+        endes = descriptions.get("nl", "")
     ardes = descriptions.get("ar", "")
     # ---
     if len(P31_table) == 0 :
@@ -570,7 +580,8 @@ def ISRE( qitem, num, lenth, no_donelist = True, P31_list = False ):
             if ardes == '' :
                 printe.output( f'*<<lightred>> >P31 :{P31} not in Qids_translate.' )
                 # ---
-                if not P31 in new_types :   new_types[P31] = 0
+                if not P31 in new_types :
+                    new_types[P31] = 0
                 # ---
                 new_types[P31] += 1
     # ---

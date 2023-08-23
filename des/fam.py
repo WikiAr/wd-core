@@ -173,7 +173,8 @@ for p31, p31_desc in desc_table.items():
             # ---
             tp = '<<lightyellow>>*mainfromQuarry: %d from %d p31:"%s", qid:"%s":<<lightblue>>%s' % (num, json_lenth, p31, q, topic_ar)
             # ---
-            if qu_numb == 1: printe.output(tp)
+            if qu_numb == 1:
+                printe.output(tp)
             # ---
             if len(lang_to_add) == 0:
                 printe.output(tp)

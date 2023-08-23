@@ -301,7 +301,8 @@ letters_to_latin = {
 # ---
 def add_new_label(q, enlabel):
     # ---
-    if enlabel == "": return
+    if enlabel == "":
+        return
     # ---
     labels = {}
     # ---

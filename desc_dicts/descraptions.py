@@ -1599,13 +1599,16 @@ replace_desc = {
 # ---
 if __name__ == "__main__":
     # python3 pwb.py desc_dicts/descraptions
-    u1 = ''; u2 = ''
+    u1 = ''
+    u2 = ''
     for x, taba in DescraptionsTable.items():
         en_d = taba.get('en', '')
         sl_d = taba.get('sl', '')
         line = f'\n|-\n| {en_d} || {sl_d}'
-        if "sl" in taba: u1 += line
-        elif len(taba) > 2: u2 += line
+        if "sl" in taba:
+            u1 += line
+        elif len(taba) > 2:
+            u2 += line
     # ---
     print(u1)
     print(u2)

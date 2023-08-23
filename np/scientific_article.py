@@ -312,7 +312,8 @@ def make_scientific_desc(lang, date, precision):
 def Get_P_API_time(item, P):
     qlist = []
     # ---
-    if not item or type(item) != dict: return False
+    if not item or type(item) != dict:
+        return False
     claims = item.get("claims", {}).get(P, [])
     for PP31 in claims:
         vv = PP31.get("mainsnak", {}).get("datavalue", {}).get("value", {})
@@ -321,8 +322,10 @@ def Get_P_API_time(item, P):
     # ---
     Faso = {}
     # ---
-    if len(qlist) == 0: return False
-    if len(qlist) == 1: return qlist[0]
+    if len(qlist) == 0:
+        return False
+    if len(qlist) == 1:
+        return qlist[0]
     # ---
     sasa = [x['time'].split('-')[0].split('+0000000')[1] for x in qlist if x['time'].startswith('+0000000')]
     for i in sasa:

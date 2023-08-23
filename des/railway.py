@@ -32,7 +32,8 @@ def Get_P_API_id(claims, P, onlyone=False):
         q = c.get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id')
         if q:
             list.append(q)
-            if onlyone: return q
+            if onlyone:
+                return q
     # ---
     if onlyone:
         return ""
@@ -41,7 +42,8 @@ def Get_P_API_id(claims, P, onlyone=False):
 # ---
 def work_railway(wditem, p31, q=""):
     # ---
-    if "railway" not in sys.argv: return
+    if "railway" not in sys.argv:
+        return
     # ---
     if wditem == {}:
         wditem = himoBOT2.Get_Item_API_From_Qid(q)
@@ -78,7 +80,8 @@ def work_railway(wditem, p31, q=""):
         "en": {1: "{} in {}", 2: "{} in {}, {}"},
         }
     # ---
-    if to_do_descs == {}: return
+    if to_do_descs == {}:
+        return
     # ---
     wditem_desc = wditem.get("descriptions", {})
     newdesc = {}
@@ -91,25 +94,31 @@ def work_railway(wditem, p31, q=""):
     P31_list = Get_P_API_id(Claims, 'P31')
     # ---
     for lang, des in to_do_descs.items():
-        if des == "": continue
+        if des == "":
+            continue
         # ---
         org_desc = wditem_desc.get(lang, "")
         # ---
-        if not org_desc in ["", des]: continue
+        if not org_desc in ["", des]:
+            continue
         # ---
         p17_desc = labs["p17"].get(lang, "").split("(")[0].strip()
         # ---
         p131_desc = labs["p131"].get(lang, "").split("(")[0].strip()
         # ---
-        if p17_desc == "" and p131_desc == "" and lang != "ar": continue
+        if p17_desc == "" and p131_desc == "" and lang != "ar":
+            continue
         # ---
         o1 = f", {p17_desc}"
         o2 = f"، {p17_desc}"
         o3 = f"({p17_desc})"
         # ---
-        if p131_desc.endswith(o1): p131_desc = p131_desc.replace(o1, '')
-        if p131_desc.endswith(o2): p131_desc = p131_desc.replace(o2, '')
-        if p131_desc.endswith(o3): p131_desc = p131_desc.replace(o3, '')
+        if p131_desc.endswith(o1):
+            p131_desc = p131_desc.replace(o1, '')
+        if p131_desc.endswith(o2):
+            p131_desc = p131_desc.replace(o2, '')
+        if p131_desc.endswith(o3):
+            p131_desc = p131_desc.replace(o3, '')
         # ---
         # make new desc
         # ---

@@ -37,7 +37,8 @@ for arg in sys.argv:
     # ---
     arg, sep, value = arg.partition(':')
     # ---
-    if arg.startswith('-') : arg = arg[1:]
+    if arg.startswith('-') :
+        arg = arg[1:]
     # ---
     if arg == 'off':
         Off[1] = int(value)
@@ -165,7 +166,8 @@ def Get_label(qid):
 # ---
 def get_female_for_p17(contry_lab, type):
     # ---
-    if contry_lab.strip() == '' : return ''
+    if contry_lab.strip() == '' :
+        return ''
     # ---
     lab = nationalities.get(contry_lab,{}).get(type,'')
     # ---
@@ -224,13 +226,16 @@ def its_something_in_a_country(wdi, something):
         ma = get_female_for_p17( prnCountry.strip() , 'man' )
         if ma != '' :
             dara = ma
-            if something.strip() == 'نادي كرة قدم للهواة' : something = 'نادي كرة قدم'
+            if something.strip() == 'نادي كرة قدم للهواة' :
+                something = 'نادي كرة قدم'
     # ---
     elif something.strip() in females :
         f = get_female_for_p17( prnCountry.strip() , 'women' )
-        if f != '' : dara = f
+        if f != '' :
+            dara = f
     # ---
-    if prnCountry != '':fanee = something.strip() + ' ' + dara.strip()
+    if prnCountry != '':
+        fanee = something.strip() + ' ' + dara.strip()
     # ---
     return fanee
 # ---
@@ -507,11 +512,11 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
     # ---
     elif type_of_item == 'Q783866':
         if (orig_desc in ['مكتبة جافا سكريبت','']) :
-            my_description = its_a_generalthing( wditem , 'مكتبة جافا سكريبت','مكتبة جافا سكريبت من تطوير ','P178');
+            my_description = its_a_generalthing( wditem , 'مكتبة جافا سكريبت','مكتبة جافا سكريبت من تطوير ','P178')
     # ---
     elif type_of_item == 'Q620615': #تطبيق محمول
         if (orig_desc in ['تطبيق محمول','']) :
-            my_description = its_a_generalthing( wditem , '','تطبيق محمول من تطوير ','P178');
+            my_description = its_a_generalthing( wditem , '','تطبيق محمول من تطوير ','P178')
     # ---
     elif type_of_item in Space_tab:
         labr = Space_tab[type_of_item]
@@ -650,7 +655,8 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=''):
     claimstr = claimstr.strip()
     # ---
     # if claimstr == '': return shortstr
-    if claimstr == '': return ''
+    if claimstr == '':
+        return ''
     # ---
     jjj = [
         "كتاب",
@@ -669,7 +675,8 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=''):
         sus = 'كتبها'
     # ---
     laste = f'{shortstr.strip()} {sus} {claimstr}'
-    if len(P50) > 1 : laste = f'{shortstr.strip()} {sus} {claimstr} وآخرون'
+    if len(P50) > 1 :
+        laste = f'{shortstr.strip()} {sus} {claimstr} وآخرون'
     # ---
     #laste = laste.replace("كوكبة  ","كوكبة ")
     # ---
@@ -795,7 +802,8 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
             if type_of_item in qura and my_description in [ qura[type_of_item]['P31'] , ''] :
                 my_description = '{} في {}'.format( qura[type_of_item]['P31'] , qura[type_of_item]['P17'] )
     # ---
-    if my_description == '' : return my_description
+    if my_description == '' :
+        return my_description
     # ---
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]" , '' , my_description.lower() )
     if test.lower() != my_description.lower():
@@ -1352,7 +1360,8 @@ def action_one_item(lngr, q, item={}, claimstr=''):
     claims = wditem['claims']
     items2do -= 1
     # ---
-    if 'P31' not in claims: return
+    if 'P31' not in claims:
+        return
     # ---
     type_ids = claims.get( 'P31', {} )
     # ---
@@ -1447,9 +1456,11 @@ def action_one_item(lngr, q, item={}, claimstr=''):
           printe.output(f'type of item: {type_of_item}, orig_desc: [{orig_desc}], new: [{my_description}]')
           continue
       # ---
-      if my_description.find('n/a') != -1 : continue
+      if my_description.find('n/a') != -1 :
+          continue
       # ---
-      if my_description == orig_desc : continue
+      if my_description == orig_desc :
+          continue
       # ---
       if my_description == "جين في إنسان عاقل":
         my_description = "جين من أنواع جينات الإنسان العاقل"

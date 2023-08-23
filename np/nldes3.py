@@ -276,13 +276,13 @@ def generator_last_hour():
     timenow=None
     site=pywikibot.Site('wikidata','wikidata')
     repo=site.data_repository()
-    generator=newest_items(repo,site);
+    generator=newest_items(repo,site)
     generator=pg.NewpagesPageGenerator(site)
     for item in generator:
       if timenow == None:
         timenow=item.oldest_revision.timestamp
-        endtime=timenow-timedelta(1.0/24.0);
-        untilltime=endtime-timedelta(0.001);
+        endtime=timenow-timedelta(1.0/24.0)
+        untilltime=endtime-timedelta(0.001)
       if (item.oldest_revision.timestamp > untilltime):
         #print(item.title())
         item=pywikibot.ItemPage( repo , item.title() )
@@ -426,13 +426,15 @@ def main(debug=False):
         printe.output( '-------------------------' )
         printe.output("<<lightblue>> query %d from %d :" % (numg , len(ssqq)) )
         # ---
-        if Offq[1] > 0 and Offq[1] > numg : continue
+        if Offq[1] > 0 and Offq[1] > numg :
+          continue
         # ---
         #sparql_query = 'select ?item where {?item wdt:P31 wd:Q3508250}' #
         #site=pywikibot.Site('wikidata','wikidata')
         repo={}#site.data_repository()
         items_processed=0
-        if debug: printe.output('main-1')
+        if debug:
+          printe.output('main-1')
         if (True):
           #pigenerator = wd_all_countries(sparql_query)
           #pigenerator = wd_all_without_description()
@@ -454,7 +456,8 @@ def main(debug=False):
             #printe.output( wd )
             q = wd['item'].split("/entity/")[1]
             totalreads+=1
-            if debug: printe.output(f'Found: {q}' )
+            if debug:
+              printe.output(f'Found: {q}' )
             printe.output( "p%d/%d q:%s" % ( totalreads , len(pigenerator) , q ) )
             # ---
             claimstr = just_get_ar(wd.get( 'lab' , '' ))

@@ -55,8 +55,10 @@ login = wdi_login.WDLogin(username, password)
 Test = {1: False}
 Ask = {1: False}
 # ---
-if "ask" in sys.argv: Ask[1] = True
-if "test" in sys.argv: Test[1] = True
+if "ask" in sys.argv:
+    Ask[1] = True
+if "test" in sys.argv:
+    Test[1] = True
 # ---
 def get_and_load(url):
     # ---
@@ -121,7 +123,8 @@ def get_article_info(ext_id, id_type):
         do = get_and_load(url)
         # if do != '' and do != "Resource not found.":
         # ---
-        if type(do) != dict: continue
+        if type(do) != dict:
+            continue
         # ---
         if do.get('hitCount'):
             if do.get('hitCount') != 1:
