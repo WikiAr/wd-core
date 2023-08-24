@@ -24,9 +24,9 @@
 faft = {
     "Q5633421": {"ar": "دورية علمية"},
     "Q5": {"ar": "إنسان"},
-    "Q318": {"ar": "مجرة"}, #2088509
-    "Q523": {"ar": "نجم"}, #3257793
-    "Q1931185": {"ar": " مصدر راديو فلكي"}, #351376
+    "Q318": {"ar": "مجرة"},  # 2088509
+    "Q523": {"ar": "نجم"},  # 3257793
+    "Q1931185": {"ar": " مصدر راديو فلكي"},  # 351376
     "Q3863": {"ar": "كويكب"},
     "Q6243": {"ar": "نجم متغير"},
     "Q7187": {"ar": "جين"},
@@ -83,7 +83,7 @@ faft = {
     "Q72802508": {"ar": "emission-line galaxy"},
     "Q72803622": {"ar": "emission-line star"},
     "Q88965416": {"ar": "school unit"},
-    }
+}
 # ---
 asdasd = '''
 SELECT ?item ?placear WHERE {
@@ -350,17 +350,17 @@ placesTable = {
     "Q963729": {"ar": "أخدود غائص", "en": "submarine canyon"},
     "Q569500": {"ar": "مركز صحي", "en": ""},
     "Q39614": {"ar": "مقبرة", "en": "cemetery"},
-    }
+}
 # ---
 placesTable["Q8054"] = {"ar": "بروتين"}
 # ---
 placesTable["Q207524"] = {"ar": "جزيرة صغيرة", "en": "islet"}
 placesTable["Q22698"] = {"ar": "متنزه", "en": "park"}
-#placesTable["Q34795826"] = { "ar" : "" , "en" : "moor" }
+# placesTable["Q34795826"] = { "ar" : "" , "en" : "moor" }
 placesTable["Q211748"] = {"ar": "حقل نفط", "en": "oilfield"}
 
 placesTable["Q1248784"] = {"ar": "مطار", "en": "airport"}
-#placesTable["Q591942"] = { "ar" : "فرع" , "en" : "distributary" }
+# placesTable["Q591942"] = { "ar" : "فرع" , "en" : "distributary" }
 placesTable["Q105190"] = {"ar": "سد مائي", "en": "levee"}
 placesTable["Q532"] = {"ar": "قرية", "en": "village"}
 placesTable["Q820477"] = {"ar": "منجم", "en": "mine"}
@@ -375,15 +375,12 @@ placesTable["Q75520"] = {"ar": "هضبة", "en": "plateau"}
 placesTable["Q2935978"] = {"ar": "قناة ري", "en": "irrigation canal"}
 placesTable["Q190429"] = {"ar": "منخفض", "en": "depression"}
 placesTable["Q44782"] = {"ar": "ميناء", "en": "port"}
-#placesTable[""] = { "ar" : "" , "en" : "" }
-#placesTable[""] = { "ar" : "" , "en" : "" }
-#placesTable[""] = { "ar" : "" , "en" : "" }
-#placesTable[""] = { "ar" : "" , "en" : "" }
+# placesTable[""] = { "ar" : "" , "en" : "" }
+# placesTable[""] = { "ar" : "" , "en" : "" }
+# placesTable[""] = { "ar" : "" , "en" : "" }
+# placesTable[""] = { "ar" : "" , "en" : "" }
 placesTable["Q34379419"] = {"ar": "منطقة رملية", "en": "sand area"}
 # ---
-
-
-
 
 
 # ---

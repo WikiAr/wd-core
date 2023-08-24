@@ -299,6 +299,8 @@ letters_to_latin = {
     }
 }
 # ---
+
+
 def add_new_label(q, enlabel):
     # ---
     if enlabel == "":
@@ -313,6 +315,8 @@ def add_new_label(q, enlabel):
     data = {"labels": labels}
     # ---
     add = himoAPI.New_Mult_Des(q, data, "Bot: cyrillic2latin-labels", False)
+
+
 # ---
 # abcd = "abcdefghijklmnopqrstuvwxyz".split('')
 abcd = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(',')
@@ -322,6 +326,8 @@ liste = {
     'sr': list(set(letters_to_latin['sr'].keys()) - set(letters_to_latin['sr'].values()) - set(abcd)),
 }
 # ---
+
+
 def change_one_lab(text, lang):
     table = letters_to_latin[lang]
     # ---
@@ -341,6 +347,8 @@ def change_one_lab(text, lang):
     # ---
     return new_lab
 # ---
+
+
 def make_en_label(labels, q, Add=False):
     org_lab = ''
     new_lab = ''
@@ -361,13 +369,15 @@ def make_en_label(labels, q, Add=False):
     # ---
     return new_lab
 # ---
+
+
 def main():
     # ---
     query = '''SELECT ?item
 WHERE {  ?item wdt:P495 wd:Q403.
 ?item ^schema:about ?article . ?article schema:isPartOf <https://sr.wikipedia.org/>;
 }
-limit 10''' #country of origin=Srbia  #xxxx items
+limit 10'''  # country of origin=Srbia  #xxxx items
     # ---
     # ---
     generator = WikidataSPARQLPageGenerator(
@@ -382,6 +392,8 @@ limit 10''' #country of origin=Srbia  #xxxx items
         if item.exists():
             item.get(get_redirect=True)
             newlab = make_en_label(labels, q)
+
+
 # ---
 if __name__ == "__main__":
     if 'test' in sys.argv:

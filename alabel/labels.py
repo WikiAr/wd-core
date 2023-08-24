@@ -58,8 +58,10 @@ for arg in sys.argv:
 if Limit[1] != '':
     Quaa = Quaa + f'limit {Limit[1]}'
 # ---
+
+
 def main():
-    #python3 ./core8/pwb.py alabel/labels -limit:20
+    # python3 ./core8/pwb.py alabel/labels -limit:20
     # ---
     result = wiki_sql.sql_new(Quaa, wiki="wikidata", printqua=True)
     # ---
@@ -84,6 +86,8 @@ def main():
         # ---
         if page != "":
             himoAPI.Labels_API(qid, page, "ar", False, Or_Alii=True)
+
+
 # ---
 if __name__ == "__main__":
     main()

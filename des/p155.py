@@ -44,6 +44,8 @@ years = r"(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d
 tests_en = r'[abcdefghijklmnopqrstuvwxyz]'
 tests_ar = r'[ابتثجحخدذرزسشصضطظعغفقكلمنهويأآإىءئؤة1234567890\–\-\.]'
 # ---
+
+
 def make_newlabel(label, ar, en):
     # ---
     printe.output(f'<<lightblue>>make_newlabel label:"{label}",ar:"{ar}",en:"{en}" ')
@@ -69,8 +71,8 @@ def make_newlabel(label, ar, en):
     if en.find("(") != -1:
         en2 = en.lower().split("(")[0]
     # ---
-    #if re.sub( tests_en , "" , newlabel , flags = re.IGNORECASE ).strip() != newlabel :
-    #if re.sub( tests_ar , "" , newlabel , flags = re.IGNORECASE ).strip() != "" :
+    # if re.sub( tests_en , "" , newlabel , flags = re.IGNORECASE ).strip() != newlabel :
+    # if re.sub( tests_ar , "" , newlabel , flags = re.IGNORECASE ).strip() != "" :
     if en.lower().strip() != "" and ar.lower().strip() != "":
         if label.lower().strip() == en.lower().strip():
             newlabel = ar
@@ -111,7 +113,7 @@ def make_newlabel(label, ar, en):
     # ---
     newlabel = re.sub(r' (\d|\d+|\d+\.\d+) to (\d|\d+|\d+\.\d+) ton', r' \g<1> إلى \g<2> طن', newlabel, flags=re.IGNORECASE)
     # ---
-    #newlabel2 = newlabel
+    # newlabel2 = newlabel
     # ---
     for aeo in cccccups:
         newlabel = re.sub(aeo, cccccups[aeo], newlabel, flags=re.IGNORECASE)
@@ -141,8 +143,8 @@ def make_newlabel(label, ar, en):
     # ---
     newlabel = newlabel.replace("  ", " ")
     # ---
-    #if newlabel2 != newlabel:
-        #printe.output( '<<lightblue>> newlabel2:%s, newlabel:"%s" ' % ( newlabel2 , newlabel ) )
+    # if newlabel2 != newlabel:
+    # printe.output( '<<lightblue>> newlabel2:%s, newlabel:"%s" ' % ( newlabel2 , newlabel ) )
     # ---
     printe.output(f'<<lightblue>> label:{label}, newlabel:"{newlabel}" ')
     # ---
@@ -168,11 +170,13 @@ def make_newlabel(label, ar, en):
     # ---
     return newlabel.strip()
     # ---
+
+
 def Item(item):
     # ---
     q = item['item']
     # ---#
-    #item[''] = re.sub(r"shooting at the 2016 summer olympics"  , "" , item['dden'], flags = re.IGNORECASE  )
+    # item[''] = re.sub(r"shooting at the 2016 summer olympics"  , "" , item['dden'], flags = re.IGNORECASE  )
     item['dden'] = re.sub(r"(.*) at the (\d+) (Winter|summer) olympics", r"\g<2> \g<1> at the \g<3> olympics", item['dden'], flags=re.IGNORECASE)
     item['label'] = re.sub(r"(.*) at the (\d+) (Winter|summer) olympics", r"\g<2> \g<1> at the \g<3> olympics", item['label'], flags=re.IGNORECASE)
     item['dden'] = re.sub(r"(.*) at the (\d+) (Winter|summer) youth olympics", r"\g<2> \g<1> at the \g<3> youth olympics", item['dden'], flags=re.IGNORECASE)
@@ -196,7 +200,7 @@ def Item(item):
             printe.output("<<lightred>> ar == item['ddar'] or en == item['dden'] ")
             printe.output(f"<<lightred>> en:{en},dden:{item['dden']} ")
             printe.output(f"<<lightred>> ar:{ar},ddar:{item['ddar']} ")
-            #return ''
+            # return ''
             ar = ''
             en = ''
     # ---
@@ -222,6 +226,7 @@ def Item(item):
                 Ask[1] = False
         else:
             himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
+
     # ---
 Quarry = {}
 Quarry['use'] = ""
@@ -252,7 +257,7 @@ WHERE {
 }
 LIMIT '''
 # ---
-#python pwb.py des/p155 qua2 P31:Q18536594 limit:1000
+# python pwb.py des/p155 qua2 P31:Q18536594 limit:1000
 Quarry[2] = '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
@@ -305,7 +310,7 @@ WHERE {
 }
 LIMIT  '''
 # ---
-#python pwb.py des/p155 qua5 P31:Q18536594 limit:1000
+# python pwb.py des/p155 qua5 P31:Q18536594 limit:1000
 Quarry[5] = '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
@@ -375,18 +380,20 @@ LIMIT
 # ---
 Quarry['use'] = Quarry[2]
 # ---
+
+
 def main():
     # ---
-    #python pwb.py des/p155 qua0 P17:Q145
-    #python pwb.py des/p155 qua0
-    #python pwb.py des/p155 qua1
-    #python pwb.py des/p155 qua1 sky
+    # python pwb.py des/p155 qua0 P17:Q145
+    # python pwb.py des/p155 qua0
+    # python pwb.py des/p155 qua1
+    # python pwb.py des/p155 qua1 sky
     #
-    #python pwb.py des/p155 qua8 -limit:400
-    #python pwb.py des/p155 qua2 -limit:400
-    #python pwb.py des/p155 qua3 -limit:400
-    #python pwb.py des/p155 qua4 -limit:400
-    #python pwb.py des/p155 -limit:400
+    # python pwb.py des/p155 qua8 -limit:400
+    # python pwb.py des/p155 qua2 -limit:400
+    # python pwb.py des/p155 qua3 -limit:400
+    # python pwb.py des/p155 qua4 -limit:400
+    # python pwb.py des/p155 -limit:400
     # ---
     printe.output(sys.argv)
     # ---
@@ -428,7 +435,7 @@ def main():
         arg, sep, value = arg.partition(':')
         # ---
         if arg == 'sky':
-            #Quarry['use']  = Quarry['use'].replace("#sr" , "?item (wdt:P3450|wdt:P361) ?P361. ?P361 (wdt:P3450|wdt:P361) wd:Q285389. \n#sr\n" )
+            # Quarry['use']  = Quarry['use'].replace("#sr" , "?item (wdt:P3450|wdt:P361) ?P361. ?P361 (wdt:P3450|wdt:P361) wd:Q285389. \n#sr\n" )
             Quarry['use'] = Quarry['use'].replace("#sr", "?item (wdt:P31|wdt:P361) ?P361. ?P361 (wdt:P31/wdt:P279*|wdt:P361) wd:Q18536594. \n#sr\n")
         # ---
         if arg == 'save':
@@ -468,32 +475,31 @@ def main():
         printe.output('<<lightblue>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         Item(tabj)
     # ---
+
+
 def test():
-    #cc = "2010 World Figure Skating Championships - ladies' singles free skating"
-    #ar = make_newlabel( cc , '' , '' )
-    #ar = make_newlabel( "2020 Volleyball at the Summer olympics" , 'الألعاب الأولمبية الصيفية 2020' , '2020 Summer Olympics' )
-    #ar = make_newlabel( "1988 Ski jumping at the Winter olympics – Large hill individual" , '' , '' )
-    #ar = make_newlabel( "1998 cross-country skiing at the winter olympics – women's 10 kilometre freestyle pursuit" , '' , '' )
-    #ar = make_newlabel( "1964 weightlifting at the summer olympics – men's 82.5 kg" , '' , '' )
+    # cc = "2010 World Figure Skating Championships - ladies' singles free skating"
+    # ar = make_newlabel( cc , '' , '' )
+    # ar = make_newlabel( "2020 Volleyball at the Summer olympics" , 'الألعاب الأولمبية الصيفية 2020' , '2020 Summer Olympics' )
+    # ar = make_newlabel( "1988 Ski jumping at the Winter olympics – Large hill individual" , '' , '' )
+    # ar = make_newlabel( "1998 cross-country skiing at the winter olympics – women's 10 kilometre freestyle pursuit" , '' , '' )
+    # ar = make_newlabel( "1964 weightlifting at the summer olympics – men's 82.5 kg" , '' , '' )
     ar = make_newlabel("2014 world team table tennis championships", '', '')
-    #printe.output( cc )
+    # printe.output( cc )
     printe.output(ar)
+
+
 # ---
 if __name__ == "__main__":
     if sys.argv and "test" in sys.argv:
         test()
     else:
         main()
-    #Item({'ddar': 'بطولة العالم لتنس الطاولة 1932', 'dden': '1932 World Table Tennis Championships', 'item': 'Q203962', 'label': '1933 World Table Tennis Championships (January)'})
-    #Item({'ddar': 'بطولة العالم للشطرنج 1975', 'dden': 'World Chess Championship 1975', 'item': 'Q1999918', 'label': 'World Chess Championship 1978'})
+    # Item({'ddar': 'بطولة العالم لتنس الطاولة 1932', 'dden': '1932 World Table Tennis Championships', 'item': 'Q203962', 'label': '1933 World Table Tennis Championships (January)'})
+    # Item({'ddar': 'بطولة العالم للشطرنج 1975', 'dden': 'World Chess Championship 1975', 'item': 'Q1999918', 'label': 'World Chess Championship 1978'})
 # ---
 
 
-#python pwb.py des/p155 qua7 -P279:Q13219666 limit:200
-#python pwb.py des/p155 qua4 -P279:Q1344963 limit:200
-#python pwb.py des/p155 qua4 -P279:Q1079023 limit:200
-
-
-
-
-
+# python pwb.py des/p155 qua7 -P279:Q13219666 limit:200
+# python pwb.py des/p155 qua4 -P279:Q1344963 limit:200
+# python pwb.py des/p155 qua4 -P279:Q1079023 limit:200

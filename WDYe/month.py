@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
 #
-# ---
-from wd_API import newdesc
-import re
-import time
-import codecs
-import pywikibot
-import json
-import unicodedata
-# ---
+#---
 import sys
-# ---
+import pywikibot
+#---
+from wd_API import newdesc
+#---
 quuu = {}
 quuu['month'] = '''
 SELECT DISTINCT ?item
@@ -21,18 +16,18 @@ FILTER NOT EXISTS {?item schema:description ?ar.
 }
 limit 3000
 '''
-# ---
+#---
 # newdesc.work22(q , topic, translations)
 # newdesc.main_from_file(file , topic , translations)
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
-# --- ----------------------
+#--- ----------------------
 translations = {
     'month': {
         'ar': 'شهر',
     },
 }
 translations["island in Indonesia"] = {"ar": "جزيرة في إندونيسيا"}
-# ---
+#---
 
 
 def mainfromQuarry(topic):
@@ -43,8 +38,8 @@ def mainfromQuarry(topic):
     newdesc.mainfromQuarry2(topic, Quarry, translations)
 
 
-# ---
+#---
 if __name__ == "__main__":
     mainfromQuarry("island in Indonesia")
     mainfromQuarry('month')
-# ---
+#---

@@ -45,7 +45,7 @@ en_des_to_ar_no_lower = {
 en_des_to_ar = {x.lower(): z for x, z in en_des_to_ar_no_lower.items()}
 # ---
 Space_tab = {
-    'Q18611609': 'كوكب غير مؤكد خارج المجموعة الشمسية', # unconfirmed exoplanet # 20689
+    'Q18611609': 'كوكب غير مؤكد خارج المجموعة الشمسية',  # unconfirmed exoplanet # 20689
     'Q13890': 'نجم مزدوج',
     'Q6999': 'جرم فلكي',
     'Q83373': 'نجم زائف',
@@ -70,7 +70,7 @@ Space_tab = {
     'Q71963409': 'تجمع مجري مدمج',
     'Q726242': 'نجم',
     'Q72803622': 'نجم',
-    }
+}
 # ---
 for q in Space_Descraptions:
     Space_tab[q] = Space_Descraptions[q]["ar"]
@@ -402,36 +402,36 @@ nationalities = {
     "أمريكا الشمالية": {"man": "أمريكي شمالي", "women": "أمريكية شمالية"},
     "أمريكا الجنوبية": {"man": "أمريكي جنوبي", "women": "أمريكية جنوبية"},
     "فيكتوريا (أستراليا)": {"man": "فيكتوري", "women": "فيكتورية"},
-    }
+}
 # ---
 all_types_list = [
-    'Q571',    #boek
-    'Q134556', #single
-    'Q16970',  #kerkgebouw
-    'Q34763',  #schiereiland
-    'Q95074',  #personage
-    'Q2912397' #eendaagse wielerwedstrijd
-    'Q23442',  #eiland
-    'Q23397',  #meer
-    'Q102496', #parochie
-    'Q273057', #discografie
-    'Q207628', #compositie
-    ]
+    'Q571',  # boek
+    'Q134556',  # single
+    'Q16970',  # kerkgebouw
+    'Q34763',  # schiereiland
+    'Q95074',  # personage
+    'Q2912397'  # eendaagse wielerwedstrijd
+    'Q23442',  # eiland
+    'Q23397',  # meer
+    'Q102496',  # parochie
+    'Q273057',  # discografie
+    'Q207628',  # compositie
+]
 # ---
 simple_set_byP131 = [
     'Q24764', 'Q70208', 'Q127448', 'Q203300', 'Q262166', 'Q262166', 'Q378508', 'Q484170', 'Q493522', 'Q612229', 'Q640364', 'Q659103', 'Q667509', 'Q747074', 'Q755707', 'Q856076', 'Q856079', 'Q955655', 'Q1054813',
-    'Q13218690', 'Q15127838', 'Q2261863', 'Q494721', #steden
+    'Q13218690', 'Q15127838', 'Q2261863', 'Q494721',  # steden
     'Q1363145', 'Q1500350', 'Q1500352', 'Q1530824', 'Q1840161', 'Q2661988', 'Q2590631', 'Q2460358', 'Q1849719', 'Q2989398', 'Q3327873', 'Q3685462', 'Q5154047', 'Q6784672', 'Q16739079', 'Q20538317',
-    'Q23925393', #marokkaanse douar
-    'Q23012917', 'Q2225692', 'Q4174776', 'Q13100073', 'Q23827464', 'Q3558970', 'Q15630849', 'Q21672098', #dorpen
-    'Q188509', #buitenwijk
-    'Q9842',  #basisschool
-    'Q3914', #school
-    'Q355304', #watergang
-    'Q54050', #heuvel
-    'Q166735', #broekbos
+    'Q23925393',  # marokkaanse douar
+    'Q23012917', 'Q2225692', 'Q4174776', 'Q13100073', 'Q23827464', 'Q3558970', 'Q15630849', 'Q21672098',  # dorpen
+    'Q188509',  # buitenwijk
+    'Q9842',  # basisschool
+    'Q3914',  # school
+    'Q355304',  # watergang
+    'Q54050',  # heuvel
+    'Q166735',  # broekbos
     '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-    ]
+]
 # ---
 SPARQLSE = {}
 # ---
@@ -450,21 +450,21 @@ Geo_entity = {
     'Q22698': 'متنزه',
     'Q131681': 'خزان مائي',
     'Q4421': 'غابة',
-    }
+}
 # ---
 p50s = {
     'Q571': {'ar': "كتاب", 'P': 'P50'},
-    'Q7725634': {'ar': "عمل أدبي", 'P': 'P50'}, #رواية
+    'Q7725634': {'ar': "عمل أدبي", 'P': 'P50'},  # رواية
     'Q1760610': {'ar': "كتاب هزلي", 'P': 'P50'},
     'Q1318295': {'ar': "قصة", 'P': 'P50'},
     'Q49084': {'ar': "قصة قصيرة", 'P': 'P50'},
     'Q96739634': {'ar': "حركة فردية", 'P': 'P50'},
     'Q18918145': {'ar': "مقالة أكاديمية", 'P': 'P50'},
     'Q187685': {'ar': "أطروحة أكاديمية", 'P': 'P50'},
-    #'Q19389637': "مقالة سيرة ذاتية",
-    #'Q571': "كتاب",
-    #'Q2831984': 'ألبوم قصص مصورة',
-    }
+    # 'Q19389637': "مقالة سيرة ذاتية",
+    # 'Q571': "كتاب",
+    # 'Q2831984': 'ألبوم قصص مصورة',
+}
 # ---
 for tt in Qid_Descraptions:
     SPARQLSE[tt] = main_quarry % tt
@@ -515,7 +515,7 @@ GROUP BY ?item '''
 # ---
 space_list_and_other = {
     # ---
-    #'Q72802508',#emission-line galaxy
+    # 'Q72802508',#emission-line galaxy
     # ---
     'Q96739634': "حركة فردية",
     'Q3331189': "طبعة",
@@ -525,7 +525,7 @@ space_list_and_other = {
     'Q14752149': "نادي كرة قدم للهواة",
     'Q476028': "نادي كرة قدم",
     'Q620615': "تطببيق محمول",
-    'Q783866': 'مكتبة جافا سكريبت', # 17241
+    'Q783866': 'مكتبة جافا سكريبت',  # 17241
     'Q2831984': "ألبوم قصص مصورة",
     'Q19389637': "مقالة سيرة ذاتية",
     'Q3305213': "لوحة فنية",
@@ -536,7 +536,7 @@ space_list_and_other = {
     'Q13433827': "مقالة موسوعية",
     # ---
     'Q7278': "حزب سياسي",
-    }
+}
 # ---
 Taton_list = {}
 # ---
@@ -549,25 +549,25 @@ for dd in p50s:
 # ---
 # Space_tab جاهزة في SPARQLSE
 for sss in Space_tab:
-    #space_list_and_other.append(sss)
+    # space_list_and_other.append(sss)
     space_list_and_other[sss] = Space_tab[sss]
 # ---
 others_list_2 = [
-    'Q820655', # قانون تشريعي
-    'Q21191270', # حلقة مسلسل تلفزيوني
-    'Q1983062', # حلقة
-    'Q45382', # انقلاب
-    'Q7366', # أغنية
-    'Q134556', # أغنية منفردة
-    'Q11424', # فيلم
-    'Q24862', # فيلم قصير
-    'Q3231690', # طراز سيارة
-    ]
+    'Q820655',  # قانون تشريعي
+    'Q21191270',  # حلقة مسلسل تلفزيوني
+    'Q1983062',  # حلقة
+    'Q45382',  # انقلاب
+    'Q7366',  # أغنية
+    'Q134556',  # أغنية منفردة
+    'Q11424',  # فيلم
+    'Q24862',  # فيلم قصير
+    'Q3231690',  # طراز سيارة
+]
 # ---
 others_list = {
     # ---
     'Q43229': {"ar": 'منظمة'},
-    'Q820655': {"ar": 'قانون تشريعي'}, #python3 pwb.py np/nldes3 sparql:Q820655
+    'Q820655': {"ar": 'قانون تشريعي'},  # python3 pwb.py np/nldes3 sparql:Q820655
     'Q728937': {"ar": 'خط سكة حديد'},
     'Q46970': {"ar": 'شركة طيران'},
     'Q4830453': {"ar": 'شركة'},
@@ -577,56 +577,56 @@ others_list = {
     "Q215380": {"ar": "طاقم موسيقي", },
     "Q8502": {"ar": "جبل", },
     "Q532": {
-            "ar": "قرية",
-            #"en":"village",
-        },
+        "ar": "قرية",
+        # "en":"village",
+    },
     "Q54050": {
-            "ar": "تل",
-            #"en":"village",
-        },
+        "ar": "تل",
+        # "en":"village",
+    },
     "Q79007": {
-            "ar": "شارع",
-            #"en":"street",
-        },
+        "ar": "شارع",
+        # "en":"street",
+    },
     "Q12280": {"ar": "جسر"},
     "Q39614": {"ar": "مقبرة",
-            #"nl": "begraafplaats",
-            #"en":"cemetery",
-            #"en-ca":"cemetery",
-            #"en-gb":"cemetery",
-        },
+               # "nl": "begraafplaats",
+               # "en":"cemetery",
+               # "en-ca":"cemetery",
+               # "en-gb":"cemetery",
+               },
     # ---
     'Q5398426': {"ar": "مسلسل تلفزيوني", "en": ""},
     'Q27020041': {'ar': 'موسم رياضي', 'en': ''},          # 1987
-    #'Q1983062':{"ar":"حلقة", "en":"" },
-    #'Q21191270':{"ar":"حلقة مسلسل تلفزيوني", "en":"" },
-    #'Q15416':{"ar":"برنامج تلفزيوني", "en":"" },
-    #'Q11424':{"ar":"فيلم", "en":"" },
-    }
+    # 'Q1983062':{"ar":"حلقة", "en":"" },
+    # 'Q21191270':{"ar":"حلقة مسلسل تلفزيوني", "en":"" },
+    # 'Q15416':{"ar":"برنامج تلفزيوني", "en":"" },
+    # 'Q11424':{"ar":"فيلم", "en":"" },
+}
 # ---
 for geo in Geo_entity:
     others_list[geo] = {"ar": Geo_entity[geo], "en": ""}
 # ---
 bldiat = {
-    "Q484170": "فرنسا", #a 37477
-    "Q262166": "ألمانيا", #a 7941
-    "Q3184121": "البرازيل", #a 5260
-    "Q6784672": "سلوفاكيا", #a 2864
-    "Q667509": "النمسا", #a 2335
-    "Q24764": "الفلبين", #a 1486
-    "Q2039348": "هولندا", #a 892
-    "Q57058": "كرواتيا", #a 880
-    "Q1054813": "اليابان", #a 691
-    "Q1758856": "مالي", #a 667
-    "Q747074": "إيطاليا", #a 594
-    "Q493522": "بلجيكا ", #a 573
-    "Q755707": "النرويج", #a 337
-    "Q1349648": "اليونان", #a 333
-    "Q127448": "السويد", #a 286
-    "Q1906268": "بلغاريا", #a 264
-    "Q856076": "فنلندا ", #a 219
-    "Q378508": "أنغولا", #a 158
-    }
+    "Q484170": "فرنسا",  # a 37477
+    "Q262166": "ألمانيا",  # a 7941
+    "Q3184121": "البرازيل",  # a 5260
+    "Q6784672": "سلوفاكيا",  # a 2864
+    "Q667509": "النمسا",  # a 2335
+    "Q24764": "الفلبين",  # a 1486
+    "Q2039348": "هولندا",  # a 892
+    "Q57058": "كرواتيا",  # a 880
+    "Q1054813": "اليابان",  # a 691
+    "Q1758856": "مالي",  # a 667
+    "Q747074": "إيطاليا",  # a 594
+    "Q493522": "بلجيكا ",  # a 573
+    "Q755707": "النرويج",  # a 337
+    "Q1349648": "اليونان",  # a 333
+    "Q127448": "السويد",  # a 286
+    "Q1906268": "بلغاريا",  # a 264
+    "Q856076": "فنلندا ",  # a 219
+    "Q378508": "أنغولا",  # a 158
+}
 # ---
 for vv in bldiat:
     others_list[vv] = {"ar": f'بلدية في {bldiat[vv]}' ""}
@@ -635,7 +635,7 @@ qura = {
     "Q21672098": {'P17': "أوكرانيا", 'P31': 'قرية'},
     "Q1529096": {'P17': "تركيا", 'P31': 'قرية'},
     "Q3558970": {'P17': "بولندا", 'P31': 'قرية'},
-    "Q56436498": {'P17': "الهند", 'P31': 'قرية'}, #56802
+    "Q56436498": {'P17': "الهند", 'P31': 'قرية'},  # 56802
     "Q484170": {'P17': "فرنسا", 'P31': 'بلدية'},
     "Q262166": {'P17': "ألمانيا", 'P31': 'بلدية'},
     "Q22865": {'P17': "ألمانيا", 'P31': 'بلدية'},
@@ -643,7 +643,7 @@ qura = {
     "Q22865": {'P17': "إيطاليا", 'P31': 'بلدية'},
     "Q13417250": {'P17': "أذربيجان", 'P31': 'بلدية'},
     # ---
-    }
+}
 # ---
 '''
 
@@ -654,7 +654,7 @@ python3 pwb.py np/nldes3 a3r sparql:Q56436498  #قرية هندية
 '''
 # ---
 for q in qura:
-    #labs = '%s في %s' % ( qura[q]['P31'] , qura[q]['P17'] )
+    # labs = '%s في %s' % ( qura[q]['P31'] , qura[q]['P17'] )
     others_list[q] = {"ar": qura[q]['P31'], "en": ""}
 # ---
 # python3 pwb.py np/nldes3 a3r sparql:Q7366 #أغنية
@@ -667,11 +667,11 @@ for q in qura:
 songs_type = {
     'Q7366': 'أغنية',
     'Q482994': 'ألبوم',
-    'Q134556': 'أغنية', # أغنية منفردة
+    'Q134556': 'أغنية',  # أغنية منفردة
     'Q7302866': 'مقطع صوتي',
     'Q1573906': 'جولة موسيقية',
     'Q182832': 'حفلة موسيقية',
-    }
+}
 # ---
 for son in songs_type:
     others_list[son] = {"ar": songs_type[son], "en": ""}
@@ -694,16 +694,16 @@ for scdw in others_list:
 # python3 pwb.py np/nldes3 sparql:Q44559
 # python3 pwb.py np/nldes3 sparql:Q19389637
 # مقالة سيرة ذاتية
-SPARQLSE['Q19389637'] = 'select ?item where {?item wdt:P31 wd:Q19389637}' #biografisch artikel
+SPARQLSE['Q19389637'] = 'select ?item where {?item wdt:P31 wd:Q19389637}'  # biografisch artikel
 if "Q665807" in sys.argv:
-    SPARQLSE['Q19389637'] = 'select ?item where {?item wdt:P31 wd:Q19389637 . ?item wdt:P1433 wd:Q665807. } ' #biografisch artikel
+    SPARQLSE['Q19389637'] = 'select ?item where {?item wdt:P31 wd:Q19389637 . ?item wdt:P1433 wd:Q665807. } '  # biografisch artikel
 elif "noQ665807" in sys.argv:
     SPARQLSE['Q19389637'] = '''SELECT DISTINCT ?item WHERE {
   ?item wdt:P31 wd:Q8502; wdt:P17 ?dummy0.
 FILTER NOT EXISTS { ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = "ar") }
 }
 
-''' #biografisch artikel
+'''  # biografisch artikel
 # ---Q19389637#Q2831984
 # python3 pwb.py np/nldes3 sparql:Q571
 # كتاب
@@ -717,7 +717,7 @@ SPARQLSE['Q571'] = '''SELECT ?item WHERE
 # ---
 # python3 pwb.py np/nldes3 sparql:Q318
 # مجرة
-SPARQLSE['Q318'] = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q318 . ?item  wdt:P59 ?constellation. ?constellation wdt:P31 wd:Q8928.} ' #galaxyx
+SPARQLSE['Q318'] = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q318 . ?item  wdt:P59 ?constellation. ?constellation wdt:P31 wd:Q8928.} '  # galaxyx
 if "a2r" in sys.argv:
     SPARQLSE['Q318'] = 'SELECT ?item WHERE {?item wdt:P31 wd:Q318 . ?item  wdt:P59 ?constellation. ?constellation wdt:P31 wd:Q8928. ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") } '
 # ---
@@ -847,7 +847,7 @@ space_list_and_other_2 = {
     'Q14752149': {'ar': "نادي كرة قدم للهواة", 'P': ''},
     'Q476028': {'ar': "نادي كرة قدم", 'P': ''},
     'Q620615': {'ar': "تطببيق محمول", 'P': ''},
-    'Q783866': {'ar': 'مكتبة جافا سكريبت', 'P': 'P178'}, # 17241
+    'Q783866': {'ar': 'مكتبة جافا سكريبت', 'P': 'P178'},  # 17241
     'Q2831984': {'ar': "ألبوم قصص مصورة", 'P': ''},
     'Q19389637': {'ar': "مقالة سيرة ذاتية", 'P': ''},
     'Q3305213': {'ar': "لوحة فنية", 'P': ''},
@@ -855,14 +855,14 @@ space_list_and_other_2 = {
     'Q8054': {'ar': "بروتين", 'P': ''},
     # ---
     'Q7278': {'ar': "حزب سياسي", 'P': ''},
-    }
+}
 # ---
 for sw in Taton_list:
     if not sw in SPARQLSE:
-        #if not sw in SPARQLSE :
-        #SPARQLSE[sw] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % sw
+        # if not sw in SPARQLSE :
+        # SPARQLSE[sw] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % sw
         # ---
-        #SPARQLSE[sw] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % sw
+        # SPARQLSE[sw] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % sw
         # ---
         SPARQLSE[sw] = main_quarry % sw
         # ---
@@ -889,7 +889,7 @@ for sw in Taton_list:
 # ---
 for st in Space_tab:
     if not st in SPARQLSE:
-        #if SPARQLSE.get( st , '' ) == '' :
+        # if SPARQLSE.get( st , '' ) == '' :
         SPARQLSE[st] = '''
 SELECT ?item WHERE {
     ?item wdt:P31 wd:%s .
@@ -955,15 +955,15 @@ GROUP BY ?item
 if 'optional' in sys.argv:
     SPARQLSE['Q3231690'] = SPARQLSE['Q3231690'].replace('?pp rdfs:label ?labe . FILTER((LANG(?labe)) = "ar") .', 'optional{?pp rdfs:label ?labe . FILTER((LANG(?labe)) = "ar") .}')
 # ---
-#for cf in Geo_entity :
-    #SPARQLSE[cf] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . ?item  wdt:P17 ?constellation. FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } }' % cf
-    #if "a2r" in sys.argv:
-        #SPARQLSE[cf] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . ?item  wdt:P17 ?constellation.  ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")  FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } }'  % cf
+# for cf in Geo_entity :
+    # SPARQLSE[cf] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . ?item  wdt:P17 ?constellation. FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } }' % cf
+    # if "a2r" in sys.argv:
+    # SPARQLSE[cf] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . ?item  wdt:P17 ?constellation.  ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")  FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } }'  % cf
     # ---
-    #if "a3r" in sys.argv:
-        #SPARQLSE[cf] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '  % cf
+    # if "a3r" in sys.argv:
+    # SPARQLSE[cf] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '  % cf
 # ---
-#SPARQLSE['Q3331189'] = 'SELECT ?item WHERE {?item wdt:P31 wd:Q3331189 . ?item  wdt:P629 ?constellation. FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
+# SPARQLSE['Q3331189'] = 'SELECT ?item WHERE {?item wdt:P31 wd:Q3331189 . ?item  wdt:P629 ?constellation. FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
 SPARQLSE['Q3331189'] = main_quarry_with_proerty % ('Q3331189', 'P629')
 if "a2r" in sys.argv:
     SPARQLSE['Q3331189'] = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q3331189. ?item  wdt:P629 ?constellation. ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }} '

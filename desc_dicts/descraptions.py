@@ -44,51 +44,51 @@ from desc_dicts.scientific_article_desc import Scientific_descraptions
 # ---
 DescraptionsTable = {
     "scientific article": Scientific_descraptions,
-    }
+}
 # ---
 Qid_Desc = {
     "Q13424466": {"ar": "ميناء طبيعي", "en": "natural harbor"},
-    "Q13433827": {"ar": "مقالة موسوعية", "en": "encyclopedia article"}, # 209000
-    "Q18918145": {"ar": "مقالة أكاديمية", "en": "academic journal article"}, # 8407
-    "Q2668072": {"ar": "مجموعة", "en": "collection"}, # 155928
-    #"Q29654788" :  {"ar":"محرف الترميز الموحد","en":"Unicode character"},# 129373
-    "Q23038290": {"ar": "أصنوفة أحفورية", "en": "fossil taxon"}, # 110830
-    #"Q93184" :     {"ar":"رسم",                "en":"drawing"},# 92480
-    "Q1580166": {"ar": "مدخلة قاموس", "en": "dictionary entry"}, # 57490
-    "Q11060274": {"ar": "طباعة فنية", "en": "print"}, # 40547
-    "Q220659": {"ar": "قطع أثرية", "en": "archaeological artifact"}, # 29283
-    "Q860861": {"ar": "منحوتة", "en": "sculpture"}, # 22091
-    "Q1539532": {"ar": "موسم نادي رياضي", "en": "sports season of a sports club"}, # 20501
+    "Q13433827": {"ar": "مقالة موسوعية", "en": "encyclopedia article"},  # 209000
+    "Q18918145": {"ar": "مقالة أكاديمية", "en": "academic journal article"},  # 8407
+    "Q2668072": {"ar": "مجموعة", "en": "collection"},  # 155928
+    # "Q29654788" :  {"ar":"محرف الترميز الموحد","en":"Unicode character"},# 129373
+    "Q23038290": {"ar": "أصنوفة أحفورية", "en": "fossil taxon"},  # 110830
+    # "Q93184" :     {"ar":"رسم",                "en":"drawing"},# 92480
+    "Q1580166": {"ar": "مدخلة قاموس", "en": "dictionary entry"},  # 57490
+    "Q11060274": {"ar": "طباعة فنية", "en": "print"},  # 40547
+    "Q220659": {"ar": "قطع أثرية", "en": "archaeological artifact"},  # 29283
+    "Q860861": {"ar": "منحوتة", "en": "sculpture"},  # 22091
+    "Q1539532": {"ar": "موسم نادي رياضي", "en": "sports season of a sports club"},  # 20501
     # "Q47461344" :   {"ar":"عمل مكتوب",          "en":"written work"},# 16142
-    "Q30612": {"ar": "تجربة سريرية", "en": "clinical trial"}, #339121
-    "Q152450": {"ar": "انتخابات محلية", "en": "municipal election"}, # 14289
-    "Q15632617": {"ar": "إنسان خيالي", "en": "fictional human"}, # 13940
-    "Q2319498": {"ar": "معالم", "en": "landmark"}, # 13445
-    "Q838948": {"ar": "عمل فني", "en": "work of art"}, # 12626
-    "Q2065736": {"ar": "ممتلكات ثقافية", "en": "cultural property"}, # 11435
-    "Q2795484": {"ar": "تشريع تنفيذي", "en": "implementing regulation"}, # 10161
-    "Q1298239": {"ar": "مرسوم تنفيذي", "en": "decree"}, # 9482
-    "Q9052846": {"ar": "مرسوم تنفيذي", "en": "decree"}, # 7949
-    "Q2020153": {"ar": "مؤتمر علمي", "en": "academic conference"}, # 8925
-    "Q667276": {"ar": "معرض فني", "en": "art exhibition"}, # 8483
-    "Q3917681": {"ar": "سفارة", "en": "embassy"}, # 8363
-    "Q3658341": {"ar": "شخصية أدبية", "en": "literary character"}, # 8320
-    "Q2085381": {"ar": "دار نشر", "en": "publisher"}, # 8318
-    "Q654772": {"ar": "نزل الشباب", "en": "hostel"}, # 8076
-    "Q852190": {"ar": "حطام سفينة", "en": "shipwreck"}, # 8022
-    "Q420927": {"ar": "مركب بروتيني", "en": "protein complex"}, # 7621
-    "Q29642950": {"ar": "مكتبة برمجية بايثون", "en": "Python library"}, # 7437
-    "Q1980247": {"ar": "باب كتاب", "en": "chapter"}, # 7003
-    "Q189118": {"ar": "نوع خلية", "en": "cell type"}, # 6946
-    "Q40231": {"ar": "انتخابات", "en": "election"}, # 6680
-    "Q2188189": {"ar": "عمل موسيقي", "en": "musical work"}, # 6391
-    "Q953806": {"ar": "محطة حافلات", "en": "bus stop"}, # 6231
+    "Q30612": {"ar": "تجربة سريرية", "en": "clinical trial"},  # 339121
+    "Q152450": {"ar": "انتخابات محلية", "en": "municipal election"},  # 14289
+    "Q15632617": {"ar": "إنسان خيالي", "en": "fictional human"},  # 13940
+    "Q2319498": {"ar": "معالم", "en": "landmark"},  # 13445
+    "Q838948": {"ar": "عمل فني", "en": "work of art"},  # 12626
+    "Q2065736": {"ar": "ممتلكات ثقافية", "en": "cultural property"},  # 11435
+    "Q2795484": {"ar": "تشريع تنفيذي", "en": "implementing regulation"},  # 10161
+    "Q1298239": {"ar": "مرسوم تنفيذي", "en": "decree"},  # 9482
+    "Q9052846": {"ar": "مرسوم تنفيذي", "en": "decree"},  # 7949
+    "Q2020153": {"ar": "مؤتمر علمي", "en": "academic conference"},  # 8925
+    "Q667276": {"ar": "معرض فني", "en": "art exhibition"},  # 8483
+    "Q3917681": {"ar": "سفارة", "en": "embassy"},  # 8363
+    "Q3658341": {"ar": "شخصية أدبية", "en": "literary character"},  # 8320
+    "Q2085381": {"ar": "دار نشر", "en": "publisher"},  # 8318
+    "Q654772": {"ar": "نزل الشباب", "en": "hostel"},  # 8076
+    "Q852190": {"ar": "حطام سفينة", "en": "shipwreck"},  # 8022
+    "Q420927": {"ar": "مركب بروتيني", "en": "protein complex"},  # 7621
+    "Q29642950": {"ar": "مكتبة برمجية بايثون", "en": "Python library"},  # 7437
+    "Q1980247": {"ar": "باب كتاب", "en": "chapter"},  # 7003
+    "Q189118": {"ar": "نوع خلية", "en": "cell type"},  # 6946
+    "Q40231": {"ar": "انتخابات", "en": "election"},  # 6680
+    "Q2188189": {"ar": "عمل موسيقي", "en": "musical work"},  # 6391
+    "Q953806": {"ar": "محطة حافلات", "en": "bus stop"},  # 6231
     "Q105774620": {"ar": "قانون برلمان المملكة المتحدة", "en": "Public General Act of the Parliament of the United Kingdom"},
-    "Q7604693": {"ar": "القواعد القانونية لأيرلندا الشمالية", "en": "Statutory Rules of Northern Ireland"}, # 13624
-    "Q427087": {"ar": "حمض نووي ريبوزي غير مشفر", "en": "non-coding RNA"}, # 698
+    "Q7604693": {"ar": "القواعد القانونية لأيرلندا الشمالية", "en": "Statutory Rules of Northern Ireland"},  # 13624
+    "Q427087": {"ar": "حمض نووي ريبوزي غير مشفر", "en": "non-coding RNA"},  # 698
     "Q18340514": {"ar": "مقالة عن أحداث في سنة أو فترة زمنية محددة", "en": "events in a specific year or time period"},
     "Q7604686": {"ar": "صك قانوني في المملكة المتحدة", "en": "UK Statutory Instrument"},
-    "Q820655": {"ar": "قانون تشريعي", "en": "statute"}, #python3 pwb.py np/nldes3 sparql:Q820655
+    "Q820655": {"ar": "قانون تشريعي", "en": "statute"},  # python3 pwb.py np/nldes3 sparql:Q820655
     "Q207694": {"ar": "متحف فني", "en": "art museum"},
     "Q27032363": {"ar": "أرشيف صور", "en": "photo archive"},
     "Q7187": {"ar": "جين", "en": "gene"},
@@ -268,20 +268,20 @@ tiny_wrwr = {
     'Q797765': {'ar': '', 'en': ''},          # 508
     'Q8362': {'ar': 'منمنمة', 'en': ''},          # 506
     'Q5527082': {'ar': '', 'en': ''},         # 505
-    }
+}
 # ---
 for ps in tiny_wrwr.keys():
     if ps in Qid_Desc:
         print(ps)
 # ---
-Qid_Descraptions = {} # مستخدم في عدة بوتات
+Qid_Descraptions = {}  # مستخدم في عدة بوتات
 # ---
 for qid, labs in Qid_Desc.items():
     Qid_Descraptions[qid] = {"ar": labs['ar']}
     DescraptionsTable[labs['en']] = {"ar": labs['ar']}
 # ---
 many_lang_qid_desc = {
-    "Q13442814": Scientific_descraptions, # scientific article
+    "Q13442814": Scientific_descraptions,  # scientific article
     "Q11173": {
         "af": "chemiese verbinding",
         "an": "compuesto quimico",
@@ -324,7 +324,7 @@ many_lang_qid_desc = {
         "tg-cyrl": "пайвастагии химиявӣ",
         "tg-latn": "payvastagii khimiyaviy",
     },
-    "Q6979593": { # national association football team
+    "Q6979593": {  # national association football team
         "ar": "منتخب كرة قدم وطني",
         "sl": "nacionalna nogometna reprezentanca",
         "en": "national association football team",
@@ -334,7 +334,7 @@ many_lang_qid_desc = {
         "tg-cyrl": "ассотсиатсияи миилии бошгоҳи футбол",
         "tg-latn": "assotsiatsiyoi millie boshgohe futbol",
     },
-    "Q24856": { # film series
+    "Q24856": {  # film series
         "ar": "سلسلة أفلام",
         "sl": "filmska serija",
         "en": "film series",
@@ -343,13 +343,13 @@ many_lang_qid_desc = {
         "tg-cyrl": "силсилаи филмҳо",
         "tg-latn": "silsilai filmho",
     },
-    "Q15184295": { # Wikimedia module
-        "ar": "وحدة ويكيميديا", #
-        "en": "Wikimedia module", #
-        "fr": "Module Wikimedia", #
+    "Q15184295": {  # Wikimedia module
+        "ar": "وحدة ويكيميديا",
+        "en": "Wikimedia module",
+        "fr": "Module Wikimedia",
         "sl": "modul Wikimedie",
-        "en-ca": "Wikimedia module", #
-        "en-gb": "Wikimedia module", #
+        "en-ca": "Wikimedia module",
+        "en-gb": "Wikimedia module",
         "nl": "Wikimedia-module",
         "he": "יחידה של ויקימדיה",
         "ilo": "Modulo ti lua",
@@ -360,7 +360,7 @@ many_lang_qid_desc = {
         "tg-cyrl": "модули Викимедиа",
         "tg-latn": "moduli Vikimediya",
     },
-    "Q1013520000000000000000000000000000": {# family name # Q1013520
+    "Q1013520000000000000000000000000000": {  # family name # Q1013520
         "af": "van",
         "an": "apelliu",
         "ar": "اسم العائلة",
@@ -476,8 +476,8 @@ many_lang_qid_desc = {
         "te": "ఇంటి పేర్లు",
         "th": "นามสกุล",
         "tl": "apelyido",
-        #"tr":"soyadı",
-        "tr": "soyadı", #Topic:V9p2mhq3iro7lp6y
+        # "tr":"soyadı",
+        "tr": "soyadı",  # Topic:V9p2mhq3iro7lp6y
         "uk": "прізвище",
         "uz": "familiya",
         "vi": "họ",
@@ -499,7 +499,7 @@ many_lang_qid_desc = {
         "tg-cyrl": "насаб",
         "tg-latn": "nasab",
     },
-    "Q11879590": { # female given name
+    "Q11879590": {  # female given name
         "af": "vroulike voornaam",
         "ar": "أسم مؤنث معطى",
         "ast": "nome femenín",
@@ -566,8 +566,8 @@ many_lang_qid_desc = {
         "ta": "பெண்களுக்கு சூட்டிய பெயர்",
         "tg": "номи шахсии занона",
         "th": "ชื่อผู้หญิง",
-        #"tr":"kadın ismidir",
-        "tr": "kadın adı", #Topic:V9p2mhq3iro7lp6y
+        # "tr":"kadın ismidir",
+        "tr": "kadın adı",  # Topic:V9p2mhq3iro7lp6y
         "uk": "жіноче особове ім’я",
         "yue": "女性人名",
         "zh": "女性人名",
@@ -582,8 +582,8 @@ many_lang_qid_desc = {
         "tg-cyrl": "номи занона",
         "tg-latn": "nomi zanona",
     },
-    "Q3409032": { # unisex given name
-        "tr": "ön ad", #Topic:Vavf6jigl4dwgkc4
+    "Q3409032": {  # unisex given name
+        "tr": "ön ad",  # Topic:Vavf6jigl4dwgkc4
         "ar": "اسم شخصي محايد",
         "be": "унісекс-імя",
         "bs": "muško i žensko ime",
@@ -727,8 +727,8 @@ many_lang_qid_desc = {
         "ta": "ஆண்களுக்கு சூட்டிய பெயர்",
         "tg": "номи мардона",
         "th": "ชื่อผู้ชาย",
-        #"tr":"erkek ismidir",
-        "tr": "erkek adı", #Topic:V9p2mhq3iro7lp6y
+        # "tr":"erkek ismidir",
+        "tr": "erkek adı",  # Topic:V9p2mhq3iro7lp6y
         "uk": "чоловіче особове ім’я",
         "ur": "مردانہ ذاتی نام",
         "yue": "男性人名",
@@ -744,7 +744,7 @@ many_lang_qid_desc = {
         "tg-cyrl": "номи мардона",
         "tg-latn": "nomi mardona",
     },
-    "Q21199": { # natural number
+    "Q21199": {  # natural number
         "af": "natuurlike getal",
         "als": "natürlige Zahle",
         "sl": "naravno število",
@@ -761,7 +761,7 @@ many_lang_qid_desc = {
         "hi": "प्राकृतिक संख्या",
         "hy": "Բնական թիվ",
         "ia": "numero natural",
-        "id": "bilangan asli", #angka alami[[Topic:Vrehx2184pi27t0o]]
+        "id": "bilangan asli",  # angka alami[[Topic:Vrehx2184pi27t0o]]
         "ka": "ნატურალური რიცხვი",
         "kn": "ಸ್ವಾಭಾವಿಕ ಸಂಖ್ಯೆ",
         "it": "numero naturale",
@@ -783,7 +783,7 @@ many_lang_qid_desc = {
         "tg-latn": "raqami naturaliy",
     },
     "Q13100073": {
-        "an": "pueblo d'a Republica Popular de China", #o 'pueblo de China'
+        "an": "pueblo d'a Republica Popular de China",  # o 'pueblo de China'
         "ar": "قرية في الصين",
         "bn": "চীনের একটি গ্রাম",
         "ca": "poble de la Xina",
@@ -810,12 +810,12 @@ many_lang_qid_desc = {
         "tg-cyrl": "русто дар Чин",
         "tg-latn": "rusto dar Xitoy",
     },
-    "Q4167836": { # Wikimedia category
+    "Q4167836": {  # Wikimedia category
         "ace": "kawan Wikimèdia",
         "af": "Wikimedia-kategorie",
         "an": "categoría de Wikimedia",
         "ar": "تصنيف ويكيميديا",
-        #"arz":"ويكيبيديا:تصنيف",
+        # "arz":"ويكيبيديا:تصنيف",
         "ast": "categoría de Wikimedia",
         "ba": "Викимедиа категорияһы",
         "bar": "Wikimedia-Kategorie",
@@ -829,8 +829,8 @@ many_lang_qid_desc = {
         "bs": "kategorija na Wikimediji",
         "bug": "kategori Wikimedia",
         "ca": "categoria de Wikimedia",
-        #"ce":"Викимедиа проектан категореш",
-        #"ceb":"Wikimedia:Kategorisasyon",
+        # "ce":"Викимедиа проектан категореш",
+        # "ceb":"Wikimedia:Kategorisasyon",
         "ckb": "پۆلی ویکیمیدیا",
         "cs": "kategorie na projektech Wikimedia",
         "cy": "tudalen categori Wikimedia",
@@ -881,7 +881,7 @@ many_lang_qid_desc = {
         "sco": "Wikimedia category",
         "se": "Wikimedia-kategoriija",
         "sk": "kategória projektov Wikimedia",
-        "sl": "kategorija Wikimedie",    #kategorija Wikimedije  [[wd:Topic:Xjpu4y312bxi699q]]
+        "sl": "kategorija Wikimedie",  # kategorija Wikimedije  [[wd:Topic:Xjpu4y312bxi699q]]
         "sq": "kategori e Wikimedias",
         "sr": "категорија на Викимедији",
         "sv": "Wikimedia-kategori",
@@ -889,7 +889,7 @@ many_lang_qid_desc = {
         "tg-cyrl": "гурӯҳи Викимедиа",
         "tg-latn": "guruhi Vikimedia",
         "tr": "Vikimedya kategorisi",
-        "uk": "категорія проєкту Вікімедіа", #категорія в проекті Вікімедіа [[Topic:Xdnbrl1aqt1lou5u]]
+        "uk": "категорія проєкту Вікімедіа",  # категорія в проекті Вікімедіа [[Topic:Xdnbrl1aqt1lou5u]]
         "sw": "jamii ya Wikimedia",
         "yi": "וויקימעדיע קאַטעגאָריע",
         "vi": "thể loại Wikimedia",
@@ -906,7 +906,7 @@ many_lang_qid_desc = {
         "zh-sg": "维基媒体分类",
         "zh-tw": "維基媒體分類",
     },
-    "Q4167410": { # Wikimedia disambiguation page
+    "Q4167410": {  # Wikimedia disambiguation page
         "ast": "páxina de dixebra de Wikimedia",
         "an": "pachina de desambigación",
         "ar": "صفحة توضيح لويكيميديا",
@@ -928,7 +928,7 @@ many_lang_qid_desc = {
         "es": "página de desambiguación de Wikimedia",
         "et": "Wikimedia täpsustuslehekülg",
         "eu": "Wikimediako argipen orri",
-        #"fa":"یک صفحهٔ ابهام‌زدایی در ویکی‌پدیا",
+        # "fa":"یک صفحهٔ ابهام‌زدایی در ویکی‌پدیا",
         "fa": "یک صفحهٔ ابهام‌زدایی در ویکی‌مدیا",
         "fi": "Wikimedia-täsmennyssivu",
         "fr": "page d'homonymie de Wikimedia",
@@ -964,7 +964,7 @@ many_lang_qid_desc = {
         "ru": "страница значений в проекте Викимедиа",
         "sco": "Wikimedia disambiguation page",
         "sk": "rozlišovacia stránka",
-        "sl": "razločitvena stran Wikimedie", # razločitvena stran Wikimedije [[wd:Topic:Xjpu4y312bxi699q]]
+        "sl": "razločitvena stran Wikimedie",  # razločitvena stran Wikimedije [[wd:Topic:Xjpu4y312bxi699q]]
         "sq": "faqe kthjelluese e Wikimedias",
         "sr": "вишезначна одредница на Викимедији",
         "sv": "Wikimedia-förgreningssida",
@@ -975,8 +975,8 @@ many_lang_qid_desc = {
         "tt": "Мәгънәләр бите Викимедиа проектында",
         "tt-cyrl": "Мәгънәләр бите Викимедиа проектында",
         "tt-latn": "Mäğnälär bite Wikimedia proyektında",
-        #"uk":"сторінка значень в проекті Вікімедіа",сторінка-список в проекті Вікімедіа
-        #"uk":"сторінка-список у проекті Вікімедіа",
+        # "uk":"сторінка значень в проекті Вікімедіа",сторінка-список в проекті Вікімедіа
+        # "uk":"сторінка-список у проекті Вікімедіа",
         # "uk":"сторінка значень у проекті Вікімедіа",
         "uk": "сторінка значень у проєкті Вікімедіа",
         "vi": "trang định hướng Wikimedia",
@@ -993,7 +993,7 @@ many_lang_qid_desc = {
         "zh-sg": "维基媒体消歧义页",
         "zh-tw": "維基媒體消歧義頁",
     },
-    "Q13406463": { # Wikimedia list article
+    "Q13406463": {  # Wikimedia list article
         "ace": "teunuléh dapeuta Wikimèdia",
         "af": "Wikimedia lysartikel",
         "an": "articlo de lista de Wikimedia",
@@ -1043,7 +1043,7 @@ many_lang_qid_desc = {
         "sco": "Wikimedia leet airticle",
         "si": "විකිමීඩියා ලැයිස්තු ලිපිය",
         "sk": "zoznamový článok projektov Wikimedia",
-        "sl": "seznam Wikimedie", #seznam Wikimedije [[wd:Topic:Xjpu4y312bxi699q]]
+        "sl": "seznam Wikimedie",  # seznam Wikimedije [[wd:Topic:Xjpu4y312bxi699q]]
         "sq": "artikull-listë e Wikimedias",
         "sr": "списак на Викимедији",
         "sv": "Wikimedia-listartikel",
@@ -1053,7 +1053,7 @@ many_lang_qid_desc = {
         "tg-latn": "sahifai fehristiy",
         "th": "บทความรายชื่อวิกิมีเดีย",
         "tr": "Vikimedya liste maddesi",
-        "uk": "стаття-список у проєкті Вікімедіа", #сторінка-список у проекті Вікімедіа [[Topic:Xdnbrl1aqt1lou5u]]
+        "uk": "стаття-список у проєкті Вікімедіа",  # сторінка-список у проекті Вікімедіа [[Topic:Xdnbrl1aqt1lou5u]]
         "vi": "bài viết danh sách Wikimedia",
         "yi": "וויקימעדיע ליסטע",
         "yo": "ojúewé àtojọ Wikimedia",
@@ -1068,7 +1068,7 @@ many_lang_qid_desc = {
         "zh-sg": "维基媒体列表条目",
         "zh-tw": "維基媒體列表條目"
     },
-    "Q11266439": { # Wikimedia template#Q11753321
+    "Q11266439": {  # Wikimedia template#Q11753321
         "an": "plantilla de Wikimedia",
         "ar": "قالب ويكيميديا",
         "ast": "plantía de proyectu",
@@ -1288,7 +1288,7 @@ many_lang_qid_desc = {
         "sh": "godina",
         "sk": "Rok",
         "sl": "Leto",
-        #"sq":"vit", or viti?
+        # "sq":"vit", or viti?
         "sr": "Година",
         "srn": "Yari",
         "sv": "år",
@@ -1306,20 +1306,20 @@ many_lang_qid_desc = {
         "tg-cyrl": "сол",
         "tg-latn": "sol",
     },
-    }
+}
 # ---
 # merge 2 dictionaries
 # ---
 for q2, labse in many_lang_qid_desc.items():
     Qid_Descraptions[q2] = labse
     # if labse.get("uk", '') != '':
-        # en = labse.get("en", '')
-        # uk = labse.get("uk", '')
-        # pkrint(f'*{en}\t{uk}')
+    # en = labse.get("en", '')
+    # uk = labse.get("uk", '')
+    # pkrint(f'*{en}\t{uk}')
     if labse.get("en", '') != '':
         DescraptionsTable[labse['en']] = labse
 # ---
-#'Q7278',   #حزب سياسي
+# 'Q7278',   #حزب سياسي
 Space_Desc = {
     "Q44559": {"ar": "كوكب خارج المجموعة الشمسية", "en": "extrasolar planet"},
     "Q13890": {"ar": "نجم مزدوج", "en": "double star"},
@@ -1333,7 +1333,7 @@ Space_Desc = {
     "Q3863": {"ar": "كويكب", "en": "asteroid"},
     "Q1153690": {"ar": "نجم متغير طويل", "en": "long period variable"},
     "Q168845": {"ar": "عنقود نجمي", "en": "star cluster"},
-    "Q1457376": {"ar": "كسوف نجم ثنائي", "en": "eclipsing binary star"}, # 288516 pages
+    "Q1457376": {"ar": "كسوف نجم ثنائي", "en": "eclipsing binary star"},  # 288516 pages
     "Q15917122": {"ar": "نجم متغير دوار", "en": "rotating variable star"},
     "Q1332364": {"ar": "متغير بيضاوي دوار", "en": "rotating ellipsoidal variable"},
     "Q204194": {"ar": "سديم مظلم", "en": "dark nebula"},
@@ -1343,27 +1343,27 @@ Space_Desc = {
     "Q115518": {"ar": "مجرة ذات سطوع سطحي منخفض", "en": "low-surface-brightness galaxy"},
 
     "Q318": {"ar": "مجرة",
-        "nl": "sterrenstelsel",
-        "be": "галактыка",
-        "be-tarask": "галяктыка",
-        "en": "galaxy",
-        "sl": "galaksija",
-        "id": "galaksi",
-        "ne": "आकासगङ्गा",
-        "en-ca": "galaxy",
-        "en-gb": "galaxy",
-        #"de": "Galaxie im Sternbild Jagdhunde",
-        "es": "galaxia",
-        #"it": "galassia nella costellazione dei Cani da Caccia",
-        "fr": "galaxie",
-        "ru": "галактика",
-        "pt": "galáxia",
-        "eo": "galaksio",
-        "gl": "galaxia",
-        "ca": "galàxia",
-        "ast": "galaxa",
-        "ga": "réaltra"
-    },
+             "nl": "sterrenstelsel",
+             "be": "галактыка",
+             "be-tarask": "галяктыка",
+             "en": "galaxy",
+             "sl": "galaksija",
+             "id": "galaksi",
+             "ne": "आकासगङ्गा",
+             "en-ca": "galaxy",
+             "en-gb": "galaxy",
+             # "de": "Galaxie im Sternbild Jagdhunde",
+             "es": "galaxia",
+             # "it": "galassia nella costellazione dei Cani da Caccia",
+             "fr": "galaxie",
+             "ru": "галактика",
+             "pt": "galáxia",
+             "eo": "galaksio",
+             "gl": "galaxia",
+             "ca": "galàxia",
+             "ast": "galaxa",
+             "ga": "réaltra"
+             },
 }
 # ---
 Space_Descraptions = {}
@@ -1377,13 +1377,13 @@ for k, val in Space_Desc.items():
 # enlab:primary school, q:Q9842
 # enlab:taxon, q:Q16521
 # ---
-#Space_Descraptions["Q726242"] = { "ar":"نجم","en":"RR Lyrae variable" }
-#Space_Descraptions["Q2247863"] = { "ar":"نجم", "en":"high proper-motion star" }
-#Space_Descraptions["Q66619666"] = { "ar":"نجم","en":"Red Giant Branch star" }
-#Space_Descraptions["Q72803622"] = { "ar":"نجم","en":"emission-line star" }
+# Space_Descraptions["Q726242"] = { "ar":"نجم","en":"RR Lyrae variable" }
+# Space_Descraptions["Q2247863"] = { "ar":"نجم", "en":"high proper-motion star" }
+# Space_Descraptions["Q66619666"] = { "ar":"نجم","en":"Red Giant Branch star" }
+# Space_Descraptions["Q72803622"] = { "ar":"نجم","en":"emission-line star" }
 # ---
 for xd in Space_Descraptions:
-   DescraptionsTable[xd] = Space_Descraptions[xd]
+    DescraptionsTable[xd] = Space_Descraptions[xd]
 # ---
 Taxon_Descraptions = {
     "species of insect": {
@@ -1501,7 +1501,7 @@ Taxon_Descraptions = {
         "nn": "soppslekt",
         "pt": "género de fungos",
         "pt-br": "gênero de fungos",
-        #"ro":"gen de fungi",# or 'gen de ciuperci'
+        # "ro":"gen de fungi",# or 'gen de ciuperci'
         "sq": "gjini e kërpudhave",
     },
     "genus of insects": {

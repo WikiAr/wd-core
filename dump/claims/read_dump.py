@@ -17,6 +17,8 @@ print(Dump_Dir)
 # ---
 test_limit = {1: 15000}
 # ---
+
+
 def log_dump(tab):
     jsonname = f"{Dump_Dir}/dumps/claims.json"
     if 'test' in sys.argv:
@@ -26,6 +28,7 @@ def log_dump(tab):
         json.dump(tab, outfile)
     print("log_dump done")
 
+
 def get_file_info(file_path):
     # Get the time of last modification
     last_modified_time = os.path.getmtime(file_path)
@@ -34,6 +37,7 @@ def get_file_info(file_path):
     readable_time = datetime.fromtimestamp(last_modified_time).strftime('%Y-%m-%d')
 
     return readable_time
+
 
 def read_file():
     filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2"
@@ -123,6 +127,7 @@ def read_file():
     }
 
     log_dump(tab)
+
 
 if __name__ == "__main__":
     read_file()

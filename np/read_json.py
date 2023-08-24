@@ -30,12 +30,16 @@ import urllib
 import urllib.request
 import urllib.parse
 # ---
+
+
 def printo(s):
     if pywikibot:
         pywikibot.output(s)
     else:
         printe.output(s)
 # ---
+
+
 def read_bad_list(file):
     try:
         List = []
@@ -74,6 +78,8 @@ def read_bad_list(file):
     # ---
     return False
 # ---
+
+
 def read_bad_json(file):
     try:
         with open(file) as listt:
@@ -107,6 +113,8 @@ def read_bad_json(file):
     # ---
     return {}
 # ---
+
+
 def main(file, Type):
     try:
         if Type == "dict":
@@ -121,6 +129,8 @@ def main(file, Type):
         pywikibot.output(traceback.format_exc())
         pywikibot.output('CRITICAL:')
     return False
+
+
 # ---
 if __name__ == "__main__":
     main("{}", "dict")

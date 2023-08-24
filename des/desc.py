@@ -55,16 +55,16 @@ from wd_API import himoAPI
 from API import himoBOT2
 from wd_API import wd_bot
 # ---
-#from correct import CorrectList
+# from correct import CorrectList
 ContriesTable2 = {}
-from des.contries2 import *#ContriesTable2
+from des.contries2 import *  # ContriesTable2
 donelist = []
 # ---
-bylangs = False#False#True
+bylangs = False  # False#True
 # ---
 placesTable = {}
 from des.railway import railway_tables
-from des.places import *#placesTable
+from des.places import *  # placesTable
 # ---
 placesTable["Q29701762"] = {"ar": "مستوطنة"}
 # ---
@@ -106,6 +106,8 @@ for arg in sys.argv:
     # ---
 New_QS = {1: []}
 # ---
+
+
 def descqs(q, value, lang):
     if len(New_QS[1]) < QSlimit[1]:
         qsline = f'{q}|D{lang}|"{value}"'
@@ -115,9 +117,13 @@ def descqs(q, value, lang):
         printe.output(f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements")
         himoAPI.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
+
+
 # ---
 q_list_done = []
 # ---
+
+
 def Add_desc(q, value, lang):
     # ---
     if q in q_list_done:
@@ -131,12 +137,14 @@ def Add_desc(q, value, lang):
     else:
         himoAPI.Des_API(q, value, lang, ask="")
 # ---
+
+
 def wd_sparql_query(spq, ddf=False):
     # ---
     qua = spq
     # ---
-    #if limit[1] != 0 :
-        #spq = spq + " limit " + str( limit[1] )
+    # if limit[1] != 0 :
+    # spq = spq + " limit " + str( limit[1] )
     # ---
     New_List = []
     # ---
@@ -152,15 +160,15 @@ def wd_sparql_query(spq, ddf=False):
         # ---
         quarr = qua
         # ---
-        #if ddf:
+        # if ddf:
         if limit[1] != 0:
             quarr = quarr + "\n limit " + str(limit[1])
         if off != 0:
             quarr = quarr + " offset " + str(off)
-        #else: offset[1] != 0 :
-            #quarr = quarr + " offset " + str( offset[1] )
+        # else: offset[1] != 0 :
+            # quarr = quarr + " offset " + str( offset[1] )
         # ---
-        #printe.output(quarr)
+        # printe.output(quarr)
         # ---
         printe.output('limit[1]:"%d"\t offset:"%d"' % (limit[1], off))
         # ---
@@ -184,6 +192,8 @@ def wd_sparql_query(spq, ddf=False):
             Keep = False
     # ---
     return New_List
+
+
 # ---
 quarry34 = ''' SELECT DISTINCT
 (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
@@ -201,8 +211,10 @@ WHERE {
 '''
 # ---
 from wd_API import get_property_for_list
-#get_property_for_list.get_property_label_for_qids( [property], List )
+# get_property_for_list.get_property_label_for_qids( [property], List )
 # ---
+
+
 def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
     ''' work_one_item used in np/si3.py '''
@@ -244,7 +256,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     placecount = int(tab.get('placecount', 1))
     if placecount != 1:
         printe.output('<<lightred>> placecount :%d,placear:%s' % (placecount, placear))
-        #placear = ''
+        # placear = ''
     # ---
     p17count = int(tab.get('p17count', 1))
     if p17count != 1:
@@ -276,20 +288,22 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     item = himoBOT2.Get_Item_API_From_Qid(q, sites="", titles="", props="")
     # ---
     descriptions = item['descriptions']
-    #NewDesc = {}
-    #addedlangs = []
+    # NewDesc = {}
+    # addedlangs = []
     # ---
     if lang in descriptions:
         printe.output(f'lang:ar in descriptions({descriptions[lang]})')
         if descriptions[lang] != start:
             return ''
     # ---
-    #NewDesc[lang] = { "language":lang,"value": arlabel2 }
-    #addedlangs.append(lang)
+    # NewDesc[lang] = { "language":lang,"value": arlabel2 }
+    # addedlangs.append(lang)
     # ---
-    #himoAPI.Des_API( q, arlabel2 ,lang)
+    # himoAPI.Des_API( q, arlabel2 ,lang)
     # ---
     Add_desc(q, arlabel2, lang)
+
+
 # ---
 Quase_old = ''' SELECT DISTINCT
 (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
@@ -346,8 +360,8 @@ GROUP BY ?item# HAVING ( ?p17count = 1 )
 '''
 # ---
 if 'optional' in sys.argv:
-    #Quase[2020] = Quase[2020].replace('?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
-    #Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
+    # Quase[2020] = Quase[2020].replace('?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
+    # Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
     Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', '''
 optional { ?item (wdt:P131|wdt:P276) ?place. }
 SERVICE wikibase:label {
@@ -355,6 +369,8 @@ SERVICE wikibase:label {
     ?place rdfs:label ?placeare
   }''')
 # ---
+
+
 def work_one_place(place):
     lang = 'ar'
     # ---
@@ -391,6 +407,8 @@ def work_one_place(place):
         # else:
         work_one_item(start, lang, tab, c, total)
         # ---
+
+
 def mainoo():
     # ---
     kee = list(placesTable2.keys())
@@ -414,6 +432,8 @@ def mainoo():
     if New_QS[1] != []:
         himoAPI.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
+
+
 # ---
 if __name__ == "__main__":
     mainoo()

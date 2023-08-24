@@ -14,16 +14,20 @@ import os
 import sys
 
 # ---
+
+
 def print_test(line, color=""):
     colors = {
-    "red": "\033[91m%s\033[00m",
-    "blue": "\033[94m%s\033[00m"
+        "red": "\033[91m%s\033[00m",
+        "blue": "\033[94m%s\033[00m"
     }
     if color != "" and colors.get(color):
         line = colors[color] % line
     # ---
     if Ask[1] or Test[1]:
         print(line)
+
+
 # ---
 filepath = str(os.path.abspath(__file__)).replace('\\', '/')
 # ---
@@ -49,6 +53,7 @@ from wikidataintegrator2 import wdi_login
 from API import useraccount
 # ---
 username = useraccount.hiacc
+
 password = useraccount.hipass
 login = wdi_login.WDLogin(username, password)
 # ---
@@ -60,6 +65,8 @@ if "ask" in sys.argv:
 if "test" in sys.argv:
     Test[1] = True
 # ---
+
+
 def get_and_load(url):
     # ---
     print_test(url)
@@ -81,9 +88,13 @@ def get_and_load(url):
             json1 = {}
     # ---
     return json1
+
+
 # ---
 id_types = {"MED", "PMC", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA", "AGR", "DOI"}
 # ---
+
+
 def get_article_info(ext_id, id_type):
     if not id_type.upper() in id_types:
         print(f"id_type must be in {id_types}")
@@ -95,12 +106,12 @@ def get_article_info(ext_id, id_type):
     print_test(f' get_article_info for {id_type}')
     if id_type == "pmc":
         url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
-        #url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:{}&resulttype=core&format=json'
-        #url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
+        # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:{}&resulttype=core&format=json'
+        # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
         urls["europepmc"] = url.format(ext_id)
 
     elif id_type == "doi":
-        #url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{}%22&resulttype=core&format=json"
+        # url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{}%22&resulttype=core&format=json"
         url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:{}&resulttype=core&format=json"
         urls["europepmc"] = url.format(ext_id)
 
@@ -116,9 +127,9 @@ def get_article_info(ext_id, id_type):
     headers = {
         'User-Agent': 'wikidataintegrator: github.com/SuLab/WikidataIntegrator'
     }
-    #response = requests.get(url, headers=headers)
-    #response.raise_for_status()
-    #d = response.json()
+    # response = requests.get(url, headers=headers)
+    # response.raise_for_status()
+    # d = response.json()
     for source, url in urls.items():
         do = get_and_load(url)
         # if do != '' and do != "Resource not found.":
@@ -159,6 +170,8 @@ def get_article_info(ext_id, id_type):
     print('No results')
     return False
 # ---
+
+
 def add(id, typee):
     print_test(f'typee: "{typee}"')
     source = get_article_info(id, typee)
@@ -175,15 +188,17 @@ def add(id, typee):
         print_test(f'a: {a}')
         print_test(f'b: {b}')
         print_test(f'ty: {ty}')
+
+
 # ---
 if __name__ == "__main__":
     br = '</br>'
-    #python pwb.py pub type:PMC id:4080339
+    # python pwb.py pub type:PMC id:4080339
     print_test('TestMain:' + br)
     typee = "MED"
     if sys.argv:
-        #lenth = len(sys.argv)
-        #print_test(str(lenth) + str(sys.argv) )
+        # lenth = len(sys.argv)
+        # print_test(str(lenth) + str(sys.argv) )
         for arg in sys.argv:
             arg, sep, value = arg.partition(':')
             if arg == 'type' and value != '':

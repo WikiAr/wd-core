@@ -2,7 +2,7 @@
 # (C) Edoderoo/Edoderoobot (meta.wikimedia.org), 2016–2019
 # Distributed under the terms of the CC-BY-SA 3.0 licence.
 
-#Q13005188 mandal
+# Q13005188 mandal
 '''
 '''
 
@@ -96,6 +96,6 @@ Labels_Csash = {"ar": {
     "Q10437": "كوكبة السمكة الطائرة",
     "Q10457": "كوكبة الحرباء",
     "Q10438": "كوكبة قطعة الفرس",
-    }
-    }
+}
+}
 # ---

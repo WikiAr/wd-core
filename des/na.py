@@ -23,12 +23,14 @@ from wd_API import himoAPI_test as himoAPI
 # ---
 from wd_API import wd_bot
 # ---
-bylangs = False#False#True
+bylangs = False  # False#True
 # ---
 limits = {1: "1000"}
 # ---
 items_done = []
 # ---
+
+
 def action(json1):
     try:
         total = len(json1)
@@ -53,6 +55,8 @@ def action(json1):
         else:
             printe.output(' <<lightred>> * q in items_done. ' % q)
 # ---
+
+
 def make_quarry(ar_suff="", item_p31_cat="", en_suff="", en_priff=""):
     quaaa = '''
 #تسمية تصانيف مواليد في
@@ -75,6 +79,8 @@ WHERE {
 '''
     quaaa = quaaa % (ar_suff, "%s", item_p31_cat, en_suff, en_priff)
     return quaaa
+
+
 # ---
 Quarry = {
     # ---
@@ -105,60 +111,60 @@ WHERE {
         ar_suff="تصنيف:أشخاص من ",
         item_p31_cat="?item wdt:P1792 ?cat.",
         en_suff="Category:People from ",
-        )    # ---
+    )    # ---
     , 'alumni': make_quarry(
         ar_suff="تصنيف:خريجو ",
         item_p31_cat="?item wdt:P3876 ?cat.",
         en_suff="Category:",
         en_priff=" alumni",
-        )    # ---
+    )    # ---
     , 'Taken': make_quarry(
         ar_suff="تصنيف:صور التقطت باستخدام ",
         item_p31_cat="?item wdt:P2033 ?cat.",
         en_suff="Category:Taken with ",
         en_priff="",
-        )    # ---
+    )    # ---
     , 'basin': make_quarry(
         ar_suff="تصنيف:حوض ",
         item_p31_cat="?item wdt:P1200 ?cat.",
         en_suff="Category:",
         en_priff=" basin",
-        )    # ---
+    )    # ---
     , 'shot': make_quarry(
         ar_suff="تصنيف:أفلام مصورة في ",
         item_p31_cat="?item wdt:P1740 ?cat.",
         en_suff="Category:Films shot in ",
         en_priff="",
-        )    # ---
+    )    # ---
     , 'employees': make_quarry(
         ar_suff="تصنيف:موظفي ",
         item_p31_cat="?item wdt:P4195 ?cat.",
         en_suff="Category:",
         en_priff=" employees",
-        )    # ---
+    )    # ---
     , 'faculty': make_quarry(
         ar_suff="تصنيف:هيئة تدريس ",
         item_p31_cat="?item wdt:P4195 ?cat.",
         en_suff="Category:",
         en_priff=" faculty",
-        )    # ---
+    )    # ---
     , 'buried': make_quarry(
         ar_suff="تصنيف:مدفونون في ",
         item_p31_cat="?item wdt:P1791 ?cat.",
         en_suff="Category:Burials at ",
-        )    # ---
+    )    # ---
     , 'Births': make_quarry(
         ar_suff="تصنيف:مواليد في ",
         item_p31_cat="?item wdt:P1464 ?cat.",
         en_suff="Category:Births in ",
-        )    # ---
+    )    # ---
     , 'Deaths': make_quarry(
         ar_suff="تصنيف:وفيات في ",
         item_p31_cat="?item wdt:P1465 ?cat.",
         en_suff="Category:Deaths in ",
-        )
+    )
     # ---
-    }
+}
 Quarry[1] = '''
 #تسمية تصانيف طبقاً لاسماء العناصر
 SELECT DISTINCT  #?item ?label ?item_ar
@@ -227,28 +233,30 @@ WHERE {
 }
 '''
 # ---
+
+
 def main():
     # ---
-    #python pwb.py des/na
-    #python pwb.py des/na Deaths
-    #python pwb.py des/na Births
-    #python pwb.py des/na from
-    #python pwb.py des/na alumni
-    #python pwb.py des/na Taken
-    #python pwb.py des/na basin
-    #python pwb.py des/na shot
-    #python pwb.py des/na faculty
-    #python pwb.py des/na employees
-    #python pwb.py des/na buried
-    #python pwb.py des/na items
-    #python pwb.py des/na -P31:Q515
-    #python pwb.py des/na -P31:Q151885
-    #python pwb.py des/na items -P31:Q151885
-    #python pwb.py des/na items -P31:Q874405
-    #python pwb.py des/na -limit:100 items -P31:Q12973014
-    #python pwb.py des/na items -P31:Q15221623
-    #python pwb.py des/na items -limit:10 lang:fr
-    #python pwb.py des/na -limit:1000
+    # python pwb.py des/na
+    # python pwb.py des/na Deaths
+    # python pwb.py des/na Births
+    # python pwb.py des/na from
+    # python pwb.py des/na alumni
+    # python pwb.py des/na Taken
+    # python pwb.py des/na basin
+    # python pwb.py des/na shot
+    # python pwb.py des/na faculty
+    # python pwb.py des/na employees
+    # python pwb.py des/na buried
+    # python pwb.py des/na items
+    # python pwb.py des/na -P31:Q515
+    # python pwb.py des/na -P31:Q151885
+    # python pwb.py des/na items -P31:Q151885
+    # python pwb.py des/na items -P31:Q874405
+    # python pwb.py des/na -limit:100 items -P31:Q12973014
+    # python pwb.py des/na items -P31:Q15221623
+    # python pwb.py des/na items -limit:10 lang:fr
+    # python pwb.py des/na -limit:1000
     # ---
     taxose = ""
     qya = {}
@@ -294,6 +302,8 @@ def main():
         # ---
         json1 = wd_bot.sparql_generator_url(quuu)
         action(json1)
+
+
 # ---
 if __name__ == "__main__":
     main()

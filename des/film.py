@@ -35,12 +35,14 @@ AskSave = {}
 # ---
 AskSave[1] = True
 # ---
-#def AddDes( item , pa , lang , Qid , keys):
+# def AddDes( item , pa , lang , Qid , keys):
+
+
 def action_one_item(Qid, pa, lang, keys):
     item = getwditem(pa['item'])
     if item:
-        #desc = MakeDesc(Qid, auth, lang)
-        #Summary= 'Bot: - Add descriptions: '+ lang
+        # desc = MakeDesc(Qid, auth, lang)
+        # Summary= 'Bot: - Add descriptions: '+ lang
         keys = list(keys)
         keys.sort()
         # ---
@@ -87,6 +89,8 @@ def action_one_item(Qid, pa, lang, keys):
             else:
                 wd_desc.work_api_desc(NewDesc, qitem)
 # ---
+
+
 def getwditem(qitem):
     try:
         item = pywikibot.ItemPage(repo, qitem)
@@ -95,35 +99,39 @@ def getwditem(qitem):
         return item
     except:
         return False
+
+
 # ---
 Comma = {
-        "an": " y ",
-        "ar": "، و",
-        "ast": " y ",
-        "ca": " i ",
-        "de": " und ",
-        "es": " y ",
-        "ext": " y ",
-        "fr": " et ",
-        "he": " ו",
-        "gl": " e ",
-        "it": " e ",
-        "nl": " en ",
-        "oc": " e ",
-        "pt": " e ",
-        "ro": " și ",
-        "sv": " och ",
-        'en': ", ",
+    "an": " y ",
+    "ar": "، و",
+    "ast": " y ",
+    "ca": " i ",
+    "de": " und ",
+    "es": " y ",
+    "ext": " y ",
+    "fr": " et ",
+    "he": " ו",
+    "gl": " e ",
+    "it": " e ",
+    "nl": " en ",
+    "oc": " e ",
+    "pt": " e ",
+    "ro": " și ",
+    "sv": " och ",
+    'en': ", ",
 
-    }
+}
 Comma2 = {
-        'ar': "، و",
-        'en': ", ",
-        'de': ", ",
-        'fr': ", ",
-        'nl': ", "
-    }
+    'ar': "، و",
+    'en': ", ",
+    'de': ", ",
+    'fr': ", ",
+    'nl': ", "
+}
 # ---
+
+
 def GetQuery(Qid, lang, keys):
     # ---
     P50 = 'P57'
@@ -138,6 +146,7 @@ def GetQuery(Qid, lang, keys):
     sa = sa + 'OPTIONAL { ?item schema:description ?endes. FILTER((LANG(?endes)) = "en") }\n'
     ur = ur + sa
     # ---
+
     def fofo(x):
         xx = 'OPTIONAL {'
         xx += f'?auths rdfs:label ?{x} filter (lang(?{x}) = "{x}")'
@@ -152,18 +161,20 @@ def GetQuery(Qid, lang, keys):
     ur = ur + "}\n"
     ur = ur + 'OPTIONAL {'
     ur = ur + f'   ?item schema:description ?itemDes filter(lang(?itemDes) = "{lang}")'
-    ur = ur + '} FILTER(!BOUND(?itemDes))\n'# GROUP BY ?item '
+    ur = ur + '} FILTER(!BOUND(?itemDes))\n'  # GROUP BY ?item '
     ur = ur + 'SERVICE wikibase:label { '
     ur = ur + f'     bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?{lang}'
     ur = ur + ' }}\n'
-    #printe.output(ur)
+    # printe.output(ur)
     # ---
     return ur
 # ---
+
+
 def Gquery2(json1):
     table = {}
-    #table = []
-    #for head in json1['head']['vars']:
+    # table = []
+    # for head in json1['head']['vars']:
     for result in json1['results']['bindings']:
         q = 'item' in result and result['item']['value'].split('/entity/')[1] or ''
         s = {}
@@ -172,33 +183,35 @@ def Gquery2(json1):
         s['item'] = q
         table[q] = s
     return table
+
+
 # ---
 filmform = {}
 xsxsx = {
-        'an': 'cinta de ~YEAR~ dirichita por ~AUTHOR~',
-        'ar': 'فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~',
-        'ast': 'película de ~YEAR~ dirixida por ~AUTHOR~',
-        'ca': 'pel·lícula de ~YEAR~ dirigida per ~AUTHOR~',
-        'de': 'Film von ~AUTHOR~ (~YEAR~)',
-        'es': 'película de ~YEAR~ dirigida por ~AUTHOR~',
-        'ext': 'pinicla de ~YEAR~ dirigía por ~AUTHOR~',
-        'fr': 'film de ~AUTHOR~, sorti en ~YEAR~',
-        'gl': 'filme de ~YEAR~ dirixido por ~AUTHOR~',
-        #'he': 'סרט של ~AUTHOR~ משנת ~YEAR~', #warning, avoid mix Latin and Hebrew chars for directors name
-        'he': 'סרט משנת ~YEAR~',
-        'it': 'film del ~YEAR~ diretto da ~AUTHOR~',
-        'nl': 'film uit ~YEAR~ van ~AUTHOR~',
-        'oc': 'filme de ~YEAR~ dirigit per ~AUTHOR~',
-        'pt': 'filme de ~YEAR~ dirigido por ~AUTHOR~',
-        'ro': 'film din ~YEAR~ regizat de ~AUTHOR~',
-        'sv': 'film från ~YEAR~ regisserad av ~AUTHOR~',
-    }
-filmform['film'] = {#
-        'ar': 'فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~',
-        'en': '~YEAR~ film by ~AUTHOR~',
-        'nl': 'film uit ~YEAR~ van ~AUTHOR~',
+    'an': 'cinta de ~YEAR~ dirichita por ~AUTHOR~',
+    'ar': 'فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~',
+    'ast': 'película de ~YEAR~ dirixida por ~AUTHOR~',
+    'ca': 'pel·lícula de ~YEAR~ dirigida per ~AUTHOR~',
+    'de': 'Film von ~AUTHOR~ (~YEAR~)',
+    'es': 'película de ~YEAR~ dirigida por ~AUTHOR~',
+    'ext': 'pinicla de ~YEAR~ dirigía por ~AUTHOR~',
+    'fr': 'film de ~AUTHOR~, sorti en ~YEAR~',
+    'gl': 'filme de ~YEAR~ dirixido por ~AUTHOR~',
+    # 'he': 'סרט של ~AUTHOR~ משנת ~YEAR~', #warning, avoid mix Latin and Hebrew chars for directors name
+    'he': 'סרט משנת ~YEAR~',
+    'it': 'film del ~YEAR~ diretto da ~AUTHOR~',
+    'nl': 'film uit ~YEAR~ van ~AUTHOR~',
+    'oc': 'filme de ~YEAR~ dirigit per ~AUTHOR~',
+    'pt': 'filme de ~YEAR~ dirigido por ~AUTHOR~',
+    'ro': 'film din ~YEAR~ regizat de ~AUTHOR~',
+    'sv': 'film från ~YEAR~ regisserad av ~AUTHOR~',
+}
+filmform['film'] = {
+    'ar': 'فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~',
+    'en': '~YEAR~ film by ~AUTHOR~',
+    'nl': 'film uit ~YEAR~ van ~AUTHOR~',
 
-    }
+}
 
 # ---
 quaua = '''SELECT #DISTINCT
@@ -218,16 +231,18 @@ MINUS {?item schema:description ?itemDes filter(lang(?itemDes) = "ar")}# FILTER(
 SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?ar }}
 
 '''
+
+
 def WorkWithOneLang(Qid, lang, keys):
     printe.output('*<<lightyellow>> WorkWithOneLang: ')
     limit = 200
-    #limit = '10000'
-    #lang = 'de'
-    #keys =
-    #try:
+    # limit = '10000'
+    # lang = 'de'
+    # keys =
+    # try:
     # ---
     quary = quaua
-    #quary = GetQuery(Qid , lang, keys)
+    # quary = GetQuery(Qid , lang, keys)
     quary = quary + '\n limit %d' % limit
     printe.output(quary)
     # ---
@@ -245,14 +260,18 @@ def WorkWithOneLang(Qid, lang, keys):
         printe.output('<<lightblue>>> %s (%s) :%s/%d : %s' % (lang, SAO, num, total, PageList[pa]['item']))
         # ---
         action_one_item(Qid, PageList[pa], lang, keys)
+
+
 # ---
 by_list = {
-          'ar': "من تأليف", 'en': "by", 'fr': "de", 'de': "von", 'nl': "van", 'ca': "per", 'cs': "od", 'la': "ab", 'it': "da", 'io': "da", 'eo': "de", 'da': "af", 'pl': "przez", 'ro': "de", 'es': "por", 'sv': "av"
-        }
+    'ar': "من تأليف", 'en': "by", 'fr': "de", 'de': "von", 'nl': "van", 'ca': "per", 'cs': "od", 'la': "ab", 'it': "da", 'io': "da", 'eo': "de", 'da': "af", 'pl': "przez", 'ro': "de", 'es': "por", 'sv': "av"
+}
 # ---
+
+
 def MakeDesc(Qid, pa, lang):
-    #for lang in language:
-    #auth
+    # for lang in language:
+    # auth
     description = False
     english = ['en-gb', 'en-ca']
     if lang in english:
@@ -264,7 +283,7 @@ def MakeDesc(Qid, pa, lang):
     # ---
     co = by_list[lang] + ' '
     if (Qid == 'Q482994') and (lang == 'ar'):
-        #co = 'ل'
+        # co = 'ل'
         co = 'من أداء '
     # ---
     if (lang in pa) and (pa[lang] != ''):
@@ -273,7 +292,7 @@ def MakeDesc(Qid, pa, lang):
             if lang in filmform[Qid]:
                 des = filmform[Qid][lang]
                 YEAR = pa['dates']
-                YEARS = YEAR#.split(',')
+                YEARS = YEAR  # .split(',')
                 endes = pa['endes'][0]
                 # ---
                 true_year = ''
@@ -285,27 +304,31 @@ def MakeDesc(Qid, pa, lang):
                     true_year = pa['dates'][0]
                 auth2 = Comma[lang].join(auth)
                 # ---
-                #d = d + ' '                        # الرابط by
+                # d = d + ' '                        # الرابط by
                 d = re.sub(r'~AUTHOR~', auth2, des)
                 d = re.sub(r'~YEAR~', true_year, d)
-                #printe.output( 'd' )
-                #printe.output( d )
+                # printe.output( 'd' )
+                # printe.output( d )
                 description = d
-    #else:
-        #description = False
+    # else:
+        # description = False
     if lang == 'ar':
         if description and description != re.sub(r'[abcdefghijklmnobqrstuvwxyz]', '', description):
             printe.output(f'<<lightred>> arabic description test failed "{description}".')
             description = False
     return description
 # ---
+
+
 def films():
-        printe.output("films: ")
-        Q = 'film'
-        #for lang in language:
-        keys = filmform[Q].keys()
-        WorkWithOneLang(Q, 'ar', keys)
+    printe.output("films: ")
+    Q = 'film'
+    # for lang in language:
+    keys = filmform[Q].keys()
+    WorkWithOneLang(Q, 'ar', keys)
+
+
 # ---
 if __name__ == "__main__":
-     films()
+    films()
 # ---

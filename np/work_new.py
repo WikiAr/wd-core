@@ -13,9 +13,11 @@ Dir = Path(__file__).parent
 # ---
 from np import si3
 # ---
-#32500000   اكتمل حتى
-#32897048  متبقي حتى
+# 32500000   اكتمل حتى
+# 32897048  متبقي حتى
 # ---
+
+
 def WorkNew():
     start = 32700000
     ATend = 32500000
@@ -77,11 +79,11 @@ def WorkNew():
     # ---
     # python3 pwb.py np/si3 WorkNew
     # ---
-    #if len(sys.argv) > 1:
-        #start = sys.argv[1]
+    # if len(sys.argv) > 1:
+        # start = sys.argv[1]
     # ---
-    #if len(sys.argv) > 2:
-        #ATend = sys.argv[2]
+    # if len(sys.argv) > 2:
+        # ATend = sys.argv[2]
     # ---
     num = 0
     # ---
@@ -100,6 +102,8 @@ def WorkNew():
         qitem = 'Q%d' % q
         num += 1
         si3.ISRE(qitem, num, lenth)
+
+
 # ---
 # python3 pwb.py np/work_new
 # ---

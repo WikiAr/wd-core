@@ -22,8 +22,10 @@ railway_tables = {
     "Q55678": {"ar": "نقطة سكة حديدية", "en": "railway stop"},
     "Q784159": {"ar": "", "en": "passing loop"},
     "Q55488": {"ar": "محطة سكة حديدية", "en": "railway station"},
-    }
+}
 # ---
+
+
 def Get_P_API_id(claims, P, onlyone=False):
     # ---
     list = []
@@ -40,6 +42,8 @@ def Get_P_API_id(claims, P, onlyone=False):
     else:
         return list
 # ---
+
+
 def work_railway(wditem, p31, q=""):
     # ---
     if "railway" not in sys.argv:
@@ -62,7 +66,7 @@ def work_railway(wditem, p31, q=""):
     if Claims == {}:
         Claims = himoBOT2.Get_Item_API_From_Qid(q).get("claims", {})
     # ---
-    P17_qid = Get_P_API_id(Claims, 'P17', onlyone=True)#Claims.get('P17',[{}])[0].get("mainsnak",{}).get("datavalue",{}).get("value",{}).get("id",'')
+    P17_qid = Get_P_API_id(Claims, 'P17', onlyone=True)  # Claims.get('P17',[{}])[0].get("mainsnak",{}).get("datavalue",{}).get("value",{}).get("id",'')
     P131_qid = Get_P_API_id(Claims, 'P131', onlyone=True)
     # ---
     p17_labels, p131_labels = {}, {}
@@ -78,7 +82,7 @@ def work_railway(wditem, p31, q=""):
     lang_format = {
         "ar": {1: "{} في {}", 2: "{} في {}، {}"},
         "en": {1: "{} in {}", 2: "{} in {}, {}"},
-        }
+    }
     # ---
     if to_do_descs == {}:
         return
@@ -124,7 +128,7 @@ def work_railway(wditem, p31, q=""):
         # ---
         desc_n = des
         # ---
-        if p31 == 'Q728937' or 'Q728937' in P31_list: # البلد فقط
+        if p31 == 'Q728937' or 'Q728937' in P31_list:  # البلد فقط
             if p17_desc != "":
                 desc_n = lang_format[lang][1].format(des, p17_desc)
         # ---

@@ -62,15 +62,15 @@ desc_table = {
     'Q19389637': Qid_Descraptions.get('Q19389637', {}),
 
     'Q11753321': DescraptionsTable.get('Wikimedia template', {}),
-    'Q15145755': DescraptionsTable.get('Wikimedia module', {}),    #Module test cases
-    'Q18711811': DescraptionsTable.get('Wikimedia module', {}),    #map data module
+    'Q15145755': DescraptionsTable.get('Wikimedia module', {}),  # Module test cases
+    'Q18711811': DescraptionsTable.get('Wikimedia module', {}),  # map data module
     'Q24046192': DescraptionsTable.get('Wikimedia category', {}),
 
 
     # 'Q8502' : placesTable.get('Q8502', {}),     # جبل
     # 'Q39614' : placesTable.get('Q39614', {}),   # مقبرة
     # 'Q79007' : placesTable.get('Q79007', {}),   # شارع
-    }
+}
 # ---
 desc_table["Q726242"] = {"ar": "نجم"}
 desc_table["Q2247863"] = {"ar": "نجم"}
@@ -119,7 +119,7 @@ quarry_list = [
     quarry_o.replace('limit 1000', 'limit 1000 offset 3000'),
     quarry_o.replace('limit 1000', 'limit 1000 offset 4000'),
     quarry_o.replace('limit 1000', 'limit 1000 offset 5000'),
-    ]
+]
 # ---
 qlist_done = []
 # ---

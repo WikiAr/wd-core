@@ -100,5 +100,6 @@ def get_data():
 
     return Main_Table
 
+
 if __name__ == "__main__":
     get_data()

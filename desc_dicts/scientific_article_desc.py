@@ -56,15 +56,15 @@ Scientific_descraptions = {
     "sr-el": "naučni članak",
     "sv": "vetenskaplig artikel",
     "tg-cyrl": "мақолаи илмӣ",
-    #"tg-latn":"maqolai ilmiy",
+    # "tg-latn":"maqolai ilmiy",
     "th": "บทความทางวิทยาศาสตร์",
     "tl": "artikulong pang-agham",
     "tr": "bilimsel makale",
     "uk": "наукова стаття",
     "vi": "bài báo khoa học",
-    "zh": "年学术文章", #年论文
-    "zh-hant": "年學術文章", #年論文
-    }
+    "zh": "年学术文章",  # 年论文
+    "zh-hant": "年學術文章",  # 年論文
+}
 # ---
 Scientific_descraptions['en-gb'] = Scientific_descraptions['en']
 Scientific_descraptions['en-ca'] = Scientific_descraptions['en']

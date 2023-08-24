@@ -62,6 +62,8 @@ login = api_new.Login_to_wiki()
 # ---
 from np import si3
 # ---
+
+
 def mainwithcat2():
     printe.output('*<<lightred>> > mainwithcat2:')
     # ---
@@ -151,6 +153,8 @@ def mainwithcat2():
     delta = int(final - start)
     # ---
     printe.output(f'si3.py mainwithcat2 done in {delta} seconds')
+
+
 # ---
 if __name__ == "__main__":
     mainwithcat2()

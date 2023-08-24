@@ -145,5 +145,6 @@ def main():
     codecs.open(template_file, 'w', encoding='utf-8').write(tmp_text)
     # ----
 
+
 if __name__ == '__main__':
     main()

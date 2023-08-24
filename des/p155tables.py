@@ -13,7 +13,7 @@
 #
 # ---
 from make.lists import Sport_key
-#from make.Sport_key import Sports_Keys_For_Label #Sports_Keys_For_Team#Sports_Keys_For_Jobs#Sports_Keys_For_Label
+# from make.Sport_key import Sports_Keys_For_Label #Sports_Keys_For_Team#Sports_Keys_For_Jobs#Sports_Keys_For_Label
 # ---
 Sports_Keys_Lab = Sport_key.Sports_Keys_For_Label
 Sports_Keys_Team = Sport_key.Sports_Keys_For_Team
@@ -21,7 +21,7 @@ Sports_Keys_Team = Sport_key.Sports_Keys_For_Team
 cccccups = {
     "FIS Alpine Ski World Cup": "كأس العالم للتزلج على المنحدرات الثلجية",
     "alpine skiing world cup": "كأس العالم للتزلج على المنحدرات الثلجية",
-    }
+}
 # ---
 Mako_keys_4 = {
     "ice dance": "الرقص على الجليد",
@@ -38,11 +38,11 @@ Mako_keys_4 = {
     "Cross-country skiing": "التزلج الريفي",
     "Cross country": "التزلج الريفي",
     "team race": "سباق الفريق",
-    }
+}
 # ---
 Mako_keys2 = {
     "free skating": "تزلج حر",
-    #"pair skating" : "التزلج الفني على الجليد" ,
+    # "pair skating" : "التزلج الفني على الجليد" ,
     "pair skating": "تزلج مزدوج",
     "bantamweight": "وزن بانتام",
     "featherweight": "وزن الريشة",
@@ -69,9 +69,9 @@ Mako_keys2 = {
     "Atomweight": "وزن الذرة",
     "super cruiserweight": "وزن الطراد سوبر",
     # ---
-    }
+}
 # ---
-Mako_keys = {#
+Mako_keys = {
     "tennis at the summer olympics": "كرة المضرب في الألعاب الأولمبية الصيفية",
     "tennis at the winter olympics": "كرة المضرب في الألعاب الأولمبية الشتوية",
     "team jumping": "القفز للفرق",
@@ -83,7 +83,7 @@ Mako_keys = {#
     "World Figure Skating Championships": "بطولة العالم للتزلج الفني",
     "ladies' singles free skating": "تزلج حر فردي للسيدات",
     "men's singles free skating": "تزلج حر فردي للرجال",
-    }
+}
 # ---
 International_Federation = {
 
@@ -250,8 +250,8 @@ International_Federation = {
     "FIBA Korać Cup": "كأس كوراتش لكرة السلة",
 
     "FIFA World Cup": "كأس العالم لكرة القدم",
-    #"FIFA World Cup":"كأس العالم",
-    #"FIFA Women's World Cup":"كأس العالم للسيدات",
+    # "FIFA World Cup":"كأس العالم",
+    # "FIFA Women's World Cup":"كأس العالم للسيدات",
     "FIFA Women's World Cup": "كأس العالم لكرة القدم للسيدات",
     "FIFA U-17 World Cup": "كأس العالم تحت 17 سنة لكرة القدم",
     "FIFA U-17 Women's World Cup": "كأس العالم تحت 17 سنة لكرة القدم للسيدات",
@@ -297,7 +297,7 @@ International_Federation = {
     "IIHF World Championships": "بطولة العالم لهوكي الجليد",
     "IIHF Challenge Cup of Asia": "كأس التحدي الآسيوي لهوكي الجليد",
 
-    #"UEFA Euro":"بطولة أمم أوروبا لكرة القدم",
+    # "UEFA Euro":"بطولة أمم أوروبا لكرة القدم",
     "UEFA Futsal Championships": "بطولة أمم أوروبا لكرة الصالات",
     "UEFA Women's Euro": "بطولة أمم أوروبا لكرة القدم للسيدات",
     "UEFA Champions League": "دوري أبطال أوروبا",
@@ -318,7 +318,7 @@ International_Federation = {
     "UEFA Euro": "بطولة أمم أوروبا",
     "UEFA Champions League": "دوري أبطال أوروبا",
     "2017–18 UEFA Champions League": "دوري أبطال أوروبا 2017–18",
-    #"UEFA European Championships":"بطولة أمم أوروبا لكرة القدم",
+    # "UEFA European Championships":"بطولة أمم أوروبا لكرة القدم",
     "UEFA Nations League": "دوري الأمم الأوروبية",
     "UEFA European Championship qualifying": "تصفيات بطولة أمم أوروبا",
     "UEFA Super Cup": "كأس السوبر الأوروبي",
@@ -358,7 +358,7 @@ International_Federation = {
     "FINA World Swimming Championships": "بطولة العالم للسباحة",
     "FINA World Aquatics Championships": "بطولة العالم للألعاب المائية",
 
-    }
+}
 # ---
 olympics = {
     "Women's 500 m time trial": "سباق 500 متر ضد الساعة للسيدات",
@@ -390,10 +390,10 @@ olympics = {
     "Men's sprint": "سباق السرعة الفردية",
     "Men's team pursuit": "سباق المطاردة الفرقية",
     "Men's team sprint": "سباق السرعة الفردية للفرق",
-    }
+}
 # ---
-for fff, ffflab in Sports_Keys_Team.items(): #– winter youth olympics
-    #cccccups["%s world Championships" %  fff.lower() ] = "بطولة العالم %s"  % ffflab
+for fff, ffflab in Sports_Keys_Team.items():  # – winter youth olympics
+    # cccccups["%s world Championships" %  fff.lower() ] = "بطولة العالم %s"  % ffflab
     cccccups[f"{fff.lower()} world championships"] = f"بطولة العالم {ffflab}"
     cccccups[f"world team {fff.lower()} championships"] = f"بطولة العالم {ffflab} للفرق"
     cccccups[f"{fff.lower()} world team championships"] = f"بطولة العالم {ffflab} للفرق"
@@ -402,16 +402,16 @@ for fff, ffflab in Sports_Keys_Team.items(): #– winter youth olympics
     cccccups[f"world women's {fff.lower()} championships"] = f"بطولة العالم {ffflab} للسيدات"
     cccccups[f"{fff.lower()} world women's championships"] = f"بطولة العالم {ffflab} للسيدات"
 # ---
-for fff, ffflab in Sports_Keys_Lab.items(): #– winter youth olympics
+for fff, ffflab in Sports_Keys_Lab.items():  # – winter youth olympics
     olympics[f"{fff.lower()} at the summer olympics"] = f"{ffflab} في الألعاب الأولمبية الصيفية"
     olympics[f"{fff.lower()} at the winter youth olympics"] = f"{ffflab} في الألعاب الأولمبية الشبابية الشتوية"
     olympics[f"{fff.lower()} at the winter olympics"] = f"{ffflab} في الألعاب الأولمبية الشتوية"
     Mako_keys_4[f" mens's {fff.lower()}"] = f"{ffflab} للرجال"
     Mako_keys_4[f" womens's {fff.lower()}"] = f"{ffflab} للسيدات"
-    #Mako_keys_4[ fff.lower() ] = ffflab
+    # Mako_keys_4[ fff.lower() ] = ffflab
 # ---
-#individual
-#jumping
+# individual
+# jumping
 keys_1 = {
     "individual": "فردي",
     "girls": "فتيات",
@@ -425,11 +425,11 @@ keys_1 = {
     "mens": "رجال",
     "men's": "رجال",
     # ---
-    }#men's individual road race
+}  # men's individual road race
 # ---
 keys_2 = {
     "tournament": "مسابقة",
-    #"single" : "فردي",
+    # "single" : "فردي",
     "individual": "فردي",
     "singles": "فردي",
     "qualification": "تصفيات",
@@ -438,16 +438,16 @@ keys_2 = {
     "normal hill": "تل عادي",
     "team": "فريق",
     "decathlon": "ديكاتلون",
-    #"double" : "زوجي",
+    # "double" : "زوجي",
     "doubles": "زوجي",
-    #"single sculls" : "تجديف فردي",
-    #"double sculls" : "تجديف زوجي",
-    #"quadruple sculls" : "تجديف رباعي",
-    #"coxless pair" : "رباعي مزدوج",
+    # "single sculls" : "تجديف فردي",
+    # "double sculls" : "تجديف زوجي",
+    # "quadruple sculls" : "تجديف رباعي",
+    # "coxless pair" : "رباعي مزدوج",
     "quadruple": "رباعي",
     "coxless": "رباعي",
     "jumping": "قفز",
-    }
+}
 # ---
 keys_3 = {
     "road race": "سباق الطريق",
@@ -457,10 +457,10 @@ keys_3 = {
     "individual": "فردي",
     "sculls": "تجديف",
     "pair": "مزدوج",
-    }
+}
 # ---
-for start in keys_1: #–
-    for suff in keys_2: #–
+for start in keys_1:  # –
+    for suff in keys_2:  # –
         lab_ke = f"{keys_2[suff]} {keys_1[start]}"
         # ---
         ke = f"{start} {suff}"
@@ -479,4 +479,3 @@ for start in keys_1: #–
             ke2 = f"{suff} {su3}"
             Mako_keys2[ke2.lower()] = lab_ke2
 # ---
-

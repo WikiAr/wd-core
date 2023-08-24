@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#--
+# --
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # ---
@@ -26,6 +26,8 @@ from cy.cy5 import *
 import gent
 # generator = gent.get_gent(*args)
 # ---
+
+
 def main2(*args):
     generator = gent.get_gent(*args)
     numb = 0
@@ -34,6 +36,8 @@ def main2(*args):
         numb += 1
         pywikibot.output('page: %d : ' % numb + pagetitle)
         StartOnePage(pagetitle)
+
+
 # ---
 if __name__ == "__main__":
     main2()
