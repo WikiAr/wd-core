@@ -3,10 +3,10 @@
 '''
 from des.railway import railway_tables, work_railway#work_railway( item, P31, q='' )
 
-python3 pwb.py des/fam railway Q55678
-python3 pwb.py des/fam railway Q728937
-python3 pwb.py des/fam railway Q784159
-python3 pwb.py des/fam railway Q55488
+python3 core8/pwb.py des/fam railway Q55678
+python3 core8/pwb.py des/fam railway Q728937
+python3 core8/pwb.py des/fam railway Q784159
+python3 core8/pwb.py des/fam railway Q55488
 '''
 #
 # ---

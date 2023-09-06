@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-python3 pwb.py dump/arw2
-python3 pwb.py dump/arw2 test nosave
-python3 pwb.py dump/arw2 test nosave p31
-python3 pwb.py dump/arw2 test nosave printline
-python3 pwb.py dump/arw2 test nosave limit:5000
+python3 core8/pwb.py dump/arw2
+python3 core8/pwb.py dump/arw2 test nosave
+python3 core8/pwb.py dump/arw2 test nosave p31
+python3 core8/pwb.py dump/arw2 test nosave printline
+python3 core8/pwb.py dump/arw2 test nosave limit:5000
 """
 #
 # (C) Ibrahem Qasim, 2017

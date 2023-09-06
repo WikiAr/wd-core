@@ -5,7 +5,7 @@
 
 نسخ تسمية العنصر إلى التصنيف المطابق له في الإسم
 
-python3 ./core8/pwb.py alabel/labels -limit:20
+python3 core8/pwb.py alabel/labels -limit:20
 
 """
 #
@@ -61,7 +61,7 @@ if Limit[1] != '':
 
 
 def main():
-    # python3 ./core8/pwb.py alabel/labels -limit:20
+    # python3 core8/pwb.py alabel/labels -limit:20
     # ---
     result = wiki_sql.sql_new(Quaa, wiki="wikidata", printqua=True)
     # ---

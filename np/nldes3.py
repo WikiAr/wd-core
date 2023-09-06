@@ -3,31 +3,31 @@
 # Distributed under the terms of the CC-BY-SA 3.0 licence.
 # Q13005188 mandal
 r'''
-jsub -N aa python3 ./core/pwb.py ./core/np/nldes3 a3r sparql:Q23038290
-python3 pwb.py np/nldes3 allkeys
-python3 pwb.py np/nldes3 sparql:Q820655
-python3 pwb.py np/nldes3 a3r sparql:Q728937 railway
-python3 pwb.py np/nldes3 a3r sparql:Q7604686
-python3 pwb.py np/nldes3 a3r sparql:Q27020041
-python3 pwb.py np/nldes3 a3r sparql:Q484170 #بلدية في فرنسا
-python3 pwb.py np/nldes3 a3r sparql:Q262166 #بلدية في ألمانيا
-python3 pwb.py np/nldes3 a3r sparql:Q22865 #بلدية في ألمانيا
-python3 pwb.py np/nldes3 a3r sparql:Q3184121 #بلدية في البرازيل
-python3 pwb.py np/nldes3 a3r sparql:Q6784672 #بلدية في سلوفاكيا
-python3 pwb.py np/nldes3 a3r sparql:Q667509 #بلدية في النمسا
-python3 pwb.py np/nldes3 a3r sparql:Q24764  #بلدية في الفلبين
-python3 pwb.py np/nldes3 a3r sparql:Q2039348  #بلدية في هولندا
-python3 pwb.py np/nldes3 a3r sparql:Q57058  #بلدية في كرواتيا
-python3 pwb.py np/nldes3 a3r sparql:Q1054813  #بلدية في اليابان
-python3 pwb.py np/nldes3 a3r sparql:Q1758856  #بلدية في مالي
-python3 pwb.py np/nldes3 a3r sparql:Q747074  #بلدية إيطالية
-python3 pwb.py np/nldes3 a3r sparql:Q493522  #بلدية في بلجيكا
-python3 pwb.py np/nldes3 a3r sparql:Q755707  #بلدية في النرويج
-python3 pwb.py np/nldes3 a3r sparql:Q1349648  #بلدية في اليونان
-python3 pwb.py np/nldes3 a3r sparql:Q127448  #بلدية في السويد
-python3 pwb.py np/nldes3 a3r sparql:Q1906268  #بلدية في بلغاريا
-python3 pwb.py np/nldes3 a3r sparql:Q856076  #بلدية في فنلندا
-python3 pwb.py np/nldes3 a3r sparql:Q378508  #بلدية في أنغولا
+jsub -N aa python3 core8/pwb.py np/nldes3 a3r sparql:Q23038290
+python3 core8/pwb.py np/nldes3 allkeys
+python3 core8/pwb.py np/nldes3 sparql:Q820655
+python3 core8/pwb.py np/nldes3 a3r sparql:Q728937 railway
+python3 core8/pwb.py np/nldes3 a3r sparql:Q7604686
+python3 core8/pwb.py np/nldes3 a3r sparql:Q27020041
+python3 core8/pwb.py np/nldes3 a3r sparql:Q484170 #بلدية في فرنسا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q262166 #بلدية في ألمانيا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q22865 #بلدية في ألمانيا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q3184121 #بلدية في البرازيل
+python3 core8/pwb.py np/nldes3 a3r sparql:Q6784672 #بلدية في سلوفاكيا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q667509 #بلدية في النمسا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q24764  #بلدية في الفلبين
+python3 core8/pwb.py np/nldes3 a3r sparql:Q2039348  #بلدية في هولندا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q57058  #بلدية في كرواتيا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q1054813  #بلدية في اليابان
+python3 core8/pwb.py np/nldes3 a3r sparql:Q1758856  #بلدية في مالي
+python3 core8/pwb.py np/nldes3 a3r sparql:Q747074  #بلدية إيطالية
+python3 core8/pwb.py np/nldes3 a3r sparql:Q493522  #بلدية في بلجيكا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q755707  #بلدية في النرويج
+python3 core8/pwb.py np/nldes3 a3r sparql:Q1349648  #بلدية في اليونان
+python3 core8/pwb.py np/nldes3 a3r sparql:Q127448  #بلدية في السويد
+python3 core8/pwb.py np/nldes3 a3r sparql:Q1906268  #بلدية في بلغاريا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q856076  #بلدية في فنلندا
+python3 core8/pwb.py np/nldes3 a3r sparql:Q378508  #بلدية في أنغولا
 # أنواع البلديات
 SELECT ?item2 ?item2Label (COUNT(?item) AS ?count) WHERE {
   ?item wdt:P31 ?item2.
@@ -40,56 +40,56 @@ SELECT ?item2 ?item2Label (COUNT(?item) AS ?count) WHERE {
 group by ?item2 ?item2Label
 # ---
 pywikibot\.ItemPage\(repo\,(.*?)\.title\(\)\)
-python3 pwb.py np/nldes3 a3r sparql:Q184188      #كانتون فرنسي
-python3 pwb.py np/nldes3 a3r sparql:Q7930614     #قرية في تايوان
-python3 pwb.py np/nldes3 a3r sparql:Q56436498    #قرية في الهند
-python3 pwb.py np/nldes3 a3r sparql:Q1983062     #حلقة
-python3 pwb.py np/nldes3 a3r sparql:Q21191270    #حلقة مسلسل تلفزيوني
-python3 pwb.py np/nldes3 a3r sparql:Q571         #كتاب
-python3 pwb.py np/nldes3 a3r sparql:
-python3 pwb.py np/nldes3 a3r sparql:
-python3 pwb.py np/nldes3 a3r sparql:
+python3 core8/pwb.py np/nldes3 a3r sparql:Q184188      #كانتون فرنسي
+python3 core8/pwb.py np/nldes3 a3r sparql:Q7930614     #قرية في تايوان
+python3 core8/pwb.py np/nldes3 a3r sparql:Q56436498    #قرية في الهند
+python3 core8/pwb.py np/nldes3 a3r sparql:Q1983062     #حلقة
+python3 core8/pwb.py np/nldes3 a3r sparql:Q21191270    #حلقة مسلسل تلفزيوني
+python3 core8/pwb.py np/nldes3 a3r sparql:Q571         #كتاب
+python3 core8/pwb.py np/nldes3 a3r sparql:
+python3 core8/pwb.py np/nldes3 a3r sparql:
+python3 core8/pwb.py np/nldes3 a3r sparql:
 Q842478
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
-python3 pwb.py np/nldes3 a3r sparql:Q7366  # أغنية
-python3 pwb.py np/nldes3 a3r sparql:Q5398426
-python3 pwb.py np/nldes3 a3r sparql:Q13417250   #مقاطعة في أذربيجان
-python3 pwb.py np/nldes3 a3r sparql:Q215380
-python3 pwb.py np/nldes3 a3r sparql:Q83373   # نجم زائف
-python3 pwb.py np/nldes3 a3r sparql:Q13890   # نجم مزدوج
-python3 pwb.py np/nldes3 a3r sparql:Q6999    # جرم فلكي
-python3 pwb.py np/nldes3 a3r sparql:Q569500  # مركز صحي
-python3 pwb.py np/nldes3 a3r sparql:Q54050   # تل
-python3 pwb.py np/nldes3 a3r sparql:Q39614   # مقبرة
-python3 pwb.py np/nldes3 a3r sparql:Q123705  # حي سكني
-python3 pwb.py np/nldes3 a3r sparql:Q12323   # سد
-python3 pwb.py np/nldes3 a3r sparql:Q22698   # متنزه
-python3 pwb.py np/nldes3 a3r sparql:Q131681  #  خزان مائي
-python3 pwb.py np/nldes3 a3r sparql:Q4421    #غابة
-python3 pwb.py np/nldes3 a3r sparql:Q180958    #كلية
-python3 pwb.py np/nldes3 a3r sparql:Q179700    #تمثال
-python3 pwb.py np/nldes3 a3r sparql:Q30022    #مقهى
-python3 pwb.py np/nldes3 a3r sparql:Q4989906    #معلم تذكاري
+python3 core8/pwb.py np/nldes3 a3r sparql:Q7366  # أغنية
+python3 core8/pwb.py np/nldes3 a3r sparql:Q5398426
+python3 core8/pwb.py np/nldes3 a3r sparql:Q13417250   #مقاطعة في أذربيجان
+python3 core8/pwb.py np/nldes3 a3r sparql:Q215380
+python3 core8/pwb.py np/nldes3 a3r sparql:Q83373   # نجم زائف
+python3 core8/pwb.py np/nldes3 a3r sparql:Q13890   # نجم مزدوج
+python3 core8/pwb.py np/nldes3 a3r sparql:Q6999    # جرم فلكي
+python3 core8/pwb.py np/nldes3 a3r sparql:Q569500  # مركز صحي
+python3 core8/pwb.py np/nldes3 a3r sparql:Q54050   # تل
+python3 core8/pwb.py np/nldes3 a3r sparql:Q39614   # مقبرة
+python3 core8/pwb.py np/nldes3 a3r sparql:Q123705  # حي سكني
+python3 core8/pwb.py np/nldes3 a3r sparql:Q12323   # سد
+python3 core8/pwb.py np/nldes3 a3r sparql:Q22698   # متنزه
+python3 core8/pwb.py np/nldes3 a3r sparql:Q131681  #  خزان مائي
+python3 core8/pwb.py np/nldes3 a3r sparql:Q4421    #غابة
+python3 core8/pwb.py np/nldes3 a3r sparql:Q180958    #كلية
+python3 core8/pwb.py np/nldes3 a3r sparql:Q179700    #تمثال
+python3 core8/pwb.py np/nldes3 a3r sparql:Q30022    #مقهى
+python3 core8/pwb.py np/nldes3 a3r sparql:Q4989906    #معلم تذكاري
 # ---
-python3 pwb.py np/nldes3 a3r sparql:Q184188 ask #كانتون فرنسي
-python3 pwb.py np/nldes3 a3r sparql:Q783866 ask #
-python3 pwb.py np/nldes3 a3r sparql:Q783866 ask #
-python3 pwb.py np/nldes3 a3r sparql:Q783866 ask #
-python3 pwb.py np/nldes3 a3r sparql:Q783866 ask #
-python3 pwb.py np/nldes3 a3r sparql:Q3331189  #طبعة
-python3 pwb.py np/nldes3 a3r sparql:Q783866  #مكتبة جافا سكريبت
-python3 pwb.py np/nldes3 a3r sparql:Q14752149  #نادي كرة قدم للهواة
-python3 pwb.py np/nldes3 a3r sparql:Q476028  #نادي كرة قدم
-python3 pwb.py np/nldes3 a3r sparql:Q620615  #تطببيق محمول
-python3 pwb.py np/nldes3 a3r sparql:Q2831984   #ألبوم قصص مصورة
-python3 pwb.py np/nldes3 a3r sparql:Q7187     # جين
-python3 pwb.py np/nldes3 a3r sparql:Q277338     # جين كاذب
-python3 pwb.py np/nldes3 a3r sparql:Q19389637     مقالة سيرة ذاتية
-python3 pwb.py np/nldes3 a3r sparql:Q3305213  # لوحة فنية بواسطة
-python3 pwb.py np/nldes3 a3r sparql:Q7889    # لعبة فيديو
-python3 pwb.py np/nldes3 a3r sparql:Q8054     # بروتين
-python3 pwb.py np/nldes3 a3r sparql:Q7278     # حزب سياسي
+python3 core8/pwb.py np/nldes3 a3r sparql:Q184188 ask #كانتون فرنسي
+python3 core8/pwb.py np/nldes3 a3r sparql:Q783866 ask #
+python3 core8/pwb.py np/nldes3 a3r sparql:Q783866 ask #
+python3 core8/pwb.py np/nldes3 a3r sparql:Q783866 ask #
+python3 core8/pwb.py np/nldes3 a3r sparql:Q783866 ask #
+python3 core8/pwb.py np/nldes3 a3r sparql:Q3331189  #طبعة
+python3 core8/pwb.py np/nldes3 a3r sparql:Q783866  #مكتبة جافا سكريبت
+python3 core8/pwb.py np/nldes3 a3r sparql:Q14752149  #نادي كرة قدم للهواة
+python3 core8/pwb.py np/nldes3 a3r sparql:Q476028  #نادي كرة قدم
+python3 core8/pwb.py np/nldes3 a3r sparql:Q620615  #تطببيق محمول
+python3 core8/pwb.py np/nldes3 a3r sparql:Q2831984   #ألبوم قصص مصورة
+python3 core8/pwb.py np/nldes3 a3r sparql:Q7187     # جين
+python3 core8/pwb.py np/nldes3 a3r sparql:Q277338     # جين كاذب
+python3 core8/pwb.py np/nldes3 a3r sparql:Q19389637     مقالة سيرة ذاتية
+python3 core8/pwb.py np/nldes3 a3r sparql:Q3305213  # لوحة فنية بواسطة
+python3 core8/pwb.py np/nldes3 a3r sparql:Q7889    # لعبة فيديو
+python3 core8/pwb.py np/nldes3 a3r sparql:Q8054     # بروتين
+python3 core8/pwb.py np/nldes3 a3r sparql:Q7278     # حزب سياسي
 '''
 import pywikibot
 from pywikibot import pagegenerators as pg

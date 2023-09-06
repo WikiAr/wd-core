@@ -20,9 +20,9 @@ main_dir1 = str(Path(__file__).parent.parent) + '/'
 
 def read_new_types_file():
     # ---
-    # python3 pwb.py np/si3 read
-    # python3 pwb.py np/si3 read -file:np/new_types11.json
-    # python3 pwb.py np/si3 read -number:500
+    # python3 core8/pwb.py np/si3 read
+    # python3 core8/pwb.py np/si3 read -file:np/new_types11.json
+    # python3 core8/pwb.py np/si3 read -number:500
     # ---
     file = 'np/new_types.json'
     number = 100
@@ -69,7 +69,7 @@ def read_new_types_file():
 
 
 # ---
-# python3 pwb.py np/read_np
+# python3 core8/pwb.py np/read_np
 # ---
 if __name__ == "__main__":
     read_new_types_file()

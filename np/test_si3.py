@@ -72,7 +72,7 @@ def Main_Test():
 
 
 # ---
-# python3 pwb.py np/test_si3
+# python3 core8/pwb.py np/test_si3
 # ---
 if __name__ == "__main__":
     Main_Test()

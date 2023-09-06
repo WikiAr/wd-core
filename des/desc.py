@@ -2,24 +2,24 @@
 """
 #!/usr/bin/env python3
 
-python3 pwb.py des/desc limit:1000 optional
-python3 pwb.py des/desc limit:1000 optional place:Q173387 save #قبر
-python3 pwb.py des/desc limit:1000 optional place:Q918230 save #فيلا رومانية
-python3 pwb.py des/desc limit:1000 optional place:Q641226 #صالة
-python3 pwb.py des/desc limit:1000 optional place:Q483110 #ملعب
-python3 pwb.py des/desc limit:1000 optional place:Q1329623 #مركز ثقافي
-python3 pwb.py des/desc limit:1000 optional place:Q1154710 #استاد كرة قدم
-python3 pwb.py des/desc limit:1000 optional place:Q12518 #برج
-python3 pwb.py des/desc limit:1000 optional place:Q2225692 #منطقة سكنية في أندونوسيا
-python3 pwb.py des/desc limit:1000 optional place:Q185113
+python3 core8/pwb.py des/desc limit:1000 optional
+python3 core8/pwb.py des/desc limit:1000 optional place:Q173387 save #قبر
+python3 core8/pwb.py des/desc limit:1000 optional place:Q918230 save #فيلا رومانية
+python3 core8/pwb.py des/desc limit:1000 optional place:Q641226 #صالة
+python3 core8/pwb.py des/desc limit:1000 optional place:Q483110 #ملعب
+python3 core8/pwb.py des/desc limit:1000 optional place:Q1329623 #مركز ثقافي
+python3 core8/pwb.py des/desc limit:1000 optional place:Q1154710 #استاد كرة قدم
+python3 core8/pwb.py des/desc limit:1000 optional place:Q12518 #برج
+python3 core8/pwb.py des/desc limit:1000 optional place:Q2225692 #منطقة سكنية في أندونوسيا
+python3 core8/pwb.py des/desc limit:1000 optional place:Q185113
 
 أوصاف مناطق جغرافية
 
-python3 pwb.py des/desc  limit:2000 offplace:85
-python3 pwb.py des/desc limit:2000 offplace:100 qslimit:5000
-python3 pwb.py des/desc limit:2000 qslimit:2000 alllimit:10000
+python3 core8/pwb.py des/desc  limit:2000 offplace:85
+python3 core8/pwb.py des/desc limit:2000 offplace:100 qslimit:5000
+python3 core8/pwb.py des/desc limit:2000 qslimit:2000 alllimit:10000
 
-python3 pwb.py des/desc limit:2000 qslimit:5000 alllimit:10000
+python3 core8/pwb.py des/desc limit:2000 qslimit:5000 alllimit:10000
 
 SELECT DISTINCT
 (GROUP_CONCAT(DISTINCT(STRAFTER(STR(?item), "/entity/")); separator="@@") as ?q) #(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
@@ -90,8 +90,8 @@ for arg in sys.argv:
     if arg == 'off':
         offset[1] = int(value)
     # ---
-    # python3 pwb.py des/desc descqs limit:4000 optional place:Q185113
-    # python3 pwb.py des/desc descqs limit:1000 place:Q8054
+    # python3 core8/pwb.py des/desc descqs limit:4000 optional place:Q185113
+    # python3 core8/pwb.py des/desc descqs limit:1000 place:Q8054
     if arg == 'place' and value in placesTable:
         placesTable2 = {value: placesTable[value]}
     # ---

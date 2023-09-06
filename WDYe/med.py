@@ -388,13 +388,13 @@ Limit = {1: "500"}
 
 
 def main():
-    # python3 pwb.py wd/med
-    # python3 pwb.py wd/med short
-    # python3 pwb.py wd/med  ta:horror
-    # python3 pwb.py wd/med qs:Q12136
-    # python3 pwb.py wd/med qs:Q39546
-    # python3 pwb.py wd/med qs:Q24017414
-    # python3 pwb.py wd/med qs:Q27043950
+    # python3 core8/pwb.py wd/med
+    # python3 core8/pwb.py wd/med short
+    # python3 core8/pwb.py wd/med  ta:horror
+    # python3 core8/pwb.py wd/med qs:Q12136
+    # python3 core8/pwb.py wd/med qs:Q39546
+    # python3 core8/pwb.py wd/med qs:Q24017414
+    # python3 core8/pwb.py wd/med qs:Q27043950
     # ---
     # sat = "{?item wdt:%s  wd:%s. }" % (pp , qq)
     # sat = "{?item wdt:%s  wd:%s. }" % (pp , qq)

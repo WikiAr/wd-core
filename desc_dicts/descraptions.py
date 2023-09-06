@@ -8,8 +8,8 @@ likeapi.descraptions
 
 new pages from file
 
-python3 pwb.py API/descraptions
-python3 pwb.py update/update
+python3 core8/pwb.py API/descraptions
+python3 core8/pwb.py update/update
 
 
 SELECT ?P31 (count(*) as ?d)
@@ -88,7 +88,7 @@ Qid_Desc = {
     "Q427087": {"ar": "حمض نووي ريبوزي غير مشفر", "en": "non-coding RNA"},  # 698
     "Q18340514": {"ar": "مقالة عن أحداث في سنة أو فترة زمنية محددة", "en": "events in a specific year or time period"},
     "Q7604686": {"ar": "صك قانوني في المملكة المتحدة", "en": "UK Statutory Instrument"},
-    "Q820655": {"ar": "قانون تشريعي", "en": "statute"},  # python3 pwb.py np/nldes3 sparql:Q820655
+    "Q820655": {"ar": "قانون تشريعي", "en": "statute"},  # python3 core8/pwb.py np/nldes3 sparql:Q820655
     "Q207694": {"ar": "متحف فني", "en": "art museum"},
     "Q27032363": {"ar": "أرشيف صور", "en": "photo archive"},
     "Q7187": {"ar": "جين", "en": "gene"},
@@ -1598,7 +1598,7 @@ replace_desc = {
 }
 # ---
 if __name__ == "__main__":
-    # python3 pwb.py desc_dicts/descraptions
+    # python3 core8/pwb.py desc_dicts/descraptions
     u1 = ''
     u2 = ''
     for x, taba in DescraptionsTable.items():

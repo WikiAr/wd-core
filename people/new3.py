@@ -1,9 +1,9 @@
 #!/usr/bin/python
 """
 
-python3 pwb.py people/new3
-python3 pwb.py people/new3 -nat:Yemeni ask
-python3 pwb.py people/new3 -nat:American limit:200
+python3 core8/pwb.py people/new3
+python3 core8/pwb.py people/new3 -nat:Yemeni ask
+python3 core8/pwb.py people/new3 -nat:American limit:200
 
 SELECT *
 WHERE {
@@ -77,11 +77,11 @@ qualimit = {1: 20}
 limit = {1: ""}
 offset = {1: 0}
 # ---
-# python3 pwb.py people/new3 occnew
-# python3 pwb.py people/new3 -job:researcher
-# python3 pwb.py people/new3 -nat:Yemeni -job:footballer
-# python3 pwb.py people/new3 -nat:American occnew
-# python3 pwb.py people/new3 -nat:American
+# python3 core8/pwb.py people/new3 occnew
+# python3 core8/pwb.py people/new3 -job:researcher
+# python3 core8/pwb.py people/new3 -nat:Yemeni -job:footballer
+# python3 core8/pwb.py people/new3 -nat:American occnew
+# python3 core8/pwb.py people/new3 -nat:American
 for arg in sys.argv:
     # ---
     arg, sep, value = arg.partition(':')
@@ -145,8 +145,8 @@ def check_quarry_new(tab):
         if not d in tabe:
             tabe[d] = []
         # ---
-        # python3 pwb.py people/new3 -nat:Algerian limit:500 qualimit:15
-        # python3 pwb.py people/new3 -nat:American limit:50 qualimit:10
+        # python3 core8/pwb.py people/new3 -nat:Algerian limit:500 qualimit:15
+        # python3 core8/pwb.py people/new3 -nat:American limit:50 qualimit:10
         if len(tabe[d]) < qualimit[1]:
             tabe[d].append(x)
         else:

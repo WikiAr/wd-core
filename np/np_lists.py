@@ -469,13 +469,13 @@ p50s = {
 for tt in Qid_Descraptions:
     SPARQLSE[tt] = main_quarry % tt
 # ---
-# python3 pwb.py np/nldes3 limit:2000 sparql:Q571 #كتاب
-# python3 pwb.py np/nldes3 limit:2000 sparql:Q7725634 #رواية
-# python3 pwb.py np/nldes3 limit:2000 sparql:Q1760610 #كتاب هزلي
-# python3 pwb.py np/nldes3 limit:2000 sparql:Q1318295 #قصة
-# python3 pwb.py np/nldes3 limit:2000 sparql:Q49084 #قصة قصيرة
-# python3 pwb.py np/nldes3 limit:2000 sparql:Q187685 #أطروحة أكاديمية
-# python3 pwb.py np/nldes3 limit:2000 sparql:Q96739634 #حركة فردية
+# python3 core8/pwb.py np/nldes3 limit:2000 sparql:Q571 #كتاب
+# python3 core8/pwb.py np/nldes3 limit:2000 sparql:Q7725634 #رواية
+# python3 core8/pwb.py np/nldes3 limit:2000 sparql:Q1760610 #كتاب هزلي
+# python3 core8/pwb.py np/nldes3 limit:2000 sparql:Q1318295 #قصة
+# python3 core8/pwb.py np/nldes3 limit:2000 sparql:Q49084 #قصة قصيرة
+# python3 core8/pwb.py np/nldes3 limit:2000 sparql:Q187685 #أطروحة أكاديمية
+# python3 core8/pwb.py np/nldes3 limit:2000 sparql:Q96739634 #حركة فردية
 # حركة فردية
 for p50 in p50s:
     # ---
@@ -567,7 +567,7 @@ others_list_2 = [
 others_list = {
     # ---
     'Q43229': {"ar": 'منظمة'},
-    'Q820655': {"ar": 'قانون تشريعي'},  # python3 pwb.py np/nldes3 sparql:Q820655
+    'Q820655': {"ar": 'قانون تشريعي'},  # python3 core8/pwb.py np/nldes3 sparql:Q820655
     'Q728937': {"ar": 'خط سكة حديد'},
     'Q46970': {"ar": 'شركة طيران'},
     'Q4830453': {"ar": 'شركة'},
@@ -647,9 +647,9 @@ qura = {
 # ---
 '''
 
-python3 pwb.py np/nldes3 a3r sparql:Q1529096
-python3 pwb.py np/nldes3 a3r sparql:Q3558970
-python3 pwb.py np/nldes3 a3r sparql:Q56436498  #قرية هندية
+python3 core8/pwb.py np/nldes3 a3r sparql:Q1529096
+python3 core8/pwb.py np/nldes3 a3r sparql:Q3558970
+python3 core8/pwb.py np/nldes3 a3r sparql:Q56436498  #قرية هندية
 
 '''
 # ---
@@ -657,12 +657,12 @@ for q in qura:
     # labs = '%s في %s' % ( qura[q]['P31'] , qura[q]['P17'] )
     others_list[q] = {"ar": qura[q]['P31'], "en": ""}
 # ---
-# python3 pwb.py np/nldes3 a3r sparql:Q7366 #أغنية
-# python3 pwb.py np/nldes3 a3r sparql:Q482994 #ألبوم
-# python3 pwb.py np/nldes3 a3r sparql:Q134556 #منفردة
-# python3 pwb.py np/nldes3 a3r sparql:Q7302866 #مقطع
-# python3 pwb.py np/nldes3 a3r sparql:Q1573906 #جولة
-# python3 pwb.py np/nldes3 a3r sparql:Q182832 #حفلة
+# python3 core8/pwb.py np/nldes3 a3r sparql:Q7366 #أغنية
+# python3 core8/pwb.py np/nldes3 a3r sparql:Q482994 #ألبوم
+# python3 core8/pwb.py np/nldes3 a3r sparql:Q134556 #منفردة
+# python3 core8/pwb.py np/nldes3 a3r sparql:Q7302866 #مقطع
+# python3 core8/pwb.py np/nldes3 a3r sparql:Q1573906 #جولة
+# python3 core8/pwb.py np/nldes3 a3r sparql:Q182832 #حفلة
 # ---
 songs_type = {
     'Q7366': 'أغنية',
@@ -691,8 +691,8 @@ for scdw in others_list:
         if "a3r" in sys.argv:
             SPARQLSE[scdw] = 'SELECT ?item WHERE { ?item wdt:P31 wd:' + scdw + ' . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
 # ---
-# python3 pwb.py np/nldes3 sparql:Q44559
-# python3 pwb.py np/nldes3 sparql:Q19389637
+# python3 core8/pwb.py np/nldes3 sparql:Q44559
+# python3 core8/pwb.py np/nldes3 sparql:Q19389637
 # مقالة سيرة ذاتية
 SPARQLSE['Q19389637'] = 'select ?item where {?item wdt:P31 wd:Q19389637}'  # biografisch artikel
 if "Q665807" in sys.argv:
@@ -705,7 +705,7 @@ FILTER NOT EXISTS { ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = "ar") }
 
 '''  # biografisch artikel
 # ---Q19389637#Q2831984
-# python3 pwb.py np/nldes3 sparql:Q571
+# python3 core8/pwb.py np/nldes3 sparql:Q571
 # كتاب
 SPARQLSE['Q571'] = '''SELECT ?item WHERE
     { ?item wdt:P31 wd:Q571 .
@@ -715,7 +715,7 @@ SPARQLSE['Q571'] = '''SELECT ?item WHERE
     }
     '''
 # ---
-# python3 pwb.py np/nldes3 sparql:Q318
+# python3 core8/pwb.py np/nldes3 sparql:Q318
 # مجرة
 SPARQLSE['Q318'] = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q318 . ?item  wdt:P59 ?constellation. ?constellation wdt:P31 wd:Q8928.} '  # galaxyx
 if "a2r" in sys.argv:
@@ -739,16 +739,16 @@ OPTIONAL { ?item rdfs:label ?l5 . FILTER(lang(?l5)="en") }
 }
 ORDER BY DESC(xsd:integer(SUBSTR(STR(?item),33)))'''
 # ---
-# python3 pwb.py np/nldes3 sparql:Q1457376
-# python3 pwb.py np/nldes3 sparql:Q1457376 a2r
+# python3 core8/pwb.py np/nldes3 sparql:Q1457376
+# python3 core8/pwb.py np/nldes3 sparql:Q1457376 a2r
 # كسوف نجم ثنائي
 SPARQLSE['Q1457376'] = 'SELECT ?item WHERE {?item wdt:P31 wd:Q1457376 . ?item  wdt:P59 ?constellation. ?constellation wdt:P31 wd:Q8928.} '
 if "a2r" in sys.argv:
     SPARQLSE['Q1457376'] = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q1457376 . ?item  wdt:P59 ?constellation. ?constellation wdt:P31 wd:Q8928. ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") } '
 # ---Q7187
-# python3 pwb.py np/nldes3 sparql:Q7187 yuy
-# python3 pwb.py np/nldes3 sparql:Q7187 limit:20000
-# python3 pwb.py np/nldes3 sparql:Q7187 yuy nokeep descqs
+# python3 core8/pwb.py np/nldes3 sparql:Q7187 yuy
+# python3 core8/pwb.py np/nldes3 sparql:Q7187 limit:20000
+# python3 core8/pwb.py np/nldes3 sparql:Q7187 yuy nokeep descqs
 # جين
 SPARQLSE['Q7187'] = 'SELECT ?item WHERE {?item wdt:P31 wd:Q7187 . ?item  wdt:P703 ?constellation. ?constellation wdt:P31 wd:Q16521.} '
 if "a2r" in sys.argv:
@@ -758,10 +758,10 @@ if "yuy" in sys.argv:
     FILTER NOT EXISTS { ?item schema:description ?d . FILTER(lang(?d)="ar") }
     } '''
 # ---Q8054
-# python3 pwb.py np/nldes3 sparql:Q8054
-# python3 pwb.py np/nldes3 sparql:Q8054 descqs limit:10000
-# python3 pwb.py np/nldes3 sparql:Q8054 a2r descqs nokeep limit:500
-# python3 pwb.py np/nldes3 sparql:Q8054 yuy descqs nokeep limit:500
+# python3 core8/pwb.py np/nldes3 sparql:Q8054
+# python3 core8/pwb.py np/nldes3 sparql:Q8054 descqs limit:10000
+# python3 core8/pwb.py np/nldes3 sparql:Q8054 a2r descqs nokeep limit:500
+# python3 core8/pwb.py np/nldes3 sparql:Q8054 yuy descqs nokeep limit:500
 # بروتين
 SPARQLSE['Q8054'] = 'SELECT ?item WHERE {?item wdt:P31 wd:Q8054 . ?item  (wdt:P702|wdt:P703) ?constellation.  FILTER NOT EXISTS {?item wdt:P31 wd:Q11173} } '
 if "a2r" in sys.argv:
@@ -791,8 +791,8 @@ SPARQLSE['Q1983062'] = '''SELECT ?item WHERE
 }
 '''
 # ---
-# python3 pwb.py np/nldes3 sparql:Q44559
-# python3 pwb.py np/nldes3 sparql:Q44559 nokeep limit:500
+# python3 core8/pwb.py np/nldes3 sparql:Q44559
+# python3 core8/pwb.py np/nldes3 sparql:Q44559 nokeep limit:500
 #
 SPARQLSE['Q44559'] = """SELECT ?item WHERE {
   ?item wdt:P31 wd:Q44559.
@@ -800,8 +800,8 @@ FILTER NOT EXISTS {?item schema:description ?itemar. FILTER((LANG(?itemar)) = "a
 }
 """
 # ---
-# python3 pwb.py np/nldes3 sparql:Q8502
-# python3 pwb.py np/nldes3 sparql:Q8502 nokeep limit:500
+# python3 core8/pwb.py np/nldes3 sparql:Q8502
+# python3 core8/pwb.py np/nldes3 sparql:Q8502 nokeep limit:500
 # جبل
 SPARQLSE['Q8502'] = """SELECT ?item WHERE {
   ?item wdt:P31 wd:Q8502; wdt:P17 ?dummy0.
@@ -809,7 +809,7 @@ FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "
 }
 """
 # ---
-# python3 pwb.py np/nldes3 sparql:Q45382
+# python3 core8/pwb.py np/nldes3 sparql:Q45382
 SPARQLSE['Q45382'] = """SELECT ?item WHERE {
 ?item wdt:P31 wd:Q45382; wdt:P17 ?dummy0.
 FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }
@@ -817,25 +817,25 @@ FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "
 """
 # ---
 '''
-python3 pwb.py np/nldes3 a2r sparql:Q1153690
-python3 pwb.py np/nldes3 a2r sparql:Q115518
-python3 pwb.py np/nldes3 a2r sparql:Q130019
-python3 pwb.py np/nldes3 a2r sparql:Q1332364
-python3 pwb.py np/nldes3 a2r sparql:Q13632
-python3 pwb.py np/nldes3 a2r sparql:Q1457376
-python3 pwb.py np/nldes3 a2r sparql:Q15917122
-python3 pwb.py np/nldes3 a2r sparql:Q204194
-python3 pwb.py np/nldes3 a2r sparql:Q2247863
-python3 pwb.py np/nldes3 a2r sparql:Q318
-python3 pwb.py np/nldes3 a2r sparql:Q44559
-python3 pwb.py np/nldes3 a2r sparql:Q523
-python3 pwb.py np/nldes3 a2r sparql:Q6243
-python3 pwb.py np/nldes3 a2r sparql:Q66619666
-python3 pwb.py np/nldes3 a2r sparql:Q67206691
-python3 pwb.py np/nldes3 a2r sparql:Q71963409
-python3 pwb.py np/nldes3 a2r sparql:Q726242
-python3 pwb.py np/nldes3 a2r sparql:Q72802508
-python3 pwb.py np/nldes3 a2r sparql:Q72803622
+python3 core8/pwb.py np/nldes3 a2r sparql:Q1153690
+python3 core8/pwb.py np/nldes3 a2r sparql:Q115518
+python3 core8/pwb.py np/nldes3 a2r sparql:Q130019
+python3 core8/pwb.py np/nldes3 a2r sparql:Q1332364
+python3 core8/pwb.py np/nldes3 a2r sparql:Q13632
+python3 core8/pwb.py np/nldes3 a2r sparql:Q1457376
+python3 core8/pwb.py np/nldes3 a2r sparql:Q15917122
+python3 core8/pwb.py np/nldes3 a2r sparql:Q204194
+python3 core8/pwb.py np/nldes3 a2r sparql:Q2247863
+python3 core8/pwb.py np/nldes3 a2r sparql:Q318
+python3 core8/pwb.py np/nldes3 a2r sparql:Q44559
+python3 core8/pwb.py np/nldes3 a2r sparql:Q523
+python3 core8/pwb.py np/nldes3 a2r sparql:Q6243
+python3 core8/pwb.py np/nldes3 a2r sparql:Q66619666
+python3 core8/pwb.py np/nldes3 a2r sparql:Q67206691
+python3 core8/pwb.py np/nldes3 a2r sparql:Q71963409
+python3 core8/pwb.py np/nldes3 a2r sparql:Q726242
+python3 core8/pwb.py np/nldes3 a2r sparql:Q72802508
+python3 core8/pwb.py np/nldes3 a2r sparql:Q72803622
 '''
 # ---
 space_list_and_other_2 = {
@@ -922,8 +922,8 @@ if "a2r" in sys.argv:
 if "a3r" in sys.argv:
     SPARQLSE['Q11424'] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % 'Q11424'
 # ---
-# python3 pwb.py np/nldes3 sparql:Q27020041
-# python3 pwb.py np/nldes3 sparql:Q27020041 nokeep limit:500
+# python3 core8/pwb.py np/nldes3 sparql:Q27020041
+# python3 core8/pwb.py np/nldes3 sparql:Q27020041 nokeep limit:500
 # موسم رياضي
 SPARQLSE['Q27020041'] = """SELECT DISTINCT
 ?item
@@ -939,7 +939,7 @@ GROUP BY ?item
 if 'optional' in sys.argv:
     SPARQLSE['Q27020041'] = SPARQLSE['Q27020041'].replace('?pp rdfs:label ?labe . FILTER((LANG(?labe)) = "ar") .', 'optional{?pp rdfs:label ?labe . FILTER((LANG(?labe)) = "ar") .}')
 # ---
-# python3 pwb.py np/nldes3 sparql:Q3231690
+# python3 core8/pwb.py np/nldes3 sparql:Q3231690
 # طراز سيارة
 SPARQLSE['Q3231690'] = """SELECT DISTINCT
 ?item
@@ -976,7 +976,7 @@ if "a2r" in sys.argv:
     SPARQLSE['Q7889'] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . ?item (wdt:P178|wdt:P179) ?constellation. ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }} ' % 'Q7889'
 if "a3r" in sys.argv:
     SPARQLSE['Q7889'] = 'SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % 'Q7889'
-# ---python3 pwb.py np/nldes3 a3r sparql:Q7366
+# ---python3 core8/pwb.py np/nldes3 a3r sparql:Q7366
 # أغنية
 SPARQLSE['Q7366'] = '''SELECT ?item WHERE
 {

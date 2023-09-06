@@ -4,8 +4,8 @@
 إضافة وصف للكتب والقصص
 
 
-python3 pwb.py des/book optional
-python3 pwb.py des/book ask
+python3 core8/pwb.py des/book optional
+python3 core8/pwb.py des/book ask
 
 python pwb.py des/book
 

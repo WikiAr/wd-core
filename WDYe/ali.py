@@ -228,8 +228,8 @@ def mains():
         # ---
         if arg.startswith("names"):
             # ---
-            # python3 pwb.py wd/ali names
-            # python3 pwb.py wd/ali fafafa
+            # python3 core8/pwb.py wd/ali names
+            # python3 core8/pwb.py wd/ali fafafa
             lala = ""
             lala = [x.strip() for x in names if x.strip() != ""]
             pywikibot.output(f'lala: "{str(lala)}"')

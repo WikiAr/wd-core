@@ -21,10 +21,11 @@ file_to_title = {
 }
 # ---
 for file, title in file_to_title.items():
-    text = open(f"{Dump_Dir}/dumps/{file}", encoding="utf-8").read()
-    # ---
-    if text.strip() == "":
-        print(f'file {file} <<lightred>> empty.')
-        continue
-    # ---
-    himoAPI.page_putWithAsk("", text, "Bot - Updating stats", title, False)
+    if os.path.exists(f"{Dump_Dir}/dumps/{file}"):
+        text = open(f"{Dump_Dir}/dumps/{file}", encoding="utf-8").read()
+        # ---
+        if text.strip() == "":
+            print(f'file {file} <<lightred>> empty.')
+            continue
+        # ---
+        himoAPI.page_putWithAsk("", text, "Bot - Updating stats", title, False)

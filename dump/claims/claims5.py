@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-python3 pwb.py dump/claims5 jsonnew
-python3 pwb.py dump/claims5 makereport
+python3 core8/pwb.py dump/claims5 jsonnew
+python3 core8/pwb.py dump/claims5 makereport
 python3 core8/pwb.py dump/claims5 makereport ask
-python3 pwb.py dump/claims5 test nosave
+python3 core8/pwb.py dump/claims5 test nosave
 """
 #
 # (C) Ibrahem Qasim, 2022
@@ -145,7 +145,7 @@ def mainar(ty="all"):
         # ---
         save_to_wd(text_p31, 'p31')
     # ---
-    # python3 pwb.py dump/claims2 test nosave saveto:ye
+    # python3 core8/pwb.py dump/claims2 test nosave saveto:ye
     if saveto[1] != "":
         with open(f"{Dump_Dir}/dumps/{saveto[1]}.txt", "w", encoding="utf-8") as f:
             f.write(text)

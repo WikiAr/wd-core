@@ -3,7 +3,7 @@
 from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)
 # ---
-python3 pwb.py des/ru_st_2_latin test
+python3 core8/pwb.py des/ru_st_2_latin test
 
 '''
 from pywikibot.pagegenerators import WikidataSPARQLPageGenerator

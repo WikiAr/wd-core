@@ -4,10 +4,10 @@
 #
 '''
 جميع الأوصاف
-python3 pwb.py des/fam Q55678
-python3 pwb.py des/fam Q7889
-python3 pwb.py des/fam Q318
-python3 pwb.py des/fam
+python3 core8/pwb.py des/fam Q55678
+python3 core8/pwb.py des/fam Q7889
+python3 core8/pwb.py des/fam Q318
+python3 core8/pwb.py des/fam
 
 '''
 # ---

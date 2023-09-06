@@ -4,7 +4,7 @@
 إضافة حالة خاصة من تصنيف ويكيميديا
 للتصانيف دون ذلك
 
-python3 pwb.py WDYe/catwithoutp31
+python3 core8/pwb.py WDYe/catwithoutp31
 
 """
 #

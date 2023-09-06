@@ -3,7 +3,7 @@
 
 python pwb.py wd/koo -page:مارك_فان_بوميل
 
-python3 pwb.py wd/koo -ns:0 -ref:قالب:كووورة
+python3 core8/pwb.py wd/koo -ns:0 -ref:قالب:كووورة
 
 """
 #

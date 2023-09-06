@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
 
-python3 pwb.py des/numb
+python3 core8/pwb.py des/numb
 
 """
 #
