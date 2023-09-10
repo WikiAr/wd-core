@@ -15,22 +15,13 @@ python pwb.py des/book
 #
 #
 import re
-import time
 import pywikibot
-
-import datetime
-import json
-# ---
-from API import printe
 import sys
-# ---
-import urllib
-import urllib.request
-import urllib.parse
 # ---
 from API import himoBOT2
 from wd_API import wd_desc
 from wd_API import wd_bot
+from API import printe
 # ---
 AskSave = {1: True}
 Qlist = {}
