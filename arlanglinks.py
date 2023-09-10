@@ -1,14 +1,11 @@
 """
 python3 core8/pwb.py dump/arlanglinks
 """
-import gzip
 import sqlite3
 import sys
 import os
-from pathlib import Path
 import json
-import pywikibot
-import shutil
+from pathlib import Path
 # ---
 Dump_Dir = Path(__file__).parent
 # ---

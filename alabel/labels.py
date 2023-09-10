@@ -13,8 +13,6 @@ python3 core8/pwb.py alabel/labels -limit:20
 #
 #
 import re
-import time
-import pywikibot
 import sys
 # ---
 from API import printe

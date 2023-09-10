@@ -16,20 +16,15 @@ python pwb.py cy/cy5 workibrahem test2 -title:كوين_سيمونز
 import json
 import re
 import time
-# import Nationalities as aa
-# 
-# from datetime import datetime
-# ---
 import sys
-
-# ---
-AskToSave = True
 import urllib
 import urllib.request
 import urllib.parse
 # ---
 import requests
 import datetime
+# ---
+AskToSave = True
 from datetime import datetime
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 # ---
