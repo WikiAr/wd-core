@@ -40,6 +40,7 @@ Qlist['Q1318295'] = {  # قصة
     'fr': 'récit',
     'nl': 'verhaal',
 }
+
 """Qlist['Q19389637'] = {# مقالة سيرة ذاتية
                 'ar' : 'مقالة سيرة ذاتية' ,
                 'en' : 'biographical article' ,
