@@ -3,7 +3,7 @@
 import pywikibot
 from pywikibot import pagegenerators as pg
 
-import codecs
+
 import sys
 import datetime
 from datetime import datetime, date, time

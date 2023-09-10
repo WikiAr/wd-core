@@ -18,7 +18,7 @@ https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
 # (C) Ibrahem Qasim, 2022
 #
 #
-import codecs
+
 import unicodedata
 # ---
 translationsOccupations_new = {

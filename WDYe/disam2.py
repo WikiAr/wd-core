@@ -12,7 +12,7 @@
 from API import open_url
 import re
 import time
-import codecs
+
 import pywikibot
 import json
 # import sys

@@ -16,7 +16,7 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 # (C) Ibrahem Qasim, 2022
 #
 # ---
-import codecs
+
 import sys
 import re
 import pywikibot

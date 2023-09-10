@@ -19,7 +19,7 @@ import gent
 # generator = gent.get_gent(*args)
 # ---
 #
-import codecs
+
 import requests
 import time as ttime
 from datetime import datetime

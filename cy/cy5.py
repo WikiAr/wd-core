@@ -17,7 +17,7 @@ import json
 import re
 import time
 # import Nationalities as aa
-# import codecs
+# 
 # from datetime import datetime
 # ---
 import sys

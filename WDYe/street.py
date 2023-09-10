@@ -4,7 +4,7 @@
 #
 import re
 import time
-import codecs
+
 import pywikibot
 import json
 # ---

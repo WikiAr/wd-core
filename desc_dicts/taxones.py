@@ -3,7 +3,7 @@
 """
 
 """
-import codecs
+
 # ---
 tax_translationsNationalities = {
     'Branch of': 'فرع من',

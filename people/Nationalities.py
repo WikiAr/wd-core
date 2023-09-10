@@ -14,7 +14,7 @@ https://github.com/emijrp/wikidata/blob/core/master/human.descriptions.py
 #
 #
 import pywikibot
-import codecs
+
 import unicodedata
 translationsNationalities = {
     'Afghan': {

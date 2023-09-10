@@ -9,7 +9,7 @@ python3 core8/pwb.py des/numb
 #
 #
 import pywikibot
-import codecs
+
 import re
 
 from API import printe

@@ -44,7 +44,7 @@ from wd_API import wd_bot
 from API import printe
 from wd_API import wd_desc
 import re
-import codecs
+
 import time
 import random
 import sys

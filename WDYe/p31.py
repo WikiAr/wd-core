@@ -13,7 +13,7 @@ python pwb.py c30/p31 enwiki
 from wd_API import himoAPI
 import urllib
 import pywikibot
-import codecs
+
 import re
 import string
 # ---

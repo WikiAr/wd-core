@@ -14,7 +14,7 @@
 
 
 import re
-import codecs
+
 import time
 import pywikibot
 # ---

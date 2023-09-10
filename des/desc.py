@@ -45,7 +45,7 @@ limit 100
 #
 #
 import pywikibot
-import codecs
+
 import re
 import sys
 import time

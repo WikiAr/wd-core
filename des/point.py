@@ -10,7 +10,7 @@
 #
 #
 import pywikibot
-import codecs
+
 import time
 import re
 import sys

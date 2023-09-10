@@ -5,7 +5,7 @@ import sys
 import json
 import os
 from pathlib import Path
-import codecs
+
 import pywikibot
 import re
 # ---

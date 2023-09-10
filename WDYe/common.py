@@ -12,7 +12,7 @@ python pwb.py wd/common
 #
 from wd_API import newdesc
 import urllib
-import codecs
+
 import pywikibot
 # import pwb
 import re

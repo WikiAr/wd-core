@@ -17,7 +17,7 @@ python pwb.py des/book
 import re
 import time
 import pywikibot
-import codecs
+
 import datetime
 import json
 # ---

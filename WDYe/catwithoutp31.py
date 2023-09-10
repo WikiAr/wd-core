@@ -11,7 +11,7 @@ python3 core8/pwb.py WDYe/catwithoutp31
 # (C) Ibrahem Qasim, 2022
 #
 import urllib
-import codecs
+
 import pywikibot
 # import pwb
 import re

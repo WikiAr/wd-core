@@ -25,7 +25,7 @@ ORDER BY DESC(?count)
 #
 import re
 import time
-import codecs
+
 import pywikibot
 import json
 # import sys
