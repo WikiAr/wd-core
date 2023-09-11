@@ -1001,7 +1001,7 @@ many_lang_qid_desc = {
         "as": "ৱিকিপিডিয়া:ৰচনাশৈলীৰ হাতপুথি",
         "ast": "artículu de llista de Wikimedia",
         "ba": "Wikimedia-Listn",
-        "be": "спіс атыкулаў у адным з праектаў Вікімедыя",
+        "be": "спіс артыкулаў у адным з праектаў Вікімедыя",
         "bn": "উইকিমিডিয়ার তালিকা নিবন্ধ",
         "bs": "spisak na Wikimediji",
         "ca": "article de llista de Wikimedia",
