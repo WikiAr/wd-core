@@ -14,9 +14,15 @@ from pathlib import Path
 import codecs
 import json
 import time
-
-Dump_Dir = Path(__file__).parent
-
+# ---
+# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+Himo_Dir = Path(__file__).parent.parent.parent.parent # Dump_Dir:/data/project/himo
+# ---
+Dump_Dir =  "/data/project/himo/dumps"
+Dump_Dir = f"{Himo_Dir}/dumps"
+# ---
+print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+# ---
 main_table_head = """
 == Number of labels, descriptions and aliases for items per language ==
 {| class="wikitable sortable"

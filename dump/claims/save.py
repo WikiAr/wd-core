@@ -13,7 +13,15 @@ import time
 # ---
 from wd_API import himoAPI
 # ---
-Dump_Dir = Path(__file__).parent.parent
+# ---
+# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+Himo_Dir = Path(__file__).parent.parent.parent.parent # Dump_Dir:/data/project/himo
+# ---
+Dump_Dir =  "/data/project/himo/dumps"
+Dump_Dir = f"{Himo_Dir}/dumps"
+# ---
+print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+# ---
 # ---
 file_to_title = {
     'claims_new.txt': 'User:Mr. Ibrahem/claims',
@@ -21,8 +29,8 @@ file_to_title = {
 }
 # ---
 for file, title in file_to_title.items():
-    if os.path.exists(f"{Dump_Dir}/dumps/{file}"):
-        text = open(f"{Dump_Dir}/dumps/{file}", encoding="utf-8").read()
+    if os.path.exists(f"{Dump_Dir}/{file}"):
+        text = open(f"{Dump_Dir}/{file}", encoding="utf-8").read()
         # ---
         if text.strip() == "":
             print(f'file {file} <<lightred>> empty.')

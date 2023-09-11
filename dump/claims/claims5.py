@@ -20,9 +20,15 @@ import time
 time_start = time.time()
 print(f"time_start:{str(time_start)}")
 # ---
-Dump_Dir = Path(__file__).parent.parent
 # ---
-print(f'Dump_Dir:{Dump_Dir}')
+# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+Himo_Dir = Path(__file__).parent.parent.parent.parent # Dump_Dir:/data/project/himo
+# ---
+Dump_Dir =  "/data/project/himo/dumps"
+Dump_Dir = f"{Himo_Dir}/dumps"
+# ---
+print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+# ---
 # ---
 Limit = {1: 900000000}
 saveto = {1: ""}
@@ -66,7 +72,7 @@ def load_tab(ty):
     # ---
     ta = "claims" if ty == "all" else ty.lower()
     # ---
-    jsonname = f"{Dump_Dir}/dumps/{ta}.json"
+    jsonname = f"{Dump_Dir}/{ta}.json"
     # ---
     if "jsonnew" in sys.argv:
         # dump tab to json
@@ -140,14 +146,14 @@ def mainar(ty="all"):
     text, text_p31 = make_text(tab, ty=ty)
     # ---
     if text_p31 != "":
-        with open(f"{Dump_Dir}/dumps/p31_new.txt", "w", encoding="utf-8") as f:
+        with open(f"{Dump_Dir}/p31_new.txt", "w", encoding="utf-8") as f:
             f.write(text_p31)
         # ---
         save_to_wd(text_p31, 'p31')
     # ---
     # python3 core8/pwb.py dump/claims2 test nosave saveto:ye
     if saveto[1] != "":
-        with open(f"{Dump_Dir}/dumps/{saveto[1]}.txt", "w", encoding="utf-8") as f:
+        with open(f"{Dump_Dir}/{saveto[1]}.txt", "w", encoding="utf-8") as f:
             f.write(text)
     # ---
     if text == "":
@@ -165,9 +171,9 @@ def mainar(ty="all"):
     # ---
     save_to_wd(text, ta)
     # ---
-    to_log = f"{Dump_Dir}/dumps/{ta}.txt"
+    to_log = f"{Dump_Dir}/{ta}.txt"
     if "test" in sys.argv:
-        to_log = f"{Dump_Dir}/dumps/{ta}_test.txt"
+        to_log = f"{Dump_Dir}/{ta}_test.txt"
     # ---
     with open(to_log, "w", encoding="utf-8") as f:
         f.write(text)

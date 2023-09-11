@@ -9,20 +9,25 @@ import bz2
 import json
 import time
 from datetime import datetime
-
 # ---
-Dump_Dir = Path(__file__).parent.parent
 # ---
-print(Dump_Dir)
+# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+Himo_Dir = Path(__file__).parent.parent.parent.parent # Dump_Dir:/data/project/himo
+# ---
+Dump_Dir =  "/data/project/himo/dumps"
+Dump_Dir = f"{Himo_Dir}/dumps"
+# ---
+print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+# ---
 # ---
 test_limit = {1: 15000}
 # ---
 
 
 def log_dump(tab):
-    jsonname = f"{Dump_Dir}/dumps/claims.json"
+    jsonname = f"{Dump_Dir}/claims.json"
     if 'test' in sys.argv:
-        jsonname = f"{Dump_Dir}/dumps/claims_test.json"
+        jsonname = f"{Dump_Dir}/claims_test.json"
     # jsonname = "dumps/claims_c.json"
     with open(jsonname, "w") as outfile:
         json.dump(tab, outfile)

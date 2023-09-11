@@ -16,7 +16,15 @@ time_start = time.time()
 print(f"time_start:{str(time_start)}")
 # ---
 try:
-    Dump_Dir = Path(__file__).parent.parent
+    # ---
+    # Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+    Himo_Dir = Path(__file__).parent.parent.parent.parent # Dump_Dir:/data/project/himo
+    # ---
+    Dump_Dir =  "/data/project/himo/dumps"
+    Dump_Dir = f"{Himo_Dir}/dumps"
+    # ---
+    print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+    # ---
 except Exception as e:
     Dump_Dir = '/content'
 # ---
@@ -210,13 +218,13 @@ def make_text(tab, ty=''):
 
 
 if __name__ == "__main__":
-    filename = f"{Dump_Dir}/dumps/claims.json"
+    filename = f"{Dump_Dir}/claims.json"
 
     if 'claims2' in sys.argv:
-        filename = f"{Dump_Dir}/dumps/claims2.json"
+        filename = f"{Dump_Dir}/claims2.json"
 
     if 'test' in sys.argv:
-        filename = f"{Dump_Dir}/dumps/claims_test.json"
+        filename = f"{Dump_Dir}/claims_test.json"
 
     data = json.load(open(filename))
 
@@ -236,7 +244,7 @@ if __name__ == "__main__":
             data[x] = g
     # ---
     text, text_p31 = make_text(data, ty='')
-    codecs.open(f'{Dump_Dir}/dumps/claims_new.txt', 'w', 'utf-8').write(text)
-    codecs.open(f'{Dump_Dir}/dumps/claims_p31.txt', 'w', 'utf-8').write(text_p31)
+    codecs.open(f'{Dump_Dir}/claims_new.txt', 'w', 'utf-8').write(text)
+    codecs.open(f'{Dump_Dir}/claims_p31.txt', 'w', 'utf-8').write(text_p31)
     print(text_p31)
     print("log_dump done")

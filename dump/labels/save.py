@@ -13,7 +13,14 @@ import time
 # ---
 from wd_API import himoAPI
 # ---
-Dump_Dir = Path(__file__).parent
+# ---
+# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+Himo_Dir = Path(__file__).parent.parent.parent.parent # Dump_Dir:/data/project/himo
+# ---
+Dump_Dir =  "/data/project/himo/dumps"
+Dump_Dir = f"{Himo_Dir}/dumps"
+# ---
+print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
 # ---
 file_to_title = {
     'lables.txt': 'User:Mr. Ibrahem/Language statistics for items',

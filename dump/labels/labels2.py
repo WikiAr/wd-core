@@ -16,8 +16,6 @@ import bz2
 import json
 import time
 
-Dump_Dir = Path(__file__).parent
-
 main_table_head = """
 == Number of labels, descriptions and aliases for items per language ==
 {| class="wikitable sortable"

@@ -12,11 +12,19 @@ import tqdm
 
 def start():
     try:
-        Dump_Dir = Path(__file__).parent.parent
+        # ---
+        # Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+        Himo_Dir = Path(__file__).parent.parent.parent.parent # Dump_Dir:/data/project/himo
+        # ---
+        Dump_Dir =  "/data/project/himo/dumps"
+        Dump_Dir = f"{Himo_Dir}/dumps"
+        # ---
+        print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+        # ---
     except Exception as e:
         Dump_Dir = '/content'
 
-    data = json.load(open(f'{Dump_Dir}/dumps/claims.json'))
+    data = json.load(open(f'{Dump_Dir}/claims.json'))
     data2 = {}
     for x, y in data.items():
         if x != 'Main_Table':
@@ -70,7 +78,7 @@ def start():
 
         data2['Main_Table'] = first_100
 
-    json.dump(data2, open(f'{Dump_Dir}/dumps/claims2.json', 'w'))
+    json.dump(data2, open(f'{Dump_Dir}/claims2.json', 'w'))
 
 
 if __name__ == '__main__':
