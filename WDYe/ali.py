@@ -16,7 +16,7 @@ import re
 import time
 import pywikibot
 # import pywikibot.data.wikidataquery as wdquery
-  # used in logfiles, unicoded strings
+# used in logfiles, unicoded strings
 import datetime
 import json
 import urllib
