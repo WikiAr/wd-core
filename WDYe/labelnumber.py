@@ -4,7 +4,6 @@ import pywikibot
 from pywikibot import pagegenerators as pg
 
 
-
 import sys
 import datetime
 from datetime import datetime, date, time
