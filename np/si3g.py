@@ -75,7 +75,7 @@ def mainwithcat2():
     start = time.time()
     # ---
     user = ''
-    user_limit = '3000'
+    user_limit = 3000
     # ---
     namespaces = '0'
     file = ''
