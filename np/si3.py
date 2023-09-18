@@ -229,9 +229,7 @@ def work_api_desc(NewDesc, q, fixlang):
     # ---
     g = ''
     # ---
-    if not MainTestTable[1] or "dd" in sys.argv:
-        g = ''
-    else:
+    if MainTestTable[1] or "dd" in sys.argv:
         printe.output('<<lightyellow>> Without save:')
         printe.output(NewDesc.keys())
         printe.output(NewDesc)

@@ -20,9 +20,9 @@ si3.MainTestTable[1] = True
 
 
 def Main_Test():
-    # python pwb.py np/test_si3 -page:Q65236227
-    # python pwb.py np/test_si3
-    printe.output('<<lightyellow>> Main_Test :')
+    # python core8/pwb.py np/test_si3 -page:Q122652815
+    # python core8/pwb.py np/test_si3
+    print('<<lightyellow>> Main_Test :')
     num = 0
     # for qq in ['Q21146082', 'Q21563434', 'Q21563625', 'Q22061800', 'Q22065466']:#, 'Q38822009', 'Q38822019', 'Q38822020']:
     # ---
@@ -66,7 +66,7 @@ def Main_Test():
     if item:
         q = item["q"]
         sa = Get_P_API_time(item, 'P577')
-        printe.output(sa)
+        print(sa)
         #make_scientific_art(item, 'Q13442814', num)
     '''
 
