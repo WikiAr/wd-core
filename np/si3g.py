@@ -11,7 +11,7 @@ python3 core8/pwb.py np/si3g -newpages:200 descqs
 python3 core8/pwb.py np/si3g -newpages:100 ask
 
 python3 core8/pwb.py np/si3g -page:Q112167358
-python3 core8/pwb.py np/si3g -page:
+python3 core8/pwb.py np/si3g -page:Q122652815
 python3 core8/pwb.py np/si3g -page:Q113510544
 python3 core8/pwb.py np/si3g -page:Q111771063
 python3 core8/pwb.py np/si3g -start:Q98512481
@@ -75,7 +75,7 @@ def mainwithcat2():
     start = time.time()
     # ---
     user = ''
-    user_limit = '3000'
+    user_limit = 3000
     # ---
     namespaces = '0'
     file = ''
