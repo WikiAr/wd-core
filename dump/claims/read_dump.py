@@ -1,27 +1,30 @@
 """
 from dump.claims.read_dump import read_file
 python3 wd_core/dump/read_dump.py test
+
+https://dumps.wikimedia.org/wikidatawiki/entities/latest-all.json.bz2
+
 """
 import os
-from pathlib import Path
+import tqdm
 import sys
 import bz2
 import json
-import time
 from datetime import datetime
 # ---
+try:
+    file_ = __file__
+    # ---
+    Dump_Dir = "/data/project/himo/dumps"
+    filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2"
+    # ---
+except Exception as e:
+    Dump_Dir = '/content'
+    filename = "latest-all.json.bz2"
 # ---
-# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
-Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
-# ---
-Dump_Dir = "/data/project/himo/dumps"
-Dump_Dir = f"{Himo_Dir}/dumps"
-# ---
-print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
-# ---
+print(f'Dump_Dir:{Dump_Dir}')
 # ---
 test_limit = {1: 15000}
-# ---
 
 
 def log_dump(tab):
@@ -45,7 +48,6 @@ def get_file_info(file_path):
 
 
 def read_file():
-    filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2"
     print(f"read file: {filename}")
 
     if not os.path.isfile(filename):
@@ -69,14 +71,14 @@ def read_file():
     Main_Table = {}
     print('read done..')
 
-    for line in fileeee:
+    # for line in fileeee:
+    for line in tqdm.tqdm(fileeee):
         line = line.decode("utf-8")
         line = line.strip("\n").strip(",")
         done += 1
         if line.startswith("{") and line.endswith("}"):
             All_items += 1
             c += 1
-
             if 'test' in sys.argv:
                 if c % 1000 == 0:
                     print(f'c:{c}')
@@ -88,36 +90,39 @@ def read_file():
 
             json1 = json.loads(line)
             claims = json1.get("claims", {})
+            # ---
             if len(claims) == 0:
                 items_0_claims += 1
-            else:
-                if len(claims) == 1:
-                    items_1_claims += 1
-                if "P31" not in claims:
-                    items_no_P31 += 1
-
-                for p in claims.keys():
-                    Type = claims[p][0].get("mainsnak", {}).get("datatype", '')
-                    if Type == "wikibase-entityid":
-                        if p not in Main_Table:
-                            Main_Table[p] = {
-                                "props": {},
-                                "lenth_of_usage": 0,
-                                "lenth_of_claims_for_property": 0,
-                            }
-                        Main_Table[p]["lenth_of_usage"] += 1
-                        all_claims_2020 += len(claims[p])
-                        for claim in claims[p]:
-                            Main_Table[p]["lenth_of_claims_for_property"] += 1
-                            datavalue = claim.get("mainsnak", {}).get("datavalue", {})
-                            ttype = datavalue.get("type")
-                            if ttype == "wikibase-entityid":
-                                idd = datavalue.get("value", {}).get("id")
-                                if idd:
-                                    if not idd in Main_Table[p]["props"]:
-                                        Main_Table[p]["props"][idd] = 0
-                                    Main_Table[p]["props"][idd] += 1
-                        Main_Table[p]["len_of_qids"] = len(Main_Table[p]["props"])
+                continue
+            # ---
+            if len(claims) == 1:
+                items_1_claims += 1
+            # ---
+            if "P31" not in claims:
+                items_no_P31 += 1
+            # ---
+            for p in claims.keys():
+                Type = claims[p][0].get("mainsnak", {}).get("datatype", '')
+                if Type == "wikibase-entityid":
+                    if p not in Main_Table:
+                        Main_Table[p] = {
+                            "props": {},
+                            "lenth_of_usage": 0,
+                            "lenth_of_claims_for_property": 0,
+                        }
+                    Main_Table[p]["lenth_of_usage"] += 1
+                    all_claims_2020 += len(claims[p])
+                    for claim in claims[p]:
+                        Main_Table[p]["lenth_of_claims_for_property"] += 1
+                        datavalue = claim.get("mainsnak", {}).get("datavalue", {})
+                        ttype = datavalue.get("type")
+                        if ttype == "wikibase-entityid":
+                            idd = datavalue.get("value", {}).get("id")
+                            if idd:
+                                if not idd in Main_Table[p]["props"]:
+                                    Main_Table[p]["props"][idd] = 0
+                                Main_Table[p]["props"][idd] += 1
+                    Main_Table[p]["len_of_qids"] = len(Main_Table[p]["props"])
 
     tab = {
         "done": done,

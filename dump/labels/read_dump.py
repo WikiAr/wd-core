@@ -20,8 +20,8 @@ from datetime import datetime
 Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
 # ---
 Dump_Dir = "/data/project/himo/dumps"
-Dump_Dir = f"{Himo_Dir}/dumps"
-# ---
+# Dump_Dir = f"{Himo_Dir}/dumps"
+# ---1
 print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
 # ---
 test_limit = {1: 15000}
@@ -33,7 +33,7 @@ def log_dump(tab):
     if 'test' in sys.argv:
         jsonname = f"{Dump_Dir}/labels_test.json"
     # jsonname = "dumps/claims_c.json"
-    with open(jsonname, "w") as outfile:
+    with open(jsonname, "w", encoding='utf-8') as outfile:
         json.dump(tab, outfile)
     print("log_dump done")
 

@@ -1,5 +1,5 @@
 """
-from dump.bots.labels_old_values import make_old_values# make_old_values()
+from dump.labels.labels_old_values import make_old_values# make_old_values()
 """
 import os
 from pathlib import Path
@@ -72,15 +72,18 @@ def from_wiki():
             iu = re.search(r"\|(.*?)\|\|(\d*)\|\|(\d*)\|\|(\d*)", L)
             if iu:
                 lang = iu.group(1).strip()
-                Old[lang] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
+                Old[lang] = {'labels': 0, 'descriptions': 0, 'aliases': 0, 'all': 0}
 
                 if iu.group(2):
+                    Old[lang]['all'] += int(iu.group(2))
                     Old[lang]['labels'] = int(iu.group(2))
 
                 if iu.group(3):
+                    Old[lang]['all'] += int(iu.group(3))
                     Old[lang]['descriptions'] = int(iu.group(3))
 
                 if iu.group(4):
+                    Old[lang]['all'] += int(iu.group(4))
                     Old[lang]['aliases'] = int(iu.group(4))
 
     print(f'get data from page len of old data:{len(Old)}')
