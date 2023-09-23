@@ -1,5 +1,5 @@
 """
-python3 wd_core/dump/save.py
+python3 core8/pwb.py dump/claims/save
 """
 #
 # (C) Ibrahem Qasim, 2023
@@ -8,11 +8,8 @@ python3 wd_core/dump/save.py
 import sys
 import os
 from pathlib import Path
-import json
-import time
 # ---
 from wd_API import himoAPI
-# ---
 # ---
 # Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
 Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
@@ -22,11 +19,15 @@ Dump_Dir = "/data/project/himo/dumps"
 # ---
 print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
 # ---
-# ---
 file_to_title = {
     'claims_new.txt': 'User:Mr. Ibrahem/claims',
     'claims_p31.txt': 'User:Mr. Ibrahem/p31',
+    'labels.txt': 'User:Mr. Ibrahem/Language statistics for items',
+    'template.txt': 'Template:Tr langcodes counts',
 }
+# ---
+if 'test' in sys.argv:
+    file_to_title = {}
 # ---
 for file, title in file_to_title.items():
     if os.path.exists(f"{Dump_Dir}/{file}"):

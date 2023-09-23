@@ -23,6 +23,8 @@ Dump_Dir = "/data/project/himo/dumps"
 print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
 # ---
 file_to_title = {
+    'claims_new.txt': 'User:Mr. Ibrahem/claims',
+    'claims_p31.txt': 'User:Mr. Ibrahem/p31',
     'labels.txt': 'User:Mr. Ibrahem/Language statistics for items',
     'template.txt': 'Template:Tr langcodes counts',
 }
