@@ -1,34 +1,27 @@
 """
 from dump.claims.read_dump import read_file
-python3 wd_core/dump/claims/read_dump.py test
-
-https://dumps.wikimedia.org/wikidatawiki/entities/latest-all.json.bz2
-
+python3 wd_core/dump/read_dump.py test
 """
 import os
+from pathlib import Path
 import sys
 import bz2
-import mmap
 import json
 import time
 from datetime import datetime
-from pathlib import Path
 # ---
 # ---
-# split after /dump
-core_dir = str(Path(__file__)).replace('\\', '/').split("/dump/", maxsplit=1)[0]
-print(f'core_dir:{core_dir}')
-sys.path.append(core_dir)
-print(f'sys.path.append:core_dir: {core_dir}')
-# ---
-from dump.memory import print_memory
+# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
 # ---
 Dump_Dir = "/data/project/himo/dumps"
-filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2"
+Dump_Dir = f"{Himo_Dir}/dumps"
 # ---
-print(f'Dump_Dir:{Dump_Dir}')
+print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+# ---
 # ---
 test_limit = {1: 15000}
+# ---
 
 
 def log_dump(tab):
@@ -36,7 +29,7 @@ def log_dump(tab):
     if 'test' in sys.argv:
         jsonname = f"{Dump_Dir}/claims_test.json"
     # jsonname = "dumps/claims_c.json"
-    with open(jsonname, "w", encoding='utf-8') as outfile:
+    with open(jsonname, "w") as outfile:
         json.dump(tab, outfile)
     print("log_dump done")
 
@@ -52,18 +45,20 @@ def get_file_info(file_path):
 
 
 def read_file():
+    filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2"
     print(f"read file: {filename}")
 
     if not os.path.isfile(filename):
-        print(f"file {filename} not found")
+        print(f"file {filename} <<lightred>> not found")
         return {}
 
-    t1 = time.time()
     file_date = get_file_info(filename)
     print(f'file date: {file_date}')
 
     print(f"file {filename} found, read it:")
+    fileeee = bz2.open(filename, "r")
     c = 0
+
     done = 0
     len_of_all_properties = 0
     items_0_claims = 0
@@ -71,56 +66,36 @@ def read_file():
     items_no_P31 = 0
     All_items = 0
     all_claims_2020 = 0
-    # ---
     Main_Table = {}
-    langs_Table = {}
-    # ---
     print('read done..')
-    # ---
 
-    with bz2.open(filename, "r") as f:
-        for line in f:
-            line = line.decode("utf-8").strip("\n").strip(",")
-            done += 1
-            # ---
-            if 'pp' in sys.argv:
-                print(line)
-            # ---
-            if line.startswith("{") and line.endswith("}"):
-                All_items += 1
-                c += 1
-                if 'test' in sys.argv:
-                    if c % 1000 == 0:
-                        print(f'c:{c}')
-                        print(f'done:{done}')
+    for line in fileeee:
+        line = line.decode("utf-8")
+        line = line.strip("\n").strip(",")
+        done += 1
+        if line.startswith("{") and line.endswith("}"):
+            All_items += 1
+            c += 1
 
-                    if c > test_limit[1]:
-                        print('c>test_limit[1]')
-                        break
+            if 'test' in sys.argv:
+                if c % 1000 == 0:
+                    print(f'c:{c}')
+                    print(f'done:{done}')
 
-                json1 = json.loads(line)
-                # ---
-                tats = ['labels', 'descriptions', 'aliases']
-                for x in tats:
-                    for code in json1.get(x, {}):
-                        if not code in langs_Table:
-                            langs_Table[code] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
-                        langs_Table[code][x] += 1
-                # ---
-                claims = json1.get("claims", {})
-                # ---
-                if len(claims) == 0:
-                    items_0_claims += 1
-                    del json1
-                    del claims
-                    continue
-                # ---
+                if c > test_limit[1]:
+                    print('c>test_limit[1]')
+                    break
+
+            json1 = json.loads(line)
+            claims = json1.get("claims", {})
+            if len(claims) == 0:
+                items_0_claims += 1
+            else:
                 if len(claims) == 1:
                     items_1_claims += 1
-                # ---
                 if "P31" not in claims:
                     items_no_P31 += 1
-                # ---
+
                 for p in claims.keys():
                     Type = claims[p][0].get("mainsnak", {}).get("datatype", '')
                     if Type == "wikibase-entityid":
@@ -142,41 +117,21 @@ def read_file():
                                     if not idd in Main_Table[p]["props"]:
                                         Main_Table[p]["props"][idd] = 0
                                     Main_Table[p]["props"][idd] += 1
-                                del idd
-                            del datavalue
-                            del ttype
-                        # Main_Table[p]["len_of_qids"] = len(Main_Table[p]["props"])
-                # ---
-                del json1
-                del claims
-            # ---
-            if (c % 1000 == 0 and c < 10000) or c % 100000 == 0:
-                print(c, time.time()-t1)
-                t1 = time.time()
-                # print memory usage
-                print_memory()
+                        Main_Table[p]["len_of_qids"] = len(Main_Table[p]["props"])
 
-                
-            # ---
-        # ---
-        print(f'read all lines: {done}')
-        # ---
-        for x, xx in Main_Table.copy().items():
-            Main_Table[x]["len_of_qids"] = len(xx["props"])
-        # ---
-        tab = {
-            "done": done,
-            "file_date": file_date,
-            "len_of_all_properties": len_of_all_properties,
-            "items_0_claims": items_0_claims,
-            "items_1_claims": items_1_claims,
-            "items_no_P31": items_no_P31,
-            "All_items": All_items,
-            "all_claims_2020": all_claims_2020,
-            "Main_Table": Main_Table,
-            "langs": langs_Table,
-        }
-        log_dump(tab)
+    tab = {
+        "done": done,
+        "file_date": file_date,
+        "len_of_all_properties": len_of_all_properties,
+        "items_0_claims": items_0_claims,
+        "items_1_claims": items_1_claims,
+        "items_no_P31": items_no_P31,
+        "All_items": All_items,
+        "all_claims_2020": all_claims_2020,
+        "Main_Table": Main_Table,
+    }
+
+    log_dump(tab)
 
 
 if __name__ == "__main__":

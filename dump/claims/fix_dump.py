@@ -8,24 +8,23 @@ from pathlib import Path
 import sys
 import json
 import tqdm
-try:
-    # Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
-    Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
-    # ---
-    Dump_Dir = "/data/project/himo/dumps"
-    # Dump_Dir = f"{Himo_Dir}/dumps"
-    # ---
-    print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
-    # ---
-except Exception as e:
-    Dump_Dir = '/content'
 
-filename = f'{Dump_Dir}/claims.json'
-if 'test' in sys.argv:
-    filename = f'{Dump_Dir}/claims_test.json'
 
 def start():
-    data = json.load(open(filename))
+    try:
+        # ---
+        # Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+        Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
+        # ---
+        Dump_Dir = "/data/project/himo/dumps"
+        Dump_Dir = f"{Himo_Dir}/dumps"
+        # ---
+        print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+        # ---
+    except Exception as e:
+        Dump_Dir = '/content'
+
+    data = json.load(open(f'{Dump_Dir}/claims.json'))
     data2 = {}
     for x, y in data.items():
         if x != 'Main_Table':
@@ -65,7 +64,7 @@ def start():
         if len(tab['props']) > 0:
             data2['Main_Table'][p] = tab
 
-    P31_tab = data2['Main_Table'].get('P31', {})
+    P31_tab = data2['Main_Table']['P31']
 
     data2['Main_Table'] = {k: v for k, v in sorted(data2['Main_Table'].items(), key=lambda item: item[1]['lenth_of_usage'], reverse=True)}
 

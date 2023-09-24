@@ -1,10 +1,11 @@
 """
-python3 core8/pwb.py wd_core/dump/claims/do_text
+python3 wd_core/dump/do_text.py claims2
 """
 #
 # (C) Ibrahem Qasim, 2023
 #
 #
+import os
 from pathlib import Path
 import sys
 import time
@@ -14,15 +15,13 @@ import json
 time_start = time.time()
 print(f"time_start:{str(time_start)}")
 # ---
-from dump.labels.do_text import main_labels# main_labels(tabb)
-# ---
 try:
     # ---
     # Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
     Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
     # ---
     Dump_Dir = "/data/project/himo/dumps"
-    # Dump_Dir = f"{Himo_Dir}/dumps"
+    Dump_Dir = f"{Himo_Dir}/dumps"
     # ---
     print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
     # ---
@@ -123,6 +122,7 @@ def make_section(P, table, max_n=51):
     return texts
 
 
+# ---
 def make_numbers_section(p31list):
     xline = ""
     yline = ""
@@ -237,30 +237,14 @@ if __name__ == "__main__":
         "All_items": 0,
         "all_claims_2020": 0,
         "Main_Table": {},
-        "langs": {},
     }
     # ---
     for x, g in tab.items():
         if not x in data:
             data[x] = g
     # ---
-    main_labels(data)
-    # ---
     text, text_p31 = make_text(data, ty='')
-    # ---
-    claims_new = f'{Dump_Dir}/claims_new.txt'
-    claims_p31 = f'{Dump_Dir}/claims_p31.txt'
-    # ---
-    if 'test' in sys.argv:
-        claims_new = f'{Dump_Dir}/claims_new_test.txt'
-        claims_p31 = f'{Dump_Dir}/claims_p31_test.txt'
-    # ---
-    with codecs.open(claims_new, 'w', encoding='utf-8') as outfile:
-        outfile.write(text)
-    # ----
-    with codecs.open(claims_p31, 'w', encoding='utf-8') as outfile:
-        outfile.write(text_p31)
-    # ----
+    codecs.open(f'{Dump_Dir}/claims_new.txt', 'w', 'utf-8').write(text)
+    codecs.open(f'{Dump_Dir}/claims_p31.txt', 'w', 'utf-8').write(text_p31)
     print(text_p31)
-    # ---
     print("log_dump done")

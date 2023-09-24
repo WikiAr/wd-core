@@ -20,7 +20,7 @@ import time
 Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
 # ---
 Dump_Dir = "/data/project/himo/dumps"
-# Dump_Dir = f"{Himo_Dir}/dumps"
+Dump_Dir = f"{Himo_Dir}/dumps"
 # ---
 print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
 # ---

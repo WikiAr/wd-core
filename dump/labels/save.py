@@ -18,20 +18,14 @@ from wd_API import himoAPI
 Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
 # ---
 Dump_Dir = "/data/project/himo/dumps"
-# Dump_Dir = f"{Himo_Dir}/dumps"
+Dump_Dir = f"{Himo_Dir}/dumps"
 # ---
 print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
 # ---
 file_to_title = {
-    'claims_new.txt': 'User:Mr. Ibrahem/claims',
-    'claims_p31.txt': 'User:Mr. Ibrahem/p31',
-    'labels.txt': 'User:Mr. Ibrahem/Language statistics for items',
+    'lables.txt': 'User:Mr. Ibrahem/Language statistics for items',
     'template.txt': 'Template:Tr langcodes counts',
 }
-# ---
-if 'test' in sys.argv:
-    file_to_title['labels_test.txt'] = 'User:Mr. Ibrahem/Language_test'
-    file_to_title['template_test.txt'] = 'User:Mr. Ibrahem/Template:Tr_langcodes_test'
 # ---
 for file, title in file_to_title.items():
     if os.path.exists(f"{Dump_Dir}/{file}"):
