@@ -49,14 +49,14 @@ def make_cou(num, _all):
     return str(fef)[:4] + "%"
 
 
-def mainar(Main_Table):
+def mainar(n_tab):
     start = time.time()
 
     Old = make_old_values()
 
-    dumpdate = Main_Table.get('file_date') or 'latest'
+    dumpdate = n_tab.get('file_date') or 'latest'
 
-    langs_table = Main_Table['langs']
+    langs_table = n_tab['langs']
 
     langs = list(langs_table.keys())
     langs.sort()
@@ -86,8 +86,8 @@ def mainar(Main_Table):
         langs_tag_line = "{{#language:%s|en}}" % code
         langs_tag_line_2 = "{{#language:%s}}" % code
 
-        labels_co = make_cou(_labels_, Main_Table['All_items'])
-        descs_co = make_cou(_descriptions_, Main_Table['All_items'])
+        labels_co = make_cou(_labels_, n_tab['All_items'])
+        descs_co = make_cou(_descriptions_, n_tab['All_items'])
         # ---
         line = f'''| {code} || {langs_tag_line} || {langs_tag_line_2}\n| {_labels_:,} || {labels_co} || +{new_labels:,} || {_descriptions_:,} || {descs_co} || +{new_descs:,} || {_aliases_:,} || +{new_aliases:,}'''
         # ---
@@ -111,7 +111,7 @@ def mainar(Main_Table):
     delta = int(final - start)
     # ----
     text = f"Update: <onlyinclude>{dumpdate}</onlyinclude>.\n"
-    text += f"* Total items:{Main_Table['All_items']:,} \n"
+    text += f"* Total items:{n_tab['All_items']:,} \n"
     text += f"<!-- bots work done in {delta} secounds --> \n"
     text += "--~~~~~\n"
     text = text + "\n" + table

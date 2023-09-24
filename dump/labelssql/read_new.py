@@ -33,7 +33,7 @@ Dump_Dir = "/data/project/himo/dumps"
 # ---
 print(f'Dump_Dir:{Dump_Dir}')
 
-Main_Table = {
+tab_o = {
     'All_items': 0,
     'langs': {},
     'file_date': '',
@@ -94,14 +94,14 @@ def work_one_lang(lang):
         # ---
         lal = x['lang']
         # ---
-        if not lal in Main_Table['langs']:
-            Main_Table['langs'][lal] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
+        if not lal in tab_o['langs']:
+            tab_o['langs'][lal] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
         # ---
         count = x['count'] if type(x['count']) == int else int(x['count'])
         # ---
         kk = x['wby_name']
         # ---
-        Main_Table['langs'][lal][kk] = count
+        tab_o['langs'][lal][kk] = count
     # ---
     return result
 
@@ -151,7 +151,7 @@ def work_for_multiple_langs(old_tab):
         work_one_lang(keys)
         done += lenn
         # ---
-        log_dump(Main_Table)
+        log_dump(tab_o)
         # ---
         if 'test1' in sys.argv and not 'test2' in sys.argv:
             break
@@ -175,7 +175,7 @@ def get_data():
     print(f'len old_tab:{len(old_tab)}')
     # ---
     for ddde in old_tab:
-        Main_Table['langs'][ddde] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
+        tab_o['langs'][ddde] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
     # ---
     # split old_tab to 2 parts
     lent = len(old_tab) // 2
@@ -206,9 +206,9 @@ def get_data():
         work_for_each_lang(part1)
     # ---
     # log results
-    log_dump(Main_Table)
+    log_dump(tab_o)
     # ---
-    return Main_Table
+    return tab_o
 
 
 if __name__ == "__main__":

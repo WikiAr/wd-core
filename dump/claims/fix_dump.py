@@ -8,19 +8,17 @@ from pathlib import Path
 import sys
 import json
 import tqdm
-try:
-    # Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
-    Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
-    # ---
-    Dump_Dir = "/data/project/himo/dumps"
-    # Dump_Dir = f"{Himo_Dir}/dumps"
-    # ---
-    print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
-    # ---
-except Exception as e:
-    Dump_Dir = '/content'
-
+# ---
+# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
+# ---
+Dump_Dir = "/data/project/himo/dumps"
+# Dump_Dir = f"{Himo_Dir}/dumps"
+# ---
+print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+# ---
 filename = f'{Dump_Dir}/claims.json'
+# ---
 if 'test' in sys.argv:
     filename = f'{Dump_Dir}/claims_test.json'
 
@@ -60,13 +58,19 @@ def start():
             else:
                 others += v
         # print(f'len_props:{len_props}')
+        # ---
         if others > 0:
             tab['props']['others'] = others
+        # ---
         if len(tab['props']) > 0:
             data2['Main_Table'][p] = tab
-
+        # ---
+        del tab
+        del props
+        del others
+    # ---
     P31_tab = data2['Main_Table'].get('P31', {})
-
+    # ---
     data2['Main_Table'] = {k: v for k, v in sorted(data2['Main_Table'].items(), key=lambda item: item[1]['lenth_of_usage'], reverse=True)}
 
     if '100' in sys.argv:
@@ -78,7 +82,7 @@ def start():
         # first_100['other'] = data2['Main_Table'][-100:]
 
         data2['Main_Table'] = first_100
-
+    # ---
     json.dump(data2, open(f'{Dump_Dir}/claims2.json', 'w'))
 
 

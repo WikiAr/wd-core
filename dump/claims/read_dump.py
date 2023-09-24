@@ -61,6 +61,7 @@ def get_file_info(file_path):
 
     return readable_time
 
+
 def read_file():
     print(f"read file: {filename}")
 
@@ -87,9 +88,12 @@ def read_file():
                 tab['All_items'] += 1
                 c += 1
                 if 'test' in sys.argv:
-                    if c % 1000 == 0:
+                    if c % 100 == 0:
                         print(f'c:{c}')
                         print(f"done:{tab['done']}")
+                        # ---
+                        print(c, time.time()-t1)
+                        t1 = time.time()
 
                     if c > test_limit[1]:
                         print('c>test_limit[1]')
@@ -108,40 +112,74 @@ def read_file():
                 # ---
                 if len(claims) == 0:
                     tab['items_0_claims'] += 1
-                    del json1
-                    del claims
-                    continue
-                # ---
-                if len(claims) == 1:
-                    tab['items_1_claims'] += 1
-                # ---
-                if "P31" not in claims:
-                    tab['items_no_P31'] += 1
-                # ---
-                for p in claims.keys():
-                    Type = claims[p][0].get("mainsnak", {}).get("datatype", '')
-                    if Type == "wikibase-entityid":
-                        if p not in tab['Main_Table']:
-                            tab['Main_Table'][p] = {
-                                "props": {},
-                                "lenth_of_usage": 0,
-                                "lenth_of_claims_for_property": 0,
-                            }
-                        tab['Main_Table'][p]["lenth_of_usage"] += 1
-                        tab['all_claims_2020'] += len(claims[p])
-                        for claim in claims[p]:
-                            tab['Main_Table'][p]["lenth_of_claims_for_property"] += 1
-                            datavalue = claim.get("mainsnak", {}).get("datavalue", {})
-                            ttype = datavalue.get("type")
-                            if ttype == "wikibase-entityid":
+                else:
+                    # ---
+                    if len(claims) == 1:
+                        tab['items_1_claims'] += 1
+                    # ---
+                    if "P31" not in claims:
+                        tab['items_no_P31'] += 1
+                    # ---
+                    claims_example = {
+                        "claims": {
+                            "P31": [
+                                {
+                                    "mainsnak": {
+                                        "snaktype": "value",
+                                        "property": "P31",
+                                        "hash": "b44ad788a05b4c1b2915ce0292541c6bdb27d43a",
+                                        "datavalue": {
+                                            "value": {
+                                                "entity-type": "item",
+                                                "numeric-id": 6256,
+                                                "id": "Q6256"
+                                            },
+                                            "type": "wikibase-entityid"
+                                        },
+                                        "datatype": "wikibase-item"
+                                    },
+                                    "type": "statement",
+                                    "id": "Q805$81609644-2962-427A-BE11-08BC47E34C44",
+                                    "rank": "normal"
+                                }
+                            ]
+                        }
+                    }
+                    # ---
+                    for p in claims.keys():
+                        Type = claims[p][0].get("mainsnak", {}).get("datatype", '')
+                        # ---
+                        if Type == "wikibase-item":
+                            if p not in tab['Main_Table']:
+                                tab['Main_Table'][p] = {
+                                    "props": {},
+                                    "lenth_of_usage": 0,
+                                    "lenth_of_claims_for_property": 0,
+                                }
+                            tab['Main_Table'][p]["lenth_of_usage"] += 1
+                            tab['all_claims_2020'] += len(claims[p])
+                            # ---
+                            for claim in claims[p]:
+                                tab['Main_Table'][p]["lenth_of_claims_for_property"] += 1
+                                # ---
+                                datavalue = claim.get("mainsnak", {}).get("datavalue", {})
+                                # ttype = datavalue.get("type")
+                                # ---
+                                # print(f"ttype:{ttype}")
+                                # ---
+                                # if ttype == "wikibase-entityid":
                                 idd = datavalue.get("value", {}).get("id")
+                                # ---
                                 if idd:
                                     if not idd in tab['Main_Table'][p]["props"]:
-                                        tab['Main_Table'][p]["props"][idd] = 0
-                                    tab['Main_Table'][p]["props"][idd] += 1
+                                        tab['Main_Table'][p]["props"][idd] = 1
+                                    else:
+                                        tab['Main_Table'][p]["props"][idd] += 1
+                                # ---
                                 del idd
-                            del datavalue
-                            del ttype
+                                # ---
+                                del datavalue
+                                # del ttype
                 # ---
                 del json1
                 del claims
@@ -151,6 +189,8 @@ def read_file():
                 t1 = time.time()
                 # print memory usage
                 print_memory()
+                if c % 1000000 == 0:
+                    log_dump(tab)
             # ---
     # ---
     print(f"read all lines: {tab['done']}")

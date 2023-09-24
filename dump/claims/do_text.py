@@ -5,7 +5,6 @@ python3 core8/pwb.py wd_core/dump/claims/do_text
 # (C) Ibrahem Qasim, 2023
 #
 #
-from pathlib import Path
 import sys
 import time
 import codecs
@@ -14,7 +13,7 @@ import json
 time_start = time.time()
 print(f"time_start:{str(time_start)}")
 # ---
-from dump.labels.do_text import main_labels# main_labels(tabb)
+from dump.labels.do_text import main_labels  # main_labels(tabb)
 # ---
 Dump_Dir = "/data/project/himo/dumps"
 # ---
