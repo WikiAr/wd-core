@@ -150,11 +150,13 @@ def read_file():
                 del json1
                 del claims
             # ---
-            if c % 1000 == 0 or c == 100:
+            if (c % 1000 == 0 and c < 10000) or c % 100000 == 0:
                 print(c, time.time()-t1)
                 t1 = time.time()
                 # print memory usage
                 print_memory()
+
+                
             # ---
         # ---
         print(f'read all lines: {done}')
