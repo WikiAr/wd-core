@@ -15,11 +15,16 @@ import codecs
 import json
 import time
 # ---
+try:
+    from dump.labels.labels_old_values import make_old_values# make_old_values()
+except:
+    from labels_old_values import make_old_values# make_old_values()
+# ---
 # Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
 Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
 # ---
 Dump_Dir = "/data/project/himo/dumps"
-Dump_Dir = f"{Himo_Dir}/dumps"
+# Dump_Dir = f"{Himo_Dir}/dumps"
 # ---
 print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
 # ---
@@ -38,7 +43,7 @@ main_table_head = """
 
 
 def make_cou(num, _all):
-    if num == 0:
+    if num == 0 or _all == 0:
         return 0
     fef = (num / _all) * 100
     return str(fef)[:4] + "%"
@@ -47,7 +52,7 @@ def make_cou(num, _all):
 def mainar(Main_Table):
     start = time.time()
 
-    Old = json.load(codecs.open(f'{Dump_Dir}/old_data.json', 'r', 'utf-8'))
+    Old = make_old_values()
 
     dumpdate = Main_Table.get('file_date') or 'latest'
 
@@ -119,38 +124,52 @@ def mainar(Main_Table):
     return text
 
 
-def main():
+def make_temp_text(ttab):
+    langs_tab = ttab.get('langs', {})
+    # ---
+    tmp_text = "{{#switch:{{{c}}}"
+    # ---
+    for x, tab in langs_tab.items():
+        tmp_text += f"\n|{x}=" + str(tab['labels'])
+    # ---
+    tmp_text += "\n}}"
+    # ---
+    return tmp_text
+
+
+def main_labels(tabb):
+    # ---
+    # from dump.labels.do_text import main_labels# main_labels(tabb)
+    # ---
+    text = mainar(tabb)
+    # ---
+    tmp_text = make_temp_text(tabb)
+    # ----
+    if "nosave" in sys.argv:
+        return
+    # ----
+    text = text.replace('[[Category:Wikidata statistics|Language statistics]]', '')
+    # ----
+    labels_file = f'{Dump_Dir}/labels.txt'
+    template_file = f'{Dump_Dir}/template.txt'
+    # ----
+    if 'test' in sys.argv:
+        labels_file = f'{Dump_Dir}/labels_test.txt'
+        template_file = f'{Dump_Dir}/template_test.txt'
+    # ----
+    with codecs.open(labels_file, 'w', encoding='utf-8') as outfile:
+        outfile.write(text)
+    # ----
+    with codecs.open(template_file, 'w', encoding='utf-8') as outfile:
+        outfile.write(tmp_text)
+    # ----
+
+
+if __name__ == '__main__':
     file = f'{Dump_Dir}/labels.json'
     if 'test' in sys.argv:
         file = f'{Dump_Dir}/labels_test.json'
     # ---
     tabb = json.load(codecs.open(file, 'r', encoding='utf-8'))
     # ---
-    text = mainar(tabb)
-    # ---
-    langs_tab = tabb.get('langs') or tabb
-    # ---
-    tmp_text = "{{#switch:{{{c}}}"
-    for x, tab in langs_tab.items():
-        tmp_text += f"\n|{x}=" + str(tab['labels'])
-    tmp_text += "\n}}"
-    # ----
-    if "nosave" in sys.argv:
-        return
-    # ----
-    text = text.replace('[[Category:Wikidata statistics|Language statistics]]', '')
-
-    labels_file = f'{Dump_Dir}/labels.txt'
-    template_file = f'{Dump_Dir}/template.txt'
-
-    if 'test' in sys.argv:
-        labels_file = f'{Dump_Dir}/labels_test.txt'
-        template_file = f'{Dump_Dir}/template_test.txt'
-
-    codecs.open(labels_file, 'w', encoding='utf-8').write(text)
-    codecs.open(template_file, 'w', encoding='utf-8').write(tmp_text)
-    # ----
-
-
-if __name__ == '__main__':
-    main()
+    main_labels(tabb)
