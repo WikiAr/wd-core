@@ -16,18 +16,9 @@ print(f"time_start:{str(time_start)}")
 # ---
 from dump.labels.do_text import main_labels# main_labels(tabb)
 # ---
-try:
-    # ---
-    # Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
-    Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
-    # ---
-    Dump_Dir = "/data/project/himo/dumps"
-    # Dump_Dir = f"{Himo_Dir}/dumps"
-    # ---
-    print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
-    # ---
-except Exception as e:
-    Dump_Dir = '/content'
+Dump_Dir = "/data/project/himo/dumps"
+# ---
+print(f'Dump_Dir:{Dump_Dir}')
 # ---
 sections_done = {1: 0, 'max': 100}
 sections_false = {1: 0}
@@ -203,7 +194,7 @@ def make_text(tab, ty=''):
         return text, text_p31
     # ---
     sections = ""
-    for Len, P in p31list:
+    for _, P in p31list:
         if sections_done[1] >= sections_done['max']:
             break
         # ---
