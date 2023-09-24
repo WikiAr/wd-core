@@ -44,7 +44,7 @@ main_table_head = """
 
 def make_cou(num, _all):
     if num == 0 or _all == 0:
-        return 0
+        return "0%"
     fef = (num / _all) * 100
     return str(fef)[:4] + "%"
 
@@ -150,12 +150,12 @@ def main_labels(tabb):
     # ----
     text = text.replace('[[Category:Wikidata statistics|Language statistics]]', '')
     # ----
-    labels_file = f'{Dump_Dir}/labels.txt'
-    template_file = f'{Dump_Dir}/template.txt'
+    labels_file = f'{Dump_Dir}/texts/labels.txt'
+    template_file = f'{Dump_Dir}/texts/template.txt'
     # ----
     if 'test' in sys.argv:
-        labels_file = f'{Dump_Dir}/labels_test.txt'
-        template_file = f'{Dump_Dir}/template_test.txt'
+        labels_file = f'{Dump_Dir}/texts/labels_test.txt'
+        template_file = f'{Dump_Dir}/texts/template_test.txt'
     # ----
     with codecs.open(labels_file, 'w', encoding='utf-8') as outfile:
         outfile.write(text)

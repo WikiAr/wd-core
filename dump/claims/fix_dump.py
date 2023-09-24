@@ -26,62 +26,63 @@ def start():
     data = json.load(open(filename))
     data2 = {}
     for x, y in data.items():
-        if x != 'Main_Table':
+        if x != 'properties':
             data2[x] = y
 
-    data2['Main_Table'] = {}
+    data2['properties'] = {}
     len_props = 0
-    for p, pap in tqdm.tqdm(data['Main_Table'].items()):
-        # "props": {},"lenth_of_usage": 0,"lenth_of_claims_for_property": 0,
+    # ---
+    for p, pap in tqdm.tqdm(data['properties'].items()):
+        # "qids": {},"lenth_of_usage": 0,"len_prop_claims": 0,
         len_props += 1
         tab = {}
         tab['lenth_of_usage'] = pap['lenth_of_usage']
-        tab['lenth_of_claims_for_property'] = pap['lenth_of_claims_for_property']
+        tab['len_prop_claims'] = pap['len_prop_claims']
 
-        tab['len_of_qids'] = len(pap['props'])
+        tab['len_of_qids'] = len(pap['qids'])
 
-        tab['props'] = {}
+        tab['qids'] = {}
         others = 0
         # ---
         # sort by usage
-        props = pap['props']
-        props = {k: v for k, v in sorted(props.items(), key=lambda item: item[1], reverse=True)}
+        qids = pap['qids']
+        qids = {k: v for k, v in sorted(qids.items(), key=lambda item: item[1], reverse=True)}
         # ---
         maxx = 500 if p == 'P31' else 100
         # ---
         # add first 500 properties to dict and other to others
         n = 0
-        for k, v in props.items():
+        for k, v in qids.items():
             n += 1
             if n <= maxx:
-                tab['props'][k] = v
+                tab['qids'][k] = v
             else:
                 others += v
         # print(f'len_props:{len_props}')
         # ---
         if others > 0:
-            tab['props']['others'] = others
+            tab['qids']['others'] = others
         # ---
-        if len(tab['props']) > 0:
-            data2['Main_Table'][p] = tab
+        if len(tab['qids']) > 0:
+            data2['properties'][p] = tab
         # ---
         del tab
-        del props
+        del qids
         del others
     # ---
-    P31_tab = data2['Main_Table'].get('P31', {})
+    P31_tab = data2['properties'].get('P31', {})
     # ---
-    data2['Main_Table'] = {k: v for k, v in sorted(data2['Main_Table'].items(), key=lambda item: item[1]['lenth_of_usage'], reverse=True)}
+    data2['properties'] = {k: v for k, v in sorted(data2['properties'].items(), key=lambda item: item[1]['lenth_of_usage'], reverse=True)}
 
     if '100' in sys.argv:
         # get only first 100 properties
-        first_100 = data2['Main_Table'][:100]
+        first_100 = data2['properties'][:100]
         if 'P31' not in first_100:
             first_100['P31'] = P31_tab
 
-        # first_100['other'] = data2['Main_Table'][-100:]
+        # first_100['other'] = data2['properties'][-100:]
 
-        data2['Main_Table'] = first_100
+        data2['properties'] = first_100
     # ---
     json.dump(data2, open(f'{Dump_Dir}/claims2.json', 'w'))
 

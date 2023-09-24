@@ -1,5 +1,5 @@
 """
-python3 core8/pwb.py wd_core/dump/claims/do_text
+python3 core8/pwb.py dump/claims/do_text
 """
 #
 # (C) Ibrahem Qasim, 2023
@@ -45,7 +45,7 @@ def make_section(P, table, max_n=51):
     print(f"make_section for property:{P}")
     texts += f"\n* Total items use these property:{Len:,}"
     # ---
-    lnnn = table.get("lenth_of_claims_for_property")
+    lnnn = table.get("len_prop_claims")
     if lnnn:
         texts += f"\n* Total number of claims with these property:{lnnn:,}"
     # ---
@@ -55,12 +55,12 @@ def make_section(P, table, max_n=51):
     # ---
     texts += "\n"
     print(texts)
-    if table["props"] == {}:
-        print(f'{P} table["props"] == empty.')
+    if table["qids"] == {}:
+        print(f'{P} table["qids"] == empty.')
         return ""
     # ---
-    if len(table["props"]) == 1 and table["props"].get("others"):
-        print(f'{P} table["props"] == empty.')
+    if len(table["qids"]) == 1 and table["qids"].get("others"):
+        print(f'{P} table["qids"] == empty.')
         return ""
     # ---
     Chart = '{| class="floatright sortable"\n|-\n|\n'
@@ -69,7 +69,7 @@ def make_section(P, table, max_n=51):
     # ---
     tables = """{| class="wikitable sortable plainrowheaders"\n|-\n! class="sortable" | #\n! class="sortable" | value\n! class="sortable" | Numbers\n|-\n"""
     # ---
-    lists = {k: v for k, v in sorted(table["props"].items(), key=lambda item: item[1], reverse=True)}
+    lists = {k: v for k, v in sorted(table["qids"].items(), key=lambda item: item[1], reverse=True)}
     # ---
     xline = ""
     yline = ""
@@ -159,13 +159,11 @@ def make_numbers_section(p31list):
 
 
 def make_text(tab, ty=''):
-    p31list = [[y["lenth_of_usage"], x] for x, y in tab["Main_Table"].items() if y["lenth_of_usage"] != 0]
+    p31list = [[y["lenth_of_usage"], x] for x, y in tab["properties"].items() if y["lenth_of_usage"] != 0]
     p31list.sort(reverse=True)
     # ---
     final = time.time()
     delta = int(final - time_start)
-    # ---
-    tab['len_of_all_properties'] = len(tab["Main_Table"])
     # ---
     if not tab.get('file_date'):
         tab['file_date'] = 'latest'
@@ -185,8 +183,8 @@ def make_text(tab, ty=''):
     # ---
     text_p31 = ''
     # ---
-    if tab["Main_Table"].get('P31'):
-        text_p31 = text + make_section('P31', tab["Main_Table"]['P31'], max_n=501)
+    if tab["properties"].get('P31'):
+        text_p31 = text + make_section('P31', tab["properties"]['P31'], max_n=501)
         # ---
     # ---
     if 'onlyp31' in sys.argv or ty == "onlyp31":
@@ -197,7 +195,7 @@ def make_text(tab, ty=''):
         if sections_done[1] >= sections_done['max']:
             break
         # ---
-        sections += make_section(P, tab["Main_Table"][P], max_n=51)
+        sections += make_section(P, tab["properties"][P], max_n=51)
     # ---
     text += f"{chart}\n{sections}"
     # ---
@@ -208,14 +206,17 @@ def make_text(tab, ty=''):
 
 
 if __name__ == "__main__":
-    filename = f"{Dump_Dir}/claims.json"
-
-    if 'claims2' in sys.argv:
-        filename = f"{Dump_Dir}/claims2.json"
-
+    faf = 'claims'
+    faf = 'claims_fixed'
+    # ---
+    if 'claims_fixed' in sys.argv:
+        filename = "claims_fixed"
+    # ---
+    filename = f"{Dump_Dir}/{faf}.json"
+    # ---
     if 'test' in sys.argv:
-        filename = f"{Dump_Dir}/claims_test.json"
-
+        filename = f"{Dump_Dir}/{faf}_test.json"
+    # ---
     data = json.load(open(filename))
 
     tab = {
@@ -226,7 +227,7 @@ if __name__ == "__main__":
         "items_no_P31": 0,
         "All_items": 0,
         "all_claims_2020": 0,
-        "Main_Table": {},
+        "properties": {},
         "langs": {},
     }
     # ---
@@ -238,12 +239,12 @@ if __name__ == "__main__":
     # ---
     text, text_p31 = make_text(data, ty='')
     # ---
-    claims_new = f'{Dump_Dir}/claims_new.txt'
-    claims_p31 = f'{Dump_Dir}/claims_p31.txt'
+    claims_new = f'{Dump_Dir}/texts/claims_new.txt'
+    claims_p31 = f'{Dump_Dir}/texts/claims_p31.txt'
     # ---
     if 'test' in sys.argv:
-        claims_new = f'{Dump_Dir}/claims_new_test.txt'
-        claims_p31 = f'{Dump_Dir}/claims_p31_test.txt'
+        claims_new = f'{Dump_Dir}/texts/claims_new_test.txt'
+        claims_p31 = f'{Dump_Dir}/texts/claims_p31_test.txt'
     # ---
     with codecs.open(claims_new, 'w', encoding='utf-8') as outfile:
         outfile.write(text)

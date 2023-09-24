@@ -7,6 +7,7 @@ https://dumps.wikimedia.org/wikidatawiki/entities/latest-all.json.bz2
 """
 import os
 import sys
+import tqdm
 import bz2
 import json
 import time
@@ -29,6 +30,11 @@ print(f'Dump_Dir:{Dump_Dir}')
 # ---
 test_limit = {1: 15000}
 # ---
+for arg in sys.argv:
+    arg, _, value = arg.partition(':')
+    if arg == "-limit":
+        test_limit[1] = int(value)
+# ---
 tab = {
     "done": 0,
     "file_date": '',
@@ -38,17 +44,20 @@ tab = {
     "items_no_P31": 0,
     "All_items": 0,
     "all_claims_2020": 0,
-    "Main_Table": {},
+    "properties": {},
     "langs": {},
 }
 
 
-def log_dump(tab):
-    jsonname = f"{Dump_Dir}/claims.json"
+def log_dump(tab, _claims="claims"):
+    jsonname = f"{Dump_Dir}/{_claims}.json"
+    # ---
     if 'test' in sys.argv:
-        jsonname = f"{Dump_Dir}/claims_test.json"
+        jsonname = f"{Dump_Dir}/{_claims}_test.json"
+    # ---
     with open(jsonname, "w", encoding='utf-8') as outfile:
         json.dump(tab, outfile)
+    # ---
     print("log_dump done")
 
 
@@ -61,6 +70,42 @@ def get_file_info(file_path):
 
     return readable_time
 
+def fix_props(props):
+    # print size of props in memory
+    o_size = sys.getsizeof(props)
+    # ---
+    propsn = {}
+    # ---
+    for p, pap in tqdm.tqdm(props.items()):
+        # "qids": {},"lenth_of_usage": 0,"len_prop_claims": 0,
+        # ---
+        tab = pap.copy()
+        # ---
+        # sort by usage
+        qids = {k: v for k, v in sorted(tab['qids'].items(), key=lambda item: item[1], reverse=True)}
+        # ---
+        maxx = 500 if p == 'P31' else 100
+        # ---
+        # add first 500 properties to dict and other to others
+        tab['qids'] = dict(list(qids.items())[:maxx])
+        # ---
+        others_qids = dict(list(qids.items())[maxx:])
+        # ---
+        # count others_qids values and add them to others use map lambda
+        # others = sum(list(map(lambda x: x[1], others_qids)))
+        tab['qids']['others'] = sum(others_qids.values())
+        # ---
+        if len(tab['qids']) > 0:
+            propsn[p] = tab
+        # ---
+        del tab
+        del qids
+    # ---
+    n_size = sys.getsizeof(propsn)
+    # ---
+    print(f"o_size:{o_size}, n_size:{n_size}, diff:{n_size-o_size}")
+    # ---
+    return propsn
 
 def read_file():
     print(f"read file: {filename}")
@@ -150,17 +195,19 @@ def read_file():
                         Type = claims[p][0].get("mainsnak", {}).get("datatype", '')
                         # ---
                         if Type == "wikibase-item":
-                            if p not in tab['Main_Table']:
-                                tab['Main_Table'][p] = {
-                                    "props": {},
+                            if p not in tab['properties']:
+                                tab['properties'][p] = {
+                                    "qids": {
+                                        "others": 0
+                                    },
                                     "lenth_of_usage": 0,
-                                    "lenth_of_claims_for_property": 0,
+                                    "len_prop_claims": 0,
                                 }
-                            tab['Main_Table'][p]["lenth_of_usage"] += 1
+                            tab['properties'][p]["lenth_of_usage"] += 1
                             tab['all_claims_2020'] += len(claims[p])
                             # ---
                             for claim in claims[p]:
-                                tab['Main_Table'][p]["lenth_of_claims_for_property"] += 1
+                                tab['properties'][p]["len_prop_claims"] += 1
                                 # ---
                                 datavalue = claim.get("mainsnak", {}).get("datavalue", {})
                                 # ttype = datavalue.get("type")
@@ -171,10 +218,10 @@ def read_file():
                                 idd = datavalue.get("value", {}).get("id")
                                 # ---
                                 if idd:
-                                    if not idd in tab['Main_Table'][p]["props"]:
-                                        tab['Main_Table'][p]["props"][idd] = 1
+                                    if not idd in tab['properties'][p]["qids"]:
+                                        tab['properties'][p]["qids"][idd] = 1
                                     else:
-                                        tab['Main_Table'][p]["props"][idd] += 1
+                                        tab['properties'][p]["qids"][idd] += 1
                                 # ---
                                 del idd
                                 # ---
@@ -195,10 +242,19 @@ def read_file():
     # ---
     print(f"read all lines: {tab['done']}")
     # ---
-    for x, xx in tab['Main_Table'].copy().items():
-        tab['Main_Table'][x]["len_of_qids"] = len(xx["props"])
+    for x, xx in tab['properties'].copy().items():
+        tab['properties'][x]["len_of_qids"] = len(xx["qids"])
+        tab['properties'][x]["qids"] = {k: v for k, v in sorted(xx['qids'].items(), key=lambda item: item[1], reverse=True)}
+    # ---
+    tab['len_of_all_properties'] = len(tab['properties'])
     # ---
     log_dump(tab)
+    # ---
+    props_fixed = fix_props(tab['properties'])
+    # ---
+    tab['properties'] = props_fixed
+    # ---
+    log_dump(tab, _claims="claims_fixed")
 
 
 if __name__ == "__main__":
