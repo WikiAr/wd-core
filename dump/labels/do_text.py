@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-python3 core8/pwb.py dump/labels2
-python3 core8/pwb.py dump/labels2 test
-python3 core8/pwb.py dump/labels2 test nosave
+python3 core8/pwb.py dump/labels/do_text
+python3 core8/pwb.py dump/labels/do_text test
+python3 core8/pwb.py dump/labels/do_text test nosave
 """
 #
 # (C) Ibrahem Qasim, 2023
@@ -10,7 +10,6 @@ python3 core8/pwb.py dump/labels2 test nosave
 #
 import sys
 import os
-from pathlib import Path
 import codecs
 import json
 import time
@@ -20,13 +19,12 @@ try:
 except:
     from labels_old_values import make_old_values# make_old_values()
 # ---
-# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
-Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
-# ---
 Dump_Dir = "/data/project/himo/dumps"
-# Dump_Dir = f"{Himo_Dir}/dumps"
 # ---
-print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+if os.path.exists(r'I:\core\dumps'):
+    Dump_Dir = r'I:\core\dumps'
+# ---
+print(f'Dump_Dir:{Dump_Dir}')
 # ---
 main_table_head = """
 == Number of labels, descriptions and aliases for items per language ==
@@ -44,19 +42,19 @@ main_table_head = """
 
 def make_cou(num, _all):
     if num == 0 or _all == 0:
-        return 0
+        return "0%"
     fef = (num / _all) * 100
     return str(fef)[:4] + "%"
 
 
-def mainar(Main_Table):
+def mainar(n_tab):
     start = time.time()
 
     Old = make_old_values()
 
-    dumpdate = Main_Table.get('file_date') or 'latest'
+    dumpdate = n_tab.get('file_date') or 'latest'
 
-    langs_table = Main_Table['langs']
+    langs_table = n_tab['langs']
 
     langs = list(langs_table.keys())
     langs.sort()
@@ -86,8 +84,8 @@ def mainar(Main_Table):
         langs_tag_line = "{{#language:%s|en}}" % code
         langs_tag_line_2 = "{{#language:%s}}" % code
 
-        labels_co = make_cou(_labels_, Main_Table['All_items'])
-        descs_co = make_cou(_descriptions_, Main_Table['All_items'])
+        labels_co = make_cou(_labels_, n_tab['All_items'])
+        descs_co = make_cou(_descriptions_, n_tab['All_items'])
         # ---
         line = f'''| {code} || {langs_tag_line} || {langs_tag_line_2}\n| {_labels_:,} || {labels_co} || +{new_labels:,} || {_descriptions_:,} || {descs_co} || +{new_descs:,} || {_aliases_:,} || +{new_aliases:,}'''
         # ---
@@ -103,15 +101,15 @@ def mainar(Main_Table):
     # ----
     table += "\n|}\n[[Category:Wikidata statistics|Language statistics]]"
     # ----
-    if test_new_descs == 0 and 'test' not in sys.argv:
+    if test_new_descs == 0 and 'test1' not in sys.argv:
         print('nothing new.. ')
         return ''
     # ----
     final = time.time()
-    delta = int(final - start)
+    delta = n_tab.get('delta') or int(final - start)
     # ----
     text = f"Update: <onlyinclude>{dumpdate}</onlyinclude>.\n"
-    text += f"* Total items:{Main_Table['All_items']:,} \n"
+    text += f"* Total items:{n_tab['All_items']:,} \n"
     text += f"<!-- bots work done in {delta} secounds --> \n"
     text += "--~~~~~\n"
     text = text + "\n" + table
@@ -128,6 +126,9 @@ def make_temp_text(ttab):
     langs_tab = ttab.get('langs', {})
     # ---
     tmp_text = "{{#switch:{{{c}}}"
+    # ---
+    # sort langs_tab by name
+    langs_tab = dict(sorted(langs_tab.items()))
     # ---
     for x, tab in langs_tab.items():
         tmp_text += f"\n|{x}=" + str(tab['labels'])
@@ -150,12 +151,12 @@ def main_labels(tabb):
     # ----
     text = text.replace('[[Category:Wikidata statistics|Language statistics]]', '')
     # ----
-    labels_file = f'{Dump_Dir}/labels.txt'
-    template_file = f'{Dump_Dir}/template.txt'
+    labels_file = f'{Dump_Dir}/texts/labels.txt'
+    template_file = f'{Dump_Dir}/texts/template.txt'
     # ----
     if 'test' in sys.argv:
-        labels_file = f'{Dump_Dir}/labels_test.txt'
-        template_file = f'{Dump_Dir}/template_test.txt'
+        labels_file = f'{Dump_Dir}/texts/labels_test.txt'
+        template_file = f'{Dump_Dir}/texts/template_test.txt'
     # ----
     with codecs.open(labels_file, 'w', encoding='utf-8') as outfile:
         outfile.write(text)
@@ -166,10 +167,14 @@ def main_labels(tabb):
 
 
 if __name__ == '__main__':
-    file = f'{Dump_Dir}/labels.json'
-    if 'test' in sys.argv:
-        file = f'{Dump_Dir}/labels_test.json'
+    faf = 'labels'
     # ---
-    tabb = json.load(codecs.open(file, 'r', encoding='utf-8'))
+    if 'test' in sys.argv:
+        faf = 'labels_test'
+    # ---
+    file = f'{Dump_Dir}/{faf}.json'
+    # ---
+    with codecs.open(file, 'r', encoding='utf-8') as fa:
+        tabb = json.load(fa)
     # ---
     main_labels(tabb)

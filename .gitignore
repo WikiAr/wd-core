@@ -19,6 +19,7 @@ API/uu_py/*
 */sh/*
 */log/*
 log/*.*
+**/old/**
 */old/*
 old/*
 */__pycache__/*
