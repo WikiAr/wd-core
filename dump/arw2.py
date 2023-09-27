@@ -20,6 +20,9 @@ from dump.memory import print_memory
 # ---
 Dump_Dir = "/data/project/himo/dumps"
 # ---
+if os.path.exists(r'I:\core\dumps'):
+    Dump_Dir = r'I:\core\dumps'
+# ---
 print(f'Dump_Dir:{Dump_Dir}')
 # ---
 if True:

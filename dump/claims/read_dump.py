@@ -7,13 +7,17 @@ https://dumps.wikimedia.org/wikidatawiki/entities/latest-all.json.bz2
 """
 import os
 import sys
-import tqdm
+import codecs
 import bz2
 import json
 import time
 from datetime import datetime
 from pathlib import Path
 # ---
+time_start = time.time()
+print(f"time_start:{str(time_start)}")
+# ---
+claims_dir = Path(__file__).parent
 # ---
 # split after /dump
 core_dir = str(Path(__file__)).replace('\\', '/').split("/dump/", maxsplit=1)[0]
@@ -22,9 +26,14 @@ sys.path.append(core_dir)
 print(f'sys.path.append:core_dir: {core_dir}')
 # ---
 from dump.memory import print_memory
+# from dump.claims.fix_dump import fix_props
+# ---
+filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2"
 # ---
 Dump_Dir = "/data/project/himo/dumps"
-filename = "/mnt/nfs/dumps-clouddumps1002.wikimedia.org/other/wikibase/wikidatawiki/latest-all.json.bz2"
+# ---
+if os.path.exists(r'I:\core\dumps'):
+    Dump_Dir = r'I:\core\dumps'
 # ---
 print(f'Dump_Dir:{Dump_Dir}')
 # ---
@@ -36,9 +45,10 @@ for arg in sys.argv:
         test_limit[1] = int(value)
 # ---
 tab = {
+    "delta": 0,
     "done": 0,
     "file_date": '',
-    "len_of_all_properties": 0,
+    "len_all_props": 0,
     "items_0_claims": 0,
     "items_1_claims": 0,
     "items_no_P31": 0,
@@ -47,7 +57,6 @@ tab = {
     "properties": {},
     "langs": {},
 }
-
 
 def log_dump(tab, _claims="claims"):
     jsonname = f"{Dump_Dir}/{_claims}.json"
@@ -70,42 +79,17 @@ def get_file_info(file_path):
 
     return readable_time
 
-def fix_props(props):
-    # print size of props in memory
-    o_size = sys.getsizeof(props)
+
+def check_file_date(file_date):
+    with codecs.open(f"{claims_dir}/file_date.txt", "r", encoding='utf-8') as outfile:
+        old_date = outfile.read()
     # ---
-    propsn = {}
+    print(f"file_date: {file_date}, old_date: {old_date}")
     # ---
-    for p, pap in tqdm.tqdm(props.items()):
-        # "qids": {},"lenth_of_usage": 0,"len_prop_claims": 0,
-        # ---
-        tab = pap.copy()
-        # ---
-        # sort by usage
-        qids = {k: v for k, v in sorted(tab['qids'].items(), key=lambda item: item[1], reverse=True)}
-        # ---
-        maxx = 500 if p == 'P31' else 100
-        # ---
-        # add first 500 properties to dict and other to others
-        tab['qids'] = dict(list(qids.items())[:maxx])
-        # ---
-        others_qids = dict(list(qids.items())[maxx:])
-        # ---
-        # count others_qids values and add them to others use map lambda
-        # others = sum(list(map(lambda x: x[1], others_qids)))
-        tab['qids']['others'] = sum(others_qids.values())
-        # ---
-        if len(tab['qids']) > 0:
-            propsn[p] = tab
-        # ---
-        del tab
-        del qids
-    # ---
-    n_size = sys.getsizeof(propsn)
-    # ---
-    print(f"o_size:{o_size}, n_size:{n_size}, diff:{n_size-o_size}")
-    # ---
-    return propsn
+    if old_date == file_date and 'test' not in sys.argv:
+        print(f"file_date: {file_date} <<lightred>> unchanged")
+        sys.exit(0)                
+
 
 def read_file():
     print(f"read file: {filename}")
@@ -120,7 +104,9 @@ def read_file():
 
     print(f"file {filename} found, read it:")
     c = 0
-
+    # ---
+    check_file_date(tab['file_date'])
+    # ---
     with bz2.open(filename, "r") as f:
         for line in f:
             line = line.decode("utf-8").strip("\n").strip(",")
@@ -145,13 +131,6 @@ def read_file():
                         break
 
                 json1 = json.loads(line)
-                # ---
-                tats = ['labels', 'descriptions', 'aliases']
-                for x in tats:
-                    for code in json1.get(x, {}):
-                        if not code in tab['langs']:
-                            tab['langs'][code] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
-                        tab['langs'][code][x] += 1
                 # ---
                 claims = json1.get("claims", {})
                 # ---
@@ -244,17 +223,20 @@ def read_file():
     # ---
     for x, xx in tab['properties'].copy().items():
         tab['properties'][x]["len_of_qids"] = len(xx["qids"])
-        tab['properties'][x]["qids"] = {k: v for k, v in sorted(xx['qids'].items(), key=lambda item: item[1], reverse=True)}
+        # tab['properties'][x]["qids"] = {k: v for k, v in sorted(xx['qids'].items(), key=lambda item: item[1], reverse=True)}
     # ---
-    tab['len_of_all_properties'] = len(tab['properties'])
+    tab['len_all_props'] = len(tab['properties'])
+    # ---
+    end = time.time()
+    # ---
+    delta = int(end - time_start)
+    tab['delta'] = f'{delta:,}'
     # ---
     log_dump(tab)
     # ---
-    props_fixed = fix_props(tab['properties'])
+    with codecs.open(f"{claims_dir}/file_date.txt", "w", encoding='utf-8') as outfile:
+        outfile.write(tab['file_date'])
     # ---
-    tab['properties'] = props_fixed
-    # ---
-    log_dump(tab, _claims="claims_fixed")
 
 
 if __name__ == "__main__":

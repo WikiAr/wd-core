@@ -12,13 +12,15 @@ import requests
 Session = requests.Session()
 dir2 = Path(__file__).parent
 
-file = f'{dir2}/new_data.json'
+file_old_data = f'{dir2}/old_data.json'
 
-if not os.path.isfile(file):
-    # create it
-    open(file, 'w').write('{}')
+if not os.path.isfile(file_old_data):
+    print(f'create file_old_data:{file_old_data}..')
+    with open(file_old_data, 'w', encoding='utf-8') as f:
+        json.dump({}, f)
 
-_old_data = json.load(open(file))
+with open(file_old_data, 'r', encoding='utf-8') as f:
+    _old_data = json.load(f)
 _old_data = _old_data.get('langs') or _old_data
 
 
@@ -38,16 +40,18 @@ def GetPageText(title):
         print(f'no text for {title}')
     # ---
     return text
-# ---
 
 
 def from_wiki():
+    # ---
+    print('from_wiki')
     # ---
     title = 'User:Mr. Ibrahem/Language statistics for items'
     # ---
     Old = {}
     # ---
     texts = GetPageText(title)
+    # texts = codecs.open(f'{dir2}/te.txt', 'r', encoding='utf-8').read()
     # ---
     texts = texts.split('|}')[0]
     texts = texts.replace('|}', '')
@@ -94,14 +98,14 @@ def make_old_values():
     # ---
     if len(_old_data) > 5:
         print('data in the file..')
-        json.dump(_old_data, codecs.open(f'{dir2}/old_data.json', 'w', 'utf-8'), indent=4)
+        json.dump(_old_data, codecs.open(file_old_data, 'w', 'utf-8'), indent=4)
         return _old_data
     # ---
     print('get data from page')
     # ---
     Old = from_wiki()
     # ---
-    json.dump(Old, codecs.open(f'{dir2}/old_data.json', 'w', 'utf-8'), indent=4)
+    json.dump(Old, codecs.open(file_old_data, 'w', 'utf-8'), indent=4)
     # ---
     return Old
 

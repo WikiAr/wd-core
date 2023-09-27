@@ -20,6 +20,7 @@ wbt_text_in_lang
 #
 #
 import sys
+import os
 import json
 # ---
 try:
@@ -30,6 +31,9 @@ except ImportError:
     from sql_db import new_pymysql_connect             # new_pymysql_connect(query, db='', host='')
 # ---
 Dump_Dir = "/data/project/himo/dumps"
+# ---
+if os.path.exists(r'I:\core\dumps'):
+    Dump_Dir = r'I:\core\dumps'
 # ---
 print(f'Dump_Dir:{Dump_Dir}')
 

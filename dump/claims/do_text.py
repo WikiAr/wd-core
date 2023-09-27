@@ -1,4 +1,5 @@
 """
+python3 core8/pwb.py dump/claims/do_text claims_fixed
 python3 core8/pwb.py dump/claims/do_text
 """
 #
@@ -6,6 +7,7 @@ python3 core8/pwb.py dump/claims/do_text
 #
 #
 import sys
+import os
 import time
 import codecs
 import json
@@ -13,9 +15,10 @@ import json
 time_start = time.time()
 print(f"time_start:{str(time_start)}")
 # ---
-from dump.labels.do_text import main_labels  # main_labels(tabb)
-# ---
 Dump_Dir = "/data/project/himo/dumps"
+# ---
+if os.path.exists(r'I:\core\dumps'):
+    Dump_Dir = r'I:\core\dumps'
 # ---
 print(f'Dump_Dir:{Dump_Dir}')
 # ---
@@ -163,7 +166,7 @@ def make_text(tab, ty=''):
     p31list.sort(reverse=True)
     # ---
     final = time.time()
-    delta = int(final - time_start)
+    delta = tab.get('delta') or int(final - time_start)
     # ---
     if not tab.get('file_date'):
         tab['file_date'] = 'latest'
@@ -175,7 +178,7 @@ def make_text(tab, ty=''):
         "* Items without claims: {items_0_claims:,}\n"
         "* Items with 1 claim only: {items_1_claims:,}\n"
         "* Total number of claims: {all_claims_2020:,}\n"
-        "* Number of properties of the report: {len_of_all_properties:,}\n"
+        "* Number of properties of the report: {len_all_props:,}\n"
     ).format_map(tab)
     # ---
     text += f"<!-- bots work done in {delta} secounds --> \n--~~~~~\n"
@@ -207,21 +210,25 @@ def make_text(tab, ty=''):
 
 if __name__ == "__main__":
     faf = 'claims'
-    faf = 'claims_fixed'
     # ---
     if 'claims_fixed' in sys.argv:
-        filename = "claims_fixed"
+        if os.path.exists(f"{Dump_Dir}/claims_fixed.json"):
+            faf = "claims_fixed"
+        else:
+            print("claims_fixed.json not found")
     # ---
     filename = f"{Dump_Dir}/{faf}.json"
     # ---
     if 'test' in sys.argv:
         filename = f"{Dump_Dir}/{faf}_test.json"
     # ---
-    data = json.load(open(filename))
-
+    with open(filename, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    # ---
     tab = {
+        "delta": 0,
         "done": 0,
-        "len_of_all_properties": 0,
+        "len_all_props": 0,
         "items_0_claims": 0,
         "items_1_claims": 0,
         "items_no_P31": 0,
@@ -234,8 +241,6 @@ if __name__ == "__main__":
     for x, g in tab.items():
         if not x in data:
             data[x] = g
-    # ---
-    main_labels(data)
     # ---
     text, text_p31 = make_text(data, ty='')
     # ---
@@ -252,6 +257,6 @@ if __name__ == "__main__":
     with codecs.open(claims_p31, 'w', encoding='utf-8') as outfile:
         outfile.write(text_p31)
     # ----
-    print(text_p31)
+    # print(text_p31)
     # ---
     print("log_dump done")
