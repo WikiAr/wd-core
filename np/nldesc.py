@@ -31,7 +31,6 @@ Labels_Csash = {'ar': {}}
 # ---
 from np.cash import *  # Labels_Csash
 from np.np_lists import bldiat, Space_tab, p50s, nationalities, songs_type, others_list, others_list_2, space_list_and_other, qura, Geo_entity
-from np.np_lists import *
 # ---
 for arg in sys.argv:
     # ---
@@ -285,11 +284,11 @@ def its_disambigue(lng, wdi):
 def its_a_publication(wditem):
     over=uitgever=datumstr=''
     if ('P921' in wditem.get('claims', {})):
-        over =its_a_generalthing(wditem, '', 'over', 'P921')
+        its_a_generalthing(wditem, '', 'over', 'P921')
     if ('P123' in wditem.get('claims', {})):
-        uitgever =its_a_generalthing(wditem, '', 'van uitgever', 'P123')
+        its_a_generalthing(wditem, '', 'van uitgever', 'P123')
     if ('P577' in wditem.get('claims', {})):
-        datumstr=''
+        pass
     return 'publicatie'
 # ---
 
@@ -330,9 +329,9 @@ def action_one_P131_item(lng, oneitem):
     else:
         nld=''
     if (lng in oneitem.get('labels', {})):
-        nll = oneitem.get('labels', {}).get(lng, '')
+        oneitem.get('labels', {}).get(lng, '')
     else:
-        nll = ''
+        pass
     adminname=''
     isaname=''
     countryname=''
@@ -381,7 +380,6 @@ def action_one_P131_item(lng, oneitem):
         print("ValueError occured on %s", oneitem.title())
     except:
         print("Undefined error occured on %s-[%s]", oneitem.title(), 'simpleP131')
-        pass
     else:
         pass  # print("Else:")
     # ---
@@ -695,11 +693,9 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=''):
 def its_a_p50(type_of_item, wditem, shortstr, claimstr=''):
     myclaim = 'P50'
     # ---
-    noval = False
     P136 = wditem.get('claims', {}).get('P136', [{}])[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')
     if P136 == 'Q8261' and shortstr == 'عمل أدبي':
         shortstr = 'رواية'
-        noval = True
     # ---
     P50 = wditem.get('claims', {}).get(myclaim, [])
     # ---

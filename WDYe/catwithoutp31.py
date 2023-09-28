@@ -10,19 +10,12 @@ python3 core8/pwb.py WDYe/catwithoutp31
 #
 # (C) Ibrahem Qasim, 2022
 #
-import urllib
 
 import pywikibot
 # import pwb
 import re
-import string
 # ---
-import sys
 # ---
-import urllib
-import urllib
-import urllib.request
-import urllib.parse
 from wd_API import wd_bot
 from wd_API import wd_desc
 # ---

@@ -99,8 +99,6 @@ International_Federation = {
 
     "ConIFA World Football Cup": "كأس العالم لاتحاد الجمعيات المستقلة لكرة القدم",
 
-    "ATP World Tour": "بطولات العالم لرابطة محترفي التنس",
-    "ATP Challenger Tour": "بطولات تشالنجر لرابطة محترفي التنس",
     "ATP Tour": "رابطة محترفي التنس",
     "ATP Tour tournaments": "بطولات رابطة محترفي التنس",
     "ATP Tour tournaments": "بطولات رابطة محترفي التنس",
@@ -196,7 +194,6 @@ International_Federation = {
     "CONCACAF Champions League": "دوري أبطال الكونكاكاف",
     "CONCACAF Under-20 Championships": "الكأس الذهبية تحت 20 سنة لكرة القدم",
 
-    "AFF U-23 Youth Championships": "بطولة اتحاد آسيان لكرة القدم",
     "AFF U-23 Championships": "بطولة اتحاد آسيان تحت 23 سنة",
     "AFF U-23 Youth Championships": "بطولة اتحاد آسيان تحت 23 سنة للشباب",
     "AFF Championships": "بطولة اتحاد آسيان لكرة القدم",
@@ -217,7 +214,6 @@ International_Federation = {
     "ASEAN Football Championships": "بطولة اتحاد آسيان لكرة القدم",
 
     "FIBA EuroBasket": "بطولة أمم أوروبا لكرة السلة",
-    "FIBA Basketball World Cup": "كأس العالم لكرة السلة",
     "FIBA Women's Basketball World Cup": "كأس العالم لكرة السلة للسيدات",
 
     "FIBA European Champions Cup": "كأس أبطال أوروبا لكرة السلة",
@@ -235,7 +231,6 @@ International_Federation = {
     "FIBA Korać Cup": "كأس كوراتش لكرة السلة",
     "FIBA Saporta Cup": "كأس سابورتا",
     "FIBA Asia Cup": "كأس أمم آسيا لكرة السلة",
-    "FIBA Basketball World Cup": "كأس العالم لكرة السلة",
     "FIBA Americas League": "دوري الأمريكتين لكرة السلة",
     "FIBA Americas Championships": "بطولة أمم الأمريكتين لكرة السلة",
     "FIBA": "الاتحاد الدولي لكرة السلة",
@@ -292,12 +287,10 @@ International_Federation = {
     "FIVB Volleyball World Championships": "بطولة العالم لكرة الطائرة",
     "FIVB Volleyball World League": "الدوري العالمي للكرة الطائرة",
 
-    "IIHF World Championships": "بطولة العالم للهوكي على الجليد",
     "IIHF World Championships": "بطولة العالم لهوكي الجليد",
     "IIHF Challenge Cup of Asia": "كأس التحدي الآسيوي لهوكي الجليد",
 
     # "UEFA Euro":"بطولة أمم أوروبا لكرة القدم",
-    "UEFA Futsal Championships": "بطولة أمم أوروبا لكرة الصالات",
     "UEFA Women's Euro": "بطولة أمم أوروبا لكرة القدم للسيدات",
     "UEFA Champions League": "دوري أبطال أوروبا",
     "UEFA Euro 2004 qualifying": "تصفيات بطولة أمم أوروبا لكرة القدم 2004",

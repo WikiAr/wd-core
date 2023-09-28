@@ -24,10 +24,10 @@ import os
 import json
 # ---
 try:
-    from dump.labels.labels_old_values import make_old_values# make_old_values()
-    from dump.labels.sql_db import new_pymysql_connect # new_pymysql_connect(query, db='', host='')
+    from dump.labels.labels_old_values import make_old_values  # make_old_values()
+    from dump.labels.sql_db import new_pymysql_connect  # new_pymysql_connect(query, db='', host='')
 except ImportError:
-    from labels_old_values import make_old_values# make_old_values()
+    from labels_old_values import make_old_values  # make_old_values()
     from sql_db import new_pymysql_connect             # new_pymysql_connect(query, db='', host='')
 # ---
 Dump_Dir = "/data/project/himo/dumps"
@@ -42,6 +42,7 @@ tab_o = {
     'langs': {},
     'file_date': '',
 }
+
 
 def log_dump(tab):
     # jsonname = f"{Dump_Dir}/labels_new.json"
@@ -166,7 +167,7 @@ def get_data():
     old = make_old_values()
     # ---
     # if y has key 'all' then return all else count other keys values
-    dod = lambda y : y['all'] if 'all' in y else sum(y.values())
+    def dod(y): return y['all'] if 'all' in y else sum(y.values())
     # ---
     old_tab = {x: dod(y) for x, y in old.items()}
     # ---

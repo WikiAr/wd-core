@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 #  python pwb.py wd/wikinews
 #
-import pywikibot
 # ---
 quuu = {}
 quuu['species of beetle'] = """

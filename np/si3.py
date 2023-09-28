@@ -11,15 +11,8 @@ sys.argv.append('-lang:wikidata')
 # ---
 import json
 import codecs
-import pywikibot
 import re
-import os
 from pathlib import Path
-import string
-import time
-import urllib
-import urllib.request
-import urllib.parse
 import datetime
 from datetime import datetime
 # ---
@@ -227,7 +220,7 @@ def work_qs(q, NewDesc):
 
 def work_api_desc(NewDesc, q, fixlang):
     # ---
-    g = ''
+    pass
     # ---
     if MainTestTable[1] or "dd" in sys.argv:
         printe.output('<<lightyellow>> Without save:')

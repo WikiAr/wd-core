@@ -42,7 +42,7 @@ def open_file2(filename):
     # ---
     # افتح الملف باستخدام gzip
     # with gzip.open(filename, 'rt', encoding='utf-8') as file:
-        # sql_content = file.read()
+    # sql_content = file.read()
     # ---
     with gzip.open(filename, 'rt', encoding='utf-8') as file:
         # استخدم tqdm لإضافة شريط التقدم أثناء قراءة الملف
@@ -53,6 +53,7 @@ def open_file2(filename):
                 pbar.update(len(line))
     # ---
     return sql_content
+
 
 def open_file(filename):
     print(f'open file:{filename}')

@@ -7,7 +7,6 @@ python3 core8/pwb.py dump/labels/save
 #
 import sys
 import os
-from pathlib import Path
 # ---
 from wd_API import himoAPI
 # ---

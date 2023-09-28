@@ -13,15 +13,10 @@
 #
 
 
-import re
-import time
 import pywikibot
 # ---
 import sys
 # ---
-import urllib
-import urllib.request
-import urllib.parse
 
 # ---
 from API import himoBOT2

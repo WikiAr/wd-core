@@ -11,19 +11,12 @@ python pwb.py des/filmnew
 #
 #
 import re
-import time
 import pywikibot
 
-import datetime
-import json
 # ---
 
 from API import printe
-import sys
 # ---
-import urllib
-import urllib.request
-import urllib.parse
 # ---
 from wd_API import wd_desc
 from wd_API import wd_bot

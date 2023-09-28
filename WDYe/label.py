@@ -3,11 +3,7 @@
 
 import pywikibot
 from pywikibot import pagegenerators as pg
-import re
 
-import sys
-import datetime
-from datetime import datetime, date, time
 
 replacedesc = {'ar': ['سياسي أميركي', '',]}
 taxondescs = {
@@ -41,7 +37,6 @@ def preee(wditem, data, site):
 def action_one_item(wditem):
     global items2do
     items2do -= 1
-    enwiki = 'arwiki'
     if ('arwiki' in wditem.sitelinks):
         ma = wditem.sitelinks['arwiki']
         # print(ma)
@@ -50,7 +45,6 @@ def action_one_item(wditem):
         # print(site)
         if ('ar' in wditem.labels):  # وصف انجليزي متوفر في ويكي بيانات
             print(' تسمية عربية متوفرة: %s ' % wditem.labels['ar'])
-            pass
         else:
             print("--- يتم العمل على العنصر %s " % wditem)
             print("-- التسمية :  %s " % ma)
@@ -67,11 +61,10 @@ def action_one_item(wditem):
 def action_one_item2(wditem):
     global items2do
     items2do -= 1
-    enwiki = 'arwiki'
     if ('arwiki' in wditem.sitelinks):
-        ma = wditem.sitelinks['arwiki']
+        ma =wditem.sitelinks['arwiki']
     if ('ar' in wditem.sitelinks):
-        ma = wditem.sitelinks['arwiki']
+        ma =wditem.sitelinks['arwiki']
         # print(ma)
         # site = ma.title
         # if site:
@@ -114,7 +107,7 @@ def addorreplace(wditem):
     return 1
 
     return 0
-	"""
+    """
 
 
 def wd_sparql_generator(query):

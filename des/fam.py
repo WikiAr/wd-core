@@ -13,7 +13,7 @@ python3 core8/pwb.py des/fam
 # ---
 from API import printe
 from API import himoBOT2
-from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
+from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
 import sys
 import random
 # ---
@@ -22,7 +22,6 @@ from wd_API import newdesc
 # newdesc.mainfromQuarry2( topic, Quarry, translations)
 # newdesc.work22(q, topic, translations)
 # ---
-from des.places import placesTable
 from des.railway import railway_tables, work_railway
 # ---
 desc_table = {

@@ -4,10 +4,6 @@ import pywikibot
 from pywikibot import pagegenerators as pg
 
 
-import sys
-import datetime
-from datetime import datetime, date, time
-
 debugedo = True
 debugedo = False
 debug = False
@@ -53,7 +49,6 @@ def main():
             action_one_item(wditem)
             itemsdone += 1
         except:
-            pass
             print('%s تخطي' % wditem)
     print('العناصر المكتملة: %s' % itemsdone)
 

@@ -23,24 +23,15 @@ ORDER BY DESC(?count)
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 # ---
 #
-import re
-import time
 
 import pywikibot
-import json
 # import sys
-from pywikibot import pagegenerators as pg
-import unicodedata
 # import urllib
 # import urllib.request
 # import urllib.parse
-import unicodedata
 # ---
 import sys
 # ---
-import urllib
-import urllib.request
-import urllib.parse
 # ---
 from wd_API import wd_bot
 # ---

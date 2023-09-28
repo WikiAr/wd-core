@@ -10,7 +10,6 @@ from np.scientific_article import make_scientific_article
 #
 import re
 import dateutil.parser
-import sys
 # ---
 from API import printe
 from desc_dicts.scientific_article_desc import Scientific_descraptions

@@ -15,12 +15,10 @@ letters_to_latin = {
     "ru": {
         "а": "a",
         "б": "b",
-        "": "c",
         "д": "d",
         "е": "e",
         "ф": "f",
         "г": "g",
-        "х": "h",
         "и": "i",
         "ю": "ju",
         "к": "k",
@@ -29,19 +27,14 @@ letters_to_latin = {
         "н": "n",
         "о": "o",
         "п": "p",
-        "": "q",
         "р": "r",
         "с": "s",
         "т": "t",
-        "": "u",
         "в": "v",
-        "": "w",
-        "": "x",
         "й": "y",
         "з": "z",
         "А": "A",
         "Б": "B",
-        "": "C",
         "Д": "D",
         "Э": "E",
         "Ф": "F",
@@ -55,14 +48,10 @@ letters_to_latin = {
         "Н": "N",
         "О": "O",
         "П": "P",
-        "": "Q",
         "Р": "R",
         "С": "S",
         "Т": "T",
-        "": "U",
         "В": "V",
-        "": "W",
-        "": "X",
         "Й": "Y",
         "З": "Z",
         "ж": "zj",
@@ -353,7 +342,6 @@ def make_en_label(labels, q, Add=False):
     org_lab = ''
     new_lab = ''
     # ---
-    liste = []
     # ---
     for lang in ['ru', 'sr']:
         if lang in labels:
@@ -391,7 +379,7 @@ limit 10'''  # country of origin=Srbia  #xxxx items
         q = item.title(as_link=False)
         if item.exists():
             item.get(get_redirect=True)
-            newlab = make_en_label(labels, q)
+            make_en_label(labels, q)
 
 
 # ---

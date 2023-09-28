@@ -15,7 +15,6 @@ https://github.com/emijrp/wikidata/blob/core/master/human.descriptions.py
 #
 import pywikibot
 
-import unicodedata
 translationsNationalities = {
     'Afghan': {
         'ar': {'male': 'أفغاني', 'female': 'أفغانية'},

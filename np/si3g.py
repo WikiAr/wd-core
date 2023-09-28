@@ -32,12 +32,8 @@ import sys
 sys.argv.append('-family:wikidata')
 sys.argv.append('-lang:wikidata')
 # ---
-import json
 import codecs
-import pywikibot
-import re
 import time
-import os
 from pathlib import Path
 # ---
 from API import printe
@@ -70,7 +66,6 @@ def mainwithcat2():
     # python3 core8/pwb.py np/si3g -newpages:10
     # python3 core8/pwb.py np/si3g -newpages:1000
     # python3 core8/pwb.py np/si3g -newpages:20000
-    options = {}
     # ---
     start = time.time()
     # ---
@@ -139,7 +134,6 @@ def mainwithcat2():
         genet = gent.get_gent()
         lista = [page.title(as_link=False) for page in genet]
     # ---
-    counter = 0
     # ---
     num = 0
     printe.output('*<<lightred>> > mainwithcat2 :')

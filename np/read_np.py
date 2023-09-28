@@ -4,12 +4,8 @@
 from np.si3 import Qids_translate, space_list_and_other, others_list, others_list_2, Geo_List
 from np import read_json
 import sys
-import json
-import os
 from pathlib import Path
-import codecs
 import pywikibot
-import re
 # ---
 Dir = Path(__file__).parent
 main_dir1 = str(Path(__file__).parent.parent) + '/'
@@ -46,7 +42,7 @@ def read_new_types_file():
     # wd_file = json.load(listt)
     # ---
     wd_file = read_json.read_bad_json(jsonfile)
-    Years = wd_file.keys()
+    # wd_file.keys()
     # ---
     PP = [[leen, gf] for gf, leen in wd_file.items()]
     PP.sort(reverse=True)

@@ -28,6 +28,8 @@ for _f in files:
         with open(f'{Dump_Dir}/{_f}', 'w', encoding='utf-8') as f:
             json.dump({}, f)
 # ---
+
+
 def fix_props(props):
     # print size of props in memory
     o_size = sys.getsizeof(props)
@@ -68,6 +70,7 @@ def fix_props(props):
     print(f"o_size:{o_size}, n_size:{n_size}, diff:{n_size-o_size}")
     # ---
     return propsn
+
 
 def start():
     faf = 'claims'
@@ -113,6 +116,7 @@ def start():
     # ---
     print(f"log_dump {jsonname} done..")
     # ---
+
 
 if __name__ == '__main__':
     start()

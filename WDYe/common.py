@@ -11,22 +11,12 @@ python pwb.py wd/common
 # (C) Ibrahem Qasim, 2022
 #
 from wd_API import newdesc
-import urllib
 
 import pywikibot
 # import pwb
-import re
-import string
-import time
-import unicodedata
 
 # ---
-import sys
 # ---
-import urllib
-import urllib
-import urllib.request
-import urllib.parse
 # ---
 # import urllib
 # import urllib.request
@@ -164,7 +154,6 @@ def main():
     pywikibot.output('*<<lightyellow>> main:')
     queries_list = [x for x in queries.keys()]
     queries_list.sort()
-    skip = ''
     lenth = len(queries_list)
     numb = 0
     for topic in queries_list:

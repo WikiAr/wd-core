@@ -2,11 +2,8 @@
 #
 #
 #
-import re
-import time
 
 import pywikibot
-import json
 # ---
 # start of newdesc.py file
 from wd_API import newdesc

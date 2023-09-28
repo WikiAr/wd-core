@@ -3,17 +3,10 @@
 #
 #
 #
-import re
-import time
 
 import pywikibot
-import json
 # ---
-import sys
 # ---
-import urllib
-import urllib.request
-import urllib.parse
 # ---
 from wd_API import wd_bot
 # wd_bot.wd_from_file(file)

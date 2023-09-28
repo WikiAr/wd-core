@@ -6,7 +6,6 @@ from pathlib import Path
 import json
 import sys
 import codecs
-import urllib.parse
 import re
 import requests
 Session = requests.Session()
