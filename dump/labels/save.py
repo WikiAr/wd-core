@@ -34,4 +34,12 @@ for file, title in file_to_title.items():
             print(f'file {file} <<lightred>> empty.')
             continue
         # ---
+        if file == 'labels.txt' and len(text) < 50000:
+            print(f'file {file} <<lightred>> too small.')
+            continue
+        # ---
+        if file == 'template.txt' and len(text) < 5000:
+            print(f'file {file} <<lightred>> too small.')
+            continue
+        # ---
         himoAPI.page_putWithAsk("", text, "Bot - Updating stats", title, False)
