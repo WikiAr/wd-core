@@ -111,8 +111,7 @@ limit = {1: 0}
 # ---
 totallimit = {1: 10000}
 # ---
-from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS, p50s
-from np.nldesc import *
+from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS
 # ---
 
 
@@ -180,7 +179,6 @@ def wd_all_simple_P131():
                     # action_one_P131_item()
                 else:
                     printe.output(f'Else wd-simple: {oneitem.title()}')
-                    pass
             except:
                 pass
     yield 'Q5'
@@ -431,7 +429,6 @@ def just_get_ar(labe):
 
 
 def main(debug=False):
-    maxwrites=1
     print('main')
     sasa = ''
     pigenerator=None

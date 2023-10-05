@@ -23,7 +23,6 @@ import sqlite3
 import gzip
 import os
 import tqdm
-import shutil
 from pathlib import Path
 # ---
 try:
@@ -61,8 +60,8 @@ for local_filename in file_links:
         # ---
         # استخدام tqdm لعرض شريط التقدم
         with tqdm.wrapattr(open(filename, "wb"), "write", miniters=1,
-                            total=int(response.headers.get('content-length', 0)),
-                            desc=filename) as local_file:
+                           total=int(response.headers.get('content-length', 0)),
+                           desc=filename) as local_file:
             for data in response.iter_content(chunk_size=1024):
                 local_file.write(data)
         # ---

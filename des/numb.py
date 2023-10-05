@@ -8,13 +8,9 @@ python3 core8/pwb.py des/numb
 # (C) Ibrahem Qasim, 2022
 #
 #
-import pywikibot
 
-import re
 
 from API import printe
-import sys
-import time
 # ---
 from wd_API import wd_bot
 from API import himoBOT2

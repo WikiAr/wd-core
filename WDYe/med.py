@@ -13,7 +13,6 @@
 
 
 import re
-import time
 import pywikibot
 # ---
 from API import printe

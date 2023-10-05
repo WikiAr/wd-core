@@ -11,11 +11,8 @@ python pwb.py c30/p31 enwiki
 # (C) Ibrahem Qasim, 2022
 #
 from wd_API import himoAPI
-import urllib
 import pywikibot
 
-import re
-import string
 # ---
 import sys
 # ---

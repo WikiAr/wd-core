@@ -11,10 +11,8 @@
 
 import json as JJson
 import re
-import time
 import codecs
 import traceback
-from datetime import datetime
 # ---
 from API import printe
 # ---
@@ -23,12 +21,8 @@ try:
 except:
     pywikibot = False
 # ---
-import sys
 
 # ---
-import urllib
-import urllib.request
-import urllib.parse
 # ---
 
 

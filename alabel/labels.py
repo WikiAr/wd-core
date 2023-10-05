@@ -12,7 +12,6 @@ python3 core8/pwb.py alabel/labels -limit:20
 # (C) Ibrahem Qasim, 2023
 #
 #
-import re
 import sys
 # ---
 from API import printe

@@ -1,9 +1,7 @@
 """
 python3 core8/pwb.py dump/arlanglinks
 """
-import sqlite3
 import sys
-import os
 import json
 from pathlib import Path
 # ---

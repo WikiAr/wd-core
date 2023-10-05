@@ -13,9 +13,7 @@ python pwb.py cy/cy5 workibrahem test2 -title:كوين_سيمونز
 # (C) Ibrahem Qasim, 2022
 #
 #
-import json
 import re
-import time
 import sys
 import urllib
 import urllib.request
@@ -951,7 +949,7 @@ def work_tano(text, MainTitle):
     # ---
     # reg_line2 = '\{\{نتيجة سباق الدراجات\/سطر4\s*?.*?\}\}'
     reg_line = r'\{\{نتيجة سباق الدراجات\/سطر4([^{]|\{[^{]|\{\{[^{}]+\}\})+\}\}'
-    fff = re.compile(reg_line)
+    re.compile(reg_line)
     # pas = fff.findall( text )
     # ---
     # vf = re.compile(r'\{\{نتيجة سباق الدراجات\/سطر4([^{]|\{[^{]|\{\{[^{}]+\}\})+\}\}' ).findall( text )
@@ -1026,7 +1024,6 @@ def work_tano(text, MainTitle):
             if not liner in new_lines[MainTitle].keys():
                 removed_line += 1
     # ---
-    removed_line_date = 0
     states[MainTitle] = {"new_line": new_line, "same_line": same_line, "removed_line": removed_line}
     # ---
     liner = "new_line:%d,same_line:%d,removed_line:%d" % (new_line, same_line, removed_line)
@@ -1043,7 +1040,7 @@ def puttext(text, MainTitle, Newsect):
     printt('**puttext: ' + br)
     sect, Frist = GetSectionNew3(text)
     # ---
-    liner = work_tano(sect, MainTitle)
+    work_tano(sect, MainTitle)
     # ---
     text = text
     Newsect = Frist + '\n' + Newsect + '{{نتيجة سباق الدراجات/نهاية}}'
@@ -1185,7 +1182,6 @@ def StartOnePage(title):
     # ---
     title = title.replace('_', ' ')
     # ---
-    title_orginal = title
     if title.find("%") == -1:
         title = ec_de_code(title, 'encode')
         # print( 'title encode: ' + title )

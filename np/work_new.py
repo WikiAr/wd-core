@@ -2,12 +2,9 @@
 
 """
 import sys
-import json
-import os
 from pathlib import Path
 
 import pywikibot
-import re
 # ---
 Dir = Path(__file__).parent
 # ---

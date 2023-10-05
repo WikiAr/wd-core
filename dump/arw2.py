@@ -11,7 +11,6 @@ python3 core8/pwb.py dump/arw2 test nosave limit:5000
 # (C) Ibrahem Qasim, 2017
 import sys
 import os
-from pathlib import Path
 import bz2
 import json
 import time
@@ -280,7 +279,7 @@ def read_data():
                     continue
                 # ---
                 arlink = sitelinks.get('arwiki', {}).get('title', '')
-                if not arlink :
+                if not arlink:
                     # عناصر بوصلات لغات بدون وصلة عربية
                     stats_tab['sitelinks_no_ar'] += 1
                     del json1, sitelinks
@@ -331,7 +330,7 @@ def read_data():
                     if p31x in stats_tab['p31_main_tab'][arlink_type]:
                         stats_tab['p31_main_tab'][arlink_type][p31x] += 1
                     else:
-                        stats_tab['p31_main_tab'][arlink_type][p31x]  = 1
+                        stats_tab['p31_main_tab'][arlink_type][p31x] = 1
                 # ---
                 tat = ['labels', 'descriptions', 'aliases']
                 # ---
@@ -360,6 +359,7 @@ def read_data():
                                 stats_tab['Table_no_ar_lab'][p31d] = 0
                             stats_tab['Table_no_ar_lab'][p31d] += 1
     # ---
+
 
 def make_P31_table_no():
     # ---

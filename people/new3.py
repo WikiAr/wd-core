@@ -401,7 +401,7 @@ def Main_Test():
     qua = qua + ' . ?item schema:description "Argentinian actor"@en.  '
     qua = qua + \
         'OPTIONAL { ?item schema:description ?de. FILTER(LANG(?de) = "fr"). } FILTER (!BOUND(?de)) }'
-    json1 = wd_bot.sparql_generator_url(qua)
+    wd_bot.sparql_generator_url(qua)
 
 
 # ---

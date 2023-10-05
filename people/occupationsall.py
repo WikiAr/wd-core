@@ -19,7 +19,6 @@ https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
 #
 #
 
-import unicodedata
 # ---
 translationsOccupations_new = {
     '~ Indigenous artist': {

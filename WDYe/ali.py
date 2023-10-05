@@ -10,17 +10,9 @@
 from wd_API import wd_bot
 from api_sql import sql
 from API import himoBOT2
-import urllib.parse
-import urllib.request
-import re
-import time
 import pywikibot
 # import pywikibot.data.wikidataquery as wdquery
 # used in logfiles, unicoded strings
-import datetime
-import json
-import urllib
-import unicodedata
 # ---
 import sys
 # ---

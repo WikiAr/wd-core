@@ -8,7 +8,7 @@ import os
 import gzip
 # make memory to 20GB
 gzip._OUTPUT_BUFSIZ = 20 * 1024 * 1024
-#---
+# ---
 Dir = Path(__file__).parent
 print(f'Dir:{Dir}')
 # ---
@@ -49,6 +49,8 @@ if True:
 # ---
 # فتح الملفات
 # ---
+
+
 def read_dp(file):
     # Extract the gzipped SQL files
     print(f"read file:{file}")
@@ -65,6 +67,8 @@ def read_dp(file):
                 if n % 10000 == 0:
                     print(line)
                     print(f"n:{n}")
+
+
 # ---
 # Local filenames for the downloaded files
 dump_dir = '/mnt/nfs/dumps-clouddumps1002.wikimedia.org/wikidatawiki/latest'

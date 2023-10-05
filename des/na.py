@@ -9,9 +9,7 @@
 # (C) Ibrahem Qasim, 2022
 #
 #
-import pywikibot
 
-import time
 import re
 # ---
 
@@ -38,12 +36,11 @@ def action(json1):
         total = 0
     c = 1
     # ---
-    lang = "ar"
     for tab in json1:    # عنصر ويكي بيانات
         q = tab["item_q"]
         if not q in items_done:
             en_name = tab["en_name"]
-            item_en = tab["item_en"]
+            tab["item_en"]
             ar_lab = tab["ar_name"]
             # ---
             kaka = re.sub(r"[abcdefghijklmnopqrstuvwxyz]", "", ar_lab)

@@ -9,9 +9,7 @@
 # (C) Ibrahem Qasim, 2022
 #
 #
-import pywikibot
 
-import time
 import re
 import sys
 # ---

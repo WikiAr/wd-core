@@ -80,7 +80,7 @@ def check_file_date(file_date):
     # ---
     if old_date == file_date and 'test' not in sys.argv:
         print(f"file_date: {file_date} <<lightred>> unchanged")
-        sys.exit(0)                
+        sys.exit(0)
 
 
 def read_file():

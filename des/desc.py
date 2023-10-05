@@ -44,11 +44,9 @@ limit 100
 # (C) Ibrahem Qasim, 2022
 #
 #
-import pywikibot
 
 import re
 import sys
-import time
 # ---
 from API import printe
 from wd_API import himoAPI
@@ -63,7 +61,6 @@ donelist = []
 bylangs = False  # False#True
 # ---
 placesTable = {}
-from des.railway import railway_tables
 from des.places import *  # placesTable
 # ---
 placesTable["Q29701762"] = {"ar": "مستوطنة"}

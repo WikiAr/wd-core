@@ -2,17 +2,12 @@
 
 """
 import sys
-import json
-import os
 from pathlib import Path
 
-import pywikibot
-import re
 # ---
 Dir = Path(__file__).parent
 # ---
 # ---
-from np import read_json
 # ---
 from np import si3
 si3.MainTestTable[1] = True

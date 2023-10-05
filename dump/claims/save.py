@@ -7,7 +7,6 @@ python3 core8/pwb.py dump/claims/save
 #
 import sys
 import os
-from pathlib import Path
 # ---
 from wd_API import himoAPI
 # ---
@@ -32,6 +31,14 @@ for file, title in file_to_title.items():
         # ---
         if text.strip() == "":
             print(f'file {file} <<lightred>> empty.')
+            continue
+        # ---
+        if file == 'claims_new.txt' and len(text) < 100000:
+            print(f'file {file} <<lightred>> too small.')
+            continue
+        # ---
+        if file == 'claims_p31.txt' and len(text) < 10000:
+            print(f'file {file} <<lightred>> too small.')
             continue
         # ---
         himoAPI.page_putWithAsk("", text, "Bot - Updating stats", title, False)

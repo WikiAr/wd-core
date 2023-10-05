@@ -11,7 +11,6 @@ python3 core8/pwb.py wd/koo -ns:0 -ref:قالب:كووورة
 #
 from wd_API import himoAPI_test as himoAPI
 from API import himoBOT2
-import urllib
 
 import pywikibot
 # ---
@@ -20,15 +19,9 @@ import gent
 # ---
 #
 
-import requests
-import time as ttime
-from datetime import datetime
 from pywikibot import textlib
 
-import re
-import unicodedata
 # ---
-import sys
 # ---
 
 done = []
@@ -65,14 +58,13 @@ def woo(page):
         # pywikibot.output( "P31:%s" % P31 )
     # ---
     if not iin and not id in done:
-        f = himoAPI.Claim_API_string(qid, "P8021", id)
+        himoAPI.Claim_API_string(qid, "P8021", id)
         done.append(id)
         # pywikibot.output( f )
     # ---
 
 
 def main(*args):
-    options = {}
     generator = gent.get_gent(*args)
 
     for page in generator:

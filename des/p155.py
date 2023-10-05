@@ -15,15 +15,11 @@
 
 import re
 
-import time
 import pywikibot
 # ---
 from API import printe
 import sys
 # ---
-import urllib
-import urllib.request
-import urllib.parse
 # ---
 from API import himoBOT2
 # ---
@@ -36,7 +32,7 @@ yes_answer = ["y", "a", "", "Y", "A", "all"]
 # ---
 from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
 # ---
-from des.p155tables import keys_1, Sports_Keys_Lab, Sports_Keys_Team
+from des.p155tables import keys_1, Sports_Keys_Lab
 # ---
 log_done = []
 # ---
