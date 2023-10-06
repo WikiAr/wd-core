@@ -9,7 +9,7 @@ import re
 from API import printe
 import sys
 # ---
-from wd_API import himoAPI
+from wd_api import himoAPI
 from API import himoBOT2
 # ---
 # --- == == == == == == == == == == == ==

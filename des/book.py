@@ -19,8 +19,8 @@ import pywikibot
 import sys
 # ---
 from API import himoBOT2
-from wd_API import wd_desc
-from wd_API import wd_bot
+from wd_api import wd_desc
+from wd_api import wd_bot
 from API import printe
 # ---
 AskSave = {1: True}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from wd_API import newdesc
+from wd_api import newdesc
 # ---
 from desc_dicts.descraptions import DescraptionsTable
 # ---

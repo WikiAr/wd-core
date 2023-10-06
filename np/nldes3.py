@@ -99,8 +99,8 @@ import sys
 import re
 from datetime import timedelta
 # ---
-from wd_API import himoAPI
-from wd_API import wd_bot
+from wd_api import himoAPI
+from wd_api import wd_bot
 # ---
 totaledits=0
 # ---

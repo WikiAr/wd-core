@@ -40,9 +40,9 @@ SELECT * WHERE {
 #
 from people.Nationalities import translationsNationalities
 import people.occupationsall as oc
-from wd_API import wd_bot
+from wd_api import wd_bot
 from API import printe
-from wd_API import wd_desc
+from wd_api import wd_desc
 import re
 
 import time

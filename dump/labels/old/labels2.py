@@ -48,7 +48,7 @@ himo_API = {1: False}
 
 def save(text, title_):
     if not himo_API[1]:
-        from wd_API import himoAPI
+        from wd_api import himoAPI
         himo_API[1] = himoAPI
     himo_API[1].page_putWithAsk('', text, 'Bot - Updating stats', title_, False)
 
