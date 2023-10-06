@@ -15,7 +15,7 @@ python3 core8/pwb.py alabel/labels -limit:20
 import sys
 # ---
 from API import printe
-from wd_API import himoAPI_test as himoAPI
+from wd_api import himoAPI_test as himoAPI
 # ---
 Limit = {1: ''}
 # ---

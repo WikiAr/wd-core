@@ -23,7 +23,7 @@ import sys
 # ---
 from API import himoBOT2
 # ---
-from wd_API import himoAPI_test as himoAPI
+from wd_api import himoAPI_test as himoAPI
 # ---
 Usema = {1: True}
 Ask = {1: True}

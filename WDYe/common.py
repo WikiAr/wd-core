@@ -10,7 +10,7 @@ python pwb.py wd/common
 #
 # (C) Ibrahem Qasim, 2022
 #
-from wd_API import newdesc
+from wd_api import newdesc
 
 import pywikibot
 # import pwb

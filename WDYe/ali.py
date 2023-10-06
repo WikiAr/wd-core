@@ -7,7 +7,7 @@
 #
 # (C) Ibrahem Qasim, 2022
 #
-from wd_API import wd_bot
+from wd_api import wd_bot
 from api_sql import sql
 from API import himoBOT2
 import pywikibot
@@ -23,11 +23,11 @@ File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
 
 # ---
 try:
-    from wd_API import himoAPI_test as himoAPI
+    from wd_api import himoAPI_test as himoAPI
 except:
     pywikibot.output('<<lightred>> Can\'t import himoAPI_test as himoAPI')
 # ---
-# from wd_API import himoAPI
+# from wd_api import himoAPI
 # ---
 ask = {1: True}
 OFFSET = {1: '   '}

@@ -18,8 +18,8 @@ import pywikibot
 from API import printe
 # ---
 # ---
-from wd_API import wd_desc
-from wd_API import wd_bot
+from wd_api import wd_desc
+from wd_api import wd_bot
 # ---
 wikidatasite = pywikibot.Site('wikidata', 'wikidata')
 repo = wikidatasite.data_repository()

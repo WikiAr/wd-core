@@ -49,9 +49,9 @@ import re
 import sys
 # ---
 from API import printe
-from wd_API import himoAPI
+from wd_api import himoAPI
 from API import himoBOT2
-from wd_API import wd_bot
+from wd_api import wd_bot
 # ---
 # from correct import CorrectList
 ContriesTable2 = {}
@@ -207,7 +207,7 @@ WHERE {
   }
 '''
 # ---
-from wd_API import get_property_for_list
+from wd_api import get_property_for_list
 # get_property_for_list.get_property_label_for_qids( [property], List )
 # ---
 

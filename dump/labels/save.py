@@ -8,7 +8,7 @@ python3 core8/pwb.py dump/labels/save
 import sys
 import os
 # ---
-from wd_API import himoAPI
+from wd_api import himoAPI
 # ---
 Dump_Dir = "/data/project/himo/dumps"
 # ---

@@ -4,7 +4,7 @@
 import sys
 import pywikibot
 # ---
-from wd_API import newdesc
+from wd_api import newdesc
 # ---
 quuu = {}
 quuu['month'] = '''

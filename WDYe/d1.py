@@ -18,7 +18,7 @@ ORDER BY DESC(?count)
 '''
 # ---
 # start of newdesc.py file
-# from wd_API import newdesc
+# from wd_api import newdesc
 #   newdesc.main_from_file(file , topic , translations2)
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 # ---
@@ -33,9 +33,9 @@ import pywikibot
 import sys
 # ---
 # ---
-from wd_API import wd_bot
+from wd_api import wd_bot
 # ---
-from wd_API import wd_desc
+from wd_api import wd_desc
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
 # wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
 # ---
@@ -63,7 +63,7 @@ SELECT DISTINCT
 LIMIT 100000"""
 # ---
 # start of newdesc.py file
-# from wd_API import newdesc
+# from wd_api import newdesc
 # newdesc.work22(q , topic, translations)
 # newdesc.main_from_file(file , topic , translations)
 # newdesc.mainfromQuarry2( topic , Quarry, translations)

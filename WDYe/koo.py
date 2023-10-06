@@ -9,7 +9,7 @@ python3 core8/pwb.py wd/koo -ns:0 -ref:قالب:كووورة
 #
 # (C) Ibrahem Qasim, 2022
 #
-from wd_API import himoAPI_test as himoAPI
+from wd_api import himoAPI_test as himoAPI
 from API import himoBOT2
 
 import pywikibot

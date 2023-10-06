@@ -16,10 +16,10 @@ import pywikibot
 import re
 # ---
 # ---
-from wd_API import wd_bot
-from wd_API import wd_desc
+from wd_api import wd_bot
+from wd_api import wd_desc
 # ---
-from wd_API import himoAPI
+from wd_api import himoAPI
 # ---
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 Tras = {

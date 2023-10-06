@@ -12,9 +12,9 @@ python3 core8/pwb.py des/numb
 
 from API import printe
 # ---
-from wd_API import wd_bot
+from wd_api import wd_bot
 from API import himoBOT2
-from wd_API import himoAPI
+from wd_api import himoAPI
 # ---
 limit = {1: 0}
 quarry = '''SELECT (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)

@@ -1,7 +1,7 @@
 """
 #  python pwb.py wd/wikinews
 """
-from wd_API import newdesc
+from wd_api import newdesc
 # ---
 from desc_dicts.descraptions import Qid_Descraptions
 # ---

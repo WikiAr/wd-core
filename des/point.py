@@ -15,7 +15,7 @@ import sys
 # ---
 
 from API import printe, himoBOT2
-from wd_API import himoAPI, wd_bot
+from wd_api import himoAPI, wd_bot
 # ---
 bylangs = False  # False#True
 # ---

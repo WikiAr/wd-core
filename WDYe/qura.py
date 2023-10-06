@@ -8,11 +8,11 @@ import pywikibot
 # ---
 # ---
 # ---
-from wd_API import wd_bot
+from wd_api import wd_bot
 # wd_bot.wd_from_file(file)
 # wd_bot.GetItemFromQid(q)
 # ---
-from wd_API import newdesc
+from wd_api import newdesc
 # newdesc.main_from_file(file , topic , translations2)
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 # ---

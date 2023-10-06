@@ -29,11 +29,11 @@ from np import read_json
 from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)
 # ---
-from wd_API import himoAPI
-from wd_API import wd_bot
+from wd_api import himoAPI
+from wd_api import wd_bot
 from API import himoBOT2
 # ---
-from wd_API import wd_desc
+from wd_api import wd_desc
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
 # wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
 # ---
