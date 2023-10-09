@@ -293,7 +293,7 @@ many_lang_qid_desc = {
         "cs": "chemická sloučenina",
         "da": "kemisk forbindelse",
         "de": "chemische Verbindung",
-        "de-ch": "chemische Verbindung",
+        
         "en": "chemical compound",
         "sl": "kemična spojina",
         "eo": "kemia kombinaĵo",
@@ -373,8 +373,8 @@ many_lang_qid_desc = {
         "cy": "cyfenw",
         "da": "efternavn",
         "de": "Familienname",
-        "de-at": "Familienname",
-        "de-ch": "Familienname",
+        
+        p
         "el": "επώνυμο",
         "en": "family name",
         
@@ -507,8 +507,8 @@ many_lang_qid_desc = {
         "cy": "enw personol benywaidd",
         "da": "pigenavn",
         "de": "weiblicher Vorname",
-        "de-at": "weiblicher Vorname",
-        "de-ch": "weiblicher Vorname",
+        
+        
         "el": "γυναικείο όνομα",
         "en": "female given name",
         "eo": "virina persona nomo",
@@ -580,8 +580,8 @@ many_lang_qid_desc = {
         "ca": "prenom ambigu",
         "cs": "obourodé jméno",
         "de": "geschlechtsneutraler Vorname",
-        "de-at": "geschlechtsneutraler Vorname",
-        "de-ch": "geschlechtsneutraler Vorname",
+        
+        
         "el": "ανδρικό ή γυναικείο όνομα",
         "en": "unisex given name",
         "eo": "seksneŭtra persona nomo",
@@ -660,8 +660,8 @@ many_lang_qid_desc = {
         "cy": "enw personol gwrywaidd",
         "da": "drengenavn",
         "de": "männlicher Vorname",
-        "de-at": "männlicher Vorname",
-        "de-ch": "männlicher Vorname",
+        
+        
         "el": "ανδρικό όνομα",
         "en": "male given name",
         "eo": "vira persona nomo",
@@ -824,8 +824,6 @@ many_lang_qid_desc = {
         "de": "Wikimedia-Kategorie",
         "el": "κατηγορία εγχειρημάτων Wikimedia",
         "en": "Wikimedia category",
-        "en-ca": "Wikimedia category",
-        "en-gb": "Wikimedia category",
         "eo": "kategorio en Vikimedio",
         "es": "categoría de Wikimedia",
         "et": "Wikimedia kategooria",
@@ -906,8 +904,6 @@ many_lang_qid_desc = {
         "de-ch": "Wikimedia-Begriffsklärungsseite",
         "el": "σελίδα αποσαφήνισης",
         "en": "Wikimedia disambiguation page",
-        "en-ca": "Wikimedia disambiguation page",
-        "en-gb": "Wikimedia disambiguation page",
         "eo": "Vikimedia apartigilo",
         "es": "página de desambiguación de Wikimedia",
         "et": "Wikimedia täpsustuslehekülg",
@@ -1326,8 +1322,6 @@ Space_Desc = {
              "sl": "galaksija",
              "id": "galaksi",
              "ne": "आकासगङ्गा",
-             "en-ca": "galaxy",
-             "en-gb": "galaxy",
              # "de": "Galaxie im Sternbild Jagdhunde",
              "es": "galaxia",
              # "it": "galassia nella costellazione dei Cani da Caccia",
