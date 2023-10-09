@@ -374,7 +374,7 @@ many_lang_qid_desc = {
         "da": "efternavn",
         "de": "Familienname",
         
-        p
+        
         "el": "επώνυμο",
         "en": "family name",
         
