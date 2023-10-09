@@ -333,7 +333,7 @@ many_lang_qid_desc = {
     "Q24856": {  # film series
         "ar": "سلسلة أفلام",
         "sl": "filmska serija",
-        "en": "film series",,
+        "en": "film series",
         "tg-cyrl": "силсилаи филмҳо",
         "tg-latn": "silsilai filmho",
     },
@@ -374,7 +374,7 @@ many_lang_qid_desc = {
         "da": "efternavn",
         "de": "Familienname",
         
-        p
+        
         "el": "επώνυμο",
         "en": "family name",
         
