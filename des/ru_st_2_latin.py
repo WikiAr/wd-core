@@ -298,8 +298,6 @@ def add_new_label(q, enlabel):
     labels = {}
     # ---
     labels["en"] = {"language": "en", "value": enlabel}
-    labels["en-ca"] = {"language": "en-ca", "value": enlabel}
-    labels["en-gb"] = {"language": "en-gb", "value": enlabel}
     # ---
     data = {"labels": labels}
     # ---

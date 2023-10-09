@@ -66,18 +66,9 @@ Scientific_descraptions = {
     "zh-hant": "年學術文章",  # 年論文
 }
 # ---
-Scientific_descraptions['en-gb'] = Scientific_descraptions['en']
-Scientific_descraptions['en-ca'] = Scientific_descraptions['en']
-# ---
-Scientific_descraptions['zh-hk'] = Scientific_descraptions['zh-hant']
-Scientific_descraptions['zh-mo'] = Scientific_descraptions['zh-hant']
-Scientific_descraptions['zh-tw'] = Scientific_descraptions['zh-hant']
 Scientific_descraptions['yue'] = Scientific_descraptions['zh-hant']
 # ---
 Scientific_descraptions['zh-hans'] = Scientific_descraptions['zh']
-Scientific_descraptions['zh-cn'] = Scientific_descraptions['zh']
-Scientific_descraptions['zh-sg'] = Scientific_descraptions['zh']
-Scientific_descraptions['zh-my'] = Scientific_descraptions['zh']
 Scientific_descraptions['wuu'] = Scientific_descraptions['zh']
 # ---
 # ---
