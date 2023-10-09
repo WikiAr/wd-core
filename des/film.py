@@ -39,9 +39,7 @@ def action_one_item(Qid, pa, lang, keys):
         keys = list(keys)
         keys.sort()
         # ---
-        if 'en' in keys:
-            keys.append('en-gb')
-            keys.append('en-ca')
+        
         printe.output('keys:' + str(keys))
         # ---
         descriptions = item.descriptions
@@ -52,8 +50,7 @@ def action_one_item(Qid, pa, lang, keys):
             if lang not in descriptions.keys():
                 # ---
                 lang2 = lang
-                if lang in ('en-ca', 'en-gb'):
-                    lang2 = 'en'
+                
                 # ---
                 if MakeDesc(Qid, pa, lang2):
                     des = MakeDesc(Qid, pa, lang2)
