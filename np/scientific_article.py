@@ -24,15 +24,9 @@ Desc_Just_year = {
     "nan": "%s nî lūn-bûn",
 }
 # ---
-Desc_Just_year['zh-hk'] = Desc_Just_year['zh-hant']
-Desc_Just_year['zh-mo'] = Desc_Just_year['zh-hant']
-Desc_Just_year['zh-tw'] = Desc_Just_year['zh-hant']
 Desc_Just_year['yue'] = Desc_Just_year['zh-hant']
 # ---
 Desc_Just_year['zh-hans'] = Desc_Just_year['zh']
-Desc_Just_year['zh-cn'] = Desc_Just_year['zh']
-Desc_Just_year['zh-sg'] = Desc_Just_year['zh']
-Desc_Just_year['zh-my'] = Desc_Just_year['zh']
 Desc_Just_year['wuu'] = Desc_Just_year['zh']
 # ---
 '''
@@ -68,8 +62,6 @@ pubtxt = {
     "cs": "publikovaný v roce",
     "sk": "publikovaný",
 }
-pubtxt['en-gb'] = pubtxt['en']
-pubtxt['en-ca'] = pubtxt['en']
 # ---
 Month_Table = {
     "ar": {
@@ -144,9 +136,6 @@ Month_Table = {
     }
 }
 # ---
-Month_Table['en-gb'] = Month_Table['en']
-Month_Table['en-ca'] = Month_Table['en']
-# ---
 format = {
     "da": "videnskabelig artikel udgivet %s",
     # 'ar' : "مقالة علمية نشرت في %s",
@@ -156,9 +145,6 @@ format = {
     'es': "artículo científico publicado en %s",
     'bn': "%s-এ প্রকাশিত বৈজ্ঞানিক নিবন্ধ"
 }
-format['en-gb'] = format['en']
-format['en-ca'] = format['en']
-# ---
 JustYear = ["zh", "zh-hans", "zh-cn", "zh-sg", "zh-my", "wuu", "zh-hant", "zh-hk", "zh-mo", "zh-tw", "yue", "ja", "ko", "nan"]
 # ---
 
@@ -382,10 +368,6 @@ def make_scientific_article(item, p31, num, TestTable=False):
         desc = make_scientific_desc(lang, pubdate, precision)
         if desc:
             translations[lang] = desc
-    # ---
-    if 'en' in translations:
-        translations['en-gb'] = translations['en']
-        translations['en-ca'] = translations['en']
     # ---
     if TestTable:
         printe.output('<<lightgreen>> {}:{}'.format(translations["en"], translations["da"]))
