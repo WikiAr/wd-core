@@ -220,7 +220,7 @@ def work_qs(q, NewDesc):
 
 def work_api_desc(NewDesc, q, fixlang):
     # ---
-    pass
+    # pass
     # ---
     if MainTestTable[1] or "dd" in sys.argv:
         printe.output('<<lightyellow>> Without save:')
@@ -242,9 +242,11 @@ def work_api_desc(NewDesc, q, fixlang):
         onedesc = NewDesc[lang]['value']
         printe.output(f'work_api_desc:"{q}" only one desc"{lang}:{onedesc}"')
         himoAPI.Des_API(q, onedesc, lang)
+        
     elif len(langes) == 2 and langes[0] in lang_to_skip and langes[1] in lang_to_skip:
         printe.output(f'work_api_desc:"{q}" only en-gb and en-ca, Skipp... ')
         return
+        
     else:
         # Desc = NewDesc
         # ca = True
