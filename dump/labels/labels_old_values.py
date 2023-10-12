@@ -95,7 +95,7 @@ def from_wiki():
 
 def make_old_values():
     # ---
-    if len(_old_data) > 5:
+    if len(_old_data) > 5 and 'old' in sys.argv:
         print('data in the file..')
         json.dump(_old_data, codecs.open(file_old_data, 'w', 'utf-8'), indent=4)
         return _old_data

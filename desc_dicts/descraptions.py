@@ -1373,7 +1373,6 @@ Taxon_Descraptions = {
         "nn": "insektart",
         "pt": "espécie de inseto",
         "pt-br": "espécie de inseto",
-        "ru": "вид насекомых",
         "ro": "specie de insecte",
         "ru": "вид насекомых",
         "sq": "specie e insekteve",
