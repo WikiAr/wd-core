@@ -1,0 +1,2 @@
+# wd-core
+wikidata core
