@@ -8,7 +8,7 @@ rules:
 - "All new business logic should have corresponding unit tests in the tests/ directory."
 - "Any clearly inefficient or repeated code should be optimized or refactored."
 - "Update the README.md file whenever a new feature is added. Make sure to include a description of the feature and any new commands."
-- "We use unit tests for our code. If we have "class.py", we should have "class_test.py" in the same directory."
+- 'We use unit tests for our code. If we have "class.py", we should have "class_test.py" in the same directory.'
 # This is the branch that Sweep will develop from and make pull requests to. Most people use 'main' or 'master' but some users also use 'dev' or 'staging'.
 branch: 'main'
  
