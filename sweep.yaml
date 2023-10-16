@@ -42,3 +42,5 @@ sandbox:
   check:
     - trunk fmt {file_path}
     - trunk check --fix {file_path}
+    - trunk test np/si3g_test.py
+    - trunk test np/test_si3.py
