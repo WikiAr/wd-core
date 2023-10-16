@@ -36,10 +36,9 @@ def action_one_item(Qid, pa, lang, keys):
     if item:
         # desc = MakeDesc(Qid, auth, lang)
         # Summary= 'Bot: - Add descriptions: '+ lang
-        keys = list(keys)
-        keys.sort()
+        keys = sorted(keys)
         # ---
-        
+
         printe.output('keys:' + str(keys))
         # ---
         descriptions = item.descriptions
@@ -50,7 +49,7 @@ def action_one_item(Qid, pa, lang, keys):
             if lang not in descriptions.keys():
                 # ---
                 lang2 = lang
-                
+
                 # ---
                 if MakeDesc(Qid, pa, lang2):
                     des = MakeDesc(Qid, pa, lang2)
@@ -87,7 +86,7 @@ def getwditem(qitem):
         # ---
         item.get()
         return item
-    except:
+    except BaseException:
         return False
 
 

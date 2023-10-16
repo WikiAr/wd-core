@@ -378,7 +378,7 @@ def action_one_P131_item(lng, oneitem):
         return 1
     except ValueError:
         print("ValueError occured on %s", oneitem.title())
-    except:
+    except BaseException:
         print("Undefined error occured on %s-[%s]", oneitem.title(), 'simpleP131')
     else:
         pass  # print("Else:")
@@ -434,7 +434,7 @@ def its_a_tabon_in_thailand(lng, wditem):
 
 
 def Get_label_from_item(lng, wditem):
-    if wditem and type(wditem) == dict:
+    if wditem and isinstance(wditem, dict):
         labels = wditem.get('labels', {})
         # ---
         if lng in labels:

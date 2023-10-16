@@ -293,7 +293,7 @@ many_lang_qid_desc = {
         "cs": "chemická sloučenina",
         "da": "kemisk forbindelse",
         "de": "chemische Verbindung",
-        
+
         "en": "chemical compound",
         "sl": "kemična spojina",
         "eo": "kemia kombinaĵo",
@@ -373,11 +373,11 @@ many_lang_qid_desc = {
         "cy": "cyfenw",
         "da": "efternavn",
         "de": "Familienname",
-        
-        
+
+
         "el": "επώνυμο",
         "en": "family name",
-        
+
         "en-gb": "surname",
         "eo": "familia nomo",
         "es": "apellido",
@@ -507,8 +507,8 @@ many_lang_qid_desc = {
         "cy": "enw personol benywaidd",
         "da": "pigenavn",
         "de": "weiblicher Vorname",
-        
-        
+
+
         "el": "γυναικείο όνομα",
         "en": "female given name",
         "eo": "virina persona nomo",
@@ -580,8 +580,8 @@ many_lang_qid_desc = {
         "ca": "prenom ambigu",
         "cs": "obourodé jméno",
         "de": "geschlechtsneutraler Vorname",
-        
-        
+
+
         "el": "ανδρικό ή γυναικείο όνομα",
         "en": "unisex given name",
         "eo": "seksneŭtra persona nomo",
@@ -660,8 +660,8 @@ many_lang_qid_desc = {
         "cy": "enw personol gwrywaidd",
         "da": "drengenavn",
         "de": "männlicher Vorname",
-        
-        
+
+
         "el": "ανδρικό όνομα",
         "en": "male given name",
         "eo": "vira persona nomo",

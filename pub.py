@@ -133,7 +133,7 @@ def get_article_info(ext_id, id_type):
         do = get_and_load(url)
         # if do != '' and do != "Resource not found.":
         # ---
-        if type(do) != dict:
+        if not isinstance(do, dict):
             continue
         # ---
         if do.get('hitCount'):

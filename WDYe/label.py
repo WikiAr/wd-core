@@ -133,7 +133,7 @@ def main():
         # addorreplace(wditem)
         itemsdone += 1
         # if itemsdone > 25  : break
-        # except:
+        # except BaseException:
         # pass
         # print('%s pass' % (wditem)
     print('Items done: %s' % itemsdone)

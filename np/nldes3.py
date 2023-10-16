@@ -126,7 +126,7 @@ def lastXnewpages(maxp):
                 try:
                     wd=onepage.data_item()
                     yield (wd)
-                except:
+                except BaseException:
                     pass
     printe.output('Klaar')
 # ---
@@ -179,7 +179,7 @@ def wd_all_simple_P131():
                     # action_one_P131_item()
                 else:
                     printe.output(f'Else wd-simple: {oneitem.title()}')
-            except:
+            except BaseException:
                 pass
     yield 'Q5'
 # ---
@@ -301,7 +301,7 @@ def generator_last_hour():
     generator=newest_items(repo, site)
     generator=pg.NewpagesPageGenerator(site)
     for item in generator:
-        if timenow == None:
+        if timenow is None:
             timenow=item.oldest_revision.timestamp
             endtime=timenow-timedelta(1.0/24.0)
             untilltime=endtime-timedelta(0.001)
@@ -475,7 +475,7 @@ def main(debug=False):
             # pigenerator = wd_all_items(-1)
             # pigenerator=some_items()
             pigenerator = wd_sparql_query(sparql_query, ddf=True)
-        if (pigenerator == None) or (forcehourly):
+        if (pigenerator is None) or (forcehourly):
             printe.output('Force hourly script...')
             pigenerator=generator_last_hour()
         totalreads=0

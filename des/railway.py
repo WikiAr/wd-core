@@ -148,10 +148,10 @@ def work_railway(wditem, p31, q=""):
     # ---
     een = ['en-gb', 'en-ca']
     # ---
-    #if newdesc.get("en"):
-        #for o in een:
-            #if not o in wditem_desc:
-                #newdesc[o] = {"language": o, "value": newdesc["en"]["value"]}
+    # if newdesc.get("en"):
+    # for o in een:
+    # if not o in wditem_desc:
+    # newdesc[o] = {"language": o, "value": newdesc["en"]["value"]}
     # ---
     wd_desc.work_api_desc(newdesc, q)
     # ---

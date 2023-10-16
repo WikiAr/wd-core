@@ -78,8 +78,7 @@ def action_one_item(Qid, pa, lang, keys):
     if item:
         # desc = MakeDesc(Qid, auth, lang)
         # Summary= 'Bot: - Add descriptions: '+ lang
-        keys = list(keys)
-        keys.sort()
+        keys = sorted(keys)
         # ---
         if 'en' in keys:
             keys.append('en-gb')

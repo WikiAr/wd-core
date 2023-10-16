@@ -28,7 +28,7 @@ items_done = []
 def action(json1):
     try:
         total = len(json1)
-    except:
+    except BaseException:
         total = 0
     c = 1
     # ---

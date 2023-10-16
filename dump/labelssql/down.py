@@ -9,7 +9,7 @@ python3 core8/pwb.py dump/labels/down
 https://dumps.wikimedia.org/wikidatawiki/latest/wikidatawiki-latest-wbt_term_in_lang.sql.gz
 https://dumps.wikimedia.org/wikidatawiki/latest/wikidatawiki-latest-wbt_text_in_lang.sql.gz
 
-ثم إنشاء قاعدة بيانات محلية تحتوي الجدولين 
+ثم إنشاء قاعدة بيانات محلية تحتوي الجدولين
 wbt_term_in_lang
 wbt_text_in_lang
 """
@@ -27,7 +27,7 @@ from pathlib import Path
 # ---
 try:
     Dir = Path(__file__).parent
-except:
+except BaseException:
     Dir = '/content'
 # ---
 # قاموس يحتوي على الروابط وأسماء الملفات

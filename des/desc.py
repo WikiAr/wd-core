@@ -408,8 +408,7 @@ def work_one_place(place):
 
 def mainoo():
     # ---
-    kee = list(placesTable2.keys())
-    kee.sort()
+    kee = sorted(placesTable2.keys())
     # ---
     lenth_place = len(placesTable2)
     # ---

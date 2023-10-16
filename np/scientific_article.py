@@ -191,14 +191,14 @@ def fixdate(date):
         # printe.output(date1)
         date1 = dateutil.parser.parse(date1)
         table['year'], table['month'], table['day'] = str(date1.year), str(date1.month), str(date1.day)
-    except:
+    except BaseException:
         try:
             date1 = date.split('T')[0].split('+')[1]
             # printe.output(date1)
             year, sep, mo = date1.partition('-')
             month, sep2, day = mo.partition('-')
             table['year'], table['month'], table['day'] = year, month, day
-        except:
+        except BaseException:
             printe.output(date)
             printe.output('<<lightred>> fixdate ??:')
     # printe.output(table)
@@ -309,12 +309,12 @@ def make_scientific_desc(lang, date, precision):
 def Get_P_API_time(item, P):
     qlist = []
     # ---
-    if not item or type(item) != dict:
+    if not item or not isinstance(item, dict):
         return False
     claims = item.get("claims", {}).get(P, [])
     for PP31 in claims:
         vv = PP31.get("mainsnak", {}).get("datavalue", {}).get("value", {})
-        if type(vv) == dict and vv.get('time'):
+        if isinstance(vv, dict) and vv.get('time'):
             qlist.append(vv)
     # ---
     Faso = {}
