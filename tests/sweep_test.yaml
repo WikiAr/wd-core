@@ -1,0 +1,42 @@
+import unittest
+import yaml
+
+class TestSweepYaml(unittest.TestCase):
+    def setUp(self):
+        with open('sweep.yaml', 'r') as file:
+            self.data = yaml.safe_load(file)
+
+    def test_keys(self):
+        expected_keys = ["rules", "branch", "gha_enabled", "description", "draft", "blocked_dirs", "docs", "sandbox"]
+        self.assertCountEqual(self.data.keys(), expected_keys)
+
+    def test_rules(self):
+        self.assertIsInstance(self.data['rules'], list)
+        self.assertTrue(all(isinstance(rule, str) for rule in self.data['rules']))
+
+    def test_branch(self):
+        self.assertIsInstance(self.data['branch'], str)
+
+    def test_gha_enabled(self):
+        self.assertIsInstance(self.data['gha_enabled'], bool)
+
+    def test_description(self):
+        self.assertIsInstance(self.data['description'], str)
+
+    def test_draft(self):
+        self.assertIsInstance(self.data['draft'], bool)
+
+    def test_blocked_dirs(self):
+        self.assertIsInstance(self.data['blocked_dirs'], list)
+        self.assertTrue(all(isinstance(dir, str) for dir in self.data['blocked_dirs']))
+
+    def test_docs(self):
+        self.assertIsInstance(self.data['docs'], list)
+
+    def test_sandbox(self):
+        self.assertIsInstance(self.data['sandbox'], dict)
+        self.assertIn('install', self.data['sandbox'])
+        self.assertIn('check', self.data['sandbox'])
+
+if __name__ == '__main__':
+    unittest.main()
