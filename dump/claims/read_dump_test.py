@@ -1,3 +1,8 @@
+import sys
+from pathlib import Path
+core_dir = Path(__file__).parent.parent
+sys.path.append(core_dir)
+# ---
 import unittest
 from unittest.mock import patch
 from dump.claims.read_dump import log_dump, get_file_info, check_file_date, read_file

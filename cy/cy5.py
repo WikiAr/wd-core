@@ -27,7 +27,7 @@ from datetime import datetime
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 # ---
 # from API.useraccount import *
-import useraccount
+from . import useraccount
 api_url = 'https://' + 'ar.wikipedia.org/w/api.php'
 username = useraccount.username
 password = useraccount.password

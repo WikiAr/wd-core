@@ -1,3 +1,8 @@
+import sys
+from pathlib import Path
+core_dir = Path(__file__).parent.parent
+sys.path.append(core_dir)
+# ---
 import unittest
 from np.si3g import mainwithcat2
 

@@ -1,5 +1,11 @@
+import sys
+from pathlib import Path
+core_dir = Path(__file__).parent.parent
+sys.path.append(core_dir)
+print(core_dir)
+# ---
 import unittest
-from cy5 import login, encode_arabic, ec_de_code, print_test2, printt, printo, findflag, fix_label, make_temp_lines, mainwithcat2
+from cy.cy5 import encode_arabic, ec_de_code, findflag, fix_label, make_temp_lines
 
 class TestCy5(unittest.TestCase):
 
