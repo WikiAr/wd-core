@@ -38,7 +38,7 @@ replacement["fa"] = {
 def work2(item, topic):
     try:
         item.get()
-    except:
+    except BaseException:
         pywikibot.output('<<lightyellow>>  cant item.get()')
         return ''
 

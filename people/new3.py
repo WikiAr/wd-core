@@ -60,8 +60,7 @@ genders = {
     'Q6581072': 'female',
     'Q1052281': 'female',  # transgender female
 }
-genders_list = [[x, y] for x, y in genders.items()]
-genders_list.sort()
+genders_list = sorted([[x, y] for x, y in genders.items()])
 # ---
 # ---
 Tab = {}
@@ -344,8 +343,7 @@ def start_one_nat(nat_tab):
         # ---
         genderlabel = genders.get(p21, "male")
         # ---
-        descriptions_keys = x["deskey"].split(",")
-        descriptions_keys.sort()
+        descriptions_keys = sorted(x["deskey"].split(","))
         # ---
         NewDesc = {}
         # ---
@@ -371,8 +369,7 @@ def mainnat(Tabs):  # translations_for_nat
     # ---
     Queries = 0
     # ---
-    list_na = list(translations_for_nat[1].keys())
-    list_na.sort()
+    list_na = sorted(translations_for_nat[1].keys())
     # ---
     if len(list_na) > 100:
         new_len = int(len(list_na) / 2)

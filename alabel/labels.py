@@ -70,10 +70,10 @@ def main():
         qid = item['qid']
         page = item['page']
         # ---
-        if type(qid) == bytes:
+        if isinstance(qid, bytes):
             printe.output('type(qid) == bytes')
             qid = qid.decode("utf-8")
-        if type(page) == bytes:
+        if isinstance(page, bytes):
             printe.output('type(page) == bytes')
             page = page.decode("utf-8")
         # ---

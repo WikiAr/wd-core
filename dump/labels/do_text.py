@@ -16,7 +16,7 @@ import time
 # ---
 try:
     from dump.labels.labels_old_values import make_old_values  # make_old_values()
-except:
+except BaseException:
     from labels_old_values import make_old_values  # make_old_values()
 # ---
 Dump_Dir = "/data/project/himo/dumps"
@@ -56,8 +56,7 @@ def mainar(n_tab):
 
     langs_table = n_tab['langs']
 
-    langs = list(langs_table.keys())
-    langs.sort()
+    langs = sorted(langs_table.keys())
 
     rows = []
 

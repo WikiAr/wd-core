@@ -152,8 +152,7 @@ limiTa = ['Wikimedia category', 'Wikimedia disambiguation page']
 
 def main():
     pywikibot.output('*<<lightyellow>> main:')
-    queries_list = [x for x in queries.keys()]
-    queries_list.sort()
+    queries_list = sorted([x for x in queries.keys()])
     lenth = len(queries_list)
     numb = 0
     for topic in queries_list:

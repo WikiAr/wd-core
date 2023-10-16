@@ -34,7 +34,7 @@ def dec(xx):
     fao = xx
     try:
         fao = urllib.parse.quote(xx)
-    except:
+    except BaseException:
         printe.output(f'<<lightred>> except when urllib.parse.quote({xx})')
     return fao
 # ---

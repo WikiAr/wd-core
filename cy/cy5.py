@@ -174,7 +174,7 @@ def printo(s):
     if SS:
         try:
             print(ec_de_code(s, 'encode'))
-        except:
+        except BaseException:
             print("")
             if workibrahem:
                 print(s)
@@ -704,7 +704,7 @@ def fix_date(data, title):
         # ---
         datn = data[ta].get('Date', [])
         # ---
-        if type(datn) == list and len(datn) > 0:
+        if isinstance(datn, list) and len(datn) > 0:
             ddds = [x.strip() for x in datn if x.strip() != '']
             # ---
             # print(date)
@@ -805,8 +805,7 @@ def make_new_text(qid, title):
                     if ss == 'imagejersey' or ss == 'p17lab':
                         space = ''
                     # ---
-                    faso = tao[ss]
-                    faso.sort()
+                    faso = sorted(tao[ss])
                     # ---
                     if len(faso) > 0:
                         if len(faso) == 1 or ss == 'p17lab':
@@ -1226,6 +1225,7 @@ def StartOnePage(title):
     else:
         ur = (f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.')
         printo('لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: %s.' % ur)
+
 
         # print(ur)
     # ---

@@ -62,7 +62,7 @@ def main():
             action_one_item(wditem)
             itemsdone += 1
             print('العناصر المكتملة: %s' % itemsdone)
-        except:
+        except BaseException:
             print('%s تخطي' % wditem)
     print('العناصر المكتملة: %s' % itemsdone)
 

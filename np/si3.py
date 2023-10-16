@@ -85,8 +85,7 @@ if True:
             offsetbg[1] = int(value)
     # ---
     New_QS = {1: []}
-    Nationalities_list = list(tax_translationsNationalities.keys())
-    Nationalities_list.sort()
+    Nationalities_list = sorted(tax_translationsNationalities.keys())
     tax_translations_lower = {}
     # ---
     for tax_key, tax_lab in taxone_list.items():      # الأصنوفة
@@ -242,11 +241,11 @@ def work_api_desc(NewDesc, q, fixlang):
         onedesc = NewDesc[lang]['value']
         printe.output(f'work_api_desc:"{q}" only one desc"{lang}:{onedesc}"')
         himoAPI.Des_API(q, onedesc, lang)
-        
+
     elif len(langes) == 2 and langes[0] in lang_to_skip and langes[1] in lang_to_skip:
         printe.output(f'work_api_desc:"{q}" only en-gb and en-ca, Skipp... ')
         return
-        
+
     else:
         # Desc = NewDesc
         # ca = True
@@ -484,7 +483,7 @@ def log_new_types(lists):
             with codecs.open(jsonfils, "a", encoding="utf-8-sig") as dfsdf:
                 dfsdf.write('{}')
             dfsdf.close()
-    except:
+    except BaseException:
         printe.output('')
     # ---
     if "log2" in sys.argv:
@@ -494,7 +493,7 @@ def log_new_types(lists):
         with codecs.open(jsonfils, "r", encoding="utf-8-sig") as listt:
             try:
                 Lalo_types["n"] = json.load(listt)
-            except:
+            except BaseException:
                 printe.output(f'Cant read {jsonfils} ')
                 Lalo_types["n"] = read_json.read_bad_json(jsonfils)
         listt.close()
@@ -539,7 +538,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
     # ---
     P31_table = []
     # ---
-    if P31_list and P31_list != [] and type(P31_list) == list:
+    if P31_list and P31_list != [] and isinstance(P31_list, list):
         P31_table = P31_list
     else:
         P31_table = Get_P_API_id(item, 'P31')

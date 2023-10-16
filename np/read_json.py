@@ -18,7 +18,7 @@ from API import printe
 # ---
 try:
     import pywikibot
-except:
+except BaseException:
     pywikibot = False
 # ---
 

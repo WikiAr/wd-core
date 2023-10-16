@@ -11,7 +11,7 @@ https://dumps.wikimedia.org/wikidatawiki/latest/wikidatawiki-latest-wbt_text_in_
 https://dumps.wikimedia.org/wikidatawiki/latest/wikidatawiki-latest-wbt_term_in_lang.sql.gz
 https://dumps.wikimedia.org/wikidatawiki/latest/wikidatawiki-latest-wbt_text_in_lang.sql.gz
 
-ثم إنشاء قاعدة بيانات محلية تحتوي الجدولين 
+ثم إنشاء قاعدة بيانات محلية تحتوي الجدولين
 wbt_term_in_lang
 wbt_text_in_lang
 """
@@ -68,7 +68,7 @@ def sql_wikidata(query):
 def work_one_lang(lang):
     langs = f'"{lang}"'
     # ---
-    if type(lang) == list:
+    if isinstance(lang, list):
         langs = ','.join([f'"{x}"' for x in lang])
     # ---
     print(f'langs:{langs}')
@@ -102,7 +102,7 @@ def work_one_lang(lang):
         if not lal in tab_o['langs']:
             tab_o['langs'][lal] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
         # ---
-        count = x['count'] if type(x['count']) == int else int(x['count'])
+        count = x['count'] if isinstance(x['count'], int) else int(x['count'])
         # ---
         kk = x['wby_name']
         # ---
