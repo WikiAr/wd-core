@@ -63,7 +63,7 @@ Qid_Desc = {
     "Q30612": {"ar": "تجربة سريرية", "en": "clinical trial"},  # 339121
     "Q152450": {"ar": "انتخابات محلية", "en": "municipal election"},  # 14289
     "Q15632617": {"ar": "إنسان خيالي", "en": "fictional human"},  # 13940
-    "Q2319498": {"ar": "معالم", "en": "landmark"},  # 13445
+    # "Q2319498": {"ar": "معالم", "en": "landmark"},  # 13445
     "Q838948": {"ar": "عمل فني", "en": "work of art"},  # 12626
     "Q2065736": {"ar": "ممتلكات ثقافية", "en": "cultural property"},  # 11435
     "Q2795484": {"ar": "تشريع تنفيذي", "en": "implementing regulation"},  # 10161
