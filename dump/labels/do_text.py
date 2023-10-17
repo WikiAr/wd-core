@@ -53,10 +53,11 @@ def mainar(n_tab):
     Old = make_old_values()
 
     dumpdate = n_tab.get('file_date') or 'latest'
-
     langs_table = n_tab['langs']
 
     langs = sorted(langs_table.keys())
+
+    last_total = Old.get('last_total', 0)
 
     rows = []
 
@@ -107,8 +108,11 @@ def mainar(n_tab):
     final = time.time()
     delta = n_tab.get('delta') or int(final - start)
     # ----
+    diff = n_tab['All_items'] - last_total
+    # ----
     text = f"Update: <onlyinclude>{dumpdate}</onlyinclude>.\n"
-    text += f"* Total items:{n_tab['All_items']:,} \n"
+    text += f"* Total items last update:{last_total:,}.\n"
+    text += f"* Total items:{n_tab['All_items']:,}. (+{diff})\n"
     text += f"<!-- bots work done in {delta} secounds --> \n"
     text += "--~~~~~\n"
     text = text + "\n" + table
