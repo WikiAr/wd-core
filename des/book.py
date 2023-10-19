@@ -159,33 +159,37 @@ Comma2 = {
 def GetQuery(Qid, lang, keys):
     # ---
     P50 = 'P50'
+    # ---
     if Qid == 'Q482994':
         P50 = 'P175'
     # ---
     # sa = ('?item wdt:P136 wd:Q8261 . ?item wdt:P31* wd:Q7725634 .\n')
-    sa = (f'?item wdt:P31 wd:{Qid} .\n')
+    sa = f'?item wdt:P31 wd:{Qid} .\n'
+    # ---
     if Qid == 'novel':
-        sa = ('?item wdt:P136 wd:Q8261 . ?item wdt:P31 wd:Q7725634 .\n')
+        sa = '?item wdt:P136 wd:Q8261 . ?item wdt:P31 wd:Q7725634 .\n'
     # ---
-    ur = (f'SELECT ?item (GROUP_CONCAT(DISTINCT(?auth{lang}); separator="{Comma[lang]}") as ?{lang}) ')
-    # ---
-    for lan in keys:
-        if lan != lang:
-            ur = ur + (f'\n(GROUP_CONCAT(DISTINCT(?auth{lan}); separator="{Comma[lan]}") as ?{lan}) ')
-    # ---
-    ur = ur + ('WHERE { ?item wdt:%s ?auths .\n' % P50)+ sa
+    ur = f'SELECT ?item (GROUP_CONCAT(DISTINCT(?auth{lang}); separator="{Comma[lang]}") as ?{lang}) '
     # ---
     for lan in keys:
         if lan != lang:
-            ur = ur + (f'OPTIONAL {{?auths rdfs:label ?auth{lan} filter (lang(?auth{lan}) = "{lan}")}} .\n')
+            ur += f'\n(GROUP_CONCAT(DISTINCT(?auth{lan}); separator="{Comma[lan]}") as ?{lan}) '
+    # ---
+    ur += 'WHERE {'
+    ur += f'?item wdt:{P50} ?auths .\n'
+    ur += sa
+    # ---
+    for lan in keys:
+        if lan != lang:
+            ur += f'OPTIONAL {{?auths rdfs:label ?auth{lan} filter (lang(?auth{lan}) = "{lan}")}} .\n'
     # ---
     if sys.argv and 'optional' in sys.argv:
-        ur = ur + (f' OPTIONAL {{ ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") }} .')
+        ur += f' OPTIONAL {{ ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") }} .'
     else:
-        ur = ur + (f' ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") .')
+        ur += f' ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") .'
     # ---
-    ur = ur + ('\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang)
-    ur = ur + 'FILTER(!BOUND(?itemDes))  }\n GROUP BY ?item '
+    ur += '\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang
+    ur += 'FILTER(!BOUND(?itemDes))  }\n GROUP BY ?item '
     # ---
     # printe.output(ur)
     # ---
@@ -383,8 +387,8 @@ def main():
 
         totalqueries = len(Qlist.keys()) * len(Qlist[Qid].keys())
         printe.output(f'*Qid "{Qid}":')
-        out = '<<lightgreen>>  *== Quary:"%s", %d/%d. =='
-        printe.output(out % (Qlist[Qid]['ar'], Queries, totalqueries,))
+        out = '<<lightgreen>>  *== Quary:"%s", %d/%d. ==' % (Qlist[Qid]['ar'], Queries, totalqueries)
+        printe.output(out)
         # printe.output( 'lab: "%s". ' % Qlist[Qid]['ar'] )
         for lang in keys:
             # printe.output( Qlist[Qid][lang] )
