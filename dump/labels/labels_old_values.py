@@ -52,9 +52,19 @@ def from_wiki():
     texts = GetPageText(title)
     # texts = codecs.open(f'{dir2}/te.txt', 'r', encoding='utf-8').read()
     # ---
+    texts = texts.replace(',', '')
+    # ---
+    last_total = 0
+    # ---
+    # find text like: * Total items:106069526
+    io = re.search(r"\* Total items:(\d+)\.", texts)
+    if io:
+        last_total = int(io.group(1))
+    # ---
+    Old['last_total'] = last_total
+    # ---
     texts = texts.split('|}')[0]
     texts = texts.replace('|}', '')
-    texts = texts.replace(',', '')
     for L in texts.split('|-'):
         L = L.strip()
         L = L.replace('\n', '|')
