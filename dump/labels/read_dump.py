@@ -128,7 +128,7 @@ def read_file():
                 tats = ['labels', 'descriptions', 'aliases']
                 for x in tats:
                     for code in json1.get(x, {}):
-                        if not code in tab['langs']:
+                        if code not in tab['langs']:
                             tab['langs'][code] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
                         tab['langs'][code][x] += 1
                 # ---

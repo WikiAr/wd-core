@@ -11,7 +11,7 @@ import tqdm
 try:
     _ = __file__
     Dump_Dir = "/data/project/himo/dumps"
-except Exception as e:
+except Exception:
     Dump_Dir = '/content/dumps'
 # ---
 if os.path.exists(r'I:\core\dumps'):

@@ -239,7 +239,7 @@ if __name__ == "__main__":
     }
     # ---
     for x, g in tab.items():
-        if not x in data:
+        if x not in data:
             data[x] = g
     # ---
     text, text_p31 = make_text(data, ty='')

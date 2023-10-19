@@ -66,7 +66,7 @@ def work2(item, topic):
                 replacelang.append(lang)
     # ---
     for lang in keys:
-        if not lang in ItemDescriptions.keys():
+        if lang not in ItemDescriptions.keys():
             NewDesc[lang] = {"language": lang,
                              "value": translations[topic][lang]}
             addedlangs.append(lang)

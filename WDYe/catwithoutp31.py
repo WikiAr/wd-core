@@ -110,7 +110,7 @@ def work_one_item(item):
         catdesc['en-gb'] = catdesc['en']
     # ---
     for lang in catdesc.keys():
-        if not lang in descriptions.keys():
+        if lang not in descriptions.keys():
             NewDesc[lang] = {"language": lang, "value": catdesc[lang]}
     # ---
     if NewDesc:

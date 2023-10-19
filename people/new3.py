@@ -141,7 +141,7 @@ def check_quarry_new(tab):
         qualimit[1] = 5
     # ---
     for x in en_list:
-        if not d in tabe:
+        if d not in tabe:
             tabe[d] = []
         # ---
         # python3 core8/pwb.py people/new3 -nat:Algerian limit:500 qualimit:15
@@ -268,7 +268,7 @@ def make_Tabs(tabs):
             # ---
             if female_k != "" and male_k != "":
                 if female_k != male_k:
-                    if not female_k.lower() in translations_o[2]:
+                    if female_k.lower() not in translations_o[2]:
                         translations_o[2][female_k.lower(
                         )] = translations_o[1][kkkk]
                         # printe.output( '<<lightpurple>> new way adding key: %s' % female_k )
@@ -296,7 +296,7 @@ def make_Tabs(tabs):
             malee = occupdic['ar']['male'].replace('~', '').strip()
             femalee = occupdic['ar']['female'].replace('~', '').strip()
             # ---
-            if not kkkk.lower() in translations_o[2]:
+            if kkkk.lower() not in translations_o[2]:
                 translations_o[2][kkkk.lower()] = {}
             translations_o[2][kkkk.lower()]["ar"] = {
                 'male': malee, 'female': femalee}
@@ -348,7 +348,7 @@ def start_one_nat(nat_tab):
         NewDesc = {}
         # ---
         for lang in x_table.keys():
-            if not lang in descriptions_keys:
+            if lang not in descriptions_keys:
                 NewDesc[lang] = {"language": lang,
                                  "value": x_table[lang][genderlabel]}
         # ---

@@ -159,7 +159,7 @@ def bnyear(date):
 
 
 def Monthname(lang, month):
-    if not month in ["10", "11", "12"]:
+    if month not in ["10", "11", "12"]:
         month = re.sub(r'0', '', month)
     # ---
     # if lang == "bn":
@@ -221,7 +221,7 @@ def make_scientific_desc(lang, date, precision):
     date2 = year
     desc = ""
     # ---
-    if not month in ["10", "11", "12"]:
+    if month not in ["10", "11", "12"]:
         month = re.sub(r'0', '', month)
     # ---
     if day == "01":
@@ -386,7 +386,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
         # ---
         ar_descs = ["مقالة علمية", "مقالة بحثية"]
         # ---
-        if not lang in item_descriptions.keys():
+        if lang not in item_descriptions.keys():
             NewDesc[lang] = {"language": lang, "value": lang_e}
             addedlangs.append(lang)
         # ---

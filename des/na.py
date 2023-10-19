@@ -38,7 +38,7 @@ def action(json1):
     # ---
     for tab in json1:    # عنصر ويكي بيانات
         q = tab["item_q"]
-        if not q in items_done:
+        if q not in items_done:
             en_name = tab["en_name"]
             tab["item_en"]
             ar_lab = tab["ar_name"]

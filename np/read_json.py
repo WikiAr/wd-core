@@ -46,11 +46,11 @@ def read_bad_list(file):
             for catee in done_list7[type]:
                 catee = catee.strip()
                 catee = re.sub(r'"', "", catee)
-                if not catee in List:
+                if catee not in List:
                     List.append(catee)
         print(f'Good JJson "{file}"')
         return List
-    except Exception as e:
+    except Exception:
         pywikibot.output('<<lightred>> Traceback (most recent call last):')
         pywikibot.output(traceback.format_exc())
         pywikibot.output('CRITICAL:')
@@ -65,7 +65,7 @@ def read_bad_list(file):
         for catee in listo:
             catee = catee.strip()
             catee = re.sub(r'"', "", catee)
-            if not catee in List:
+            if catee not in List:
                 List.append(catee)
         print(f'Bad JJson "{file}"')
         return List
@@ -89,7 +89,7 @@ def read_bad_json(file):
                 catee = re.sub(r'"', "" , catee)
                 if not catt in List:
                     List.append(catee)'''
-    except Exception as e:
+    except Exception:
         pywikibot.output('<<lightred>> Traceback (most recent call last):')
         pywikibot.output(traceback.format_exc())
         pywikibot.output('CRITICAL:')
@@ -117,7 +117,7 @@ def main(file, Type):
             return read_bad_list(file)
         else:
             print(f"* unknow type :{Type}")
-    except Exception as e:
+    except Exception:
         pywikibot.output('<<lightred>> Traceback (most recent call last):')
         pywikibot.output(f'* Cant work file:"{file}" , Type:"{Type}"')
         pywikibot.output(traceback.format_exc())

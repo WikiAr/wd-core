@@ -154,7 +154,7 @@ def Get_label(qid):
     lng = 'ar'
     label = ''
     # ---
-    if not lng in Labels_Csash:
+    if lng not in Labels_Csash:
         Labels_Csash[lng] = {}
     # ---
     if qid in Labels_Csash.get(lng, {}):
@@ -186,7 +186,7 @@ def get_female_for_p17(contry_lab, type):
     # ---
     lab = nationalities.get(contry_lab, {}).get(type, '')
     # ---
-    if not contry_lab in nationalities:
+    if contry_lab not in nationalities:
         printe.output('contry_lab:%s not in nationalities' % contry_lab)
     # ---
     return lab
@@ -309,7 +309,7 @@ def its_an_episode(lng, wditem):
 def its_a_discography(lng, wditem):
     if 'P175' in wditem.get('claims', {}):
         artistLNK = wditem.get('claims', {}).get('P175')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
-        if not (artistLNK is None):
+        if artistLNK is not None:
             wdArtist=himoBOT2.Get_Item_API_From_Qid(artistLNK)  # xzo
             if lng in wdArtist.get('labels', {}):
                 return 'discografie van '+wdArtist.get('labels', {}).get(lng, '')
@@ -337,7 +337,7 @@ def action_one_P131_item(lng, oneitem):
     countryname=''
     if ('P31' in oneitem.get('claims', {})):
         LNKisa=oneitem.get('claims', {}).get('P31')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
-        if not LNKisa is None:
+        if LNKisa is not None:
             isa=himoBOT2.Get_Item_API_From_Qid(LNKisa)  # xzo
             if lng in isa.get('labels', {}):
                 isaname = isa.get('labels', {}).get(lng, '')
@@ -347,19 +347,19 @@ def action_one_P131_item(lng, oneitem):
         shortname=isaname
     if ('P131' in oneitem.get('claims', {})):
         LNKadmin=oneitem.get('claims', {}).get('P131')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
-        if not LNKadmin is None:
+        if LNKadmin is not None:
             admin=himoBOT2.Get_Item_API_From_Qid(LNKadmin)  # xzo
             if lng in admin.get('labels', {}):
                 adminname = admin.get('labels', {}).get(lng, '')
     if ('P17' in oneitem.get('claims', {})):
         LNKcountry=oneitem.get('claims', {}).get('P17')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
-        if not LNKcountry is None:
+        if LNKcountry is not None:
             country=himoBOT2.Get_Item_API_From_Qid(LNKcountry)  # xzo
             if lng in country.get('labels', {}):
                 countryname = country.get('labels', {}).get(lng, '')
     data={}
     found=False
-    if (not lng in oneitem.get('labels', {})):
+    if (lng not in oneitem.get('labels', {})):
         if lng != 'ar':
             for plang in lng_canbeused:
                 if (plang in oneitem.get('labels', {})) and not found:
@@ -414,7 +414,7 @@ def its_a_composition(lng, wditem):
     '''
     if ('P86' in wditem.get('claims', {})):
         composerLNK = wditem.get('claims', {}).get('P86')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
-        if not composerLNK is None:
+        if composerLNK is not None:
             composer = himoBOT2.Get_Item_API_From_Qid(composerLNK)  # xzo
             if (lng in composer.get('labels', {})):
                 return 'compositie van %s' % composer.get('labels', {}).get(lng, '')
@@ -426,7 +426,7 @@ def its_a_tabon_in_thailand(lng, wditem):
     newdescription = ''
     if ('P131' in wditem.get('claims', {})):
         LNKtambon=wditem.get('claims', {}).get('P131')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
-        if not (LNKtambon is None):
+        if LNKtambon is not None:
             WDitemtambon=himoBOT2.Get_Item_API_From_Qid(LNKtambon)  # xzo
             return Get_label_from_item(lng, WDitemtambon)
     return newdescription
@@ -459,14 +459,14 @@ def its_a_computergame(lng, wditem):
     printe.output(' its_a_computergame ')
     if ('P178' in wditem.get('claims', {})):  # المطور
         LNKdeveloper=wditem.get('claims', {}).get('P178')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
-        if not (LNKdeveloper is None):
+        if LNKdeveloper is not None:
             WDitemdeveloper=himoBOT2.Get_Item_API_From_Qid(LNKdeveloper)
             developer_name =Get_label_from_item(lng, WDitemdeveloper)
             if (developer_name != ''):
                 return 'لعبة فيديو من تطوير %s'% developer_name
     if ('P179' in wditem.get('claims', {})):  # السلسلة
         serieLNK=wditem.get('claims', {}).get('P179')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
-        if not (serieLNK is None):
+        if serieLNK is not None:
             WDitemserie= himoBOT2.Get_Item_API_From_Qid(serieLNK)
             seriename =Get_label_from_item(lng, WDitemserie)
             if (seriename != ''):

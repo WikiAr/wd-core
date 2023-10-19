@@ -35,7 +35,7 @@ def action(json1):
     for tab in json1:    # عنصر ويكي بيانات
         printe.output(tab)
         q = tab["item_q"]
-        if not q in items_done:
+        if q not in items_done:
             c += 1
             printe.output('action %d/%d "%s"' % (c, total, q))
             label = tab["label"]

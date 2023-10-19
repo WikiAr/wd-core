@@ -682,7 +682,7 @@ for scdw in others_list:
     if scdw in songs_type:
         prop = 'wdt:P175'
     # ---
-    if not scdw in SPARQLSE:
+    if scdw not in SPARQLSE:
         SPARQLSE[scdw] = 'SELECT ?item WHERE {' + f'?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation.' + ' FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
         # ---
         if "a2r" in sys.argv:
@@ -858,7 +858,7 @@ space_list_and_other_2 = {
 }
 # ---
 for sw in Taton_list:
-    if not sw in SPARQLSE:
+    if sw not in SPARQLSE:
         # if not sw in SPARQLSE :
         # SPARQLSE[sw] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % sw
         # ---
@@ -888,7 +888,7 @@ for sw in Taton_list:
             SPARQLSE[sw] = gtg
 # ---
 for st in Space_tab:
-    if not st in SPARQLSE:
+    if st not in SPARQLSE:
         # if SPARQLSE.get( st , '' ) == '' :
         SPARQLSE[st] = '''
 SELECT ?item WHERE {

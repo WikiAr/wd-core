@@ -95,7 +95,7 @@ id_types = {"MED", "PMC", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA",
 
 
 def get_article_info(ext_id, id_type):
-    if not id_type.upper() in id_types:
+    if id_type.upper() not in id_types:
         print(f"id_type must be in {id_types}")
     # ---
     urls = {}

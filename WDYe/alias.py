@@ -104,10 +104,10 @@ def WORK_table(qid, tables):
         Table = {}
         for item in sparql:
             q = item['item'].split("/entity/")[1]
-            if not q in Table:
+            if q not in Table:
                 Table[q] = {}
             for tab in item:
-                if not tab in Table[q]:
+                if tab not in Table[q]:
                     Table[q][tab] = []
                 if tab != 'item':
                     Table[q][tab].append(item[tab])

@@ -103,7 +103,7 @@ def work_railway(wditem, p31, q=""):
         # ---
         org_desc = wditem_desc.get(lang, "")
         # ---
-        if not org_desc in ["", des]:
+        if org_desc not in ["", des]:
             continue
         # ---
         p17_desc = labs["p17"].get(lang, "").split("(")[0].strip()

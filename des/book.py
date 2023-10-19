@@ -331,7 +331,7 @@ def MakeDesc(Qid, pa, lang):
     if lang in english:
         lang = 'en'
     # ---
-    if not lang in by_list:
+    if lang not in by_list:
         printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
     # ---

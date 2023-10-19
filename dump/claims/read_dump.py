@@ -198,7 +198,7 @@ def read_file():
                                 idd = datavalue.get("value", {}).get("id")
                                 # ---
                                 if idd:
-                                    if not idd in tab['properties'][p]["qids"]:
+                                    if idd not in tab['properties'][p]["qids"]:
                                         tab['properties'][p]["qids"][idd] = 1
                                     else:
                                         tab['properties'][p]["qids"][idd] += 1

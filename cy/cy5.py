@@ -256,7 +256,7 @@ def make_temp_lines(table, title):
     table2 = {"qid": "", "race": "", "p17": "", "poss": ""}
     # ---
     for rr in HeadVars:
-        if not rr in table:
+        if rr not in table:
             table[rr] = ''
     # ---
     image = table['imagejersey']
@@ -362,7 +362,7 @@ def make_temp_lines(table, title):
     if flag != newflag:
         printt(f' *** race:"{race}", flag:"{flag}", newflag:"{newflag}"')
     # ---
-    if not title in Len_of_valid_results:
+    if title not in Len_of_valid_results:
         Len_of_valid_results[title] = 0
     Len_of_valid_results[title] += 1
     # ---
@@ -652,13 +652,13 @@ def fix_results(table):
         # ---
         q = 'item' in params and params['item']['value'].split('/entity/')[1]
         # ---
-        if not q in results2:
+        if q not in results2:
             results2[q] = {'Date': [], 'imagejersey': [], 'item': [], "rank": []}
         # ---
         date = params.get('p585') or params.get('p582') or params.get('p585') or {}
         date = date.get('value') or ''
         # ---
-        if not date in results2[q]['Date']:
+        if date not in results2[q]['Date']:
             results2[q]['Date'].append(date)
         # ---
         for param in params:
@@ -684,11 +684,11 @@ def fix_results(table):
                 # value = re.sub(r'الفائز وفقاً ', 'الفائز في ', value )
                 # value = re.sub(r'الفائز حسب التصنيف العام ', 'الفائز في التصنيف العام', value )
             # ---
-            if not param2 in NoAppend:
-                if not param2 in results2[q]:
+            if param2 not in NoAppend:
+                if param2 not in results2[q]:
                     results2[q][param2] = []
                 # ---
-                if not value in results2[q][param2]:
+                if value not in results2[q][param2]:
                     results2[q][param2].append(value)
             # ---
     return results2
@@ -710,7 +710,7 @@ def fix_date(data, title):
             # print(date)
             # ---
             fanco = title
-            if not fanco in remove_date:
+            if fanco not in remove_date:
                 remove_date[fanco] = 0
             # ---
             if fanco in Work_with_Year:
@@ -770,7 +770,7 @@ def make_new_text(qid, title):
     for qq in results:
         num += 1
         # ---
-        if not qq in qidso:
+        if qq not in qidso:
             qidso[qq] = {}
         # ---
         date = results[qq]['Date'][0]
@@ -1020,7 +1020,7 @@ def work_tano(text, MainTitle):
         # ---
         for liner in lines[MainTitle].keys():
             # print( "lines:%s" % liner )
-            if not liner in new_lines[MainTitle].keys():
+            if liner not in new_lines[MainTitle].keys():
                 removed_line += 1
     # ---
     states[MainTitle] = {"new_line": new_line, "same_line": same_line, "removed_line": removed_line}

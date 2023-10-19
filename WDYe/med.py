@@ -121,7 +121,7 @@ def Fix_List(List):
                 # ---
                 printe.output(f"ars:\"{'|'.join(ars)}\"")
                 for aa in ars:
-                    if not aa.strip() in New_List2:
+                    if aa.strip() not in New_List2:
                         New_List2.append(fixo(aa))
                         # New_List.append( aa.strip() )
         # ---
@@ -138,15 +138,15 @@ def Fix_List(List):
                     ar2 = re.sub(mate, r'\g<1>', ar)
                     printe.output(f'ar2:"{ar2}",ar1:"{ar1}" ')
                     # ---
-                    if not ar1.strip() in New_List2:
+                    if ar1.strip() not in New_List2:
                         New_List2.append(fixo(ar1))
                     # ---
-                    if not ar2.strip() in New_List2:
+                    if ar2.strip() not in New_List2:
                         New_List2.append(fixo(ar2))
                     # ---
         # ---
         if Conn:
-            if not ar.strip() in New_List2:
+            if ar.strip() not in New_List2:
                 New_List2.append(fixo(ar))
         # ---
     New_List = [fixo(x) for x in New_List2]
@@ -206,20 +206,20 @@ def Get_item_table(enlab):
     # ---
     if enlab in Labels:
         for eee in Labels[enlab]:
-            if not eee in Item_tab:
+            if eee not in Item_tab:
                 Item_tab.append(eee)
     # ---
     rows = html.split("</tr>")
     for row in rows:
         en, ar = fixrow2(row)
         if en and ar:
-            if not en in Labels:
+            if en not in Labels:
                 Labels[en] = []
             Labels[en].append(ar)
             # ---
             if en == enlab:
                 # ---
-                if not ar in Item_tab:
+                if ar not in Item_tab:
                     Item_tab.append(ar)
     # ---
     Item_tab = Fix_List(Item_tab)
@@ -252,20 +252,20 @@ def Get_item_table2(enlab):
     # ---
     if enlab in Labels:
         for eee in Labels[enlab]:
-            if not eee in Item_tab:
+            if eee not in Item_tab:
                 Item_tab.append(eee)
     # ---
     rows = html.split("</tr>")
     for row in rows:
         en, ar = fixrow(row)
         if en and ar:
-            if not en in Labels:
+            if en not in Labels:
                 Labels[en] = []
             Labels[en].append(ar)
             # ---
             if en == enlab:
                 # ---
-                if not ar in Item_tab:
+                if ar not in Item_tab:
                     Item_tab.append(ar)
     # ---
     Item_tab = Fix_List(Item_tab)
@@ -310,7 +310,7 @@ def WORK(item, table):
     # printe.output( item )
     printe.output(table)
     # ---
-    if not item in Looogs:
+    if item not in Looogs:
         Looogs[item] = []
     # ---
     # printe.output( '<<lightgreen>> item:"%s" ' % item )
@@ -443,10 +443,10 @@ def main():
     Table = {}
     for item in sparql:
         q = item['item'].split("/entity/")[1]
-        if not q in Table:
+        if q not in Table:
             Table[q] = {}
         for tab in item:
-            if not tab in Table[q]:
+            if tab not in Table[q]:
                 Table[q][tab] = []
             # if item[tab] != "" :
             Table[q][tab].append(item[tab])
