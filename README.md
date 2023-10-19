@@ -8,6 +8,20 @@ This new feature involves reading a dump file and adding descriptions to new Wik
 
 ### Dependencies
 
+## Labels, Descriptions, and Aliases Statistics
+
+This feature generates a table that displays the number of labels, descriptions, and aliases for items per language. The data is retrieved from a JSON file that stores old data. If the JSON file does not exist, it is created and updated with the current data.
+
+### Commands
+
+- `python3 core8/pwb.py dump/labels/do_text`: This command runs the feature.
+- `python3 core8/pwb.py dump/labels/do_text test`: This command runs the feature in test mode.
+
+### Files
+
+- `dump/labels/do_text.py`: This file contains the main code for the feature.
+- `dump/labels/labels_old_values.py`: This file contains the code for handling the JSON file that stores old data.
+
 - Python 3.6 or higher
 - cython
 - numpy
