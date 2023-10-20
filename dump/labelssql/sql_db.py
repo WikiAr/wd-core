@@ -25,7 +25,9 @@ if config.db_connect_file is None:
         'password': db_password
     }
 else:
-    credentials = {'read_default_file': config.db_connect_file}
+    credentials = {
+        'read_default_file': config.db_connect_file
+    }
 
 
 def resolve_bytes(rows):
@@ -118,4 +120,6 @@ def new_pymysql_connect(query, db='', host=''):
     print(f'sql_db.py sql_new len(rows) = "{len(rows)}", in {delta} seconds')
     # ---
     return rows
+
+
 # ---

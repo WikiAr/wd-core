@@ -37,10 +37,7 @@ paths = [
 ]
 # ---
 if filepath.find("/data/project/") == -1 and filepath.find("labstore-secondary-tools-project") == -1:
-    paths = [
-        'I:/core/wd_core/',
-        'I:/core/master/'
-    ]
+    paths = ['I:/core/wd_core/', 'I:/core/master/']
 # ---
 for x in paths:
     if os.path.isdir(x):
@@ -48,16 +45,22 @@ for x in paths:
 # ---
 from wikidataintegrator2 import wdi_helpers
 from wikidataintegrator2 import wdi_login
+
 # ---
 from API import useraccount
+
 # ---
 username = useraccount.hiacc
 
 password = useraccount.hipass
 login = wdi_login.WDLogin(username, password)
 # ---
-Test = {1: False}
-Ask = {1: False}
+Test = {
+    1: False
+}
+Ask = {
+    1: False
+}
 # ---
 if "ask" in sys.argv:
     Ask[1] = True
@@ -168,6 +171,8 @@ def get_article_info(ext_id, id_type):
             # ---
     print('No results')
     return False
+
+
 # ---
 
 

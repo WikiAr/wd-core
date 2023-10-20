@@ -57,8 +57,7 @@ def read_new_types_file():
                 and xh not in others_list_2 \
                 and xh not in Geo_List:
             # pywikibot.output( '* %d\t \t{{Q|%s}}' % (yy, xh) )
-            pywikibot.output(
-                "*'%s':{'ar':'{{#invoke:Wikidata2|labelIn|ar|%s}}', 'en':'{{#invoke:Wikidata2|labelIn|en|%s}}' }, # %d" % (xh, xh, xh, yy))
+            pywikibot.output("*'%s':{'ar':'{{#invoke:Wikidata2|labelIn|ar|%s}}', 'en':'{{#invoke:Wikidata2|labelIn|en|%s}}' }, # %d" % (xh, xh, xh, yy))
     pywikibot.output("===================")
     # ---
     print('done')

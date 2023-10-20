@@ -37,7 +37,9 @@ if os.path.exists(r'I:\core\dumps'):
 # ---
 print(f'Dump_Dir:{Dump_Dir}')
 # ---
-test_limit = {1: 15000}
+test_limit = {
+    1: 15000
+}
 # ---
 for arg in sys.argv:
     arg, _, value = arg.partition(':')
@@ -124,7 +126,7 @@ def read_file():
                         print(f'c:{c}')
                         print(f"done:{tab['done']}")
                         # ---
-                        print(c, time.time()-t1)
+                        print(c, time.time() - t1)
                         t1 = time.time()
 
                     if c > test_limit[1]:
@@ -147,27 +149,25 @@ def read_file():
                     # ---
                     claims_example = {
                         "claims": {
-                            "P31": [
-                                {
-                                    "mainsnak": {
-                                        "snaktype": "value",
-                                        "property": "P31",
-                                        "hash": "b44ad788a05b4c1b2915ce0292541c6bdb27d43a",
-                                        "datavalue": {
-                                            "value": {
-                                                "entity-type": "item",
-                                                "numeric-id": 6256,
-                                                "id": "Q6256"
-                                            },
-                                            "type": "wikibase-entityid"
+                            "P31": [{
+                                "mainsnak": {
+                                    "snaktype": "value",
+                                    "property": "P31",
+                                    "hash": "b44ad788a05b4c1b2915ce0292541c6bdb27d43a",
+                                    "datavalue": {
+                                        "value": {
+                                            "entity-type": "item",
+                                            "numeric-id": 6256,
+                                            "id": "Q6256"
                                         },
-                                        "datatype": "wikibase-item"
+                                        "type": "wikibase-entityid"
                                     },
-                                    "type": "statement",
-                                    "id": "Q805$81609644-2962-427A-BE11-08BC47E34C44",
-                                    "rank": "normal"
-                                }
-                            ]
+                                    "datatype": "wikibase-item"
+                                },
+                                "type": "statement",
+                                "id": "Q805$81609644-2962-427A-BE11-08BC47E34C44",
+                                "rank": "normal"
+                            }]
                         }
                     }
                     # ---
@@ -212,7 +212,7 @@ def read_file():
                 del claims
             # ---
             if (c % 1000 == 0 and c < 100000) or c % 100000 == 0:
-                print(c, time.time()-t1)
+                print(c, time.time() - t1)
                 t1 = time.time()
                 # print memory usage
                 print_memory()

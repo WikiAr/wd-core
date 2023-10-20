@@ -17,13 +17,17 @@ python pwb.py des/book
 import re
 import pywikibot
 import sys
+
 # ---
 from API import himoBOT2
 from wd_api import wd_desc
 from wd_api import wd_bot
 from API import printe
+
 # ---
-AskSave = {1: True}
+AskSave = {
+    1: True
+}
 Qlist = {}
 
 Qlist['Q49084'] = {  # قصة قصيرة
@@ -40,7 +44,6 @@ Qlist['Q1318295'] = {  # قصة
     'fr': 'récit',
     'nl': 'verhaal',
 }
-
 """Qlist['Q19389637'] = {# مقالة سيرة ذاتية
                 'ar' : 'مقالة سيرة ذاتية' ,
                 'en' : 'biographical article' ,
@@ -98,7 +101,10 @@ def action_one_item(Qid, pa, lang, keys):
                 # ---
                 des = MakeDesc(Qid, pa, lang2)
                 if des:
-                    NewDesc[lang] = {"language": lang, "value": des}
+                    NewDesc[lang] = {
+                        "language": lang,
+                        "value": des
+                    }
                     dns = ''
                     if 'endes' in pa:
                         dns = pa['endes']
@@ -144,7 +150,6 @@ Comma = {
     "ro": " și ",
     "sv": " och ",
     'en': ", ",
-
 }
 Comma2 = {
     'ar': "، و",
@@ -194,6 +199,8 @@ def GetQuery(Qid, lang, keys):
     # printe.output(ur)
     # ---
     return ur
+
+
 # ---
 
 
@@ -212,8 +219,12 @@ def Gquery2(json1):
 
 
 # ---
-Off = {1: 0}
-limit = {1: 0}
+Off = {
+    1: 0
+}
+limit = {
+    1: 0
+}
 # ---
 for arg in sys.argv:
     # ---
@@ -237,7 +248,7 @@ def wd_sparql_query(query, ddf=False):
         return New_List
     # ---
     # if limit[1] != 0 :
-        # query = query + " limit " + str( limit[1] )
+    # query = query + " limit " + str( limit[1] )
     # ---
     Keep = True
     offset = 0
@@ -255,7 +266,7 @@ def wd_sparql_query(query, ddf=False):
         if offset != 0:
             quarry = quarry + " offset " + str(offset)
         # else: Off[1] != 0 :
-            # quarry = quarry + " offset " + str( Off[1] )
+        # quarry = quarry + " offset " + str( Off[1] )
         # ---
         # printe.output( quarry )
         # ---
@@ -275,6 +286,8 @@ def wd_sparql_query(query, ddf=False):
             Keep = False
     # ---
     return New_List
+
+
 # ---
 
 
@@ -345,15 +358,15 @@ def MakeDesc(Qid, pa, lang):
         if auth:
             if lang in Qlist[Qid]:
                 des = Qlist[Qid][lang]
-                d = des                             # الوصف
+                d = des  # الوصف
                 # d = d + ' '                        # الرابط by
-                d = d + ' ' + co     # الرابط by
-                d = d + auth                        # المؤلف
+                d = d + ' ' + co  # الرابط by
+                d = d + auth  # المؤلف
                 # printe.output( 'd' )
                 # printe.output( d )
                 description = d
     # else:
-        # description = False
+    # description = False
     # ---
     if description and lang == "ar":
         description = description.replace("/", "، و")
@@ -363,6 +376,8 @@ def MakeDesc(Qid, pa, lang):
             printe.output(f'<<lightred>> arabic description test failed "{description}".')
             description = False
     return description
+
+
 # ---
 
 

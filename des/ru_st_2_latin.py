@@ -297,9 +297,14 @@ def add_new_label(q, enlabel):
     # ---
     labels = {}
     # ---
-    labels["en"] = {"language": "en", "value": enlabel}
+    labels["en"] = {
+        "language": "en",
+        "value": enlabel
+    }
     # ---
-    data = {"labels": labels}
+    data = {
+        "labels": labels
+    }
     # ---
     add = himoAPI.New_Mult_Des(q, data, "Bot: cyrillic2latin-labels", False)
 
@@ -333,6 +338,8 @@ def change_one_lab(text, lang):
     print(f'get new lab from org_lab:[{lang}:{text}] : new:{new_lab}')
     # ---
     return new_lab
+
+
 # ---
 
 
@@ -354,6 +361,8 @@ def make_en_label(labels, q, Add=False):
             add_new_label(q, new_lab)
     # ---
     return new_lab
+
+
 # ---
 
 
@@ -363,7 +372,9 @@ def main():
 WHERE {  ?item wdt:P495 wd:Q403.
 ?item ^schema:about ?article . ?article schema:isPartOf <https://sr.wikipedia.org/>;
 }
-limit 10'''  # country of origin=Srbia  #xxxx items
+limit 10'''
+
+  # country of origin=Srbia  #xxxx items
     # ---
     # ---
     generator = WikidataSPARQLPageGenerator(

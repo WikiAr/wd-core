@@ -787,5 +787,4 @@ ContriesTable2 = {
         "ar": "زامبيا",
         "en": "Zambia",
     },
-
 }

@@ -28,12 +28,10 @@ translations = {
     'species of beetle': {
         'it': 'specie di coleotteri',
         'fr': 'espèces de coléoptères',
-
     },
     'species of insect': {
         'it': 'specie di insetti',
         'fr': "espèces d'insectes",
-
     },
 }
 # ---

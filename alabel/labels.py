@@ -13,13 +13,18 @@ python3 core8/pwb.py alabel/labels -limit:20
 #
 #
 import sys
+
 # ---
 from API import printe
 from wd_api import himoAPI_test as himoAPI
+
 # ---
-Limit = {1: ''}
+Limit = {
+    1: ''
+}
 # ---
 from api_sql import wiki_sql
+
 # ---
 # result = wiki_sql.sql_new(qua, wiki="", printqua=False)
 # ---

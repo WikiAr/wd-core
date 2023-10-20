@@ -12,7 +12,6 @@
 #
 #
 
-
 import re
 
 import pywikibot
@@ -25,9 +24,15 @@ from API import himoBOT2
 # ---
 from wd_api import himoAPI_test as himoAPI
 # ---
-Usema = {1: True}
-Ask = {1: True}
-Limit = {1: "100"}
+Usema = {
+    1: True
+}
+Ask = {
+    1: True
+}
+Limit = {
+    1: "100"
+}
 yes_answer = ["y", "a", "", "Y", "A", "all"]
 # ---
 from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
@@ -224,6 +229,8 @@ def Item(item):
             himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
 
     # ---
+
+
 Quarry = {}
 Quarry['use'] = ""
 Quarry[0] = '''
@@ -494,7 +501,6 @@ if __name__ == "__main__":
     # Item({'ddar': 'بطولة العالم لتنس الطاولة 1932', 'dden': '1932 World Table Tennis Championships', 'item': 'Q203962', 'label': '1933 World Table Tennis Championships (January)'})
     # Item({'ddar': 'بطولة العالم للشطرنج 1975', 'dden': 'World Chess Championship 1975', 'item': 'Q1999918', 'label': 'World Chess Championship 1978'})
 # ---
-
 
 # python pwb.py des/p155 qua7 -P279:Q13219666 limit:200
 # python pwb.py des/p155 qua4 -P279:Q1344963 limit:200

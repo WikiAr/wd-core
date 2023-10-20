@@ -16,18 +16,61 @@ from API import himoBOT2
 from desc_dicts.descraptions import Qid_Descraptions
 # ---
 items2do = 0  # global parameter to print progress
-totaledits=0
-lng_canbeused = ['en', 'de', 'fr', 'it', 'es', 'pt', 'ca', 'dk', 'cs', 'hr', 'nl', 'ro', 'sh', 'vi', 'eo', 'simple', 'eu', 'zea', 'li', 'fy', 'oc', 'af', 'nb', 'no', 'pl', 'si', 'sv', 'wa',]
+totaledits = 0
+lng_canbeused = [
+    'en',
+    'de',
+    'fr',
+    'it',
+    'es',
+    'pt',
+    'ca',
+    'dk',
+    'cs',
+    'hr',
+    'nl',
+    'ro',
+    'sh',
+    'vi',
+    'eo',
+    'simple',
+    'eu',
+    'zea',
+    'li',
+    'fy',
+    'oc',
+    'af',
+    'nb',
+    'no',
+    'pl',
+    'si',
+    'sv',
+    'wa',
+]
 # ---
-QSlimit = {1: 200}
-sparqler = {1: ''}
-Offq = {1: 0}
-Off = {1: 0}
-limit = {1: 0}
+QSlimit = {
+    1: 200
+}
+sparqler = {
+    1: ''
+}
+Offq = {
+    1: 0
+}
+Off = {
+    1: 0
+}
+limit = {
+    1: 0
+}
 # ---
-totallimit = {1: 10000}
+totallimit = {
+    1: 10000
+}
 # ---
-Labels_Csash = {'ar': {}}
+Labels_Csash = {
+    'ar': {}
+}
 # ---
 from np.cash import *  # Labels_Csash
 from np.np_lists import bldiat, Space_tab, p50s, nationalities, songs_type, others_list, others_list_2, space_list_and_other, qura, Geo_entity
@@ -75,6 +118,8 @@ def Make_railway_desc(wditem, p31):
 
 def get_lng_description(language, wikidataitem):
     return wikidataitem.get('descriptions', {}).get(language, '')
+
+
 # ---
 
 
@@ -96,15 +141,17 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=''):
     # ---
     printe.output('laste:(%s)' % laste)
     return laste
+
+
 # ---
 
 
 def get_label_txt(lng, wdi, property, array=0, fallback=False):
     # try:
     if property in wdi.get('claims', {}):
-        if (len(wdi.get('claims', {}).get(property, ''))>array):
-            lnkProperty=wdi.get('claims', {}).get(property)[array].getTarget()
-            propwdi=himoBOT2.Get_Item_API_From_Qid(lnkProperty)  # xzo
+        if (len(wdi.get('claims', {}).get(property, '')) > array):
+            lnkProperty = wdi.get('claims', {}).get(property)[array].getTarget()
+            propwdi = himoBOT2.Get_Item_API_From_Qid(lnkProperty)  # xzo
             if propwdi:
                 if lng in propwdi.get('labels', {}):
                     return propwdi.get('labels', {}).get(lng)
@@ -114,14 +161,18 @@ def get_label_txt(lng, wdi, property, array=0, fallback=False):
                             if fallbacklng in propwdi.get('labels', {}):
                                 return propwdi.get('labels', {}).get(fallbacklng, '')
     return ''
+
+
 # ---
 
 
 def its_a_headquarted_thing(lng, wdi, thing):
-    where=get_label_txt(lng, wdi, 'P159', fallback=True)
+    where = get_label_txt(lng, wdi, 'P159', fallback=True)
     if where != '':
         return f'{thing} {where}'
     return ''
+
+
 # ---
 
 
@@ -176,6 +227,8 @@ def Get_label(qid):
         Labels_Csash[lng][qid] = label
     # ---
     return label
+
+
 # ---
 
 
@@ -190,6 +243,8 @@ def get_female_for_p17(contry_lab, type):
         printe.output('contry_lab:%s not in nationalities' % contry_lab)
     # ---
     return lab
+
+
 # ---
 
 
@@ -255,6 +310,8 @@ def its_something_in_a_country(wdi, something):
         fanee = something.strip() + ' ' + dara.strip()
     # ---
     return fanee
+
+
 # ---
 
 
@@ -271,18 +328,22 @@ def its_canton_of_France(wdi):  # Q184188
                 label = label.replace('، فرنسا', '').replace(' (فرنسا)', '')
                 desco = 'كانتون في ' + label + '، فرنسا'
     return desco
+
+
 # ---
 
 
 def its_disambigue(lng, wdi):
-    if (lng in wdi.get('descriptions', {})) or (len(wdi.get('claims', {}))>1):  # there is already a description, skip this one
+    if (lng in wdi.get('descriptions', {})) or (len(wdi.get('claims', {})) > 1):  # there is already a description, skip this one
         return ''
     return 'Wikimedia-doorverwijspagina'
+
+
 # ---
 
 
 def its_a_publication(wditem):
-    over=uitgever=datumstr=''
+    over = uitgever = datumstr = ''
     if ('P921' in wditem.get('claims', {})):
         its_a_generalthing(wditem, '', 'over', 'P921')
     if ('P123' in wditem.get('claims', {})):
@@ -290,6 +351,8 @@ def its_a_publication(wditem):
     if ('P577' in wditem.get('claims', {})):
         pass
     return 'publicatie'
+
+
 # ---
 
 
@@ -303,6 +366,8 @@ def its_an_episode(lng, wditem):
             serienaam = serienaam.replace('، مسلسل', '').replace(' (مسلسل)', '')
             return 'حلقة من سلسلة ' + serienaam
     return ''
+
+
 # ---
 
 
@@ -310,67 +375,77 @@ def its_a_discography(lng, wditem):
     if 'P175' in wditem.get('claims', {}):
         artistLNK = wditem.get('claims', {}).get('P175')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
         if artistLNK is not None:
-            wdArtist=himoBOT2.Get_Item_API_From_Qid(artistLNK)  # xzo
+            wdArtist = himoBOT2.Get_Item_API_From_Qid(artistLNK)  # xzo
             if lng in wdArtist.get('labels', {}):
-                return 'discografie van '+wdArtist.get('labels', {}).get(lng, '')
+                return 'discografie van ' + wdArtist.get('labels', {}).get(lng, '')
             else:
                 if lng != 'ar':
                     for trylng in lng_canbeused:
                         if trylng in wdArtist.get('labels', {}):
-                            return 'discografie van '+wdArtist.get('labels', {}).get(trylng, '')
+                            return 'discografie van ' + wdArtist.get('labels', {}).get(trylng, '')
     return 'discografie'
+
+
 # ---
 
 
 def action_one_P131_item(lng, oneitem):
     global totaledits
     if (lng in oneitem.get('descriptions', {})):
-        nld=oneitem.get('descriptions', {}).get(lng, '')
+        nld = oneitem.get('descriptions', {}).get(lng, '')
     else:
-        nld=''
+        nld = ''
     if (lng in oneitem.get('labels', {})):
         oneitem.get('labels', {}).get(lng, '')
     else:
         pass
-    adminname=''
-    isaname=''
-    countryname=''
+    adminname = ''
+    isaname = ''
+    countryname = ''
     if ('P31' in oneitem.get('claims', {})):
-        LNKisa=oneitem.get('claims', {}).get('P31')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
+        LNKisa = oneitem.get('claims', {}).get('P31')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
         if LNKisa is not None:
-            isa=himoBOT2.Get_Item_API_From_Qid(LNKisa)  # xzo
+            isa = himoBOT2.Get_Item_API_From_Qid(LNKisa)  # xzo
             if lng in isa.get('labels', {}):
                 isaname = isa.get('labels', {}).get(lng, '')
     if (isaname in ['dorp in China']):
-        shortname='قرية'
+        shortname = 'قرية'
     else:
-        shortname=isaname
+        shortname = isaname
     if ('P131' in oneitem.get('claims', {})):
-        LNKadmin=oneitem.get('claims', {}).get('P131')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
+        LNKadmin = oneitem.get('claims', {}).get('P131')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
         if LNKadmin is not None:
-            admin=himoBOT2.Get_Item_API_From_Qid(LNKadmin)  # xzo
+            admin = himoBOT2.Get_Item_API_From_Qid(LNKadmin)  # xzo
             if lng in admin.get('labels', {}):
                 adminname = admin.get('labels', {}).get(lng, '')
     if ('P17' in oneitem.get('claims', {})):
-        LNKcountry=oneitem.get('claims', {}).get('P17')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
+        LNKcountry = oneitem.get('claims', {}).get('P17')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
         if LNKcountry is not None:
-            country=himoBOT2.Get_Item_API_From_Qid(LNKcountry)  # xzo
+            country = himoBOT2.Get_Item_API_From_Qid(LNKcountry)  # xzo
             if lng in country.get('labels', {}):
                 countryname = country.get('labels', {}).get(lng, '')
-    data={}
-    found=False
+    data = {}
+    found = False
     if (lng not in oneitem.get('labels', {})):
         if lng != 'ar':
             for plang in lng_canbeused:
                 if (plang in oneitem.get('labels', {})) and not found:
-                    data.update({'labels': {lng: oneitem.get('labels', {}).get(plang, '')}})
-                    found=True
+                    data.update({
+                        'labels': {
+                            lng: oneitem.get('labels', {}).get(plang, '')
+                        }
+                    })
+                    found = True
     if (adminname == ''):
         newdescription = '%s' % isaname
     else:
-        newdescription=f'{shortname} in {adminname}, {countryname}'
+        newdescription = f'{shortname} in {adminname}, {countryname}'
     if (isaname != '') and (nld in ['', 'قرية', 'dorp in China', 'gemeente', 'gemeente in China']):
-        data.update({'descriptions': {lng: newdescription}})
+        data.update({
+            'descriptions': {
+                lng: newdescription
+            }
+        })
     # ---
     try:
         oneitem.editEntity(data, summary='nl-description, [[User:Edoderoobot/Set-nl-description|python code]], logfile on https://goo .gl/BezTim')
@@ -384,6 +459,8 @@ def action_one_P131_item(lng, oneitem):
         pass  # print("Else:")
     # ---
     return 0
+
+
 # ---
 
 
@@ -395,6 +472,8 @@ def its_an_audio_drama(wditem):
     if ('P495' in wditem.get('claims', {})):
         return its_a_generalthing(wditem, 'hoorspel', 'hoorspel uit', 'P495')
     return 'hoorspel'
+
+
 # ---
 
 
@@ -405,6 +484,8 @@ def its_a_taxon(lng, wditem):
     if (lng in wditem.get('descriptions', {})):
         return wditem.get('descriptions', {})[lng]
     return 'taxon'
+
+
 # ---
 
 
@@ -419,17 +500,21 @@ def its_a_composition(lng, wditem):
             if (lng in composer.get('labels', {})):
                 return 'compositie van %s' % composer.get('labels', {}).get(lng, '')
     return 'compositie'
+
+
 # ---
 
 
 def its_a_tabon_in_thailand(lng, wditem):
     newdescription = ''
     if ('P131' in wditem.get('claims', {})):
-        LNKtambon=wditem.get('claims', {}).get('P131')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
+        LNKtambon = wditem.get('claims', {}).get('P131')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
         if LNKtambon is not None:
-            WDitemtambon=himoBOT2.Get_Item_API_From_Qid(LNKtambon)  # xzo
+            WDitemtambon = himoBOT2.Get_Item_API_From_Qid(LNKtambon)  # xzo
             return Get_label_from_item(lng, WDitemtambon)
     return newdescription
+
+
 # ---
 
 
@@ -441,6 +526,8 @@ def Get_label_from_item(lng, wditem):
             return labels[lng]
     # ---
     return ''
+
+
 # ---
 
 
@@ -450,25 +537,27 @@ def its_a_fictional_character(wditem):
     elif ('P1080' in wditem.get('claims', {})):
         my_description = its_a_generalthing(wditem, 'personage', 'personage uit', 'P1080')
     else:
-        my_description='personage'
+        my_description = 'personage'
     return my_description
+
+
 # ---
 
 
 def its_a_computergame(lng, wditem):
     printe.output(' its_a_computergame ')
     if ('P178' in wditem.get('claims', {})):  # المطور
-        LNKdeveloper=wditem.get('claims', {}).get('P178')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
+        LNKdeveloper = wditem.get('claims', {}).get('P178')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
         if LNKdeveloper is not None:
-            WDitemdeveloper=himoBOT2.Get_Item_API_From_Qid(LNKdeveloper)
-            developer_name =Get_label_from_item(lng, WDitemdeveloper)
+            WDitemdeveloper = himoBOT2.Get_Item_API_From_Qid(LNKdeveloper)
+            developer_name = Get_label_from_item(lng, WDitemdeveloper)
             if (developer_name != ''):
-                return 'لعبة فيديو من تطوير %s'% developer_name
+                return 'لعبة فيديو من تطوير %s' % developer_name
     if ('P179' in wditem.get('claims', {})):  # السلسلة
-        serieLNK=wditem.get('claims', {}).get('P179')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
+        serieLNK = wditem.get('claims', {}).get('P179')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
         if serieLNK is not None:
-            WDitemserie= himoBOT2.Get_Item_API_From_Qid(serieLNK)
-            seriename =Get_label_from_item(lng, WDitemserie)
+            WDitemserie = himoBOT2.Get_Item_API_From_Qid(serieLNK)
+            seriename = Get_label_from_item(lng, WDitemserie)
             if (seriename != ''):
                 # return 'computerspel uit de serie %s' % seriename
                 return 'لعبة فيديو من سلسلة %s' % seriename
@@ -476,7 +565,9 @@ def its_a_computergame(lng, wditem):
 
 
 # ---
-New_QS = {1: []}
+New_QS = {
+    1: []
+}
 # ---
 
 
@@ -489,6 +580,8 @@ def descqs(q, value, lang):
         printe.output("<<lightgreen>> Add %d line to quickstatements" % len(New_QS[1]))
         himoAPI.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
+
+
 # ---
 
 
@@ -497,6 +590,8 @@ def Add_desc(q, value, lang):
         descqs(q, value, lang)
     else:
         himoAPI.Des_API(q, value, lang, ask='')
+
+
 # ---
 
 
@@ -600,6 +695,8 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
     printe.output('Make_space_desc:[%s]' % my_description)
     # ---
     return my_description
+
+
 # ---
 
 
@@ -632,6 +729,8 @@ def its_a_sports_season(wditem, claimstr=''):
     printe.output("its_a_sports_season:(%s)" % laste)
     # ---
     return laste
+
+
 # ---
 
 
@@ -665,8 +764,8 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=''):
         laste = f'{shortstr.strip()} من أداء {claimstr}'
     # ---
     sooo = [
-        'Q1573906',   # جولة موسيقية
-        'Q182832',    # حفلة موسيقية
+        'Q1573906',  # جولة موسيقية
+        'Q182832',  # حفلة موسيقية
     ]
     # ---
     if claimstr == '' and type_of_item in sooo:
@@ -687,6 +786,8 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=''):
     printe.output("its_songs:(%s)" % laste)
     # ---
     return laste
+
+
 # ---
 
 
@@ -736,6 +837,8 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=''):
     # ---
     printe.output("its_a_p50:(%s)" % laste)
     return laste
+
+
 # ---
 
 
@@ -748,6 +851,8 @@ def its_a_thing_located_in_country(wditem, countryname, thing):
         else:
             return thing + ' في ' + countryname
     return thing + ' في ' + countryname
+
+
 # ---
 
 
@@ -772,6 +877,8 @@ def its_a_film(wditem):
         return 'فيلم من إخراج %s' % directorname
     # ---
     return ''
+
+
 # ---
 
 
@@ -1406,6 +1513,8 @@ def make_nn(lng, wditem, p31, orig_desc):
             desc = its_a_generalthing(wditem, p31_tab["desc"], p31_tab["desc_in"], p31_tab["pid"])
     # ---
     return desc
+
+
 # ---
 
 
@@ -1413,7 +1522,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
     global items2do
     global totaledits
     wditem = himoBOT2.Get_Item_API_From_Qid(q, sites='', titles='', props='')
-    items_written=items_found=0
+    items_written = items_found = 0
     lng = 'ar'
     my_description = ''
     orig_desc = get_lng_description(lng, wditem).lower()
@@ -1488,7 +1597,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
             # ---
             elif type_of_item == 'سلالة كلب':  # hondenras
                 if orig_desc in ['سلالة', '']:
-                    my_description='سلالة كلب'
+                    my_description = 'سلالة كلب'
             # ---
             elif type_of_item == 'Q215380':  # muziekband
                 if orig_desc in ['طاقم موسيقي', '']:
@@ -1510,7 +1619,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
                 if orig_desc in ['قرية', '', 'قرية في الهند']:
                     my_description = its_something_in_an_entity(wditem, 'قرية في')
                     if (my_description in ['', ' ']):
-                        my_description='قرية في الهند'
+                        my_description = 'قرية في الهند'
         # ---
         if my_description == 'sds':
             my_description = make_nn(lng, wditem, type_of_item, orig_desc)
@@ -1532,7 +1641,14 @@ def action_one_item(lngr, q, item={}, claimstr=''):
             my_description = "جين من أنواع جينات الإنسان العاقل"
         # ---
         data = {}
-        data.update({'descriptions': {lng: {'language': lng, 'value': my_description}}})
+        data.update({
+            'descriptions': {
+                lng: {
+                    'language': lng,
+                    'value': my_description
+                }
+            }
+        })
         # ---
         items_written += 1
         # ---
@@ -1542,7 +1658,7 @@ def action_one_item(lngr, q, item={}, claimstr=''):
         # ---
         if test.lower() == valuee.lower():
             Add_desc(q, valuee, data['descriptions'][lng]['language'])
-            totaledits+=1
+            totaledits += 1
             items_found += 1
             break
         else:
@@ -1550,4 +1666,6 @@ def action_one_item(lngr, q, item={}, claimstr=''):
         # ---
     # ---
     return items_found, items_written
+
+
 # ---

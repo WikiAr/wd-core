@@ -4,18 +4,38 @@
 import pywikibot
 from pywikibot import pagegenerators as pg
 
-
-replacedesc = {'ar': ['سياسي أميركي', '',]}
+replacedesc = {
+    'ar': [
+        'سياسي أميركي',
+        '',
+    ]
+}
 taxondescs = {
     # 'American politician' :{'ar':'سياسي أمريكي'},
-    'scientific article': {'ar': 'مقالة بحثية'},  # مقالة علمية
-    'family name': {'ar': 'اسم العائلة'},
-    'male given name': {'ar': 'اسم مذكر معطى'},
-    'badminton championships': {'ar': 'بطولة كرة الريشة'},
-    'gene of the species Rattus norvegicus': {'ar': 'جين من أنواع الجرذ النرويجي'},
-    'Spanish politician': {'ar': 'سياسي إسباني'},
-    'German politician': {'ar': 'سياسي ألماني'},
-    'x!y~z': {'ar': ''},
+    'scientific article': {
+        'ar': 'مقالة بحثية'
+    },  # مقالة علمية
+    'family name': {
+        'ar': 'اسم العائلة'
+    },
+    'male given name': {
+        'ar': 'اسم مذكر معطى'
+    },
+    'badminton championships': {
+        'ar': 'بطولة كرة الريشة'
+    },
+    'gene of the species Rattus norvegicus': {
+        'ar': 'جين من أنواع الجرذ النرويجي'
+    },
+    'Spanish politician': {
+        'ar': 'سياسي إسباني'
+    },
+    'German politician': {
+        'ar': 'سياسي ألماني'
+    },
+    'x!y~z': {
+        'ar': ''
+    },
 }
 debugedo = False
 debugedo = False
@@ -31,7 +51,7 @@ missing_dict = {}
 
 
 def preee(wditem, data, site):
-    wditem.editEntity(data, summary='Bot: Add Arabic label: '+site)
+    wditem.editEntity(data, summary='Bot: Add Arabic label: ' + site)
 
 
 def action_one_item(wditem):
@@ -49,7 +69,11 @@ def action_one_item(wditem):
             print("--- يتم العمل على العنصر %s " % wditem)
             print("-- التسمية :  %s " % ma)
             data = {}
-            data.update({'labels': {'ar': ma}})
+            data.update({
+                'labels': {
+                    'ar': ma
+                }
+            })
             # preee(wditem, data, site)
             preee(wditem, data, ma)
 
@@ -62,9 +86,9 @@ def action_one_item2(wditem):
     global items2do
     items2do -= 1
     if ('arwiki' in wditem.sitelinks):
-        ma =wditem.sitelinks['arwiki']
+        ma = wditem.sitelinks['arwiki']
     if ('ar' in wditem.sitelinks):
-        ma =wditem.sitelinks['arwiki']
+        ma = wditem.sitelinks['arwiki']
         # print(ma)
         # site = ma.title
         # if site:

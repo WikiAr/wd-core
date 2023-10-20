@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 """
 
 
@@ -31,6 +30,8 @@ def printo(s):
         pywikibot.output(s)
     else:
         printe.output(s)
+
+
 # ---
 
 
@@ -71,6 +72,8 @@ def read_bad_list(file):
         return List
     # ---
     return False
+
+
 # ---
 
 
@@ -106,6 +109,8 @@ def read_bad_json(file):
         return wd_file
     # ---
     return {}
+
+
 # ---
 
 

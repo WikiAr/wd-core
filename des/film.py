@@ -53,7 +53,10 @@ def action_one_item(Qid, pa, lang, keys):
                 # ---
                 if MakeDesc(Qid, pa, lang2):
                     des = MakeDesc(Qid, pa, lang2)
-                    NewDesc[lang] = {"language": lang, "value": des}
+                    NewDesc[lang] = {
+                        "language": lang,
+                        "value": des
+                    }
                     dns = ''
                     if 'endes' in pa:
                         dns = pa['endes']
@@ -77,6 +80,8 @@ def action_one_item(Qid, pa, lang, keys):
                     printe.output('* rong answer')
             else:
                 wd_desc.work_api_desc(NewDesc, qitem)
+
+
 # ---
 
 
@@ -109,7 +114,6 @@ Comma = {
     "ro": " și ",
     "sv": " och ",
     'en': ", ",
-
 }
 Comma2 = {
     'ar': "، و",
@@ -134,6 +138,7 @@ def GetQuery(Qid, lang, keys):
     sa = ' ?item wdt:P31 wd:Q11424 .\n?item wdt:P577 ?date2.\nBIND(year(?date2) AS ?dates). \n'
     sa = sa + 'OPTIONAL { ?item schema:description ?endes. FILTER((LANG(?endes)) = "en") }\n'
     ur = ur + sa
+
     # ---
 
     def fofo(x):
@@ -141,6 +146,7 @@ def GetQuery(Qid, lang, keys):
         xx += f'?auths rdfs:label ?{x} filter (lang(?{x}) = "{x}")'
         xx += '} .'
         return xx
+
     # ---
     OPTIONAL = '\n'.join([fofo(x) for x in keys if x != lang])
     ur = ur + OPTIONAL
@@ -157,6 +163,8 @@ def GetQuery(Qid, lang, keys):
     # printe.output(ur)
     # ---
     return ur
+
+
 # ---
 
 
@@ -199,7 +207,6 @@ filmform['film'] = {
     'ar': 'فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~',
     'en': '~YEAR~ film by ~AUTHOR~',
     'nl': 'film uit ~YEAR~ van ~AUTHOR~',
-
 }
 
 # ---
@@ -253,7 +260,22 @@ def WorkWithOneLang(Qid, lang, keys):
 
 # ---
 by_list = {
-    'ar': "من تأليف", 'en': "by", 'fr': "de", 'de': "von", 'nl': "van", 'ca': "per", 'cs': "od", 'la': "ab", 'it': "da", 'io': "da", 'eo': "de", 'da': "af", 'pl': "przez", 'ro': "de", 'es': "por", 'sv': "av"
+    'ar': "من تأليف",
+    'en': "by",
+    'fr': "de",
+    'de': "von",
+    'nl': "van",
+    'ca': "per",
+    'cs': "od",
+    'la': "ab",
+    'it': "da",
+    'io': "da",
+    'eo': "de",
+    'da': "af",
+    'pl': "przez",
+    'ro': "de",
+    'es': "por",
+    'sv': "av"
 }
 # ---
 
@@ -300,12 +322,14 @@ def MakeDesc(Qid, pa, lang):
                 # printe.output( d )
                 description = d
     # else:
-        # description = False
+    # description = False
     if lang == 'ar':
         if description and description != re.sub(r'[abcdefghijklmnobqrstuvwxyz]', '', description):
             printe.output(f'<<lightred>> arabic description test failed "{description}".')
             description = False
     return description
+
+
 # ---
 
 

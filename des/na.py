@@ -23,7 +23,9 @@ from wd_api import wd_bot
 # ---
 bylangs = False  # False#True
 # ---
-limits = {1: "1000"}
+limits = {
+    1: "1000"
+}
 # ---
 items_done = []
 # ---
@@ -36,7 +38,7 @@ def action(json1):
         total = 0
     c = 1
     # ---
-    for tab in json1:    # عنصر ويكي بيانات
+    for tab in json1:  # عنصر ويكي بيانات
         q = tab["item_q"]
         if q not in items_done:
             en_name = tab["en_name"]
@@ -51,6 +53,8 @@ def action(json1):
                 himoAPI.Labels_API(q, ar_lab, "ar", False, Or_Alii=True)
         else:
             printe.output(' <<lightred>> * q in items_done. ' % q)
+
+
 # ---
 
 
@@ -103,59 +107,78 @@ WHERE {
 
     BIND( concat("Category:" , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
-}'''    # ---
-    , 'from': make_quarry(
-        ar_suff="تصنيف:أشخاص من ",
-        item_p31_cat="?item wdt:P1792 ?cat.",
-        en_suff="Category:People from ",
-    )    # ---
-    , 'alumni': make_quarry(
-        ar_suff="تصنيف:خريجو ",
-        item_p31_cat="?item wdt:P3876 ?cat.",
-        en_suff="Category:",
-        en_priff=" alumni",
-    )    # ---
-    , 'Taken': make_quarry(
-        ar_suff="تصنيف:صور التقطت باستخدام ",
-        item_p31_cat="?item wdt:P2033 ?cat.",
-        en_suff="Category:Taken with ",
-        en_priff="",
-    )    # ---
-    , 'basin': make_quarry(
-        ar_suff="تصنيف:حوض ",
-        item_p31_cat="?item wdt:P1200 ?cat.",
-        en_suff="Category:",
-        en_priff=" basin",
-    )    # ---
-    , 'shot': make_quarry(
-        ar_suff="تصنيف:أفلام مصورة في ",
-        item_p31_cat="?item wdt:P1740 ?cat.",
-        en_suff="Category:Films shot in ",
-        en_priff="",
-    )    # ---
-    , 'employees': make_quarry(
-        ar_suff="تصنيف:موظفي ",
-        item_p31_cat="?item wdt:P4195 ?cat.",
-        en_suff="Category:",
-        en_priff=" employees",
-    )    # ---
-    , 'faculty': make_quarry(
-        ar_suff="تصنيف:هيئة تدريس ",
-        item_p31_cat="?item wdt:P4195 ?cat.",
-        en_suff="Category:",
-        en_priff=" faculty",
-    )    # ---
-    , 'buried': make_quarry(
-        ar_suff="تصنيف:مدفونون في ",
-        item_p31_cat="?item wdt:P1791 ?cat.",
-        en_suff="Category:Burials at ",
-    )    # ---
-    , 'Births': make_quarry(
-        ar_suff="تصنيف:مواليد في ",
-        item_p31_cat="?item wdt:P1464 ?cat.",
-        en_suff="Category:Births in ",
-    )    # ---
-    , 'Deaths': make_quarry(
+}'''  # ---
+    ,
+    'from':
+        make_quarry(
+            ar_suff="تصنيف:أشخاص من ",
+            item_p31_cat="?item wdt:P1792 ?cat.",
+            en_suff="Category:People from ",
+        )  # ---
+    ,
+    'alumni':
+        make_quarry(
+            ar_suff="تصنيف:خريجو ",
+            item_p31_cat="?item wdt:P3876 ?cat.",
+            en_suff="Category:",
+            en_priff=" alumni",
+        )  # ---
+    ,
+    'Taken':
+        make_quarry(
+            ar_suff="تصنيف:صور التقطت باستخدام ",
+            item_p31_cat="?item wdt:P2033 ?cat.",
+            en_suff="Category:Taken with ",
+            en_priff="",
+        )  # ---
+    ,
+    'basin':
+        make_quarry(
+            ar_suff="تصنيف:حوض ",
+            item_p31_cat="?item wdt:P1200 ?cat.",
+            en_suff="Category:",
+            en_priff=" basin",
+        )  # ---
+    ,
+    'shot':
+        make_quarry(
+            ar_suff="تصنيف:أفلام مصورة في ",
+            item_p31_cat="?item wdt:P1740 ?cat.",
+            en_suff="Category:Films shot in ",
+            en_priff="",
+        )  # ---
+    ,
+    'employees':
+        make_quarry(
+            ar_suff="تصنيف:موظفي ",
+            item_p31_cat="?item wdt:P4195 ?cat.",
+            en_suff="Category:",
+            en_priff=" employees",
+        )  # ---
+    ,
+    'faculty':
+        make_quarry(
+            ar_suff="تصنيف:هيئة تدريس ",
+            item_p31_cat="?item wdt:P4195 ?cat.",
+            en_suff="Category:",
+            en_priff=" faculty",
+        )  # ---
+    ,
+    'buried':
+        make_quarry(
+            ar_suff="تصنيف:مدفونون في ",
+            item_p31_cat="?item wdt:P1791 ?cat.",
+            en_suff="Category:Burials at ",
+        )  # ---
+    ,
+    'Births':
+        make_quarry(
+            ar_suff="تصنيف:مواليد في ",
+            item_p31_cat="?item wdt:P1464 ?cat.",
+            en_suff="Category:Births in ",
+        )  # ---
+    ,
+    'Deaths': make_quarry(
         ar_suff="تصنيف:وفيات في ",
         item_p31_cat="?item wdt:P1465 ?cat.",
         en_suff="Category:Deaths in ",

@@ -34,7 +34,9 @@ if os.path.exists(r'I:\core\dumps'):
 # ---
 print(f'Dump_Dir:{Dump_Dir}')
 # ---
-test_limit = {1: 15000}
+test_limit = {
+    1: 15000
+}
 # ---
 for arg in sys.argv:
     arg, _, value = arg.partition(':')
@@ -116,7 +118,7 @@ def read_file():
                         print(f'c:{c}')
                         print(f"done:{tab['done']}")
                         # ---
-                        print(c, time.time()-t1)
+                        print(c, time.time() - t1)
                         t1 = time.time()
 
                     if c > test_limit[1]:
@@ -129,13 +131,17 @@ def read_file():
                 for x in tats:
                     for code in json1.get(x, {}):
                         if code not in tab['langs']:
-                            tab['langs'][code] = {'labels': 0, 'descriptions': 0, 'aliases': 0}
+                            tab['langs'][code] = {
+                                'labels': 0,
+                                'descriptions': 0,
+                                'aliases': 0
+                            }
                         tab['langs'][code][x] += 1
                 # ---
                 del json1
             # ---
             if (c % 1000 == 0 and c < 100000) or c % 100000 == 0:
-                print(c, time.time()-t1)
+                print(c, time.time() - t1)
                 t1 = time.time()
                 # print memory usage
                 print_memory()

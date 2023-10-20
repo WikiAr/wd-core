@@ -25,8 +25,12 @@ if os.path.exists(r'I:\core\dumps'):
 print(f'Dump_Dir:{Dump_Dir}')
 # ---
 if True:
-    Offset = {1: 0}
-    Limit = {1: 900000000}
+    Offset = {
+        1: 0
+    }
+    Limit = {
+        1: 900000000
+    }
     # ---
     if "test" in sys.argv:
         Limit[1] = 15000
@@ -73,9 +77,24 @@ priffixes = {}
 for x in priffixeso:
     priffixes[x] = {
         "count": 0,
-        "labels": {"yes": 0, "no": 0, "yesar": 0, "noar": 0},
-        "descriptions": {"yes": 0, "no": 0, "yesar": 0, "noar": 0},
-        "aliases": {"yes": 0, "no": 0, "yesar": 0, "noar": 0},
+        "labels": {
+            "yes": 0,
+            "no": 0,
+            "yesar": 0,
+            "noar": 0
+        },
+        "descriptions": {
+            "yes": 0,
+            "no": 0,
+            "yesar": 0,
+            "noar": 0
+        },
+        "aliases": {
+            "yes": 0,
+            "no": 0,
+            "yesar": 0,
+            "noar": 0
+        },
     }
 # ---
 stats_tab = {
@@ -253,12 +272,12 @@ def read_data():
                 # ---
                 if c < Offset[1]:
                     if c % 1000 == 0:
-                        dii = time.time()-t1
+                        dii = time.time() - t1
                         print('Offset c:%d, time:%d' % (c, dii))
                     continue
                 # ---
                 if (c % 1000 == 0 and c < 100000) or c % 100000 == 0:
-                    dii = time.time()-t1
+                    dii = time.time() - t1
                     print(f'c:{c}, time:{dii}')
                     t1 = time.time()
                     print_memory()

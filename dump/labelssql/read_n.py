@@ -30,10 +30,7 @@ except BaseException:
     Dir = '/content'
 # ---
 # قاموس يحتوي على الروابط وأسماء الملفات
-file_links = [
-    "wikidatawiki-latest-wbt_term_in_lang.sql.gz",
-    "wikidatawiki-latest-wbt_text_in_lang.sql.gz"
-]
+file_links = ["wikidatawiki-latest-wbt_term_in_lang.sql.gz", "wikidatawiki-latest-wbt_text_in_lang.sql.gz"]
 
 
 def open_file2(filename):

@@ -19,7 +19,9 @@ from wd_api import himoAPI, wd_bot
 # ---
 bylangs = False  # False#True
 # ---
-limits = {1: "1000"}
+limits = {
+    1: "1000"
+}
 # ---
 items_done = []
 # ---
@@ -32,7 +34,7 @@ def action(json1):
         total = 0
     c = 1
     # ---
-    for tab in json1:    # عنصر ويكي بيانات
+    for tab in json1:  # عنصر ويكي بيانات
         printe.output(tab)
         q = tab["item_q"]
         if q not in items_done:

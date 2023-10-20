@@ -30,7 +30,10 @@ translations['Wikimedia disambiguation page'] = DescraptionsTable['Wikimedia dis
 # ---
 replacement = {}
 replacement["fa"] = {
-    "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"], "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"], "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"], "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"]
+    "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
+    "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
+    "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
+    "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"]
 }
 # ---
 
@@ -53,27 +56,33 @@ def work2(item, topic):
     replacelang = []
     q = item.title(as_link=False)
     # ---
-    for lang in ItemDescriptions.keys():        # استبدال
+    for lang in ItemDescriptions.keys():  # استبدال
         if lang in replacement.keys():
             value = ItemDescriptions[lang]  # ['value']
             if 'value' in ItemDescriptions[lang]:
                 value = ItemDescriptions[lang]['value']
             # ---
             if value in replacement[lang]:
-                NewDesc[lang] = {"language": lang,
-                                 "value": replacement[lang][value]}
+                NewDesc[lang] = {
+                    "language": lang,
+                    "value": replacement[lang][value]
+                }
                 # pywikibot.output( '<<lightyellow>>  replace "%s" by: "%s".' % ( value , replacement[lang][value]) )
                 replacelang.append(lang)
     # ---
     for lang in keys:
         if lang not in ItemDescriptions.keys():
-            NewDesc[lang] = {"language": lang,
-                             "value": translations[topic][lang]}
+            NewDesc[lang] = {
+                "language": lang,
+                "value": translations[topic][lang]
+            }
             addedlangs.append(lang)
     # ---
     # pywikibot.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
 
     wd_desc.work_api_desc(NewDesc, q)
+
+
 # ---
 
 
@@ -97,8 +106,7 @@ limit 1'''
     for item in json1:
         num += 1
         q = item.title(as_link=False)
-        pywikibot.output(
-            '<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, lenth, topic, q))
+        pywikibot.output('<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, lenth, topic, q))
         work2(item, topic)
 
 
@@ -119,14 +127,12 @@ def mainfromQuarry2():
     sparql = open_url.getURL(url=url)
     jso = json.loads(sparql)
     topic = 'Wikimedia disambiguation page'
-    list = ["Q" + str(x[0]) for x in jso['rows'] if x[1] ==
-            "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا"]
+    list = ["Q" + str(x[0]) for x in jso['rows'] if x[1] == "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا"]
     for page in list:
         item = pywikibot.ItemPage(repo, page.strip())
         num += 1
         q = item.title(as_link=False)
-        pywikibot.output(
-            '<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, len(list), topic, q))
+        pywikibot.output('<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, len(list), topic, q))
         work2(item, topic)
 
 

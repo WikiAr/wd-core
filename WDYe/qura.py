@@ -110,6 +110,8 @@ def make_translations(x, pa):
         descriptions["en"] = fas[x]["en"] % pa["en"]
     # ---
     return descriptions
+
+
 # ---
 
 
@@ -122,8 +124,7 @@ def mainfromQuarry(x, Quarry, translations):
         pa['item'] = pa['item'].split('/entity/')[1]
         pywikibot.output(pa)
         num += 1
-        pywikibot.output('<<lightblue>>> %s/%d : %s' %
-                         (num, total, pa['item']))
+        pywikibot.output('<<lightblue>>> %s/%d : %s' % (num, total, pa['item']))
         new_translations = make_translations(x, pa)
         pywikibot.output(new_translations)
         action_one_item(x, pa, new_translations)

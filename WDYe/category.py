@@ -12,7 +12,6 @@
 #
 #
 
-
 import pywikibot
 # ---
 import sys
@@ -23,7 +22,9 @@ from API import himoBOT2
 # ---
 from wd_api import himoAPI_test as himoAPI
 # ---
-Limit = {1: "500"}
+Limit = {
+    1: "500"
+}
 # ---
 
 
@@ -70,14 +71,15 @@ LIMIT '''
     for item in Table:
         num += 1
         # if num < 2:
-        pywikibot.output('<<lightgreen>> %d/%d item:"%s" ' %
-                         (num, len(Table.keys()), item))
+        pywikibot.output('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         # pywikibot.output( Table[item] )
         if Table[item] != "":
             lab = 'تصنيف:' + Table[item]
             himoAPI.Labels_API(item, lab, "ar", False, Or_Alii=True)
 
     # ---
+
+
 if __name__ == "__main__":
     main()
 # ---

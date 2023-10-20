@@ -7,6 +7,7 @@
 import json
 import codecs
 from pathlib import Path
+
 Dir = Path(__file__).parent
 # ---
 from people.compare_files._occ import tota as tota2

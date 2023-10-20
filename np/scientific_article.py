@@ -150,11 +150,24 @@ JustYear = ["zh", "zh-hans", "zh-cn", "zh-sg", "zh-my", "wuu", "zh-hant", "zh-hk
 
 
 def bnyear(date):
-    digits = {'0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'}
+    digits = {
+        '0': '০',
+        '1': '১',
+        '2': '২',
+        '3': '৩',
+        '4': '৪',
+        '5': '৫',
+        '6': '৬',
+        '7': '৭',
+        '8': '৮',
+        '9': '৯'
+    }
     date = str(date)
     for k, v in digits.items():
         date = re.sub(k, v, date)
     return date
+
+
 # ---
 
 
@@ -163,26 +176,34 @@ def Monthname(lang, month):
         month = re.sub(r'0', '', month)
     # ---
     # if lang == "bn":
-        # return month
+    # return month
     # ---
     if lang in Month_Table and month in Month_Table[lang]:
         # printe.output(Month_Table[lang][month])
         return Month_Table[lang][month]
     # else:
-        # printe.output( 'Monthname' )
+    # printe.output( 'Monthname' )
     # ---
     return False
+
+
 # ---
 
 
 def Make_uk_desc(desc):
 
     return desc
+
+
 # ---
 
 
 def fixdate(date):
-    table = {'year': '', 'month': '', 'day': ''}
+    table = {
+        'year': '',
+        'month': '',
+        'day': ''
+    }
     date = re.sub(r'\+0000000', '+', date)
     # date = date.split('T')[0]
     # printe.output(date)
@@ -203,6 +224,8 @@ def fixdate(date):
             printe.output('<<lightred>> fixdate ??:')
     # printe.output(table)
     return table
+
+
 # ---
 
 
@@ -292,17 +315,19 @@ def make_scientific_desc(lang, date, precision):
         # printe.output( 'uk date2:"%s"' % date2 )
     # ---
     # if lang == "uk":
-        # _Year , _Day = bnyear(year), bnyear(day)
-        # تعديل التاريخ للغة bn
-        # printe.output(desc)#
-        # desc = Make_uk_desc(desc)
-        # printe.output(desc)#
-        # return fafa
+    # _Year , _Day = bnyear(year), bnyear(day)
+    # تعديل التاريخ للغة bn
+    # printe.output(desc)#
+    # desc = Make_uk_desc(desc)
+    # printe.output(desc)#
+    # return fafa
     # ---
 
     # ---
     # printe.output(desc)#
     return desc
+
+
 # ---
 
 
@@ -331,12 +356,18 @@ def Get_P_API_time(item, P):
         return qlist[0]
     # ---
     return False
+
+
 # ---
 
 
 def make_scientific_article(item, p31, num, TestTable=False):
     # ---
-    tablem = {"descriptions": {}, "qid": "", "fixlang": []}
+    tablem = {
+        "descriptions": {},
+        "qid": "",
+        "fixlang": []
+    }
     # ---
     q = item["q"]
     printe.output('<<lightyellow>> **%d: make_scientific_article: %s' % (num, item["q"]))
@@ -387,13 +418,19 @@ def make_scientific_article(item, p31, num, TestTable=False):
         ar_descs = ["مقالة علمية", "مقالة بحثية"]
         # ---
         if lang not in item_descriptions.keys():
-            NewDesc[lang] = {"language": lang, "value": lang_e}
+            NewDesc[lang] = {
+                "language": lang,
+                "value": lang_e
+            }
             addedlangs.append(lang)
         # ---
         elif item_desc == ses_desc or (lang == "ar" and item_desc in ar_descs):  # or (lang == "bn"  and ):  # to fix bn descraptions
             if lang_e != item_desc:
                 printe.output(f'<<lightyellow>> replace desc "{item_desc}"@{lang}.')
-                NewDesc[lang] = {"language": lang, "value": lang_e}
+                NewDesc[lang] = {
+                    "language": lang,
+                    "value": lang_e
+                }
                 # if lang == "bn":
                 # replacelang.append(lang)
                 # else:
@@ -403,7 +440,10 @@ def make_scientific_article(item, p31, num, TestTable=False):
         elif pubdate['month'] == '11' and lang in Month_Table:
             if item_desc.find(Month_Table[lang]['12']) != -1:
                 printe.output(f'<<lightyellow>> find error desc "{item_desc}"@{lang}.')
-                NewDesc[lang] = {"language": lang, "value": lang_e}
+                NewDesc[lang] = {
+                    "language": lang,
+                    "value": lang_e
+                }
                 replacelang.append(lang)
     # ---
     # printe.output( '<<lightyellow>> make_scientific_article' + str(NewDesc) )
@@ -416,4 +456,6 @@ def make_scientific_article(item, p31, num, TestTable=False):
     else:
         print("make_scientific_article nothing to add. ")
         return tablem
+
+
 # ---

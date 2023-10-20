@@ -102,14 +102,24 @@ from datetime import timedelta
 from wd_api import himoAPI
 from wd_api import wd_bot
 # ---
-totaledits=0
+totaledits = 0
 # ---
-sparqler = {1: ''}
-Offq = {1: 0}
-Off = {1: 0}
-limit = {1: 0}
+sparqler = {
+    1: ''
+}
+Offq = {
+    1: 0
+}
+Off = {
+    1: 0
+}
+limit = {
+    1: 0
+}
 # ---
-totallimit = {1: 10000}
+totallimit = {
+    1: 10000
+}
 # ---
 from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS
 # ---
@@ -117,18 +127,20 @@ from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQL
 
 def lastXnewpages(maxp):
     printe.output('Begonnen')
-    site=pywikibot.Site('nl')
-    mygenerator=pg.NewpagesPageGenerator(site, 0, maxp)
+    site = pywikibot.Site('nl')
+    mygenerator = pg.NewpagesPageGenerator(site, 0, maxp)
     for onepage in mygenerator:
         if (onepage.exists()):  # avoid speedy deleted
             # print('p:%s' % onepage.title())
             if ('wikibase_item' in onepage.properties()):
                 try:
-                    wd=onepage.data_item()
+                    wd = onepage.data_item()
                     yield (wd)
                 except BaseException:
                     pass
     printe.output('Klaar')
+
+
 # ---
 
 
@@ -143,6 +155,8 @@ def testrun():
         # print('[%s][%s]' % (x.get('descriptions',{})['nl'],''))
     else:
         printe.output('no action!')
+
+
 # ---
 
 
@@ -152,6 +166,8 @@ def wd_one_without_description(item):
     for wditem in wd_sparql_query(one_sparql):
         if (wditem.exists()):
             yield wditem
+
+
 # ---
 
 
@@ -165,6 +181,8 @@ def wd_all_without_description():
       if (wditem.exists()):
         yield wditem
     '''
+
+
 # ---
 
 
@@ -182,6 +200,8 @@ def wd_all_simple_P131():
             except BaseException:
                 pass
     yield 'Q5'
+
+
 # ---
 
 
@@ -194,6 +214,8 @@ def wd_all_countries(spq):
         for item in one_country_generator:
             if (item.exists()):
                 yield item
+
+
 # ---
 
 
@@ -254,84 +276,96 @@ def wd_sparql_query(spq, ddf=False):
             Keep = False
     # ---
     return New_List
+
+
 # ---
 
 
 def wd_user_edits(username, ucsite, totaledits):
-    repo=pywikibot.Site('wikidata', 'wikidata').data_repository()
-    useredits=pg.UserContributionsGenerator(username, site=ucsite, total=totaledits, namespaces=[0])
+    repo = pywikibot.Site('wikidata', 'wikidata').data_repository()
+    useredits = pg.UserContributionsGenerator(username, site=ucsite, total=totaledits, namespaces=[0])
     for oneedit in useredits:
         if (oneedit.exists()):
-            wd=pywikibot.ItemPage(repo, oneedit.title())
+            wd = pywikibot.ItemPage(repo, oneedit.title())
             if (wd.exists()):
                 yield wd
+
+
 # ---
 
 
 def sparql_nodescription(sparql):
     return 'select distinct ?item where {{%s}filter (!bound(?itemDescription))}' % sparql
+
+
 # ---
 
 
 def some_items():
-    repo=pywikibot.Site('wikidata', 'wikidata').data_repository()
-    do_these=['Q52504095', 'Q52501574']  # scenografino / dramaturgino
-    do_these=['Q62507873', 'Q62898370']  # null edits
+    repo = pywikibot.Site('wikidata', 'wikidata').data_repository()
+    do_these = ['Q52504095', 'Q52501574']  # scenografino / dramaturgino
+    do_these = ['Q62507873', 'Q62898370']  # null edits
     for one_item in do_these:
-        wd=pywikibot.ItemPage(repo, one_item)
+        wd = pywikibot.ItemPage(repo, one_item)
         if (wd.exists()):
             yield wd
+
+
 # ---
 
 
 def newest_items(repo, site):
     for item in pg.NewPagesPageGenerator(site):
         break
-    startno=int(item.title()[1:])
+    startno = int(item.title()[1:])
     for itemno in range(startno, 0, -1):
-        item=pywikibot.ItemPage(repo, 'Q%d'%itemno)
+        item = pywikibot.ItemPage(repo, 'Q%d' % itemno)
         yield (item)
+
+
 # ---
 
 
 def generator_last_hour():
-    timenow=None
-    site=pywikibot.Site('wikidata', 'wikidata')
-    repo=site.data_repository()
-    generator=newest_items(repo, site)
-    generator=pg.NewpagesPageGenerator(site)
+    timenow = None
+    site = pywikibot.Site('wikidata', 'wikidata')
+    repo = site.data_repository()
+    generator = newest_items(repo, site)
+    generator = pg.NewpagesPageGenerator(site)
     for item in generator:
         if timenow is None:
-            timenow=item.oldest_revision.timestamp
-            endtime=timenow-timedelta(1.0/24.0)
-            untilltime=endtime-timedelta(0.001)
+            timenow = item.oldest_revision.timestamp
+            endtime = timenow - timedelta(1.0 / 24.0)
+            untilltime = endtime - timedelta(0.001)
         if (item.oldest_revision.timestamp > untilltime):
             # print(item.title())
-            item=pywikibot.ItemPage(repo, item.title())
+            item = pywikibot.ItemPage(repo, item.title())
             if (item.exists()):
                 # print(item.title())
                 yield item
         else:
             printe.output(f'Klaar: {item.oldest_revision.timestamp}')
             break
+
+
 # ---
 
 
 def wd_all_items():
-    startrange= 80999999
+    startrange = 80999999
     stoprange = 80000000
-    startrange= 79788588
+    startrange = 79788588
     stoprange = 79000000
-    startrange= 78823351
+    startrange = 78823351
     stoprange = 78000000
-    startrange= 77196790
+    startrange = 77196790
     stoprange = 77000000
     # startrange= 50000100
     # stoprange = 50000000
-    repo=pywikibot.Site('wikidata', 'wikidata').data_repository()
+    repo = pywikibot.Site('wikidata', 'wikidata').data_repository()
     for itemno in range(startrange, stoprange):
         # try:
-        wd=pywikibot.ItemPage(repo, 'Q%d' % itemno)
+        wd = pywikibot.ItemPage(repo, 'Q%d' % itemno)
         if not wd.isRedirectPage():
             if wd.exists():
                 yield wd
@@ -431,7 +465,7 @@ def just_get_ar(labe):
 def main(debug=False):
     print('main')
     sasa = ''
-    pigenerator=None
+    pigenerator = None
     # ---
     sasa = SPARQLSE.get(sparqler[1].strip(), '')
     # ---
@@ -450,7 +484,7 @@ def main(debug=False):
     # ---
     for sparql_query in ssqq:
         # ---
-        numg +=1
+        numg += 1
         # ---
         printe.output('-------------------------')
         printe.output("<<lightblue>> query %d from %d :" % (numg, len(ssqq)))
@@ -460,8 +494,8 @@ def main(debug=False):
         # ---
         # sparql_query = 'select ?item where {?item wdt:P31 wd:Q3508250}' #
         # site=pywikibot.Site('wikidata','wikidata')
-        repo={}  # site.data_repository()
-        items_processed=0
+        repo = {}  # site.data_repository()
+        items_processed = 0
         if debug:
             printe.output('main-1')
         if (True):
@@ -477,14 +511,14 @@ def main(debug=False):
             pigenerator = wd_sparql_query(sparql_query, ddf=True)
         if (pigenerator is None) or (forcehourly):
             printe.output('Force hourly script...')
-            pigenerator=generator_last_hour()
-        totalreads=0
+            pigenerator = generator_last_hour()
+        totalreads = 0
         # pigenerator = [ {'item': 'http://www.wikidata.org/entity/Q19019359'} ]
         for wd in pigenerator:
             printe.output("<<lightblue>> ============")
             # printe.output( wd )
             q = wd['item'].split("/entity/")[1]
-            totalreads+=1
+            totalreads += 1
             if debug:
                 printe.output(f'Found: {q}')
             printe.output("p%d/%d q:%s" % (totalreads, len(pigenerator), q))
@@ -501,7 +535,7 @@ def main(debug=False):
 
 
 print(' start np/nldes.py ')
-forcehourly=False
+forcehourly = False
 # ---
 if __name__ == '__main__':
     if 'test' in sys.argv:

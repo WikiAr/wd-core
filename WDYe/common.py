@@ -44,9 +44,7 @@ queries2 = {
     # 'genus of reptiles': 'SELECT ?item   WHERE   {   ?item wdt:P105 wd:Q34740 .    ?item schema:description "genus of reptiles"@en.  }   ',
 
     # 'Hebrew calendar year': 'SELECT ?item    WHERE { ?item wdt:P31 wd:Q577 ;    wdt:P31 ?instance .    ?item schema:description "Hebrew calendar year"@en.   }   GROUP BY ?item  HAVING(COUNT(?instance) = 1)',
-
     'Islamic calendar year': 'SELECT ?item WHERE { ?item wdt:P31 wd:Q577 ;   wdt:P31 ?instance .  ?item wdt:P361 wd:Q28892 .   ?item schema:description "Islamic calendar year"@en. FILTER NOT EXISTS {?item rdfs:label ?itemabel filter (lang(?itemabel) = "ar")} .} GROUP BY ?item HAVING(COUNT(?instance) = 1)',
-
     'male given name': 'SELECT ?item  WHERE { ?item wdt:P31 wd:Q12308941 ;       wdt:P31 ?instance .    ?item schema:description "male given name"@en.    FILTER NOT EXISTS {?item rdfs:label ?itemabel filter (lang(?itemabel) = "ar")} . }   GROUP BY ?item  HAVING(COUNT(?instance) = 1)',
 
     # 'natural number': 'SELECT ?item  WHERE { ?item wdt:P31 wd:Q21199 .     FILTER NOT EXISTS { ?item wdt:P31 wd:Q200227 } .    ?item schema:description "natural number"@en.   OPTIONAL {      ?item schema:description ?itemabel.     FILTER((LANG(?itemabel)) = "ar")    }   FILTER(!BOUND(?itemabel)) }   ',
@@ -69,9 +67,7 @@ queries2 = {
     # 'Wikinews article': 'SELECT ?item    WHERE { ?item wdt:P31 wd:Q17633526 ;      wdt:P31 ?instance .     #?item schema:description "Wikinews article"@en.  }   GROUP BY ?item  HAVING(COUNT(?instance) = 1)',
 
     # 'year': 'SELECT ?item    WHERE   {   ?item wdt:P31 wd:Q577 ;   wdt:P31 ?instance .     ?item schema:description "year"@en.     OPTIONAL {      ?item schema:description ?itemabel.     FILTER((LANG(?itemabel)) = "ar")    } }   GROUP BY ?item  HAVING(COUNT(?instance) = 1)',
-
 }
-
 
 SELECT = 'SELECT  ?item  WHERE { ?item '
 # GROUP = 'OPTIONAL { ?item schema:description ?des. FILTER((LANG(?des)) = "ar") } FILTER(!BOUND(?des))} GROUP BY ?item HAVING(COUNT(?instance) = 1) Limit 102'
@@ -121,7 +117,6 @@ queries = {
     # 'Wikimedia template': SELECT + ' wdt:P31 wd:Q11266439 ; wdt:P31 ?instance . ' + GROUP,
     # 'Wikinews article': SELECT + ' wdt:P31 wd:Q17633526 . \n' + GROUP,
     # 'Wikinews article': 'SELECT DISTINCT  ?item WHERE {  BIND("Wikinews article"@en AS ?year)  ?item schema:description ?year.}'
-
 }
 
 queriestest = {
@@ -138,8 +133,9 @@ def OOutPut(ss):
 
 
 # ---
-qq = {'Hebrew calendar year': SELECT +
-      ' wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.' + GROUP, }
+qq = {
+    'Hebrew calendar year': SELECT + ' wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.' + GROUP,
+}
 # ---
 # start of newdesc.py file
 # newdesc.work22(q , topic, DescraptionsTable)
@@ -158,8 +154,7 @@ def main():
     for topic in queries_list:
         numb += 1
         if topic in DescraptionsTable:
-            pywikibot.output('**<<lightyellow>> %d/%d: topic: %s' %
-                             (numb, lenth, topic))
+            pywikibot.output('**<<lightyellow>> %d/%d: topic: %s' % (numb, lenth, topic))
             # ---
             quary = queries[topic]
             Limit = 'Limit 5000'

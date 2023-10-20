@@ -40,7 +40,6 @@ desc_table = {
     'Q15917122': Space_Descraptions.get('Q15917122', {}),
     'Q67206691': Space_Descraptions.get('Q67206691', {}),
     'Q71963409': Space_Descraptions.get('Q71963409', {}),
-
     'Q7187': Qid_Descraptions.get('Q7187', {}),
     'Q7889': Qid_Descraptions.get('Q7889', {}),
     'Q8054': Qid_Descraptions.get('Q8054', {}),
@@ -59,29 +58,37 @@ desc_table = {
     'Q13406463': Qid_Descraptions.get('Q13406463', {}),
     'Q17633526': Qid_Descraptions.get('Q17633526', {}),
     'Q19389637': Qid_Descraptions.get('Q19389637', {}),
-
     'Q11753321': DescraptionsTable.get('Wikimedia template', {}),
     'Q15145755': DescraptionsTable.get('Wikimedia module', {}),  # Module test cases
     'Q18711811': DescraptionsTable.get('Wikimedia module', {}),  # map data module
     'Q24046192': DescraptionsTable.get('Wikimedia category', {}),
-
 
     # 'Q8502' : placesTable.get('Q8502', {}),     # جبل
     # 'Q39614' : placesTable.get('Q39614', {}),   # مقبرة
     # 'Q79007' : placesTable.get('Q79007', {}),   # شارع
 }
 # ---
-desc_table["Q726242"] = {"ar": "نجم"}
-desc_table["Q2247863"] = {"ar": "نجم"}
-desc_table["Q66619666"] = {"ar": "نجم"}
-desc_table["Q72803622"] = {"ar": "نجم"}
+desc_table["Q726242"] = {
+    "ar": "نجم"
+}
+desc_table["Q2247863"] = {
+    "ar": "نجم"
+}
+desc_table["Q66619666"] = {
+    "ar": "نجم"
+}
+desc_table["Q72803622"] = {
+    "ar": "نجم"
+}
 # ---
 for x, dd in railway_tables.items():
     desc_table[x] = dd
 # ---
 for x in desc_table:
     if x in sys.argv:
-        desc_table = {x: desc_table[x]}
+        desc_table = {
+            x: desc_table[x]
+        }
         break
 # ---
 temp_table = {}
@@ -185,7 +192,7 @@ for p31, p31_desc in desc_table.items():
             if p31 in railway_tables:
                 work_railway({}, p31, q=q)
             # elif p31 in placesTable:
-                # work_railway( {}, p31, q=q )
+            # work_railway( {}, p31, q=q )
             else:
                 newdesc.work22(q, p31, desc_table)
             # ---
