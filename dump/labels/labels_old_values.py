@@ -8,6 +8,7 @@ import sys
 import codecs
 import re
 import requests
+
 Session = requests.Session()
 dir2 = Path(__file__).parent
 
@@ -24,7 +25,13 @@ _old_data = _old_data.get('langs') or _old_data
 
 
 def GetPageText(title):
-    params = {"action": "parse", "prop": "wikitext|sections", "page": title, 'format': 'json', 'utf8': 1}
+    params = {
+        "action": "parse",
+        "prop": "wikitext|sections",
+        "page": title,
+        'format': 'json',
+        'utf8': 1
+    }
     # ---
     end_point = 'https://www.wikidata.org/w/api.php?'
     # ---
@@ -85,7 +92,12 @@ def from_wiki():
             iu = re.search(r"\|(.*?)\|\|(\d*)\|\|(\d*)\|\|(\d*)", L)
             if iu:
                 lang = iu.group(1).strip()
-                Old[lang] = {'labels': 0, 'descriptions': 0, 'aliases': 0, 'all': 0}
+                Old[lang] = {
+                    'labels': 0,
+                    'descriptions': 0,
+                    'aliases': 0,
+                    'all': 0
+                }
 
                 if iu.group(2):
                     Old[lang]['all'] += int(iu.group(2))

@@ -25,7 +25,9 @@ if config.db_connect_file is None:
         'password': db_password
     }
 else:
-    credentials = {'read_default_file': config.db_connect_file}
+    credentials = {
+        'read_default_file': config.db_connect_file
+    }
 
 
 def resolve_bytes(rows):
@@ -37,7 +39,7 @@ def resolve_bytes(rows):
             if isinstance(value, bytes):
                 try:
                     value = value.decode('utf-8')  # Assuming UTF-8 encoding
-                except Exception as e:
+                except Exception:
                     value = value
             decoded_row[key] = value
         decoded_rows.append(decoded_row)
@@ -64,7 +66,7 @@ def connect_pymysql(query, db='', host=''):
     # ---
     try:
         connection = pymysql.connect(**args2, **credentials)
-    except Exception as e:
+    except Exception:
         pywikibot.output('Traceback (most recent call last):')
         pywikibot.output(traceback.format_exc())
         pywikibot.output('CRITICAL:')
@@ -76,7 +78,7 @@ def connect_pymysql(query, db='', host=''):
         try:
             cursor.execute(query, params)
 
-        except Exception as e:
+        except Exception:
             pywikibot.output('Traceback (most recent call last):')
             pywikibot.output(traceback.format_exc())
             pywikibot.output('CRITICAL:')
@@ -86,7 +88,7 @@ def connect_pymysql(query, db='', host=''):
         # ---
         try:
             results = cursor.fetchall()
-        except Exception as e:
+        except Exception:
             pywikibot.output('Traceback (most recent call last):')
             pywikibot.output(traceback.format_exc())
             pywikibot.output('CRITICAL:')
@@ -118,4 +120,6 @@ def new_pymysql_connect(query, db='', host=''):
     print(f'sql_db.py sql_new len(rows) = "{len(rows)}", in {delta} seconds')
     # ---
     return rows
+
+
 # ---

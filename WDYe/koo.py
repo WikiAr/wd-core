@@ -55,9 +55,9 @@ def woo(page):
     if P31 != "Q5":
         return ''
     # else:
-        # pywikibot.output( "P31:%s" % P31 )
+    # pywikibot.output( "P31:%s" % P31 )
     # ---
-    if not iin and not id in done:
+    if not iin and id not in done:
         himoAPI.Claim_API_string(qid, "P8021", id)
         done.append(id)
         # pywikibot.output( f )

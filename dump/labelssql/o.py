@@ -15,7 +15,7 @@ print(f'Dir:{Dir}')
 # تجهيز قاعدة بيانات
 # ---
 # database_file = f'{Dir}/wikidata_database.db'
-database_file = f'wikidata_database.db'
+database_file = 'wikidata_database.db'
 # ---
 if os.path.isfile(database_file):
     os.remove(database_file)

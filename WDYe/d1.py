@@ -75,13 +75,11 @@ translations = {
         'it': 'specie di coleotteri',
         # 'fr': 'espèces de coléoptères',
         'fr': 'espèce de coléoptères',
-
     },
     'species of insect': {
         'it': 'specie di insetti',
         # 'fr': "espèces d'insectes",
         'fr': "espèce d'insectes",
-
     },
 }
 # ---
@@ -104,18 +102,23 @@ def work2(item, topic):
                 if lang in ItemDescriptions.keys():
                     value = ItemDescriptions[lang]  # ['value']
                     if value != replacement[lang]:
-                        NewDesc[lang] = {"language": lang,
-                                         "value": replacement[lang]}
-                        pywikibot.output('<<lightyellow>> {}:replace "{}" by: "{}".'.format(
-                            lang, value, replacement[lang]))
+                        NewDesc[lang] = {
+                            "language": lang,
+                            "value": replacement[lang]
+                        }
+                        pywikibot.output('<<lightyellow>> {}:replace "{}" by: "{}".'.format(lang, value, replacement[lang]))
                         fixlang.append(lang)
                 else:
-                    NewDesc[lang] = {"language": lang,
-                                     "value": translations[topic][lang]}
+                    NewDesc[lang] = {
+                        "language": lang,
+                        "value": translations[topic][lang]
+                    }
                     # addedlangs.append(lang)
             # ---
             # pywikibot.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
             wd_desc.wwdesc(NewDesc, q, 1, fixlang, ask=False)
+
+
 # ---
 
 
@@ -133,8 +136,7 @@ def mam():
     for item in json:
         num += 1
         q = item.title(as_link=False)
-        pywikibot.output(
-            '<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, lenth, topic, q))
+        pywikibot.output('<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, lenth, topic, q))
         work2(item, topic)
 
 

@@ -16,10 +16,11 @@ import pywikibot
 # ---
 import sys
 # ---
-File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
+File_name_to_check = {
+    1: "name/LOG/name_to_check.log.csv"
+}
 # ---
 # ---
-
 
 # ---
 try:
@@ -29,9 +30,15 @@ except BaseException:
 # ---
 # from wd_api import himoAPI
 # ---
-ask = {1: True}
-OFFSET = {1: '   '}
-Limit = {1: ' limit 100 '}
+ask = {
+    1: True
+}
+OFFSET = {
+    1: '   '
+}
+Limit = {
+    1: ' limit 100 '
+}
 # ---
 names = [
     "Q307288",  # عبد الملك
@@ -153,7 +160,8 @@ fafafa = """عبد الملك
 عبد النور
 عبد القوي"""
 # ---
-Quarry = {1: '''
+Quarry = {
+    1: '''
 
 SELECT ?item ?label
 WHERE {
@@ -165,7 +173,8 @@ WHERE {
 
 
     }
-'''}
+'''
+}
 # ---
 
 
@@ -176,6 +185,8 @@ def action_one_item(q, ar):
         ar2 = ar.replace("عبد ", "عبد")
     if ar != ar2:
         himoAPI.Alias_API(q, [ar2], "ar", False)
+
+
 # ---
 
 

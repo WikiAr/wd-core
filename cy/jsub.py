@@ -18,10 +18,13 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 # ---
 
 import pywikibot
+
 # ---
 from cy.cy5 import *
+
 # ---
 import gent
+
 # generator = gent.get_gent(*args)
 # ---
 

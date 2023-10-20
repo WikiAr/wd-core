@@ -7,6 +7,7 @@
 import json
 import codecs
 from pathlib import Path
+
 Dir = Path(__file__).parent
 # ---
 from people.compare_files._occ import tota as tota2
@@ -23,7 +24,7 @@ json.dump(tota1, codecs.open(f'{Dir}/compare_files/tota1old.json', 'w', encoding
 json.dump(tota2, codecs.open(f'{Dir}/compare_files/tota2new.json', 'w', encoding='utf-8'), sort_keys=True, indent=4, ensure_ascii=False)
 
 # keys in tota2 but not in tota1
-new_keys = [x for x in tota2.keys() if not x in tota1.keys()]
+new_keys = [x for x in tota2.keys() if x not in tota1.keys()]
 
 # print the number of keys present in old translations file but not in the new one
 

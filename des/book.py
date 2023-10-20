@@ -17,13 +17,17 @@ python pwb.py des/book
 import re
 import pywikibot
 import sys
+
 # ---
 from API import himoBOT2
 from wd_api import wd_desc
 from wd_api import wd_bot
 from API import printe
+
 # ---
-AskSave = {1: True}
+AskSave = {
+    1: True
+}
 Qlist = {}
 
 Qlist['Q49084'] = {  # قصة قصيرة
@@ -40,7 +44,6 @@ Qlist['Q1318295'] = {  # قصة
     'fr': 'récit',
     'nl': 'verhaal',
 }
-
 """Qlist['Q19389637'] = {# مقالة سيرة ذاتية
                 'ar' : 'مقالة سيرة ذاتية' ,
                 'en' : 'biographical article' ,
@@ -98,7 +101,10 @@ def action_one_item(Qid, pa, lang, keys):
                 # ---
                 des = MakeDesc(Qid, pa, lang2)
                 if des:
-                    NewDesc[lang] = {"language": lang, "value": des}
+                    NewDesc[lang] = {
+                        "language": lang,
+                        "value": des
+                    }
                     dns = ''
                     if 'endes' in pa:
                         dns = pa['endes']
@@ -144,7 +150,6 @@ Comma = {
     "ro": " și ",
     "sv": " och ",
     'en': ", ",
-
 }
 Comma2 = {
     'ar': "، و",
@@ -159,37 +164,43 @@ Comma2 = {
 def GetQuery(Qid, lang, keys):
     # ---
     P50 = 'P50'
+    # ---
     if Qid == 'Q482994':
         P50 = 'P175'
     # ---
     # sa = ('?item wdt:P136 wd:Q8261 . ?item wdt:P31* wd:Q7725634 .\n')
-    sa = (f'?item wdt:P31 wd:{Qid} .\n')
+    sa = f'?item wdt:P31 wd:{Qid} .\n'
+    # ---
     if Qid == 'novel':
-        sa = ('?item wdt:P136 wd:Q8261 . ?item wdt:P31 wd:Q7725634 .\n')
+        sa = '?item wdt:P136 wd:Q8261 . ?item wdt:P31 wd:Q7725634 .\n'
     # ---
-    ur = (f'SELECT ?item (GROUP_CONCAT(DISTINCT(?auth{lang}); separator="{Comma[lang]}") as ?{lang}) ')
-    # ---
-    for lan in keys:
-        if lan != lang:
-            ur = ur + (f'\n(GROUP_CONCAT(DISTINCT(?auth{lan}); separator="{Comma[lan]}") as ?{lan}) ')
-    # ---
-    ur = ur + ('WHERE { ?item wdt:%s ?auths .\n' % P50)+ sa
+    ur = f'SELECT ?item (GROUP_CONCAT(DISTINCT(?auth{lang}); separator="{Comma[lang]}") as ?{lang}) '
     # ---
     for lan in keys:
         if lan != lang:
-            ur = ur + (f'OPTIONAL {{?auths rdfs:label ?auth{lan} filter (lang(?auth{lan}) = "{lan}")}} .\n')
+            ur += f'\n(GROUP_CONCAT(DISTINCT(?auth{lan}); separator="{Comma[lan]}") as ?{lan}) '
+    # ---
+    ur += 'WHERE {'
+    ur += f'?item wdt:{P50} ?auths .\n'
+    ur += sa
+    # ---
+    for lan in keys:
+        if lan != lang:
+            ur += f'OPTIONAL {{?auths rdfs:label ?auth{lan} filter (lang(?auth{lan}) = "{lan}")}} .\n'
     # ---
     if sys.argv and 'optional' in sys.argv:
-        ur = ur + (f' OPTIONAL {{ ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") }} .')
+        ur += f' OPTIONAL {{ ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") }} .'
     else:
-        ur = ur + (f' ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") .')
+        ur += f' ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") .'
     # ---
-    ur = ur + ('\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang)
-    ur = ur + 'FILTER(!BOUND(?itemDes))  }\n GROUP BY ?item '
+    ur += '\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang
+    ur += 'FILTER(!BOUND(?itemDes))  }\n GROUP BY ?item '
     # ---
     # printe.output(ur)
     # ---
     return ur
+
+
 # ---
 
 
@@ -208,8 +219,12 @@ def Gquery2(json1):
 
 
 # ---
-Off = {1: 0}
-limit = {1: 0}
+Off = {
+    1: 0
+}
+limit = {
+    1: 0
+}
 # ---
 for arg in sys.argv:
     # ---
@@ -233,7 +248,7 @@ def wd_sparql_query(query, ddf=False):
         return New_List
     # ---
     # if limit[1] != 0 :
-        # query = query + " limit " + str( limit[1] )
+    # query = query + " limit " + str( limit[1] )
     # ---
     Keep = True
     offset = 0
@@ -251,7 +266,7 @@ def wd_sparql_query(query, ddf=False):
         if offset != 0:
             quarry = quarry + " offset " + str(offset)
         # else: Off[1] != 0 :
-            # quarry = quarry + " offset " + str( Off[1] )
+        # quarry = quarry + " offset " + str( Off[1] )
         # ---
         # printe.output( quarry )
         # ---
@@ -271,6 +286,8 @@ def wd_sparql_query(query, ddf=False):
             Keep = False
     # ---
     return New_List
+
+
 # ---
 
 
@@ -327,7 +344,7 @@ def MakeDesc(Qid, pa, lang):
     if lang in english:
         lang = 'en'
     # ---
-    if not lang in by_list:
+    if lang not in by_list:
         printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
     # ---
@@ -341,15 +358,15 @@ def MakeDesc(Qid, pa, lang):
         if auth:
             if lang in Qlist[Qid]:
                 des = Qlist[Qid][lang]
-                d = des                             # الوصف
+                d = des  # الوصف
                 # d = d + ' '                        # الرابط by
-                d = d + ' ' + co     # الرابط by
-                d = d + auth                        # المؤلف
+                d = d + ' ' + co  # الرابط by
+                d = d + auth  # المؤلف
                 # printe.output( 'd' )
                 # printe.output( d )
                 description = d
     # else:
-        # description = False
+    # description = False
     # ---
     if description and lang == "ar":
         description = description.replace("/", "، و")
@@ -359,6 +376,8 @@ def MakeDesc(Qid, pa, lang):
             printe.output(f'<<lightred>> arabic description test failed "{description}".')
             description = False
     return description
+
+
 # ---
 
 
@@ -383,8 +402,8 @@ def main():
 
         totalqueries = len(Qlist.keys()) * len(Qlist[Qid].keys())
         printe.output(f'*Qid "{Qid}":')
-        out = '<<lightgreen>>  *== Quary:"%s", %d/%d. =='
-        printe.output(out % (Qlist[Qid]['ar'], Queries, totalqueries,))
+        out = '<<lightgreen>>  *== Quary:"%s", %d/%d. ==' % (Qlist[Qid]['ar'], Queries, totalqueries)
+        printe.output(out)
         # printe.output( 'lab: "%s". ' % Qlist[Qid]['ar'] )
         for lang in keys:
             # printe.output( Qlist[Qid][lang] )

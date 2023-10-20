@@ -9,7 +9,6 @@
 #
 #
 
-
 import re
 import pywikibot
 # ---
@@ -19,7 +18,9 @@ import sys
 from API import himoBOT2
 from wd_api import himoAPI_test as himoAPI
 # ---
-SaveR = {1: False}
+SaveR = {
+    1: False
+}
 # ---
 main_table = {}
 main_table["Q4167836"] = {
@@ -67,16 +68,18 @@ def WORK(item, table, type):
         if SaveR[1]:
             himoAPI.Alias_API(item, [arlab2], "ar", False)
         else:
-            sa = pywikibot.input(
-                f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
+            sa = pywikibot.input(f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
             if sa == 'y' or sa == 'a' or sa == '':
                 himoAPI.Alias_API(item, [arlab2], "ar", False)
             else:
                 pywikibot.output(' himoAPI: wrong answer')
 
-
     # ---
-Limit = {1: "10"}
+
+
+Limit = {
+    1: "10"
+}
 # ---
 Quaa = '''SELECT ?item ?label ?alias
     WHERE
@@ -104,10 +107,10 @@ def WORK_table(qid, tables):
         Table = {}
         for item in sparql:
             q = item['item'].split("/entity/")[1]
-            if not q in Table:
+            if q not in Table:
                 Table[q] = {}
             for tab in item:
-                if not tab in Table[q]:
+                if tab not in Table[q]:
                     Table[q][tab] = []
                 if tab != 'item':
                     Table[q][tab].append(item[tab])
@@ -116,10 +119,11 @@ def WORK_table(qid, tables):
         for item in Table:
             num += 1
             # if num < 2:
-            pywikibot.output('<<lightgreen>> %d/%d item:"%s" ' %
-                             (num, len(Table.keys()), item))
+            pywikibot.output('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
             # item['item'] = item['item'].split("/entity/")[1]
             WORK(item, Table[item], peo)
+
+
 # ---
 
 
@@ -162,16 +166,19 @@ def main():
     # ---
     if val2 != "" and qnew != "":
         table_new = {}
-        table_new[qnew] = {val: val2}
+        table_new[qnew] = {
+            val: val2
+        }
     # ---
     num_peo = 0
     for qid in table_new:
         num_peo += 1
-        pywikibot.output('<<lightblue>> %d/%d peo:"%s" ' %
-                         (num_peo, len(table_new.keys()), qid))
+        pywikibot.output('<<lightblue>> %d/%d peo:"%s" ' % (num_peo, len(table_new.keys()), qid))
         WORK_table(qid, table_new[qid])
 
         # ---
+
+
 if __name__ == "__main__":
     main()
 # ---

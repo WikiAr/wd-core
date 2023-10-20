@@ -29,6 +29,7 @@ python3 core8/pwb.py np/si3g -newpages:200 ask
 # (C) Ibrahem Qasim, 2023
 #
 import sys
+
 sys.argv.append('-family:wikidata')
 sys.argv.append('-lang:wikidata')
 # ---

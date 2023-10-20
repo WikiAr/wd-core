@@ -3,7 +3,6 @@
 import pywikibot
 from pywikibot import pagegenerators as pg
 
-
 debugedo = True
 debugedo = False
 debug = False
@@ -21,8 +20,12 @@ def action_one_item(wditem):
         if ('en' in wditem.labels):  # تسمية انجليزية متوفرة
             numberlabel = wditem.labels['en']  # اسم انجليزي
             data = {}
-            data.update({'labels': {ara: numberlabel}})
-            wditem.editEntity(data, summary='Bot: add ar label: '+numberlabel)
+            data.update({
+                'labels': {
+                    ara: numberlabel
+                }
+            })
+            wditem.editEntity(data, summary='Bot: add ar label: ' + numberlabel)
     return 1
     return 0
 
@@ -40,8 +43,7 @@ def main():
     itemsdone = 0
     max = 10
     print("- بدء المهمة")  # تسميات إنجليزية مجرد أرقام دون تسمية عربية
-    query = 'SELECT ?item WHERE { ?item rdfs:label ?cid22. FILTER((LANG(?cid22)) = "en"). BIND( REGEX(STR(?cid22), "^([0-9]*)$") AS ?regexresult ) . FILTER( ?regexresult = true ) . FILTER NOT EXISTS {?item rdfs:label ?itemabel filter (lang(?itemabel) = "ar")} .} LIMIT '+str(
-        max)+''
+    query = 'SELECT ?item WHERE { ?item rdfs:label ?cid22. FILTER((LANG(?cid22)) = "en"). BIND( REGEX(STR(?cid22), "^([0-9]*)$") AS ?regexresult ) . FILTER( ?regexresult = true ) . FILTER NOT EXISTS {?item rdfs:label ?itemabel filter (lang(?itemabel) = "ar")} .} LIMIT ' + str(max) + ''
     print("--- يتم الان تشغيل الاستعلام")
     pigenerator = wd_sparql_generator(query)
     for wditem in pigenerator:

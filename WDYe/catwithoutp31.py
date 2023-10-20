@@ -22,6 +22,7 @@ from wd_api import wd_desc
 from wd_api import himoAPI
 # ---
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
+
 Tras = {
     'Q4167836': DescraptionsTable.get('Wikimedia category') or Qid_Descraptions.get('Q4167836') or {}
 }
@@ -89,7 +90,10 @@ def work_one_item(item):
         label = links[site]
         lang = re.sub(r"wiki$", "", site)
         if lang != label and lang not in labels.keys():
-            data2['labels'][lang] = {'language': lang, 'value': label}
+            data2['labels'][lang] = {
+                'language': lang,
+                'value': label
+            }
     # ---
     pywikibot.output(f'<<lightred>>* links :{links}')
     pywikibot.output(f'<<lightred>>* labels :{labels}')
@@ -110,15 +114,19 @@ def work_one_item(item):
         catdesc['en-gb'] = catdesc['en']
     # ---
     for lang in catdesc.keys():
-        if not lang in descriptions.keys():
-            NewDesc[lang] = {"language": lang, "value": catdesc[lang]}
+        if lang not in descriptions.keys():
+            NewDesc[lang] = {
+                "language": lang,
+                "value": catdesc[lang]
+            }
     # ---
     if NewDesc:
         pywikibot.output(f'<<lightyellow>>* adding descriptions to :{q} ')
         wd_desc.work_api_desc(NewDesc, q)
     else:
-        pywikibot.output(
-            f'<<lightred>>* work 2 :{q} no descriptions to add.')
+        pywikibot.output(f'<<lightred>>* work 2 :{q} no descriptions to add.')
+
+
 # ---
 
 

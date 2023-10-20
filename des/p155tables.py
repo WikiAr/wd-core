@@ -85,32 +85,25 @@ Mako_keys = {
 }
 # ---
 International_Federation = {
-
     "FIL World Luge Championships": "كأس العالم للزحف الثلجي",
     "FIL under 23 World Luge Championships": "كأس العالم للزحف الثلجي تحت 23 سنة",
-
-
     "NCAA": "الرابطة الوطنية لرياضة الجامعات",
     "NCAA Men's Water Polo Championships": "بطولة كرة الماء للرجال للجامعات",
     "NCAA women's Water Polo Championships": "بطولة كرة الماء للسيدات للجامعات",
     "National Collegiate Athletic Association": "الرابطة الوطنية لرياضة الجامعات",
     "BWF World Championships": "بطولة العالم لكرة الريشة",
     "BWF World Junior Championships": "بطولة العالم لكرة الريشة للناشئين",
-
     "ConIFA World Football Cup": "كأس العالم لاتحاد الجمعيات المستقلة لكرة القدم",
-
     "ATP Tour": "رابطة محترفي التنس",
     "ATP Tour tournaments": "بطولات رابطة محترفي التنس",
     "ATP Tour tournaments": "بطولات رابطة محترفي التنس",
     "ATP World Tour": "بطولات العالم لرابطة محترفات التنس",
     "ATP Challenger Tour": "بطولات تشالنجر لرابطة محترفات التنس",
-
     "WTA Auckland Open": "أوكلاند المفتوحة للسيدات",
     "WTA Madrid Open (tennis)": "مدريد المفتوحة للسيدات (تنس)",
     "WTA Tour tournaments": "بطولات رابطة محترفات التنس",
     "WTA Tour tournaments": "بطولات رابطة محترفات التنس",
     "WTA Tour": "رابطة محترفات التنس",
-
     "UCI Continental Teams": "الفرق القارية للاتحاد الدولي للدراجات",
     "UCI Continental Teams (Asia)": "الفرق القارية للاتحاد الدولي للدراجات (آسيا)",
     "UCI Continental Teams (Africa)": "الفرق القارية للاتحاد الدولي للدراجات (أفريقيا)",
@@ -163,7 +156,6 @@ International_Federation = {
     "UCI Track Cycling World Championships – Women's sprint": "سباق السرعة الفردية للنساء في بطولة الدراجات على المضمار",
     "UCI Track Cycling World Championships – Women's team pursuit": "سباق المطاردة الفرقية للنساء في بطولة الدراجات على المضمار",
     "UCI Track Cycling World Championships – Women's team sprint": "سباق السرعة الفردية لفرق النساء في بطولة الدراجات على المضمار",
-
     "OFC U-17 Championships": "كأس أوقيانوسيا للأمم تحت 17 سنة",
     "OFC Nations Cup": "كأس أوقيانوسيا للأمم",
     "OFC U-20 Championships": "كأس أوقيانوسيا للأمم تحت 20 سنة",
@@ -171,7 +163,6 @@ International_Federation = {
     "OFC U-17 Championships": "كأس أوقيانوسيا للأمم تحت 17 سنة",
     "OFC U-20 Championships": "كأس أوقيانوسيا للأمم تحت 20 سنة",
     "OFC Champions League": "دوري أبطال أوقيانوسيا",
-
     "AFC Asian Cup Finals": "نهائيات كأس آسيا",
     "AFC Futsal Championships": "بطولة آسيا لكرة القدم الخماسية",
     "AFC U-16 Women's Championships": "بطولة آسيا تحت 16 سنة لكرة القدم للسيدات",
@@ -182,7 +173,6 @@ International_Federation = {
     "AFC U-16 Championships": "بطولة آسيا للناشئين تحت 16 سنة",
     "AFC Asian Cup": "كأس آسيا",
     "AFC Futsal Club Championships": "بطولة آسيا لكرة القدم الخماسية للأندية",
-
     "CONCACAF Championships": "بطولة أمريكا الشمالية",
     "CONCACAF Gold Cup": "كأس الكونكاكاف الذهبية",
     "CONCACAF U17 Championships": "الكأس الذهبية تحت 17 سنة لكرة القدم",
@@ -193,11 +183,9 @@ International_Federation = {
     "CONCACAF U17 Championships": "الكأس الذهبية تحت 17 سنة لكرة القدم",
     "CONCACAF Champions League": "دوري أبطال الكونكاكاف",
     "CONCACAF Under-20 Championships": "الكأس الذهبية تحت 20 سنة لكرة القدم",
-
     "AFF U-23 Championships": "بطولة اتحاد آسيان تحت 23 سنة",
     "AFF U-23 Youth Championships": "بطولة اتحاد آسيان تحت 23 سنة للشباب",
     "AFF Championships": "بطولة اتحاد آسيان لكرة القدم",
-
     "EHF Champions League": "دوري أبطال أوروبا لكرة اليد",
     "Women's EHF Champions League": "دوري أبطال أوروبا لكرة اليد للسيدات",
     "EHF Cup": "كأس أوروبا لكرة اليد",
@@ -208,19 +196,14 @@ International_Federation = {
     "Women's EHF Cup Winners' Cup": "كأس أبطال الكؤوس الأوروبية لكرة اليد للسيدات",
     "EHF Women's Cup Winners' Cup": "كأس أبطال الكؤوس الأوروبية لكرة اليد للسيدات",
     "EHF Women's Champions League": "دوري أبطال أوروبا لكرة اليد للسيدات",
-
     "AFC Champions League": "دوري أبطال آسيا",
-
     "ASEAN Football Championships": "بطولة اتحاد آسيان لكرة القدم",
-
     "FIBA EuroBasket": "بطولة أمم أوروبا لكرة السلة",
     "FIBA Women's Basketball World Cup": "كأس العالم لكرة السلة للسيدات",
-
     "FIBA European Champions Cup": "كأس أبطال أوروبا لكرة السلة",
     "FIBA Women's European Champions Cup": "كأس أبطال أوروبا لكرة السلة للسيدات",
     "FIBA Women's World Cup": "كأس العالم لكرة السلة للسيدات",
     "FIBA World Cup": "كأس العالم لكرة السلة",
-
     "FIBA Asia Under-18 Championships": "بطولة فيبا آسيا تحت 18 سنة لكرة السلة",
     "FIBA Under-20 World Championships": "بطولة العالم تحت 20 سنة لكرة السلة",
     "FIBA Under-19 World Championships": "بطولة العالم تحت 19 سنة لكرة السلة",
@@ -242,7 +225,6 @@ International_Federation = {
     "FIBA World Championships": "بطولة كأس العالم لكرة السلة",
     "FIBA World Championship for Women": "بطولة كأس العالم لكرة السلة للسيدات",
     "FIBA Korać Cup": "كأس كوراتش لكرة السلة",
-
     "FIFA World Cup": "كأس العالم لكرة القدم",
     # "FIFA World Cup":"كأس العالم",
     # "FIFA Women's World Cup":"كأس العالم للسيدات",
@@ -260,7 +242,6 @@ International_Federation = {
     "FIFA Futsal World Cup Ney": "بطولة كأس العالم داخل الصالات",
     "FIFA World Cup players": "لاعبو كأس العالم لكرة القدم",
     "The Best FIFA Football Awards": "جوائز الفيفا للأفضل كرويا",
-
     "IAAF Continental Cup": "كأس العالم لألعاب القوى",
     "IAAF World U20 Championships": "بطولة العالم للناشئين لألعاب القوى",
     "IAAF Diamond League": "دوري ماسي",
@@ -273,20 +254,16 @@ International_Federation = {
     "IAAF World Cross Country Championships": "بطولة العالم للعدو الريفي",
     "IAAF World Indoor Championships": "بطولة العالم لألعاب القوى داخل الصالات",
     "IAAF World Indoor Games": "بطولة العالم لألعاب القوى داخل الصالات",
-
     "SAFF Championships": "بطولة اتحاد جنوب آسيا لكرة القدم",
     "SAFF Championships": "بطولة اتحاد جنوب آسيا لكرة القدم",
-
     "FIS Nordic World Ski Championships": "بطولة العالم للتزلج النوردي على الثلج",
     "FIS Nordic World Ski Championships": "بطولة العالم للتزلج النوردي على الثلج",
-
     "FIVB Women's Volleyball World Championships": "بطولة العالم لكرة الطائرة للسيدات",
     "FIVB Volleyball World Cup": "كأس العالم لكرة الطائرة",
     "FIVB Volleyball Women's World Cup": "كأس العالم لكرة الطائرة للسيدات",
     "FIVB Volleyball Men's World Championships": "بطولة العالم للكرة الطائرة",
     "FIVB Volleyball World Championships": "بطولة العالم لكرة الطائرة",
     "FIVB Volleyball World League": "الدوري العالمي للكرة الطائرة",
-
     "IIHF World Championships": "بطولة العالم لهوكي الجليد",
     "IIHF Challenge Cup of Asia": "كأس التحدي الآسيوي لهوكي الجليد",
 
@@ -331,10 +308,8 @@ International_Federation = {
     "UEFA Women's Under-19 Championships": "بطولة أوروبا تحت 19 سنة لكرة القدم للسيدات",
     "UEFA European Under-21 Championships": "بطولة أوروبا تحت 21 سنة لكرة القدم",
     "UEFA European Under-21 Football Championships": "بطولة أوروبا تحت 21 سنة لكرة القدم",
-
     "CAF Confederation Cup": "كأس الكونفيدرالية الأفريقية",
     "CAF Champions League": "دوري أبطال أفريقيا",
-
     "UNAF U-17 Tournament": "بطولة أمم شمال أفريقيا تحت 17 سنة",
     "UNAF U-20 Tournament": "بطولة أمم شمال أفريقيا تحت 20 سنة",
     "UNAF Club Cup": "كأس اتحاد شمال أفريقيا",
@@ -342,14 +317,12 @@ International_Federation = {
     "UNAF Club Cup": "كأس اتحاد شمال أفريقيا",
     "UNAF U-20 Tournament": "بطولة أمم شمال أفريقيا تحت 20 سنة",
     "UNAF U-23 Tournament": "بطولة أمم شمال أفريقيا تحت 23 سنة",
-
     "FINA World Aquatics Championships": "بطولة العالم للألعاب المائية",
     "FINA Water Polo World League": "الدوري العالمي لكرة الماء",
     "FINA": "الاتحاد الدولي للسباحة",
     "FINA World Swimming Championships (25 m)": "بطولة العالم للسباحة (25 متر)",
     "FINA World Swimming Championships": "بطولة العالم للسباحة",
     "FINA World Aquatics Championships": "بطولة العالم للألعاب المائية",
-
 }
 # ---
 olympics = {
@@ -369,7 +342,6 @@ olympics = {
     "Women's road race": "سباق الطريق للسيدات",
     "Women's time trial": "سباق الطريق ضد الساعة للسيدات",
     # ---
-
     "Men's road race": "سباق الطريق",
     "Men's team time trial": "سباق الطريق ضد الساعة للفرق",
     "Men's 1 km time trial": "سباق الكيلو متر ضد الساعة",

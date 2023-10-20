@@ -26,7 +26,9 @@ translations = {
         'ar': 'شهر',
     },
 }
-translations["island in Indonesia"] = {"ar": "جزيرة في إندونيسيا"}
+translations["island in Indonesia"] = {
+    "ar": "جزيرة في إندونيسيا"
+}
 # ---
 
 

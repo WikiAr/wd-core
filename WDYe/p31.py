@@ -35,13 +35,19 @@ GROUP BY p.page_title
 #LIMIT 2000;'''
 # ---
 # ---
-WIKI = {1: "arwiki"}
-AutoSave = {1: False}
+WIKI = {
+    1: "arwiki"
+}
+AutoSave = {
+    1: False
+}
 # ---
 
 
 def treat_page(qid):
     himoAPI.Claim_API2(qid, "P31", "Q4167836")
+
+
 # ---
 
 
@@ -66,8 +72,7 @@ def main2(*args):
     counter = 0
     for title in result:
         counter += 1
-        pywikibot.output(" <<lightblue>> page: %d/%d : %s:%s " %
-                         (counter, len(result), title, result[title]))
+        pywikibot.output(" <<lightblue>> page: %d/%d : %s:%s " % (counter, len(result), title, result[title]))
         treat_page(result[title])
 
 

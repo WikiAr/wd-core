@@ -18,16 +18,20 @@ import sys
 import urllib
 import urllib.request
 import urllib.parse
+
 # ---
 import requests
 import datetime
+
 # ---
 AskToSave = True
 from datetime import datetime
+
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 # ---
 # from API.useraccount import *
 from . import useraccount
+
 api_url = 'https://' + 'ar.wikipedia.org/w/api.php'
 username = useraccount.username
 password = useraccount.password
@@ -35,6 +39,7 @@ password = useraccount.password
 workibrahem = False
 if 'workibrahem' in sys.argv:
     from API import useraccount
+
     username = useraccount.hiacc
     password = useraccount.hipass
     workibrahem = True
@@ -48,22 +53,28 @@ session["csrftoken"] = ""
 
 def login():
     # get login token
-    r1 = session[1].get(api_url, params={
-        'format': 'json',
-        'action': 'query',
-        'meta': 'tokens',
-        'type': 'login',
-    })
+    r1 = session[1].get(
+        api_url,
+        params={
+            'format': 'json',
+            'action': 'query',
+            'meta': 'tokens',
+            'type': 'login',
+        },
+    )
     r1.raise_for_status()
 
     # log in
-    r2 = session[1].post(api_url, data={
-        'format': 'json',
-        'action': 'login',
-        'lgname': username,
-        'lgpassword': password,
-        'lgtoken': r1.json()['query']['tokens']['logintoken'],
-    })
+    r2 = session[1].post(
+        api_url,
+        data={
+            'format': 'json',
+            'action': 'login',
+            'lgname': username,
+            'lgpassword': password,
+            'lgtoken': r1.json()['query']['tokens']['logintoken'],
+        },
+    )
 
     # print( str( r2.json() ) )
 
@@ -71,11 +82,14 @@ def login():
         raise RuntimeError(r2.json()['login']['reason'])
 
     # get edit token
-    r3 = session[1].get(api_url, params={
-        'format': 'json',
-        'action': 'query',
-        'meta': 'tokens',
-    })
+    r3 = session[1].get(
+        api_url,
+        params={
+            'format': 'json',
+            'action': 'query',
+            'meta': 'tokens',
+        },
+    )
     session["csrftoken"] = r3.json()['query']['tokens']['csrftoken']
 
 
@@ -84,11 +98,16 @@ login()
 # ---
 remove_date = {}
 Work_with_Year = {}
-Work_with_Stage = {1: False}
+Work_with_Stage = {
+    1: False
+}
 Stage = {}
 Stage[""] = ""
 # ---
-TEST = {1: False, 2: False}
+TEST = {
+    1: False,
+    2: False
+}
 # import pywikibot
 # ---
 # from likeapi import encode
@@ -141,6 +160,8 @@ def encode_arabic(label):
     for x in litters:
         label2 = label2.replace(x, litters[x])
     return label2
+
+
 # ---
 
 
@@ -151,6 +172,8 @@ def ec_de_code(tt, type):
     elif type == 'decode':
         fao = urllib.parse.unquote(tt)
     return fao
+
+
 # ---
 
 
@@ -158,6 +181,8 @@ def print_test2(s):
     if TEST[2]:
         # pywikibot.output(s)
         print(s)
+
+
 # ---
 
 
@@ -166,6 +191,8 @@ def printt(s):
     if SS or 'test' in sys.argv or 'test2' in sys.argv:
         # pywikibot.output(s)
         print(s)
+
+
 # ---
 
 
@@ -224,17 +251,14 @@ Skip_items = ["Q4115189"]
 def fix_label(label):
     label = label.strip()
 
-    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
-                   r"سباق الطريق في بطولة العالم \g<1>", label)
+    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال", r"سباق الطريق في بطولة العالم \g<1>", label)
 
-    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – سيدات فردي سباق الطريق",
-                   r"سباق الطريق للسيدات في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
+    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – سيدات فردي سباق الطريق", r"سباق الطريق للسيدات في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
 
     label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – فريق رجال سباق الطريق", r"سباق الطريق لفرق الرجال في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
 
     # بطولة العالم لسباق الدراجات على الطريق 1966 – سباق الطريق الفردي للرجال
-    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
-                   r"سباق الطريق للرجال في بطولة العالم \g<1>", label)
+    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال", r"سباق الطريق للرجال في بطولة العالم \g<1>", label)
 
     label = re.sub(r"سباق الطريق المداري ", "سباق الطريق ", label)
     label = re.sub(r"(بطولة [\s\w]+) الوطنية ", r"\g<1> ", label)
@@ -248,15 +272,22 @@ def fix_label(label):
     label = re.sub(r"ركوب الدراجات في دورة ألعاب الكومنولث", "ركوب الدراجات في دورة الكومنولث", label)
     label = re.sub(r"\s+", " ", label)
     return label
+
+
 # ---
 
 
 def make_temp_lines(table, title):
     # ---
-    table2 = {"qid": "", "race": "", "p17": "", "poss": ""}
+    table2 = {
+        "qid": "",
+        "race": "",
+        "p17": "",
+        "poss": ""
+    }
     # ---
     for rr in HeadVars:
-        if not rr in table:
+        if rr not in table:
             table[rr] = ''
     # ---
     image = table['imagejersey']
@@ -362,7 +393,7 @@ def make_temp_lines(table, title):
     if flag != newflag:
         printt(f' *** race:"{race}", flag:"{flag}", newflag:"{newflag}"')
     # ---
-    if not title in Len_of_valid_results:
+    if title not in Len_of_valid_results:
         Len_of_valid_results[title] = 0
     Len_of_valid_results[title] += 1
     # ---
@@ -478,6 +509,8 @@ def get_query_results(query):
             print('CRITICAL:')
     # ---
     return json1
+
+
 # ---
 
 
@@ -624,24 +657,75 @@ def fix_results(table):
     results2 = {}
     # ---
     tata = {
-        "head": {"vars": ["item", "p17lab", "itemlab", "jersey_1", "jersey_2", "jersey_3", "jersey_4", "p642label", "p585", "p582", "p580", "rankP4323", "rankP2321", "rankP4320", "rankP3494", "title"]},
+        "head": {
+            "vars": ["item", "p17lab", "itemlab", "jersey_1", "jersey_2", "jersey_3", "jersey_4", "p642label", "p585", "p582", "p580", "rankP4323", "rankP2321", "rankP4320", "rankP3494", "title"]
+        },
         "results": {
             "bindings": [{
-                "item": {"type": "uri", "value": "http://www.wikidata.org/entity/Q53557910"},
-                "title": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
-                "p580": {"datatype": "http://www.w3.org/2001/XMLSchema#dateTime", "type": "literal", "value": "2018-05-25T00:00:00Z"},
-                "p582": {"datatype": "http://www.w3.org/2001/XMLSchema#dateTime", "type": "literal", "value": "2018-05-26T00:00:00Z"},
-                "p17lab": {"xml:lang": "ar", "type": "literal", "value": "إستونيا"},
-                "itemlab": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
-                "rankP2321": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "2"},
-                "rankP4323": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "1"},
-                "rankP3494": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "1"},
-                "p642label": {"xml:lang": "ar", "type": "literal", "value": "الفائز وفقاً لترتيب النقاط"},
-                "jersey_1": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},
-                "jersey_2": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},
-                "jersey_4": {"type": "literal", "value": "{{JOJOJO|Jersey%20red.svg|قميص أحمر، تصنيف النقاط}}"
-                             }
-            }]}}
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q53557910"
+                },
+                "title": {
+                    "xml:lang": "ar",
+                    "type": "literal",
+                    "value": "طواف أستونيا 2018"
+                },
+                "p580": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2018-05-25T00:00:00Z"
+                },
+                "p582": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2018-05-26T00:00:00Z"
+                },
+                "p17lab": {
+                    "xml:lang": "ar",
+                    "type": "literal",
+                    "value": "إستونيا"
+                },
+                "itemlab": {
+                    "xml:lang": "ar",
+                    "type": "literal",
+                    "value": "طواف أستونيا 2018"
+                },
+                "rankP2321": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                    "type": "literal",
+                    "value": "2"
+                },
+                "rankP4323": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                    "type": "literal",
+                    "value": "1"
+                },
+                "rankP3494": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                    "type": "literal",
+                    "value": "1"
+                },
+                "p642label": {
+                    "xml:lang": "ar",
+                    "type": "literal",
+                    "value": "الفائز وفقاً لترتيب النقاط"
+                },
+                "jersey_1": {
+                    "type": "literal",
+                    "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"
+                },
+                "jersey_2": {
+                    "type": "literal",
+                    "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"
+                },
+                "jersey_4": {
+                    "type": "literal",
+                    "value": "{{JOJOJO|Jersey%20red.svg|قميص أحمر، تصنيف النقاط}}"
+                },
+            }]
+        },
+    }
     # ---
     printt("* Lenth fix_results: '%d' ." % len(table))
     for params in table:
@@ -652,13 +736,18 @@ def fix_results(table):
         # ---
         q = 'item' in params and params['item']['value'].split('/entity/')[1]
         # ---
-        if not q in results2:
-            results2[q] = {'Date': [], 'imagejersey': [], 'item': [], "rank": []}
+        if q not in results2:
+            results2[q] = {
+                'Date': [],
+                'imagejersey': [],
+                'item': [],
+                "rank": []
+            }
         # ---
         date = params.get('p585') or params.get('p582') or params.get('p585') or {}
         date = date.get('value') or ''
         # ---
-        if not date in results2[q]['Date']:
+        if date not in results2[q]['Date']:
             results2[q]['Date'].append(date)
         # ---
         for param in params:
@@ -681,17 +770,19 @@ def fix_results(table):
                 value = value.split('/entity/')[1]
             # ---
             # if param == "p642label":
-                # value = re.sub(r'الفائز وفقاً ', 'الفائز في ', value )
-                # value = re.sub(r'الفائز حسب التصنيف العام ', 'الفائز في التصنيف العام', value )
+            # value = re.sub(r'الفائز وفقاً ', 'الفائز في ', value )
+            # value = re.sub(r'الفائز حسب التصنيف العام ', 'الفائز في التصنيف العام', value )
             # ---
-            if not param2 in NoAppend:
-                if not param2 in results2[q]:
+            if param2 not in NoAppend:
+                if param2 not in results2[q]:
                     results2[q][param2] = []
                 # ---
-                if not value in results2[q][param2]:
+                if value not in results2[q][param2]:
                     results2[q][param2].append(value)
             # ---
     return results2
+
+
 # ---
 
 
@@ -710,7 +801,7 @@ def fix_date(data, title):
             # print(date)
             # ---
             fanco = title
-            if not fanco in remove_date:
+            if fanco not in remove_date:
                 remove_date[fanco] = 0
             # ---
             if fanco in Work_with_Year:
@@ -741,6 +832,8 @@ def fix_date(data, title):
     Len_of_results[title] = p642label
     # ---
     return data2
+
+
 # ---
 
 
@@ -770,7 +863,7 @@ def make_new_text(qid, title):
     for qq in results:
         num += 1
         # ---
-        if not qq in qidso:
+        if qq not in qidso:
             qidso[qq] = {}
         # ---
         date = results[qq]['Date'][0]
@@ -840,6 +933,8 @@ def make_new_text(qid, title):
     # ---
     # ---
     return texxt
+
+
 # ---
 
 
@@ -869,7 +964,9 @@ def GetSectionNew3(text):
 
 
 # ---
-returntext = {1: True}
+returntext = {
+    1: True
+}
 # ---
 
 
@@ -884,6 +981,8 @@ def make_dada(NewText, MainTitle):
 <input id='wpDiff' type='submit' class='btn-lg' tabindex='7' name='wpDiff' value='show changes' accesskey='v' title='show changes.'/>
 </form>'''
     return t
+
+
 # ---
 
 
@@ -896,16 +995,19 @@ def page_put(NewText, summ, MainTitle):
     # print_test2( NewText )
     # ---
     if (not TEST[1] and not TEST[2]) or workibrahem:
-        r4 = session[1].post(api_url, data={
-            "action": "edit",
-            "format": "json",
-            "title": title,
-            "text": NewText,
-            "summary": summ,
-            "bot": 1,
-            "nocreate": 1,
-            "token": session["csrftoken"],
-        })
+        r4 = session[1].post(
+            api_url,
+            data={
+                "action": "edit",
+                "format": "json",
+                "title": title,
+                "text": NewText,
+                "summary": summ,
+                "bot": 1,
+                "nocreate": 1,
+                "token": session["csrftoken"],
+            },
+        )
         if workibrahem:
             print(r4.text)
         if 'nochange' in r4.text:
@@ -1020,10 +1122,14 @@ def work_tano(text, MainTitle):
         # ---
         for liner in lines[MainTitle].keys():
             # print( "lines:%s" % liner )
-            if not liner in new_lines[MainTitle].keys():
+            if liner not in new_lines[MainTitle].keys():
                 removed_line += 1
     # ---
-    states[MainTitle] = {"new_line": new_line, "same_line": same_line, "removed_line": removed_line}
+    states[MainTitle] = {
+        "new_line": new_line,
+        "same_line": same_line,
+        "removed_line": removed_line
+    }
     # ---
     liner = "new_line:%d,same_line:%d,removed_line:%d" % (new_line, same_line, removed_line)
     # ---
@@ -1054,6 +1160,8 @@ def puttext(text, MainTitle, Newsect):
             page_put(NewText, summ, MainTitle)
         else:
             printo('nodiff')
+
+
 # ---
 
 
@@ -1085,6 +1193,8 @@ def template_params(text, title):
         return Qid, True
     # ---
     return False, False
+
+
 # ---
 
 
@@ -1117,6 +1227,8 @@ def CheckTempalteInPageText(text):
             return True
     else:
         printt(' * no text.' + br)
+
+
 # ---
 
 
@@ -1173,6 +1285,8 @@ def GetPageText(title):
         printt(json1)
     # ---
     return text, item
+
+
 # ---
 
 
@@ -1203,7 +1317,7 @@ def StartOnePage(title):
     if QidinTemplate:
         item = Qid
     # if not Qid:
-        # Qid = getwditem(title)
+    # Qid = getwditem(title)
     # ---
     if not item:
         if QidinTemplate:
@@ -1223,12 +1337,13 @@ def StartOnePage(title):
         printt('**puttext::: ')
         puttext(text, title, NewText)
     else:
-        ur = (f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.')
+        ur = f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.'
         printo('لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: %s.' % ur)
-
 
         # print(ur)
     # ---
+
+
 br = '</br>'
 # ---
 

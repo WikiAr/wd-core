@@ -56,6 +56,7 @@ from wd_api import wd_bot
 # from correct import CorrectList
 ContriesTable2 = {}
 from des.contries2 import *  # ContriesTable2
+
 donelist = []
 # ---
 bylangs = False  # False#True
@@ -63,19 +64,31 @@ bylangs = False  # False#True
 placesTable = {}
 from des.places import *  # placesTable
 # ---
-placesTable["Q29701762"] = {"ar": "مستوطنة"}
+placesTable["Q29701762"] = {
+    "ar": "مستوطنة"
+}
 # ---
 placesTable2 = {}
 # ---
 for fg in placesTable:
     placesTable2[fg] = placesTable[fg]
 # ---
-offset = {1: 0}
-offset_place = {1: 0}
+offset = {
+    1: 0
+}
+offset_place = {
+    1: 0
+}
 # ---
-limit = {1: 0}
-QSlimit = {1: 3000}
-alllimit = {1: 50000}
+limit = {
+    1: 0
+}
+QSlimit = {
+    1: 3000
+}
+alllimit = {
+    1: 50000
+}
 # ---
 for arg in sys.argv:
     # ---
@@ -90,7 +103,9 @@ for arg in sys.argv:
     # python3 core8/pwb.py des/desc descqs limit:4000 optional place:Q185113
     # python3 core8/pwb.py des/desc descqs limit:1000 place:Q8054
     if arg == 'place' and value in placesTable:
-        placesTable2 = {value: placesTable[value]}
+        placesTable2 = {
+            value: placesTable[value]
+        }
     # ---
     if arg == 'limit':
         limit[1] = int(value)
@@ -101,7 +116,9 @@ for arg in sys.argv:
     if arg == 'qslimit':
         QSlimit[1] = int(value)
     # ---
-New_QS = {1: []}
+New_QS = {
+    1: []
+}
 # ---
 
 
@@ -133,6 +150,8 @@ def Add_desc(q, value, lang):
         descqs(q, value, lang)
     else:
         himoAPI.Des_API(q, value, lang, ask="")
+
+
 # ---
 
 
@@ -163,7 +182,7 @@ def wd_sparql_query(spq, ddf=False):
         if off != 0:
             quarr = quarr + " offset " + str(off)
         # else: offset[1] != 0 :
-            # quarr = quarr + " offset " + str( offset[1] )
+        # quarr = quarr + " offset " + str( offset[1] )
         # ---
         # printe.output(quarr)
         # ---
@@ -390,7 +409,7 @@ def work_one_place(place):
     total = len(json1)
     c = 1
     # ---
-    for tab in json1:    # عنصر ويكي بيانات
+    for tab in json1:  # عنصر ويكي بيانات
         # ---
         c += 1
         q = tab['q']

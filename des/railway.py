@@ -18,10 +18,22 @@ from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, Add=False)
 # ---
 railway_tables = {
-    "Q728937": {"ar": "خط سكة حديدية", "en": "railway line"},
-    "Q55678": {"ar": "نقطة سكة حديدية", "en": "railway stop"},
-    "Q784159": {"ar": "", "en": "passing loop"},
-    "Q55488": {"ar": "محطة سكة حديدية", "en": "railway station"},
+    "Q728937": {
+        "ar": "خط سكة حديدية",
+        "en": "railway line"
+    },
+    "Q55678": {
+        "ar": "نقطة سكة حديدية",
+        "en": "railway stop"
+    },
+    "Q784159": {
+        "ar": "",
+        "en": "passing loop"
+    },
+    "Q55488": {
+        "ar": "محطة سكة حديدية",
+        "en": "railway station"
+    },
 }
 # ---
 
@@ -41,6 +53,8 @@ def Get_P_API_id(claims, P, onlyone=False):
         return ""
     else:
         return list
+
+
 # ---
 
 
@@ -80,8 +94,14 @@ def work_railway(wditem, p31, q=""):
     to_do_descs = railway_tables.get(p31, {})
     # ---
     lang_format = {
-        "ar": {1: "{} في {}", 2: "{} في {}، {}"},
-        "en": {1: "{} in {}", 2: "{} in {}, {}"},
+        "ar": {
+            1: "{} في {}",
+            2: "{} في {}، {}"
+        },
+        "en": {
+            1: "{} in {}",
+            2: "{} in {}, {}"
+        },
     }
     # ---
     if to_do_descs == {}:
@@ -91,8 +111,14 @@ def work_railway(wditem, p31, q=""):
     newdesc = {}
     # ---
     labs = {
-        "p17": {"ar": p17_labels.get("ar", ""), "en": p17_labels.get("en", "")},
-        "p131": {"ar": p131_labels.get("ar", ""), "en": p131_labels.get("en", "")},
+        "p17": {
+            "ar": p17_labels.get("ar", ""),
+            "en": p17_labels.get("en", "")
+        },
+        "p131": {
+            "ar": p131_labels.get("ar", ""),
+            "en": p131_labels.get("en", "")
+        },
     }
     # ---
     P31_list = Get_P_API_id(Claims, 'P31')
@@ -103,7 +129,7 @@ def work_railway(wditem, p31, q=""):
         # ---
         org_desc = wditem_desc.get(lang, "")
         # ---
-        if not org_desc in ["", des]:
+        if org_desc not in ["", des]:
             continue
         # ---
         p17_desc = labs["p17"].get(lang, "").split("(")[0].strip()
@@ -139,7 +165,10 @@ def work_railway(wditem, p31, q=""):
                 desc_n = lang_format[lang][1].format(des, p17_desc)
         # ---
         if desc_n != '':
-            newdesc[lang] = {"language": lang, "value": desc_n}
+            newdesc[lang] = {
+                "language": lang,
+                "value": desc_n
+            }
         # ---
     # ---
     if newdesc == {}:
@@ -156,4 +185,6 @@ def work_railway(wditem, p31, q=""):
     wd_desc.work_api_desc(newdesc, q)
     # ---
     return ''
+
+
 # ---

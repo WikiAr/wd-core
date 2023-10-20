@@ -22,8 +22,13 @@ if os.path.exists(r'I:\core\dumps'):
 # ---
 print(f'Dump_Dir:{Dump_Dir}')
 # ---
-sections_done = {1: 0, 'max': 100}
-sections_false = {1: 0}
+sections_done = {
+    1: 0,
+    'max': 100
+}
+sections_false = {
+    1: 0
+}
 
 
 def make_section(P, table, max_n=51):
@@ -72,7 +77,10 @@ def make_section(P, table, max_n=51):
     # ---
     tables = """{| class="wikitable sortable plainrowheaders"\n|-\n! class="sortable" | #\n! class="sortable" | value\n! class="sortable" | Numbers\n|-\n"""
     # ---
-    lists = {k: v for k, v in sorted(table["qids"].items(), key=lambda item: item[1], reverse=True)}
+    lists = {
+        k: v
+        for k, v in sorted(table["qids"].items(), key=lambda item: item[1], reverse=True)
+    }
     # ---
     xline = ""
     yline = ""
@@ -150,11 +158,7 @@ def make_numbers_section(p31list):
     # ---
     rows.append(f"! {n} \n! others \n! {property_other:,}")
     rows = "\n|-\n".join(rows)
-    table = (
-        "\n{| "
-        + f'class="wikitable sortable"\n|-\n! #\n! property\n! usage\n|-\n{rows}\n'
-        + "|}"
-    )
+    table = ("\n{| " + f'class="wikitable sortable"\n|-\n! #\n! property\n! usage\n|-\n{rows}\n' + "|}")
     # ---
     text = "== Numbers ==\n" f"\n{Chart2}\n{table}"
     # ---
@@ -171,15 +175,13 @@ def make_text(tab, ty=''):
     if not tab.get('file_date'):
         tab['file_date'] = 'latest'
     # ---
-    text = (
-        "<onlyinclude>;dump date {file_date}</onlyinclude>.\n"
-        "* Total items: {All_items:,}\n"
-        "* Items without P31: {items_no_P31:,} \n"
-        "* Items without claims: {items_0_claims:,}\n"
-        "* Items with 1 claim only: {items_1_claims:,}\n"
-        "* Total number of claims: {all_claims_2020:,}\n"
-        "* Number of properties of the report: {len_all_props:,}\n"
-    ).format_map(tab)
+    text = ("<onlyinclude>;dump date {file_date}</onlyinclude>.\n"
+            "* Total items: {All_items:,}\n"
+            "* Items without P31: {items_no_P31:,} \n"
+            "* Items without claims: {items_0_claims:,}\n"
+            "* Items with 1 claim only: {items_1_claims:,}\n"
+            "* Total number of claims: {all_claims_2020:,}\n"
+            "* Number of properties of the report: {len_all_props:,}\n").format_map(tab)
     # ---
     text += f"<!-- bots work done in {delta} secounds --> \n--~~~~~\n"
     chart = make_numbers_section(p31list)
@@ -239,7 +241,7 @@ if __name__ == "__main__":
     }
     # ---
     for x, g in tab.items():
-        if not x in data:
+        if x not in data:
             data[x] = g
     # ---
     text, text_p31 = make_text(data, ty='')

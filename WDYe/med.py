@@ -1,6 +1,5 @@
 #!/usr/bin/python
 #!/usr/bin/python
-
 """
 
 إضافة تسميات مواضيع طبية
@@ -10,7 +9,6 @@
 # (C) Ibrahem Qasim, 2022
 #
 #
-
 
 import re
 import pywikibot
@@ -37,6 +35,8 @@ def dec(xx):
     except BaseException:
         printe.output(f'<<lightred>> except when urllib.parse.quote({xx})')
     return fao
+
+
 # ---
 
 
@@ -53,8 +53,7 @@ def fixrow(row):
     # printe.output( row )
     # ---
     if row.find('<td class="views-field views-field-title views-align-center" >') != -1:
-        row = row.split(
-            '<td class="views-field views-field-title views-align-center" >')[1]
+        row = row.split('<td class="views-field views-field-title views-align-center" >')[1]
         row = row.split('</p>')[0]
         # if row.find('<tdss>') != -1:
         row = re.sub(r'</td><tdss><p>', "<ssss>", row)
@@ -71,7 +70,9 @@ def fixrow(row):
 
 # ---
 Labels = {}
-SaveR = {1: False}
+SaveR = {
+    1: False
+}
 # ---
 
 
@@ -81,6 +82,8 @@ def fixo(stro):
     stro = stro.split("[")[0]
     stro = stro.split(":")[0]
     return stro
+
+
 # ---
 
 
@@ -100,11 +103,7 @@ def Fix_List(List):
     # if ar.find(" (الجمع:") != -1 :
     # ---
     FFA = r"(الجمع|ج|جمعها|)(\=|\:)(.*)"
-    mattes = [
-        r"^(.*)\(" + FFA + r"\)$",
-        r"^(.*)\[" + FFA + r"\]$",
-        r"^(.*)\[" + FFA + r"\]$"
-    ]
+    mattes = [r"^(.*)\(" + FFA + r"\)$", r"^(.*)\[" + FFA + r"\]$", r"^(.*)\[" + FFA + r"\]$"]
     # ---
     comas = ["،", ";", "؛"]
     # comas = ["، ", "; " , "؛ "]
@@ -121,7 +120,7 @@ def Fix_List(List):
                 # ---
                 printe.output(f"ars:\"{'|'.join(ars)}\"")
                 for aa in ars:
-                    if not aa.strip() in New_List2:
+                    if aa.strip() not in New_List2:
                         New_List2.append(fixo(aa))
                         # New_List.append( aa.strip() )
         # ---
@@ -138,20 +137,22 @@ def Fix_List(List):
                     ar2 = re.sub(mate, r'\g<1>', ar)
                     printe.output(f'ar2:"{ar2}",ar1:"{ar1}" ')
                     # ---
-                    if not ar1.strip() in New_List2:
+                    if ar1.strip() not in New_List2:
                         New_List2.append(fixo(ar1))
                     # ---
-                    if not ar2.strip() in New_List2:
+                    if ar2.strip() not in New_List2:
                         New_List2.append(fixo(ar2))
                     # ---
         # ---
         if Conn:
-            if not ar.strip() in New_List2:
+            if ar.strip() not in New_List2:
                 New_List2.append(fixo(ar))
         # ---
     New_List = [fixo(x) for x in New_List2]
     printe.output("New_List: " + "|".join(New_List))
     return New_List
+
+
 # ---
 
 
@@ -179,6 +180,8 @@ def fixrow2(row):
             en = x.split('<td class="tden">')[1]
     # ---
     return en, ar
+
+
 # ---
 
 
@@ -206,25 +209,27 @@ def Get_item_table(enlab):
     # ---
     if enlab in Labels:
         for eee in Labels[enlab]:
-            if not eee in Item_tab:
+            if eee not in Item_tab:
                 Item_tab.append(eee)
     # ---
     rows = html.split("</tr>")
     for row in rows:
         en, ar = fixrow2(row)
         if en and ar:
-            if not en in Labels:
+            if en not in Labels:
                 Labels[en] = []
             Labels[en].append(ar)
             # ---
             if en == enlab:
                 # ---
-                if not ar in Item_tab:
+                if ar not in Item_tab:
                     Item_tab.append(ar)
     # ---
     Item_tab = Fix_List(Item_tab)
     # ---
     return Item_tab
+
+
 # ---
 
 
@@ -252,20 +257,20 @@ def Get_item_table2(enlab):
     # ---
     if enlab in Labels:
         for eee in Labels[enlab]:
-            if not eee in Item_tab:
+            if eee not in Item_tab:
                 Item_tab.append(eee)
     # ---
     rows = html.split("</tr>")
     for row in rows:
         en, ar = fixrow(row)
         if en and ar:
-            if not en in Labels:
+            if en not in Labels:
                 Labels[en] = []
             Labels[en].append(ar)
             # ---
             if en == enlab:
                 # ---
-                if not ar in Item_tab:
+                if ar not in Item_tab:
                     Item_tab.append(ar)
     # ---
     Item_tab = Fix_List(Item_tab)
@@ -301,7 +306,7 @@ def looog():
         text2 = '''\n=={{subst:date}}==\n{| class="wikitable sortable"\n|-\n! item\n! en \n! ar\n|-''' + text2
         text2 = text2 + "|-\n|}"
         text3 = main_text + text2
-    # ---
+        # ---
         himoAPI.page_put(text3, "update.", "user:Mr._Ibrahem/medstat")
     # ---
 
@@ -310,7 +315,7 @@ def WORK(item, table):
     # printe.output( item )
     printe.output(table)
     # ---
-    if not item in Looogs:
+    if item not in Looogs:
         Looogs[item] = []
     # ---
     # printe.output( '<<lightgreen>> item:"%s" ' % item )
@@ -345,8 +350,7 @@ def WORK(item, table):
                 himoAPI.Labels_API(item, ali, "ar", False)
                 Looogs[item].append(ali)
             else:
-                sa = pywikibot.input(
-                    f'<<lightyellow>>add ali : "{ali}" as label to item :{item}? ')
+                sa = pywikibot.input(f'<<lightyellow>>add ali : "{ali}" as label to item :{item}? ')
                 if sa == 'y' or sa == 'a' or sa == '':
                     himoAPI.Labels_API(item, ali, "ar", False)
                     Looogs[item].append(ali)
@@ -373,8 +377,7 @@ def WORK(item, table):
             himoAPI.Alias_API(item, NewALLi_to_add, "ar", False)
             Looogs[item].append(",".join(NewALLi_to_add))
         else:
-            sa = pywikibot.input(
-                f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
+            sa = pywikibot.input(f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
             if sa == 'y' or sa == 'a' or sa == '':
                 himoAPI.Alias_API(item, NewALLi_to_add, "ar", False)
                 Looogs[item].append(",".join(NewALLi_to_add))
@@ -382,7 +385,11 @@ def WORK(item, table):
                 print(' himoAPI: wrong answer')
 
     # ---
-Limit = {1: "500"}
+
+
+Limit = {
+    1: "500"
+}
 # ---
 
 
@@ -443,18 +450,21 @@ def main():
     Table = {}
     for item in sparql:
         q = item['item'].split("/entity/")[1]
-        if not q in Table:
+        if q not in Table:
             Table[q] = {}
         for tab in item:
-            if not tab in Table[q]:
+            if tab not in Table[q]:
                 Table[q][tab] = []
             # if item[tab] != "" :
             Table[q][tab].append(item[tab])
     # ---
     Tab_l = {}
     for it_em in Table:
-        Tab_l[it_em] = {'ar': Table[it_em]["ar"][0],
-                        'alias': Table[it_em]["alias"], 'en': Table[it_em]["en"][0]}
+        Tab_l[it_em] = {
+            'ar': Table[it_em]["ar"][0],
+            'alias': Table[it_em]["alias"],
+            'en': Table[it_em]["en"][0]
+        }
     # ---
     num = 0
     for item in Tab_l:
@@ -466,8 +476,9 @@ def main():
     # ---
     looog()
 
-
     # ---
+
+
 if __name__ == "__main__":
     main()
     # printe.output(Get_item_table("ships")  )

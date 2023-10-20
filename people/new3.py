@@ -52,7 +52,9 @@ import sys
 # wd_bot.sparql_generator_url(query)
 # ---
 # ---
-Testing = {1: False}
+Testing = {
+    1: False
+}
 # ---
 genders = {
     'Q6581097': 'male',
@@ -67,14 +69,19 @@ Tab = {}
 Tab["Nationalities"] = translationsNationalities
 Tab["Occupations"] = oc.translationsOccupations
 # ---
-printe.output(
-    f'len of Nationalities = {len(translationsNationalities.keys())}')
+printe.output(f'len of Nationalities = {len(translationsNationalities.keys())}')
 printe.output(f'len of Occupations = {len(oc.translationsOccupations.keys())}')
 time.sleep(1)
 # ---
-qualimit = {1: 20}
-limit = {1: ""}
-offset = {1: 0}
+qualimit = {
+    1: 20
+}
+limit = {
+    1: ""
+}
+offset = {
+    1: 0
+}
 # ---
 # python3 core8/pwb.py people/new3 occnew
 # python3 core8/pwb.py people/new3 -job:researcher
@@ -100,21 +107,27 @@ for arg in sys.argv:
     if arg == 'nat' or arg == '-nat':
         value = value.replace("_", " ")
         if value in translationsNationalities:
-            Tab["Nationalities"] = {value: translationsNationalities[value]}
+            Tab["Nationalities"] = {
+                value: translationsNationalities[value]
+            }
         else:
             print(f"nat value:({value}) not in translationsNationalities")
     # ---
     if arg == 'job' or arg == '-job':
         value = "~ " + value.replace("_", " ")
         if value in oc.translationsOccupations:
-            Tab["Occupations"] = {value: oc.translationsOccupations[value]}
+            Tab["Occupations"] = {
+                value: oc.translationsOccupations[value]
+            }
         else:
             print(f"job value:({value}) not in oc.translationsOccupations")
 # ---
 targetlangs2 = ['ar']
 targetlangs = ['ar', 'bn', 'ca', 'es', 'fr', 'gl', 'he']
 # ---
-W_check = {1: True}
+W_check = {
+    1: True
+}
 # ---
 
 
@@ -141,7 +154,7 @@ def check_quarry_new(tab):
         qualimit[1] = 5
     # ---
     for x in en_list:
-        if not d in tabe:
+        if d not in tabe:
             tabe[d] = []
         # ---
         # python3 core8/pwb.py people/new3 -nat:Algerian limit:500 qualimit:15
@@ -194,8 +207,13 @@ def check_quarry_new(tab):
 
 
 # ---
-translations_o = {1: {}, 2: {}}
-translations_for_nat = {1: {}}
+translations_o = {
+    1: {},
+    2: {}
+}
+translations_for_nat = {
+    1: {}
+}
 # ---
 
 
@@ -216,7 +234,7 @@ def make_Tabs(tabs):
     # ---
     allnewkeys = 0
     # ---
-    for natkey, natdic in TraNat.items():   # الجنسيات
+    for natkey, natdic in TraNat.items():  # الجنسيات
         # ---
         if natkey.lower() == skipnatkey.lower():
             continue
@@ -233,7 +251,7 @@ def make_Tabs(tabs):
             male_k = ""
             female_k = ""
             # ---
-            for translang, occ_dict in occupdic.items():                      # المهن حسب اللغة
+            for translang, occ_dict in occupdic.items():  # المهن حسب اللغة
                 if translang in natdic:
                     # printe.output(occupkey + '\t' + natkey + '\t' + translang)
                     # ---
@@ -246,8 +264,7 @@ def make_Tabs(tabs):
                         malee = occ_dict['male'].replace('~', nat_ln['male'])
                     # ---
                     if nat_ln['female'] != "" and occ_dict['female'] != "":
-                        femalee = occ_dict['female'].replace(
-                            '~', nat_ln['female'])
+                        femalee = occ_dict['female'].replace('~', nat_ln['female'])
                     # ---
                     if translang == "en":
                         male_k = malee
@@ -255,7 +272,9 @@ def make_Tabs(tabs):
                     # ---
                     if malee != "" or femalee != "":
                         translations_o[1][kkkk][translang] = {
-                            'male': malee, 'female': femalee}
+                            'male': malee,
+                            'female': femalee
+                        }
                     # ---
             # ---
             if translations_o[1][kkkk] != {}:
@@ -268,9 +287,8 @@ def make_Tabs(tabs):
             # ---
             if female_k != "" and male_k != "":
                 if female_k != male_k:
-                    if not female_k.lower() in translations_o[2]:
-                        translations_o[2][female_k.lower(
-                        )] = translations_o[1][kkkk]
+                    if female_k.lower() not in translations_o[2]:
+                        translations_o[2][female_k.lower()] = translations_o[1][kkkk]
                         # printe.output( '<<lightpurple>> new way adding key: %s' % female_k )
                         allnewkeys += 1
                         newkeys += 1
@@ -279,12 +297,9 @@ def make_Tabs(tabs):
         # ---
         # printe.output( '<<lightpurple>> new way adding %d keys for lang %s' % (newkeys,natkey) )
     # ---
-    printe.output(
-        '<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
-    printe.output(
-        '<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
-    printe.output(
-        '<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
+    printe.output('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
+    printe.output('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
+    printe.output('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
     # ---
     for occupkey, occupdic in TraOc.items():  # المهن
         kkkk = occupkey.replace('~', '').strip()
@@ -296,10 +311,12 @@ def make_Tabs(tabs):
             malee = occupdic['ar']['male'].replace('~', '').strip()
             femalee = occupdic['ar']['female'].replace('~', '').strip()
             # ---
-            if not kkkk.lower() in translations_o[2]:
+            if kkkk.lower() not in translations_o[2]:
                 translations_o[2][kkkk.lower()] = {}
             translations_o[2][kkkk.lower()]["ar"] = {
-                'male': malee, 'female': femalee}
+                'male': malee,
+                'female': femalee
+            }
 
 
 # ---
@@ -336,8 +353,7 @@ def start_one_nat(nat_tab):
         if "printx" in sys.argv:
             print(x)
         # ---
-        printe.output('<<lightpurple>>*Action %d from %d; q:%s,endesc:%s.==' %
-                      (c, total_nat, q.ljust(10), endesc))
+        printe.output('<<lightpurple>>*Action %d from %d; q:%s,endesc:%s.==' % (c, total_nat, q.ljust(10), endesc))
         # ---
         x_table = translations_o_lower.get(endesc.lower())
         # ---
@@ -348,12 +364,16 @@ def start_one_nat(nat_tab):
         NewDesc = {}
         # ---
         for lang in x_table.keys():
-            if not lang in descriptions_keys:
-                NewDesc[lang] = {"language": lang,
-                                 "value": x_table[lang][genderlabel]}
+            if lang not in descriptions_keys:
+                NewDesc[lang] = {
+                    "language": lang,
+                    "value": x_table[lang][genderlabel]
+                }
         # ---
         if NewDesc != {}:
             wd_desc.work_api_desc(NewDesc, q)
+
+
 # ---
 
 
@@ -381,8 +401,7 @@ def mainnat(Tabs):  # translations_for_nat
         nat_tab = translations_for_nat[1][nat]
         # ---
         Queries += 1
-        printe.output('<<lightyellow>>  *nat %d from %d; nat:%s.==' %
-                      (Queries, len(list_na), nat))
+        printe.output('<<lightyellow>>  *nat %d from %d; nat:%s.==' % (Queries, len(list_na), nat))
         # ---
         if Queries < offset[1]:
             continue
@@ -390,6 +409,8 @@ def mainnat(Tabs):  # translations_for_nat
         start_one_nat(nat_tab)
         # ---
     printe.output("انتهت بنجاح")
+
+
 # ---
 
 

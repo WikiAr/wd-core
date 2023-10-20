@@ -25,8 +25,12 @@ if os.path.exists(r'I:\core\dumps'):
 print(f'Dump_Dir:{Dump_Dir}')
 # ---
 if True:
-    Offset = {1: 0}
-    Limit = {1: 900000000}
+    Offset = {
+        1: 0
+    }
+    Limit = {
+        1: 900000000
+    }
     # ---
     if "test" in sys.argv:
         Limit[1] = 15000
@@ -73,9 +77,24 @@ priffixes = {}
 for x in priffixeso:
     priffixes[x] = {
         "count": 0,
-        "labels": {"yes": 0, "no": 0, "yesar": 0, "noar": 0},
-        "descriptions": {"yes": 0, "no": 0, "yesar": 0, "noar": 0},
-        "aliases": {"yes": 0, "no": 0, "yesar": 0, "noar": 0},
+        "labels": {
+            "yes": 0,
+            "no": 0,
+            "yesar": 0,
+            "noar": 0
+        },
+        "descriptions": {
+            "yes": 0,
+            "no": 0,
+            "yesar": 0,
+            "noar": 0
+        },
+        "aliases": {
+            "yes": 0,
+            "no": 0,
+            "yesar": 0,
+            "noar": 0
+        },
     }
 # ---
 stats_tab = {
@@ -162,14 +181,14 @@ def make_textP31():
     textP31 = ''
     for x, tab in stats_tab['p31_main_tab'].items():
         # ---
-        if not x in priffixes or tab == {}:
+        if x not in priffixes or tab == {}:
             continue
         # ---
         p31list = [[y, xfx] for xfx, y in tab.items()]
         # ---
         try:
             p31list.sort(reverse=True)
-        except Exception as e:
+        except Exception:
             print('p31list.sort(reverse=True)')
             print(p31list)
         # ---
@@ -253,12 +272,12 @@ def read_data():
                 # ---
                 if c < Offset[1]:
                     if c % 1000 == 0:
-                        dii = time.time()-t1
+                        dii = time.time() - t1
                         print('Offset c:%d, time:%d' % (c, dii))
                     continue
                 # ---
                 if (c % 1000 == 0 and c < 100000) or c % 100000 == 0:
-                    dii = time.time()-t1
+                    dii = time.time() - t1
                     print(f'c:{c}, time:{dii}')
                     t1 = time.time()
                     print_memory()
@@ -295,7 +314,7 @@ def read_data():
                         arlink_type = pri
                         break
                 # ---
-                if not arlink_type in stats_tab['p31_main_tab']:
+                if arlink_type not in stats_tab['p31_main_tab']:
                     stats_tab['p31_main_tab'][arlink_type] = {}
                 # ---
                 if arlink_type == "مقالة":
@@ -324,7 +343,7 @@ def read_data():
                     if not p31x:
                         continue
                     # ---
-                    if not p31x in p31_no_ar_lab:
+                    if p31x not in p31_no_ar_lab:
                         p31_no_ar_lab.append(p31x)
                     # ---
                     if p31x in stats_tab['p31_main_tab'][arlink_type]:
@@ -335,7 +354,7 @@ def read_data():
                 tat = ['labels', 'descriptions', 'aliases']
                 # ---
                 for x in tat:
-                    if not x in json1:
+                    if x not in json1:
                         # دون عربي
                         priffixes[arlink_type][x]["no"] += 1
                         continue
@@ -355,7 +374,7 @@ def read_data():
                     for x in json1.get('claims', {}).get('P31', []):
                         p31d = x.get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id')
                         if p31d:
-                            if not p31d in stats_tab['Table_no_ar_lab']:
+                            if p31d not in stats_tab['Table_no_ar_lab']:
                                 stats_tab['Table_no_ar_lab'][p31d] = 0
                             stats_tab['Table_no_ar_lab'][p31d] += 1
     # ---

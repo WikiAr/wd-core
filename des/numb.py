@@ -9,14 +9,15 @@ python3 core8/pwb.py des/numb
 #
 #
 
-
 from API import printe
 # ---
 from wd_api import wd_bot
 from API import himoBOT2
 from wd_api import himoAPI
 # ---
-limit = {1: 0}
+limit = {
+    1: 0
+}
 quarry = '''SELECT (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
  WHERE {
 ?item wdt:P31 wd:Q49008.
@@ -35,6 +36,5 @@ for q in json1:
     if "ar" not in descriptions:
         himoAPI.Des_API(Qid, 'عدد أولي', 'ar', ask="")
 # ---
-
 
 # ---

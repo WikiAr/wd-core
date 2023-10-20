@@ -31,10 +31,7 @@ except BaseException:
     Dir = '/content'
 # ---
 # قاموس يحتوي على الروابط وأسماء الملفات
-file_links = [
-    "wikidatawiki-latest-wbt_term_in_lang.sql.gz",
-    "wikidatawiki-latest-wbt_text_in_lang.sql.gz"
-]
+file_links = ["wikidatawiki-latest-wbt_term_in_lang.sql.gz", "wikidatawiki-latest-wbt_text_in_lang.sql.gz"]
 # ---
 # تنفيذ عملية التحميل وإنشاء قاعدة البيانات باستخدام القاموس
 for local_filename in file_links:
@@ -59,9 +56,7 @@ for local_filename in file_links:
         '''
         # ---
         # استخدام tqdm لعرض شريط التقدم
-        with tqdm.wrapattr(open(filename, "wb"), "write", miniters=1,
-                           total=int(response.headers.get('content-length', 0)),
-                           desc=filename) as local_file:
+        with tqdm.wrapattr(open(filename, "wb"), "write", miniters=1, total=int(response.headers.get('content-length', 0)), desc=filename) as local_file:
             for data in response.iter_content(chunk_size=1024):
                 local_file.write(data)
         # ---
