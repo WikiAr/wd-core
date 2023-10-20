@@ -1667,7 +1667,7 @@ FILTER NOT EXISTS { ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = "ar") }
 
 '''
 
-  # biografisch artikel
+# biografisch artikel
 # ---Q19389637#Q2831984
 # python3 core8/pwb.py np/nldes3 sparql:Q571
 # كتاب

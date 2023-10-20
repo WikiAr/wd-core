@@ -374,7 +374,7 @@ WHERE {  ?item wdt:P495 wd:Q403.
 }
 limit 10'''
 
-  # country of origin=Srbia  #xxxx items
+    # country of origin=Srbia  #xxxx items
     # ---
     # ---
     generator = WikidataSPARQLPageGenerator(
