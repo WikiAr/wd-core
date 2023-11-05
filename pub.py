@@ -16,10 +16,7 @@ import sys
 
 
 def print_test(line, color=""):
-    colors = {
-        "red": "\033[91m%s\033[00m",
-        "blue": "\033[94m%s\033[00m"
-    }
+    colors = {"red": "\033[91m%s\033[00m", "blue": "\033[94m%s\033[00m"}
     if color != "" and colors.get(color):
         line = colors[color] % line
     # ---
@@ -55,12 +52,8 @@ username = useraccount.hiacc
 password = useraccount.hipass
 login = wdi_login.WDLogin(username, password)
 # ---
-Test = {
-    1: False
-}
-Ask = {
-    1: False
-}
+Test = {1: False}
+Ask = {1: False}
 # ---
 if "ask" in sys.argv:
     Ask[1] = True
@@ -126,9 +119,7 @@ def get_article_info(ext_id, id_type):
     else:
         print_test('ValueError')
     # ---
-    headers = {
-        'User-Agent': 'wikidataintegrator: github.com/SuLab/WikidataIntegrator'
-    }
+    headers = {'User-Agent': 'wikidataintegrator: github.com/SuLab/WikidataIntegrator'}
     # response = requests.get(url, headers=headers)
     # response.raise_for_status()
     # d = response.json()

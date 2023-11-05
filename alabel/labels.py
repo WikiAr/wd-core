@@ -19,9 +19,7 @@ from API import printe
 from wd_api import himoAPI_test as himoAPI
 
 # ---
-Limit = {
-    1: ''
-}
+Limit = {1: ''}
 # ---
 from api_sql import wiki_sql
 
