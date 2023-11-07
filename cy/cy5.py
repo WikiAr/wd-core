@@ -1284,7 +1284,7 @@ def main():
     title = ''
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == 'test':
             TEST[1] = True

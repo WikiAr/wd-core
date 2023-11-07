@@ -77,7 +77,7 @@ from np.np_lists import bldiat, Space_tab, p50s, nationalities, songs_type, othe
 # ---
 for arg in sys.argv:
     # ---
-    arg, sep, value = arg.partition(':')
+    arg, _, value = arg.partition(':')
     # ---
     if arg.startswith('-'):
         arg = arg[1:]

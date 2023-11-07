@@ -24,7 +24,7 @@ def read_new_types_file():
     number = 100
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == "-number" or arg == "number":
             number = int(value)

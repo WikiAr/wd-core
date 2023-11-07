@@ -84,7 +84,7 @@ if True:
     # ---
     for arg in sys.argv:
         # ---
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg.startswith('-'):
             arg = arg[1:]  # print('change arg to %s ' % arg )

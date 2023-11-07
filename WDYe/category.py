@@ -32,7 +32,7 @@ def main():
     # python pwb.py wd/category
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == '-limit' or arg == 'limit':
             Limit[1] = value

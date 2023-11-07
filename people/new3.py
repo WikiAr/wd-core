@@ -90,7 +90,7 @@ offset = {
 # python3 core8/pwb.py people/new3 -nat:American
 for arg in sys.argv:
     # ---
-    arg, sep, value = arg.partition(':')
+    arg, _, value = arg.partition(':')
     # ---
     if arg == 'limit' or arg == '-limit':
         limit[1] = value

@@ -227,7 +227,7 @@ def mains():
     # ---
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg.startswith("names"):
             # ---

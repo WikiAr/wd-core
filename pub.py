@@ -195,7 +195,7 @@ if __name__ == "__main__":
         # lenth = len(sys.argv)
         # print_test(str(lenth) + str(sys.argv) )
         for arg in sys.argv:
-            arg, sep, value = arg.partition(':')
+            arg, _, value = arg.partition(':')
             if arg == 'type' and value != '':
                 typee = value
             if arg == 'id' and value != '':

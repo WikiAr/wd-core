@@ -213,7 +213,7 @@ limit = {1: 0}
 # ---
 for arg in sys.argv:
     # ---
-    arg, sep, value = arg.partition(':')
+    arg, _, value = arg.partition(':')
     # ---
     if arg == 'off':
         Off[1] = int(value)
@@ -353,7 +353,7 @@ def main():
     # ---
     for arg in sys.argv:
         # ---
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == 'save':
             AskSave[1] = False

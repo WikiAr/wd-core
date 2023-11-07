@@ -401,7 +401,7 @@ def main():
     printe.output(sys.argv)
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == 'qua0':
             Quarry['use'] = Quarry[0]
@@ -435,7 +435,7 @@ def main():
         # ---
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == 'sky':
             # Quarry['use']  = Quarry['use'].replace("#sr" , "?item (wdt:P3450|wdt:P361) ?P361. ?P361 (wdt:P3450|wdt:P361) wd:Q285389. \n#sr\n" )

@@ -92,7 +92,7 @@ alllimit = {
 # ---
 for arg in sys.argv:
     # ---
-    arg, sep, value = arg.partition(':')
+    arg, _, value = arg.partition(':')
     # ---
     if arg == 'offplace':
         offset_place[1] = int(value)

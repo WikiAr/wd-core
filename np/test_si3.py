@@ -26,7 +26,7 @@ def Main_Test():
     # ---
     for arg in sys.argv:
         # ---
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == '-page':
             q = value
