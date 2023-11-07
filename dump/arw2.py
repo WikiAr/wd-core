@@ -25,12 +25,8 @@ if os.path.exists(r'I:\core\dumps'):
 print(f'Dump_Dir:{Dump_Dir}')
 # ---
 if True:
-    Offset = {
-        1: 0
-    }
-    Limit = {
-        1: 900000000
-    }
+    Offset = {1: 0}
+    Limit = {1: 900000000}
     # ---
     if "test" in sys.argv:
         Limit[1] = 15000
