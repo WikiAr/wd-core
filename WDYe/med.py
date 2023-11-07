@@ -408,7 +408,7 @@ def main():
     pp, qq = "P31", "Q27043950"
     sat = "?item wdt:%s  wd:%s. "
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---#Depth[1]
         if arg == "p":
             pp = value

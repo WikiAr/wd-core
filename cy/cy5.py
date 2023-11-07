@@ -98,16 +98,11 @@ login()
 # ---
 remove_date = {}
 Work_with_Year = {}
-Work_with_Stage = {
-    1: False
-}
+Work_with_Stage = {1: False}
 Stage = {}
 Stage[""] = ""
 # ---
-TEST = {
-    1: False,
-    2: False
-}
+TEST = {1: False, 2: False}
 # import pywikibot
 # ---
 # from likeapi import encode
@@ -279,12 +274,7 @@ def fix_label(label):
 
 def make_temp_lines(table, title):
     # ---
-    table2 = {
-        "qid": "",
-        "race": "",
-        "p17": "",
-        "poss": ""
-    }
+    table2 = {"qid": "", "race": "", "p17": "", "poss": ""}
     # ---
     for rr in HeadVars:
         if rr not in table:
@@ -657,73 +647,25 @@ def fix_results(table):
     results2 = {}
     # ---
     tata = {
-        "head": {
-            "vars": ["item", "p17lab", "itemlab", "jersey_1", "jersey_2", "jersey_3", "jersey_4", "p642label", "p585", "p582", "p580", "rankP4323", "rankP2321", "rankP4320", "rankP3494", "title"]
-        },
+        "head": {"vars": ["item", "p17lab", "itemlab", "jersey_1", "jersey_2", "jersey_3", "jersey_4", "p642label", "p585", "p582", "p580", "rankP4323", "rankP2321", "rankP4320", "rankP3494", "title"]},
         "results": {
-            "bindings": [{
-                "item": {
-                    "type": "uri",
-                    "value": "http://www.wikidata.org/entity/Q53557910"
-                },
-                "title": {
-                    "xml:lang": "ar",
-                    "type": "literal",
-                    "value": "طواف أستونيا 2018"
-                },
-                "p580": {
-                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "type": "literal",
-                    "value": "2018-05-25T00:00:00Z"
-                },
-                "p582": {
-                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-                    "type": "literal",
-                    "value": "2018-05-26T00:00:00Z"
-                },
-                "p17lab": {
-                    "xml:lang": "ar",
-                    "type": "literal",
-                    "value": "إستونيا"
-                },
-                "itemlab": {
-                    "xml:lang": "ar",
-                    "type": "literal",
-                    "value": "طواف أستونيا 2018"
-                },
-                "rankP2321": {
-                    "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
-                    "type": "literal",
-                    "value": "2"
-                },
-                "rankP4323": {
-                    "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
-                    "type": "literal",
-                    "value": "1"
-                },
-                "rankP3494": {
-                    "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
-                    "type": "literal",
-                    "value": "1"
-                },
-                "p642label": {
-                    "xml:lang": "ar",
-                    "type": "literal",
-                    "value": "الفائز وفقاً لترتيب النقاط"
-                },
-                "jersey_1": {
-                    "type": "literal",
-                    "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"
-                },
-                "jersey_2": {
-                    "type": "literal",
-                    "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"
-                },
-                "jersey_4": {
-                    "type": "literal",
-                    "value": "{{JOJOJO|Jersey%20red.svg|قميص أحمر، تصنيف النقاط}}"
-                },
-            }]
+            "bindings": [
+                {
+                    "item": {"type": "uri", "value": "http://www.wikidata.org/entity/Q53557910"},
+                    "title": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
+                    "p580": {"datatype": "http://www.w3.org/2001/XMLSchema#dateTime", "type": "literal", "value": "2018-05-25T00:00:00Z"},
+                    "p582": {"datatype": "http://www.w3.org/2001/XMLSchema#dateTime", "type": "literal", "value": "2018-05-26T00:00:00Z"},
+                    "p17lab": {"xml:lang": "ar", "type": "literal", "value": "إستونيا"},
+                    "itemlab": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
+                    "rankP2321": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "2"},
+                    "rankP4323": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "1"},
+                    "rankP3494": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "1"},
+                    "p642label": {"xml:lang": "ar", "type": "literal", "value": "الفائز وفقاً لترتيب النقاط"},
+                    "jersey_1": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},
+                    "jersey_2": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},
+                    "jersey_4": {"type": "literal", "value": "{{JOJOJO|Jersey%20red.svg|قميص أحمر، تصنيف النقاط}}"},
+                }
+            ]
         },
     }
     # ---
@@ -737,12 +679,7 @@ def fix_results(table):
         q = 'item' in params and params['item']['value'].split('/entity/')[1]
         # ---
         if q not in results2:
-            results2[q] = {
-                'Date': [],
-                'imagejersey': [],
-                'item': [],
-                "rank": []
-            }
+            results2[q] = {'Date': [], 'imagejersey': [], 'item': [], "rank": []}
         # ---
         date = params.get('p585') or params.get('p582') or params.get('p585') or {}
         date = date.get('value') or ''
@@ -964,9 +901,7 @@ def GetSectionNew3(text):
 
 
 # ---
-returntext = {
-    1: True
-}
+returntext = {1: True}
 # ---
 
 
@@ -1125,11 +1060,7 @@ def work_tano(text, MainTitle):
             if liner not in new_lines[MainTitle].keys():
                 removed_line += 1
     # ---
-    states[MainTitle] = {
-        "new_line": new_line,
-        "same_line": same_line,
-        "removed_line": removed_line
-    }
+    states[MainTitle] = {"new_line": new_line, "same_line": same_line, "removed_line": removed_line}
     # ---
     liner = "new_line:%d,same_line:%d,removed_line:%d" % (new_line, same_line, removed_line)
     # ---
@@ -1353,7 +1284,7 @@ def main():
     title = ''
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == 'test':
             TEST[1] = True

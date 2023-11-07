@@ -57,7 +57,7 @@ def main2(*args):
     result = []
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == 'limit':
             quarry = quarry + f"\n LIMIT {value};"

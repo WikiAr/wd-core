@@ -46,7 +46,7 @@ def WorkNew():
     # ---
     for arg in sys.argv:
         # ---
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         value = value.replace(", ", "")
         # ---
@@ -64,7 +64,7 @@ def WorkNew():
     # ---
     for arg in sys.argv:
 
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         value = value.replace(", ", "")
         if arg == 'to':
             ATend = int(start) + int(value)

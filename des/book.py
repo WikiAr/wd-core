@@ -25,9 +25,7 @@ from wd_api import wd_bot
 from API import printe
 
 # ---
-AskSave = {
-    1: True
-}
+AskSave = {1: True}
 Qlist = {}
 
 Qlist['Q49084'] = {  # قصة قصيرة
@@ -101,10 +99,7 @@ def action_one_item(Qid, pa, lang, keys):
                 # ---
                 des = MakeDesc(Qid, pa, lang2)
                 if des:
-                    NewDesc[lang] = {
-                        "language": lang,
-                        "value": des
-                    }
+                    NewDesc[lang] = {"language": lang, "value": des}
                     dns = ''
                     if 'endes' in pa:
                         dns = pa['endes']
@@ -151,13 +146,7 @@ Comma = {
     "sv": " och ",
     'en': ", ",
 }
-Comma2 = {
-    'ar': "، و",
-    'en': ", ",
-    'de': ", ",
-    'fr': ", ",
-    'nl': ", "
-}
+Comma2 = {'ar': "، و", 'en': ", ", 'de': ", ", 'fr': ", ", 'nl': ", "}
 # ---
 
 
@@ -219,16 +208,12 @@ def Gquery2(json1):
 
 
 # ---
-Off = {
-    1: 0
-}
-limit = {
-    1: 0
-}
+Off = {1: 0}
+limit = {1: 0}
 # ---
 for arg in sys.argv:
     # ---
-    arg, sep, value = arg.partition(':')
+    arg, _, value = arg.partition(':')
     # ---
     if arg == 'off':
         Off[1] = int(value)
@@ -315,24 +300,7 @@ def WorkWithOneLang(Qid, lang, keys):
 
 
 # ---
-by_list = {
-    'ar': "من تأليف",
-    'en': "by",
-    'fr': "de",
-    'de': "von",
-    'nl': "van",
-    'ca': "per",
-    'cs': "od",
-    'la': "ab",
-    'it': "da",
-    'io': "da",
-    'eo': "de",
-    'da': "af",
-    'pl': "przez",
-    'ro': "de",
-    'es': "por",
-    'sv': "av"
-}
+by_list = {'ar': "من تأليف", 'en': "by", 'fr': "de", 'de': "von", 'nl': "van", 'ca': "per", 'cs': "od", 'la': "ab", 'it': "da", 'io': "da", 'eo': "de", 'da': "af", 'pl': "przez", 'ro': "de", 'es': "por", 'sv': "av"}
 # ---
 
 
@@ -385,7 +353,7 @@ def main():
     # ---
     for arg in sys.argv:
         # ---
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == 'save':
             AskSave[1] = False

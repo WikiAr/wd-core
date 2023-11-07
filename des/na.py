@@ -282,7 +282,7 @@ def main():
     qya = {}
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == '-limit':
             printe.output(f'<<lightred>>>>  limit ( {value} )  ')
@@ -300,7 +300,7 @@ def main():
         number += 1
         quuu = qya[key]
         for arg in sys.argv:
-            arg, sep, value = arg.partition(':')
+            arg, _, value = arg.partition(':')
             # ---
             if arg == 'P31' or arg == '-P31':
                 printe.output(f'<<lightred>>>>  P31:{value}. ')

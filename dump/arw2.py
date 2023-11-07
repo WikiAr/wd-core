@@ -36,7 +36,7 @@ if True:
         Limit[1] = 15000
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         if arg.startswith('-'):
             arg = arg[1:]
         if arg == "offset" or arg == "off":

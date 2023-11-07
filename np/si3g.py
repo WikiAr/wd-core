@@ -80,7 +80,7 @@ def mainwithcat2():
     lista = []
     # ---
     for arg in sys.argv:
-        arg, sep, value = arg.partition(':')
+        arg, _, value = arg.partition(':')
         # ---
         if arg == "-limit" or arg == "limit":
             user_limit = value

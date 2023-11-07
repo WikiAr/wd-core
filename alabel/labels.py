@@ -19,9 +19,7 @@ from API import printe
 from wd_api import himoAPI_test as himoAPI
 
 # ---
-Limit = {
-    1: ''
-}
+Limit = {1: ''}
 # ---
 from api_sql import wiki_sql
 
@@ -51,7 +49,7 @@ AND NOT EXISTS (
 '''
 # ---
 for arg in sys.argv:
-    arg, sep, value = arg.partition(':')
+    arg, _, value = arg.partition(':')
     # ---
     if arg == '-limit' or arg == 'limit':
         Limit[1] = value
