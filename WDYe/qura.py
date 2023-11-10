@@ -86,7 +86,6 @@ def action_one_item(x, pa, new_translations):
         ks[x] = new_translations
         # newdesc.work2(item , x, ks)
         newdesc.work2_with_replacement(item, x, ks, replacement_ke)
-        # ---
 
 
 def make_translations(x, pa):

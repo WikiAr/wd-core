@@ -421,7 +421,6 @@ def just_get_ar(labe):
         printe.output(f"just_get_ar:{claimstr}.")
     # ---
     return claimstr
-    # ---
 
 
 def main(debug=False):

@@ -1031,7 +1031,6 @@ def work_tano(text, MainTitle):
         states[MainTitle]['removed_line_date'] = remove_date[MainTitle]
     # ---
     return liner
-    # ---
 
 
 def puttext(text, MainTitle, Newsect):

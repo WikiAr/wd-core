@@ -60,7 +60,6 @@ def woo(page):
         himoAPI.Claim_API_string(qid, "P8021", id)
         done.append(id)
         # pywikibot.output( f )
-    # ---
 
 
 def main(*args):

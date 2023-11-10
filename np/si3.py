@@ -333,7 +333,6 @@ def make_tax_des_new(item):
                     })
                 else:
                     himoAPI.Des_API(q, ar_lab, 'ar')
-        # ---
 
 
 def work_taxon_desc(item, endesc):
@@ -538,7 +537,6 @@ def log_new_types(lists):
     # ---
     with open(jsonfils, 'w') as nfile:
         json.dump(Lalo_types["n"], nfile)
-    # ---
 
 
 def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
@@ -632,7 +630,6 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
                     new_types[P31] = 0
                 # ---
                 new_types[P31] += 1
-    # ---
 
 
 def print_new_types():

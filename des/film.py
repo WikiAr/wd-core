@@ -135,7 +135,6 @@ def GetQuery(Qid, lang, keys):
     sa = sa + 'OPTIONAL { ?item schema:description ?endes. FILTER((LANG(?endes)) = "en") }\n'
     ur = ur + sa
 
-    # ---
 
     def fofo(x):
         xx = 'OPTIONAL {'

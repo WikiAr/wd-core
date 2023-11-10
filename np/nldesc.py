@@ -112,7 +112,6 @@ from des.railway import railway_tables, work_railway
 def Make_railway_desc(wditem, p31):
     # ---
     return work_railway(wditem, p31)
-    # ---
 
 
 def get_lng_description(language, wikidataitem):
@@ -184,7 +183,6 @@ def its_something_in_an_entity(wdi, something):
         return f'{something} {prnEntity}'
     # ---
     return ''
-    # ---
 
 
 def Get_label(qid):

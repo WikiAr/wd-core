@@ -290,7 +290,6 @@ def looog():
         text3 = main_text + text2
         # ---
         himoAPI.page_put(text3, "update.", "user:Mr._Ibrahem/medstat")
-    # ---
 
 
 def WORK(item, table):

@@ -415,7 +415,6 @@ def work_one_place(place):
         # Add_desc( q, arlabel2, lang  )
         # else:
         work_one_item(start, lang, tab, c, total)
-        # ---
 
 
 def mainoo():

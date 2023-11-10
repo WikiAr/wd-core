@@ -169,7 +169,6 @@ def make_newlabel(label, ar, en):
     newlabel = newlabel.replace("  ", " ")
     # ---
     return newlabel.strip()
-    # ---
 
 
 def Item(item):
@@ -475,7 +474,6 @@ def main():
         num += 1
         printe.output('<<lightblue>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         Item(tabj)
-    # ---
 
 
 def test():

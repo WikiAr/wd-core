@@ -215,7 +215,6 @@ for arg in sys.argv:
     # ---
     if arg == 'limit':
         limit[1] = int(value)
-    # ---
 
 
 def wd_sparql_query(query, ddf=False):
