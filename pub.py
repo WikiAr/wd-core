@@ -83,10 +83,10 @@ def get_and_load(url):
 
 
 # ---
-id_types = {"MED", "PMC", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA", "AGR", "DOI"}
-
-
 def get_article_info(ext_id, id_type):
+    # ---
+    id_types = {"MED", "PMC", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA", "AGR", "DOI"}
+    # ---
     if id_type.upper() not in id_types:
         print(f"id_type must be in {id_types}")
     # ---
