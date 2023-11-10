@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 """
@@ -9,8 +9,6 @@
 import pub
 import time
 import sys
-
-# ---
 
 
 def main():

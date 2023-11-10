@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 إضافة حالة خاصة من تصنيف ويكيميديا
@@ -26,7 +26,6 @@ from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 Tras = {
     'Q4167836': DescraptionsTable.get('Wikimedia category') or Qid_Descraptions.get('Q4167836') or {}
 }
-# ---
 
 
 def Get_P_API2(item, P):
@@ -65,8 +64,6 @@ WHERE
   FILTER(strstarts(str(?title),"Category:") )
 }
 LIMIT 1000"""
-
-# ---
 
 
 def work_one_item(item):
@@ -125,9 +122,6 @@ def work_one_item(item):
         wd_desc.work_api_desc(NewDesc, q)
     else:
         pywikibot.output(f'<<lightred>>* work 2 :{q} no descriptions to add.')
-
-
-# ---
 
 
 def main(*args):

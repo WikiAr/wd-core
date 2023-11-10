@@ -77,7 +77,6 @@ translations['Q28372019'] = {
     'ar': 'حي سكني في اليمن',
     'en': 'neighborhood in Yemen',
 }
-# ---
 
 
 def action_one_item(x, pa, new_translations):
@@ -87,7 +86,6 @@ def action_one_item(x, pa, new_translations):
         ks[x] = new_translations
         # newdesc.work2(item , x, ks)
         newdesc.work2_with_replacement(item, x, ks, replacement_ke)
-        # ---
 
 
 def make_translations(x, pa):
@@ -110,9 +108,6 @@ def make_translations(x, pa):
         descriptions["en"] = fas[x]["en"] % pa["en"]
     # ---
     return descriptions
-
-
-# ---
 
 
 def mainfromQuarry(x, Quarry, translations):

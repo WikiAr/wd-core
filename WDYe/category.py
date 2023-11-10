@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 إضافة تسميات عناصر تصنيفات في ويكي بيانات
@@ -25,7 +25,6 @@ from wd_api import himoAPI_test as himoAPI
 Limit = {
     1: "500"
 }
-# ---
 
 
 def main():

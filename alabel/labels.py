@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 إضافة تسميات عناصر تصنيفات في ويكي بيانات
@@ -57,7 +57,6 @@ for arg in sys.argv:
 # ---
 if Limit[1] != '':
     Quaa = Quaa + f'limit {Limit[1]}'
-# ---
 
 
 def main():

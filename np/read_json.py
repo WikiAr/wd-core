@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 
@@ -19,10 +19,6 @@ try:
     import pywikibot
 except BaseException:
     pywikibot = False
-# ---
-
-# ---
-# ---
 
 
 def printo(s):
@@ -30,9 +26,6 @@ def printo(s):
         pywikibot.output(s)
     else:
         printe.output(s)
-
-
-# ---
 
 
 def read_bad_list(file):
@@ -74,9 +67,6 @@ def read_bad_list(file):
     return False
 
 
-# ---
-
-
 def read_bad_json(file):
     try:
         with open(file) as listt:
@@ -109,9 +99,6 @@ def read_bad_json(file):
         return wd_file
     # ---
     return {}
-
-
-# ---
 
 
 def main(file, Type):

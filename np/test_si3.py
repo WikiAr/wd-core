@@ -12,7 +12,6 @@ Dir = Path(__file__).parent
 from np import si3
 
 si3.MainTestTable[1] = True
-# ---
 
 
 def Main_Test():

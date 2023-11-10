@@ -287,7 +287,6 @@ letters_to_latin = {
         "": "",
     }
 }
-# ---
 
 
 def add_new_label(q, enlabel):
@@ -317,7 +316,6 @@ liste = {
     'ru': list(set(letters_to_latin['ru'].keys()) - set(letters_to_latin['ru'].values()) - set(abcd)),
     'sr': list(set(letters_to_latin['sr'].keys()) - set(letters_to_latin['sr'].values()) - set(abcd)),
 }
-# ---
 
 
 def change_one_lab(text, lang):
@@ -340,9 +338,6 @@ def change_one_lab(text, lang):
     return new_lab
 
 
-# ---
-
-
 def make_en_label(labels, q, Add=False):
     org_lab = ''
     new_lab = ''
@@ -361,9 +356,6 @@ def make_en_label(labels, q, Add=False):
             add_new_label(q, new_lab)
     # ---
     return new_lab
-
-
-# ---
 
 
 def main():

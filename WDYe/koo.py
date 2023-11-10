@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 python pwb.py wd/koo -page:مارك_فان_بوميل
@@ -25,7 +25,6 @@ from pywikibot import textlib
 # ---
 
 done = []
-# ---
 
 
 def woo(page):
@@ -61,7 +60,6 @@ def woo(page):
         himoAPI.Claim_API_string(qid, "P8021", id)
         done.append(id)
         # pywikibot.output( f )
-    # ---
 
 
 def main(*args):

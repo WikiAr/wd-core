@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 from np.scientific_article import make_scientific_article
@@ -146,7 +146,6 @@ format = {
     'bn': "%s-এ প্রকাশিত বৈজ্ঞানিক নিবন্ধ"
 }
 JustYear = ["zh", "zh-hans", "zh-cn", "zh-sg", "zh-my", "wuu", "zh-hant", "zh-hk", "zh-mo", "zh-tw", "yue", "ja", "ko", "nan"]
-# ---
 
 
 def bnyear(date):
@@ -168,9 +167,6 @@ def bnyear(date):
     return date
 
 
-# ---
-
-
 def Monthname(lang, month):
     if month not in ["10", "11", "12"]:
         month = re.sub(r'0', '', month)
@@ -187,15 +183,9 @@ def Monthname(lang, month):
     return False
 
 
-# ---
-
-
 def Make_uk_desc(desc):
 
     return desc
-
-
-# ---
 
 
 def fixdate(date):
@@ -224,9 +214,6 @@ def fixdate(date):
             printe.output('<<lightred>> fixdate ??:')
     # printe.output(table)
     return table
-
-
-# ---
 
 
 def make_scientific_desc(lang, date, precision):
@@ -328,9 +315,6 @@ def make_scientific_desc(lang, date, precision):
     return desc
 
 
-# ---
-
-
 def Get_P_API_time(item, P):
     qlist = []
     # ---
@@ -356,9 +340,6 @@ def Get_P_API_time(item, P):
         return qlist[0]
     # ---
     return False
-
-
-# ---
 
 
 def make_scientific_article(item, p31, num, TestTable=False):

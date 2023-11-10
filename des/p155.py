@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 إضافة تسميات عناصر ويكي بيانات
@@ -44,7 +44,6 @@ log_done = []
 years = r"(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)"
 tests_en = r'[abcdefghijklmnopqrstuvwxyz]'
 tests_ar = r'[ابتثجحخدذرزسشصضطظعغفقكلمنهويأآإىءئؤة1234567890\–\-\.]'
-# ---
 
 
 def make_newlabel(label, ar, en):
@@ -170,7 +169,6 @@ def make_newlabel(label, ar, en):
     newlabel = newlabel.replace("  ", " ")
     # ---
     return newlabel.strip()
-    # ---
 
 
 def Item(item):
@@ -382,7 +380,6 @@ LIMIT
 '''
 # ---
 Quarry['use'] = Quarry[2]
-# ---
 
 
 def main():
@@ -477,7 +474,6 @@ def main():
         num += 1
         printe.output('<<lightblue>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         Item(tabj)
-    # ---
 
 
 def test():

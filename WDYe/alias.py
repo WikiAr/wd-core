@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 إضافة تسميات مواضيع طبية
@@ -47,7 +47,6 @@ for qid in main_table:
         # ---
         qid_table[lab] = qid
         qid_table[labe] = qid
-# ---
 
 
 def WORK(item, table, type):
@@ -92,7 +91,6 @@ Quaa = '''SELECT ?item ?label ?alias
       FILTER(CONTAINS(?label, "%s")).
     }
     LIMIT '''
-# ---
 
 
 def WORK_table(qid, tables):
@@ -122,9 +120,6 @@ def WORK_table(qid, tables):
             pywikibot.output('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
             # item['item'] = item['item'].split("/entity/")[1]
             WORK(item, Table[item], peo)
-
-
-# ---
 
 
 def main():

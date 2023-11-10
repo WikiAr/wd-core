@@ -82,7 +82,6 @@ translations = {
         'fr': "espèce d'insectes",
     },
 }
-# ---
 
 
 def work2(item, topic):
@@ -117,9 +116,6 @@ def work2(item, topic):
             # ---
             # pywikibot.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
             wd_desc.wwdesc(NewDesc, q, 1, fixlang, ask=False)
-
-
-# ---
 
 
 def mam():

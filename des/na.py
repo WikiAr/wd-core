@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 
 
@@ -28,7 +28,6 @@ limits = {
 }
 # ---
 items_done = []
-# ---
 
 
 def action(json1):
@@ -53,9 +52,6 @@ def action(json1):
                 himoAPI.Labels_API(q, ar_lab, "ar", False, Or_Alii=True)
         else:
             printe.output(' <<lightred>> * q in items_done. ' % q)
-
-
-# ---
 
 
 def make_quarry(ar_suff="", item_p31_cat="", en_suff="", en_priff=""):
@@ -252,7 +248,6 @@ WHERE {
     FILTER ( str(?cat_en) = str(?change_name) )
 }
 '''
-# ---
 
 
 def main():
