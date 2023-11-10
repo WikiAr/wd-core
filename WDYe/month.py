@@ -31,7 +31,7 @@ translations["island in Indonesia"] = {
 }
 
 
-def mainfromQuarry(topic):
+def main_from_quarry(topic):
     pywikibot.output('*<<lightyellow>> mainfromQuarry:')
     Quarry = quuu["month"] % topic
     if sys.argv and "OFFSET" in sys.argv:
