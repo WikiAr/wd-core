@@ -122,7 +122,6 @@ totallimit = {
 }
 # ---
 from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS
-# ---
 
 
 def lastXnewpages(maxp):
@@ -141,9 +140,6 @@ def lastXnewpages(maxp):
     printe.output('Klaar')
 
 
-# ---
-
-
 def testrun():
     repo = pywikibot.Site().data_repository()
     item2get = 'Q92924911'
@@ -157,18 +153,12 @@ def testrun():
         printe.output('no action!')
 
 
-# ---
-
-
 def wd_one_without_description(item):
     base_sparql = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . OPTIONAL {?item schema:description ?itemdescription filter (lang(?itemdescription) = \"nl\").  } FILTER (!BOUND(?itemdescription))}'
     one_sparql = base_sparql % item
     for wditem in wd_sparql_query(one_sparql):
         if (wditem.exists()):
             yield wditem
-
-
-# ---
 
 
 def wd_all_without_description():
@@ -181,9 +171,6 @@ def wd_all_without_description():
       if (wditem.exists()):
         yield wditem
     '''
-
-
-# ---
 
 
 def wd_all_simple_P131():
@@ -202,9 +189,6 @@ def wd_all_simple_P131():
     yield 'Q5'
 
 
-# ---
-
-
 def wd_all_countries(spq):
     country_query = 'select ?item where {?item wdt:P31 wd:Q6256}'
     country_generator = wd_sparql_query(country_query)
@@ -214,9 +198,6 @@ def wd_all_countries(spq):
         for item in one_country_generator:
             if (item.exists()):
                 yield item
-
-
-# ---
 
 
 def wd_sparql_query(spq, ddf=False):
@@ -278,9 +259,6 @@ def wd_sparql_query(spq, ddf=False):
     return New_List
 
 
-# ---
-
-
 def wd_user_edits(username, ucsite, totaledits):
     repo = pywikibot.Site('wikidata', 'wikidata').data_repository()
     useredits = pg.UserContributionsGenerator(username, site=ucsite, total=totaledits, namespaces=[0])
@@ -291,14 +269,8 @@ def wd_user_edits(username, ucsite, totaledits):
                 yield wd
 
 
-# ---
-
-
 def sparql_nodescription(sparql):
     return 'select distinct ?item where {{%s}filter (!bound(?itemDescription))}' % sparql
-
-
-# ---
 
 
 def some_items():
@@ -311,9 +283,6 @@ def some_items():
             yield wd
 
 
-# ---
-
-
 def newest_items(repo, site):
     for item in pg.NewPagesPageGenerator(site):
         break
@@ -321,9 +290,6 @@ def newest_items(repo, site):
     for itemno in range(startno, 0, -1):
         item = pywikibot.ItemPage(repo, 'Q%d' % itemno)
         yield (item)
-
-
-# ---
 
 
 def generator_last_hour():
@@ -346,9 +312,6 @@ def generator_last_hour():
         else:
             printe.output(f'Klaar: {item.oldest_revision.timestamp}')
             break
-
-
-# ---
 
 
 def wd_all_items():
@@ -440,7 +403,6 @@ sparql_query3 = 'select ?item where {?item wdt:P31 wd:Q5633421 }'
 #sparql_query = 'SELECT ?item {?item wdt:P31 wd:Q13442814 . OPTIONAL { ?item schema:description ?d . FILTER(lang(?d)='nl') }  FILTER( !BOUND(?d) )} LIMIT 1000'
 #sparql_query='SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P106 ?dummy0 . ?wiki0 <http://schema.org/about> ?item . ?wiki0 <http://schema.org/isPartOf> <https://nl.wikipedia.org/> {service wikibase:label{bd:serviceParam wikibase:language 'nl' . }}}'  #claim[31:5] and claim[106] and link[nlwiki]
 '''
-# ---
 
 
 def just_get_ar(labe):

@@ -25,7 +25,6 @@ from pywikibot import textlib
 # ---
 
 done = []
-# ---
 
 
 def woo(page):

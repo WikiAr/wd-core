@@ -71,7 +71,6 @@ Qlist['Q482994'] = {  # ألبوم
     # 'es' : 'álbum' ,
     'nl': 'muziekalbum',
 }
-# ---
 
 
 def action_one_item(Qid, pa, lang, keys):
@@ -147,7 +146,6 @@ Comma = {
     'en': ", ",
 }
 Comma2 = {'ar': "، و", 'en': ", ", 'de': ", ", 'fr': ", ", 'nl': ", "}
-# ---
 
 
 def GetQuery(Qid, lang, keys):
@@ -188,9 +186,6 @@ def GetQuery(Qid, lang, keys):
     # printe.output(ur)
     # ---
     return ur
-
-
-# ---
 
 
 def Gquery2(json1):
@@ -273,9 +268,6 @@ def wd_sparql_query(query, ddf=False):
     return New_List
 
 
-# ---
-
-
 def WorkWithOneLang(Qid, lang, keys):
     printe.output('*<<lightyellow>> WorkWithOneLang: ')
     # ---
@@ -301,7 +293,6 @@ def WorkWithOneLang(Qid, lang, keys):
 
 # ---
 by_list = {'ar': "من تأليف", 'en': "by", 'fr': "de", 'de': "von", 'nl': "van", 'ca': "per", 'cs': "od", 'la': "ab", 'it': "da", 'io': "da", 'eo': "de", 'da': "af", 'pl': "przez", 'ro': "de", 'es': "por", 'sv': "av"}
-# ---
 
 
 def MakeDesc(Qid, pa, lang):
@@ -344,9 +335,6 @@ def MakeDesc(Qid, pa, lang):
             printe.output(f'<<lightred>> arabic description test failed "{description}".')
             description = False
     return description
-
-
-# ---
 
 
 def main():

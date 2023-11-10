@@ -58,7 +58,6 @@ login = api_new.Login_to_wiki()
 # newpages = api_new.Get_Newpages(limit="max", namespace="0", rcstart="", user='')
 # ---
 from np import si3
-# ---
 
 
 def mainwithcat2():

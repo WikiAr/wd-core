@@ -119,7 +119,6 @@ for arg in sys.argv:
 New_QS = {
     1: []
 }
-# ---
 
 
 def descqs(q, value, lang):
@@ -135,7 +134,6 @@ def descqs(q, value, lang):
 
 # ---
 q_list_done = []
-# ---
 
 
 def Add_desc(q, value, lang):
@@ -150,9 +148,6 @@ def Add_desc(q, value, lang):
         descqs(q, value, lang)
     else:
         himoAPI.Des_API(q, value, lang, ask="")
-
-
-# ---
 
 
 def wd_sparql_query(spq, ddf=False):
@@ -228,7 +223,6 @@ WHERE {
 # ---
 from wd_api import get_property_for_list
 # get_property_for_list.get_property_label_for_qids( [property], List )
-# ---
 
 
 def work_one_item(start, lang, tab, c, total, findlab=False):
@@ -384,7 +378,6 @@ SERVICE wikibase:label {
     bd:serviceParam wikibase:language "ar" .
     ?place rdfs:label ?placeare
   }''')
-# ---
 
 
 def work_one_place(place):

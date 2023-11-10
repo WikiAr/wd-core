@@ -12,8 +12,6 @@ import urllib
 import os
 import sys
 
-# ---
-
 
 def print_test(line, color=""):
     colors = {"red": "\033[91m%s\033[00m", "blue": "\033[94m%s\033[00m"}
@@ -59,7 +57,6 @@ if "ask" in sys.argv:
     Ask[1] = True
 if "test" in sys.argv:
     Test[1] = True
-# ---
 
 
 def get_and_load(url):
@@ -87,7 +84,6 @@ def get_and_load(url):
 
 # ---
 id_types = {"MED", "PMC", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA", "AGR", "DOI"}
-# ---
 
 
 def get_article_info(ext_id, id_type):
@@ -162,9 +158,6 @@ def get_article_info(ext_id, id_type):
             # ---
     print('No results')
     return False
-
-
-# ---
 
 
 def add(id, typee):

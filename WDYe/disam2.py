@@ -35,7 +35,6 @@ replacement["fa"] = {
     "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
     "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"]
 }
-# ---
 
 
 def work2(item, topic):
@@ -83,9 +82,6 @@ def work2(item, topic):
     wd_desc.work_api_desc(NewDesc, q)
 
 
-# ---
-
-
 def mainfromQuarry():
     pywikibot.output('*<<lightyellow>> mainfromQuarry:')
     Quarry = '''SELECT DISTINCT ?item
@@ -115,7 +111,6 @@ wikidatasite = pywikibot.Site('wikidata', 'wikidata')
 repo = wikidatasite.data_repository()
 # ---
 # open_url.getURL( url )
-# ---
 
 
 def mainfromQuarry2():

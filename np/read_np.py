@@ -11,7 +11,6 @@ Dir = Path(__file__).parent
 main_dir1 = str(Path(__file__).parent.parent) + '/'
 # ---
 # ---
-# ---
 
 
 def read_new_types_file():

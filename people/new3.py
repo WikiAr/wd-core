@@ -128,7 +128,6 @@ targetlangs = ['ar', 'bn', 'ca', 'es', 'fr', 'gl', 'he']
 W_check = {
     1: True
 }
-# ---
 
 
 def check_quarry_new(tab):
@@ -214,7 +213,6 @@ translations_o = {
 translations_for_nat = {
     1: {}
 }
-# ---
 
 
 def make_Tabs(tabs):
@@ -324,7 +322,6 @@ make_Tabs(Tab)
 translations_o_lower = translations_o[2]
 # ---
 q_dones = []
-# ---
 
 
 def start_one_nat(nat_tab):
@@ -374,9 +371,6 @@ def start_one_nat(nat_tab):
             wd_desc.work_api_desc(NewDesc, q)
 
 
-# ---
-
-
 def mainnat(Tabs):  # translations_for_nat
     # ---
     # python pwb.py people/new3 mainnat -nat:American
@@ -409,9 +403,6 @@ def mainnat(Tabs):  # translations_for_nat
         start_one_nat(nat_tab)
         # ---
     printe.output("انتهت بنجاح")
-
-
-# ---
 
 
 def Main_Test():

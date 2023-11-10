@@ -24,7 +24,6 @@ limits = {
 }
 # ---
 items_done = []
-# ---
 
 
 def action(json1):
@@ -85,7 +84,6 @@ SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
 }
 #LIMIT 2
 '''
-# ---
 
 
 def main():

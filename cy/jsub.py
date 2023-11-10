@@ -26,7 +26,6 @@ from cy.cy5 import *
 import gent
 
 # generator = gent.get_gent(*args)
-# ---
 
 
 def main2(*args):

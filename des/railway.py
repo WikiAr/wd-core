@@ -35,7 +35,6 @@ railway_tables = {
         "en": "railway station"
     },
 }
-# ---
 
 
 def Get_P_API_id(claims, P, onlyone=False):
@@ -53,9 +52,6 @@ def Get_P_API_id(claims, P, onlyone=False):
         return ""
     else:
         return list
-
-
-# ---
 
 
 def work_railway(wditem, p31, q=""):

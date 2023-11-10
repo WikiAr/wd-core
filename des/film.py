@@ -82,9 +82,6 @@ def action_one_item(Qid, pa, lang, keys):
                 wd_desc.work_api_desc(NewDesc, qitem)
 
 
-# ---
-
-
 def getwditem(qitem):
     try:
         item = pywikibot.ItemPage(repo, qitem)
@@ -122,7 +119,6 @@ Comma2 = {
     'fr': ", ",
     'nl': ", "
 }
-# ---
 
 
 def GetQuery(Qid, lang, keys):
@@ -163,9 +159,6 @@ def GetQuery(Qid, lang, keys):
     # printe.output(ur)
     # ---
     return ur
-
-
-# ---
 
 
 def Gquery2(json1):
@@ -277,7 +270,6 @@ by_list = {
     'es': "por",
     'sv': "av"
 }
-# ---
 
 
 def MakeDesc(Qid, pa, lang):
@@ -328,9 +320,6 @@ def MakeDesc(Qid, pa, lang):
             printe.output(f'<<lightred>> arabic description test failed "{description}".')
             description = False
     return description
-
-
-# ---
 
 
 def films():

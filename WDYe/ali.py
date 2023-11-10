@@ -175,7 +175,6 @@ WHERE {
     }
 '''
 }
-# ---
 
 
 def action_one_item(q, ar):
@@ -185,9 +184,6 @@ def action_one_item(q, ar):
         ar2 = ar.replace("عبد ", "عبد")
     if ar != ar2:
         himoAPI.Alias_API(q, [ar2], "ar", False)
-
-
-# ---
 
 
 def workqua(qua):
@@ -217,7 +213,6 @@ AND term_type = 'label' #description#label#
 AND term_text like "%عبد_%"
 LIMIT 500
 ;'''
-# ---
 
 
 def mains():

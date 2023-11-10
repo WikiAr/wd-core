@@ -44,7 +44,6 @@ log_done = []
 years = r"(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)"
 tests_en = r'[abcdefghijklmnopqrstuvwxyz]'
 tests_ar = r'[ابتثجحخدذرزسشصضطظعغفقكلمنهويأآإىءئؤة1234567890\–\-\.]'
-# ---
 
 
 def make_newlabel(label, ar, en):
@@ -382,7 +381,6 @@ LIMIT
 '''
 # ---
 Quarry['use'] = Quarry[2]
-# ---
 
 
 def main():

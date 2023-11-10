@@ -29,7 +29,6 @@ translations = {
 translations["island in Indonesia"] = {
     "ar": "جزيرة في إندونيسيا"
 }
-# ---
 
 
 def mainfromQuarry(topic):

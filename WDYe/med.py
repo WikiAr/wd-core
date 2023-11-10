@@ -24,7 +24,6 @@ import urllib.parse
 from API import himoBOT2
 # ---
 from wd_api import himoAPI_test as himoAPI
-# ---
 
 
 def dec(xx):
@@ -35,9 +34,6 @@ def dec(xx):
     except BaseException:
         printe.output(f'<<lightred>> except when urllib.parse.quote({xx})')
     return fao
-
-
-# ---
 
 
 def fixrow(row):
@@ -73,7 +69,6 @@ Labels = {}
 SaveR = {
     1: False
 }
-# ---
 
 
 def fixo(stro):
@@ -82,9 +77,6 @@ def fixo(stro):
     stro = stro.split("[")[0]
     stro = stro.split(":")[0]
     return stro
-
-
-# ---
 
 
 def Fix_List(List):
@@ -153,9 +145,6 @@ def Fix_List(List):
     return New_List
 
 
-# ---
-
-
 def fixrow2(row):
     en, ar = False, False
     row = re.sub(r" <", "<", row)
@@ -180,9 +169,6 @@ def fixrow2(row):
             en = x.split('<td class="tden">')[1]
     # ---
     return en, ar
-
-
-# ---
 
 
 def Get_item_table(enlab):
@@ -228,9 +214,6 @@ def Get_item_table(enlab):
     Item_tab = Fix_List(Item_tab)
     # ---
     return Item_tab
-
-
-# ---
 
 
 def Get_item_table2(enlab):
@@ -280,7 +263,6 @@ def Get_item_table2(enlab):
 
 # ---
 Looogs = {}
-# ---
 
 
 def looog():
@@ -390,7 +372,6 @@ def WORK(item, table):
 Limit = {
     1: "500"
 }
-# ---
 
 
 def main():

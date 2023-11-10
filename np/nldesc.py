@@ -107,7 +107,6 @@ for arg in sys.argv:
         printe.output('sparqler[1] = "%s"' % sparqler[1])
 # ---
 from des.railway import railway_tables, work_railway
-# ---
 
 
 def Make_railway_desc(wditem, p31):
@@ -118,9 +117,6 @@ def Make_railway_desc(wditem, p31):
 
 def get_lng_description(language, wikidataitem):
     return wikidataitem.get('descriptions', {}).get(language, '')
-
-
-# ---
 
 
 def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=''):
@@ -143,9 +139,6 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=''):
     return laste
 
 
-# ---
-
-
 def get_label_txt(lng, wdi, property, array=0, fallback=False):
     # try:
     if property in wdi.get('claims', {}):
@@ -163,17 +156,11 @@ def get_label_txt(lng, wdi, property, array=0, fallback=False):
     return ''
 
 
-# ---
-
-
 def its_a_headquarted_thing(lng, wdi, thing):
     where = get_label_txt(lng, wdi, 'P159', fallback=True)
     if where != '':
         return f'{thing} {where}'
     return ''
-
-
-# ---
 
 
 def its_something_in_an_entity(wdi, something):
@@ -229,9 +216,6 @@ def Get_label(qid):
     return label
 
 
-# ---
-
-
 def get_female_for_p17(contry_lab, type):
     # ---
     if contry_lab.strip() == '':
@@ -243,9 +227,6 @@ def get_female_for_p17(contry_lab, type):
         printe.output('contry_lab:%s not in nationalities' % contry_lab)
     # ---
     return lab
-
-
-# ---
 
 
 def its_something_in_a_country(wdi, something):
@@ -312,9 +293,6 @@ def its_something_in_a_country(wdi, something):
     return fanee
 
 
-# ---
-
-
 def its_canton_of_France(wdi):  # Q184188
     # 'P131' = 'P131'
     clai = wdi.get('claims', {})
@@ -330,16 +308,10 @@ def its_canton_of_France(wdi):  # Q184188
     return desco
 
 
-# ---
-
-
 def its_disambigue(lng, wdi):
     if (lng in wdi.get('descriptions', {})) or (len(wdi.get('claims', {})) > 1):  # there is already a description, skip this one
         return ''
     return 'Wikimedia-doorverwijspagina'
-
-
-# ---
 
 
 def its_a_publication(wditem):
@@ -353,9 +325,6 @@ def its_a_publication(wditem):
     return 'publicatie'
 
 
-# ---
-
-
 def its_an_episode(lng, wditem):
     if lng in wditem.get('descriptions', {}):
         return wditem.get('descriptions', {})[lng]
@@ -366,9 +335,6 @@ def its_an_episode(lng, wditem):
             serienaam = serienaam.replace('، مسلسل', '').replace(' (مسلسل)', '')
             return 'حلقة من سلسلة ' + serienaam
     return ''
-
-
-# ---
 
 
 def its_a_discography(lng, wditem):
@@ -384,9 +350,6 @@ def its_a_discography(lng, wditem):
                         if trylng in wdArtist.get('labels', {}):
                             return 'discografie van ' + wdArtist.get('labels', {}).get(trylng, '')
     return 'discografie'
-
-
-# ---
 
 
 def action_one_P131_item(lng, oneitem):
@@ -461,9 +424,6 @@ def action_one_P131_item(lng, oneitem):
     return 0
 
 
-# ---
-
-
 def its_an_audio_drama(wditem):
     if ('P179' in wditem.get('claims', {})):
         return its_a_generalthing(wditem, 'hoorspel', 'hoorspel van', 'P50')
@@ -474,9 +434,6 @@ def its_an_audio_drama(wditem):
     return 'hoorspel'
 
 
-# ---
-
-
 def its_a_taxon(lng, wditem):
     '''
     read P171/mother taxon until taxo-rang/P105 is <Q19970288/no value> -> that mother taxon is the first part (insect/)
@@ -484,9 +441,6 @@ def its_a_taxon(lng, wditem):
     if (lng in wditem.get('descriptions', {})):
         return wditem.get('descriptions', {})[lng]
     return 'taxon'
-
-
-# ---
 
 
 def its_a_composition(lng, wditem):
@@ -502,9 +456,6 @@ def its_a_composition(lng, wditem):
     return 'compositie'
 
 
-# ---
-
-
 def its_a_tabon_in_thailand(lng, wditem):
     newdescription = ''
     if ('P131' in wditem.get('claims', {})):
@@ -513,9 +464,6 @@ def its_a_tabon_in_thailand(lng, wditem):
             WDitemtambon = himoBOT2.Get_Item_API_From_Qid(LNKtambon)  # xzo
             return Get_label_from_item(lng, WDitemtambon)
     return newdescription
-
-
-# ---
 
 
 def Get_label_from_item(lng, wditem):
@@ -528,9 +476,6 @@ def Get_label_from_item(lng, wditem):
     return ''
 
 
-# ---
-
-
 def its_a_fictional_character(wditem):
     if ('P1441' in wditem.get('claims', {})):
         my_description = its_a_generalthing(wditem, 'personage', 'personage uit', 'P1441')
@@ -539,9 +484,6 @@ def its_a_fictional_character(wditem):
     else:
         my_description = 'personage'
     return my_description
-
-
-# ---
 
 
 def its_a_computergame(lng, wditem):
@@ -568,7 +510,6 @@ def its_a_computergame(lng, wditem):
 New_QS = {
     1: []
 }
-# ---
 
 
 def descqs(q, value, lang):
@@ -582,17 +523,11 @@ def descqs(q, value, lang):
         New_QS[1] = []
 
 
-# ---
-
-
 def Add_desc(q, value, lang):
     if 'descqs' in sys.argv:
         descqs(q, value, lang)
     else:
         himoAPI.Des_API(q, value, lang, ask='')
-
-
-# ---
 
 
 def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
@@ -697,9 +632,6 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
     return my_description
 
 
-# ---
-
-
 def its_a_sports_season(wditem, claimstr=''):
     # ---
     # LNKsport=wditem.get('claims',{}).get('P3450')[0].get('mainsnak',{}).get('datavalue',{}).get('value',{}).get('id','')#.getTarget()
@@ -729,9 +661,6 @@ def its_a_sports_season(wditem, claimstr=''):
     printe.output("its_a_sports_season:(%s)" % laste)
     # ---
     return laste
-
-
-# ---
 
 
 def its_songs(type_of_item, wditem, shortstr, claimstr=''):
@@ -788,9 +717,6 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=''):
     return laste
 
 
-# ---
-
-
 def its_a_p50(type_of_item, wditem, shortstr, claimstr=''):
     myclaim = 'P50'
     # ---
@@ -839,9 +765,6 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=''):
     return laste
 
 
-# ---
-
-
 def its_a_thing_located_in_country(wditem, countryname, thing):
     if 'P131' in wditem.get('claims', {}):
         LNKcommunity = wditem.get('claims', {}).get('P131')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
@@ -851,9 +774,6 @@ def its_a_thing_located_in_country(wditem, countryname, thing):
         else:
             return thing + ' في ' + countryname
     return thing + ' في ' + countryname
-
-
-# ---
 
 
 def its_a_film(wditem):
@@ -877,9 +797,6 @@ def its_a_film(wditem):
         return 'فيلم من إخراج %s' % directorname
     # ---
     return ''
-
-
-# ---
 
 
 def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=''):
@@ -1169,7 +1086,6 @@ str_descs = {
         "desc": 'sportevenement op de Olympische Spelen',
     },
 }
-# ---
 
 
 def make_nn(lng, wditem, p31, orig_desc):
@@ -1513,9 +1429,6 @@ def make_nn(lng, wditem, p31, orig_desc):
             desc = its_a_generalthing(wditem, p31_tab["desc"], p31_tab["desc_in"], p31_tab["pid"])
     # ---
     return desc
-
-
-# ---
 
 
 def action_one_item(lngr, q, item={}, claimstr=''):

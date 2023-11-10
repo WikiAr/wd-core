@@ -41,14 +41,10 @@ WIKI = {
 AutoSave = {
     1: False
 }
-# ---
 
 
 def treat_page(qid):
     himoAPI.Claim_API2(qid, "P31", "Q4167836")
-
-
-# ---
 
 
 def main2(*args):

@@ -159,7 +159,6 @@ if True:
         Add_en_labels[1] = True
     # ---
     Geo_List = list(placesTable.keys())
-# ---
 
 
 def Get_P_API_id(item, P):
@@ -174,9 +173,6 @@ def Get_P_API_id(item, P):
             lista.append(q)
     # ---
     return lista
-
-
-# ---
 
 
 def Get_P_API_time(item, P):
@@ -208,9 +204,6 @@ def Get_P_API_time(item, P):
         return False
 
 
-# ---
-
-
 def make_scientific_art(item, P31, num):
     # ---
     table = make_scientific_article(item, P31, num, TestTable=MainTestTable[1])
@@ -220,9 +213,6 @@ def make_scientific_art(item, P31, num):
     rep_langs = table["fixlang"]
     # ---
     work_api_desc(NewDesc, qid, rep_langs)
-
-
-# ---
 
 
 def work_qs(q, NewDesc):
@@ -239,9 +229,6 @@ def work_qs(q, NewDesc):
             printe.output(f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements")
             himoAPI.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
             New_QS[1] = []
-
-
-# ---
 
 
 def work_api_desc(NewDesc, q, fixlang):
@@ -282,9 +269,6 @@ def work_api_desc(NewDesc, q, fixlang):
         fixlang.sort()
         # ---
         wd_desc.wwdesc(NewDesc, q, 1, fixlang)
-
-
-# ---
 
 
 def make_tax_des_new(item):
@@ -352,9 +336,6 @@ def make_tax_des_new(item):
         # ---
 
 
-# ---
-
-
 def work_taxon_desc(item, endesc):
     # ---
     ardesc = tax_translations_lower.get(endesc.lower(), '')  # .get("ar", '')
@@ -374,9 +355,6 @@ def work_taxon_desc(item, endesc):
     else:
         print(f' no ardesc for en:{endesc}.')
         make_tax_des_new(item)
-
-
-# ---
 
 
 def work_new_list(item, p31, ardes):
@@ -418,9 +396,6 @@ def work_new_list(item, p31, ardes):
         work_api_desc(NewDesc, q, [])
     else:
         print('work_new_list nothing to add. ')
-
-
-# ---
 
 
 def work_people(item, topic, num, ardes):
@@ -491,9 +466,6 @@ def work_people(item, topic, num, ardes):
         print(' work_people nothing to add. ')
 
 
-# ---
-
-
 def work_qid_desc(item, topic, num):
     printe.output('<<lightyellow>>  work_qid_desc: ')
     q = item["q"]
@@ -526,9 +498,6 @@ def work_qid_desc(item, topic, num):
         work_api_desc(NewDesc, q, [])
     else:
         print('work_qid_desc nothing to add. ')
-
-
-# ---
 
 
 def log_new_types(lists):
@@ -570,9 +539,6 @@ def log_new_types(lists):
     with open(jsonfils, 'w') as nfile:
         json.dump(Lalo_types["n"], nfile)
     # ---
-
-
-# ---
 
 
 def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
@@ -667,9 +633,6 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
                 # ---
                 new_types[P31] += 1
     # ---
-
-
-# ---
 
 
 def print_new_types():

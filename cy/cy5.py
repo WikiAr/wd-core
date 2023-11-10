@@ -48,7 +48,6 @@ if 'workibrahem' in sys.argv:
 session = {}
 session[1] = requests.Session()
 session["csrftoken"] = ""
-# ---
 
 
 def login():
@@ -147,7 +146,6 @@ litters = {
     " ": "%20",
     "_": "%20",
 }
-# ---
 
 
 def encode_arabic(label):
@@ -155,9 +153,6 @@ def encode_arabic(label):
     for x in litters:
         label2 = label2.replace(x, litters[x])
     return label2
-
-
-# ---
 
 
 def ec_de_code(tt, type):
@@ -169,16 +164,10 @@ def ec_de_code(tt, type):
     return fao
 
 
-# ---
-
-
 def print_test2(s):
     if TEST[2]:
         # pywikibot.output(s)
         print(s)
-
-
-# ---
 
 
 def printt(s):
@@ -186,9 +175,6 @@ def printt(s):
     if SS or 'test' in sys.argv or 'test2' in sys.argv:
         # pywikibot.output(s)
         print(s)
-
-
-# ---
 
 
 def printo(s):
@@ -205,7 +191,6 @@ def printo(s):
 # ---
 HeadVars = ['imagejersey']
 JOJOJO = 'نتيجة سباق الدراجات/جيرسي'
-# ---
 
 
 def findflag(race, flag):
@@ -240,7 +225,6 @@ def findflag(race, flag):
 
 # ---
 Skip_items = ["Q4115189"]
-# ---
 
 
 def fix_label(label):
@@ -267,9 +251,6 @@ def fix_label(label):
     label = re.sub(r"ركوب الدراجات في دورة ألعاب الكومنولث", "ركوب الدراجات في دورة الكومنولث", label)
     label = re.sub(r"\s+", " ", label)
     return label
-
-
-# ---
 
 
 def make_temp_lines(table, title):
@@ -461,7 +442,6 @@ q22u = """SELECT
                                         }
 
     }   } """
-# ---
 
 
 def get_query_results(query):
@@ -499,9 +479,6 @@ def get_query_results(query):
             print('CRITICAL:')
     # ---
     return json1
-
-
-# ---
 
 
 def GetSparql(qid, title):
@@ -640,7 +617,6 @@ ranks_label = {
 # ---
 Len_of_results = {}
 Len_of_valid_results = {}
-# ---
 
 
 def fix_results(table):
@@ -720,9 +696,6 @@ def fix_results(table):
     return results2
 
 
-# ---
-
-
 def fix_date(data, title):
     data2 = {}
     # ---
@@ -769,9 +742,6 @@ def fix_date(data, title):
     Len_of_results[title] = p642label
     # ---
     return data2
-
-
-# ---
 
 
 def make_new_text(qid, title):
@@ -872,9 +842,6 @@ def make_new_text(qid, title):
     return texxt
 
 
-# ---
-
-
 def GetSectionNew3(text):
     printt('**GetSectionNew3: ')
     text = text
@@ -902,7 +869,6 @@ def GetSectionNew3(text):
 
 # ---
 returntext = {1: True}
-# ---
 
 
 def make_dada(NewText, MainTitle):
@@ -916,9 +882,6 @@ def make_dada(NewText, MainTitle):
 <input id='wpDiff' type='submit' class='btn-lg' tabindex='7' name='wpDiff' value='show changes' accesskey='v' title='show changes.'/>
 </form>'''
     return t
-
-
-# ---
 
 
 def page_put(NewText, summ, MainTitle):
@@ -976,7 +939,6 @@ regline += r"\|\s*المركز\s*\=(?P<poss>.*)"
 regline += r"\|\s*(?:rank|المرتبة)\s*\=(?P<rank>.*)"
 regline += r"\|\s*جيرسي\s*\=(?P<jersey>.*)"
 regline += r"\s*\|\}\}"
-# ---
 
 
 def work_tano(text, MainTitle):
@@ -1093,9 +1055,6 @@ def puttext(text, MainTitle, Newsect):
             printo('nodiff')
 
 
-# ---
-
-
 def template_params(text, title):
     Frist = re.compile(r'\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}')
     pas = Frist.findall(text)
@@ -1124,9 +1083,6 @@ def template_params(text, title):
         return Qid, True
     # ---
     return False, False
-
-
-# ---
 
 
 def CheckTempalteInPageText(text):
@@ -1158,9 +1114,6 @@ def CheckTempalteInPageText(text):
             return True
     else:
         printt(' * no text.' + br)
-
-
-# ---
 
 
 def GetPageText(title):
@@ -1218,9 +1171,6 @@ def GetPageText(title):
     return text, item
 
 
-# ---
-
-
 def StartOnePage(title):
     printt('**StartOnePage: ' + br)
     # ---
@@ -1276,7 +1226,6 @@ def StartOnePage(title):
 
 
 br = '</br>'
-# ---
 
 
 def main():

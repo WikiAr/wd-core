@@ -125,7 +125,6 @@ queriestest = {
     'family name': SELECT + ' wdt:P31 wd:Q101352 ; wdt:P31 ?instance .  OPTIONAL { ?item schema:description ?itemabel. FILTER((LANG(?itemabel)) = "ar") } FILTER(!BOUND(?itemabel))}',
 }
 # ---
-# ---
 
 
 def OOutPut(ss):
@@ -143,7 +142,6 @@ qq = {
 # newdesc.mainfromQuarry2( topic , Quarry, DescraptionsTable)
 # ---
 limiTa = ['Wikimedia category', 'Wikimedia disambiguation page']
-# ---
 
 
 def main():
