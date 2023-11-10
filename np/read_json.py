@@ -19,9 +19,6 @@ try:
     import pywikibot
 except BaseException:
     pywikibot = False
-# ---
-
-# ---
 
 
 def printo(s):

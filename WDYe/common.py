@@ -124,7 +124,6 @@ queriestest = {
     # 'family name': SELECT + ' wdt:P31 wd:Q101352 ; wdt:P31 ?instance .  ?item schema:description "family name"@en.' + GROUP,
     'family name': SELECT + ' wdt:P31 wd:Q101352 ; wdt:P31 ?instance .  OPTIONAL { ?item schema:description ?itemabel. FILTER((LANG(?itemabel)) = "ar") } FILTER(!BOUND(?itemabel))}',
 }
-# ---
 
 
 def OOutPut(ss):
