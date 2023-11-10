@@ -1,5 +1,5 @@
-#!/usr/bin/python
-#!/usr/bin/python
+#!/usr/bin/python3
+#!/usr/bin/python3
 """
 
 إضافة تسميات مواضيع طبية

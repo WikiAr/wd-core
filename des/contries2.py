@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #  python pwb.py wd/wikinews
 #
 #

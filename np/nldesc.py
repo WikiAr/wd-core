@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # (C) Edoderoo/Edoderoobot (meta.wikimedia.org), 2016–2019
 # Distributed under the terms of the CC-BY-SA 3.0 licence.
 # Q13005188 mandal

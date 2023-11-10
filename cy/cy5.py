@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 python pwb.py cy/cy5 -page:باتريك_كونراد
 python pwb.py cy/cy5 -page:جويل_سوتير
