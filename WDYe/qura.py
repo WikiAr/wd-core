@@ -110,7 +110,7 @@ def make_translations(x, pa):
     return descriptions
 
 
-def mainfromQuarry(x, Quarry, translations):
+def main_from_quarry(x, Quarry, translations):
     PageList = wd_bot.sparql_generator_url(Quarry)
     total = len(PageList)
     num = 0
@@ -135,5 +135,5 @@ for x in translations:
     quarry += 'OPTIONAL {?item schema:description ?des filter(lang(?des) = "ar")}'
     quarry += 'FILTER(!BOUND(?des)) } '
     # quarry += 'LIMIT 9000 '
-    mainfromQuarry(x, quarry, translations)
+    main_from_quarry(x, quarry, translations)
 # ---
