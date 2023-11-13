@@ -3,32 +3,17 @@
 
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
 import json
 import urllib
 import os
 import sys
-
-
-def print_test(line, color=""):
-    colors = {"red": "\033[91m%s\033[00m", "blue": "\033[94m%s\033[00m"}
-    if color != "" and colors.get(color):
-        line = colors[color] % line
-    # ---
-    if Ask[1] or Test[1]:
-        print(line)
-
-
 # ---
 filepath = str(os.path.abspath(__file__)).replace('\\', '/')
 # ---
 paths = [
     '/data/project/himo/core1/',
     '/data/project/himowd/wd_core/',
-    '/data/project/himowd/.local/lib/python3.7/site-packages',
+    './local/lib/python3.10/site-packages',
 ]
 # ---
 if filepath.find("/data/project/") == -1 and filepath.find("labstore-secondary-tools-project") == -1:
@@ -38,16 +23,18 @@ for x in paths:
     if os.path.isdir(x):
         sys.path.append(x)
 # ---
-from wikidataintegrator2 import wdi_helpers
-from wikidataintegrator2 import wdi_login
-
+if 'wd' in sys.argv:
+    from wikidataintegrator import wdi_helpers
+    from wikidataintegrator import wdi_login
+else:
+    from wikidataintegrator2 import wdi_helpers
+    from wikidataintegrator2 import wdi_login
 # ---
 from API import useraccount
-
 # ---
 username = useraccount.hiacc
-
 password = useraccount.hipass
+# ---
 login = wdi_login.WDLogin(username, password)
 # ---
 Test = {1: False}
@@ -57,7 +44,15 @@ if "ask" in sys.argv:
     Ask[1] = True
 if "test" in sys.argv:
     Test[1] = True
+# ---
 
+def print_test(line, color=""):
+    colors = {"red": "\033[91m%s\033[00m", "blue": "\033[94m%s\033[00m"}
+    if color != "" and colors.get(color):
+        line = colors[color] % line
+    # ---
+    if Ask[1] or Test[1]:
+        print(line)
 
 def get_and_load(url):
     # ---
@@ -115,10 +110,6 @@ def get_article_info(ext_id, id_type):
     else:
         print_test('ValueError')
     # ---
-    headers = {'User-Agent': 'wikidataintegrator: github.com/SuLab/WikidataIntegrator'}
-    # response = requests.get(url, headers=headers)
-    # response.raise_for_status()
-    # d = response.json()
     for source, url in urls.items():
         do = get_and_load(url)
         # if do != '' and do != "Resource not found.":
@@ -165,20 +156,26 @@ def add(id, typee):
     source = get_article_info(id, typee)
     typee = typee.lower()
     if source:
-        qid, a, b, ty = wdi_helpers.PublicationHelper(id, id_type=typee, source=source).get_or_create(login)
+        ty = ''
+        # ---
+        if 'wd' in sys.argv:
+            qid, a, b = wdi_helpers.PublicationHelper(id, id_type=typee, source=source).get_or_create(login)
+        else:
+            qid, a, b, ty = wdi_helpers.PublicationHelper(id, id_type=typee, source=source).get_or_create(login)
+        # ---
         if ty == "old":
             print(f'already in wikidata: <a target="_blank" href="https://www.wikidata.org/wiki/{qid}">{qid}</a>')
             print_test(f'already in wikidata:{qid}', "red")
         elif ty == 'new':
             print(f'Create success: <a target="_blank" href="https://www.wikidata.org/wiki/{qid}">{qid}</a>')
             print_test(f'Create success:{qid}', "blue")
+        # ---
         print_test(f'qid: {qid}')
         print_test(f'a: {a}')
         print_test(f'b: {b}')
         print_test(f'ty: {ty}')
 
 
-# ---
 if __name__ == "__main__":
     br = '</br>'
     # python pwb.py pub type:PMC id:4080339
@@ -194,8 +191,10 @@ if __name__ == "__main__":
             if arg == 'id' and value != '':
                 id = value
     # ---
+    id = id.replace('https://doi.org/', '')
+    # ---
     if id != "":
         add(id, typee)
     else:
         print("id empty..")
-# ---
+    
