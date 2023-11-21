@@ -10,4 +10,4 @@ rdflib==6.2.0
 shexer==2.0.3
 regex==2022.10.31
 python-dotenv==1.0.0
-tqdm==4.65.0
+tqdm==4.66.1
