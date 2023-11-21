@@ -1,5 +1,5 @@
 PyMySQL==1.0.2
-python_stdnum==1.17
+python_stdnum==1.19
 Requests==2.28.2
 setuptools==63.2.0
 SPARQLWrapper==2.0.0
