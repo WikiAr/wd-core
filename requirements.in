@@ -1,4 +1,4 @@
-PyMySQL==1.0.2
+PyMySQL==1.1.0
 python_stdnum==1.17
 Requests==2.28.2
 setuptools==63.2.0
