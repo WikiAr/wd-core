@@ -12,16 +12,16 @@
 
 import re
 import sys
+
 # ---
 
 from API import printe, himoBOT2
 from wd_api import himoAPI, wd_bot
+
 # ---
 bylangs = False  # False#True
 # ---
-limits = {
-    1: "1000"
-}
+limits = {1: "1000"}
 # ---
 items_done = []
 
@@ -68,7 +68,9 @@ def action(json1):
 
 # ---
 Quarry = {}
-Quarry["y"] = r'''
+Quarry[
+    "y"
+] = r'''
 SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
  ?label WHERE {
     ?item wdt:P31 ?pp.

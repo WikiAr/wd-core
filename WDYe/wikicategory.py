@@ -3,6 +3,7 @@
 #
 #
 from wd_api import newdesc
+
 # site = pywikibot.Site('wikidata', 'wikidata')
 # repo = site.data_repository()
 from desc_dicts.descraptions import DescraptionsTable

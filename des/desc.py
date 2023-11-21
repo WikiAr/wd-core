@@ -47,11 +47,13 @@ limit 100
 
 import re
 import sys
+
 # ---
 from API import printe
 from wd_api import himoAPI
 from API import himoBOT2
 from wd_api import wd_bot
+
 # ---
 # from correct import CorrectList
 ContriesTable2 = {}
@@ -63,32 +65,21 @@ bylangs = False  # False#True
 # ---
 placesTable = {}
 from des.places import *  # placesTable
+
 # ---
-placesTable["Q29701762"] = {
-    "ar": "مستوطنة"
-}
+placesTable["Q29701762"] = {"ar": "مستوطنة"}
 # ---
 placesTable2 = {}
 # ---
 for fg in placesTable:
     placesTable2[fg] = placesTable[fg]
 # ---
-offset = {
-    1: 0
-}
-offset_place = {
-    1: 0
-}
+offset = {1: 0}
+offset_place = {1: 0}
 # ---
-limit = {
-    1: 0
-}
-QSlimit = {
-    1: 3000
-}
-alllimit = {
-    1: 50000
-}
+limit = {1: 0}
+QSlimit = {1: 3000}
+alllimit = {1: 50000}
 # ---
 for arg in sys.argv:
     # ---
@@ -103,9 +94,7 @@ for arg in sys.argv:
     # python3 core8/pwb.py des/desc descqs limit:4000 optional place:Q185113
     # python3 core8/pwb.py des/desc descqs limit:1000 place:Q8054
     if arg == 'place' and value in placesTable:
-        placesTable2 = {
-            value: placesTable[value]
-        }
+        placesTable2 = {value: placesTable[value]}
     # ---
     if arg == 'limit':
         limit[1] = int(value)
@@ -116,9 +105,7 @@ for arg in sys.argv:
     if arg == 'qslimit':
         QSlimit[1] = int(value)
     # ---
-New_QS = {
-    1: []
-}
+New_QS = {1: []}
 
 
 def descqs(q, value, lang):
@@ -222,12 +209,13 @@ WHERE {
 '''
 # ---
 from wd_api import get_property_for_list
+
 # get_property_for_list.get_property_label_for_qids( [property], List )
 
 
 def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
-    ''' work_one_item used in np/si3.py '''
+    '''work_one_item used in np/si3.py'''
     # ---
     if start.strip() == "":
         return ''
@@ -335,7 +323,9 @@ WHERE {
 '''
 # ---
 Quase = {}
-Quase['Q8054'] = '''SELECT DISTINCT
+Quase[
+    'Q8054'
+] = '''SELECT DISTINCT
 (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 ?placear
 (CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
@@ -351,7 +341,9 @@ WHERE {
 }
 '''
 # ---
-Quase[2020] = '''SELECT #DISTINCT
+Quase[
+    2020
+] = '''SELECT #DISTINCT
 (GROUP_CONCAT(DISTINCT(STRAFTER(STR(?item), "/entity/")); separator="@@") as ?q) #(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 (GROUP_CONCAT(DISTINCT(STR(?placeare)); separator="@@") as ?placear) #?placear
 (GROUP_CONCAT(DISTINCT(STRAFTER(STR(?p17), "/entity/")); separator="@@") as ?pp17) #(CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
@@ -372,12 +364,15 @@ GROUP BY ?item# HAVING ( ?p17count = 1 )
 if 'optional' in sys.argv:
     # Quase[2020] = Quase[2020].replace('?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
     # Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
-    Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', '''
+    Quase[2020] = Quase[2020].replace(
+        '?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")',
+        '''
 optional { ?item (wdt:P131|wdt:P276) ?place. }
 SERVICE wikibase:label {
     bd:serviceParam wikibase:language "ar" .
     ?place rdfs:label ?placeare
-  }''')
+  }''',
+    )
 
 
 def work_one_place(place):

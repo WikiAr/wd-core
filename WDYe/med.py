@@ -12,9 +12,11 @@
 
 import re
 import pywikibot
+
 # ---
 from API import printe
 import sys
+
 # ---
 import urllib
 import urllib.request
@@ -22,6 +24,7 @@ import urllib.parse
 
 # ---
 from API import himoBOT2
+
 # ---
 from wd_api import himoAPI_test as himoAPI
 
@@ -66,9 +69,7 @@ def fixrow(row):
 
 # ---
 Labels = {}
-SaveR = {
-    1: False
-}
+SaveR = {1: False}
 
 
 def fixo(stro):
@@ -368,9 +369,7 @@ def WORK(item, table):
     # ---
 
 
-Limit = {
-    1: "500"
-}
+Limit = {1: "500"}
 
 
 def main():
@@ -415,12 +414,15 @@ def main():
     # SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
     Quaa = ''' SELECT ?item ?en ?ar ?alias WHERE { '''
 
-    Quaa += sat + '''
+    Quaa += (
+        sat
+        + '''
     ?item rdfs:label ?en. FILTER(LANG(?en) = "en").
     FILTER NOT EXISTS { ?item rdfs:label ?ar. FILTER(LANG(?ar) = "ar"). }
     FILTER NOT EXISTS  { ?item skos:altLabel ?alias FILTER (LANG (?alias) = "ar") }
     }
     LIMIT '''
+    )
 
     Quaa += Limit[1]
 
@@ -440,11 +442,7 @@ def main():
     # ---
     Tab_l = {}
     for it_em in Table:
-        Tab_l[it_em] = {
-            'ar': Table[it_em]["ar"][0],
-            'alias': Table[it_em]["alias"],
-            'en': Table[it_em]["en"][0]
-        }
+        Tab_l[it_em] = {'ar': Table[it_em]["ar"][0], 'alias': Table[it_em]["alias"], 'en': Table[it_em]["en"][0]}
     # ---
     num = 0
     for item in Tab_l:

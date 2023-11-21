@@ -12,6 +12,7 @@ Dir = Path(__file__).parent
 # ---
 from people.compare_files._occ import tota as tota2
 from people.occupationsall import translations_all as tota1
+
 # ---
 # ---
 # from people.compare_files._tra import tatonew as tota2

@@ -36,8 +36,10 @@ sys.argv.append('-lang:wikidata')
 import codecs
 import time
 from pathlib import Path
+
 # ---
 from API import printe
+
 # ---
 Dir = Path(__file__).parent
 main_dir1 = str(Path(__file__).parent.parent) + '/'
@@ -45,9 +47,11 @@ main_dir1 = str(Path(__file__).parent.parent) + '/'
 printe.output(f'<<lightyellow>> main_dir1 = {main_dir1}')
 # ---
 import gent
+
 # generator = gent.get_gent(*args)
 # ---
 from newapi.page import NEW_API
+
 # ---
 api_new = NEW_API('www', family='wikidata')
 login = api_new.Login_to_wiki()

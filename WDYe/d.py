@@ -3,7 +3,9 @@
 #
 # ---
 quuu = {}
-quuu['species of beetle'] = """
+quuu[
+    'species of beetle'
+] = """
 SELECT DISTINCT
 ?item ?en2 WHERE {
   BIND("espèce de coléoptères"@fr AS ?fr) ?item schema:description ?fr.
@@ -12,7 +14,9 @@ SELECT DISTINCT
   #OPTIONAL { ?item schema:description ?en2. FILTER((LANG(?en2)) = "en") }
 }
 LIMIT 20000"""
-quuu['species of insect'] = """
+quuu[
+    'species of insect'
+] = """
 SELECT DISTINCT
 ?item ?en2 WHERE {
   BIND("espèce de coléoptères"@fr AS ?fr) ?item schema:description ?fr.

@@ -16,8 +16,10 @@ import re
 from pathlib import Path
 import datetime
 from datetime import datetime
+
 # ---
 from API import printe
+
 # ---
 Dir = Path(__file__).parent
 main_dir1 = str(Path(__file__).parent.parent) + '/'
@@ -28,34 +30,39 @@ menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 # ---
 from np import read_json
 from des.ru_st_2_latin import make_en_label
+
 # enlabel = make_en_label(labels, q, Add=False)
 # ---
 from wd_api import himoAPI
 from wd_api import wd_bot
 from API import himoBOT2
+
 # ---
 from wd_api import wd_desc
+
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
 # wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
 # ---
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, replace_desc
+
 # ---
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
+
 # ---
-translations_o = {
-    1: {},
-    2: {}
-}
+translations_o = {1: {}, 2: {}}
 from people.new3 import translations_o
+
 # ---
 from desc_dicts.taxones import tax_translationsNationalities, taxone_list, lab_for_p171, labforP105
 from desc_dicts.scientific_article_desc import Scientific_descraptions
+
 # ---
 from np.np_lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
 from np.scientific_article import make_scientific_article
 from np.nldesc import Make_space_desc, Make_others_desc
+
 # ---
 if True:
     genders = {
@@ -65,22 +72,14 @@ if True:
         'Q1052281': 'female',  # transgender female
     }
     # ---
-    MainTestTable = {
-        1: False
-    }
+    MainTestTable = {1: False}
     # ---
-    Lalo_types = {
-        "n": {}
-    }
+    Lalo_types = {"n": {}}
     new_types = {}
     # ---
-    offsetbg = {
-        1: 0
-    }
+    offsetbg = {1: 0}
     # ---
-    QSlimit = {
-        1: 3000
-    }
+    QSlimit = {1: 3000}
     # ---
     for arg in sys.argv:
         # ---
@@ -96,9 +95,7 @@ if True:
             printe.output(f'offsetbg[1] = int({value})')
             offsetbg[1] = int(value)
     # ---
-    New_QS = {
-        1: []
-    }
+    New_QS = {1: []}
     Nationalities_list = sorted(tax_translationsNationalities.keys())
     tax_translations_lower = {}
     # ---
@@ -125,10 +122,7 @@ if True:
         'Q11266439': DescraptionsTable['Wikimedia template'],
         'Q11753321': DescraptionsTable['Wikimedia template'],
         'Q17633526': DescraptionsTable['Wikinews article'],
-        'Q2467461': {
-            'en': "academic department",
-            'ar': 'قسم أكاديمي'
-        },
+        'Q2467461': {'en': "academic department", 'ar': 'قسم أكاديمي'},
         'Q7187': DescraptionsTable['gene'],
         'Q7889': DescraptionsTable['video game'],
         'Q8054': DescraptionsTable['protein'],
@@ -140,7 +134,6 @@ if True:
         'Q10870555': DescraptionsTable['report'],
         'Q13100073': DescraptionsTable['village in China'],
         'Q19389637': DescraptionsTable['biographical article'],
-
         # space
     }
     # ---
@@ -151,9 +144,7 @@ if True:
         if qid1 not in Qids_translate:
             Qids_translate[qid1] = others_list[qid1]
     # ---
-    Add_en_labels = {
-        1: False
-    }
+    Add_en_labels = {1: False}
     # ---
     if "addenlabel" in sys.argv:
         Add_en_labels[1] = True
@@ -299,7 +290,9 @@ def make_tax_des_new(item):
         ?item wdt:P171* ?P171.
         ?P171 wdt:P105 wd:Q37517.
         ?item wdt:P105 ?item105.
-    }''' % (" ".join(['wd:%s' % x for x in lab_for_p171.keys()]))
+    }''' % (
+        " ".join(['wd:%s' % x for x in lab_for_p171.keys()])
+    )
     nan = nan.replace("Q111771064", q)
     # ---
     if "err" in sys.argv:
@@ -326,11 +319,7 @@ def make_tax_des_new(item):
                 P171ar = lab_for_p171[P171]
                 ar_lab = P105ar + ' ' + P171ar
                 if "descqs" in sys.argv:
-                    work_qs(q, {
-                        'ar': {
-                            'value': ar_lab
-                        }
-                    })
+                    work_qs(q, {'ar': {'value': ar_lab}})
                 else:
                     himoAPI.Des_API(q, ar_lab, 'ar')
 
@@ -344,11 +333,7 @@ def work_taxon_desc(item, endesc):
     if ardesc != '':
         # ---
         if "descqs" in sys.argv:
-            work_qs(q, {
-                'ar': {
-                    'value': ardesc
-                }
-            })
+            work_qs(q, {'ar': {'value': ardesc}})
         else:
             himoAPI.Des_API(q, ardesc, 'ar')
     else:
@@ -368,10 +353,7 @@ def work_new_list(item, p31, ardes):
     for lang in gg.keys():
         if lang not in item.get("descriptions", {}).keys():
             if gg[lang] != '':
-                NewDesc[lang] = {
-                    "language": lang,
-                    "value": gg[lang]
-                }
+                NewDesc[lang] = {"language": lang, "value": gg[lang]}
     # ---
     orig_desc = item.get("descriptions", {}).get("ar", "")
     # ---
@@ -384,10 +366,7 @@ def work_new_list(item, p31, ardes):
     # ---
     # if ar_desc != "" and ardes != ar_desc :
     if ar_desc != "":
-        NewDesc['ar'] = {
-            "language": 'ar',
-            "value": ar_desc
-        }
+        NewDesc['ar'] = {"language": 'ar', "value": ar_desc}
     # ---
     # printe.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
     if NewDesc != {}:
@@ -451,10 +430,7 @@ def work_people(item, topic, num, ardes):
         for lang in taber.keys():
             if taber[lang].get(p21_c):
                 if lang not in descriptions.keys():
-                    NewDesc[lang] = {
-                        "language": lang,
-                        "value": taber[lang].get(p21_c)
-                    }
+                    NewDesc[lang] = {"language": lang, "value": taber[lang].get(p21_c)}
                     if years != "" and lang in ["en", "ar", "en-ca", "en-gb"]:
                         NewDesc[lang]["value"] += years
     # ---
@@ -478,17 +454,11 @@ def work_qid_desc(item, topic, num):
         # ---
         if lang not in descriptions.keys():
             # descriptions[lang] = Qids_translate[topic][lang]
-            NewDesc[lang] = {
-                "language": lang,
-                "value": Qids_translate[topic][lang]
-            }
+            NewDesc[lang] = {"language": lang, "value": Qids_translate[topic][lang]}
             addedlangs.append(lang)
         elif descriptions[lang] in des_for_lang:
             orgdisc = descriptions[lang]
-            NewDesc[lang] = {
-                "language": lang,
-                "value": des_for_lang[orgdisc]
-            }
+            NewDesc[lang] = {"language": lang, "value": des_for_lang[orgdisc]}
     # ---
     # printe.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
     # if addedlangs:
@@ -606,9 +576,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
             break
         # ---
         elif P31 in Geo_List and placesTable[P31].get('ar'):
-            work_one_item(placesTable[P31]['ar'], 'ar', {
-                "q": item["q"]
-            }, 0, 1, findlab=True)
+            work_one_item(placesTable[P31]['ar'], 'ar', {"q": item["q"]}, 0, 1, findlab=True)
             break
         # ---
         elif P31 == 'Q13442814':

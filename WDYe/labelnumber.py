@@ -17,14 +17,10 @@ def action_one_item(wditem):
     ara = 'ar'
     items2do -= 1
     if wditem.labels:  # تسميات موجودة
-        if ('en' in wditem.labels):  # تسمية انجليزية متوفرة
+        if 'en' in wditem.labels:  # تسمية انجليزية متوفرة
             numberlabel = wditem.labels['en']  # اسم انجليزي
             data = {}
-            data.update({
-                'labels': {
-                    ara: numberlabel
-                }
-            })
+            data.update({'labels': {ara: numberlabel}})
             wditem.editEntity(data, summary='Bot: add ar label: ' + numberlabel)
     return 1
     return 0

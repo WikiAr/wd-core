@@ -15,29 +15,29 @@
 import re
 
 import pywikibot
+
 # ---
 from API import printe
 import sys
+
 # ---
 # ---
 from API import himoBOT2
+
 # ---
 from wd_api import himoAPI_test as himoAPI
+
 # ---
-Usema = {
-    1: True
-}
-Ask = {
-    1: True
-}
-Limit = {
-    1: "100"
-}
+Usema = {1: True}
+Ask = {1: True}
+Limit = {1: "100"}
 yes_answer = ["y", "a", "", "Y", "A", "all"]
 # ---
 from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
+
 # ---
 from des.p155tables import keys_1, Sports_Keys_Lab
+
 # ---
 log_done = []
 # ---
@@ -231,7 +231,9 @@ def Item(item):
 
 Quarry = {}
 Quarry['use'] = ""
-Quarry[0] = '''
+Quarry[
+    0
+] = '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
   ?item wdt:P31/wdt:P279* wd:Q27020041.
@@ -245,7 +247,9 @@ WHERE {
 }
 LIMIT '''
 # ---
-Quarry[1] = '''
+Quarry[
+    1
+] = '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  # ?item wdt:P31 wd:Q27020041.
@@ -259,7 +263,9 @@ WHERE {
 LIMIT '''
 # ---
 # python pwb.py des/p155 qua2 P31:Q18536594 limit:1000
-Quarry[2] = '''
+Quarry[
+    2
+] = '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  #  values ?dd { wd:Q27792093 }
@@ -281,7 +287,9 @@ WHERE {
 }
 LIMIT  '''
 # ---
-Quarry[3] = '''
+Quarry[
+    3
+] = '''
 SELECT DISTINCT ?item ?label
 ?dden ?ddar
 WHERE {
@@ -297,7 +305,9 @@ WHERE {
 LIMIT  '''
 
 # ---
-Quarry[4] = '''
+Quarry[
+    4
+] = '''
 SELECT DISTINCT ?item ?label
 ?dden ?ddar
 WHERE {
@@ -312,7 +322,9 @@ WHERE {
 LIMIT  '''
 # ---
 # python pwb.py des/p155 qua5 P31:Q18536594 limit:1000
-Quarry[5] = '''
+Quarry[
+    5
+] = '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  #  values ?dd { wd:Q27792093 }
@@ -330,7 +342,9 @@ WHERE {
 }
 LIMIT  '''
 # ---
-Quarry[6] = '''
+Quarry[
+    6
+] = '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  #  values ?dd { wd:Q27792093 }
@@ -349,7 +363,9 @@ WHERE {
 LIMIT
 '''
 # ---
-Quarry[7] = '''
+Quarry[
+    7
+] = '''
 SELECT DISTINCT ?item ?label ?dden ?ddar
 WHERE {
     ?item rdfs:label ?label filter (lang(?label) = "en") .
@@ -362,7 +378,9 @@ WHERE {
 }
 LIMIT  '''
 # ---
-Quarry[8] = '''
+Quarry[
+    8
+] = '''
 SELECT ?item ?ddar ?dden ?label
 WHERE {
   ?io wdt:P31 wd:Q27020041.

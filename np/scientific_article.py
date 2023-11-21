@@ -10,9 +10,11 @@ from np.scientific_article import make_scientific_article
 #
 import re
 import dateutil.parser
+
 # ---
 from API import printe
 from desc_dicts.scientific_article_desc import Scientific_descraptions
+
 # ---
 Desc_Just_year = {
     "zh": "%s年学术文章",  # 年论文
@@ -133,7 +135,7 @@ Month_Table = {
         "10": "в жовтні",
         "11": "в листопаді",
         "12": "в грудні",
-    }
+    },
 }
 # ---
 format = {
@@ -143,24 +145,13 @@ format = {
     'uk': "наукова стаття, опублікована %s",
     'en': "scientific article published in %s",
     'es': "artículo científico publicado en %s",
-    'bn': "%s-এ প্রকাশিত বৈজ্ঞানিক নিবন্ধ"
+    'bn': "%s-এ প্রকাশিত বৈজ্ঞানিক নিবন্ধ",
 }
 JustYear = ["zh", "zh-hans", "zh-cn", "zh-sg", "zh-my", "wuu", "zh-hant", "zh-hk", "zh-mo", "zh-tw", "yue", "ja", "ko", "nan"]
 
 
 def bnyear(date):
-    digits = {
-        '0': '০',
-        '1': '১',
-        '2': '২',
-        '3': '৩',
-        '4': '৪',
-        '5': '৫',
-        '6': '৬',
-        '7': '৭',
-        '8': '৮',
-        '9': '৯'
-    }
+    digits = {'0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'}
     date = str(date)
     for k, v in digits.items():
         date = re.sub(k, v, date)
@@ -184,16 +175,11 @@ def Monthname(lang, month):
 
 
 def Make_uk_desc(desc):
-
     return desc
 
 
 def fixdate(date):
-    table = {
-        'year': '',
-        'month': '',
-        'day': ''
-    }
+    table = {'year': '', 'month': '', 'day': ''}
     date = re.sub(r'\+0000000', '+', date)
     # date = date.split('T')[0]
     # printe.output(date)
@@ -344,11 +330,7 @@ def Get_P_API_time(item, P):
 
 def make_scientific_article(item, p31, num, TestTable=False):
     # ---
-    tablem = {
-        "descriptions": {},
-        "qid": "",
-        "fixlang": []
-    }
+    tablem = {"descriptions": {}, "qid": "", "fixlang": []}
     # ---
     q = item["q"]
     printe.output('<<lightyellow>> **%d: make_scientific_article: %s' % (num, item["q"]))
@@ -399,19 +381,13 @@ def make_scientific_article(item, p31, num, TestTable=False):
         ar_descs = ["مقالة علمية", "مقالة بحثية"]
         # ---
         if lang not in item_descriptions.keys():
-            NewDesc[lang] = {
-                "language": lang,
-                "value": lang_e
-            }
+            NewDesc[lang] = {"language": lang, "value": lang_e}
             addedlangs.append(lang)
         # ---
         elif item_desc == ses_desc or (lang == "ar" and item_desc in ar_descs):  # or (lang == "bn"  and ):  # to fix bn descraptions
             if lang_e != item_desc:
                 printe.output(f'<<lightyellow>> replace desc "{item_desc}"@{lang}.')
-                NewDesc[lang] = {
-                    "language": lang,
-                    "value": lang_e
-                }
+                NewDesc[lang] = {"language": lang, "value": lang_e}
                 # if lang == "bn":
                 # replacelang.append(lang)
                 # else:
@@ -421,10 +397,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
         elif pubdate['month'] == '11' and lang in Month_Table:
             if item_desc.find(Month_Table[lang]['12']) != -1:
                 printe.output(f'<<lightyellow>> find error desc "{item_desc}"@{lang}.')
-                NewDesc[lang] = {
-                    "language": lang,
-                    "value": lang_e
-                }
+                NewDesc[lang] = {"language": lang, "value": lang_e}
                 replacelang.append(lang)
     # ---
     # printe.output( '<<lightyellow>> make_scientific_article' + str(NewDesc) )

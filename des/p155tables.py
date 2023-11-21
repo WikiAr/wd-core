@@ -13,6 +13,7 @@
 #
 # ---
 from make.lists import Sport_key
+
 # ---
 Sports_Keys_Lab = Sport_key.Sports_Keys_For_Label
 Sports_Keys_Team = Sport_key.Sports_Keys_For_Team
@@ -266,7 +267,6 @@ International_Federation = {
     "FIVB Volleyball World League": "الدوري العالمي للكرة الطائرة",
     "IIHF World Championships": "بطولة العالم لهوكي الجليد",
     "IIHF Challenge Cup of Asia": "كأس التحدي الآسيوي لهوكي الجليد",
-
     # "UEFA Euro":"بطولة أمم أوروبا لكرة القدم",
     "UEFA Women's Euro": "بطولة أمم أوروبا لكرة القدم للسيدات",
     "UEFA Champions League": "دوري أبطال أوروبا",

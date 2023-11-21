@@ -5,10 +5,12 @@ import sys
 from pathlib import Path
 
 import pywikibot
+
 # ---
 Dir = Path(__file__).parent
 # ---
 from np import si3
+
 # ---
 # 32500000   اكتمل حتى
 # 32897048  متبقي حتى
@@ -62,7 +64,6 @@ def WorkNew():
             start = int(value)
     # ---
     for arg in sys.argv:
-
         arg, _, value = arg.partition(':')
         value = value.replace(", ", "")
         if arg == 'to':

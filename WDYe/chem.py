@@ -2,8 +2,10 @@
 #  python pwb.py wd/wikinews
 """
 from wd_api import newdesc
+
 # ---
 from desc_dicts.descraptions import Qid_Descraptions
+
 # ---
 QS = {}
 # QS["Q6979593"] = Qid_Descraptions["Q6979593"]    national association football team

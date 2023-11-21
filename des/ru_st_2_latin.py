@@ -10,6 +10,7 @@ from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
 from wd_api import himoAPI
 import pywikibot
 import sys
+
 # ---
 letters_to_latin = {
     "ru": {
@@ -285,7 +286,7 @@ letters_to_latin = {
         "—": "—",
         " ": " ",
         "": "",
-    }
+    },
 }
 
 
@@ -296,14 +297,9 @@ def add_new_label(q, enlabel):
     # ---
     labels = {}
     # ---
-    labels["en"] = {
-        "language": "en",
-        "value": enlabel
-    }
+    labels["en"] = {"language": "en", "value": enlabel}
     # ---
-    data = {
-        "labels": labels
-    }
+    data = {"labels": labels}
     # ---
     add = himoAPI.New_Mult_Des(q, data, "Bot: cyrillic2latin-labels", False)
 

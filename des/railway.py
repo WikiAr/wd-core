@@ -13,27 +13,17 @@ python3 core8/pwb.py des/fam railway Q55488
 import sys
 from wd_api import wd_desc
 from API import himoBOT2
+
 # ---
 from des.ru_st_2_latin import make_en_label
+
 # enlabel = make_en_label(labels, Add=False)
 # ---
 railway_tables = {
-    "Q728937": {
-        "ar": "خط سكة حديدية",
-        "en": "railway line"
-    },
-    "Q55678": {
-        "ar": "نقطة سكة حديدية",
-        "en": "railway stop"
-    },
-    "Q784159": {
-        "ar": "",
-        "en": "passing loop"
-    },
-    "Q55488": {
-        "ar": "محطة سكة حديدية",
-        "en": "railway station"
-    },
+    "Q728937": {"ar": "خط سكة حديدية", "en": "railway line"},
+    "Q55678": {"ar": "نقطة سكة حديدية", "en": "railway stop"},
+    "Q784159": {"ar": "", "en": "passing loop"},
+    "Q55488": {"ar": "محطة سكة حديدية", "en": "railway station"},
 }
 
 
@@ -90,14 +80,8 @@ def work_railway(wditem, p31, q=""):
     to_do_descs = railway_tables.get(p31, {})
     # ---
     lang_format = {
-        "ar": {
-            1: "{} في {}",
-            2: "{} في {}، {}"
-        },
-        "en": {
-            1: "{} in {}",
-            2: "{} in {}, {}"
-        },
+        "ar": {1: "{} في {}", 2: "{} في {}، {}"},
+        "en": {1: "{} in {}", 2: "{} in {}, {}"},
     }
     # ---
     if to_do_descs == {}:
@@ -107,14 +91,8 @@ def work_railway(wditem, p31, q=""):
     newdesc = {}
     # ---
     labs = {
-        "p17": {
-            "ar": p17_labels.get("ar", ""),
-            "en": p17_labels.get("en", "")
-        },
-        "p131": {
-            "ar": p131_labels.get("ar", ""),
-            "en": p131_labels.get("en", "")
-        },
+        "p17": {"ar": p17_labels.get("ar", ""), "en": p17_labels.get("en", "")},
+        "p131": {"ar": p131_labels.get("ar", ""), "en": p131_labels.get("en", "")},
     }
     # ---
     P31_list = Get_P_API_id(Claims, 'P31')
@@ -161,10 +139,7 @@ def work_railway(wditem, p31, q=""):
                 desc_n = lang_format[lang][1].format(des, p17_desc)
         # ---
         if desc_n != '':
-            newdesc[lang] = {
-                "language": lang,
-                "value": desc_n
-            }
+            newdesc[lang] = {"language": lang, "value": desc_n}
         # ---
     # ---
     if newdesc == {}:

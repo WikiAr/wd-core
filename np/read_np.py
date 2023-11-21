@@ -6,6 +6,7 @@ from np import read_json
 import sys
 from pathlib import Path
 import pywikibot
+
 # ---
 Dir = Path(__file__).parent
 main_dir1 = str(Path(__file__).parent.parent) + '/'
@@ -46,13 +47,7 @@ def read_new_types_file():
     # ---Geo_List
     pywikibot.output("===================")
     for yy, xh in PP:
-        if yy > number \
-                and xh not in Qids_translate.keys() \
-                and xh not in Known \
-                and xh not in space_list_and_other \
-                and xh not in others_list \
-                and xh not in others_list_2 \
-                and xh not in Geo_List:
+        if yy > number and xh not in Qids_translate.keys() and xh not in Known and xh not in space_list_and_other and xh not in others_list and xh not in others_list_2 and xh not in Geo_List:
             # pywikibot.output( '* %d\t \t{{Q|%s}}' % (yy, xh) )
             pywikibot.output("*'%s':{'ar':'{{#invoke:Wikidata2|labelIn|ar|%s}}', 'en':'{{#invoke:Wikidata2|labelIn|en|%s}}' }, # %d" % (xh, xh, xh, yy))
     pywikibot.output("===================")
