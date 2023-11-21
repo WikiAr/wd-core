@@ -7,6 +7,7 @@ import json
 import urllib
 import os
 import sys
+
 # ---
 filepath = str(os.path.abspath(__file__)).replace('\\', '/')
 # ---
@@ -31,6 +32,7 @@ else:
     from wikidataintegrator2 import wdi_login
 # ---
 from API import useraccount
+
 # ---
 username = useraccount.hiacc
 password = useraccount.hipass
@@ -46,6 +48,7 @@ if "test" in sys.argv:
     Test[1] = True
 # ---
 
+
 def print_test(line, color=""):
     colors = {"red": "\033[91m%s\033[00m", "blue": "\033[94m%s\033[00m"}
     if color != "" and colors.get(color):
@@ -53,6 +56,7 @@ def print_test(line, color=""):
     # ---
     if Ask[1] or Test[1]:
         print(line)
+
 
 def get_and_load(url):
     # ---
@@ -197,4 +201,3 @@ if __name__ == "__main__":
         add(id, typee)
     else:
         print("id empty..")
-    

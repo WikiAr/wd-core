@@ -16,13 +16,16 @@ from API import himoBOT2
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
 import sys
 import random
+
 # ---
 from wd_api import newdesc
+
 # newdesc.main_from_file(file, topic, translations2)
 # newdesc.mainfromQuarry2( topic, Quarry, translations)
 # newdesc.work22(q, topic, translations)
 # ---
 from des.railway import railway_tables, work_railway
+
 # ---
 desc_table = {
     'Q318': Space_Descraptions.get('Q318', {}),
@@ -62,33 +65,22 @@ desc_table = {
     'Q15145755': DescraptionsTable.get('Wikimedia module', {}),  # Module test cases
     'Q18711811': DescraptionsTable.get('Wikimedia module', {}),  # map data module
     'Q24046192': DescraptionsTable.get('Wikimedia category', {}),
-
     # 'Q8502' : placesTable.get('Q8502', {}),     # جبل
     # 'Q39614' : placesTable.get('Q39614', {}),   # مقبرة
     # 'Q79007' : placesTable.get('Q79007', {}),   # شارع
 }
 # ---
-desc_table["Q726242"] = {
-    "ar": "نجم"
-}
-desc_table["Q2247863"] = {
-    "ar": "نجم"
-}
-desc_table["Q66619666"] = {
-    "ar": "نجم"
-}
-desc_table["Q72803622"] = {
-    "ar": "نجم"
-}
+desc_table["Q726242"] = {"ar": "نجم"}
+desc_table["Q2247863"] = {"ar": "نجم"}
+desc_table["Q66619666"] = {"ar": "نجم"}
+desc_table["Q72803622"] = {"ar": "نجم"}
 # ---
 for x, dd in railway_tables.items():
     desc_table[x] = dd
 # ---
 for x in desc_table:
     if x in sys.argv:
-        desc_table = {
-            x: desc_table[x]
-        }
+        desc_table = {x: desc_table[x]}
         break
 # ---
 temp_table = {}

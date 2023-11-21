@@ -98,28 +98,20 @@ from API import printe
 import sys
 import re
 from datetime import timedelta
+
 # ---
 from wd_api import himoAPI
 from wd_api import wd_bot
+
 # ---
 totaledits = 0
 # ---
-sparqler = {
-    1: ''
-}
-Offq = {
-    1: 0
-}
-Off = {
-    1: 0
-}
-limit = {
-    1: 0
-}
+sparqler = {1: ''}
+Offq = {1: 0}
+Off = {1: 0}
+limit = {1: 0}
 # ---
-totallimit = {
-    1: 10000
-}
+totallimit = {1: 10000}
 # ---
 from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS
 
@@ -129,9 +121,9 @@ def lastXnewpages(maxp):
     site = pywikibot.Site('nl')
     mygenerator = pg.NewpagesPageGenerator(site, 0, maxp)
     for onepage in mygenerator:
-        if (onepage.exists()):  # avoid speedy deleted
+        if onepage.exists():  # avoid speedy deleted
             # print('p:%s' % onepage.title())
-            if ('wikibase_item' in onepage.properties()):
+            if 'wikibase_item' in onepage.properties():
                 try:
                     wd = onepage.data_item()
                     yield (wd)
@@ -157,7 +149,7 @@ def wd_one_without_description(item):
     base_sparql = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . OPTIONAL {?item schema:description ?itemdescription filter (lang(?itemdescription) = \"nl\").  } FILTER (!BOUND(?itemdescription))}'
     one_sparql = base_sparql % item
     for wditem in wd_sparql_query(one_sparql):
-        if (wditem.exists()):
+        if wditem.exists():
             yield wditem
 
 
@@ -196,7 +188,7 @@ def wd_all_countries(spq):
         spq_with_country = spq % wd_country
         one_country_generator = wd_sparql_query(spq_with_country)
         for item in one_country_generator:
-            if (item.exists()):
+            if item.exists():
                 yield item
 
 
@@ -263,9 +255,9 @@ def wd_user_edits(username, ucsite, totaledits):
     repo = pywikibot.Site('wikidata', 'wikidata').data_repository()
     useredits = pg.UserContributionsGenerator(username, site=ucsite, total=totaledits, namespaces=[0])
     for oneedit in useredits:
-        if (oneedit.exists()):
+        if oneedit.exists():
             wd = pywikibot.ItemPage(repo, oneedit.title())
-            if (wd.exists()):
+            if wd.exists():
                 yield wd
 
 
@@ -279,7 +271,7 @@ def some_items():
     do_these = ['Q62507873', 'Q62898370']  # null edits
     for one_item in do_these:
         wd = pywikibot.ItemPage(repo, one_item)
-        if (wd.exists()):
+        if wd.exists():
             yield wd
 
 
@@ -303,10 +295,10 @@ def generator_last_hour():
             timenow = item.oldest_revision.timestamp
             endtime = timenow - timedelta(1.0 / 24.0)
             untilltime = endtime - timedelta(0.001)
-        if (item.oldest_revision.timestamp > untilltime):
+        if item.oldest_revision.timestamp > untilltime:
             # print(item.title())
             item = pywikibot.ItemPage(repo, item.title())
-            if (item.exists()):
+            if item.exists():
                 # print(item.title())
                 yield item
         else:
@@ -459,7 +451,7 @@ def main(debug=False):
         items_processed = 0
         if debug:
             printe.output('main-1')
-        if (True):
+        if True:
             # pigenerator = wd_all_countries(sparql_query)
             # pigenerator = wd_all_without_description()
             # pigenerator=wd_one_without_description('Q189004')  #onderwijsinstelling

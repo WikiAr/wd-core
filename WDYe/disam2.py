@@ -13,6 +13,7 @@ from API import open_url
 
 import pywikibot
 import json
+
 # import sys
 # import urllib
 # import urllib.request
@@ -24,6 +25,7 @@ import json
 from wd_api import wd_bot
 from wd_api import wd_desc
 from desc_dicts.descraptions import *
+
 # ---
 translations = {}
 translations['Wikimedia disambiguation page'] = DescraptionsTable['Wikimedia disambiguation page']
@@ -33,7 +35,7 @@ replacement["fa"] = {
     "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
     # "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
     # "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
-    "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"]
+    "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
 }
 
 
@@ -62,19 +64,13 @@ def work2(item, topic):
                 value = ItemDescriptions[lang]['value']
             # ---
             if value in replacement[lang]:
-                NewDesc[lang] = {
-                    "language": lang,
-                    "value": replacement[lang][value]
-                }
+                NewDesc[lang] = {"language": lang, "value": replacement[lang][value]}
                 # pywikibot.output( '<<lightyellow>>  replace "%s" by: "%s".' % ( value , replacement[lang][value]) )
                 replacelang.append(lang)
     # ---
     for lang in keys:
         if lang not in ItemDescriptions.keys():
-            NewDesc[lang] = {
-                "language": lang,
-                "value": translations[topic][lang]
-            }
+            NewDesc[lang] = {"language": lang, "value": translations[topic][lang]}
             addedlangs.append(lang)
     # ---
     # pywikibot.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )

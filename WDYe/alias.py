@@ -11,16 +11,17 @@
 
 import re
 import pywikibot
+
 # ---
 import sys
+
 # ---
 # ---
 from API import himoBOT2
 from wd_api import himoAPI_test as himoAPI
+
 # ---
-SaveR = {
-    1: False
-}
+SaveR = {1: False}
 # ---
 main_table = {}
 main_table["Q4167836"] = {
@@ -76,9 +77,7 @@ def WORK(item, table, type):
     # ---
 
 
-Limit = {
-    1: "10"
-}
+Limit = {1: "10"}
 # ---
 Quaa = '''SELECT ?item ?label ?alias
     WHERE
@@ -161,9 +160,7 @@ def main():
     # ---
     if val2 != "" and qnew != "":
         table_new = {}
-        table_new[qnew] = {
-            val: val2
-        }
+        table_new[qnew] = {val: val2}
     # ---
     num_peo = 0
     for qid in table_new:

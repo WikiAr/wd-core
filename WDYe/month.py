@@ -3,11 +3,15 @@
 # ---
 import sys
 import pywikibot
+
 # ---
 from wd_api import newdesc
+
 # ---
 quuu = {}
-quuu['month'] = '''
+quuu[
+    'month'
+] = '''
 SELECT DISTINCT ?item
 WHERE {
 ?item schema:description "%s"@en  .
@@ -26,9 +30,7 @@ translations = {
         'ar': 'شهر',
     },
 }
-translations["island in Indonesia"] = {
-    "ar": "جزيرة في إندونيسيا"
-}
+translations["island in Indonesia"] = {"ar": "جزيرة في إندونيسيا"}
 
 
 def main_from_quarry(topic):

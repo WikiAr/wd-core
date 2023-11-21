@@ -7,30 +7,38 @@
 # ---
 # start of newdesc.py file
 from wd_api import newdesc
+
 # newdesc.main_from_file(file , topic , translations2)
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 # ---
 # ---
 from desc_dicts.descraptions import Qid_Descraptions
+
 # ---
 translations = {}
 translations["Q11173"] = Qid_Descraptions['Q11173']
 # ---
 for p31 in translations:
     en_desc = translations[p31]["en"]
-    quarry = '''SELECT DISTINCT ?item (GROUP_CONCAT(DISTINCT(?desc); separator=",") as ?langs)
+    quarry = (
+        '''SELECT DISTINCT ?item (GROUP_CONCAT(DISTINCT(?desc); separator=",") as ?langs)
     WHERE {
       SELECT ?item ?desc
     WHERE {
-      ?item wdt:P31 wd:''' + p31 + '''.
+      ?item wdt:P31 wd:'''
+        + p31
+        + '''.
       ?item schema:description ?itemDes .
-      ?item schema:description "''' + en_desc + '''"@en
+      ?item schema:description "'''
+        + en_desc
+        + '''"@en
       BIND(lang(?itemDes) AS ?desc)
           }
     limit 1000000
           }
     GROUP BY ?item
     limit 30000'''
+    )
     # ---
     newdesc.Quarry_with_item_langs(p31, quarry, translations)
     # newdesc.mainfromQuarry2( p31, quarry, translations)

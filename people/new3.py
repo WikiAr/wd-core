@@ -48,13 +48,12 @@ import re
 import time
 import random
 import sys
+
 # ---
 # wd_bot.sparql_generator_url(query)
 # ---
 # ---
-Testing = {
-    1: False
-}
+Testing = {1: False}
 # ---
 genders = {
     'Q6581097': 'male',
@@ -73,15 +72,9 @@ printe.output(f'len of Nationalities = {len(translationsNationalities.keys())}')
 printe.output(f'len of Occupations = {len(oc.translationsOccupations.keys())}')
 time.sleep(1)
 # ---
-qualimit = {
-    1: 20
-}
-limit = {
-    1: ""
-}
-offset = {
-    1: 0
-}
+qualimit = {1: 20}
+limit = {1: ""}
+offset = {1: 0}
 # ---
 # python3 core8/pwb.py people/new3 occnew
 # python3 core8/pwb.py people/new3 -job:researcher
@@ -107,27 +100,21 @@ for arg in sys.argv:
     if arg == 'nat' or arg == '-nat':
         value = value.replace("_", " ")
         if value in translationsNationalities:
-            Tab["Nationalities"] = {
-                value: translationsNationalities[value]
-            }
+            Tab["Nationalities"] = {value: translationsNationalities[value]}
         else:
             print(f"nat value:({value}) not in translationsNationalities")
     # ---
     if arg == 'job' or arg == '-job':
         value = "~ " + value.replace("_", " ")
         if value in oc.translationsOccupations:
-            Tab["Occupations"] = {
-                value: oc.translationsOccupations[value]
-            }
+            Tab["Occupations"] = {value: oc.translationsOccupations[value]}
         else:
             print(f"job value:({value}) not in oc.translationsOccupations")
 # ---
 targetlangs2 = ['ar']
 targetlangs = ['ar', 'bn', 'ca', 'es', 'fr', 'gl', 'he']
 # ---
-W_check = {
-    1: True
-}
+W_check = {1: True}
 
 
 def check_quarry_new(tab):
@@ -186,7 +173,9 @@ def check_quarry_new(tab):
     }
     group by ?item
     #limit 1000
-    ''' % " ".join(f'"{f}"@en "{f.lower()}"@en' for f in tabe[numb])
+    ''' % " ".join(
+            f'"{f}"@en "{f.lower()}"@en' for f in tabe[numb]
+        )
         # ---
         if limit[1] != "":
             qua += f"\n limit {limit[1]}"
@@ -206,13 +195,8 @@ def check_quarry_new(tab):
 
 
 # ---
-translations_o = {
-    1: {},
-    2: {}
-}
-translations_for_nat = {
-    1: {}
-}
+translations_o = {1: {}, 2: {}}
+translations_for_nat = {1: {}}
 
 
 def make_Tabs(tabs):
@@ -269,10 +253,7 @@ def make_Tabs(tabs):
                         female_k = femalee
                     # ---
                     if malee != "" or femalee != "":
-                        translations_o[1][kkkk][translang] = {
-                            'male': malee,
-                            'female': femalee
-                        }
+                        translations_o[1][kkkk][translang] = {'male': malee, 'female': femalee}
                     # ---
             # ---
             if translations_o[1][kkkk] != {}:
@@ -311,10 +292,7 @@ def make_Tabs(tabs):
             # ---
             if kkkk.lower() not in translations_o[2]:
                 translations_o[2][kkkk.lower()] = {}
-            translations_o[2][kkkk.lower()]["ar"] = {
-                'male': malee,
-                'female': femalee
-            }
+            translations_o[2][kkkk.lower()]["ar"] = {'male': malee, 'female': femalee}
 
 
 # ---
@@ -362,10 +340,7 @@ def start_one_nat(nat_tab):
         # ---
         for lang in x_table.keys():
             if lang not in descriptions_keys:
-                NewDesc[lang] = {
-                    "language": lang,
-                    "value": x_table[lang][genderlabel]
-                }
+                NewDesc[lang] = {"language": lang, "value": x_table[lang][genderlabel]}
         # ---
         if NewDesc != {}:
             wd_desc.work_api_desc(NewDesc, q)
@@ -408,8 +383,7 @@ def mainnat(Tabs):  # translations_for_nat
 def Main_Test():
     qua = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097'
     qua = qua + ' . ?item schema:description "Argentinian actor"@en.  '
-    qua = qua + \
-        'OPTIONAL { ?item schema:description ?de. FILTER(LANG(?de) = "fr"). } FILTER (!BOUND(?de)) }'
+    qua = qua + 'OPTIONAL { ?item schema:description ?de. FILTER(LANG(?de) = "fr"). } FILTER (!BOUND(?de)) }'
     wd_bot.sparql_generator_url(qua)
 
 

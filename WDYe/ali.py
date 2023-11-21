@@ -11,14 +11,14 @@ from wd_api import wd_bot
 from api_sql import sql
 from API import himoBOT2
 import pywikibot
+
 # import pywikibot.data.wikidataquery as wdquery
 # used in logfiles, unicoded strings
 # ---
 import sys
+
 # ---
-File_name_to_check = {
-    1: "name/LOG/name_to_check.log.csv"
-}
+File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
 # ---
 # ---
 
@@ -30,15 +30,9 @@ except BaseException:
 # ---
 # from wd_api import himoAPI
 # ---
-ask = {
-    1: True
-}
-OFFSET = {
-    1: '   '
-}
-Limit = {
-    1: ' limit 100 '
-}
+ask = {1: True}
+OFFSET = {1: '   '}
+Limit = {1: ' limit 100 '}
 # ---
 names = [
     "Q307288",  # عبد الملك

@@ -25,22 +25,28 @@ ORDER BY DESC(?count)
 #
 
 import pywikibot
+
 # import sys
 # import urllib
 # import urllib.request
 # import urllib.parse
 # ---
 import sys
+
 # ---
 # ---
 from wd_api import wd_bot
+
 # ---
 from wd_api import wd_desc
+
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
 # wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
 # ---
 quuu = {}
-quuu['species of beetle'] = """
+quuu[
+    'species of beetle'
+] = """
 SELECT DISTINCT
 ?item WHERE {
     BIND("species of beetle"@en AS ?en) ?item schema:description ?en.
@@ -51,7 +57,9 @@ SELECT DISTINCT
     #OPTIONAL { ?item schema:description ?en2. FILTER((LANG(?en2)) = "en") }
 }
 LIMIT 20000"""
-quuu['species of insect'] = """
+quuu[
+    'species of insect'
+] = """
 SELECT DISTINCT
 ?item WHERE {
     BIND("species of insect"@en AS ?en) ?item schema:description ?en.
@@ -101,17 +109,11 @@ def work2(item, topic):
                 if lang in ItemDescriptions.keys():
                     value = ItemDescriptions[lang]  # ['value']
                     if value != replacement[lang]:
-                        NewDesc[lang] = {
-                            "language": lang,
-                            "value": replacement[lang]
-                        }
+                        NewDesc[lang] = {"language": lang, "value": replacement[lang]}
                         pywikibot.output('<<lightyellow>> {}:replace "{}" by: "{}".'.format(lang, value, replacement[lang]))
                         fixlang.append(lang)
                 else:
-                    NewDesc[lang] = {
-                        "language": lang,
-                        "value": translations[topic][lang]
-                    }
+                    NewDesc[lang] = {"language": lang, "value": translations[topic][lang]}
                     # addedlangs.append(lang)
             # ---
             # pywikibot.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )

@@ -13,18 +13,20 @@
 #
 
 import pywikibot
+
 # ---
 import sys
+
 # ---
 
 # ---
 from API import himoBOT2
+
 # ---
 from wd_api import himoAPI_test as himoAPI
+
 # ---
-Limit = {
-    1: "500"
-}
+Limit = {1: "500"}
 
 
 def main():

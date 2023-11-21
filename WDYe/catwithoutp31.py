@@ -12,20 +12,22 @@ python3 core8/pwb.py WDYe/catwithoutp31
 #
 
 import pywikibot
+
 # import pwb
 import re
+
 # ---
 # ---
 from wd_api import wd_bot
 from wd_api import wd_desc
+
 # ---
 from wd_api import himoAPI
+
 # ---
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 
-Tras = {
-    'Q4167836': DescraptionsTable.get('Wikimedia category') or Qid_Descraptions.get('Q4167836') or {}
-}
+Tras = {'Q4167836': DescraptionsTable.get('Wikimedia category') or Qid_Descraptions.get('Q4167836') or {}}
 
 
 def Get_P_API2(item, P):
@@ -47,7 +49,9 @@ def Get_P_API2(item, P):
 # python pwb.py np/d -family:wikidata -lang:wikidata -ns:0 -start:Q32000000
 # ---
 quaries = {}
-quaries["ar"] = """ SELECT ?item
+quaries[
+    "ar"
+] = """ SELECT ?item
 WHERE
 {
   ?item wikibase:statements 0 .
@@ -56,7 +60,9 @@ WHERE
 }
 LIMIT 1000"""
 
-quaries["en"] = """ SELECT ?item
+quaries[
+    "en"
+] = """ SELECT ?item
 WHERE
 {
   ?item wikibase:statements 0 .
@@ -87,10 +93,7 @@ def work_one_item(item):
         label = links[site]
         lang = re.sub(r"wiki$", "", site)
         if lang != label and lang not in labels.keys():
-            data2['labels'][lang] = {
-                'language': lang,
-                'value': label
-            }
+            data2['labels'][lang] = {'language': lang, 'value': label}
     # ---
     pywikibot.output(f'<<lightred>>* links :{links}')
     pywikibot.output(f'<<lightred>>* labels :{labels}')
@@ -112,10 +115,7 @@ def work_one_item(item):
     # ---
     for lang in catdesc.keys():
         if lang not in descriptions.keys():
-            NewDesc[lang] = {
-                "language": lang,
-                "value": catdesc[lang]
-            }
+            NewDesc[lang] = {"language": lang, "value": catdesc[lang]}
     # ---
     if NewDesc:
         pywikibot.output(f'<<lightyellow>>* adding descriptions to :{q} ')
@@ -141,7 +141,6 @@ def main(*args):
 
 # ---
 if __name__ == "__main__":
-
     # work_one_item(item)
     main()
 # ---

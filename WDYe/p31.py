@@ -15,8 +15,10 @@ import pywikibot
 
 # ---
 import sys
+
 # ---
 from api_sql import sql as c18sql
+
 # ---
 # use arwiki_p;
 mainquarry = '''
@@ -35,12 +37,8 @@ GROUP BY p.page_title
 #LIMIT 2000;'''
 # ---
 # ---
-WIKI = {
-    1: "arwiki"
-}
-AutoSave = {
-    1: False
-}
+WIKI = {1: "arwiki"}
+AutoSave = {1: False}
 
 
 def treat_page(qid):
@@ -57,7 +55,7 @@ def main2(*args):
         # ---
         if arg == 'limit':
             quarry = quarry + f"\n LIMIT {value};"
-    # ---
+        # ---
         if arg == 'enwiki':
             WIKI[1] = "enwiki"
     # ---

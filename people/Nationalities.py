@@ -235,7 +235,6 @@ translationsNationalities = {
         'gl': {'male': 'barbadense', 'female': 'barbadense'},
         'he': {'male': 'ברבדי', 'female': 'ברבדית'},
         'ro': {'male': 'din Barbados', 'female': 'din Barbados'},
-
     },
     'Belarusian': {
         'ar': {'male': 'بيلاروسي', 'female': 'بيلاروسية'},
@@ -274,7 +273,6 @@ translationsNationalities = {
         'gl': {'male': 'belizense', 'female': 'belizense'},
         'he': {'male': 'בליזי', 'female': 'בליזית'},
         'ro': {'male': 'din Belize', 'female': 'din Belize'},
-
     },
     'Beninese': {
         'ar': {'male': 'بنيني', 'female': 'بنينية'},
@@ -287,7 +285,6 @@ translationsNationalities = {
         'gl': {'male': 'beninés', 'female': 'beninesa'},
         'he': {'male': 'מבנין', 'female': 'מבנין'},
         'ro': {'male': 'beninez', 'female': 'benineză'},
-
     },
     'Beninois': {
         'ar': {'male': 'بنيني', 'female': 'بنينية'},
@@ -300,7 +297,6 @@ translationsNationalities = {
         'gl': {'male': 'beninés', 'female': 'beninesa'},
         'he': {'male': 'מבנין', 'female': 'מבנין'},
         'ro': {'male': 'beninez', 'female': 'benineză'},
-
     },
     'Bermudan': {
         'ar': {'male': 'برمودي', 'female': 'برمودية'},
@@ -313,7 +309,6 @@ translationsNationalities = {
         'gl': {'male': 'bermudano', 'female': 'bermudana'},
         'he': {'male': 'ברמודי', 'female': 'ברמודית'},
         # 'ro': { 'male': 'UNKNOWN', 'female': 'UNKNOWN' },
-
     },
     'Bermudian': {
         'ar': {'male': 'برمودي', 'female': 'برمودية'},
@@ -326,7 +321,6 @@ translationsNationalities = {
         'gl': {'male': 'bermudano', 'female': 'bermudana'},
         'he': {'male': 'ברמודי', 'female': 'ברמודית'},
         # 'ro': { 'male': 'UNKNOWN', 'female': 'UNKNOWN' },
-
     },
     'Bhutanese': {
         'ar': {'male': 'بوتاني', 'female': 'بوتانية'},
@@ -339,7 +333,6 @@ translationsNationalities = {
         'gl': {'male': 'butanés', 'female': 'butanesa'},
         'he': {'male': 'בהוטני', 'female': 'בהוטנית'},
         'ro': {'male': 'bhutanez', 'female': 'bhutaneză'},
-
     },
     'Bissau-Guinean': {
         'ar': {'male': 'من غينيا بيساو', 'female': 'من غينيا بيساو'},
@@ -352,7 +345,6 @@ translationsNationalities = {
         'gl': {'male': 'guineano', 'female': 'guineana'},
         'he': {'male': 'מגינאה-ביסאו', 'female': 'מגינאה-ביסאו'},
         'ro': {'male': 'guineobissauan', 'female': 'guineobissauană'},
-
     },
     'Bolivian': {
         'ar': {'male': 'بوليفي', 'female': 'بوليفية'},
@@ -391,7 +383,6 @@ translationsNationalities = {
         'gl': {'male': 'botswaniano', 'female': 'botswaniana'},
         'he': {'male': 'בוטסואני', 'female': 'בוטסואנית'},
         'ro': {'male': 'botswanez', 'female': 'botswaneză'},
-
     },
     'Brazilian': {
         'ar': {'male': 'برازيلي', 'female': 'برازيلية'},
@@ -430,7 +421,6 @@ translationsNationalities = {
         'gl': {'male': 'bruneano', 'female': 'bruneana'},
         'he': {'male': 'מברוניי', 'female': 'מברוניי'},
         'ro': {'male': 'din Brunei', 'female': 'din Brunei'},
-
     },
     'Bulgarian': {
         'ar': {'male': 'بلغاري', 'female': 'بلغارية'},
@@ -456,7 +446,6 @@ translationsNationalities = {
         'gl': {'male': 'burkinense', 'female': 'burkinense'},
         'he': {'male': 'בורקינאי', 'female': 'בורקינאית'},
         'ro': {'male': 'burkinez', 'female': 'burkineză'},
-
     },
     'Burkinabé': {
         'ar': {'male': 'بوركينابيّ', 'female': 'بوركينابيّة'},
@@ -469,7 +458,6 @@ translationsNationalities = {
         'gl': {'male': 'burkinense', 'female': 'burkinense'},
         'he': {'male': 'בורקינאי', 'female': 'בורקינאית'},
         'ro': {'male': 'burkinez', 'female': 'burkineză'},
-
     },
     'Burmese': {
         'ar': {'male': 'بورمي', 'female': 'بورمية'},
@@ -482,7 +470,6 @@ translationsNationalities = {
         'gl': {'male': 'birmano', 'female': 'birmana'},
         'he': {'male': 'בורמזי', 'female': 'בורמזית'},
         'ro': {'male': 'birman', 'female': 'birmană'},
-
     },
     'Burundian': {
         'ar': {'male': 'بوروندي', 'female': 'بوروندية'},
@@ -495,7 +482,6 @@ translationsNationalities = {
         'gl': {'male': 'burundiano', 'female': 'burundiana'},
         'he': {'male': 'בורונדי', 'female': 'בורונדית'},
         'ro': {'male': 'burundez', 'female': 'burundeză'},
-
     },
     'Cabo Verdean': {
         'ar': {'male': 'من الرأس الأخضر', 'female': 'من الرأس الأخضر'},
@@ -508,7 +494,6 @@ translationsNationalities = {
         'gl': {'male': 'caboverdiano', 'female': 'caboverdiana'},
         'he': {'male': 'כף ורדי', 'female': 'כף ורדית'},
         'ro': {'male': 'capverdian', 'female': 'capverdiană'},
-
     },
     'Cambodian': {
         'ar': {'male': 'كمبودي', 'female': 'كمبودية'},
@@ -534,7 +519,6 @@ translationsNationalities = {
         'gl': {'male': 'camerunés', 'female': 'camerunesa'},
         'he': {'male': 'קמרוני', 'female': 'קמרונית'},
         'ro': {'male': 'camerunez', 'female': 'cameruneză'},
-
     },
     'Canadian': {
         'ar': {'male': 'كندي', 'female': 'كندية'},
@@ -560,7 +544,6 @@ translationsNationalities = {
         'gl': {'male': 'chadiano', 'female': 'chadiana'},
         'he': {'male': 'צ\'אדי', 'female': 'צ\'אדית'},
         'ro': {'male': 'din Ciad', 'female': 'din Ciad'},
-
     },
     'Chilean': {
         'ar': {'male': 'تشيلي', 'female': 'تشيلية'},
@@ -612,7 +595,6 @@ translationsNationalities = {
         'gl': {'male': 'comoriano', 'female': 'comoriana'},
         'he': {'male': 'קומורואי', 'female': 'קומורואית'},
         'ro': {'male': 'din Comore', 'female': 'din Comore'},
-
     },
     'Comorian': {
         'ar': {'male': 'قمري', 'female': 'قمرية'},
@@ -625,7 +607,6 @@ translationsNationalities = {
         'gl': {'male': 'comoriano', 'female': 'comoriana'},
         'he': {'male': 'קומורואי', 'female': 'קומורואית'},
         'ro': {'male': 'din Comore', 'female': 'din Comore'},
-
     },
     'Congolese': {
         'ar': {'male': 'كونغولي', 'female': 'كونغولية'},
@@ -729,7 +710,6 @@ translationsNationalities = {
         'gl': {'male': 'xibutiano', 'female': 'xibutiana'},
         'he': {'male': 'ג\'יבוטי', 'female': 'ג\'יבוטית'},
         'ro': {'male': 'djiboutian', 'female': 'djiboutiană'},
-
     },
     'Dutch': {
         'ar': {'male': 'هولندي', 'female': 'هولندية'},
@@ -781,7 +761,6 @@ translationsNationalities = {
         'gl': {'male': 'emiratí', 'female': 'emiratí'},
         'he': {'male': 'מאיחוד האמירויות הערביות', 'female': 'מאיחוד האמירויות הערביות'},
         'ro': {'male': 'emirian', 'female': 'emiriană'},
-
     },
     'Emiri': {
         'ar': {'male': 'إماراتي', 'female': 'إماراتية'},
@@ -794,7 +773,6 @@ translationsNationalities = {
         'gl': {'male': 'emiratí', 'female': 'emiratí'},
         'he': {'male': 'מאיחוד האמירויות הערביות', 'female': 'מאיחוד האמירויות הערביות'},
         'ro': {'male': 'emirian', 'female': 'emiriană'},
-
     },
     'Emirian': {
         'ar': {'male': 'إماراتي', 'female': 'إماراتية'},
@@ -807,7 +785,6 @@ translationsNationalities = {
         'gl': {'male': 'emiratí', 'female': 'emiratí'},
         'he': {'male': 'מאיחוד האמירויות הערביות', 'female': 'מאיחוד האמירויות הערביות'},
         'ro': {'male': 'emirian', 'female': 'emiriană'},
-
     },
     'Equatoguinean': {
         'ar': {'male': 'من غينيا الاستوائية', 'female': 'من غينيا الاستوائية'},
@@ -820,7 +797,6 @@ translationsNationalities = {
         'gl': {'male': 'ecuatoguineano', 'female': 'ecuatoguineana'},
         'he': {'male': 'מגינאה המשוונית', 'female': 'מגינאה המשוונית'},
         'ro': {'male': 'guineoecuatorian', 'female': 'guineoecuatoriană'},
-
     },
     'Equatorial Guinean': {
         'ar': {'male': 'من غينيا الاستوائية', 'female': 'من غينيا الاستوائية'},
@@ -833,7 +809,6 @@ translationsNationalities = {
         'gl': {'male': 'ecuatoguineano', 'female': 'ecuatoguineana'},
         'he': {'male': 'מגינאה המשוונית', 'female': 'מגינאה המשוונית'},
         'ro': {'male': 'guineoecuatorian', 'female': 'guineoecuatoriană'},
-
     },
     'Eritrean': {
         'ar': {'male': 'إريتري', 'female': 'إريترية'},
@@ -846,7 +821,6 @@ translationsNationalities = {
         'gl': {'male': 'eritreo', 'female': 'eritrea'},
         'he': {'male': 'אריתריאי', 'female': 'אריתריאית'},
         'ro': {'male': 'din Eritreea', 'female': 'din Eritreea'},
-
     },
     'Estonian': {
         'ar': {'male': 'إستوني', 'female': 'إستونية'},
@@ -885,7 +859,6 @@ translationsNationalities = {
         'gl': {'male': 'fidxiano', 'female': 'fidxiana'},
         'he': {'male': 'פיג\'יאני', 'female': 'פיג\'יאנית'},
         'ro': {'male': 'din Fiji', 'female': 'din Fiji'},
-
     },
     'Filipino': {
         'ar': {'male': 'فلبيني', 'female': 'فلبينية'},
@@ -937,7 +910,6 @@ translationsNationalities = {
         'gl': {'male': 'gabonés', 'female': 'gabonesa'},
         'he': {'male': 'גבונזי', 'female': 'גבונזית'},
         'ro': {'male': 'gabonez', 'female': 'gaboneză'},
-
     },
     'Gambian': {
         'ar': {'male': 'غامبي', 'female': 'غامبية'},
@@ -950,7 +922,6 @@ translationsNationalities = {
         'gl': {'male': 'gambiano', 'female': 'gambiana'},
         'he': {'male': 'גמביאני', 'female': 'גמביאנית'},
         'ro': {'male': 'gambian', 'female': 'gambiană'},
-
     },
     'Georgian': {
         'ar': {'male': 'جورجي', 'female': 'جورجية'},
@@ -1015,7 +986,6 @@ translationsNationalities = {
         'gl': {'male': 'groenlandés', 'female': 'groenlandesa'},
         'he': {'male': 'גרינלנדי', 'female': 'גרינלנדית'},
         'ro': {'male': 'groenlandez', 'female': 'groenlandeză'},
-
     },
     'Grenadian': {
         'ar': {'male': 'غرينادي', 'female': 'غرينادية'},
@@ -1028,7 +998,6 @@ translationsNationalities = {
         'gl': {'male': 'granadino', 'female': 'granadina'},
         'he': {'male': 'גרנדי', 'female': 'גרנדית'},
         'ro': {'male': 'grenadian', 'female': 'grenadiană'},
-
     },
     'Guatemalan': {
         'ar': {'male': 'غواتيمالي', 'female': 'غواتيمالية'},
@@ -1041,7 +1010,6 @@ translationsNationalities = {
         'gl': {'male': 'guatemalteco', 'female': 'guatemalteca'},
         'he': {'male': 'גואטמלי', 'female': 'גואטמלית'},
         'ro': {'male': 'guatemalez', 'female': 'guatemaleză'},
-
     },
     'Guinean': {
         'ar': {'male': 'غيني', 'female': 'غينية'},
@@ -1054,7 +1022,6 @@ translationsNationalities = {
         'gl': {'male': 'guineano', 'female': 'guineana'},
         'he': {'male': 'גינאי', 'female': 'גינאית'},
         'ro': {'male': 'guineean', 'female': 'guineeană'},
-
     },
     'Guyanese': {
         'ar': {'male': 'غياني', 'female': 'غيانية'},
@@ -1067,7 +1034,6 @@ translationsNationalities = {
         'gl': {'male': 'güianés', 'female': 'güianesa'},
         'he': {'male': 'גיאני', 'female': 'גיאנית'},
         'ro': {'male': 'guyanez', 'female': 'guyaneză'},
-
     },
     'Haitian': {
         'ar': {'male': 'هايتي', 'female': 'هايتية'},
@@ -1080,7 +1046,6 @@ translationsNationalities = {
         'gl': {'male': 'haitiano', 'female': 'haitiana'},
         'he': {'male': 'האיטי', 'female': 'האיטית'},
         'ro': {'male': 'haitian', 'female': 'haitiană'},
-
     },
     'Herzegovinian': {
         'ar': {'male': 'هرسكي', 'female': 'هرسكية'},
@@ -1093,7 +1058,6 @@ translationsNationalities = {
         'gl': {'male': 'hercegovino', 'female': 'hercegovina'},
         'he': {'male': 'הרצגוביני', 'female': 'הרצגובינית'},
         # 'ro': { 'male': 'UNKNOWN', 'female': 'UNKNOWN' },
-
     },
     'Honduran': {
         'ar': {'male': 'هندوراسي', 'female': 'هندوراسية'},
@@ -1106,7 +1070,6 @@ translationsNationalities = {
         'gl': {'male': 'hondureño', 'female': 'hondureña'},
         'he': {'male': 'הונדורסי', 'female': 'הונדורסית'},
         'ro': {'male': 'din Honduras', 'female': 'din Honduras'},
-
     },
     'Hungarian': {
         'ar': {'male': 'مجري', 'female': 'مجرية'},
@@ -1145,7 +1108,6 @@ translationsNationalities = {
         'gl': {'male': 'kiribatiano', 'female': 'kiribatiana'},
         'he': {'male': 'קיריבטי', 'female': 'קיריבטית'},
         'ro': {'male': 'kiribatian', 'female': 'kiribatiană'},
-
     },
     'Indian': {
         'ar': {'male': 'هندي', 'female': 'هندية'},
@@ -1249,7 +1211,6 @@ translationsNationalities = {
         'gl': {'male': 'marfilés', 'female': 'marfilesa'},
         'he': {'male': 'מחוף השנהב', 'female': 'מחוף השנהב'},
         'ro': {'male': 'ivorian', 'female': 'ivoriană'},
-
     },
     'Jamaican': {
         'ar': {'male': 'جمايكي', 'female': 'جمايكية'},
@@ -1262,7 +1223,6 @@ translationsNationalities = {
         'gl': {'male': 'xamaicano', 'female': 'xamaicana'},
         'he': {'male': 'ג\'מייקני', 'female': 'ג\'מייקנית'},
         'ro': {'male': 'jamaican', 'female': 'jamaicană'},
-
     },
     'Japanese': {
         'ar': {'male': 'ياباني', 'female': 'يابانية'},
@@ -1301,7 +1261,6 @@ translationsNationalities = {
         'gl': {'male': 'casaco', 'female': 'casaca'},
         'he': {'male': 'קזחי', 'female': 'קזחית'},
         'ro': {'male': 'kazah', 'female': 'kazahă'},
-
     },
     'Kazakhstani': {
         'ar': {'male': 'كازاخستاني', 'female': 'كازاخستانية'},
@@ -1314,7 +1273,6 @@ translationsNationalities = {
         'gl': {'male': 'casaco', 'female': 'casaca'},
         'he': {'male': 'קזחי', 'female': 'קזחית'},
         'ro': {'male': 'kazah', 'female': 'kazahă'},
-
     },
     'Kenyan': {
         'ar': {'male': 'كيني', 'female': 'كينية'},
@@ -1327,7 +1285,6 @@ translationsNationalities = {
         'gl': {'male': 'kenyano', 'female': 'kenyana'},
         'he': {'male': 'קנייתי', 'female': 'קנייתית'},
         'ro': {'male': 'kenyan', 'female': 'kenyană'},
-
     },
     'Kirghiz': {
         'ar': {'male': 'قيرغيزي', 'female': 'قيرغيزية'},
@@ -1340,7 +1297,6 @@ translationsNationalities = {
         'gl': {'male': 'kirguiz', 'female': 'kirguiz'},
         'he': {'male': 'קירגיזי', 'female': 'קירגיזית'},
         'ro': {'male': 'kirghiz', 'female': 'kirghiză'},
-
     },
     'Kirgiz': {
         'ar': {'male': 'قيرغيزي', 'female': 'قيرغيزية'},
@@ -1353,7 +1309,6 @@ translationsNationalities = {
         'gl': {'male': 'kirguiz', 'female': 'kirguiz'},
         'he': {'male': 'קירגיזי', 'female': 'קירגיזית'},
         'ro': {'male': 'kirghiz', 'female': 'kirghiză'},
-
     },
     'Kiribati': {
         'ar': {'male': 'كيريباتي', 'female': 'كيريباتية'},
@@ -1366,7 +1321,6 @@ translationsNationalities = {
         'gl': {'male': 'kiribatiano', 'female': 'kiribatiana'},
         'he': {'male': 'קיריבטי', 'female': 'קיריבטית'},
         'ro': {'male': 'kiribatian', 'female': 'kiribatiană'},
-
     },
     'Kosovan': {
         'ar': {'male': 'كوسوفي', 'female': 'كوسوفية'},
@@ -1405,7 +1359,6 @@ translationsNationalities = {
         'gl': {'male': 'kuwaití', 'female': 'kuwaití'},
         'he': {'male': 'כוויתי', 'female': 'כוויתית'},
         'ro': {'male': 'kuwaitian', 'female': 'kuwaitiană'},
-
     },
     'Kyrgyz': {
         'ar': {'male': 'قيرغيزي', 'female': 'قيرغيزية'},
@@ -1418,7 +1371,6 @@ translationsNationalities = {
         'gl': {'male': 'kirguiz', 'female': 'kirguiz'},
         'he': {'male': 'קירגיזי', 'female': 'קירגיזית'},
         'ro': {'male': 'kirghiz', 'female': 'kirghiză'},
-
     },
     'Kyrgyzstani': {
         'ar': {'male': 'قيرغيزستاني', 'female': 'قيرغيزستانية'},
@@ -1431,7 +1383,6 @@ translationsNationalities = {
         'gl': {'male': 'kirguiz', 'female': 'kirguiz'},
         'he': {'male': 'קירגיזי', 'female': 'קירגיזית'},
         'ro': {'male': 'kirghiz', 'female': 'kirghiză'},
-
     },
     'Lao': {
         'ar': {'male': 'لاوسي', 'female': 'لاوسية'},
@@ -1444,7 +1395,6 @@ translationsNationalities = {
         'gl': {'male': 'laosiano', 'female': 'laosiana'},
         'he': {'male': 'מלאוס', 'female': 'מלאוס'},
         'ro': {'male': 'laoțian', 'female': 'laoțiană'},
-
     },
     'Laotian': {
         'ar': {'male': 'لاوسي', 'female': 'لاوسية'},
@@ -1457,7 +1407,6 @@ translationsNationalities = {
         'gl': {'male': 'laosiano', 'female': 'laosiana'},
         'he': {'male': 'מלאוס', 'female': 'מלאוס'},
         'ro': {'male': 'laoțian', 'female': 'laoțiană'},
-
     },
     'Latvian': {
         'ar': {'male': 'لاتفي', 'female': 'لاتفية'},
@@ -1496,7 +1445,6 @@ translationsNationalities = {
         'gl': {'male': 'liberiano', 'female': 'liberiana'},
         'he': {'male': 'ליברי', 'female': 'ליברית'},
         'ro': {'male': 'liberian', 'female': 'liberiană'},
-
     },
     'Libyan': {
         'ar': {'male': 'ليبي', 'female': 'ليبية'},
@@ -1522,7 +1470,6 @@ translationsNationalities = {
         'gl': {'male': 'de Liechtenstein', 'female': 'de Liechtenstein'},
         'he': {'male': 'ליכטנשטייני', 'female': 'ליכטנשטיינית'},
         'ro': {'male': 'liechtensteinian', 'female': 'liechtensteiniană'},
-
     },
     'Lithuanian': {
         'ar': {'male': 'ليتواني', 'female': 'ليتوانية'},
@@ -1548,7 +1495,6 @@ translationsNationalities = {
         'gl': {'male': 'luxemburgués', 'female': 'luxemburguesa'},
         'he': {'male': 'לוקסמבורגי', 'female': 'לוקסמבורגית'},
         'ro': {'male': 'luxemburghez', 'female': 'luxemburgheză'},
-
     },
     'Luxembourgish': {
         'ar': {'male': 'لوكسمبورغي', 'female': 'لوكسمبورغية'},
@@ -1561,7 +1507,6 @@ translationsNationalities = {
         'gl': {'male': 'luxemburgués', 'female': 'luxemburguesa'},
         'he': {'male': 'לוקסמבורגי', 'female': 'לוקסמבורגית'},
         'ro': {'male': 'luxemburghez', 'female': 'luxemburgheză'},
-
     },
     'Macanese': {
         'ar': {'male': 'ماكاوي', 'female': 'ماكاوية'},
@@ -1574,7 +1519,6 @@ translationsNationalities = {
         'gl': {'male': 'de Macau', 'female': 'de Macau'},
         'he': {'male': 'ממקאו', 'female': 'ממקאו'},
         'ro': {'male': 'din Macao', 'female': 'din Macao'},
-
     },
     'Macedonian': {
         'ar': {'male': 'مقدوني', 'female': 'مقدونية'},
@@ -1600,7 +1544,6 @@ translationsNationalities = {
         'gl': {'male': 'malgaxe', 'female': 'malgaxe'},
         'he': {'male': 'מלגשי', 'female': 'מלגשית'},
         'ro': {'male': 'malgaș', 'female': 'malgașă'},
-
     },
     'Malawian': {
         'ar': {'male': 'ملاوي', 'female': 'ملاوية'},
@@ -1613,7 +1556,6 @@ translationsNationalities = {
         'gl': {'male': 'de Malawi', 'female': 'de Malawi'},
         'he': {'male': 'מלאווי', 'female': 'מלאווית'},
         'ro': {'male': 'malawian', 'female': 'malawiană'},
-
     },
     'Malaysian': {
         'ar': {'male': 'ماليزي', 'female': 'ماليزية'},
@@ -1639,7 +1581,6 @@ translationsNationalities = {
         'gl': {'male': 'maldivano', 'female': 'maldivana'},
         'he': {'male': 'מולדובי', 'female': 'מולדובית'},
         'ro': {'male': 'maldivian', 'female': 'maldiviană'},
-
     },
     'Malian': {
         'ar': {'male': 'مالي', 'female': 'مالية'},
@@ -1652,7 +1593,6 @@ translationsNationalities = {
         'gl': {'male': 'maliano', 'female': 'maliana'},
         'he': {'male': 'מאלי', 'female': 'מאלית'},
         'ro': {'male': 'malian', 'female': 'maliană'},
-
     },
     'Maltese': {
         'ar': {'male': 'مالطي', 'female': 'مالطية'},
@@ -1665,7 +1605,6 @@ translationsNationalities = {
         'gl': {'male': 'maltés', 'female': 'maltesa'},
         'he': {'male': 'מלטזי', 'female': 'מלטזית'},
         'ro': {'male': 'maltez', 'female': 'malteză'},
-
     },
     'Mauritanian': {
         'ar': {'male': 'موريتاني', 'female': 'موريتانية'},
@@ -1678,7 +1617,6 @@ translationsNationalities = {
         'gl': {'male': 'mauritano', 'female': 'mauritana'},
         'he': {'male': 'מאוריטני', 'female': 'מאוריטנית'},
         'ro': {'male': 'mauritanian', 'female': 'mauritaniană'},
-
     },
     'Mauritian': {
         'ar': {'male': 'موريشيوسي', 'female': 'موريشيوسية'},
@@ -1691,7 +1629,6 @@ translationsNationalities = {
         'gl': {'male': 'mauriciana', 'female': 'mauriciana'},
         'he': {'male': 'מאוריציאני', 'female': 'מאוריציאנית'},
         'ro': {'male': 'mauritian', 'female': 'mauritiană'},
-
     },
     'Mexican': {
         'ar': {'male': 'مكسيكي', 'female': 'مكسيكية'},
@@ -1730,7 +1667,6 @@ translationsNationalities = {
         'gl': {'male': 'monegasco', 'female': 'monegasca'},
         'he': {'male': 'מונגאסקי', 'female': 'מונגאסקית'},
         'ro': {'male': 'monegasc', 'female': 'monegască'},
-
     },
     'Monégasque': {
         'ar': {'male': 'موناكي', 'female': 'موناكية'},
@@ -1743,7 +1679,6 @@ translationsNationalities = {
         'gl': {'male': 'monegasco', 'female': 'monegasca'},
         'he': {'male': 'מונגאסקי', 'female': 'מונגאסקית'},
         'ro': {'male': 'monegasc', 'female': 'monegască'},
-
     },
     'Mongolian': {
         'ar': {'male': 'منغولي', 'female': 'منغولية'},
@@ -1795,7 +1730,6 @@ translationsNationalities = {
         'gl': {'male': 'lesotense', 'female': 'lesotense'},
         'he': {'male': 'לסוטואי', 'female': 'לסוטואית'},
         'ro': {'male': 'lesothian', 'female': 'lesothiană'},
-
     },
     'Mozambican': {
         'ar': {'male': 'موزمبيقي', 'female': 'موزمبيقية'},
@@ -1808,7 +1742,6 @@ translationsNationalities = {
         'gl': {'male': 'mozambicano', 'female': 'mozambicana'},
         'he': {'male': 'מוזמביקי', 'female': 'מוזמביקית'},
         'ro': {'male': 'mozambican', 'female': 'mozambicană'},
-
     },
     'Namibian': {
         'ar': {'male': 'ناميبي', 'female': 'ناميبية'},
@@ -1821,7 +1754,6 @@ translationsNationalities = {
         'gl': {'male': 'namibio', 'female': 'namibia'},
         'he': {'male': 'נמיבי', 'female': 'נמיבית'},
         'ro': {'male': 'namibian', 'female': 'namibiană'},
-
     },
     'Nauruan': {
         'ar': {'male': 'ناوروني', 'female': 'ناورونية'},
@@ -1834,7 +1766,6 @@ translationsNationalities = {
         'gl': {'male': 'nauruano', 'female': 'nauruana'},
         'he': {'male': 'נאורי', 'female': 'נאורית'},
         'ro': {'male': 'nauruan', 'female': 'nauruană'},
-
     },
     'Nepalese': {
         'ar': {'male': 'نيبالي', 'female': 'نيبالية'},
@@ -1873,7 +1804,6 @@ translationsNationalities = {
         'gl': {'male': 'neozelandés', 'female': 'neozelandesa'},
         'he': {'male': 'ניו זילנדי', 'female': 'ניו זילנדית'},
         'ro': {'male': 'neozeelandez', 'female': 'neozeelandeză'},
-
     },
     'Ni-Vanuatu': {
         'ar': {'male': 'فانواتوي', 'female': 'فانواتوية'},
@@ -1886,7 +1816,6 @@ translationsNationalities = {
         'gl': {'male': 'vanuatiano', 'female': 'vanuatiana'},
         'he': {'male': 'ונואטי', 'female': 'ונואטית'},
         'ro': {'male': 'din Vanuatu', 'female': 'din Vanuatu'},
-
     },
     'Nicaraguan': {
         'ar': {'male': 'نيكاراغوي', 'female': 'نيكاراغوية'},
@@ -1899,7 +1828,6 @@ translationsNationalities = {
         'gl': {'male': 'nicaraguano', 'female': 'nicaraguana'},
         'he': {'male': 'ניקרגואי', 'female': 'ניקרגואית'},
         'ro': {'male': 'nicaraguan', 'female': 'nicaraguană'},
-
     },
     'Nigerian': {
         'ar': {'male': 'نيجيري', 'female': 'نيجيرية'},
@@ -1925,7 +1853,6 @@ translationsNationalities = {
         'gl': {'male': 'nixerino', 'female': 'nixerina'},
         'he': {'male': 'ניז\'רי', 'female': 'ניז\'רית'},
         'ro': {'male': 'din Niger', 'female': 'din Niger'},
-
     },
     'North Korean': {
         'ar': {'male': 'كوري شمالي', 'female': 'كورية شمالية'},
@@ -1964,7 +1891,6 @@ translationsNationalities = {
         'gl': {'male': 'omaní', 'female': 'omaní'},
         'he': {'male': 'עומאני', 'female': 'עומאנית'},
         'ro': {'male': 'omanez', 'female': 'omaneză'},
-
     },
     'Pakistani': {
         'ar': {'male': 'باكستاني', 'female': 'باكستانية'},
@@ -1990,7 +1916,6 @@ translationsNationalities = {
         'gl': {'male': 'de Palau', 'female': 'de Palau'},
         'he': {'male': 'פלאואני', 'female': 'פלאואנית'},
         'ro': {'male': 'din Palau', 'female': 'din Palau'},
-
     },
     'Palestinian': {
         'ar': {'male': 'فلسطيني', 'female': 'فلسطينية'},
@@ -2016,7 +1941,6 @@ translationsNationalities = {
         'gl': {'male': 'panameño', 'female': 'panameña'},
         'he': {'male': 'פנמי', 'female': 'פנמית'},
         'ro': {'male': 'panamez', 'female': 'panameză'},
-
     },
     'Papua New Guinean': {
         'ar': {'male': 'من بابوا غينيا الجديدة', 'female': 'من بابوا غينيا الجديدة'},
@@ -2029,7 +1953,6 @@ translationsNationalities = {
         'gl': {'male': 'papú', 'female': 'papú'},
         'he': {'male': 'מפפואה גינאה החדשה', 'female': 'מפפואה גינאה החדשה'},
         'ro': {'male': 'papua-neoguineean', 'female': 'papua-neoguineeană'},
-
     },
     'Papuan': {
         'ar': {'male': 'من بابوا غينيا الجديدة', 'female': 'من بابوا غينيا الجديدة'},
@@ -2042,7 +1965,6 @@ translationsNationalities = {
         'gl': {'male': 'papú', 'female': 'papú'},
         'he': {'male': 'פפואי', 'female': 'פפואית'},
         'ro': {'male': 'papuaș', 'female': 'papuașă'},
-
     },
     'Paraguayan': {
         'ar': {'male': 'باراغواياني', 'female': 'باراغوايانية'},
@@ -2055,7 +1977,6 @@ translationsNationalities = {
         'gl': {'male': 'paraguaio', 'female': 'paraguaia'},
         'he': {'male': 'פרגוואי', 'female': 'פרגוואית'},
         'ro': {'male': 'paraguayan', 'female': 'paraguayană'},
-
     },
     'Peruvian': {
         'ar': {'male': 'بيروفي', 'female': 'بيروفية'},
@@ -2133,7 +2054,6 @@ translationsNationalities = {
         'gl': {'male': 'catarí', 'female': 'catarí'},
         'he': {'male': 'קטרי', 'female': 'קטרית'},
         'ro': {'male': 'din Qatar', 'female': 'din Qatar'},
-
     },
     'Romanian': {
         'ar': {'male': 'روماني', 'female': 'رومانية'},
@@ -2172,7 +2092,6 @@ translationsNationalities = {
         'gl': {'male': 'ruandés', 'female': 'ruandesa'},
         'he': {'male': 'רואנדי', 'female': 'רואנדית'},
         'ro': {'male': 'rwandez', 'female': 'rwandeză'},
-
     },
     'Salvadoran': {
         'ar': {'male': 'سلفادوري', 'female': 'سلفادورية'},
@@ -2198,7 +2117,6 @@ translationsNationalities = {
         'gl': {'male': 'sanmariñés', 'female': 'sanmariñesa'},
         'he': {'male': 'מסן מרינו', 'female': 'מסן מרינו'},
         'ro': {'male': 'din San Marino', 'female': 'din San Marino'},
-
     },
     'Samoan': {
         'ar': {'male': 'ساموي', 'female': 'ساموية'},
@@ -2224,7 +2142,6 @@ translationsNationalities = {
         'gl': {'male': 'santomense', 'female': 'santomense'},
         'he': {'male': 'מסאו טומה ופרינסיפה', 'female': 'מסאו טומה ופרינסיפה'},
         'ro': {'male': 'din São Tomé și Príncipe', 'female': 'din São Tomé și Príncipe'},
-
     },
     'Saudi': {
         'ar': {'male': 'سعودي', 'female': 'سعودية'},
@@ -2277,7 +2194,6 @@ translationsNationalities = {
         'he': {'male': 'סרבי', 'female': 'סרבית'},
         'ro': {'male': 'sârb', 'female': 'sârbă'},
         'sq': {'male': 'serb', 'female': 'serbe'},
-
     },
     'Seychellois': {
         'ar': {'male': 'سيشيلي', 'female': 'سيشيلية'},
@@ -2290,7 +2206,6 @@ translationsNationalities = {
         'gl': {'male': 'seychelense', 'female': 'seychelense'},
         'he': {'male': 'סיישלי', 'female': 'סיישלית'},
         'ro': {'male': 'seychellez', 'female': 'seychelleză'},
-
     },
     'Sierra Leonean': {
         'ar': {'male': 'سيراليوني', 'female': 'سيراليونية'},
@@ -2303,7 +2218,6 @@ translationsNationalities = {
         'gl': {'male': 'serraleonino', 'female': 'serraleonina'},
         'he': {'male': 'סיירה לאוני', 'female': 'סיירה לאונית'},
         'ro': {'male': 'din Sierra Leone', 'female': 'din Sierra Leone'},
-
     },
     'Singapore': {
         'ar': {'male': 'سنغافوري', 'female': 'سنغافورية'},
@@ -2433,7 +2347,6 @@ translationsNationalities = {
         'gl': {'male': 'srilankés', 'female': 'srilankesa'},
         'he': {'male': 'סרי לנקי', 'female': 'סרי לנקית'},
         'ro': {'male': 'srilankez', 'female': 'srilankeză'},
-
     },
     'Sudanese': {
         'ar': {'male': 'سوداني', 'female': 'سودانية'},
@@ -2459,7 +2372,6 @@ translationsNationalities = {
         'gl': {'male': 'surinamés', 'female': 'surinamesa'},
         'he': {'male': 'סורינאמי', 'female': 'סורינאמית'},
         'ro': {'male': 'surinamez', 'female': 'surinameză'},
-
     },
     'Swedish': {
         'ar': {'male': 'سويدي', 'female': 'سويدية'},
@@ -2511,7 +2423,6 @@ translationsNationalities = {
         'gl': {'male': 'taxiquistano', 'female': 'taxiquistana'},
         'he': {'male': 'טג\'יקי', 'female': 'טג\'יקית'},
         'ro': {'male': 'tadjic', 'female': 'tadjică'},
-
     },
     'Tanzanian': {
         'ar': {'male': 'تنزاني', 'female': 'تنزانية'},
@@ -2524,7 +2435,6 @@ translationsNationalities = {
         'gl': {'male': 'tanzano', 'female': 'tanzana'},
         'he': {'male': 'טנזני', 'female': 'טנזנית'},
         'ro': {'male': 'tanzanian', 'female': 'tanzaniană'},
-
     },
     'Thai': {
         'ar': {'male': 'تايلندي', 'female': 'تايلندية'},
@@ -2550,7 +2460,6 @@ translationsNationalities = {
         'gl': {'male': 'timorense', 'female': 'timorense'},
         'he': {'male': 'טימורי', 'female': 'טימורית'},
         # 'ro': { 'male': 'UNKNOWN', 'female': 'UNKNOWN' },
-
     },
     'Togolese': {
         'ar': {'male': 'توغولي', 'female': 'توغولية'},
@@ -2563,7 +2472,6 @@ translationsNationalities = {
         'gl': {'male': 'togolés', 'female': 'togolesa'},
         'he': {'male': 'טוגולזי', 'female': 'טוגולזית'},
         'ro': {'male': 'togolez', 'female': 'togoleză'},
-
     },
     'Tongan': {
         'ar': {'male': 'تونغاني', 'female': 'تونغانية'},
@@ -2576,7 +2484,6 @@ translationsNationalities = {
         'gl': {'male': 'tongano', 'female': 'tongana'},
         'he': {'male': 'טונגי', 'female': 'טונגית'},
         'ro': {'male': 'din Tonga', 'female': 'din Tonga'},
-
     },
     'Trinidadian': {
         'ar': {'male': 'من ترينيداد', 'female': 'من ترينيداد'},
@@ -2589,7 +2496,6 @@ translationsNationalities = {
         'gl': {'male': 'trinitense', 'female': 'trinitense'},
         'he': {'male': 'מטרינידד וטובגו', 'female': 'מטרינידד וטובגו'},
         'ro': {'male': 'din Trinidad și Tobago', 'female': 'din Trinidad și Tobago'},
-
     },
     'Tobagonian': {
         'ar': {'male': 'من توباغو', 'female': 'من توباغو'},
@@ -2602,7 +2508,6 @@ translationsNationalities = {
         'gl': {'male': 'trinitense', 'female': 'trinitense'},
         'he': {'male': 'מטרינידד וטובגו', 'female': 'מטרינידד וטובגו'},
         'ro': {'male': 'din Trinidad și Tobago', 'female': 'din Trinidad și Tobago'},
-
     },
     'Tunisian': {
         'ar': {'male': 'تونسي', 'female': 'تونسية'},
@@ -2707,7 +2612,6 @@ translationsNationalities = {
         'he': {'male': 'אוקראיני', 'female': 'אוקראינית'},
         'ro': {'male': 'ucrainean', 'female': 'ucraineană'},
         'sq': {'male': 'ukrainas', 'female': 'ukrainase'},
-
     },
     'United States': {
         'ar': {'male': 'من الولايات المتحدة', 'female': 'من الولايات المتحدة'},

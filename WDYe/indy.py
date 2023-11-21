@@ -23,15 +23,11 @@ def action_one_item(wditem):
     ara = 'ar'
     items2do -= 1
     if wditem.labels:  # تسميات موجودة
-        if ('ar' in wditem.labels):
+        if 'ar' in wditem.labels:
             oldlabel = wditem.labels['ar']
             newlabel = fixlabel(oldlabel)
             data = {}
-            data.update({
-                'labels': {
-                    ara: newlabel
-                }
-            })
+            data.update({'labels': {ara: newlabel}})
             wditem.editEntity(data, summary=f'Bot: update Arabic label: {oldlabel} to {newlabel}')
         else:
             pass

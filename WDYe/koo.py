@@ -13,8 +13,10 @@ from wd_api import himoAPI_test as himoAPI
 from API import himoBOT2
 
 import pywikibot
+
 # ---
 import gent
+
 # generator = gent.get_gent(*args)
 # ---
 #

@@ -12,8 +12,10 @@ import json as JJson
 import re
 import codecs
 import traceback
+
 # ---
 from API import printe
+
 # ---
 try:
     import pywikibot

@@ -16,10 +16,12 @@ import pywikibot
 # ---
 
 from API import printe
+
 # ---
 # ---
 from wd_api import wd_desc
 from wd_api import wd_bot
+
 # ---
 wikidatasite = pywikibot.Site('wikidata', 'wikidata')
 repo = wikidatasite.data_repository()
@@ -53,10 +55,7 @@ def action_one_item(Qid, pa, lang, keys):
                 # ---
                 if MakeDesc(Qid, pa, lang2):
                     des = MakeDesc(Qid, pa, lang2)
-                    NewDesc[lang] = {
-                        "language": lang,
-                        "value": des
-                    }
+                    NewDesc[lang] = {"language": lang, "value": des}
                     dns = ''
                     if 'endes' in pa:
                         dns = pa['endes']
@@ -112,13 +111,7 @@ Comma = {
     "sv": " och ",
     'en': ", ",
 }
-Comma2 = {
-    'ar': "، و",
-    'en': ", ",
-    'de': ", ",
-    'fr': ", ",
-    'nl': ", "
-}
+Comma2 = {'ar': "، و", 'en': ", ", 'de': ", ", 'fr': ", ", 'nl': ", "}
 
 
 def GetQuery(Qid, lang, keys):
@@ -134,7 +127,6 @@ def GetQuery(Qid, lang, keys):
     sa = ' ?item wdt:P31 wd:Q11424 .\n?item wdt:P577 ?date2.\nBIND(year(?date2) AS ?dates). \n'
     sa = sa + 'OPTIONAL { ?item schema:description ?endes. FILTER((LANG(?endes)) = "en") }\n'
     ur = ur + sa
-
 
     def fofo(x):
         xx = 'OPTIONAL {'
@@ -251,24 +243,7 @@ def WorkWithOneLang(Qid, lang, keys):
 
 
 # ---
-by_list = {
-    'ar': "من تأليف",
-    'en': "by",
-    'fr': "de",
-    'de': "von",
-    'nl': "van",
-    'ca': "per",
-    'cs': "od",
-    'la': "ab",
-    'it': "da",
-    'io': "da",
-    'eo': "de",
-    'da': "af",
-    'pl': "przez",
-    'ro': "de",
-    'es': "por",
-    'sv': "av"
-}
+by_list = {'ar': "من تأليف", 'en': "by", 'fr': "de", 'de': "von", 'nl': "van", 'ca': "per", 'cs': "od", 'la': "ab", 'it': "da", 'io': "da", 'eo': "de", 'da': "af", 'pl': "przez", 'ro': "de", 'es': "por", 'sv': "av"}
 
 
 def MakeDesc(Qid, pa, lang):
