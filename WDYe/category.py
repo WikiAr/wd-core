@@ -14,6 +14,7 @@
 
 import pywikibot
 from wd_api import wd_bot
+
 # ---
 import sys
 
