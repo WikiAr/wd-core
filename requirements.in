@@ -1,7 +1,7 @@
 PyMySQL==1.1.0
 python_stdnum==1.17
 Requests==2.31.0
-setuptools==63.2.0
+setuptools==69.0.2
 SPARQLWrapper==2.0.0
 waybackpy==3.0.6
 wikitextparser==0.51.1
