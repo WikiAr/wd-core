@@ -13,20 +13,13 @@
 #
 
 import re
-
+import sys
 import pywikibot
 from wd_api import wd_bot
-
-# ---
 from API import printe
-import sys
-
-# ---
-# ---
-from API import himoBOT2
-
-# ---
 from wd_api import himoAPI_test as himoAPI
+from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
+from des.p155tables import keys_1, Sports_Keys_Lab
 
 # ---
 Usema = {1: True}
@@ -34,10 +27,6 @@ Ask = {1: True}
 Limit = {1: "100"}
 yes_answer = ["y", "a", "", "Y", "A", "all"]
 # ---
-from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
-
-# ---
-from des.p155tables import keys_1, Sports_Keys_Lab
 
 # ---
 log_done = []
