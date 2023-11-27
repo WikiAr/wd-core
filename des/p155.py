@@ -1,41 +1,38 @@
+from sys import sys
+from des.p155tables import keys_1
+from des.p155tables import Sports_Keys_Lab
+from des.p155tables import International_Federation
+from des.p155tables import Mako_keys_4
+from des.p155tables import Mako_keys2
+from des.p155tables import Mako_keys
+from des.p155tables import cccccups
+from des.p155tables import olympics
 #!/usr/bin/python3
 """
-
 إضافة تسميات عناصر ويكي بيانات
-
 بناءاً على خاصية سبقه أو تبعه
-
-
 """
 #
 # (C) Ibrahem Qasim, 2022
 #
 #
-
 import re
-import sys
 import pywikibot
 from wd_api import wd_bot
 from API import printe
 from wd_api import himoAPI_test as himoAPI
-from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
-from des.p155tables import keys_1, Sports_Keys_Lab
-
 # ---
 Usema = {1: True}
 Ask = {1: True}
 Limit = {1: "100"}
 yes_answer = ["y", "a", "", "Y", "A", "all"]
 # ---
-
 # ---
 log_done = []
 # ---
 years = r"(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)"
 tests_en = r'[abcdefghijklmnopqrstuvwxyz]'
 tests_ar = r'[ابتثجحخدذرزسشصضطظعغفقكلمنهويأآإىءئؤة1234567890\–\-\.]'
-
-
 def make_newlabel(label, ar, en):
     # ---
     printe.output(f'<<lightblue>>make_newlabel label:"{label}",ar:"{ar}",en:"{en}" ')
@@ -159,8 +156,6 @@ def make_newlabel(label, ar, en):
     newlabel = newlabel.replace("  ", " ")
     # ---
     return newlabel.strip()
-
-
 def Item(item):
     # ---
     q = item['item']
@@ -215,10 +210,7 @@ def Item(item):
                 Ask[1] = False
         else:
             himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
-
     # ---
-
-
 Quarry = {}
 Quarry['use'] = ""
 Quarry[
@@ -273,7 +265,6 @@ WHERE {
     }
   FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
   #sr
-
 }
 LIMIT  '''
 # ---
@@ -290,10 +281,8 @@ WHERE {
     ?item rdfs:label ?label filter (lang(?label) = "en") .
     FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
   #sr
-
 }
 LIMIT  '''
-
 # ---
 Quarry[
     4
@@ -328,7 +317,6 @@ WHERE {
     }
   FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
   #sr
-
 }
 LIMIT  '''
 # ---
@@ -348,7 +336,6 @@ WHERE {
   ?dd rdfs:label ?dden filter (lang(?dden) = "en") .
   FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
 #sr
-
 }
 LIMIT
 '''
@@ -382,14 +369,11 @@ WHERE {
   FILTER NOT EXISTS {?item rdfs:label ?ara filter (lang(?ara) = "ar")} .
   ?item rdfs:label ?label filter (lang(?label) = "en") .
   #sr
-
 }
 LIMIT
 '''
 # ---
 Quarry['use'] = Quarry[2]
-
-
 def main():
     # ---
     # python pwb.py des/p155 qua0 P17:Q145
@@ -482,8 +466,6 @@ def main():
         num += 1
         printe.output('<<lightblue>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         Item(tabj)
-
-
 def test():
     # cc = "2010 World Figure Skating Championships - ladies' singles free skating"
     # ar = make_newlabel( cc , '' , '' )
@@ -494,8 +476,6 @@ def test():
     ar = make_newlabel("2014 world team table tennis championships", '', '')
     # printe.output( cc )
     printe.output(ar)
-
-
 # ---
 if __name__ == "__main__":
     if sys.argv and "test" in sys.argv:
@@ -505,7 +485,6 @@ if __name__ == "__main__":
     # Item({'ddar': 'بطولة العالم لتنس الطاولة 1932', 'dden': '1932 World Table Tennis Championships', 'item': 'Q203962', 'label': '1933 World Table Tennis Championships (January)'})
     # Item({'ddar': 'بطولة العالم للشطرنج 1975', 'dden': 'World Chess Championship 1975', 'item': 'Q1999918', 'label': 'World Chess Championship 1978'})
 # ---
-
 # python pwb.py des/p155 qua7 -P279:Q13219666 limit:200
 # python pwb.py des/p155 qua4 -P279:Q1344963 limit:200
 # python pwb.py des/p155 qua4 -P279:Q1079023 limit:200
