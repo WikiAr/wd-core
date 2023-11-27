@@ -17,6 +17,7 @@ from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_D
 import sys
 import random
 from wd_api import wd_bot
+
 # ---
 from wd_api import newdesc
 

@@ -13,6 +13,7 @@
 import re
 import pywikibot
 from wd_api import wd_bot
+
 # ---
 from API import printe
 import sys
