@@ -32,7 +32,7 @@ for q in json1:
     c += 1
     Qid = q['q']
     printe.output('work %d from %d , %s' % (c, total, Qid))
-    descriptions = himoBOT2.Get_item_descriptions_or_labels(Qid, "descriptions")
+    descriptions = wd_bot.Get_item_descriptions_or_labels(Qid, "descriptions")
     if "ar" not in descriptions:
         himoAPI.Des_API(Qid, 'عدد أولي', 'ar', ask="")
 # ---

@@ -11,13 +11,10 @@
 #
 
 import re
-import sys
-
-# ---
-
+import sy
 from API import printe, himoBOT2
 from wd_api import himoAPI, wd_bot
-
+from wd_api import wd_bot
 # ---
 bylangs = False  # False#True
 # ---
@@ -52,7 +49,7 @@ def action(json1):
                 timestr = f"+{year1}-00-00T00:00:00Z"
                 # ---
                 PP_time = ""
-                PP = himoBOT2.Get_Property_API(q, "P585")
+                PP = wd_bot.Get_Property_API(q=q, p="P585")
                 if PP and PP[0] and PP[0]["time"]:
                     PP_time = PP[0]["time"]
                     printe.output(f"  * PP:\"{PP[0]['time']}\"")

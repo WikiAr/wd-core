@@ -11,7 +11,7 @@ python3 core8/pwb.py wd/koo -ns:0 -ref:قالب:كووورة
 #
 from wd_api import himoAPI_test as himoAPI
 from API import himoBOT2
-
+from wd_api import wd_bot
 import pywikibot
 
 # ---
@@ -47,8 +47,8 @@ def woo(page):
     # ---
     pywikibot.output(f"koora id:{id}")
     # ---
-    P31 = himoBOT2.Get_Claim_API(qid, "P31")
-    iin = himoBOT2.Get_Property_API(qid, "P8021", titles=title, sites="arwiki")
+    P31 = wd_bot.Get_Claim_API(q=qid, p="P31")
+    iin = wd_bot.Get_Property_API(q=qid, p="P8021", titles=title, sites="arwiki")
     # pywikibot.output( "iin:%s" % iin )
     # ---
     pywikibot.output(f"P31:{P31}")

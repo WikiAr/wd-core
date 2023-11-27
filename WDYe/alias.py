@@ -11,7 +11,7 @@
 
 import re
 import pywikibot
-
+from wd_api import wd_bot
 # ---
 import sys
 
@@ -98,7 +98,7 @@ def WORK_table(qid, tables):
         qua = Quaa % (qid, peo)
         qua = qua + Limit[1]
         # pywikibot.output( qua )
-        sparql = himoBOT2.sparql_generator_url(qua, printq=True)
+        sparql = wd_bot.sparql_generator_url(qua, printq=True)
         # pywikibot.output( sparql )
         # ---
         Table = {}

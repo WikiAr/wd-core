@@ -16,7 +16,7 @@ from API import himoBOT2
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
 import sys
 import random
-
+from wd_api import wd_bot
 # ---
 from wd_api import newdesc
 
@@ -149,7 +149,7 @@ for p31, p31_desc in desc_table.items():
             printe.output('<<lightred>> first quarry')
             printe.output(quarry)
         # ---
-        json1 = himoBOT2.sparql_generator_url(quarry)
+        json1 = wd_bot.sparql_generator_url(quarry)
         # ---
         json_lenth = len(json1)
         # ---

@@ -13,7 +13,7 @@
 #
 
 import pywikibot
-
+from wd_api import wd_bot
 # ---
 import sys
 
@@ -61,7 +61,7 @@ WHERE {
 LIMIT '''
     Quaa = Quaa + Limit[1]
     pywikibot.output(Quaa)
-    sparql = himoBOT2.sparql_generator_url(Quaa)
+    sparql = wd_bot.sparql_generator_url(Quaa)
     # ---
     Table = {}
     for item in sparql:
