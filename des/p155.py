@@ -15,6 +15,7 @@
 import re
 
 import pywikibot
+from wd_api import wd_bot
 
 # ---
 from API import printe
@@ -478,7 +479,7 @@ def main():
         # ---#
     Quaa = Quarry['use'] + Limit[1]
     printe.output(Quaa)
-    sparql = himoBOT2.sparql_generator_url(Quaa)
+    sparql = wd_bot.sparql_generator_url(Quaa)
     # ---
     Table = {}
     for item in sparql:
