@@ -1,12 +1,13 @@
-name: Black
+name: Format and Merge
 
 on:
-  push:
-    branches:
-      - update  # اسم الفرع الخاص بك
+  pull_request:
+    types:
+      - closed
 
 jobs:
-  build:
+  format_and_merge:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -23,14 +24,29 @@ jobs:
         python -m pip install --upgrade pip
         pip install black
 
-    - name: Run Black
-      run:  |
-        black -t py38 -t py39 -t py310 -t py311 --line-length 450 --skip-string-normalization .
-        
+    - name: Set up Git
+      run: |
+        git config user.name "${GITHUB_ACTOR}"
+        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+  
+    - name: Auto-format code with Black
+      run: black -t py38 -t py39 -t py310 -t py311 --line-length 450 --skip-string-normalization .
+
     - name: Commit and push changes
       run: |
-        git config user.name "MrIbrahem"
-        git config user.email "ibrahem.al-radaei@outlook.com"
         git add .
-        git commit -m "Auto-format code with Black"
-        git push
+        # Check if there are changes to commit
+        if git diff --cached --exit-code --name-only
+        then
+          echo "No changes since last run"
+        else
+          git commit -m "Auto-format code with Black"
+          git push
+        fi
+
+    - name: Merge changes
+      run: |
+        git fetch origin pull/${{ github.event.pull_request.number }}/merge:PR_MERGE
+        git checkout PR_MERGE
+        git merge --ff-only ${{ github.event.pull_request.head.sha }}
+        git push origin HEAD:${{ github.event.pull_request.base.ref }}
