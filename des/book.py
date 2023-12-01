@@ -69,7 +69,9 @@ Qlist['Q482994'] = {  # ألبوم
     # 'es' : 'álbum' ,
     'nl': 'muziekalbum',
 }
-def action_one_item( Qid, pa, lang, keys):
+
+
+def action_one_item(Qid, pa, lang, keys):
     item = himoBOT2.Get_Item_API_From_Qid(pa['item'])
     if item:
         # desc = MakeDesc(Qid, auth, lang)
