@@ -505,7 +505,7 @@ def log_new_types(lists):
             Lalo_types["n"][p31] = lenth
             printe.output(f'log new types Adding {p31}. ')
     # ---
-    with open(jsonfils, 'w') as nfile:
+    with open(jsonfils, 'w', encoding="utf-8") as nfile:
         json.dump(Lalo_types["n"], nfile)
 
 
