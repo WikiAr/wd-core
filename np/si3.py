@@ -9,12 +9,12 @@ import sys
 
 sys.argv.append('-family:wikidata')
 sys.argv.append('-lang:wikidata')
+import codecs
 # ---
 import json
-import codecs
 import re
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 # ---
 from API import printe
@@ -26,41 +26,36 @@ main_dir1 = str(Path(__file__).parent.parent) + '/'
 printe.output(f'<<lightyellow>> main_dir1 = {main_dir1}')
 # ---
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
-# ---
-from np import read_json
-from des.ru_st_2_latin import make_en_label
-
-# enlabel = make_en_label(labels, q, Add=False)
-# ---
-from wd_api import himoAPI
-from wd_api import wd_bot
 from API import himoBOT2
-
-# ---
-from wd_api import wd_desc
-
-# wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
-# wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
-# ---
-from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, replace_desc
-
 # ---
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
+from des.ru_st_2_latin import make_en_label
+# wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
+# wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
+# ---
+from desc_dicts.descraptions import (DescraptionsTable, Qid_Descraptions,
+                                     replace_desc)
+# ---
+from np import read_json
+# ---
+# enlabel = make_en_label(labels, q, Add=False)
+# ---
+from wd_api import himoAPI, wd_bot, wd_desc
 
 # ---
 translations_o = {1: {}, 2: {}}
-from people.new3 import translations_o
-
-# ---
-from desc_dicts.taxones import tax_translationsNationalities, taxone_list, lab_for_p171, labforP105
 from desc_dicts.scientific_article_desc import Scientific_descraptions
-
 # ---
-from np.np_lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
+from desc_dicts.taxones import (lab_for_p171, labforP105,
+                                tax_translationsNationalities, taxone_list)
+from np.nldesc import Make_others_desc, Make_space_desc
+# ---
+from np.np_lists import (en_des_to_ar, others_list, others_list_2,
+                         space_list_and_other)
 from np.scientific_article import make_scientific_article
-from np.nldesc import Make_space_desc, Make_others_desc
+from people.new3 import translations_o
 
 # ---
 if True:
@@ -222,6 +217,17 @@ def work_qs(q, NewDesc):
 
 
 def work_api_desc(NewDesc, q, fixlang):
+    """
+    Processes language data and calls different functions based on the number of languages present.
+
+    Parameters:
+    NewDesc (dict): A dictionary containing language data.
+    q (unknown): Unknown parameter. Needs clarification.
+    fixlang (list): A list of languages to be processed.
+
+    Returns:
+    None
+    """
     # ---
     # pass
     # ---
@@ -251,6 +257,19 @@ def work_api_desc(NewDesc, q, fixlang):
         return
 
     else:
+# Check if there are only two languages in NewDesc and both are in the list of languages to be skipped
+elif len(langes) == 2 and langes[0] in lang_to_skip and langes[1] in lang_to_skip:
+    printe.output(f'work_api_desc:"{q}" only en-gb and en-ca, Skipp... ')
+    return
+else:
+    # If there are more than two languages in NewDesc or the two languages are not in the list of languages to be skipped
+    # Remove any language from fixlang that is not in NewDesc
+    for fix in fixlang:
+        if fix not in NewDesc.keys():
+            fixlang.remove(str(fix))
+    fixlang.sort()
+    # Call the function wd_desc.wwdesc with the processed language data
+    wd_desc.wwdesc(NewDesc, q, 1, fixlang)
         # Desc = NewDesc
         # ca = True
         for fix in fixlang:
