@@ -74,5 +74,5 @@ for i in range(1, all):
     if TEST:
         break
     # ---
-    json.dump(table, open(dump_file, 'w'))
+    json.dump(table, open(dump_file, 'w', encoding="utf-8"))
 # ---
