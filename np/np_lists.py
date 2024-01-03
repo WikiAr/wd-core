@@ -725,7 +725,7 @@ for scdw in others_list:
         prop = 'wdt:P175'
     # ---
     if scdw not in SPARQLSE:
-        SPARQLSE[scdw] = 'SELECT ?item WHERE {' + f'?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation.' + ' FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
+        SPARQLSE[scdw] = f'SELECT ?item WHERE {{?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation. FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }} }}'
         # ---
         if "a2r" in sys.argv:
             SPARQLSE[scdw] = 'SELECT ?item WHERE {' + f'?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation.' + ' ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
@@ -815,7 +815,7 @@ if "yuy" in sys.argv:
 # python3 core8/pwb.py np/nldes3 sparql:Q8054 a2r descqs nokeep limit:500
 # python3 core8/pwb.py np/nldes3 sparql:Q8054 yuy descqs nokeep limit:500
 # بروتين
-SPARQLSE['Q8054'] = 'SELECT ?item WHERE {?item wdt:P31 wd:Q8054 . ?item  (wdt:P702|wdt:P703) ?constellation.  FILTER NOT EXISTS {?item wdt:P31 wd:Q11173} } '
+SPARQLSE['Q8054'] = f'SELECT ?item WHERE {{?item wdt:P31 wd:Q8054 . ?item  (wdt:P702|wdt:P703) ?constellation.  FILTER NOT EXISTS {{?item wdt:P31 wd:Q11173}} }}'
 if "a2r" in sys.argv:
     SPARQLSE['Q8054'] = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q8054 . ?item (wdt:P702|wdt:P703) ?constellation. ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") FILTER NOT EXISTS {?item wdt:P31 wd:Q11173} } '
 if "yuy" in sys.argv:
