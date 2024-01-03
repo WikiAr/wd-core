@@ -713,25 +713,25 @@ songs_type = {
     'Q7302866': 'مقطع صوتي',
     'Q1573906': 'جولة موسيقية',
     'Q182832': 'حفلة موسيقية',
-}
-# ---
-for son in songs_type:
-    others_list[son] = {"ar": songs_type[son], "en": ""}
-# ---
-for scdw in others_list:
-    prop = '(wdt:P17|wdt:P131)'
+    }
     # ---
-    if scdw in songs_type:
-        prop = 'wdt:P175'
+    for son in songs_type:
+        others_list[son] = {"ar": songs_type[son], "en": ""}
     # ---
-    if scdw not in SPARQLSE:
-        SPARQLSE[scdw] = 'SELECT ?item WHERE {' + f'?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation.' + ' FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
+    for scdw in others_list:
+        prop = '(wdt:P17|wdt:P131)'
         # ---
-        if "a2r" in sys.argv:
-            SPARQLSE[scdw] = 'SELECT ?item WHERE {' + f'?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation.' + ' ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
+        if scdw in songs_type:
+            prop = 'wdt:P175'
         # ---
-        if "a3r" in sys.argv:
-            SPARQLSE[scdw] = 'SELECT ?item WHERE { ?item wdt:P31 wd:' + scdw + ' . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
+        if scdw not in SPARQLSE:
+            SPARQLSE[scdw] = f'SELECT ?item WHERE {{?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation. FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }} }}'
+            # ---
+            if "a2r" in sys.argv:
+                SPARQLSE[scdw] = f'SELECT ?item WHERE {{?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation. ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }} }}'
+            # ---
+            if "a3r" in sys.argv:
+                SPARQLSE[scdw] = f'SELECT ?item WHERE {{ ?item wdt:P31 wd:{scdw} . FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }} }}'
 # ---
 # python3 core8/pwb.py np/nldes3 sparql:Q44559
 # python3 core8/pwb.py np/nldes3 sparql:Q19389637
