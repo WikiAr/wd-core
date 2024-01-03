@@ -130,13 +130,13 @@ def work_railway(wditem, p31, q=""):
         # ---
         if p31 == 'Q728937' or 'Q728937' in P31_list:  # البلد فقط
             if p17_desc != "":
-                desc_n = lang_format[lang][1].format(des, p17_desc)
+                desc_n = f"{lang_format[lang][1]} {des} {p17_desc}"
         # ---
         else:
             if p17_desc != "" and p131_desc != "":
-                desc_n = lang_format[lang][2].format(des, p131_desc, p17_desc)
+                desc_n = f"{lang_format[lang][2]} {des} {p131_desc} {p17_desc}"
             elif p17_desc != "":
-                desc_n = lang_format[lang][1].format(des, p17_desc)
+                desc_n = f"{lang_format[lang][1]} {des} {p17_desc}"
         # ---
         if desc_n != '':
             newdesc[lang] = {"language": lang, "value": desc_n}
