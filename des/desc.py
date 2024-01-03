@@ -222,7 +222,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
             df = get_property_for_list.get_property_label_for_qids(["P17", "P131", "P276"], [q]) or {}
             printe.output('get_property_for_list')
             printe.output(df)
-                    # ---
+            # ---
         # ---
         if p17lab == "":
             p17lab = df.get(q, {}).get("P17", "").split('@@')[0]

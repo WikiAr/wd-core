@@ -27,11 +27,7 @@ from wd_api import wd_desc
 from desc_dicts.descraptions import *
 
 # ---
-translations = {
-    'Wikimedia disambiguation page': DescraptionsTable[
-        'Wikimedia disambiguation page'
-    ]
-}
+translations = {'Wikimedia disambiguation page': DescraptionsTable['Wikimedia disambiguation page']}
 # ---
 replacement = {}
 replacement["fa"] = {
@@ -118,11 +114,7 @@ def mainfromQuarry2():
     sparql = open_url.getURL(url=url)
     jso = json.loads(sparql)
     topic = 'Wikimedia disambiguation page'
-    list = [
-        f"Q{str(x[0])}"
-        for x in jso['rows']
-        if x[1] == "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا"
-    ]
+    list = [f"Q{str(x[0])}" for x in jso['rows'] if x[1] == "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا"]
     for num, page in enumerate(list, start=1):
         item = pywikibot.ItemPage(repo, page.strip())
         q = item.title(as_link=False)

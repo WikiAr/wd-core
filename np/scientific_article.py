@@ -233,7 +233,7 @@ def make_scientific_desc(lang, date, precision):
         if lang == "uk":
             if day == '01' or day == '1' or precision == 10 or precision == 11:
                 date2 = f'{Month_name} {year}'
-                    # printe.output( 'uk date2:"%s"' % date2 )
+                # printe.output( 'uk date2:"%s"' % date2 )
         elif day == '01' or day == '1' or precision == 10:
             date2 = f'{Month_name} {year}'
         elif precision == 11:

@@ -108,9 +108,7 @@ def work2(item, topic):
                     value = ItemDescriptions[lang]  # ['value']
                     if value != replacement[lang]:
                         NewDesc[lang] = {"language": lang, "value": replacement[lang]}
-                        pywikibot.output(
-                            f'<<lightyellow>> {lang}:replace "{value}" by: "{replacement[lang]}".'
-                        )
+                        pywikibot.output(f'<<lightyellow>> {lang}:replace "{value}" by: "{replacement[lang]}".')
                         fixlang.append(lang)
                 else:
                     NewDesc[lang] = {"language": lang, "value": translations[topic][lang]}

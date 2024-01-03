@@ -714,9 +714,7 @@ def fix_date(data, title):
                     # return ""
                     continue
                 else:
-                    if hhh := re.match(
-                        r'(\d\d\d\d)\-\d\d\-\d\dT\d\d\:\d\d\:\d\dZ', date
-                    ):
+                    if hhh := re.match(r'(\d\d\d\d)\-\d\d\-\d\dT\d\d\:\d\d\:\d\dZ', date):
                         if int(hhh.group(1)) < Work_with_Year[fanco]:
                             remove_date[fanco] += 1
                             # print_test2( 'remove_date[fanco] += 1 (%d) date == "%s"' % (remove_date[fanco], date) )
@@ -965,9 +963,9 @@ def work_tano(text, MainTitle):
             lines[MainTitle][q_id]["rank"] = re.sub(regline, r"\g<rank>", ppr)
             lines[MainTitle][q_id]["race"] = re.sub(regline, r"\g<race>", ppr)
             lines[MainTitle][q_id]["p17"] = re.sub(regline, r"\g<p17>", ppr)
-                    # ---
-                    # print( q_id )
-                    # print( "========================" )
+            # ---
+            # print( q_id )
+            # print( "========================" )
     # ---
     # print( "lenth sections : %d"  % len( lines[MainTitle] ) )
     # ---

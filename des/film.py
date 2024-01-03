@@ -39,7 +39,7 @@ def action_one_item(Qid, pa, lang, keys):
     # desc = MakeDesc(Qid, auth, lang)
     # Summary= 'Bot: - Add descriptions: '+ lang
     keys = sorted(keys)
-        # ---
+    # ---
 
     printe.output(f'keys:{str(keys)}')
     # ---
@@ -253,11 +253,7 @@ def MakeDesc(Qid, pa, lang):
     if lang not in by_list:
         printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
-    co = (
-        'من أداء '
-        if (Qid == 'Q482994') and (lang == 'ar')
-        else f'{by_list[lang]} '
-    )
+    co = 'من أداء ' if (Qid == 'Q482994') and (lang == 'ar') else f'{by_list[lang]} '
     # ---
     if (lang in pa) and (pa[lang] != ''):
         if auth := pa[lang]:

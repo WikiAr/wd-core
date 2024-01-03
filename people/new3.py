@@ -190,7 +190,7 @@ def check_quarry_new(tab):
         json = wd_bot.sparql_generator_url(qua)
         # ---
         New_Json.extend(iter(json))
-            # ---
+        # ---
     # ---
     return New_Json
 
@@ -336,11 +336,7 @@ def start_one_nat(nat_tab):
         genderlabel = genders.get(p21, "male")
         # ---
         descriptions_keys = sorted(x["deskey"].split(","))
-        NewDesc = {
-            lang: {"language": lang, "value": x_table[lang][genderlabel]}
-            for lang in x_table.keys()
-            if lang not in descriptions_keys
-        }
+        NewDesc = {lang: {"language": lang, "value": x_table[lang][genderlabel]} for lang in x_table.keys() if lang not in descriptions_keys}
         # ---
         if NewDesc != {}:
             wd_desc.work_api_desc(NewDesc, q)
@@ -381,10 +377,7 @@ def mainnat(Tabs):  # translations_for_nat
 
 
 def Main_Test():
-    qua = (
-        'SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097'
-        + ' . ?item schema:description "Argentinian actor"@en.  '
-    )
+    qua = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097' + ' . ?item schema:description "Argentinian actor"@en.  '
     qua += 'OPTIONAL { ?item schema:description ?de. FILTER(LANG(?de) = "fr"). } FILTER (!BOUND(?de)) }'
     wd_bot.sparql_generator_url(qua)
 

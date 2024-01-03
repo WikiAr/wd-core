@@ -119,9 +119,7 @@ def make_newlabel(label, ar, en):
     newlabel = re.sub(r"at the winter olympics", "في الألعاب الأولمبية الشتوية", newlabel, flags=re.IGNORECASE)
     # ---
     for aeo in Mako_keys_4:
-        newlabel = re.sub(
-            f" {aeo}", f" {Mako_keys_4[aeo]}", newlabel, flags=re.IGNORECASE
-        )
+        newlabel = re.sub(f" {aeo}", f" {Mako_keys_4[aeo]}", newlabel, flags=re.IGNORECASE)
     # ---
     for rrr in International_Federation:
         newlabel = re.sub(

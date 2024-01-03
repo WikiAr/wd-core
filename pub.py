@@ -18,10 +18,7 @@ paths = [
     './local/lib/python3.10/site-packages',
 ]
 # ---
-if (
-    "/data/project/" not in filepath
-    and "labstore-secondary-tools-project" not in filepath
-):
+if "/data/project/" not in filepath and "labstore-secondary-tools-project" not in filepath:
     paths = ['I:/core/wd_core/', 'I:/core/master/']
 # ---
 for x in paths:
