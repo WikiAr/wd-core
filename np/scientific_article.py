@@ -209,8 +209,6 @@ def make_scientific_desc(lang, date, precision):
     # date = dateutil.parser.parse(date)
     # year , month , day = str(date.year) ,str(date.month) , str(date.day)
     year, month, day = date['year'], date['month'], date['day']
-    # printe.output( 'year:%s, month:%s, day:%s' % (year , month, day)   )
-    precision = int(precision)
     # _Year , _Day = year, day
     Correctdate = True
     Full_Date = False
@@ -228,25 +226,21 @@ def make_scientific_desc(lang, date, precision):
         Correctdate = False
         printe.output(f'<<lightred>> year:{year}, month:{month}, day:{day}')
         printe.output('<<lightred>> unCorrect date:')
-    # ---
-    # إضافة اسم الشهر
-    Month_name = Monthname(lang, month)  # عربي وانجليزي فقط
-    if Month_name:
+    if Month_name := Monthname(lang, month):
+        # printe.output( 'year:%s, month:%s, day:%s' % (year , month, day)   )
+        precision = int(precision)
         # ---
         if lang == "uk":
             if day == '01' or day == '1' or precision == 10 or precision == 11:
-                date2 = Month_name + ' ' + year
-            # printe.output( 'uk date2:"%s"' % date2 )
-        # ---
-        else:
-            if day == '01' or day == '1' or precision == 10:
-                date2 = Month_name + ' ' + year
-            # ---
-            elif precision == 11:
-                date2 = day + ' ' + Month_name + ' ' + year
-                if lang == "da":
-                    date2 = day + '. ' + Month_name + ' ' + year
-                Full_Date = True
+                date2 = f'{Month_name} {year}'
+                    # printe.output( 'uk date2:"%s"' % date2 )
+        elif day == '01' or day == '1' or precision == 10:
+            date2 = f'{Month_name} {year}'
+        elif precision == 11:
+            date2 = f'{day} {Month_name} {year}'
+            if lang == "da":
+                date2 = f'{day}. {Month_name} {year}'
+            Full_Date = True
     # ---
     # إضافة وصف مع التاريخ
     # if Correctdate:
@@ -262,7 +256,7 @@ def make_scientific_desc(lang, date, precision):
         # ---
         # تعديل الوصف الإنجليزي عند وجود تاريخ كامل
         if Full_Date and lang in ["en", "en-gb", "en-ca"]:
-            desc = "scientific article published on %s" % str(date2)
+            desc = f"scientific article published on {str(date2)}"
     # ---
     # إضافة وصف عادي
     elif year and lang in Desc_Just_year:
@@ -279,13 +273,13 @@ def make_scientific_desc(lang, date, precision):
     # ---
     # wikidata.org/w/index.php?title=Topic:Unt80qci751n0t84
     # وصف uk لسنة دون أشهر
-    if lang == "uk" and desc == "наукова стаття, опублікована %s" % year:
+    if lang == "uk" and desc == f"наукова стаття, опублікована {year}":
         desc = "наукова стаття"
         if year.startswith("1"):
-            desc = "наукова стаття, опублікована в %s" % year
+            desc = f"наукова стаття, опублікована в {year}"
         elif year.startswith("2"):
-            desc = "наукова стаття, опублікована у %s" % year
-        # printe.output( 'uk date2:"%s"' % date2 )
+            desc = f"наукова стаття, опублікована у {year}"
+            # printe.output( 'uk date2:"%s"' % date2 )
     # ---
     # if lang == "uk":
     # _Year , _Day = bnyear(year), bnyear(day)
@@ -312,20 +306,14 @@ def Get_P_API_time(item, P):
         if isinstance(vv, dict) and vv.get('time'):
             qlist.append(vv)
     # ---
-    Faso = {}
-    # ---
-    if len(qlist) == 0:
+    if not qlist:
         return False
     if len(qlist) == 1:
         return qlist[0]
     # ---
     sasa = [x['time'].split('-')[0].split('+0000000')[1] for x in qlist if x['time'].startswith('+0000000')]
-    for i in sasa:
-        Faso[i] = ''
-    if len(Faso.keys()) == 1:
-        return qlist[0]
-    # ---
-    return False
+    Faso = {i: '' for i in sasa}
+    return qlist[0] if len(Faso.keys()) == 1 else False
 
 
 def make_scientific_article(item, p31, num, TestTable=False):
@@ -333,7 +321,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
     tablem = {"descriptions": {}, "qid": "", "fixlang": []}
     # ---
     q = item["q"]
-    printe.output('<<lightyellow>> **%d: make_scientific_article: %s' % (num, item["q"]))
+    printe.output('<<lightyellow>> **%d: make_scientific_article: %s' % (num, q))
     # ---
     if p31 != 'Q13442814':
         printe.output("<<lightred>> make_scientific_article: can't make desc p31 != Q13442814")
@@ -359,12 +347,11 @@ def make_scientific_article(item, p31, num, TestTable=False):
     translations = {}
     # ---
     for lang in Scientific_descraptions.keys():
-        desc = make_scientific_desc(lang, pubdate, precision)
-        if desc:
+        if desc := make_scientific_desc(lang, pubdate, precision):
             translations[lang] = desc
     # ---
     if TestTable:
-        printe.output('<<lightgreen>> {}:{}'.format(translations["en"], translations["da"]))
+        printe.output(f'<<lightgreen>> {translations["en"]}:{translations["da"]}')
         printe.output(translations["en"])
         printe.output(translations["da"])
         printe.output(translations["ar"])
@@ -406,10 +393,10 @@ def make_scientific_article(item, p31, num, TestTable=False):
         tablem["descriptions"] = NewDesc
         tablem["qid"] = q
         tablem["fixlang"] = replacelang
-        return tablem
     else:
         print("make_scientific_article nothing to add. ")
-        return tablem
+
+    return tablem
 
 
 # ---

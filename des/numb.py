@@ -4,6 +4,7 @@
 python3 core8/pwb.py des/numb
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -25,11 +26,9 @@ quarry = '''SELECT (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 FILTER NOT EXISTS {?item schema:description ?ar filter (lang(?ar) = "ar")} .
 }
 '''
-c = 0
 json1 = wd_bot.sparql_generator_url(quarry)
 total = len(json1)
-for q in json1:
-    c += 1
+for c, q in enumerate(json1, start=1):
     Qid = q['q']
     printe.output('work %d from %d , %s' % (c, total, Qid))
     descriptions = wd_bot.Get_item_descriptions_or_labels(Qid, "descriptions")

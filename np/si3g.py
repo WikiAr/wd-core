@@ -25,6 +25,7 @@ python pwb.py np/si3g -newpages:200
 python3 core8/pwb.py np/si3g -newpages:200 ask
 
 """
+
 #
 # (C) Ibrahem Qasim, 2023
 #
@@ -42,7 +43,7 @@ from API import printe
 
 # ---
 Dir = Path(__file__).parent
-main_dir1 = str(Path(__file__).parent.parent) + '/'
+main_dir1 = f'{str(Path(__file__).parent.parent)}/'
 # ---
 printe.output(f'<<lightyellow>> main_dir1 = {main_dir1}')
 # ---
@@ -54,7 +55,7 @@ from newapi.page import NEW_API
 
 # ---
 api_new = NEW_API('www', family='wikidata')
-login = api_new.Login_to_wiki()
+api_new.Login_to_wiki()
 # pages    = api_new.Find_pages_exists_or_not(liste)
 # json1    = api_new.post_params(params)
 # pages    = api_new.Get_All_pages(start='', namespace="0", limit="max", apfilterredir='', limit_all=0)
@@ -85,15 +86,13 @@ def mainwithcat2():
     for arg in sys.argv:
         arg, _, value = arg.partition(':')
         # ---
-        if arg == "-limit" or arg == "limit":
+        if arg in ["-limit", "limit"]:
             user_limit = value
         # ---
-        if arg == "-newpages":
-            newpages = value
-        # ---
-        # python3 core8/pwb.py np/si3g -arfile:Q7187
         if arg == "-arfile":
             file = f'dump/ar/{value}.txt'
+        elif arg == "-newpages":
+            newpages = value
         # ---
         # python3 core8/pwb.py np/si3g -file:dump/artest/Q7187.txt
         # python3 core8/pwb.py np/si3g -file:dump/artest/Q1457376.txt
@@ -116,7 +115,7 @@ def mainwithcat2():
         # ---
         # python3 core8/pwb.py np/si3g -ns:0 -usercontribs:Edoderoobot
         # python3 core8/pwb.py np/si3g -ns:0 -usercontribs:Ghuron
-        if arg == "-user" or arg == "-usercontribs":
+        if arg in ["-user", "-usercontribs"]:
             user = value
         # ---
         if arg == "-ns":
@@ -137,12 +136,8 @@ def mainwithcat2():
     if lista == []:
         genet = gent.get_gent()
         lista = [page.title(as_link=False) for page in genet]
-    # ---
-    # ---
-    num = 0
     printe.output('*<<lightred>> > mainwithcat2 :')
-    for q in lista:
-        num += 1
+    for num, q in enumerate(lista, start=1):
         si3.ISRE(q, num, len(lista))
     # ---
     si3.print_new_types()

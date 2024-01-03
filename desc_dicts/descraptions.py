@@ -38,6 +38,7 @@ WHERE {
 group by ?P31
 
 """
+
 # ---
 # from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
 from desc_dicts.scientific_article_desc import Scientific_descraptions
@@ -269,7 +270,7 @@ tiny_wrwr = {
     'Q5527082': {'ar': '', 'en': ''},  # 505
 }
 # ---
-for ps in tiny_wrwr.keys():
+for ps in tiny_wrwr:
     if ps in Qid_Desc:
         print(ps)
 # ---
@@ -1559,7 +1560,7 @@ if __name__ == "__main__":
     # python3 core8/pwb.py desc_dicts/descraptions
     u1 = ''
     u2 = ''
-    for x, taba in DescraptionsTable.items():
+    for taba in DescraptionsTable.values():
         en_d = taba.get('en', '')
         sl_d = taba.get('sl', '')
         line = f'\n|-\n| {en_d} || {sl_d}'

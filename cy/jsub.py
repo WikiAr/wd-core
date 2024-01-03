@@ -30,10 +30,8 @@ import gent
 
 def main2(*args):
     generator = gent.get_gent(*args)
-    numb = 0
-    for page in generator:
+    for numb, page in enumerate(generator, start=1):
         pagetitle = page.title()
-        numb += 1
         pywikibot.output('page: %d : ' % numb + pagetitle)
         StartOnePage(pagetitle)
 

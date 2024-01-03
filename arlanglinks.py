@@ -1,6 +1,7 @@
 """
 python3 core8/pwb.py dump/arlanglinks
 """
+
 import sys
 import json
 from pathlib import Path
@@ -32,17 +33,13 @@ AND p1.page_namespace = 14
 # ---
 table = {}
 # ---
-all = 1000
-# ---
-TEST = True if 'test' in sys.argv else False
-# ---
-if TEST:
-    all = 20
+TEST = 'test' in sys.argv
+all = 20 if TEST else 1000
 # ---
 offset = 0
+limit = 200000
 # ---
 for i in range(1, all):
-    limit = 200000
     # ---
     if i != 1:
         offset += limit

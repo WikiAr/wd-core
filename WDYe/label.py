@@ -35,31 +35,28 @@ missing_dict = {}
 
 
 def preee(wditem, data, site):
-    wditem.editEntity(data, summary='Bot: Add Arabic label: ' + site)
+    wditem.editEntity(data, summary=f'Bot: Add Arabic label: {site}')
 
 
 def action_one_item(wditem):
     global items2do
     items2do -= 1
     if 'arwiki' in wditem.sitelinks:
-        ma = wditem.sitelinks['arwiki']
         # print(ma)
         # site = ma.title
         # if site:
         # print(site)
         if 'ar' in wditem.labels:  # وصف انجليزي متوفر في ويكي بيانات
-            print(' تسمية عربية متوفرة: %s ' % wditem.labels['ar'])
+            print(f" تسمية عربية متوفرة: {wditem.labels['ar']} ")
         else:
-            print("--- يتم العمل على العنصر %s " % wditem)
-            print("-- التسمية :  %s " % ma)
-            data = {}
-            data.update({'labels': {'ar': ma}})
+            print(f"--- يتم العمل على العنصر {wditem} ")
+            ma = wditem.sitelinks['arwiki']
+            print(f"-- التسمية :  {ma} ")
+            data = {'labels': {'ar': ma}}
             # preee(wditem, data, site)
             preee(wditem, data, ma)
 
     return 1
-
-    return 0
 
 
 def action_one_item2(wditem):
@@ -80,8 +77,6 @@ def action_one_item2(wditem):
         # preee(wditem, data, site)
 
     return 1
-
-    return 0
 
 
 """
@@ -140,7 +135,7 @@ def main():
         # except BaseException:
         # pass
         # print('%s pass' % (wditem)
-    print('Items done: %s' % itemsdone)
+    print(f'Items done: {itemsdone}')
 
 
 if __name__ == "__main__":

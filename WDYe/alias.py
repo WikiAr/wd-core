@@ -4,6 +4,7 @@
 إضافة تسميات مواضيع طبية
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -24,16 +25,14 @@ from wd_api import himoAPI_test as himoAPI
 # ---
 SaveR = {1: False}
 # ---
-main_table = {}
-main_table["Q4167836"] = {
-    "كرواتيون": "كروات",
-    "يهوديون": "يهود",
-    "أرمنيون": "أرمن",
-    "أفغانيون": "أفغان",
-}
-# ---
-main_table["Q5"] = {
-    "جلاسر": "غلاسر",
+main_table = {
+    "Q4167836": {
+        "كرواتيون": "كروات",
+        "يهوديون": "يهود",
+        "أرمنيون": "أرمن",
+        "أفغانيون": "أفغان",
+    },
+    "Q5": {"جلاسر": "غلاسر"},
 }
 # ---
 allise = {}
@@ -61,8 +60,8 @@ def WORK(item, table, type):
     alias = table["alias"]
     if type in allise:
         pywikibot.output(f'<<lightgreen>> type:"{type}" in allise:"{allise[type]}" ')
-        arlab2 = re.sub(r"^%s " % type, allise[type] + " ", arlab2)
-        arlab2 = re.sub(r" %s " % type, " " + allise[type] + " ", arlab2)
+        arlab2 = re.sub(f"^{type} ", f"{allise[type]} ", arlab2)
+        arlab2 = re.sub(f" {type} ", f" {allise[type]} ", arlab2)
     # ---
     if arlab2 != arlab:
         pywikibot.output(f"arlab2 : {arlab2}")
@@ -70,7 +69,7 @@ def WORK(item, table, type):
             himoAPI.Alias_API(item, [arlab2], "ar", False)
         else:
             sa = pywikibot.input(f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
-            if sa == 'y' or sa == 'a' or sa == '':
+            if sa in ['y', 'a', '']:
                 himoAPI.Alias_API(item, [arlab2], "ar", False)
             else:
                 pywikibot.output(' himoAPI: wrong answer')
@@ -112,14 +111,11 @@ def WORK_table(qid, tables):
                     Table[q][tab] = []
                 if tab != 'item':
                     Table[q][tab].append(item[tab])
-        # ---
-        num = 0
-        for item in Table:
-            num += 1
+        for num, (item, value) in enumerate(Table.items(), start=1):
             # if num < 2:
             pywikibot.output('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
             # item['item'] = item['item'].split("/entity/")[1]
-            WORK(item, Table[item], peo)
+            WORK(item, value, peo)
 
 
 def main():
@@ -142,15 +138,14 @@ def main():
         # ---#Depth[1]
         if arg == "p":
             val = value
-        # ---
-        if arg == "q":
+        elif arg == "q":
             qnew = value
         # ---
         if arg == 'always':
             SaveR[1] = True
             pywikibot.output('<<lightred>> SaveR = True.')
         # ---#limit[1]
-        if arg == '-limit' or arg == 'limit':
+        if arg in ['-limit', 'limit']:
             Limit[1] = value
             pywikibot.output(f'<<lightred>> Limit = {value}.')
     # ---
@@ -162,10 +157,7 @@ def main():
     if val2 != "" and qnew != "":
         table_new = {}
         table_new[qnew] = {val: val2}
-    # ---
-    num_peo = 0
-    for qid in table_new:
-        num_peo += 1
+    for num_peo, qid in enumerate(table_new, start=1):
         pywikibot.output('<<lightblue>> %d/%d peo:"%s" ' % (num_peo, len(table_new.keys()), qid))
         WORK_table(qid, table_new[qid])
 

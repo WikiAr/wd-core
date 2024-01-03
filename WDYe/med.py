@@ -212,10 +212,7 @@ def Get_item_table(enlab):
                 # ---
                 if ar not in Item_tab:
                     Item_tab.append(ar)
-    # ---
-    Item_tab = Fix_List(Item_tab)
-    # ---
-    return Item_tab
+    return Fix_List(Item_tab)
 
 
 def Get_item_table2(enlab):
@@ -257,10 +254,7 @@ def Get_item_table2(enlab):
                 # ---
                 if ar not in Item_tab:
                     Item_tab.append(ar)
-    # ---
-    Item_tab = Fix_List(Item_tab)
-    # ---
-    return Item_tab
+    return Fix_List(Item_tab)
 
 
 # ---
@@ -268,27 +262,23 @@ Looogs = {}
 
 
 def looog():
-    wikidatasite = pywikibot.Site('wikidata', 'wikidata')
-    EngPage = pywikibot.Page(wikidatasite, "user:Mr._Ibrahem/medstat")
-    main_text = EngPage.text
-    log2 = {}
-    # ---
-    for x in Looogs:
-        if Looogs[x] != []:
-            log2[x] = Looogs[x]
+    log2 = {x: Looogs[x] for x in Looogs if Looogs[x] != []}
     # ---
     text2 = ""
     # ---
-    for x in log2:
+    for x, value in log2.items():
         q = '{{Q| ' + x + '}}'
         text2 += "\n|-\n| %s || {{" % q
         text2 += f"Label | {x} | en"
         text2 += "}} ||"
-        text2 += ",".join(log2[x]) + "\n"
+        text2 += ",".join(value) + "\n"
     # ---
     if text2 != "":
         text2 = '''\n=={{subst:date}}==\n{| class="wikitable sortable"\n|-\n! item\n! en \n! ar\n|-''' + text2
         text2 = text2 + "|-\n|}"
+        wikidatasite = pywikibot.Site('wikidata', 'wikidata')
+        EngPage = pywikibot.Page(wikidatasite, "user:Mr._Ibrahem/medstat")
+        main_text = EngPage.text
         text3 = main_text + text2
         # ---
         himoAPI.page_put(text3, "update.", "user:Mr._Ibrahem/medstat")
@@ -334,7 +324,7 @@ def WORK(item, table):
                 Looogs[item].append(ali)
             else:
                 sa = pywikibot.input(f'<<lightyellow>>add ali : "{ali}" as label to item :{item}? ')
-                if sa == 'y' or sa == 'a' or sa == '':
+                if sa in ['y', 'a', '']:
                     himoAPI.Labels_API(item, ali, "ar", False)
                     Looogs[item].append(ali)
                 else:
@@ -361,7 +351,7 @@ def WORK(item, table):
             Looogs[item].append(",".join(NewALLi_to_add))
         else:
             sa = pywikibot.input(f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
-            if sa == 'y' or sa == 'a' or sa == '':
+            if sa in ['y', 'a', '']:
                 himoAPI.Alias_API(item, NewALLi_to_add, "ar", False)
                 Looogs[item].append(",".join(NewALLi_to_add))
             else:
@@ -404,11 +394,11 @@ def main():
             SaveR[1] = True
             printe.output('<<lightred>> SaveR = True.')
         # ---#limit[1]
-        if arg == '-limit' or arg == 'limit':
+        if arg in ['-limit', 'limit']:
             Limit[1] = value
             printe.output(f'<<lightred>> Limit = {value}.')
-        # ---#
-    sat = sat % (pp, qq)
+            # ---#
+    sat %= (pp, qq)
     # ?item wdt:P1343 ?P1343.
     # {?P1343 wdt:P629 wd:Q200306.} UNION {?item wdt:P1343 wd:Q19558994. }
     # sat = "{?item wdt:P31/wdt:P279* wd:Q27043950. }"#Q4936952.}
@@ -440,18 +430,19 @@ def main():
                 Table[q][tab] = []
             # if item[tab] != "" :
             Table[q][tab].append(item[tab])
-    # ---
-    Tab_l = {}
-    for it_em in Table:
-        Tab_l[it_em] = {'ar': Table[it_em]["ar"][0], 'alias': Table[it_em]["alias"], 'en': Table[it_em]["en"][0]}
-    # ---
-    num = 0
-    for item in Tab_l:
-        num += 1
+    Tab_l = {
+        it_em: {
+            'ar': Table[it_em]["ar"][0],
+            'alias': Table[it_em]["alias"],
+            'en': Table[it_em]["en"][0],
+        }
+        for it_em in Table
+    }
+    for num, (item, value_) in enumerate(Tab_l.items(), start=1):
         # if num < 2:
         printe.output('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Tab_l.keys()), item))
         # item['item'] = item['item'].split("/entity/")[1]
-        WORK(item, Tab_l[item])
+        WORK(item, value_)
     # ---
     looog()
 

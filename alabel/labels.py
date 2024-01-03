@@ -8,6 +8,7 @@
 python3 core8/pwb.py alabel/labels -limit:20
 
 """
+
 #
 # (C) Ibrahem Qasim, 2023
 #
@@ -51,12 +52,12 @@ AND NOT EXISTS (
 for arg in sys.argv:
     arg, _, value = arg.partition(':')
     # ---
-    if arg == '-limit' or arg == 'limit':
+    if arg in ['-limit', 'limit']:
         Limit[1] = value
         printe.output(f'<<lightred>> Limit = {value}.')
 # ---
 if Limit[1] != '':
-    Quaa = Quaa + f'limit {Limit[1]}'
+    Quaa += f'limit {Limit[1]}'
 
 
 def main():
@@ -66,9 +67,7 @@ def main():
     # ---
     len_result = len(result)
     # ---
-    num = 0
-    # ---
-    for item in result:
+    for num, item in enumerate(result, start=1):
         qid = item['qid']
         page = item['page']
         # ---
@@ -78,8 +77,6 @@ def main():
         if isinstance(page, bytes):
             printe.output('type(page) == bytes')
             page = page.decode("utf-8")
-        # ---
-        num += 1
         # ---
         printe.output(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')
         # ---

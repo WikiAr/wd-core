@@ -2,6 +2,7 @@
 """
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -21,7 +22,7 @@ from API import printe
 
 # ---
 Dir = Path(__file__).parent
-main_dir1 = str(Path(__file__).parent.parent) + '/'
+main_dir1 = f'{str(Path(__file__).parent.parent)}/'
 # ---
 printe.output(f'<<lightyellow>> main_dir1 = {main_dir1}')
 # ---
@@ -90,7 +91,7 @@ if True:
         if arg == 'qslimit':
             QSlimit[1] = int(value)
         # ---
-        if arg.lower() == 'offset' or arg.lower() == 'off':
+        if arg.lower() in ['offset', 'off']:
             printe.output(f'offsetbg[1] = int({value})')
             offsetbg[1] = int(value)
     # ---
@@ -181,15 +182,11 @@ def Get_P_API_time(item, P):
     # ---
     if len(qlist) == 1:
         return qlist[0]
-    # ---
     elif len(qlist) > 1:
         sasa = [x['time'].split('-')[0].split('+0000000')[1] for x in qlist if x['time'].startswith('+0000000')]
         for i in sasa:
             Faso[i] = ''
-        if len(Faso.keys()) == 1:
-            return qlist[0]
-        else:
-            return False
+        return qlist[0] if len(Faso.keys()) == 1 else False
     else:
         return False
 
@@ -236,7 +233,7 @@ def work_api_desc(NewDesc, q, fixlang):
     lang_to_skip = ["tg-latn", 'en-gb', 'en-ca']
     # ---
     if len(langes) == 1:
-        lang = [x for x in NewDesc.keys()][0]
+        lang = list(NewDesc.keys())[0]
         # ---
         if lang in lang_to_skip:
             printe.output(f'work_api_desc:"{q}" only en-gb and en-ca, Skipp... ')
@@ -270,11 +267,7 @@ def make_tax_des_new(item):
         return ''
     # ---
     P105 = Get_P_API_id(item, "P105")
-    P105ar = ''
-    for p in P105:
-        if p in labforP105:
-            P105ar = labforP105[p]
-            break
+    P105ar = next((labforP105[p] for p in P105 if p in labforP105), '')
     # ---
     if P105ar == '':
         return ''
@@ -289,8 +282,8 @@ def make_tax_des_new(item):
         ?item wdt:P171* ?P171.
         ?P171 wdt:P105 wd:Q37517.
         ?item wdt:P105 ?item105.
-    }''' % (
-        " ".join(['wd:%s' % x for x in lab_for_p171.keys()])
+    }''' % " ".join(
+        [f'wd:{x}' for x in lab_for_p171.keys()]
     )
     nan = nan.replace("Q111771064", q)
     # ---
@@ -316,7 +309,7 @@ def make_tax_des_new(item):
             # ---
             if P171 in lab_for_p171.keys():
                 P171ar = lab_for_p171[P171]
-                ar_lab = P105ar + ' ' + P171ar
+                ar_lab = f'{P105ar} {P171ar}'
                 if "descqs" in sys.argv:
                     work_qs(q, {'ar': {'value': ar_lab}})
                 else:
@@ -329,15 +322,14 @@ def work_taxon_desc(item, endesc):
     q = item["q"]
     # printe.output( ' work_taxon_desc:endesc:"%s", ardesc:"%s"' % (endesc, ardesc) )
     printe.output(f' work_taxon_desc:ardesc:"{ardesc}"')
-    if ardesc != '':
-        # ---
-        if "descqs" in sys.argv:
-            work_qs(q, {'ar': {'value': ardesc}})
-        else:
-            himoAPI.Des_API(q, ardesc, 'ar')
-    else:
+    if ardesc == '':
         print(f' no ardesc for en:{endesc}.')
         make_tax_des_new(item)
+
+    elif "descqs" in sys.argv:
+        work_qs(q, {'ar': {'value': ardesc}})
+    else:
+        himoAPI.Des_API(q, ardesc, 'ar')
 
 
 def work_new_list(item, p31, ardes):
@@ -388,17 +380,16 @@ def work_people(item, topic, num, ardes):
     years = ''
     # ---
     if topic.find("(") != -1:
-        hhh = re.match(r'^(.*?) (\([\d\–-]+\))', topic)
-        if hhh:
+        if hhh := re.match(r'^(.*?) (\([\d\–-]+\))', topic):
             topic = hhh.group(1)
-            years = ' ' + hhh.group(2)
+            years = f' {hhh.group(2)}'
             print(f"topic:{topic},years:{years}")
     # ---
     if en_des_to_ar.get(topic, '') != '':
         ara = en_des_to_ar[topic]
         # ---
         if years != '':
-            ara += ' ' + years
+            ara += f' {years}'
         # ---
         himoAPI.Des_API(q, ara, 'ar')
         return ""
@@ -422,10 +413,7 @@ def work_people(item, topic, num, ardes):
     # ---
     descriptions = item.get("descriptions", {})
     NewDesc = {}
-    # ---
-    p21_c = genders.get(p21)
-    # ---
-    if p21_c:
+    if p21_c := genders.get(p21):
         for lang in taber.keys():
             if taber[lang].get(p21_c):
                 if lang not in descriptions.keys():
@@ -473,7 +461,7 @@ def log_new_types(lists):
     if "nolog" in sys.argv:
         return ''
     # ---
-    jsonfils = main_dir1 + 'np/new_types.json'
+    jsonfils = f'{main_dir1}np/new_types.json'
     # ---
     try:
         listo = codecs.open(jsonfils, "r", encoding="utf-8-sig").read()
@@ -486,7 +474,7 @@ def log_new_types(lists):
         printe.output('')
     # ---
     if "log2" in sys.argv:
-        jsonfils = main_dir1 + 'np/new_types2.json'
+        jsonfils = f'{main_dir1}np/new_types2.json'
     # ---
     if Lalo_types["n"] == {}:
         with codecs.open(jsonfils, "r", encoding="utf-8-sig") as listt:

@@ -1,6 +1,7 @@
 """
 
 """
+
 from np.si3 import Qids_translate, space_list_and_other, others_list, others_list_2, Geo_List
 from np import read_json
 import sys
@@ -9,7 +10,7 @@ import pywikibot
 
 # ---
 Dir = Path(__file__).parent
-main_dir1 = str(Path(__file__).parent.parent) + '/'
+main_dir1 = f'{str(Path(__file__).parent.parent)}/'
 
 
 def read_new_types_file():
@@ -24,9 +25,9 @@ def read_new_types_file():
     for arg in sys.argv:
         arg, _, value = arg.partition(':')
         # ---
-        if arg == "-number" or arg == "number":
+        if arg in ["-number", "number"]:
             number = int(value)
-        if arg == "-file" or arg == "file":
+        if arg in ["-file", "file"]:
             file = value
     # ---
     wd_file = {}
