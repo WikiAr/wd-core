@@ -6,6 +6,7 @@
 python pwb.py des/filmnew
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -26,59 +27,57 @@ from wd_api import wd_bot
 wikidatasite = pywikibot.Site('wikidata', 'wikidata')
 repo = wikidatasite.data_repository()
 # ---
-AskSave = {}
-# ---
-AskSave[1] = True
+AskSave = {1: True}
 # ---
 # def AddDes( item , pa , lang , Qid , keys):
 
 
 def action_one_item(Qid, pa, lang, keys):
-    item = getwditem(pa['item'])
-    if item:
-        # desc = MakeDesc(Qid, auth, lang)
-        # Summary= 'Bot: - Add descriptions: '+ lang
-        keys = sorted(keys)
+    if not (item := getwditem(pa['item'])):
+        return
+    # desc = MakeDesc(Qid, auth, lang)
+    # Summary= 'Bot: - Add descriptions: '+ lang
+    keys = sorted(keys)
         # ---
 
-        printe.output('keys:' + str(keys))
-        # ---
-        descriptions = item.descriptions
-        NewDesc = {}
-        addedlangs = []
-        # ---
-        for lang in keys:
-            if lang not in descriptions.keys():
-                # ---
-                lang2 = lang
+    printe.output(f'keys:{str(keys)}')
+    # ---
+    descriptions = item.descriptions
+    NewDesc = {}
+    addedlangs = []
+    # ---
+    for lang in keys:
+        if lang not in descriptions.keys():
+            # ---
+            lang2 = lang
 
-                # ---
-                if MakeDesc(Qid, pa, lang2):
-                    des = MakeDesc(Qid, pa, lang2)
-                    NewDesc[lang] = {"language": lang, "value": des}
-                    dns = ''
-                    if 'endes' in pa:
-                        dns = pa['endes']
-                    printe.output(f'newar:{des},en:{dns}')
-                    addedlangs.append(lang)
-                else:
-                    printe.output(f'*no desc for "{lang}"')
-        # ---
-        if addedlangs:
-            qitem = item.title(as_link=False)
-            if AskSave[1]:
-                printe.output('================== + ' + str(addedlangs))
-                for lan in NewDesc.keys():
-                    printe.output(f"lang:{lan}, value: \"{NewDesc[lan]['value']}\"")
-                saaa = pywikibot.input(' Add as descriptions? ')
-                if saaa == 'y' or saaa == 'a' or saaa == '':
-                    if saaa == 'a':
-                        AskSave[1] = False
-                    wd_desc.work_api_desc(NewDesc, qitem)
-                else:
-                    printe.output('* rong answer')
+            # ---
+            if MakeDesc(Qid, pa, lang2):
+                des = MakeDesc(Qid, pa, lang2)
+                NewDesc[lang] = {"language": lang, "value": des}
+                dns = ''
+                if 'endes' in pa:
+                    dns = pa['endes']
+                printe.output(f'newar:{des},en:{dns}')
+                addedlangs.append(lang)
             else:
+                printe.output(f'*no desc for "{lang}"')
+        # ---
+    if addedlangs:
+        qitem = item.title(as_link=False)
+        if AskSave[1]:
+            printe.output(f'================== + {addedlangs}')
+            for lan, value in NewDesc.items():
+                printe.output(f"""lang:{lan}, value: \"{value['value']}\"""")
+            saaa = pywikibot.input(' Add as descriptions? ')
+            if saaa in ['y', 'a', '']:
+                if saaa == 'a':
+                    AskSave[1] = False
                 wd_desc.work_api_desc(NewDesc, qitem)
+            else:
+                printe.output('* rong answer')
+        else:
+            wd_desc.work_api_desc(NewDesc, qitem)
 
 
 def getwditem(qitem):
@@ -122,10 +121,10 @@ def GetQuery(Qid, lang, keys):
     head = '?' + ' ?'.join([x for x in keys if x != lang])
     ur = ur + head
     ur = ur + ' ?endes  ?dates \n WHERE {'
-    ur = ur + f' \n?item wdt:{P50} ?auths . \n?item wdt:{P50} ?auths2 .\n'
+    ur = f'{ur} \n?item wdt:{P50} ?auths . \n?item wdt:{P50} ?auths2 .\n'
     # ---
     sa = ' ?item wdt:P31 wd:Q11424 .\n?item wdt:P577 ?date2.\nBIND(year(?date2) AS ?dates). \n'
-    sa = sa + 'OPTIONAL { ?item schema:description ?endes. FILTER((LANG(?endes)) = "en") }\n'
+    sa += 'OPTIONAL { ?item schema:description ?endes. FILTER((LANG(?endes)) = "en") }\n'
     ur = ur + sa
 
     def fofo(x):
@@ -139,13 +138,13 @@ def GetQuery(Qid, lang, keys):
     ur = ur + OPTIONAL
     # ---
     ur = ur + ' \n{'
-    ur = ur + f'?auths2 rdfs:label ?{lang}2 filter (lang(?{lang}2) = "{lang}") .'
+    ur = f'{ur}?auths2 rdfs:label ?{lang}2 filter (lang(?{lang}2) = "{lang}") .'
     ur = ur + "}\n"
     ur = ur + 'OPTIONAL {'
-    ur = ur + f'   ?item schema:description ?itemDes filter(lang(?itemDes) = "{lang}")'
+    ur = f'{ur}   ?item schema:description ?itemDes filter(lang(?itemDes) = "{lang}")'
     ur = ur + '} FILTER(!BOUND(?itemDes))\n'  # GROUP BY ?item '
     ur = ur + 'SERVICE wikibase:label { '
-    ur = ur + f'     bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?{lang}'
+    ur = f'{ur}     bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?{lang}'
     ur = ur + ' }}\n'
     # printe.output(ur)
     # ---
@@ -158,16 +157,13 @@ def Gquery2(json1):
     # for head in json1['head']['vars']:
     for result in json1['results']['bindings']:
         q = 'item' in result and result['item']['value'].split('/entity/')[1] or ''
-        s = {}
-        for se in result:
-            s[se] = result[se]['value']
+        s = {se: result[se]['value'] for se in result}
         s['item'] = q
         table[q] = s
     return table
 
 
 # ---
-filmform = {}
 xsxsx = {
     'an': 'cinta de ~YEAR~ dirichita por ~AUTHOR~',
     'ar': 'فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~',
@@ -187,12 +183,13 @@ xsxsx = {
     'ro': 'film din ~YEAR~ regizat de ~AUTHOR~',
     'sv': 'film från ~YEAR~ regisserad av ~AUTHOR~',
 }
-filmform['film'] = {
-    'ar': 'فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~',
-    'en': '~YEAR~ film by ~AUTHOR~',
-    'nl': 'film uit ~YEAR~ van ~AUTHOR~',
+filmform = {
+    'film': {
+        'ar': 'فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~',
+        'en': '~YEAR~ film by ~AUTHOR~',
+        'nl': 'film uit ~YEAR~ van ~AUTHOR~',
+    }
 }
-
 # ---
 quaua = '''SELECT #DISTINCT
 ?item ?ar ?nl ?en ?endes  ?dates ?auths
@@ -229,13 +226,11 @@ def WorkWithOneLang(Qid, lang, keys):
     PageList = wd_bot.sparql_generator_url(quary, key='item')
     # ---
     total = len(PageList)
-    num = 0
     # ---
     printe.output('* PageList: ')
-    for pa in PageList.keys():
+    for num, pa in enumerate(PageList.keys(), start=1):
         printe.output(pa)
         PageList[pa]['item'] = pa.split('/entity/')[1]
-        num += 1
         SAO = filmform[Qid][lang]
         printe.output('<<lightblue>>> %s (%s) :%s/%d : %s' % (lang, SAO, num, total, PageList[pa]['item']))
         # ---
@@ -257,15 +252,14 @@ def MakeDesc(Qid, pa, lang):
     if lang not in by_list:
         printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
-    # ---
-    co = by_list[lang] + ' '
-    if (Qid == 'Q482994') and (lang == 'ar'):
-        # co = 'ل'
-        co = 'من أداء '
+    co = (
+        'من أداء '
+        if (Qid == 'Q482994') and (lang == 'ar')
+        else f'{by_list[lang]} '
+    )
     # ---
     if (lang in pa) and (pa[lang] != ''):
-        auth = pa[lang]
-        if auth:
+        if auth := pa[lang]:
             if lang in filmform[Qid]:
                 des = filmform[Qid][lang]
                 YEAR = pa['dates']

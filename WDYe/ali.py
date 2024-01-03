@@ -188,10 +188,7 @@ def workqua(qua):
     # ---
     sparql = wd_bot.sparql_generator_url(qua)
     total = len(sparql)
-    # ---
-    num = 0
     for pa in sparql:
-        num += 1
         # pa = pigenerator[page]
         pa['item'] = pa['item'].split('/entity/')[1]
         action_one_item(pa['item'], pa['label'])
@@ -224,17 +221,15 @@ def mains():
             # python3 core8/pwb.py wd/ali fafafa
             lala = ""
             lala = [x.strip() for x in names if x.strip() != ""]
-            pywikibot.output(f'lala: "{str(lala)}"')
+            pywikibot.output(f'lala: "{lala}"')
             acd = "  wd:".join(lala)
             tart = "?item (wdt:P734|wdt:P735) ?name. VALUES ?name { wd:" + acd + " } ."
             pywikibot.output(f'acd: "{tart}"')
             Quarry[1] = Quarry[1].replace("#sr", tart + "\n#sr")
-        # ---fafafa
         elif arg.startswith("c"):
             tart = "FILTER (CONTAINS(?label, 'عبد الله')) ."
             pywikibot.output(f'acd: "{tart}"')
             Quarry[1] = Quarry[1].replace("#sr", tart + "\n#sr")
-        # ---
         elif arg.startswith("fafafa"):
             for uu in fafafa.split("\n"):
                 if uu != "":
@@ -242,7 +237,6 @@ def mains():
                     pywikibot.output(f'acd: "{tart}"')
                     qsa = Quarry[1].replace("#sr", tart + "\n#sr")
                     workqua(qsa)
-        # ---
         elif arg.startswith("sql"):
             for uu in fafafa.split("\n"):
                 if uu != "":
@@ -251,8 +245,6 @@ def mains():
                     pywikibot.output(f'tart3: "{tart3}"')
                     for te in tart3:
                         action_one_item(te[1], te[2])
-        # ---
-        # python pwb.py wd/ali ss:340662
         elif arg == "ss":
             fff = queries
             tart3 = himoBOT2.getquarry2_raws(value)
@@ -262,7 +254,7 @@ def mains():
                 action_one_item(te, tart3[te])
         # ---
         if arg == 'limit':
-            Limit[1] = " limit " + value
+            Limit[1] = f" limit {value}"
     # ---
     '''fff = queries
     tart3 = himoBOT2.getquarry2_raws( "340662" )

@@ -10,6 +10,7 @@ python3 core8/pwb.py des/book ask
 python pwb.py des/book
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -24,22 +25,6 @@ from API import printe
 
 # ---
 AskSave = {1: True}
-Qlist = {}
-
-Qlist['Q49084'] = {  # قصة قصيرة
-    'ar': 'قصة قصيرة',
-    'en': 'short story',
-    'de': 'Kurzgeschichte',
-    'fr': 'nouvelle',
-    'nl': 'kort verhaal',
-}
-Qlist['Q1318295'] = {  # قصة
-    'ar': 'قصة',
-    'en': 'story',
-    'de': 'Erzählung',
-    'fr': 'récit',
-    'nl': 'verhaal',
-}
 """Qlist['Q19389637'] = {# مقالة سيرة ذاتية
                 'ar' : 'مقالة سيرة ذاتية' ,
                 'en' : 'biographical article' ,
@@ -47,79 +32,91 @@ Qlist['Q1318295'] = {  # قصة
                 'fr' : 'article biographique' ,
                 'nl' : 'biografisch artikel' ,
         }"""
-Qlist['novel'] = {  # رواية
-    'ar': 'رواية',
-    'en': 'novel',
-    'de': 'Roman',
-    'fr': 'roman',
-    'nl': 'roman',
-}
-Qlist['Q1760610'] = {  # كتاب هزلي
-    'ar': 'كتاب هزلي',
-    'en': 'comic book',
-    'de': 'Comicbuch',
-    'fr': 'comic book',
-    'nl': 'stripboek',
-}
-Qlist['Q482994'] = {  # ألبوم
-    'ar': 'ألبوم',
-    'en': 'album',
-    # 'de' : 'Comicbuch' ,
-    'fr': 'album',
-    # 'es' : 'álbum' ,
-    'nl': 'muziekalbum',
+Qlist = {
+    'Q49084': {
+        'ar': 'قصة قصيرة',
+        'en': 'short story',
+        'de': 'Kurzgeschichte',
+        'fr': 'nouvelle',
+        'nl': 'kort verhaal',
+    },
+    'Q1318295': {
+        'ar': 'قصة',
+        'en': 'story',
+        'de': 'Erzählung',
+        'fr': 'récit',
+        'nl': 'verhaal',
+    },
+    'novel': {
+        'ar': 'رواية',
+        'en': 'novel',
+        'de': 'Roman',
+        'fr': 'roman',
+        'nl': 'roman',
+    },
+    'Q1760610': {
+        'ar': 'كتاب هزلي',
+        'en': 'comic book',
+        'de': 'Comicbuch',
+        'fr': 'comic book',
+        'nl': 'stripboek',
+    },
+    'Q482994': {
+        'ar': 'ألبوم',
+        'en': 'album',
+        'fr': 'album',
+        'nl': 'muziekalbum',
+    },
 }
 
 
 def action_one_item(Qid, pa, lang, keys):
-    item = himoBOT2.Get_Item_API_From_Qid(pa['item'])
-    if item:
-        # desc = MakeDesc(Qid, auth, lang)
-        # Summary= 'Bot: - Add descriptions: '+ lang
-        keys = sorted(keys)
+    if not (item := himoBOT2.Get_Item_API_From_Qid(pa['item'])):
+        return
+    # desc = MakeDesc(Qid, auth, lang)
+    # Summary= 'Bot: - Add descriptions: '+ lang
+    keys = sorted(keys)
+    # ---
+    if 'en' in keys:
+        keys.append('en-gb')
+        keys.append('en-ca')
+    printe.output(f'keys:{str(keys)}')
+    # ---
+    descriptions = item["descriptions"]
+    NewDesc = {}
+    addedlangs = []
         # ---
-        if 'en' in keys:
-            keys.append('en-gb')
-            keys.append('en-ca')
-        printe.output('keys:' + str(keys))
-        # ---
-        descriptions = item["descriptions"]
-        NewDesc = {}
-        addedlangs = []
-        # ---
-        for lang in keys:
-            if lang not in descriptions.keys():
-                # ---
-                lang2 = lang
-                if lang in ('en-ca', 'en-gb'):
-                    lang2 = 'en'
-                # ---
-                des = MakeDesc(Qid, pa, lang2)
-                if des:
-                    NewDesc[lang] = {"language": lang, "value": des}
-                    dns = ''
-                    if 'endes' in pa:
-                        dns = pa['endes']
-                    printe.output(f'newar:{des},en:{dns}')
-                    addedlangs.append(lang)
-                else:
-                    printe.output(f'*no desc for "{lang}"')
-        # ---
-        if addedlangs:
-            qitem = Qid  # item.title(as_link=False)
-            if AskSave[1]:
-                printe.output('================== + ' + str(addedlangs))
-                for lan in NewDesc.keys():
-                    printe.output(f"lang:{lan}, value: \"{NewDesc[lan]['value']}\"")
-                saaa = pywikibot.input('<<lightyellow>> Add as descriptions? ')
-                if saaa == 'y' or saaa == 'a' or saaa == '':
-                    if saaa == 'a':
-                        AskSave[1] = False
-                    wd_desc.work_api_desc(NewDesc, qitem)
-                else:
-                    printe.output('* rong answer')
+    for lang in keys:
+        if lang not in descriptions.keys():
+            # ---
+            lang2 = lang
+            if lang in ('en-ca', 'en-gb'):
+                lang2 = 'en'
+            if des := MakeDesc(Qid, pa, lang2):
+                NewDesc[lang] = {"language": lang, "value": des}
+                dns = ''
+                if 'endes' in pa:
+                    dns = pa['endes']
+                printe.output(f'newar:{des},en:{dns}')
+                addedlangs.append(lang)
             else:
+                printe.output(f'*no desc for "{lang}"')
+        # ---
+    if addedlangs:
+        qitem = Qid  # item.title(as_link=False)
+        if AskSave[1]:
+            printe.output(f'================== + {addedlangs}')
+            for lan, value in NewDesc.items():
+                printe.output(f"""lang:{lan}, value: \"{value['value']}\"""")
+            saaa = pywikibot.input('<<lightyellow>> Add as descriptions? ')
+            if saaa in ['y', 'a', '']:
+                if saaa == 'a':
+                    AskSave[1] = False
                 wd_desc.work_api_desc(NewDesc, qitem)
+            else:
+                printe.output('* rong answer')
+        else:
+            wd_desc.work_api_desc(NewDesc, qitem)
 
 
 # ---
@@ -147,11 +144,7 @@ Comma2 = {'ar': "، و", 'en': ", ", 'de': ", ", 'fr': ", ", 'nl': ", "}
 
 
 def GetQuery(Qid, lang, keys):
-    # ---
-    P50 = 'P50'
-    # ---
-    if Qid == 'Q482994':
-        P50 = 'P175'
+    P50 = 'P175' if Qid == 'Q482994' else 'P50'
     # ---
     # sa = ('?item wdt:P136 wd:Q8261 . ?item wdt:P31* wd:Q7725634 .\n')
     sa = f'?item wdt:P31 wd:{Qid} .\n'
@@ -192,9 +185,7 @@ def Gquery2(json1):
     # for head in json1['head']['vars']:
     for result in json1['results']['bindings']:
         q = 'item' in result and result['item']['value'].split('/entity/')[1] or ''
-        s = {}
-        for se in result:
-            s[se] = result[se]['value']
+        s = {se: result[se]['value'] for se in result}
         s['item'] = q
         table[q] = s
     return table
@@ -208,11 +199,10 @@ for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(':')
     # ---
-    if arg == 'off':
-        Off[1] = int(value)
-    # ---
     if arg == 'limit':
         limit[1] = int(value)
+    elif arg == 'off':
+        Off[1] = int(value)
 
 
 def wd_sparql_query(query, ddf=False):
@@ -228,10 +218,7 @@ def wd_sparql_query(query, ddf=False):
     # query = query + " limit " + str( limit[1] )
     # ---
     Keep = True
-    offset = 0
-    # ---
-    if Off[1] != 0:
-        offset = Off[1]
+    offset = Off[1] if Off[1] != 0 else 0
     # ---
     while Keep:
         # ---
@@ -241,7 +228,7 @@ def wd_sparql_query(query, ddf=False):
         if limit[1] != 0:
             quarry = quarry + "\n limit " + str(limit[1])
         if offset != 0:
-            quarry = quarry + " offset " + str(offset)
+            quarry = f"{quarry} offset {str(offset)}"
         # else: Off[1] != 0 :
         # quarry = quarry + " offset " + str( Off[1] )
         # ---
@@ -251,8 +238,7 @@ def wd_sparql_query(query, ddf=False):
         # ---
         generator = wd_bot.sparql_generator_url(quarry)
         # ---
-        for x in generator:
-            New_List.append(x)
+        New_List.extend(iter(generator))
         # ---
         offset = int(offset + limit[1])
         # ---
@@ -278,11 +264,8 @@ def WorkWithOneLang(Qid, lang, keys):
     SAO = Qlist[Qid][lang]
     # ---
     total = len(PageList)
-    num = 0
     # ---
-    for pa in PageList:
-        # printe.output(pa)
-        num += 1
+    for num, pa in enumerate(PageList, start=1):
         pa['item'] = pa['item'].split('/entity/')[1]
         printe.output('<<lightblue>>> %s "%s" :%s/%d : %s' % (lang, SAO, num, total, pa['item']))
         action_one_item(Qid, pa, lang, keys)
@@ -303,20 +286,19 @@ def MakeDesc(Qid, pa, lang):
     if lang not in by_list:
         printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
-    # ---
-    co = by_list[lang] + ' '
-    if (Qid == 'Q482994') and (lang == 'ar'):
-        # co = 'ل'
-        co = 'من أداء '
+    co = (
+        'من أداء '
+        if (Qid == 'Q482994') and (lang == 'ar')
+        else f'{by_list[lang]} '
+    )
     # ---
     if (lang in pa) and (pa[lang] != ''):
-        auth = pa[lang]
-        if auth:
+        if auth := pa[lang]:
             if lang in Qlist[Qid]:
                 des = Qlist[Qid][lang]
                 d = des  # الوصف
                 # d = d + ' '                        # الرابط by
-                d = d + ' ' + co  # الرابط by
+                d = f'{d} {co}'
                 d = d + auth  # المؤلف
                 # printe.output( 'd' )
                 # printe.output( d )
@@ -342,14 +324,9 @@ def main():
         # ---
         if arg == 'save':
             AskSave[1] = False
-    # ---
-    # language = [ 'fr']
-    Queries = 0
     printe.output('start with query')
     # ---
-    for Qid in Qlist:
-        Queries += 1
-
+    for Queries, Qid in enumerate(Qlist, start=1):
         keys = Qlist[Qid].keys()
         keys = ['ar']
 

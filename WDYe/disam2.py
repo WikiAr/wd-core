@@ -27,15 +27,21 @@ from wd_api import wd_desc
 from desc_dicts.descraptions import *
 
 # ---
-translations = {}
-translations['Wikimedia disambiguation page'] = DescraptionsTable['Wikimedia disambiguation page']
+translations = {
+    'Wikimedia disambiguation page': DescraptionsTable[
+        'Wikimedia disambiguation page'
+    ]
+}
 # ---
-replacement = {}
-replacement["fa"] = {
-    "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
-    # "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
-    # "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
-    "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
+replacement = {
+    "fa": {
+        "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable[
+            'Wikimedia disambiguation page'
+        ]["fa"],
+        "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable[
+            'Wikimedia disambiguation page'
+        ]["fa"],
+    }
 }
 
 
@@ -49,7 +55,7 @@ def work2(item, topic):
     # OOutPut( '<<lightyellow>> **newdesc: work2:'  + item.title(as_link=False))
     # ItemDescriptions = {}
     # ---
-    keys = [x for x in translations[topic].keys()]
+    keys = list(translations[topic].keys())
     # ---
     ItemDescriptions = item.descriptions
     NewDesc = {}
@@ -92,11 +98,9 @@ WHERE {VALUES (?item) {(wd:Q29976539) }
 limit 1'''
     json1 = wd_bot.wd_sparql_generator_url(Quarry2)
     lenth = len(json1)
-    num = 0
     topic = 'Wikimedia disambiguation page'
     # ---
-    for item in json1:
-        num += 1
+    for num, item in enumerate(json1, start=1):
         q = item.title(as_link=False)
         pywikibot.output('<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, lenth, topic, q))
         work2(item, topic)
@@ -113,15 +117,17 @@ def mainfromQuarry2():
     pywikibot.output('*<<lightyellow>> mainfromQuarry:')
     # quarrr = '207388'
     quarrr = '207496'
-    num = 0
-    url = 'https://quarry.wmflabs.org/run/' + quarrr + '/output/1/json'
+    url = f'https://quarry.wmflabs.org/run/{quarrr}/output/1/json'
     sparql = open_url.getURL(url=url)
     jso = json.loads(sparql)
     topic = 'Wikimedia disambiguation page'
-    list = ["Q" + str(x[0]) for x in jso['rows'] if x[1] == "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا"]
-    for page in list:
+    list = [
+        f"Q{str(x[0])}"
+        for x in jso['rows']
+        if x[1] == "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا"
+    ]
+    for num, page in enumerate(list, start=1):
         item = pywikibot.ItemPage(repo, page.strip())
-        num += 1
         q = item.title(as_link=False)
         pywikibot.output('<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, len(list), topic, q))
         work2(item, topic)

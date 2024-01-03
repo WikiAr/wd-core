@@ -7,6 +7,7 @@ python pwb.py wd/common
 
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -64,47 +65,21 @@ SELECT = 'SELECT  ?item  WHERE { ?item '
 GROUP = ' OPTIONAL { ?item schema:description ?des. FILTER((LANG(?des)) = "ar") } FILTER(!BOUND(?des))} '
 
 queries = {
-    # ---
-    # 'family name': SELECT + ' wdt:P31 wd:Q101352 ; wdt:P31 ?instance .  ?item schema:description "family name"@en.' + GROUP,
-    'family name': SELECT + ' wdt:P31 wd:Q101352. FILTER NOT EXISTS { ?item wdt:P31 wd:Q4167410 } ' + GROUP,
-    # 'female given name': SELECT + ' wdt:P31 wd:Q11879590 ;  wdt:P31 ?instance .  ?item schema:description "female given name"@en.' + GROUP,
-    'female given name': SELECT + ' wdt:P31 wd:Q11879590. FILTER NOT EXISTS { ?item wdt:P31 wd:Q4167410 }' + GROUP,
-    'male given name': SELECT + ' wdt:P31 wd:Q12308941 . FILTER NOT EXISTS { ?item wdt:P31 wd:Q4167410 }' + GROUP,
-    # ---
-    # 'genus of algae': SELECT + 'wdt:P105 wd:Q34740 .  ?item schema:description "genus of algae"@en.' + GROUP,
-    # 'genus of amphibians': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of amphibians"@en.' + GROUP,
-    # 'genus of arachnids': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of arachnids"@en.' + GROUP,
-    # 'genus of birds': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of birds"@en.' + GROUP,
-    # 'genus of fishes': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of fishes"@en.' + GROUP,
-    # 'genus of fungi': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of fungi"@en.' + GROUP,
-    # 'genus of insects': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of insects"@en.' + GROUP,
-    # 'genus of mammals': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of mammals"@en.' + GROUP,
-    # 'genus of molluscs': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of molluscs"@en.' + GROUP,
-    # 'genus of plants': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of plants"@en.' + GROUP,
-    # 'genus of reptiles': SELECT + ' wdt:P105 wd:Q34740 . ?item schema:description "genus of reptiles"@en.' + GROUP,
-    # ---
-    'Hebrew calendar year': SELECT + ' wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.' + GROUP,
-    'Islamic calendar year': SELECT + ' wdt:P31 wd:Q577 ; wdt:P31 ?instance . ?item wdt:P361 wd:Q28892 . ?item schema:description "Islamic calendar year"@en.' + GROUP,
-    'year': SELECT + ' wdt:P31 wd:Q577 ; wdt:P31 ?instance . ?item schema:description "year"@en.' + GROUP,
-    # ---
-    'natural number': SELECT + ' wdt:P31 wd:Q21199 . FILTER NOT EXISTS { ?item wdt:P31 wd:Q200227 } . ?item schema:description "natural number"@en.',
-    # 'chemical compound': SELECT + ' wdt:P31 wd:Q11173 ; wdt:P31 ?instance .  ?item schema:description "chemical compound"@en.' + GROUP,
-    # 'village in China': SELECT + ' wdt:P31 wd:Q13100073 ; wdt:P31 ?instance . ' + GROUP,
-    'village in China': SELECT + ' wdt:P31 wd:Q13100073. ' + GROUP,
-    # ---
-    # 'Wikimedia category': SELECT + ' wdt:P31 wd:Q4167836 ; wdt:P31 ?instance . #?item schema:description "Wikimedia category"@en.\n' + GROUP,
-    # 'Wikimedia category': SELECT + ' wdt:P31 wd:Q4167836 ; wdt:P31 ?instance . #?item schema:description "Wikimedia category"@en.\n' + GROUP,
-    # 'Wikimedia category': SELECT + ' wdt:P31 wd:Q4167836 ; wdt:P31 ?instance . } GROUP BY ?item HAVING(COUNT(?instance) = 1) LIMIT 500000 OFFSET 500000',
-    # 'Wikimedia category': SELECT + ' wdt:P31 wd:Q4167836 ; wdt:P31 ?instance . } GROUP BY ?item HAVING(COUNT(?instance) = 1) LIMIT 500000 OFFSET 1000000',
-    # 'Wikimedia category': SELECT + ' wdt:P31 wd:Q4167836 ; wdt:P31 ?instance . } GROUP BY ?item HAVING(COUNT(?instance) = 1) LIMIT 500000 OFFSET 1500000',
-    # 'Wikimedia category': SELECT + ' wdt:P31 wd:Q4167836 ; wdt:P31 ?instance . } GROUP BY ?item HAVING(COUNT(?instance) = 1) LIMIT 500000 OFFSET 2000000',
-    # 'Wikimedia category': SELECT + ' wdt:P31 wd:Q4167836 ; wdt:P31 ?instance . } GROUP BY ?item HAVING(COUNT(?instance) = 1) LIMIT 500000 OFFSET 2500000',
-    # ---
-    # 'Wikimedia disambiguation page': SELECT + ' wdt:P31 wd:Q4167410 ; wdt:P31 ?instance . ?item schema:description "Wikimedia disambiguation page"@en.' + GROUP,
-    # 'Wikimedia list article': SELECT + ' wdt:P31 wd:Q13406463 ; wdt:P31 ?instance . ?item schema:description "Wikimedia list article"@en.' + GROUP,
-    # 'Wikimedia template': SELECT + ' wdt:P31 wd:Q11266439 ; wdt:P31 ?instance . ' + GROUP,
-    # 'Wikinews article': SELECT + ' wdt:P31 wd:Q17633526 . \n' + GROUP,
-    # 'Wikinews article': 'SELECT DISTINCT  ?item WHERE {  BIND("Wikinews article"@en AS ?year)  ?item schema:description ?year.}'
+    'family name': SELECT
+    + ' wdt:P31 wd:Q101352. FILTER NOT EXISTS { ?item wdt:P31 wd:Q4167410 } '
+    + GROUP,
+    'female given name': SELECT
+    + ' wdt:P31 wd:Q11879590. FILTER NOT EXISTS { ?item wdt:P31 wd:Q4167410 }'
+    + GROUP,
+    'male given name': SELECT
+    + ' wdt:P31 wd:Q12308941 . FILTER NOT EXISTS { ?item wdt:P31 wd:Q4167410 }'
+    + GROUP,
+    'Hebrew calendar year': f'{SELECT} wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.{GROUP}',
+    'Islamic calendar year': f'{SELECT} wdt:P31 wd:Q577 ; wdt:P31 ?instance . ?item wdt:P361 wd:Q28892 . ?item schema:description "Islamic calendar year"@en.{GROUP}',
+    'year': f'{SELECT} wdt:P31 wd:Q577 ; wdt:P31 ?instance . ?item schema:description "year"@en.{GROUP}',
+    'natural number': SELECT
+    + ' wdt:P31 wd:Q21199 . FILTER NOT EXISTS { ?item wdt:P31 wd:Q200227 } . ?item schema:description "natural number"@en.',
+    'village in China': f'{SELECT} wdt:P31 wd:Q13100073. {GROUP}',
 }
 
 queriestest = {
@@ -121,7 +96,7 @@ def OOutPut(ss):
 
 # ---
 qq = {
-    'Hebrew calendar year': SELECT + ' wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.' + GROUP,
+    'Hebrew calendar year': f'{SELECT} wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.{GROUP}'
 }
 # ---
 # start of newdesc.py file
@@ -134,11 +109,9 @@ limiTa = ['Wikimedia category', 'Wikimedia disambiguation page']
 
 def main():
     pywikibot.output('*<<lightyellow>> main:')
-    queries_list = sorted([x for x in queries.keys()])
+    queries_list = sorted(list(queries.keys()))
     lenth = len(queries_list)
-    numb = 0
-    for topic in queries_list:
-        numb += 1
+    for numb, topic in enumerate(queries_list, start=1):
         if topic in DescraptionsTable:
             pywikibot.output('**<<lightyellow>> %d/%d: topic: %s' % (numb, lenth, topic))
             # ---
@@ -149,8 +122,7 @@ def main():
                 Limit = 'Limit 100'
             # ---
             quary = quary + Limit
-            trans2 = {}
-            trans2[topic] = DescraptionsTable[topic]
+            trans2 = {topic: DescraptionsTable[topic]}
             newdesc.mainfromQuarry2(topic, quary, trans2)
         else:
             pywikibot.output("topic not in DescraptionsTable")
@@ -167,8 +139,7 @@ def Main_Test():
     q = 'Q27198088'
     item = pywikibot.ItemPage(repo, q)
     item.get()
-    tra = {}
-    tra[topic] = DescraptionsTable[topic]
+    tra = {topic: DescraptionsTable[topic]}
     newdesc.work22(q, topic, tra)
     # ---
 

@@ -2,6 +2,7 @@
 """
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -21,7 +22,7 @@ from API import printe
 
 # ---
 Dir = Path(__file__).parent
-main_dir1 = str(Path(__file__).parent.parent) + '/'
+main_dir1 = f'{str(Path(__file__).parent.parent)}/'
 # ---
 printe.output(f'<<lightyellow>> main_dir1 = {main_dir1}')
 # ---
@@ -62,93 +63,91 @@ from np.np_lists import space_list_and_other, others_list, others_list_2, en_des
 from np.scientific_article import make_scientific_article
 from np.nldesc import Make_space_desc, Make_others_desc
 
+genders = {
+    'Q6581097': 'male',
+    'Q2449503': 'male',  # transgender male
+    'Q6581072': 'female',
+    'Q1052281': 'female',  # transgender female
+}
 # ---
-if True:
-    genders = {
-        'Q6581097': 'male',
-        'Q2449503': 'male',  # transgender male
-        'Q6581072': 'female',
-        'Q1052281': 'female',  # transgender female
-    }
+MainTestTable = {1: False}
+# ---
+Lalo_types = {"n": {}}
+new_types = {}
+# ---
+offsetbg = {1: 0}
+# ---
+QSlimit = {1: 3000}
     # ---
-    MainTestTable = {1: False}
+for arg in sys.argv:
     # ---
-    Lalo_types = {"n": {}}
-    new_types = {}
+    arg, _, value = arg.partition(':')
     # ---
-    offsetbg = {1: 0}
+    if arg.startswith('-'):
+        arg = arg[1:]  # print('change arg to %s ' % arg )
     # ---
-    QSlimit = {1: 3000}
-    # ---
-    for arg in sys.argv:
+    if arg == 'qslimit':
+        QSlimit[1] = int(value)
         # ---
-        arg, _, value = arg.partition(':')
-        # ---
-        if arg.startswith('-'):
-            arg = arg[1:]  # print('change arg to %s ' % arg )
-        # ---
-        if arg == 'qslimit':
-            QSlimit[1] = int(value)
-        # ---
-        if arg.lower() == 'offset' or arg.lower() == 'off':
-            printe.output(f'offsetbg[1] = int({value})')
-            offsetbg[1] = int(value)
-    # ---
-    New_QS = {1: []}
-    Nationalities_list = sorted(tax_translationsNationalities.keys())
-    tax_translations_lower = {}
-    # ---
-    for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
-        if tax_lab.strip() != '' and tax_key.strip() != '':
-            for natkey in Nationalities_list:  # النوع
-                natar = tax_translationsNationalities[natkey]
-                if natkey.strip() != '' and natar.strip() != '':
-                    kkey = tax_key.replace('~', natkey)
-                    tax_translations_lower[kkey.lower()] = tax_lab.replace('~', natar)
-    # ---
-    Qids_translate = {
-        'Q13442814 ': Scientific_descraptions,
-        'Q21014462': DescraptionsTable['cell line'],
-        'Q11173': DescraptionsTable['chemical compound'],
-        # 'Q101352' : DescraptionsTable['family name'], # family name
-        'Q3409032': DescraptionsTable['unisex given name'],
-        'Q11879590': DescraptionsTable['female given name'],
-        'Q12308941': DescraptionsTable['male given name'],
-        'Q24046192': DescraptionsTable['Wikimedia category'],
-        'Q4167836': DescraptionsTable['Wikimedia category'],
-        'Q4167410': DescraptionsTable['Wikimedia disambiguation page'],
-        'Q13406463': DescraptionsTable['Wikimedia list article'],
-        'Q11266439': DescraptionsTable['Wikimedia template'],
-        'Q11753321': DescraptionsTable['Wikimedia template'],
-        'Q17633526': DescraptionsTable['Wikinews article'],
-        'Q2467461': {'en': "academic department", 'ar': 'قسم أكاديمي'},
-        'Q7187': DescraptionsTable['gene'],
-        'Q7889': DescraptionsTable['video game'],
-        'Q8054': DescraptionsTable['protein'],
-        'Q21199': DescraptionsTable['natural number'],
-        'Q24856': DescraptionsTable['film series'],
-        'Q49008': DescraptionsTable['prime number'],
-        'Q4502142': DescraptionsTable['visual artwork'],
-        'Q6979593': DescraptionsTable['national association football team'],
-        'Q10870555': DescraptionsTable['report'],
-        'Q13100073': DescraptionsTable['village in China'],
-        'Q19389637': DescraptionsTable['biographical article'],
-        # space
-    }
-    # ---
-    for x, taba in Qid_Descraptions.items():
-        Qids_translate[x] = taba
-    # ---
-    for qid1 in others_list:
-        if qid1 not in Qids_translate:
-            Qids_translate[qid1] = others_list[qid1]
-    # ---
-    Add_en_labels = {1: False}
-    # ---
-    if "addenlabel" in sys.argv:
-        Add_en_labels[1] = True
-    # ---
-    Geo_List = list(placesTable.keys())
+    if arg.lower() in ['offset', 'off']:
+        printe.output(f'offsetbg[1] = int({value})')
+        offsetbg[1] = int(value)
+# ---
+New_QS = {1: []}
+Nationalities_list = sorted(tax_translationsNationalities.keys())
+tax_translations_lower = {}
+# ---
+for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
+    if tax_lab.strip() != '' and tax_key.strip() != '':
+        for natkey in Nationalities_list:  # النوع
+            natar = tax_translationsNationalities[natkey]
+            if natkey.strip() != '' and natar.strip() != '':
+                kkey = tax_key.replace('~', natkey)
+                tax_translations_lower[kkey.lower()] = tax_lab.replace('~', natar)
+# ---
+Qids_translate = {
+    'Q13442814 ': Scientific_descraptions,
+    'Q21014462': DescraptionsTable['cell line'],
+    'Q11173': DescraptionsTable['chemical compound'],
+    # 'Q101352' : DescraptionsTable['family name'], # family name
+    'Q3409032': DescraptionsTable['unisex given name'],
+    'Q11879590': DescraptionsTable['female given name'],
+    'Q12308941': DescraptionsTable['male given name'],
+    'Q24046192': DescraptionsTable['Wikimedia category'],
+    'Q4167836': DescraptionsTable['Wikimedia category'],
+    'Q4167410': DescraptionsTable['Wikimedia disambiguation page'],
+    'Q13406463': DescraptionsTable['Wikimedia list article'],
+    'Q11266439': DescraptionsTable['Wikimedia template'],
+    'Q11753321': DescraptionsTable['Wikimedia template'],
+    'Q17633526': DescraptionsTable['Wikinews article'],
+    'Q2467461': {'en': "academic department", 'ar': 'قسم أكاديمي'},
+    'Q7187': DescraptionsTable['gene'],
+    'Q7889': DescraptionsTable['video game'],
+    'Q8054': DescraptionsTable['protein'],
+    'Q21199': DescraptionsTable['natural number'],
+    'Q24856': DescraptionsTable['film series'],
+    'Q49008': DescraptionsTable['prime number'],
+    'Q4502142': DescraptionsTable['visual artwork'],
+    'Q6979593': DescraptionsTable['national association football team'],
+    'Q10870555': DescraptionsTable['report'],
+    'Q13100073': DescraptionsTable['village in China'],
+    'Q19389637': DescraptionsTable['biographical article'],
+    # space
+}
+# ---
+for x, taba in Qid_Descraptions.items():
+    Qids_translate[x] = taba
+# ---
+for qid1 in others_list:
+    if qid1 not in Qids_translate:
+        Qids_translate[qid1] = others_list[qid1]
+# ---
+Add_en_labels = {1: False}
+# ---
+if "addenlabel" in sys.argv:
+    Add_en_labels[1] = True
+# ---
+Geo_List = list(placesTable.keys())
 
 
 def Get_P_API_id(item, P):
@@ -157,9 +156,12 @@ def Get_P_API_id(item, P):
     lista = []
     claims = item.get("claims", {}).get(P, {})
     for c in claims:
-        # print(c)
-        q = c.get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', False)
-        if q:
+        if (
+            q := c.get('mainsnak', {})
+            .get('datavalue', {})
+            .get('value', {})
+            .get('id', False)
+        ):
             lista.append(q)
     # ---
     return lista
@@ -181,15 +183,11 @@ def Get_P_API_time(item, P):
     # ---
     if len(qlist) == 1:
         return qlist[0]
-    # ---
     elif len(qlist) > 1:
         sasa = [x['time'].split('-')[0].split('+0000000')[1] for x in qlist if x['time'].startswith('+0000000')]
         for i in sasa:
             Faso[i] = ''
-        if len(Faso.keys()) == 1:
-            return qlist[0]
-        else:
-            return False
+        return qlist[0] if len(Faso.keys()) == 1 else False
     else:
         return False
 
@@ -206,10 +204,7 @@ def make_scientific_art(item, P31, num):
 
 
 def work_qs(q, NewDesc):
-    qslinr = []
-    # ---
-    for lang in NewDesc:
-        qslinr.append(f"{q}|D{lang}|\"{NewDesc[lang]['value']}\"")
+    qslinr = [f"""{q}|D{lang}|\"{NewDesc[lang]['value']}\"""" for lang in NewDesc]
     # ---
     for qsline in qslinr:
         if len(New_QS[1]) < QSlimit[1]:
@@ -236,7 +231,7 @@ def work_api_desc(NewDesc, q, fixlang):
     lang_to_skip = ["tg-latn", 'en-gb', 'en-ca']
     # ---
     if len(langes) == 1:
-        lang = [x for x in NewDesc.keys()][0]
+        lang = list(NewDesc.keys())[0]
         # ---
         if lang in lang_to_skip:
             printe.output(f'work_api_desc:"{q}" only en-gb and en-ca, Skipp... ')
@@ -270,11 +265,7 @@ def make_tax_des_new(item):
         return ''
     # ---
     P105 = Get_P_API_id(item, "P105")
-    P105ar = ''
-    for p in P105:
-        if p in labforP105:
-            P105ar = labforP105[p]
-            break
+    P105ar = next((labforP105[p] for p in P105 if p in labforP105), '')
     # ---
     if P105ar == '':
         return ''
@@ -289,8 +280,8 @@ def make_tax_des_new(item):
         ?item wdt:P171* ?P171.
         ?P171 wdt:P105 wd:Q37517.
         ?item wdt:P105 ?item105.
-    }''' % (
-        " ".join(['wd:%s' % x for x in lab_for_p171.keys()])
+    }''' % " ".join(
+        [f'wd:{x}' for x in lab_for_p171.keys()]
     )
     nan = nan.replace("Q111771064", q)
     # ---
@@ -316,7 +307,7 @@ def make_tax_des_new(item):
             # ---
             if P171 in lab_for_p171.keys():
                 P171ar = lab_for_p171[P171]
-                ar_lab = P105ar + ' ' + P171ar
+                ar_lab = f'{P105ar} {P171ar}'
                 if "descqs" in sys.argv:
                     work_qs(q, {'ar': {'value': ar_lab}})
                 else:
@@ -329,15 +320,14 @@ def work_taxon_desc(item, endesc):
     q = item["q"]
     # printe.output( ' work_taxon_desc:endesc:"%s", ardesc:"%s"' % (endesc, ardesc) )
     printe.output(f' work_taxon_desc:ardesc:"{ardesc}"')
-    if ardesc != '':
-        # ---
-        if "descqs" in sys.argv:
-            work_qs(q, {'ar': {'value': ardesc}})
-        else:
-            himoAPI.Des_API(q, ardesc, 'ar')
-    else:
+    if ardesc == '':
         print(f' no ardesc for en:{endesc}.')
         make_tax_des_new(item)
+
+    elif "descqs" in sys.argv:
+        work_qs(q, {'ar': {'value': ardesc}})
+    else:
+        himoAPI.Des_API(q, ardesc, 'ar')
 
 
 def work_new_list(item, p31, ardes):
@@ -388,17 +378,16 @@ def work_people(item, topic, num, ardes):
     years = ''
     # ---
     if topic.find("(") != -1:
-        hhh = re.match(r'^(.*?) (\([\d\–-]+\))', topic)
-        if hhh:
+        if hhh := re.match(r'^(.*?) (\([\d\–-]+\))', topic):
             topic = hhh.group(1)
-            years = ' ' + hhh.group(2)
+            years = f' {hhh.group(2)}'
             print(f"topic:{topic},years:{years}")
     # ---
     if en_des_to_ar.get(topic, '') != '':
         ara = en_des_to_ar[topic]
         # ---
         if years != '':
-            ara += ' ' + years
+            ara += f' {years}'
         # ---
         himoAPI.Des_API(q, ara, 'ar')
         return ""
@@ -422,10 +411,7 @@ def work_people(item, topic, num, ardes):
     # ---
     descriptions = item.get("descriptions", {})
     NewDesc = {}
-    # ---
-    p21_c = genders.get(p21)
-    # ---
-    if p21_c:
+    if p21_c := genders.get(p21):
         for lang in taber.keys():
             if taber[lang].get(p21_c):
                 if lang not in descriptions.keys():
@@ -473,7 +459,7 @@ def log_new_types(lists):
     if "nolog" in sys.argv:
         return ''
     # ---
-    jsonfils = main_dir1 + 'np/new_types.json'
+    jsonfils = f'{main_dir1}np/new_types.json'
     # ---
     try:
         listo = codecs.open(jsonfils, "r", encoding="utf-8-sig").read()
@@ -486,7 +472,7 @@ def log_new_types(lists):
         printe.output('')
     # ---
     if "log2" in sys.argv:
-        jsonfils = main_dir1 + 'np/new_types2.json'
+        jsonfils = f'{main_dir1}np/new_types2.json'
     # ---
     if Lalo_types["n"] == {}:
         with codecs.open(jsonfils, "r", encoding="utf-8-sig") as listt:

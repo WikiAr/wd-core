@@ -77,13 +77,6 @@ def read_bad_json(file):
         # ---
         print(f'Good JJson "{file}"')
         return done_list7
-        '''for type in done_list7:
-            printe.output( 'find %d cats in done_list7. "%s"' % (len(done_list7[type])  , type) )
-            for catee in done_list7[type]:
-                catee = catee.strip()
-                catee = re.sub(r'"', "" , catee)
-                if not catt in List:
-                    List.append(catee)'''
     except Exception:
         pywikibot.output('<<lightred>> Traceback (most recent call last):')
         pywikibot.output(traceback.format_exc())

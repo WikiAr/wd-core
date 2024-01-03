@@ -36,11 +36,8 @@ def Get_P_API2(item, P):
         claims = item.claims
         if P in claims:
             PP31 = item.claims[P][0].toJSON()
-            q = PP31['mainsnak']['datavalue']['value']['numeric-id'] or ''
-            if q:
-                qq = 'Q' + str(q)
-                # pywikibot.output('%s: %s.' % (P,qq) )
-                return qq
+            if q := PP31['mainsnak']['datavalue']['value']['numeric-id'] or '':
+                return f'Q{str(q)}'
     return False
 
 
@@ -48,28 +45,24 @@ def Get_P_API2(item, P):
 # python pwb.py np/d -family:wikidata -lang:wikidata -newpages:10
 # python pwb.py np/d -family:wikidata -lang:wikidata -ns:0 -start:Q32000000
 # ---
-quaries = {}
-quaries[
-    "ar"
-] = """ SELECT ?item
+quaries = {
+    "ar": """ SELECT ?item
 WHERE
 {
   ?item wikibase:statements 0 .
   ?article schema:about ?item ; schema:isPartOf <https://ar.wikipedia.org/> ; schema:name ?title .
   FILTER(strstarts(str(?title),"تصنيف:") )
 }
-LIMIT 1000"""
-
-quaries[
-    "en"
-] = """ SELECT ?item
+LIMIT 1000""",
+    "en": """ SELECT ?item
 WHERE
 {
   ?item wikibase:statements 0 .
   ?article schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> ; schema:name ?title .
   FILTER(strstarts(str(?title),"Category:") )
 }
-LIMIT 1000"""
+LIMIT 1000""",
+}
 
 
 def work_one_item(item):
@@ -84,8 +77,7 @@ def work_one_item(item):
     # ---
     # ---
     # labels
-    data2 = {}
-    data2["labels"] = {}
+    data2 = {"labels": {}}
     labels = item.labels
     links = item.sitelinks
     # ---
@@ -101,23 +93,17 @@ def work_one_item(item):
     if len(data2["labels"].keys()) > 0:
         summary = f"Bot: - Add labels:({len(data2['labels'])} langs)."
         himoAPI.New_Mult_Des(q, data2, summary, False)
-    # ---
-    # ---
-    # ---
-    # descriptions
-    NewDesc = {}
     descriptions = item.descriptions
     catdesc = Tras["Q4167836"]
     # ---
     if 'en' in catdesc.keys():
         catdesc['en-ca'] = catdesc['en']
         catdesc['en-gb'] = catdesc['en']
-    # ---
-    for lang in catdesc.keys():
-        if lang not in descriptions.keys():
-            NewDesc[lang] = {"language": lang, "value": catdesc[lang]}
-    # ---
-    if NewDesc:
+    if NewDesc := {
+        lang: {"language": lang, "value": catdesc[lang]}
+        for lang in catdesc.keys()
+        if lang not in descriptions.keys()
+    }:
         pywikibot.output(f'<<lightyellow>>* adding descriptions to :{q} ')
         wd_desc.work_api_desc(NewDesc, q)
     else:
@@ -127,12 +113,10 @@ def work_one_item(item):
 def main(*args):
     # ---
     for qua_a in quaries:
-        c = 0
         qua = quaries[qua_a]
         json1 = wd_bot.wd_sparql_generator_url(qua)
         total = len(json1)
-        for item in json1:
-            c += 1
+        for c, item in enumerate(json1, start=1):
             # ---
             q = item.title(as_link=False)
             pywikibot.output('  * action %d/%d "%s"' % (c, total, q))

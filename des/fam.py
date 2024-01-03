@@ -10,6 +10,7 @@ python3 core8/pwb.py des/fam Q318
 python3 core8/pwb.py des/fam
 
 '''
+
 # ---
 from API import printe
 from API import himoBOT2
@@ -50,7 +51,6 @@ desc_table = {
     'Q11173': Qid_Descraptions.get('Q11173', {}),
     'Q21199': Qid_Descraptions.get('Q21199', {}),
     'Q24856': Qid_Descraptions.get('Q24856', {}),
-    # 'Q101352' : Qid_Descraptions.get('Q101352', {}), # family name
     'Q3409032': Qid_Descraptions.get('Q3409032', {}),
     'Q4167410': Qid_Descraptions.get('Q4167410', {}),
     'Q4167836': Qid_Descraptions.get('Q4167836', {}),
@@ -63,18 +63,14 @@ desc_table = {
     'Q17633526': Qid_Descraptions.get('Q17633526', {}),
     'Q19389637': Qid_Descraptions.get('Q19389637', {}),
     'Q11753321': DescraptionsTable.get('Wikimedia template', {}),
-    'Q15145755': DescraptionsTable.get('Wikimedia module', {}),  # Module test cases
-    'Q18711811': DescraptionsTable.get('Wikimedia module', {}),  # map data module
+    'Q15145755': DescraptionsTable.get('Wikimedia module', {}),
+    'Q18711811': DescraptionsTable.get('Wikimedia module', {}),
     'Q24046192': DescraptionsTable.get('Wikimedia category', {}),
-    # 'Q8502' : placesTable.get('Q8502', {}),     # جبل
-    # 'Q39614' : placesTable.get('Q39614', {}),   # مقبرة
-    # 'Q79007' : placesTable.get('Q79007', {}),   # شارع
+    "Q726242": {"ar": "نجم"},
+    "Q2247863": {"ar": "نجم"},
+    "Q66619666": {"ar": "نجم"},
+    "Q72803622": {"ar": "نجم"},
 }
-# ---
-desc_table["Q726242"] = {"ar": "نجم"}
-desc_table["Q2247863"] = {"ar": "نجم"}
-desc_table["Q66619666"] = {"ar": "نجم"}
-desc_table["Q72803622"] = {"ar": "نجم"}
 # ---
 for x, dd in railway_tables.items():
     desc_table[x] = dd
@@ -144,7 +140,7 @@ for p31, p31_desc in desc_table.items():
         # ---
         printe.output("work in %d from %d querirs" % (numb, all_lenth))
         # ---
-        quarry = quarry.replace("wd:Q1457376", "wd:" + p31)
+        quarry = quarry.replace("wd:Q1457376", f"wd:{p31}")
         # ---
         if qu_numb == 1:
             printe.output('<<lightred>> first quarry')
@@ -175,7 +171,7 @@ for p31, p31_desc in desc_table.items():
             if qu_numb == 1:
                 printe.output(tp)
             # ---
-            if len(lang_to_add) == 0:
+            if not lang_to_add:
                 printe.output(tp)
                 continue
             # ---

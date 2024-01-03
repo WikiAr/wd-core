@@ -15,8 +15,7 @@ from wd_api import newdesc
 from desc_dicts.descraptions import Qid_Descraptions
 
 # ---
-translations = {}
-translations["Q11173"] = Qid_Descraptions['Q11173']
+translations = {"Q11173": Qid_Descraptions['Q11173']}
 # ---
 for p31 in translations:
     en_desc = translations[p31]["en"]

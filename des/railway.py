@@ -32,16 +32,17 @@ def Get_P_API_id(claims, P, onlyone=False):
     list = []
     # ---
     for c in claims.get(P, {}):
-        q = c.get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id')
-        if q:
+        if (
+            q := c.get('mainsnak', {})
+            .get('datavalue', {})
+            .get('value', {})
+            .get('id')
+        ):
             list.append(q)
             if onlyone:
                 return q
     # ---
-    if onlyone:
-        return ""
-    else:
-        return list
+    return "" if onlyone else list
 
 
 def work_railway(wditem, p31, q=""):
@@ -127,22 +128,21 @@ def work_railway(wditem, p31, q=""):
         # make new desc
         # ---
         desc_n = des
-        # ---
-        if p31 == 'Q728937' or 'Q728937' in P31_list:  # البلد فقط
-            if p17_desc != "":
-                desc_n = lang_format[lang][1].format(des, p17_desc)
-        # ---
-        else:
-            if p17_desc != "" and p131_desc != "":
+        if p17_desc != "":
+            if (
+                p31 != 'Q728937'
+                and 'Q728937' not in P31_list
+                and p131_desc != ""
+            ):
                 desc_n = lang_format[lang][2].format(des, p131_desc, p17_desc)
-            elif p17_desc != "":
+            else:
                 desc_n = lang_format[lang][1].format(des, p17_desc)
         # ---
         if desc_n != '':
             newdesc[lang] = {"language": lang, "value": desc_n}
-        # ---
+            # ---
     # ---
-    if newdesc == {}:
+    if not newdesc:
         print("nothing to add..")
         return
     # ---

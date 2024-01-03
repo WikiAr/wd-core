@@ -14,6 +14,7 @@ https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
 ~ bishop
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -1404,7 +1405,7 @@ for x in New_Keys_occ:
 '''
 
 # ---
-for x, yy in translationsOccupations.items():
+for yy in translationsOccupations.values():
     if "ar" in yy and yy["ar"]["male"] == yy["ar"]["female"]:
         print(f" male:{yy['ar']['male']} == female")
 # ---

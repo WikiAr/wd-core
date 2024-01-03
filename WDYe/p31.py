@@ -54,7 +54,7 @@ def main2(*args):
         arg, _, value = arg.partition(':')
         # ---
         if arg == 'limit':
-            quarry = quarry + f"\n LIMIT {value};"
+            quarry = f"{quarry}\n LIMIT {value};"
         # ---
         if arg == 'enwiki':
             WIKI[1] = "enwiki"
@@ -62,10 +62,7 @@ def main2(*args):
     pywikibot.output(quarry)
     result = c18sql.Make_sql_2_rows(quarry, wiki=WIKI[1])
     pywikibot.output("===============================")
-    # ---
-    counter = 0
-    for title in result:
-        counter += 1
+    for counter, title in enumerate(result, start=1):
         pywikibot.output(" <<lightblue>> page: %d/%d : %s:%s " % (counter, len(result), title, result[title]))
         treat_page(result[title])
 

@@ -406,8 +406,7 @@ pokn = {
 # ---
 Format = {'ar': '1 في 2، هولندا', 'nl': '1 in 2', 'en': '1 in 2, the Netherlands'}
 # ---
-topics = {}
-topics['Q79007'] = {'ar': 'شارع', 'nl': 'straat', 'en': 'street'}
+topics = {'Q79007': {'ar': 'شارع', 'nl': 'straat', 'en': 'street'}}
 # topics['Q174782'] = {'ar' : 'ميدان' , 'nl' : 'plein', 'en' : 'square' }
 # ---
 iop = ['Q79007', 'Q523166', 'Q174782', 'Q1484611']

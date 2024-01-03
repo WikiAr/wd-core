@@ -14,16 +14,14 @@ missing_dict = {}
 
 def action_one_item(wditem):
     global items2do
-    ara = 'ar'
     items2do -= 1
     if wditem.labels:  # تسميات موجودة
         if 'en' in wditem.labels:  # تسمية انجليزية متوفرة
             numberlabel = wditem.labels['en']  # اسم انجليزي
-            data = {}
-            data.update({'labels': {ara: numberlabel}})
-            wditem.editEntity(data, summary='Bot: add ar label: ' + numberlabel)
+            ara = 'ar'
+            data = {'labels': {ara: numberlabel}}
+            wditem.editEntity(data, summary=f'Bot: add ar label: {numberlabel}')
     return 1
-    return 0
 
 
 def wd_sparql_generator(query):
@@ -47,8 +45,8 @@ def main():
             action_one_item(wditem)
             itemsdone += 1
         except BaseException:
-            print('%s تخطي' % wditem)
-    print('العناصر المكتملة: %s' % itemsdone)
+            print(f'{wditem} تخطي')
+    print(f'العناصر المكتملة: {itemsdone}')
 
 
 if __name__ == "__main__":

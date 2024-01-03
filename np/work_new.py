@@ -73,31 +73,16 @@ def WorkNew():
         if arg == 'end':
             ATend = int(value)
     # ---
-    # ---
-    # python3 core8/pwb.py np/si3 WorkNew
-    # ---
-    # if len(sys.argv) > 1:
-    # start = sys.argv[1]
-    # ---
-    # if len(sys.argv) > 2:
-    # ATend = sys.argv[2]
-    # ---
-    num = 0
-    # ---
     start = int(start)
     end = int(ATend)
     # ---
-    if end < start:
-        list = range(end, start)
-    else:
-        list = range(start, end)
+    list = range(end, start) if end < start else range(start, end)
     # ---
     lenth = len(list)
     pywikibot.output('** <<lightyellow>> WorkNew in %d items (start:%d, end:%d)' % (lenth, start, end))
     # ---
-    for q in list:
+    for num, q in enumerate(list, start=1):
         qitem = 'Q%d' % q
-        num += 1
         si3.ISRE(qitem, num, lenth)
 
 

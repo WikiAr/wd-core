@@ -14,25 +14,26 @@ missing_dict = {}
 
 def fixlabel(oldlabel):
     new = oldlabel.replace('٠', '0').replace('١', '1').replace('٢', '2').replace('٣', '3').replace('٤', '4')
-    new2 = new.replace('٥', '5').replace('٦', '6').replace('٧', '7').replace('٨', '8').replace('٩', '9')
-    return new2
+    return (
+        new.replace('٥', '5')
+        .replace('٦', '6')
+        .replace('٧', '7')
+        .replace('٨', '8')
+        .replace('٩', '9')
+    )
 
 
 def action_one_item(wditem):
     global items2do
-    ara = 'ar'
     items2do -= 1
     if wditem.labels:  # تسميات موجودة
         if 'ar' in wditem.labels:
             oldlabel = wditem.labels['ar']
             newlabel = fixlabel(oldlabel)
-            data = {}
-            data.update({'labels': {ara: newlabel}})
+            ara = 'ar'
+            data = {'labels': {ara: newlabel}}
             wditem.editEntity(data, summary=f'Bot: update Arabic label: {oldlabel} to {newlabel}')
-        else:
-            pass
     return 1
-    return 0
 
 
 def wd_sparql_generator(query):
@@ -57,10 +58,10 @@ def main():
         try:
             action_one_item(wditem)
             itemsdone += 1
-            print('العناصر المكتملة: %s' % itemsdone)
+            print(f'العناصر المكتملة: {itemsdone}')
         except BaseException:
-            print('%s تخطي' % wditem)
-    print('العناصر المكتملة: %s' % itemsdone)
+            print(f'{wditem} تخطي')
+    print(f'العناصر المكتملة: {itemsdone}')
 
 
 if __name__ == "__main__":

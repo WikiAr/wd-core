@@ -34,6 +34,7 @@ SELECT * WHERE {
   }
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -64,9 +65,10 @@ genders = {
 genders_list = sorted([[x, y] for x, y in genders.items()])
 # ---
 # ---
-Tab = {}
-Tab["Nationalities"] = translationsNationalities
-Tab["Occupations"] = oc.translationsOccupations
+Tab = {
+    "Nationalities": translationsNationalities,
+    "Occupations": oc.translationsOccupations,
+}
 # ---
 printe.output(f'len of Nationalities = {len(translationsNationalities.keys())}')
 printe.output(f'len of Occupations = {len(oc.translationsOccupations.keys())}')
@@ -85,26 +87,26 @@ for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(':')
     # ---
-    if arg == 'limit' or arg == '-limit':
+    if arg in ['limit', '-limit']:
         limit[1] = value
     # ---
-    if arg == 'qualimit' or arg == '-qualimit':
+    if arg in ['qualimit', '-qualimit']:
         qualimit[1] = int(value)
     # ---
-    if arg == 'off' or arg == '-off':
+    if arg in ['off', '-off']:
         offset[1] = int(value)
     # ---
     if arg == 'occnew':
         Tab["Occupations"] = oc.translationsOccupations_new
     # ---
-    if arg == 'nat' or arg == '-nat':
+    if arg in ['nat', '-nat']:
         value = value.replace("_", " ")
         if value in translationsNationalities:
             Tab["Nationalities"] = {value: translationsNationalities[value]}
         else:
             print(f"nat value:({value}) not in translationsNationalities")
     # ---
-    if arg == 'job' or arg == '-job':
+    if arg in ['job', '-job']:
         value = "~ " + value.replace("_", " ")
         if value in oc.translationsOccupations:
             Tab["Occupations"] = {value: oc.translationsOccupations[value]}
@@ -153,11 +155,11 @@ def check_quarry_new(tab):
     # ---
     New_Json = []
     # ---
-    for numb in tabe:
+    for numb, value in tabe.items():
         # ---
         # printe.output( en_list )
         # printe.output( "@@".join( tabe[numb] ) )
-        printe.output(f"find qua for {len(tabe[numb])} description.")
+        printe.output(f"find qua for {len(value)} description.")
         # ---
         qua = '''SELECT
     (concat(strafter(str(?item),"/entity/")) as ?q)#?item
@@ -187,9 +189,8 @@ def check_quarry_new(tab):
         # ---
         json = wd_bot.sparql_generator_url(qua)
         # ---
-        for x in json:
-            New_Json.append(x)
-        # ---
+        New_Json.extend(iter(json))
+            # ---
     # ---
     return New_Json
 
@@ -335,12 +336,11 @@ def start_one_nat(nat_tab):
         genderlabel = genders.get(p21, "male")
         # ---
         descriptions_keys = sorted(x["deskey"].split(","))
-        # ---
-        NewDesc = {}
-        # ---
-        for lang in x_table.keys():
-            if lang not in descriptions_keys:
-                NewDesc[lang] = {"language": lang, "value": x_table[lang][genderlabel]}
+        NewDesc = {
+            lang: {"language": lang, "value": x_table[lang][genderlabel]}
+            for lang in x_table.keys()
+            if lang not in descriptions_keys
+        }
         # ---
         if NewDesc != {}:
             wd_desc.work_api_desc(NewDesc, q)
@@ -361,7 +361,7 @@ def mainnat(Tabs):  # translations_for_nat
     list_na = sorted(translations_for_nat[1].keys())
     # ---
     if len(list_na) > 100:
-        new_len = int(len(list_na) / 2)
+        new_len = len(list_na) // 2
         list_na = random.sample(list_na, new_len)
     # ---
     # 1 -  بدء العمل في  الاستعلامات
@@ -381,9 +381,11 @@ def mainnat(Tabs):  # translations_for_nat
 
 
 def Main_Test():
-    qua = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097'
-    qua = qua + ' . ?item schema:description "Argentinian actor"@en.  '
-    qua = qua + 'OPTIONAL { ?item schema:description ?de. FILTER(LANG(?de) = "fr"). } FILTER (!BOUND(?de)) }'
+    qua = (
+        'SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097'
+        + ' . ?item schema:description "Argentinian actor"@en.  '
+    )
+    qua += 'OPTIONAL { ?item schema:description ?de. FILTER(LANG(?de) = "fr"). } FILTER (!BOUND(?de)) }'
     wd_bot.sparql_generator_url(qua)
 
 
