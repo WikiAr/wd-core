@@ -31,6 +31,7 @@ from np.np_lists import space_list_and_other, others_list, Space_tab, others_lis
 'Q93184':		{	'ar':'رسم', 'en':'drawing' }, # 18784
 'Q163740':		{	'ar':'منظمة غير ربحية', 'en':'nonprofit organization' }, # 18634
 '''
+
 # ---
 import sys
 
@@ -460,8 +461,6 @@ simple_set_byP131 = [
     '',
 ]
 # ---
-SPARQLSE = {}
-# ---
 Geo_entity = {
     'Q4989906': 'معلم تذكاري',
     'Q13424466': 'ميناء طبيعي',
@@ -492,9 +491,7 @@ p50s = {
     # 'Q571': "كتاب",
     # 'Q2831984': 'ألبوم قصص مصورة',
 }
-# ---
-for tt in Qid_Descraptions:
-    SPARQLSE[tt] = main_quarry % tt
+SPARQLSE = {tt: main_quarry % tt for tt in Qid_Descraptions}
 # ---
 # python3 core8/pwb.py np/nldes3 limit:2000 sparql:Q571 #كتاب
 # python3 core8/pwb.py np/nldes3 limit:2000 sparql:Q7725634 #رواية
@@ -572,11 +569,7 @@ space_list_and_other = {
     # ---
     'Q7278': "حزب سياسي",
 }
-# ---
-Taton_list = {}
-# ---
-for kj in space_list_and_other:
-    Taton_list[kj] = space_list_and_other[kj]
+Taton_list = {kj: space_list_and_other[kj] for kj in space_list_and_other}
 # ---
 # p50s جاهزة في SPARQLSE
 for dd in p50s:

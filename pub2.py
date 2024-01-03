@@ -13,23 +13,15 @@ import sys
 
 def main():
     print('main:')
-    numb = 0
     type = "MED"
-    start = 0
-    ATend = 10
-    # ---
-    if len(sys.argv) > 1:
-        start = sys.argv[1]
-    # ---
-    if len(sys.argv) > 2:
-        ATend = sys.argv[2]
+    start = sys.argv[1] if len(sys.argv) > 1 else 0
+    ATend = sys.argv[2] if len(sys.argv) > 2 else 10
     # ---
     # list  = range(62700,62710)
     start = int(start)
     end = start + int(ATend)
     list = range(start, end)
-    for id in list:
-        numb += 1
+    for numb, id in enumerate(list, start=1):
         id = str(id)
         print('%d : id: %s' % (numb, id))
         pub.add(id, type)

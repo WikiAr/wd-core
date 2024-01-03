@@ -7,6 +7,7 @@ python pwb.py wd/common
 
 
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -121,7 +122,7 @@ def OOutPut(ss):
 
 # ---
 qq = {
-    'Hebrew calendar year': SELECT + ' wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.' + GROUP,
+    'Hebrew calendar year': f'{SELECT} wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.{GROUP}'
 }
 # ---
 # start of newdesc.py file
@@ -134,11 +135,9 @@ limiTa = ['Wikimedia category', 'Wikimedia disambiguation page']
 
 def main():
     pywikibot.output('*<<lightyellow>> main:')
-    queries_list = sorted([x for x in queries.keys()])
+    queries_list = sorted(list(queries.keys()))
     lenth = len(queries_list)
-    numb = 0
-    for topic in queries_list:
-        numb += 1
+    for numb, topic in enumerate(queries_list, start=1):
         if topic in DescraptionsTable:
             pywikibot.output('**<<lightyellow>> %d/%d: topic: %s' % (numb, lenth, topic))
             # ---
@@ -149,8 +148,7 @@ def main():
                 Limit = 'Limit 100'
             # ---
             quary = quary + Limit
-            trans2 = {}
-            trans2[topic] = DescraptionsTable[topic]
+            trans2 = {topic: DescraptionsTable[topic]}
             newdesc.mainfromQuarry2(topic, quary, trans2)
         else:
             pywikibot.output("topic not in DescraptionsTable")
@@ -167,8 +165,7 @@ def Main_Test():
     q = 'Q27198088'
     item = pywikibot.ItemPage(repo, q)
     item.get()
-    tra = {}
-    tra[topic] = DescraptionsTable[topic]
+    tra = {topic: DescraptionsTable[topic]}
     newdesc.work22(q, topic, tra)
     # ---
 

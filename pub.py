@@ -3,6 +3,7 @@
 
 
 """
+
 import json
 import urllib
 import os
@@ -17,7 +18,10 @@ paths = [
     './local/lib/python3.10/site-packages',
 ]
 # ---
-if filepath.find("/data/project/") == -1 and filepath.find("labstore-secondary-tools-project") == -1:
+if (
+    "/data/project/" not in filepath
+    and "labstore-secondary-tools-project" not in filepath
+):
     paths = ['I:/core/wd_core/', 'I:/core/master/']
 # ---
 for x in paths:
@@ -94,13 +98,7 @@ def get_article_info(ext_id, id_type):
     id_type = id_type.lower()
     # ---
     print_test(f' get_article_info for {id_type}')
-    if id_type == "pmc":
-        url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
-        # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:{}&resulttype=core&format=json'
-        # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
-        urls["europepmc"] = url.format(ext_id)
-
-    elif id_type == "doi":
+    if id_type == "doi":
         # url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{}%22&resulttype=core&format=json"
         url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:{}&resulttype=core&format=json"
         urls["europepmc"] = url.format(ext_id)
@@ -108,11 +106,15 @@ def get_article_info(ext_id, id_type):
         url2 = "https://api.crossref.org/v1/works/http://dx.doi.org/{}"
         urls["crossref"] = url2.format(ext_id)
 
-    elif id_type != "doi":
+    elif id_type == "pmc":
+        url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
+        # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:{}&resulttype=core&format=json'
+        # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
+        urls["europepmc"] = url.format(ext_id)
+
+    else:
         url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:{}%20AND%20SRC:{}&resulttype=core&format=json'
         urls["europepmc"] = url.format(ext_id, id_type)
-    else:
-        print_test('ValueError')
     # ---
     for source, url in urls.items():
         do = get_and_load(url)
@@ -124,11 +126,10 @@ def get_article_info(ext_id, id_type):
         if do.get('hitCount'):
             if do.get('hitCount') != 1:
                 continue
-            else:
-                article = do.get('resultList', {}).get('result', [])
-                if len(article) > 0:
-                    article = article[0]
-                    return source
+            article = do.get('resultList', {}).get('result', [])
+            if len(article) > 0:
+                article = article[0]
+                return source
         else:
             # ---
             message = do.get("message", {})
@@ -183,7 +184,7 @@ def add(id, typee):
 if __name__ == "__main__":
     br = '</br>'
     # python pwb.py pub type:PMC id:4080339
-    print_test('TestMain:' + br)
+    print_test(f'TestMain:{br}')
     typee = "MED"
     if sys.argv:
         # lenth = len(sys.argv)

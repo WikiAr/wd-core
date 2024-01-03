@@ -295,9 +295,7 @@ def add_new_label(q, enlabel):
     if enlabel == "":
         return
     # ---
-    labels = {}
-    # ---
-    labels["en"] = {"language": "en", "value": enlabel}
+    labels = {"en": {"language": "en", "value": enlabel}}
     # ---
     data = {"labels": labels}
     # ---
@@ -324,7 +322,7 @@ def change_one_lab(text, lang):
     new_lab2 = new_lab.lower()
     # ---
     for x in liste[lang]:
-        if x != '' and new_lab2.find(x.lower()) != -1:
+        if x != '' and x.lower() in new_lab2:
             print(f'<<lightred>> new_lab has {x}')
             if table.get(x):
                 new_lab = new_lab.replace(x, table.get(x))

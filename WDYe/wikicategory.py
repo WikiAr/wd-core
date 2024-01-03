@@ -8,9 +8,7 @@ from wd_api import newdesc
 # repo = site.data_repository()
 from desc_dicts.descraptions import DescraptionsTable
 
-translations = {}
-translations['Wikimedia category'] = DescraptionsTable['Wikimedia category']
-
+translations = {'Wikimedia category': DescraptionsTable['Wikimedia category']}
 # import pywikibot
 
 # item = pywikibot.ItemPage(repo, 'Q20509009')

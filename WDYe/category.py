@@ -36,10 +36,10 @@ def main():
     for arg in sys.argv:
         arg, _, value = arg.partition(':')
         # ---
-        if arg == '-limit' or arg == 'limit':
+        if arg in ['-limit', 'limit']:
             Limit[1] = value
             pywikibot.output(f'<<lightred>> Limit = {value}.')
-        # ---#
+            # ---#
     Quaa = '''
 SELECT DISTINCT
 ?cat
@@ -60,7 +60,7 @@ WHERE {
   FILTER ( str(?cat_en) = str(?change_name) )
 }
 LIMIT '''
-    Quaa = Quaa + Limit[1]
+    Quaa += Limit[1]
     pywikibot.output(Quaa)
     sparql = wd_bot.sparql_generator_url(Quaa)
     # ---
@@ -68,15 +68,12 @@ LIMIT '''
     for item in sparql:
         q = item['cat'].split("/entity/")[1]
         Table[q] = item["ar_name"]
-    # ---
-    num = 0
-    for item in Table:
-        num += 1
+    for num, (item, value_) in enumerate(Table.items(), start=1):
         # if num < 2:
         pywikibot.output('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         # pywikibot.output( Table[item] )
-        if Table[item] != "":
-            lab = 'تصنيف:' + Table[item]
+        if value_ != "":
+            lab = f'تصنيف:{Table[item]}'
             himoAPI.Labels_API(item, lab, "ar", False, Or_Alii=True)
 
     # ---

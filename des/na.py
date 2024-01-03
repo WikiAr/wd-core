@@ -41,12 +41,12 @@ def action(json1):
     for tab in json1:  # عنصر ويكي بيانات
         q = tab["item_q"]
         if q not in items_done:
-            en_name = tab["en_name"]
             tab["item_en"]
             ar_lab = tab["ar_name"]
             # ---
             kaka = re.sub(r"[abcdefghijklmnopqrstuvwxyz]", "", ar_lab)
             if ar_lab != "" and kaka == ar_lab:
+                en_name = tab["en_name"]
                 printe.output(f'  * ar_lab:"{ar_lab}",en_name:"{en_name}"')
                 c += 1
                 printe.output('  * action %d/%d "%s"' % (c, total, q))
@@ -75,13 +75,12 @@ WHERE {
     FILTER ( str(?cat_en) = str(?change_name) )
 }
 '''
-    quaaa = quaaa % (ar_suff, "%s", item_p31_cat, en_suff, en_priff)
+    quaaa %= (ar_suff, "%s", item_p31_cat, en_suff, en_priff)
     return quaaa
 
 
 # ---
 Quarry = {
-    # ---
     'items': '''# تسمية  عناصر طبقاً لاسم التصنيف
 SELECT DISTINCT #?item ?label ?cat_ar
 (concat("" , strafter(str(?item),"/entity/") , "")  as ?item_q)
@@ -160,12 +159,8 @@ WHERE {
         ar_suff="تصنيف:وفيات في ",
         item_p31_cat="?item wdt:P1465 ?cat.",
         en_suff="Category:Deaths in ",
-    )
-    # ---
-}
-Quarry[
-    1
-] = '''
+    ),
+    1: '''
 #تسمية تصانيف طبقاً لاسماء العناصر
 SELECT DISTINCT  #?item ?label ?item_ar
 (concat("" , strafter(str(?cat),"/entity/") , "")  as ?item_q)
@@ -185,11 +180,8 @@ WHERE {
     BIND( concat("Category:" , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
 }
-'''
-# ---
-Quarry[
-    "Births2"
-] = '''
+''',
+    "Births2": '''
 #تسمية تصانيف مواليد في
 SELECT DISTINCT  #?item ?label ?item_ar
 (concat("" , strafter(str(?cat),"/entity/") , "")  as ?item_q)
@@ -207,11 +199,8 @@ WHERE {
     BIND( concat("Category:Births in " , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
 }
-'''
-# ---
-Quarry[
-    "items"
-] = '''
+''',
+    "items": '''
 # تسمية  عناصر طبقاً لاسم التصنيف
 SELECT DISTINCT #?item ?label ?cat_ar
 (concat("" , strafter(str(?item),"/entity/") , "")  as ?item_q)
@@ -235,7 +224,8 @@ WHERE {
     BIND( concat("Category:" , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
 }
-'''
+''',
+}
 
 
 def main():
@@ -275,21 +265,18 @@ def main():
             printe.output(f'<<lightred>>>>  use Quarry:{arg} . ')
             qya[arg] = Quarry[arg]
     # ---
-    if qya == {}:
+    if not qya:
         qya = Quarry
-    # ---
-    number = 0
-    for key in qya:
-        number += 1
+    for number, key in enumerate(qya, start=1):
         quuu = qya[key]
         for arg in sys.argv:
             arg, _, value = arg.partition(':')
             # ---
-            if arg == 'P31' or arg == '-P31':
+            if arg in ['P31', '-P31']:
                 printe.output(f'<<lightred>>>>  P31:{value}. ')
                 taxose = f"?item wdt:P31/wdt:P279* wd:{value}."
             # ---
-            if arg == 'lang' or arg == '-lang':
+            if arg in ['lang', '-lang']:
                 if value == "fr":
                     quuu = quuu.replace('"en"', '"fr"')
                     quuu = quuu.replace('"Category:"', '"Catégorie:"')
@@ -298,7 +285,7 @@ def main():
         quuu = quuu % taxose
         # ---
         if limits[1] != "":
-            quuu = quuu + f'\n LIMIT {limits[1]}'
+            quuu = f'{quuu}\n LIMIT {limits[1]}'
         # ---
         printe.output("quuu : %d/%d key:%s" % (number, len(qya), key))
         printe.output(quuu)

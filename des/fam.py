@@ -10,6 +10,7 @@ python3 core8/pwb.py des/fam Q318
 python3 core8/pwb.py des/fam
 
 '''
+
 # ---
 from API import printe
 from API import himoBOT2
@@ -144,7 +145,7 @@ for p31, p31_desc in desc_table.items():
         # ---
         printe.output("work in %d from %d querirs" % (numb, all_lenth))
         # ---
-        quarry = quarry.replace("wd:Q1457376", "wd:" + p31)
+        quarry = quarry.replace("wd:Q1457376", f"wd:{p31}")
         # ---
         if qu_numb == 1:
             printe.output('<<lightred>> first quarry')

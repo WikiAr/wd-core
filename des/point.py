@@ -64,10 +64,8 @@ def action(json1):
 
 
 # ---
-Quarry = {}
-Quarry[
-    "y"
-] = r'''
+Quarry = {
+    "y": '''
 SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
  ?label WHERE {
     ?item wdt:P31 ?pp.
@@ -76,13 +74,14 @@ SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
     #?item wdt:P641/wdt:P279 wd:Q2215841.
     FILTER NOT EXISTS { ?item wdt:P585 ?P585. }
     FILTER NOT EXISTS { ?item wdt:P580 ?P580. }
-    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007C20)\\d\\d") )
-    ?item rdfs:label ?label . FILTER( REGEX(?label, "(\\d\\d\\d\\d)") )
+    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007C20)\d\d") )
+    ?item rdfs:label ?label . FILTER( REGEX(?label, "(\d\d\d\d)") )
     #%s
-    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007C20)\\d\\d") )
+    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007C20)\d\d") )
 }
 #LIMIT 2
 '''
+}
 
 
 def main():
@@ -103,20 +102,17 @@ def main():
             printe.output(f'<<lightred>>>>  use Quarry:{arg} . ')
             qya[arg] = Quarry[arg]
     # ---
-    if qya == {}:
+    if not qya:
         qya = Quarry
-    # ---
-    number = 0
-    for key, quuu in qya.items():
-        number += 1
+    for number, (key, quuu) in enumerate(qya.items(), start=1):
         for arg in sys.argv:
             arg, _, value = arg.partition(':')
             # ---
-            if arg == 'P31' or arg == '-P31':
+            if arg in ['P31', '-P31']:
                 printe.output(f'<<lightred>>>>  P31:{value}. ')
                 taxose = f"?item wdt:P31/wdt:P279* wd:{value}."
             # ---
-            if arg == 'lang' or arg == '-lang':
+            if arg in ['lang', '-lang']:
                 if value == "fr":
                     quuu = quuu.replace('"en"', '"fr"')
                     quuu = quuu.replace('"Category:"', '"Catégorie:"')
@@ -125,7 +121,7 @@ def main():
         quuu = quuu % taxose
         # ---
         if limits[1] != "":
-            quuu = quuu + f'\n LIMIT {limits[1]}'
+            quuu = f'{quuu}\n LIMIT {limits[1]}'
         # ---
         printe.output("quuu : %d/%d key:%s" % (number, len(qya), key))
         printe.output(quuu)

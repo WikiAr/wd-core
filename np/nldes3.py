@@ -113,7 +113,8 @@ limit = {1: 0}
 # ---
 totallimit = {1: 10000}
 # ---
-from np.nldesc import action_one_item, all_types_list, simple_set_byP131, SPARQLSE, New_QS
+from np.nldesc import action_one_item, New_QS
+from np.np_lists import all_types_list, simple_set_byP131, SPARQLSE
 
 
 def lastXnewpages(maxp):
@@ -125,8 +126,7 @@ def lastXnewpages(maxp):
             # print('p:%s' % onepage.title())
             if 'wikibase_item' in onepage.properties():
                 try:
-                    wd = onepage.data_item()
-                    yield (wd)
+                    yield onepage.data_item()
                 except BaseException:
                     pass
     printe.output('Klaar')
@@ -202,10 +202,7 @@ def wd_sparql_query(spq, ddf=False):
         return New_List
     # ---
     Keep = True
-    offset = 0
-    # ---
-    if Off[1] != 0:
-        offset = Off[1]
+    offset = Off[1] if Off[1] != 0 else 0
     # ---
     printe.output(f'qua "{qua}"')
     # ---
@@ -217,16 +214,15 @@ def wd_sparql_query(spq, ddf=False):
         if limit[1] != 0:
             quarry = quarry + "\n limit " + str(limit[1])
         if offset != 0:
-            quarry = quarry + " offset " + str(offset)
+            quarry = f"{quarry} offset {str(offset)}"
         # ---
         # printe.output( quarry )
         # ---
         printe.output('limit[1]:"%d"\t offset:"%d"' % (limit[1], offset))
         # ---
-        generator = wd_bot.sparql_generator_url(quarry, printquary=False, geterror=True)
+        generator = wd_bot.sparql_generator_url(quarry, geterror=True)
         # ---
-        for x in generator:
-            New_List.append(x)
+        New_List.extend(iter(generator))
         # ---
         offset = int(offset + limit[1])
         # ---
@@ -280,8 +276,7 @@ def newest_items(repo, site):
         break
     startno = int(item.title()[1:])
     for itemno in range(startno, 0, -1):
-        item = pywikibot.ItemPage(repo, 'Q%d' % itemno)
-        yield (item)
+        yield pywikibot.ItemPage(repo, 'Q%d' % itemno)
 
 
 def generator_last_hour():
@@ -324,8 +319,6 @@ def wd_all_items():
         if not wd.isRedirectPage():
             if wd.exists():
                 yield wd
-        else:
-            pass
         itemno -= 1
 
 
@@ -433,7 +426,7 @@ def main(debug=False):
     # ---
     numg = 0
     # ---
-    ssqq = random.sample(ssqq, int(len(ssqq)))
+    ssqq = random.sample(ssqq, len(ssqq))
     # ---
     for sparql_query in ssqq:
         # ---
@@ -465,13 +458,11 @@ def main(debug=False):
         if (pigenerator is None) or (forcehourly):
             printe.output('Force hourly script...')
             pigenerator = generator_last_hour()
-        totalreads = 0
         # pigenerator = [ {'item': 'http://www.wikidata.org/entity/Q19019359'} ]
-        for wd in pigenerator:
+        for totalreads, wd in enumerate(pigenerator, start=1):
             printe.output("<<lightblue>> ============")
             # printe.output( wd )
             q = wd['item'].split("/entity/")[1]
-            totalreads += 1
             if debug:
                 printe.output(f'Found: {q}')
             printe.output("p%d/%d q:%s" % (totalreads, len(pigenerator), q))

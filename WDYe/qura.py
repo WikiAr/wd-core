@@ -51,8 +51,6 @@ fas = {
         'en': 'neighborhood in %s, Yemen',
     },
 }
-# ---
-translations = {}
 '''
 translations['Q1529096'] = {
             'ar': 'قرية في تركيا',
@@ -64,29 +62,17 @@ translations['Q1147395'] = {
             'en': 'district in Turkey',
         }
 '''
-translations['Q28373319'] = {
-    'ar': 'محلة في اليمن',
-    'en': 'mahallah in Yemen',
-}
-translations['Q28371991'] = {
-    'ar': 'قرية في اليمن',
-    'en': 'village in Yemen',
-}
-translations['Q12225020'] = {
-    'ar': 'عزلة في اليمن',
-    'en': 'islah in Yemen',
-}
-translations['Q28372019'] = {
-    'ar': 'حي سكني في اليمن',
-    'en': 'neighborhood in Yemen',
+translations = {
+    'Q28373319': {'ar': 'محلة في اليمن', 'en': 'mahallah in Yemen'},
+    'Q28371991': {'ar': 'قرية في اليمن', 'en': 'village in Yemen'},
+    'Q12225020': {'ar': 'عزلة في اليمن', 'en': 'islah in Yemen'},
+    'Q28372019': {'ar': 'حي سكني في اليمن', 'en': 'neighborhood in Yemen'},
 }
 
 
 def action_one_item(x, pa, new_translations):
-    item = wd_bot.GetItemFromQid(pa['item'])
-    if item:
-        ks = {}
-        ks[x] = new_translations
+    if item := wd_bot.GetItemFromQid(pa['item']):
+        ks = {x: new_translations}
         # newdesc.work2(item , x, ks)
         newdesc.work2_with_replacement(item, x, ks, replacement_ke)
 
@@ -94,15 +80,11 @@ def action_one_item(x, pa, new_translations):
 def make_translations(x, pa):
     ar, en = False, False
     # ---
-    descriptions = {}
-    # ---
     if pa["ar"] != "":
         ar = True
     if pa["en"] != "":
         en = True
-    # ---
-    if x in translations:
-        descriptions = translations[x]
+    descriptions = translations[x] if x in translations else {}
     # ---
     if ar and x in fas and "ar" in fas[x]:
         descriptions["ar"] = fas[x]["ar"] % pa["ar"]
@@ -116,12 +98,10 @@ def make_translations(x, pa):
 def main_from_quarry(x, Quarry, translations):
     PageList = wd_bot.sparql_generator_url(Quarry)
     total = len(PageList)
-    num = 0
     # pywikibot.output('* PageList: ')
-    for pa in PageList:
+    for num, pa in enumerate(PageList, start=1):
         pa['item'] = pa['item'].split('/entity/')[1]
         pywikibot.output(pa)
-        num += 1
         pywikibot.output('<<lightblue>>> %s/%d : %s' % (num, total, pa['item']))
         new_translations = make_translations(x, pa)
         pywikibot.output(new_translations)

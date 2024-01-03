@@ -41,7 +41,7 @@ def make_newlabel(label, ar, en):
     printe.output(f'<<lightblue>>make_newlabel label:"{label}",ar:"{ar}",en:"{en}" ')
     newlabel = ''
     # ---
-    label = label.lower() + " "
+    label = f"{label.lower()} "
     label = label.replace("' ", " ")
     label = label.replace(" double ", " doubles ")
     label = label.replace(" single ", " singles ")
@@ -49,7 +49,7 @@ def make_newlabel(label, ar, en):
     label = label.replace(" metre ", " metres ")
     label = label.replace(" championship ", " championships ")
     # ---
-    en = en.lower() + " "
+    en = f"{en.lower()} "
     en = en.replace("' ", " ")
     en = en.replace(" double ", " doubles ")
     en = en.replace(" single ", " singles ")
@@ -63,15 +63,14 @@ def make_newlabel(label, ar, en):
     # ---
     # if re.sub( tests_en , "" , newlabel , flags = re.IGNORECASE ).strip() != newlabel :
     # if re.sub( tests_ar , "" , newlabel , flags = re.IGNORECASE ).strip() != "" :
-    if en.lower().strip() != "" and ar.lower().strip() != "":
-        if label.lower().strip() == en.lower().strip():
-            newlabel = ar
-        elif label.find(en.lower()) != -1:
-            newlabel = ar + " " + label.replace(en.lower(), '')
-        elif en2 != en and label.find(en2) != -1:
-            newlabel = ar + " " + label.replace(en2.lower(), '')
-        else:
-            newlabel = label
+    if en.lower().strip() == "" or ar.lower().strip() == "":
+        newlabel = label
+    elif label.lower().strip() == en.lower().strip():
+        newlabel = ar
+    elif label.find(en.lower()) != -1:
+        newlabel = f"{ar} " + label.replace(en.lower(), '')
+    elif en2 != en and label.find(en2) != -1:
+        newlabel = f"{ar} " + label.replace(en2.lower(), '')
     else:
         newlabel = label
     # ---
@@ -120,16 +119,28 @@ def make_newlabel(label, ar, en):
     newlabel = re.sub(r"at the winter olympics", "في الألعاب الأولمبية الشتوية", newlabel, flags=re.IGNORECASE)
     # ---
     for aeo in Mako_keys_4:
-        newlabel = re.sub(r" " + aeo, " " + Mako_keys_4[aeo], newlabel, flags=re.IGNORECASE)
+        newlabel = re.sub(
+            f" {aeo}", f" {Mako_keys_4[aeo]}", newlabel, flags=re.IGNORECASE
+        )
     # ---
     for rrr in International_Federation:
-        newlabel = re.sub(r" " + rrr, " " + International_Federation[rrr], newlabel, flags=re.IGNORECASE)
+        newlabel = re.sub(
+            f" {rrr}",
+            f" {International_Federation[rrr]}",
+            newlabel,
+            flags=re.IGNORECASE,
+        )
     # ---
     for ccc in Sports_Keys_Lab:
-        newlabel = re.sub(r" " + ccc, " " + Sports_Keys_Lab[ccc], newlabel, flags=re.IGNORECASE)
+        newlabel = re.sub(
+            f" {ccc}",
+            f" {Sports_Keys_Lab[ccc]}",
+            newlabel,
+            flags=re.IGNORECASE,
+        )
     # ---
     for hgh in keys_1:
-        newlabel = re.sub(r" " + hgh, " " + keys_1[hgh], newlabel, flags=re.IGNORECASE)
+        newlabel = re.sub(f" {hgh}", f" {keys_1[hgh]}", newlabel, flags=re.IGNORECASE)
     # ---
     newlabel = newlabel.replace("  ", " ")
     # ---
@@ -143,11 +154,26 @@ def make_newlabel(label, ar, en):
         return ''
     # ---
     newlabel = newlabel.strip()
-    mat = re.match(r"^" + years + r"\sفي\s.*", newlabel)
+    mat = re.match(f"^{years}" + r"\sفي\s.*", newlabel)
     if not mat:
-        newlabel = re.sub(r"^" + years + r"\s*(.*)\-(.*)", r"\g<2> \g<1> - \g<3>", newlabel, flags=re.IGNORECASE).strip()
-        newlabel = re.sub(r"^" + years + r"\s*(.*)\–(.*)", r"\g<2> \g<1> - \g<3>", newlabel, flags=re.IGNORECASE).strip()
-        newlabel = re.sub(r"^" + years + r"\s*(.*)", r"\g<2> \g<1>", newlabel, flags=re.IGNORECASE).strip()
+        newlabel = re.sub(
+            f"^{years}" + r"\s*(.*)\-(.*)",
+            r"\g<2> \g<1> - \g<3>",
+            newlabel,
+            flags=re.IGNORECASE,
+        ).strip()
+        newlabel = re.sub(
+            f"^{years}" + r"\s*(.*)\–(.*)",
+            r"\g<2> \g<1> - \g<3>",
+            newlabel,
+            flags=re.IGNORECASE,
+        ).strip()
+        newlabel = re.sub(
+            f"^{years}" + r"\s*(.*)",
+            r"\g<2> \g<1>",
+            newlabel,
+            flags=re.IGNORECASE,
+        ).strip()
     # ---
     leb_test = re.sub(tests_ar, "", newlabel, flags=re.IGNORECASE)
     if leb_test.strip() != "":
@@ -183,7 +209,6 @@ def Item(item):
     if ar == item['ddar']:
         ar = re.sub(r" (\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)$", "", ar, flags=re.IGNORECASE)
     ar = ar.strip()
-    # ---
     if Usema[1]:
         if (ar == item['ddar'].strip() and ar.lower().strip() != "") or (en == item['dden'].strip() and en.lower().strip() != ""):
             printe.output("<<lightred>> ar == item['ddar'] or en == item['dden'] ")
@@ -196,34 +221,27 @@ def Item(item):
     label = item['label'].lower()
     # ---
     newlabel = make_newlabel(label, ar, en)
-    # ---
-    year = ''
-    mat = re.match(r".*" + years + ".*", item['label'])
-    if mat:
-        year = mat.group(1)
+    year = mat.group(1) if (mat := re.match(f".*{years}.*", item['label'])) else ''
     # ---
     if newlabel.strip() != '' and year.strip() != "" and newlabel.find(year.strip()) == -1:
         printe.output(f"<<lightred>> cant find year:{year}, at newlabel ({newlabel}) ")
         return ''
-    # ---
-    if newlabel.strip() != "":
-        if Ask[1]:
+    if Ask[1]:
+        if newlabel.strip() != "":
             sa = pywikibot.input(f'<<lightyellow>>himoAPI: Labels_API Add "{newlabel}" as label to "{q}"? ([y]es, [N]o):')
             if sa in yes_answer:
                 himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
             if sa == "a":
                 Ask[1] = False
-        else:
-            himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
+    elif newlabel.strip() != "":
+        himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
 
     # ---
 
 
-Quarry = {}
-Quarry['use'] = ""
-Quarry[
-    0
-] = '''
+Quarry = {
+    'use': "",
+    0: '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
   ?item wdt:P31/wdt:P279* wd:Q27020041.
@@ -235,11 +253,8 @@ WHERE {
   FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
   #sr
 }
-LIMIT '''
-# ---
-Quarry[
-    1
-] = '''
+LIMIT ''',
+    1: '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  # ?item wdt:P31 wd:Q27020041.
@@ -250,12 +265,8 @@ WHERE {
   FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
   #sr
 }
-LIMIT '''
-# ---
-# python pwb.py des/p155 qua2 P31:Q18536594 limit:1000
-Quarry[
-    2
-] = '''
+LIMIT ''',
+    2: '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  #  values ?dd { wd:Q27792093 }
@@ -275,11 +286,8 @@ WHERE {
   #sr
 
 }
-LIMIT  '''
-# ---
-Quarry[
-    3
-] = '''
+LIMIT  ''',
+    3: '''
 SELECT DISTINCT ?item ?label
 ?dden ?ddar
 WHERE {
@@ -292,12 +300,8 @@ WHERE {
   #sr
 
 }
-LIMIT  '''
-
-# ---
-Quarry[
-    4
-] = '''
+LIMIT  ''',
+    4: '''
 SELECT DISTINCT ?item ?label
 ?dden ?ddar
 WHERE {
@@ -309,12 +313,8 @@ WHERE {
     FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
     #sr
 }
-LIMIT  '''
-# ---
-# python pwb.py des/p155 qua5 P31:Q18536594 limit:1000
-Quarry[
-    5
-] = '''
+LIMIT  ''',
+    5: '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  #  values ?dd { wd:Q27792093 }
@@ -330,11 +330,8 @@ WHERE {
   #sr
 
 }
-LIMIT  '''
-# ---
-Quarry[
-    6
-] = '''
+LIMIT  ''',
+    6: '''
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  #  values ?dd { wd:Q27792093 }
@@ -351,11 +348,8 @@ WHERE {
 
 }
 LIMIT
-'''
-# ---
-Quarry[
-    7
-] = '''
+''',
+    7: '''
 SELECT DISTINCT ?item ?label ?dden ?ddar
 WHERE {
     ?item rdfs:label ?label filter (lang(?label) = "en") .
@@ -366,11 +360,8 @@ WHERE {
     #sr
     FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
 }
-LIMIT  '''
-# ---
-Quarry[
-    8
-] = '''
+LIMIT  ''',
+    8: '''
 SELECT ?item ?ddar ?dden ?label
 WHERE {
   ?io wdt:P31 wd:Q27020041.
@@ -385,7 +376,8 @@ WHERE {
 
 }
 LIMIT
-'''
+''',
+}
 # ---
 Quarry['use'] = Quarry[2]
 
@@ -450,7 +442,7 @@ def main():
             Ask[1] = False
             printe.output('<<lightred>> Ask = False.')
         # ---
-        if arg == '-limit' or arg == 'limit':
+        if arg in ['-limit', 'limit']:
             Limit[1] = value
             printe.output(f'<<lightred>> Limit = {value}.')
         # ---#
@@ -465,7 +457,7 @@ def main():
             tart = f"?item wdt:{arg} wd:{value}."
             printe.output(f'tart: "{tart}"')
             Quarry['use'] = Quarry['use'].replace("#sr", tart + "\n#sr")
-        # ---#
+            # ---#
     Quaa = Quarry['use'] + Limit[1]
     printe.output(Quaa)
     sparql = wd_bot.sparql_generator_url(Quaa)
@@ -475,11 +467,7 @@ def main():
         q = item['item'].split("/entity/")[1]
         item['item'] = q
         Table[q] = item
-    # ---
-    num = 0
-    for item in Table:
-        tabj = Table[item]
-        num += 1
+    for num, (item, tabj) in enumerate(Table.items(), start=1):
         printe.output('<<lightblue>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         Item(tabj)
 

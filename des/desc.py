@@ -40,6 +40,7 @@ WHERE {
 GROUP BY ?item
 limit 100
 """
+
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -62,17 +63,10 @@ from des.contries2 import *  # ContriesTable2
 donelist = []
 # ---
 bylangs = False  # False#True
-# ---
-placesTable = {}
 from des.places import *  # placesTable
 
-# ---
-placesTable["Q29701762"] = {"ar": "مستوطنة"}
-# ---
-placesTable2 = {}
-# ---
-for fg in placesTable:
-    placesTable2[fg] = placesTable[fg]
+placesTable = {"Q29701762": {"ar": "مستوطنة"}}
+placesTable2 = {fg: placesTable[fg] for fg in placesTable}
 # ---
 offset = {1: 0}
 offset_place = {1: 0}
@@ -85,24 +79,21 @@ for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(':')
     # ---
-    if arg == 'offplace':
-        offset_place[1] = int(value)
-    # ---
     if arg == 'off':
         offset[1] = int(value)
+    elif arg == 'offplace':
+        offset_place[1] = int(value)
     # ---
     # python3 core8/pwb.py des/desc descqs limit:4000 optional place:Q185113
     # python3 core8/pwb.py des/desc descqs limit:1000 place:Q8054
     if arg == 'place' and value in placesTable:
         placesTable2 = {value: placesTable[value]}
     # ---
-    if arg == 'limit':
-        limit[1] = int(value)
-    # ---
     if arg == 'alllimit':
         alllimit[1] = int(value)
-    # ---
-    if arg == 'qslimit':
+    elif arg == 'limit':
+        limit[1] = int(value)
+    elif arg == 'qslimit':
         QSlimit[1] = int(value)
     # ---
 New_QS = {1: []}
@@ -147,10 +138,7 @@ def wd_sparql_query(spq, ddf=False):
     New_List = []
     # ---
     Keep = True
-    off = 0
-    # ---
-    if offset[1] != 0:
-        off = offset[1]
+    off = offset[1] if offset[1] != 0 else 0
     # ---
     printe.output(f'qua "{qua}"')
     # ---
@@ -162,7 +150,7 @@ def wd_sparql_query(spq, ddf=False):
         if limit[1] != 0:
             quarr = quarr + "\n limit " + str(limit[1])
         if off != 0:
-            quarr = quarr + " offset " + str(off)
+            quarr = f"{quarr} offset {str(off)}"
         # else: offset[1] != 0 :
         # quarr = quarr + " offset " + str( offset[1] )
         # ---
@@ -172,8 +160,7 @@ def wd_sparql_query(spq, ddf=False):
         # ---
         generator = wd_bot.sparql_generator_url(quarr)
         # ---
-        for x in generator:
-            New_List.append(x)
+        New_List.extend(iter(generator))
         # ---
         off = int(off + limit[1])
         # ---
@@ -235,15 +222,15 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
             df = get_property_for_list.get_property_label_for_qids(["P17", "P131", "P276"], [q]) or {}
             printe.output('get_property_for_list')
             printe.output(df)
-            # ---
-            if p17lab == "":
-                p17lab = df.get(q, {}).get("P17", "").split('@@')[0]
-            # ---
-            if placear == "":
-                placear = df.get(q, {}).get("P131", "").split('@@')[0]
-            if placear == "":
-                placear = df.get(q, {}).get("P276", "").split('@@')[0]
-            # ---
+                    # ---
+        # ---
+        if p17lab == "":
+            p17lab = df.get(q, {}).get("P17", "").split('@@')[0]
+        # ---
+        if placear == "":
+            placear = df.get(q, {}).get("P131", "").split('@@')[0]
+        if placear == "":
+            placear = df.get(q, {}).get("P276", "").split('@@')[0]
     # ---
     placeartest = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", placear.lower())
     # ---
@@ -268,7 +255,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     if placear != "" and p17lab != "":
         asd = f"{placear}، {p17lab}"
         arlabel2 = arlabel.format(asd)
-    elif placear != "" and placear != p17lab:
+    elif placear not in ["", p17lab]:
         arlabel2 = arlabel.format(placear)
     elif p17lab != "":
         arlabel2 = arlabel.format(p17lab)
@@ -322,10 +309,8 @@ WHERE {
 }
 '''
 # ---
-Quase = {}
-Quase[
-    'Q8054'
-] = '''SELECT DISTINCT
+Quase = {
+    'Q8054': '''SELECT DISTINCT
 (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 ?placear
 (CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
@@ -339,11 +324,8 @@ WHERE {
 
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
 }
-'''
-# ---
-Quase[
-    2020
-] = '''SELECT #DISTINCT
+''',
+    2020: '''SELECT #DISTINCT
 (GROUP_CONCAT(DISTINCT(STRAFTER(STR(?item), "/entity/")); separator="@@") as ?q) #(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 (GROUP_CONCAT(DISTINCT(STR(?placeare)); separator="@@") as ?placear) #?placear
 (GROUP_CONCAT(DISTINCT(STRAFTER(STR(?p17), "/entity/")); separator="@@") as ?pp17) #(CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
@@ -359,7 +341,8 @@ WHERE {
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
 }
 GROUP BY ?item# HAVING ( ?p17count = 1 )
-'''
+''',
+}
 # ---
 if 'optional' in sys.argv:
     # Quase[2020] = Quase[2020].replace('?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
@@ -386,10 +369,7 @@ def work_one_place(place):
     if New_QS[1] != [] and "cleanlist" in sys.argv:
         himoAPI.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
-    # ---
-    quarry = Quase[2020]
-    if place in Quase:
-        quarry = Quase[place]
+    quarry = Quase[place] if place in Quase else Quase[2020]
     # ---
     quarry = quarry % place
     # ---
@@ -417,19 +397,15 @@ def mainoo():
     kee = sorted(placesTable2.keys())
     # ---
     lenth_place = len(placesTable2)
-    # ---
-    placenum = 0
-    for place in kee:
-        placenum += 1
+    for placenum, place in enumerate(kee, start=1):
         # ---
         ara = placesTable2[place].get("ar", "")
         # ---
         printe.output('<<lightred>> %d/%d, place:"%s", arlabel:"%s". ' % (placenum, lenth_place, place, ara))
         # ---
-        if placenum < offset_place[1]:
-            continue
-        # ---
-        work_one_place(place)
+        if placenum >= offset_place[1]:
+            # ---
+            work_one_place(place)
     # ---
     if New_QS[1] != []:
         himoAPI.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")

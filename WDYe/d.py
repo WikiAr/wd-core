@@ -2,10 +2,10 @@
 #  python pwb.py wd/wikinews
 #
 # ---
-quuu = {}
-quuu[
-    'species of beetle'
-] = """
+from wd_api import newdesc
+# ---
+quuu = {
+    'species of beetle': """
 SELECT DISTINCT
 ?item ?en2 WHERE {
   BIND("espèce de coléoptères"@fr AS ?fr) ?item schema:description ?fr.
@@ -13,10 +13,8 @@ SELECT DISTINCT
   BIND("species of beetle"@en AS ?en) ?item schema:description ?en.
   #OPTIONAL { ?item schema:description ?en2. FILTER((LANG(?en2)) = "en") }
 }
-LIMIT 20000"""
-quuu[
-    'species of insect'
-] = """
+LIMIT 20000""",
+    'species of insect': """
 SELECT DISTINCT
 ?item ?en2 WHERE {
   BIND("espèce de coléoptères"@fr AS ?fr) ?item schema:description ?fr.
@@ -24,7 +22,8 @@ SELECT DISTINCT
   BIND("species of insect"@en AS ?en) ?item schema:description ?en.
   #OPTIONAL { ?item schema:description ?en2. FILTER((LANG(?en2)) = "en") }
 }
-LIMIT 20000"""
+LIMIT 20000""",
+}
 # ---
 # from API.replacement import replacement
 # ---

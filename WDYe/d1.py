@@ -16,6 +16,7 @@ GROUP BY ?en
 ORDER BY DESC(?count)
 #LIMIT 3000
 '''
+
 # ---
 # start of newdesc.py file
 
@@ -43,10 +44,8 @@ from wd_api import wd_desc
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
 # wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
 # ---
-quuu = {}
-quuu[
-    'species of beetle'
-] = """
+quuu = {
+    'species of beetle': """
 SELECT DISTINCT
 ?item WHERE {
     BIND("species of beetle"@en AS ?en) ?item schema:description ?en.
@@ -56,10 +55,8 @@ SELECT DISTINCT
     {?item schema:description ?it. } UNION {?item schema:description ?fr.}
     #OPTIONAL { ?item schema:description ?en2. FILTER((LANG(?en2)) = "en") }
 }
-LIMIT 20000"""
-quuu[
-    'species of insect'
-] = """
+LIMIT 20000""",
+    'species of insect': """
 SELECT DISTINCT
 ?item WHERE {
     BIND("species of insect"@en AS ?en) ?item schema:description ?en.
@@ -68,7 +65,8 @@ SELECT DISTINCT
     {?item schema:description ?it. } UNION {?item schema:description ?fr.}
     #OPTIONAL { ?item schema:description ?en2. FILTER((LANG(?en2)) = "en") }
 }
-LIMIT 100000"""
+LIMIT 100000""",
+}
 # ---
 # start of newdesc.py file
 
@@ -96,8 +94,6 @@ def work2(item, topic):
     item.get()
     # ---
     ItemDescriptions = item.descriptions
-    NewDesc = {}
-    fixlang = []
     q = item.title(as_link=False)
     # ---
     if "en" in ItemDescriptions.keys():
@@ -105,12 +101,16 @@ def work2(item, topic):
         # ---
         if en in translations.keys():
             replacement = translations[en]
+            NewDesc = {}
+            fixlang = []
             for lang in replacement.keys():
                 if lang in ItemDescriptions.keys():
                     value = ItemDescriptions[lang]  # ['value']
                     if value != replacement[lang]:
                         NewDesc[lang] = {"language": lang, "value": replacement[lang]}
-                        pywikibot.output('<<lightyellow>> {}:replace "{}" by: "{}".'.format(lang, value, replacement[lang]))
+                        pywikibot.output(
+                            f'<<lightyellow>> {lang}:replace "{value}" by: "{replacement[lang]}".'
+                        )
                         fixlang.append(lang)
                 else:
                     NewDesc[lang] = {"language": lang, "value": translations[topic][lang]}
@@ -125,14 +125,12 @@ def mam():
     pywikibot.output('*<<lightyellow>> mainfromQuarry:')
     Quarry = quuu[topic]
     if sys.argv and "OFFSET" in sys.argv:
-        Quarry = Quarry + " OFFSET 100000"
+        Quarry = f"{Quarry} OFFSET 100000"
     json = wd_bot.wd_sparql_generator_url(Quarry)
     lenth = len(json)
-    num = 0
     # topic = 'Wikinews article'
     # ---
-    for item in json:
-        num += 1
+    for num, item in enumerate(json, start=1):
         q = item.title(as_link=False)
         pywikibot.output('<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, lenth, topic, q))
         work2(item, topic)

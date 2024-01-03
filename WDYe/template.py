@@ -4,9 +4,7 @@ from wd_api import newdesc
 # repo = site.data_repository()
 from desc_dicts.descraptions import DescraptionsTable
 
-translations = {}
-translations['Wikimedia template'] = DescraptionsTable['Wikimedia template']
-
+translations = {'Wikimedia template': DescraptionsTable['Wikimedia template']}
 # import pywikibot
 
 # item = pywikibot.ItemPage(repo, 'Q20509009')

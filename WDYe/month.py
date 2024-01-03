@@ -8,10 +8,8 @@ import pywikibot
 from wd_api import newdesc
 
 # ---
-quuu = {}
-quuu[
-    'month'
-] = '''
+quuu = {
+    'month': '''
 SELECT DISTINCT ?item
 WHERE {
 ?item schema:description "%s"@en  .
@@ -20,24 +18,23 @@ FILTER NOT EXISTS {?item schema:description ?ar.
 }
 limit 3000
 '''
+}
 # ---
 # newdesc.work22(q , topic, translations)
 # newdesc.main_from_file(file , topic , translations)
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 # --- ----------------------
 translations = {
-    'month': {
-        'ar': 'شهر',
-    },
+    'month': {'ar': 'شهر'},
+    "island in Indonesia": {"ar": "جزيرة في إندونيسيا"},
 }
-translations["island in Indonesia"] = {"ar": "جزيرة في إندونيسيا"}
 
 
 def main_from_quarry(topic):
     pywikibot.output('*<<lightyellow>> main_from_quarry:')
     Quarry = quuu["month"] % topic
     if sys.argv and "OFFSET" in sys.argv:
-        Quarry = Quarry + " OFFSET 100000"
+        Quarry = f"{Quarry} OFFSET 100000"
     newdesc.mainfromQuarry2(topic, Quarry, translations)
 
 
