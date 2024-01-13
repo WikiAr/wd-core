@@ -29,12 +29,15 @@ from desc_dicts.descraptions import *
 # ---
 translations = {'Wikimedia disambiguation page': DescraptionsTable['Wikimedia disambiguation page']}
 # ---
-replacement = {}
-replacement["fa"] = {
-    "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
-    # "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
-    # "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
-    "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable['Wikimedia disambiguation page']["fa"],
+replacement = {
+    "fa": {
+        "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable[
+            'Wikimedia disambiguation page'
+        ]["fa"],
+        "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا": DescraptionsTable[
+            'Wikimedia disambiguation page'
+        ]["fa"],
+    }
 }
 
 

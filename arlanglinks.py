@@ -2,6 +2,7 @@
 python3 core8/pwb.py dump/arlanglinks
 """
 
+
 import sys
 import json
 from pathlib import Path
@@ -67,9 +68,6 @@ for i in range(1, all):
         table[en] = ar
     # ---
     print(f'len of table:{len(table)}')
-    # ---
-    if TEST:
-        break
     # ---
     json.dump(table, open(dump_file, 'w', encoding="utf-8"))
 # ---

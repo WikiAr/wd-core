@@ -32,8 +32,12 @@ def Get_P_API_id(claims, P, onlyone=False):
     list = []
     # ---
     for c in claims.get(P, {}):
-        q = c.get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id')
-        if q:
+        if (
+            q := c.get('mainsnak', {})
+            .get('datavalue', {})
+            .get('value', {})
+            .get('id')
+        ):
             list.append(q)
             if onlyone:
                 return q

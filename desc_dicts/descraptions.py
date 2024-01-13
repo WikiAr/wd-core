@@ -39,6 +39,7 @@ group by ?P31
 
 """
 
+
 # ---
 # from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
 from desc_dicts.scientific_article_desc import Scientific_descraptions
@@ -1325,14 +1326,10 @@ Space_Desc = {
         "ga": "réaltra",
     },
 }
-# ---
-Space_Descraptions = {}
-# ---
-for k, val in Space_Desc.items():
-    if len(val.keys()) > 2:
-        Space_Descraptions[k] = val
-    else:
-        Space_Descraptions[k] = {"ar": val["ar"]}
+Space_Descraptions = {
+    k: val if len(val.keys()) > 2 else {"ar": val["ar"]}
+    for k, val in Space_Desc.items()
+}
 # ---
 # enlab:primary school, q:Q9842
 # enlab:taxon, q:Q16521

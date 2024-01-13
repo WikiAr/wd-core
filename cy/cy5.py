@@ -913,11 +913,7 @@ def page_put(NewText, summ, MainTitle):
 lines = {}
 new_lines = {}
 states = {}
-# ---
-# new_lines
-# ---
-regline = r"\{\{نتيجة سباق الدراجات/سطر4"
-regline += r"\|\s*qid\s*\=(?P<qid>Q\d+)"
+regline = r"\{\{نتيجة سباق الدراجات/سطر4" + r"\|\s*qid\s*\=(?P<qid>Q\d+)"
 regline += r"\|\s*السباق\s*\=(?P<race>.*)"
 regline += r"\|\s*البلد\s*\=(?P<p17>.*)"
 regline += r"\|\s*التاريخ\s*\=(?P<date>.*)"
@@ -1023,9 +1019,7 @@ def puttext(text, MainTitle, Newsect):
     Newsect = Frist + '\n' + Newsect + '{{نتيجة سباق الدراجات/نهاية}}'
     Newsect = re.sub(r'\n\n{{نتيجة سباق الدراجات/نهاية}}', '\n{{نتيجة سباق الدراجات/نهاية}}', Newsect)
     NewText = text.replace(sect, Newsect)
-    summ = 'بوت:تجربة تحديث بيانات اللاعب'
-    if workibrahem:
-        summ = ''
+    summ = '' if workibrahem else 'بوت:تجربة تحديث بيانات اللاعب'
     printt(f'showDiff of page: {MainTitle}{br}')
     if MainTitle in states:
         if states[MainTitle]["new_line"] != 0 or states[MainTitle]["removed_line"] != 0 and text != NewText:
