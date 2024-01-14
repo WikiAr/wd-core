@@ -118,15 +118,15 @@ def mainfromQuarry2():
     sparql = open_url.getURL(url=url)
     jso = json.loads(sparql)
     topic = 'Wikimedia disambiguation page'
-    list = [
+    lista = [
         f"Q{str(x[0])}"
         for x in jso['rows']
         if x[1] == "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا"
     ]
-    for num, page in enumerate(list, start=1):
+    for num, page in enumerate(lista, start=1):
         item = pywikibot.ItemPage(repo, page.strip())
         q = item.title(as_link=False)
-        pywikibot.output('<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, len(list), topic, q))
+        pywikibot.output('<<lightyellow>>*mainfromQuarry: %d/%d topic:"%s" , q:"%s".' % (num, len(lista), topic, q))
         work2(item, topic)
 
 

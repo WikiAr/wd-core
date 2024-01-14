@@ -125,11 +125,7 @@ def work_railway(wditem, p31, q=""):
         # ---
         desc_n = des
         if p17_desc != "":
-            if (
-                p31 != 'Q728937'
-                and 'Q728937' not in P31_list
-                and p131_desc != ""
-            ):
+            if p31 != 'Q728937' and 'Q728937' not in P31_list and p131_desc != "":
                 desc_n = lang_format[lang][2].format(des, p131_desc, p17_desc)
             else:
                 desc_n = lang_format[lang][1].format(des, p17_desc)

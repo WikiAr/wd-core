@@ -348,11 +348,7 @@ def action_one_P131_item(lng, oneitem):
             if lng in isa.get('labels', {}):
                 isaname = isa.get('labels', {}).get(lng, '')
 
-    if isaname in ['dorp in China']:
-        shortname = 'قرية'
-    else:
-        shortname = isaname
-
+    shortname = 'قرية' if isaname in ['dorp in China'] else isaname
     if 'P131' in oneitem.get('claims', {}):
         LNKadmin = oneitem.get('claims', {}).get('P131')[0].get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', '')  # .getTarget()
         if LNKadmin is not None:

@@ -6,9 +6,7 @@ from wd_api import newdesc
 from desc_dicts.descraptions import DescraptionsTable
 
 # ---
-translations = {
-    'Wikimedia module': DescraptionsTable.get('Wikimedia module', {})
-}
+translations = {'Wikimedia module': DescraptionsTable.get('Wikimedia module', {})}
 # ---
 LIST = ["Q15145755", "Q18711811"]  # Module test cases  # map data module
 # ---
