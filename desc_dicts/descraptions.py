@@ -39,6 +39,7 @@ group by ?P31
 
 """
 
+
 # ---
 # from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
 from desc_dicts.scientific_article_desc import Scientific_descraptions

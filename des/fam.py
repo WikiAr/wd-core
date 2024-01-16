@@ -11,6 +11,7 @@ python3 core8/pwb.py des/fam
 
 '''
 
+
 # ---
 from API import printe
 from API import himoBOT2
@@ -176,7 +177,7 @@ for p31, p31_desc in desc_table.items():
             if qu_numb == 1:
                 printe.output(tp)
             # ---
-            if len(lang_to_add) == 0:
+            if not lang_to_add:
                 printe.output(tp)
                 continue
             # ---

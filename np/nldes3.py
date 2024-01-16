@@ -444,17 +444,16 @@ def main(debug=False):
         items_processed = 0
         if debug:
             printe.output('main-1')
-        if True:
-            # pigenerator = wd_all_countries(sparql_query)
-            # pigenerator = wd_all_without_description()
-            # pigenerator=wd_one_without_description('Q189004')  #onderwijsinstelling
-            # pigenerator = wd_all_simple_P131()
-            # pigenerator = wd_user_edits('Edoderoobot',site,511111)
-            # pigenerator = wd_all_items(1)
-            # pigenerator = lastXnewpages(1999999) #max one month of newpages anyways
-            # pigenerator = wd_all_items(-1)
-            # pigenerator=some_items()
-            pigenerator = wd_sparql_query(sparql_query, ddf=True)
+        # pigenerator = wd_all_countries(sparql_query)
+        # pigenerator = wd_all_without_description()
+        # pigenerator=wd_one_without_description('Q189004')  #onderwijsinstelling
+        # pigenerator = wd_all_simple_P131()
+        # pigenerator = wd_user_edits('Edoderoobot',site,511111)
+        # pigenerator = wd_all_items(1)
+        # pigenerator = lastXnewpages(1999999) #max one month of newpages anyways
+        # pigenerator = wd_all_items(-1)
+        # pigenerator=some_items()
+        pigenerator = wd_sparql_query(sparql_query, ddf=True)
         if (pigenerator is None) or (forcehourly):
             printe.output('Force hourly script...')
             pigenerator = generator_last_hour()

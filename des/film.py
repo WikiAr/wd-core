@@ -67,7 +67,7 @@ def action_one_item(Qid, pa, lang, keys):
     if addedlangs:
         qitem = item.title(as_link=False)
         if AskSave[1]:
-            printe.output('================== + ' + str(addedlangs))
+            printe.output(f'================== + {addedlangs}')
             for lan, value in NewDesc.items():
                 printe.output(f"""lang:{lan}, value: \"{value['value']}\"""")
             saaa = pywikibot.input(' Add as descriptions? ')
