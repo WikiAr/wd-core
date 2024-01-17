@@ -157,12 +157,7 @@ def Get_P_API_id(item, P):
     lista = []
     claims = item.get("claims", {}).get(P, {})
     for c in claims:
-        if (
-            q := c.get('mainsnak', {})
-            .get('datavalue', {})
-            .get('value', {})
-            .get('id', False)
-        ):
+        if q := c.get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id', False):
             lista.append(q)
     # ---
     return lista

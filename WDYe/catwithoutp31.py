@@ -100,13 +100,9 @@ def work_one_item(item):
         catdesc['en-ca'] = catdesc['en']
         catdesc['en-gb'] = catdesc['en']
     # ---
-    NewDesc = {
-        lang: {"language": lang, "value": catdesc[lang]}
-        for lang in catdesc.keys()
-        if lang not in descriptions.keys()
-    }
+    NewDesc = {lang: {"language": lang, "value": catdesc[lang]} for lang in catdesc.keys() if lang not in descriptions.keys()}
     # ---
-    if NewDesc :
+    if NewDesc:
         pywikibot.output(f'<<lightyellow>>* adding descriptions to :{q} ')
         wd_desc.work_api_desc(NewDesc, q)
     else:
