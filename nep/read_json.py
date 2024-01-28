@@ -38,7 +38,9 @@ def read_bad_list(file):
             listt.close()
         # ---
         for type in done_list7:
-            printe.output(f'find {len(done_list7[type])} cats in done_list7. "{type}" , file:"{file}"')
+            printe.output(
+                f'find {len(done_list7[type])} cats in done_list7. "{type}" , file:"{file}"'
+            )
             for catee in done_list7[type]:
                 catee = catee.strip()
                 catee = re.sub(r'"', "", catee)
@@ -47,9 +49,9 @@ def read_bad_list(file):
         print(f'Good JJson "{file}"')
         return List
     except Exception:
-        pywikibot.output('<<lightred>> Traceback (most recent call last):')
+        pywikibot.output("<<lightred>> Traceback (most recent call last):")
         pywikibot.output(traceback.format_exc())
-        pywikibot.output('CRITICAL:')
+        pywikibot.output("CRITICAL:")
         # ---
         List = []
         with open(file) as listt:
@@ -78,9 +80,9 @@ def read_bad_json(file):
         print(f'Good JJson "{file}"')
         return done_list7
     except Exception:
-        pywikibot.output('<<lightred>> Traceback (most recent call last):')
+        pywikibot.output("<<lightred>> Traceback (most recent call last):")
         pywikibot.output(traceback.format_exc())
-        pywikibot.output('CRITICAL:')
+        pywikibot.output("CRITICAL:")
         lala = {}
         with codecs.open(file, "r", encoding="utf-8-sig") as listt2:
             lala = listt2.read()
@@ -105,10 +107,10 @@ def main(file, Type):
         else:
             print(f"* unknow type :{Type}")
     except Exception:
-        pywikibot.output('<<lightred>> Traceback (most recent call last):')
+        pywikibot.output("<<lightred>> Traceback (most recent call last):")
         pywikibot.output(f'* Cant work file:"{file}" , Type:"{Type}"')
         pywikibot.output(traceback.format_exc())
-        pywikibot.output('CRITICAL:')
+        pywikibot.output("CRITICAL:")
     return False
 
 

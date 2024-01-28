@@ -42,7 +42,7 @@ from wd_api import wd_bot
 from wd_api import wd_desc
 
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
-# wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
+# wd_desc.work_api_desc(NewDesc, qid)
 # ---
 quuu = {
     'species of beetle': """

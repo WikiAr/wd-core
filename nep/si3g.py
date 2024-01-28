@@ -7,7 +7,7 @@ python3 core8/pwb.py nep/si3g -usercontribs:Ghuron
 
 python3 core8/pwb.py nep/si3g -ns:0 -offset:5000 -newpages:10000
 
-python3 core8/pwb.py nep/si3g -newpages:200 descqs
+python3 core8/pwb.py nep/si3g -newpages:200
 python3 core8/pwb.py nep/si3g -newpages:100 ask
 
 python3 core8/pwb.py nep/si3g -page:Q112167358
@@ -43,25 +43,25 @@ import codecs
 import time
 from pathlib import Path
 # ---
-sys.argv.append('-family:wikidata')
-sys.argv.append('-lang:wikidata')
+sys.argv.append("-family:wikidata")
+sys.argv.append("-lang:wikidata")
 # ---
 from API import printe
 import gent
 from nep import si3
 from newapi.page import NEW_API
 # ---
-api_new = NEW_API('www', family='wikidata')
+api_new = NEW_API("www", family="wikidata")
 api_new.Login_to_wiki()
 # ---
 Dir = Path(__file__).parent
-main_dir1 = f'{str(Path(__file__).parent.parent)}/'
+main_dir1 = f"{str(Path(__file__).parent.parent)}/"
 # ---
-printe.output(f'<<lightyellow>> main_dir1 = {main_dir1}')
-# ---
+printe.output(f"<<lightyellow>> main_dir1 = {main_dir1}")
+
 
 def mainwithcat2():
-    printe.output('*<<lightred>> > mainwithcat2:')
+    printe.output("*<<lightred>> > mainwithcat2:")
     # ---
     # python3 core8/pwb.py nep/si3g -newpages:10
     # python3 core8/pwb.py nep/si3g -newpages:1000
@@ -69,23 +69,23 @@ def mainwithcat2():
     # ---
     start = time.time()
     # ---
-    user = ''
+    user = ""
     user_limit = 3000
     # ---
-    namespaces = '0'
-    file = ''
-    newpages = ''
+    namespaces = "0"
+    file = ""
+    newpages = ""
     # ---
     lista = []
     # ---
     for arg in sys.argv:
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---
         if arg in ["-limit", "limit"]:
             user_limit = value
         # ---
         if arg == "-arfile":
-            file = f'dump/ar/{value}.txt'
+            file = f"dump/ar/{value}.txt"
         elif arg == "-newpages":
             newpages = value
         # ---
@@ -103,9 +103,9 @@ def mainwithcat2():
         # python3 core8/pwb.py nep/si3g -artest:Q79007
         # python3 core8/pwb.py nep/si3g -artest:Q7187
         if arg == "-artest":
-            file = f'dump/artest/{value}.txt'
+            file = f"dump/artest/{value}.txt"
         # ---
-        if arg == '-page':
+        if arg == "-page":
             lista.append(value)
         # ---
         # python3 core8/pwb.py nep/si3g -ns:0 -usercontribs:Edoderoobot
@@ -119,11 +119,12 @@ def mainwithcat2():
     if file != "":
         if not file.startswith(main_dir1):
             file = main_dir1 + file
-        oco = codecs.open(file, "r", encoding="utf-8").read().split('\n')
-        lista = [x.strip() for x in oco if x.strip() != '']
+        with open(file, "r", encoding="utf-8") as f:
+            oco = f.read().split("\n")
+        lista = [x.strip() for x in oco if x.strip() != ""]
     # ---
     elif newpages != "":
-        lista = api_new.Get_Newpages(limit=newpages, namespace=namespaces, rcstart="", user='')
+        lista = api_new.Get_Newpages(limit=newpages, namespace=namespaces, rcstart="", user="")
     # ---
     elif user != "":
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")
@@ -131,7 +132,7 @@ def mainwithcat2():
     if lista == []:
         genet = gent.get_gent()
         lista = [page.title(as_link=False) for page in genet]
-    printe.output('*<<lightred>> > mainwithcat2 :')
+    printe.output("*<<lightred>> > mainwithcat2 :")
     for num, q in enumerate(lista, start=1):
         si3.ISRE(q, num, len(lista))
     # ---
@@ -140,7 +141,7 @@ def mainwithcat2():
     final = time.time()
     delta = int(final - start)
     # ---
-    printe.output(f'si3.py mainwithcat2 done in {delta} seconds')
+    printe.output(f"si3.py mainwithcat2 done in {delta} seconds")
 
 
 if __name__ == "__main__":

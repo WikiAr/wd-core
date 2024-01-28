@@ -12,9 +12,9 @@ import re
 import dateutil.parser
 
 # ---
+from nep.bots.helps import Get_P_API_time
 from API import printe
 from desc_dicts.scientific_article_desc import Scientific_descraptions
-
 # ---
 Desc_Just_year = {
     "zh": "%s年学术文章",  # 年论文
@@ -26,12 +26,12 @@ Desc_Just_year = {
     "nan": "%s nî lūn-bûn",
 }
 # ---
-Desc_Just_year['yue'] = Desc_Just_year['zh-hant']
+Desc_Just_year["yue"] = Desc_Just_year["zh-hant"]
 # ---
-Desc_Just_year['zh-hans'] = Desc_Just_year['zh']
-Desc_Just_year['wuu'] = Desc_Just_year['zh']
+Desc_Just_year["zh-hans"] = Desc_Just_year["zh"]
+Desc_Just_year["wuu"] = Desc_Just_year["zh"]
 # ---
-'''
+"""
 # ---
 "zh":"%s年论文",
 "zh-hans":"%s年论文",
@@ -46,7 +46,7 @@ Desc_Just_year['wuu'] = Desc_Just_year['zh']
 "zh-tw":"%s年論文",
 "yue":"%s年論文",
 # ---
-'''
+"""
 # ---
 pubtxt = {
     "ar": "نشرت في",
@@ -122,7 +122,7 @@ Month_Table = {
         "11": "november",
         "12": "december",
     },
-    'uk': {
+    "uk": {
         "1": "в січні",
         "2": "в лютому",
         "3": "в березні",
@@ -138,20 +138,46 @@ Month_Table = {
     },
 }
 # ---
-format = {
+format_l = {
     "da": "videnskabelig artikel udgivet %s",
     # 'ar' : "مقالة علمية نشرت في %s",
-    'ar': "مقالة بحثية نشرت في %s",
-    'uk': "наукова стаття, опублікована %s",
-    'en': "scientific article published in %s",
-    'es': "artículo científico publicado en %s",
-    'bn': "%s-এ প্রকাশিত বৈজ্ঞানিক নিবন্ধ",
+    "ar": "مقالة بحثية نشرت في %s",
+    "uk": "наукова стаття, опублікована %s",
+    "en": "scientific article published in %s",
+    "es": "artículo científico publicado en %s",
+    "bn": "%s-এ প্রকাশিত বৈজ্ঞানিক নিবন্ধ",
 }
-JustYear = ["zh", "zh-hans", "zh-cn", "zh-sg", "zh-my", "wuu", "zh-hant", "zh-hk", "zh-mo", "zh-tw", "yue", "ja", "ko", "nan"]
+JustYear = [
+    "zh",
+    "zh-hans",
+    "zh-cn",
+    "zh-sg",
+    "zh-my",
+    "wuu",
+    "zh-hant",
+    "zh-hk",
+    "zh-mo",
+    "zh-tw",
+    "yue",
+    "ja",
+    "ko",
+    "nan",
+]
 
 
 def bnyear(date):
-    digits = {'0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'}
+    digits = {
+        "0": "০",
+        "1": "১",
+        "2": "২",
+        "3": "৩",
+        "4": "৪",
+        "5": "৫",
+        "6": "৬",
+        "7": "৭",
+        "8": "৮",
+        "9": "৯",
+    }
     date = str(date)
     for k, v in digits.items():
         date = re.sub(k, v, date)
@@ -160,7 +186,7 @@ def bnyear(date):
 
 def Monthname(lang, month):
     if month not in ["10", "11", "12"]:
-        month = re.sub(r'0', '', month)
+        month = re.sub(r"0", "", month)
     # ---
     # if lang == "bn":
     # return month
@@ -179,25 +205,29 @@ def Make_uk_desc(desc):
 
 
 def fixdate(date):
-    table = {'year': '', 'month': '', 'day': ''}
-    date = re.sub(r'\+0000000', '+', date)
+    table = {"year": "", "month": "", "day": ""}
+    date = re.sub(r"\+0000000", "+", date)
     # date = date.split('T')[0]
     # printe.output(date)
     try:
-        date1 = date.split('T')[0].split('+')[1]
+        date1 = date.split("T")[0].split("+")[1]
         # printe.output(date1)
         date1 = dateutil.parser.parse(date1)
-        table['year'], table['month'], table['day'] = str(date1.year), str(date1.month), str(date1.day)
+        table["year"], table["month"], table["day"] = (
+            str(date1.year),
+            str(date1.month),
+            str(date1.day),
+        )
     except BaseException:
         try:
-            date1 = date.split('T')[0].split('+')[1]
+            date1 = date.split("T")[0].split("+")[1]
             # printe.output(date1)
-            year, sep, mo = date1.partition('-')
-            month, sep2, day = mo.partition('-')
-            table['year'], table['month'], table['day'] = year, month, day
+            year, sep, mo = date1.partition("-")
+            month, sep2, day = mo.partition("-")
+            table["year"], table["month"], table["day"] = year, month, day
         except BaseException:
             printe.output(date)
-            printe.output('<<lightred>> fixdate ??:')
+            printe.output("<<lightred>> fixdate ??:")
     # printe.output(table)
     return table
 
@@ -208,7 +238,7 @@ def make_scientific_desc(lang, date, precision):
     # date = date.split('Z')[0].split('+')[1]
     # date = dateutil.parser.parse(date)
     # year , month , day = str(date.year) ,str(date.month) , str(date.day)
-    year, month, day = date['year'], date['month'], date['day']
+    year, month, day = date["year"], date["month"], date["day"]
     # _Year , _Day = year, day
     Correctdate = True
     Full_Date = False
@@ -216,30 +246,30 @@ def make_scientific_desc(lang, date, precision):
     desc = ""
     # ---
     if month not in ["10", "11", "12"]:
-        month = re.sub(r'0', '', month)
+        month = re.sub(r"0", "", month)
     # ---
     if day == "01":
         day = "1"
     # ---
     # إذا لم يوجد في التاريخ سنة
-    if re.sub(r'\d\d\d\d', '', year) != '':
+    if re.sub(r"\d\d\d\d", "", year) != "":
         Correctdate = False
-        printe.output(f'<<lightred>> year:{year}, month:{month}, day:{day}')
-        printe.output('<<lightred>> unCorrect date:')
+        printe.output(f"<<lightred>> year:{year}, month:{month}, day:{day}")
+        printe.output("<<lightred>> unCorrect date:")
     if Month_name := Monthname(lang, month):
         # printe.output( 'year:%s, month:%s, day:%s' % (year , month, day)   )
         precision = int(precision)
         # ---
         if lang == "uk":
-            if day == '01' or day == '1' or precision == 10 or precision == 11:
-                date2 = f'{Month_name} {year}'
+            if day == "01" or day == "1" or precision == 10 or precision == 11:
+                date2 = f"{Month_name} {year}"
                 # printe.output( 'uk date2:"%s"' % date2 )
-        elif day == '01' or day == '1' or precision == 10:
-            date2 = f'{Month_name} {year}'
+        elif day == "01" or day == "1" or precision == 10:
+            date2 = f"{Month_name} {year}"
         elif precision == 11:
-            date2 = f'{day} {Month_name} {year}'
+            date2 = f"{day} {Month_name} {year}"
             if lang == "da":
-                date2 = f'{day}. {Month_name} {year}'
+                date2 = f"{day}. {Month_name} {year}"
             Full_Date = True
     # ---
     # إضافة وصف مع التاريخ
@@ -251,8 +281,8 @@ def make_scientific_desc(lang, date, precision):
         desc = Desc_Just_year[lang] % str(year)
     # ---
     # إضافة وصف مطول
-    elif date2 and lang in format:
-        desc = format[lang] % str(date2)
+    elif date2 and lang in format_l:
+        desc = format_l[lang] % str(date2)
         # ---
         # تعديل الوصف الإنجليزي عند وجود تاريخ كامل
         if Full_Date and lang in ["en", "en-gb", "en-ca"]:
@@ -295,50 +325,31 @@ def make_scientific_desc(lang, date, precision):
     return desc
 
 
-def Get_P_API_time(item, P):
-    qlist = []
-    # ---
-    if not item or not isinstance(item, dict):
-        return False
-    claims = item.get("claims", {}).get(P, [])
-    for PP31 in claims:
-        vv = PP31.get("mainsnak", {}).get("datavalue", {}).get("value", {})
-        if isinstance(vv, dict) and vv.get('time'):
-            qlist.append(vv)
-    # ---
-    if not qlist:
-        return False
-    if len(qlist) == 1:
-        return qlist[0]
-    # ---
-    sasa = [x['time'].split('-')[0].split('+0000000')[1] for x in qlist if x['time'].startswith('+0000000')]
-    Faso = {i: '' for i in sasa}
-    return qlist[0] if len(Faso.keys()) == 1 else False
-
-
 def make_scientific_article(item, p31, num, TestTable=False):
     # ---
     tablem = {"descriptions": {}, "qid": "", "fixlang": []}
     # ---
     q = item["q"]
-    printe.output('<<lightyellow>> **%d: make_scientific_article: %s' % (num, q))
+    printe.output("<<lightyellow>> **%d: make_scientific_article: %s" % (num, q))
     # ---
-    if p31 != 'Q13442814':
-        printe.output("<<lightred>> make_scientific_article: can't make desc p31 != Q13442814")
+    if p31 != "Q13442814":
+        printe.output(
+            "<<lightred>> make_scientific_article: can't make desc p31 != Q13442814"
+        )
         return tablem
     # ---
-    precision = ''
+    precision = ""
     item_descriptions = item.get("descriptions", {})
     # printe.output( item_descriptions )
-    P577 = Get_P_API_time(item, 'P577')
+    P577 = Get_P_API_time(item, "P577")
     pubdate = {}
     if P577:
-        pubdate = fixdate(P577['time'])
+        pubdate = fixdate(P577["time"])
         # pubdate = P577['time'].split('Z')[0].split('+0000000')[1]
         # pubdate = dateutil.parser.parse(pubdate)
         #
-        if 'precision' in P577:
-            precision = P577['precision']
+        if "precision" in P577:
+            precision = P577["precision"]
     else:
         print(" no P577. ")
         return tablem
@@ -371,7 +382,9 @@ def make_scientific_article(item, p31, num, TestTable=False):
             NewDesc[lang] = {"language": lang, "value": lang_e}
             addedlangs.append(lang)
         # ---
-        elif item_desc == ses_desc or (lang == "ar" and item_desc in ar_descs):  # or (lang == "bn"  and ):  # to fix bn descraptions
+        elif item_desc == ses_desc or (
+            lang == "ar" and item_desc in ar_descs
+        ):  # or (lang == "bn"  and ):  # to fix bn descraptions
             if lang_e != item_desc:
                 printe.output(f'<<lightyellow>> replace desc "{item_desc}"@{lang}.')
                 NewDesc[lang] = {"language": lang, "value": lang_e}
@@ -381,8 +394,8 @@ def make_scientific_article(item, p31, num, TestTable=False):
                 addedlangs.append(lang)
         # ---
         # fix some error
-        elif pubdate['month'] == '11' and lang in Month_Table:
-            if item_desc.find(Month_Table[lang]['12']) != -1:
+        elif pubdate["month"] == "11" and lang in Month_Table:
+            if item_desc.find(Month_Table[lang]["12"]) != -1:
                 printe.output(f'<<lightyellow>> find error desc "{item_desc}"@{lang}.')
                 NewDesc[lang] = {"language": lang, "value": lang_e}
                 replacelang.append(lang)
@@ -398,5 +411,3 @@ def make_scientific_article(item, p31, num, TestTable=False):
 
     return tablem
 
-
-# ---

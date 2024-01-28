@@ -29,16 +29,16 @@ railway_tables = {
 
 def Get_P_API_id(claims, P, onlyone=False):
     # ---
-    list = []
+    lista = []
     # ---
     for c in claims.get(P, {}):
         q = c.get('mainsnak', {}).get('datavalue', {}).get('value', {}).get('id')
         if q:
-            list.append(q)
+            lista.append(q)
             if onlyone:
                 return q
     # ---
-    return "" if onlyone else list
+    return "" if onlyone else lista
 
 
 def work_railway(wditem, p31, q=""):
@@ -138,7 +138,7 @@ def work_railway(wditem, p31, q=""):
         print("nothing to add..")
         return
     # ---
-    een = ['en-gb', 'en-ca']
+    # een = ['en-gb', 'en-ca']
     # ---
     # if newdesc.get("en"):
     # for o in een:
