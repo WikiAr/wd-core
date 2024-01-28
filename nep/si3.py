@@ -24,12 +24,12 @@ from des.places import placesTable
 from des.railway import railway_tables, work_railway
 # ---
 from API import printe
-from API import himoBOT2
+from API import wd_bot
 from people.new3 import translations_o
 # ---
 from desc_dicts.descraptions import replace_desc
 # ---
-from nep.bots.helps import Get_P_API_id, log_new_types
+from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_female_for_p17, Get_label
 from nep.tables.lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
 from nep.scientific_article import make_scientific_article
 from nep.nldesc import Make_space_desc, Make_others_desc
@@ -193,7 +193,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
     if num < offsetbg[1]:
         return ""
     # ---
-    item = himoBOT2.Get_Item_API_From_Qid(qitem, props="claims|descriptions|labels")
+    item = wd_bot.Get_Item_API_From_Qid(qitem, props="claims|descriptions|labels")
     # ---
     q = qitem
     # ---

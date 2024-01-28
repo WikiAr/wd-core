@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 """
-from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types
+from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_female_for_p17, Get_label, get_label_txt, get_lng_description, Get_label_from_item, get_mainsnak
 """
 import os
 import sys
 import json
 from pathlib import Path
 from nep import read_json
+from nep.tables.cash import labels_cach
+from nep.tables.nats import nationalities
+from wd_api import wd_bot
 
 Dir = Path(__file__).parent.parent
+lng_canbeused = []
+
 
 def Get_P_API_id(item, P):
     # ---
@@ -51,6 +56,7 @@ def Get_P_API_time(item, P):
     Faso = {i: "" for i in sasa}
     return qlist[0] if len(Faso.keys()) == 1 else False
 
+
 def log_new_types(lists):
     # ---
     if "nolog" in sys.argv:
@@ -81,3 +87,82 @@ def log_new_types(lists):
     with open(jsonfils, "w", encoding="utf-8") as nfile:
         json.dump(tabe, nfile)
 
+
+def Get_label(qid):
+    # ---
+    lng = "ar"
+    label = ""
+    # ---
+    if lng not in labels_cach:
+        labels_cach[lng] = {}
+    # ---
+    if qid in labels_cach.get(lng, {}):
+        return labels_cach[lng][qid]
+    # ---
+    if qid == "":
+        return label
+    # ---
+    WDI = wd_bot.Get_Item_API_From_Qid(qid, sites="", titles="", props="labels")
+    # ---
+    if lng in WDI.get("labels", {}):
+        label = WDI.get("labels", {})[lng]
+    # ---
+    if label != "":
+        label = label.replace(" (كوكبة)", "")
+        label = label.replace(" (نجم)", "")
+        label = label.replace(" (مجرة)", "")
+        # label = label.replace("كوكبة ",'')
+        labels_cach[lng][qid] = label
+    # ---
+    return label
+
+
+def get_female_for_p17(contry_lab, tyy):
+    # ---
+    if contry_lab.strip() == "":
+        return ""
+    # ---
+    lab = nationalities.get(contry_lab, {}).get(tyy, "")
+    # ---
+    if contry_lab not in nationalities:
+        print(f"contry_lab:{contry_lab} not in nationalities")
+    # ---
+    return lab
+
+
+def get_label_txt(lng, wdi, property, array=0, fallback=False):
+    if property in wdi.get("claims", {}):
+        if len(wdi.get("claims", {}).get(property, "")) > array:
+            lnkProperty = wdi.get("claims", {}).get(property)[array].getTarget()
+            if propwdi := wd_bot.Get_Item_API_From_Qid(lnkProperty):
+                if lng in propwdi.get("labels", {}):
+                    return propwdi.get("labels", {}).get(lng)
+                elif fallback:
+                    if lng != "ar":
+                        for fallbacklng in lng_canbeused:
+                            if fallbacklng in propwdi.get("labels", {}):
+                                return propwdi.get("labels", {}).get(fallbacklng, "")
+    return ""
+
+
+def get_lng_description(language, wikidataitem):
+    return wikidataitem.get("descriptions", {}).get(language, "")
+
+
+def Get_label_from_item(lng, wditem):
+    if wditem and isinstance(wditem, dict):
+        labels = wditem.get("labels", {})
+        # ---
+        if lng in labels:
+            return labels[lng]
+    # ---
+    return ""
+
+
+def get_mainsnak(datavalue):
+    return (
+        datavalue.get("mainsnak", {})
+        .get("datavalue", {})
+        .get("value", {})
+        .get("id", "")
+    )
