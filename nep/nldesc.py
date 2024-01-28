@@ -12,7 +12,7 @@ import sys
 # ---
 from API import printe
 from wd_api import himoAPI
-from API import wd_bot
+from wd_api import wd_bot
 
 # ---
 from desc_dicts.descraptions import Qid_Descraptions
