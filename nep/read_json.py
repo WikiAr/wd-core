@@ -19,7 +19,7 @@ from API import printe
 # ---
 try:
     import pywikibot
-except BaseException:
+except ImportError:
     pywikibot = False
 
 
