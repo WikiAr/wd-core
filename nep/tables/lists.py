@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+This module defines mappings and SPARQL queries for various entities.
+It is used for [describe the purpose] in the context of [describe the context].
+
 from nep.tables.lists import *
 
 in si3.py :
@@ -219,16 +222,8 @@ SPARQLSE = {tt: main_quarry % tt for tt in Qid_Descraptions}
 # حركة فردية
 for p50 in p50s:
     # ---
-    SPARQLSE["dfd"] = (
-        """SELECT ?item WHERE
-        { ?item wdt:P31 wd:%s .
-        ?item wdt:P50 ?auth.
-        ?auth rdfs:label ?authar. FILTER((LANG(?authar)) = "ar") .
-        FILTER NOT EXISTS { ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = "ar") }
-        }
-        """
-        % p50
-    )
+    SPARQLSE["dfd"] = f"""SELECT ?item WHERE {{ ?item wdt:P31 wd:{p50} . ?item wdt:P50 ?auth. ?auth rdfs:label ?authar. FILTER((LANG(?authar)) = "ar") . FILTER NOT EXISTS {{ ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = "ar") }} }} """
+
     # ---
     SPARQLSE[p50] = (
         """SELECT DISTINCT

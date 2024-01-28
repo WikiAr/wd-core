@@ -35,7 +35,6 @@ def read_bad_list(file):
         List = []
         with open(file) as listt:
             done_list7 = JJson.load(listt)
-            listt.close()
         # ---
         for type in done_list7:
             printe.output(
@@ -56,7 +55,6 @@ def read_bad_list(file):
         List = []
         with open(file) as listt:
             list2 = listt.read()
-            listt.close()
         # ---
         listo = list2.split("[")[1].split("]")[0]
         listo = listo.split(",")
@@ -75,7 +73,6 @@ def read_bad_json(file):
     try:
         with open(file) as listt:
             done_list7 = JJson.load(listt)
-            listt.close()
         # ---
         print(f'Good JJson "{file}"')
         return done_list7
@@ -86,7 +83,6 @@ def read_bad_json(file):
         lala = {}
         with codecs.open(file, "r", encoding="utf-8-sig") as listt2:
             lala = listt2.read()
-            listt2.close()
         # ---
         fa = str(lala)
         fa = fa.split("{")[1].split("}")[0]
