@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 
-python3 core8/pwb.py nep/si3g -usercontribs:Ghuron
+tfj run ghu --mem 1Gi --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -usercontribs:Ghuron"
 
 إضافة وصف لعناصر ويكي بيانات الجديدة
 
@@ -39,12 +39,12 @@ python3 core8/pwb.py nep/si3g -newpages:200 ask
 #
 import sys
 # ---
+sys.argv.append("-family:wikidata")
+sys.argv.append("-lang:wikidata")
+# ---
 import codecs
 import time
 from pathlib import Path
-# ---
-sys.argv.append("-family:wikidata")
-sys.argv.append("-lang:wikidata")
 # ---
 from API import printe
 import gent
