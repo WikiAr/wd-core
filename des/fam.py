@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#  python pwb.py wd/wikinews
 #
 #
 '''
@@ -10,23 +9,13 @@ python3 core8/pwb.py des/fam Q318
 python3 core8/pwb.py des/fam
 
 '''
-
-
 # ---
-from API import printe
-from API import himoBOT2
-from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
 import sys
 import random
+from API import printe
+from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
 from wd_api import wd_bot
-
-# ---
 from wd_api import newdesc
-
-# newdesc.main_from_file(file, topic, translations2)
-# newdesc.mainfromQuarry2( topic, Quarry, translations)
-# newdesc.work22(q, topic, translations)
-# ---
 from des.railway import railway_tables, work_railway
 
 # ---

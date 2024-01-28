@@ -11,3 +11,4 @@ shexer==2.0.3
 regex==2023.10.3
 python-dotenv==1.0.0
 tqdm==4.66.1
+psutil==5.9.7
