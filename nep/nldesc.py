@@ -7,16 +7,16 @@
 '''
 
 import re
-from API import printe
 import sys
-
 # ---
+from API import printe
 from wd_api import himoAPI
 from API import himoBOT2
-
 # ---
-# --- == == == == == == == == == == == ==
 from desc_dicts.descraptions import Qid_Descraptions
+from nep.tables.cash import labels_cach
+from nep.tables.lists import bldiat, Space_tab, p50s, nationalities, songs_type, others_list, others_list_2, space_list_and_other, qura, Geo_entity
+from des.railway import railway_tables, work_railway
 
 # ---
 items2do = 0  # global parameter to print progress
@@ -60,11 +60,6 @@ limit = {1: 0}
 # ---
 totallimit = {1: 10000}
 # ---
-Labels_Csash = {'ar': {}}
-# ---
-from np.cash import *  # Labels_Csash
-from np.np_lists import bldiat, Space_tab, p50s, nationalities, songs_type, others_list, others_list_2, space_list_and_other, qura, Geo_entity
-
 # ---
 for arg in sys.argv:
     # ---
@@ -97,8 +92,6 @@ for arg in sys.argv:
         sparqler[1] = value
         printe.output(f'sparqler[1] = "{sparqler[1]}"')
 # ---
-from des.railway import railway_tables, work_railway
-
 
 def Make_railway_desc(wditem, p31):
     # ---
@@ -174,11 +167,11 @@ def Get_label(qid):
     lng = 'ar'
     label = ''
     # ---
-    if lng not in Labels_Csash:
-        Labels_Csash[lng] = {}
+    if lng not in labels_cach:
+        labels_cach[lng] = {}
     # ---
-    if qid in Labels_Csash.get(lng, {}):
-        return Labels_Csash[lng][qid]
+    if qid in labels_cach.get(lng, {}):
+        return labels_cach[lng][qid]
     # ---
     if qid == '':
         return label
@@ -193,7 +186,7 @@ def Get_label(qid):
         label = label.replace(" (نجم)", '')
         label = label.replace(" (مجرة)", '')
         # label = label.replace("كوكبة ",'')
-        Labels_Csash[lng][qid] = label
+        labels_cach[lng][qid] = label
     # ---
     return label
 
