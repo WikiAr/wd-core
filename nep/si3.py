@@ -12,9 +12,6 @@ import re
 from pathlib import Path
 from datetime import datetime
 # ---
-sys.argv.append("-family:wikidata")
-sys.argv.append("-lang:wikidata")
-# ---
 from wd_api import himoAPI
 from wd_api import wd_desc
 # ---
