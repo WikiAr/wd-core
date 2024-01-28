@@ -3,8 +3,10 @@
 """
 import sys
 from pathlib import Path
+
 # ---
 from nep import si3
+
 # ---
 Dir = Path(__file__).parent
 # ---
@@ -14,7 +16,7 @@ si3.MainTestTable[1] = True
 def Main_Test():
     # python core8/pwb.py nep/test_si3 -page:Q122652815
     # python core8/pwb.py nep/test_si3
-    print('<<lightyellow>> Main_Test :')
+    print("<<lightyellow>> Main_Test :")
     num = 0
     # for qq in ['Q21146082', 'Q21563434', 'Q21563625', 'Q22061800', 'Q22065466']:#, 'Q38822009', 'Q38822019', 'Q38822020']:
     # ---
@@ -22,9 +24,9 @@ def Main_Test():
     # ---
     for arg in sys.argv:
         # ---
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---
-        if arg == '-page':
+        if arg == "-page":
             q = value
     # ---
     # si3.ISRE( "Q4116394", num, 0)   # scientific article published in 2018
@@ -51,7 +53,7 @@ def Main_Test():
     # si3.ISRE( "Q36565264", num, 0)   # scientific article published on 5 September 2006
     # si3.ISRE( "Q31056229", num, 0)   # scientific article published in May 1999
     # ---
-    '''
+    """
     item = FindItem(qq, no_donelist = True)
     num += 1
     # ---python pwb.py nep/d2 33200000
@@ -60,7 +62,7 @@ def Main_Test():
         sa = Get_P_API_time(item, 'P577')
         print(sa)
         #make_scientific_art(item, 'Q13442814', num)
-    '''
+    """
 
 
 # ---

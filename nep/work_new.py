@@ -4,8 +4,10 @@
 import sys
 from pathlib import Path
 import pywikibot
+
 # ---
 from nep import si3
+
 # ---
 Dir = Path(__file__).parent
 # ---
@@ -44,7 +46,7 @@ def WorkNew():
     # ---
     for arg in sys.argv:
         # ---
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---
         value = value.replace(", ", "")
         # ---
@@ -57,17 +59,17 @@ def WorkNew():
 
         # python3 core8/pwb.py nep/si3 WorkNew start:25000000 to:100000
         # python3 core8/pwb.py nep/si3 WorkNew start:25130000 to:100000
-        if arg == 'start':
+        if arg == "start":
             start = int(value)
     # ---
     for arg in sys.argv:
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         value = value.replace(", ", "")
-        if arg == 'to':
+        if arg == "to":
             ATend = int(start) + int(value)
         # ---
         # python3 core8/pwb.py nep/si3 WorkNew start:95, 682, 306 end:95, 582, 306
-        if arg == 'end':
+        if arg == "end":
             ATend = int(value)
     # ---
     # python3 core8/pwb.py nep/si3 WorkNew
@@ -78,10 +80,13 @@ def WorkNew():
     list = range(end, start) if end < start else range(start, end)
     # ---
     lenth = len(list)
-    pywikibot.output('** <<lightyellow>> WorkNew in %d items (start:%d, end:%d)' % (lenth, start, end))
+    pywikibot.output(
+        "** <<lightyellow>> WorkNew in %d items (start:%d, end:%d)"
+        % (lenth, start, end)
+    )
     # ---
     for num, q in enumerate(list, start=1):
-        qitem = 'Q%d' % q
+        qitem = "Q%d" % q
         si3.ISRE(qitem, num, lenth)
 
 

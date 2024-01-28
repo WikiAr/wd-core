@@ -1,7 +1,7 @@
 #!/usr/local/bin/python
-'''
+"""
 # Q13005188 mandal
-'''
+"""
 
 labels_cach = {
     "ar": {

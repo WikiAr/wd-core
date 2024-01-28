@@ -42,7 +42,7 @@ from API import himoBOT2
 from wd_api import wd_desc
 
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
-# wd_desc.work_api_desc(NewDesc, qid, addedlangs=[], fixlang=[], ask="")
+# wd_desc.work_api_desc(NewDesc, qid)
 # ---
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, replace_desc
 

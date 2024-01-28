@@ -25,7 +25,7 @@ File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
 # ---
 try:
     from wd_api import himoAPI_test as himoAPI
-except BaseException:
+except ImportError:
     pywikibot.output('<<lightred>> Can\'t import himoAPI_test as himoAPI')
 # ---
 # from wd_api import himoAPI
