@@ -3,7 +3,7 @@ from nep.its import its_a_composition, its_a_computergame, its_a_discography, it
 """
 
 from API import printe
-from API import wd_bot
+from wd_api import wd_bot
 from nep.bots.helps import (
     get_female_for_p17,
     Get_label,

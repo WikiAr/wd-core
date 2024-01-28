@@ -24,7 +24,7 @@ from des.places import placesTable
 from des.railway import railway_tables, work_railway
 # ---
 from API import printe
-from API import wd_bot
+from wd_api import wd_bot
 from people.new3 import translations_o
 # ---
 from desc_dicts.descraptions import replace_desc
