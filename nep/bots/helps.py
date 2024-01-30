@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 Import the traceback and pywikibot modules to handle exceptions.
+<<<<<<< HEAD
 
 Usage:
 
+=======
+"""
+"""
+>>>>>>> origin/main
 from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_female_for_p17, Get_label, get_label_txt, get_lng_description, Get_label_from_item, get_mainsnak
 """
 import os
@@ -98,6 +103,8 @@ def log_new_types(lists):
         # Log the traceback.
         # Import the pywikibot module and call the output method.
         pywikibot.output("<<lightred>> Traceback (most recent call last):")
+        # Log the formatted traceback.
+        # Import the traceback module and call the format_exc method.
         pywikibot.output(traceback.format_exc())
         pywikibot.output("CRITICAL:")
 
