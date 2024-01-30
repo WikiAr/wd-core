@@ -4,6 +4,8 @@ from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_fema
 """
 import os
 import sys
+import traceback
+import pywikibot
 import json
 from pathlib import Path
 from nep import read_json
@@ -84,8 +86,14 @@ def log_new_types(lists):
             tabe[p31] = lenth
             print(f"log new types Adding {p31}. ")
     # ---
-    with open(jsonfils, "w", encoding="utf-8") as nfile:
-        json.dump(tabe, nfile)
+    try:
+        with open(jsonfils, "w", encoding="utf-8") as nfile:
+            json.dump(tabe, nfile)
+    except Exception as e:
+        pywikibot.output("<<lightred>> Traceback (most recent call last):")
+        pywikibot.output(traceback.format_exc())
+        pywikibot.output("CRITICAL:")
+        
 
 
 def Get_label(qid):
