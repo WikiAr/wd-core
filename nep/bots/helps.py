@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 """
+Import the traceback and pywikibot modules to handle exceptions.
+
+Usage:
+
 from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_female_for_p17, Get_label, get_label_txt, get_lng_description, Get_label_from_item, get_mainsnak
 """
 import os
@@ -89,11 +93,13 @@ def log_new_types(lists):
     try:
         with open(jsonfils, "w", encoding="utf-8") as nfile:
             json.dump(tabe, nfile)
+    # Handle the exception and log the traceback.
     except Exception as e:
+        # Log the traceback.
+        # Import the pywikibot module and call the output method.
         pywikibot.output("<<lightred>> Traceback (most recent call last):")
         pywikibot.output(traceback.format_exc())
         pywikibot.output("CRITICAL:")
-        
 
 
 def Get_label(qid):
