@@ -89,8 +89,13 @@ def log_new_types(lists):
     try:
         with open(jsonfils, "w", encoding="utf-8") as nfile:
             json.dump(tabe, nfile)
+    # Handle the exception and log the traceback.
     except Exception as e:
+        # Log the traceback.
+        # Import the pywikibot module and call the output method.
         pywikibot.output("<<lightred>> Traceback (most recent call last):")
+        # Log the formatted traceback.
+        # Import the traceback module and call the format_exc method.
         pywikibot.output(traceback.format_exc())
         pywikibot.output("CRITICAL:")
         
