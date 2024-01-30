@@ -84,6 +84,8 @@ def log_new_types(lists):
             tabe[p31] = lenth
             print(f"log new types Adding {p31}. ")
     # ---
+    # Log the traceback.
+    pywikibot.output('CRITICAL:')
     try:
         with open(jsonfils, "w", encoding="utf-8") as nfile:
             json.dump(tabe, nfile)
