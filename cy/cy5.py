@@ -59,6 +59,8 @@ def login():
             'meta': 'tokens',
             'type': 'login',
         },
+        timeout=10
+        
     )
     r1.raise_for_status()
 
@@ -71,7 +73,8 @@ def login():
             'lgname': username,
             'lgpassword': password,
             'lgtoken': r1.json()['query']['tokens']['logintoken'],
-        },
+        }, 
+        timeout=10
     )
 
     # print( str( r2.json() ) )
@@ -86,7 +89,8 @@ def login():
             'format': 'json',
             'action': 'query',
             'meta': 'tokens',
-        },
+        }, 
+        timeout=10
     )
     session["csrftoken"] = r3.json()['query']['tokens']['csrftoken']
 
@@ -451,7 +455,7 @@ def get_query_results(query):
     req = False
     # ---
     try:
-        req = session[1].get(url)
+        req = session[1].get(url, timeout=10)
     except Exception as e:
         print('<<lightred>> Traceback (most recent call last):')
         print(f"<<lightred>> Exception:{e}.")
@@ -1102,7 +1106,7 @@ def GetPageText(title):
     # ---
     json1 = {}
     try:
-        json1 = session[1].get(url).json()
+        json1 = session[1].get(url, timeout=10).json()
     except Exception as e:
         print('<<lightred>> Traceback (most recent call last):')
         print(f"<<lightred>> Exception:{e}.")
