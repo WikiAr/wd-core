@@ -59,6 +59,8 @@ def login():
             'meta': 'tokens',
             'type': 'login',
         },
+        timeout=10
+        
     )
     r1.raise_for_status()
 
@@ -71,7 +73,8 @@ def login():
             'lgname': username,
             'lgpassword': password,
             'lgtoken': r1.json()['query']['tokens']['logintoken'],
-        },
+        }, 
+        timeout=10
     )
 
     # print( str( r2.json() ) )
@@ -86,7 +89,8 @@ def login():
             'format': 'json',
             'action': 'query',
             'meta': 'tokens',
-        },
+        }, 
+        timeout=10
     )
     session["csrftoken"] = r3.json()['query']['tokens']['csrftoken']
 
