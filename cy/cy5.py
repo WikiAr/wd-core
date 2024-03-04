@@ -456,6 +456,10 @@ def get_query_results(query):
     # ---
     try:
         req = session[1].get(url, timeout=10)
+
+    except requests.exceptions.ReadTimeout:
+        print(f'ReadTimeout: {url}')
+
     except Exception as e:
         print('<<lightred>> Traceback (most recent call last):')
         print(f"<<lightred>> Exception:{e}.")
@@ -1107,6 +1111,10 @@ def GetPageText(title):
     json1 = {}
     try:
         json1 = session[1].get(url, timeout=10).json()
+
+    except requests.exceptions.ReadTimeout:
+        print(f'ReadTimeout: {url}')
+
     except Exception as e:
         print('<<lightred>> Traceback (most recent call last):')
         print(f"<<lightred>> Exception:{e}.")
