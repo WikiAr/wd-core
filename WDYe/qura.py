@@ -71,7 +71,8 @@ translations = {
 
 
 def action_one_item(x, pa, new_translations):
-    if item := wd_bot.GetItemFromQid(pa['item']):
+    item = wd_bot.GetItemFromQid(pa['item'])
+    if item :
         ks = {x: new_translations}
         # newdesc.work2(item , x, ks)
         newdesc.work2_with_replacement(item, x, ks, replacement_ke)
