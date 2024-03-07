@@ -43,6 +43,7 @@ Qids_translate = {
     "Q24046192": DescraptionsTable["Wikimedia category"],
     "Q4167836": DescraptionsTable["Wikimedia category"],
     "Q4167410": DescraptionsTable["Wikimedia disambiguation page"],
+    "Q22808320": DescraptionsTable["Wikimedia disambiguation page"],
     "Q13406463": DescraptionsTable["Wikimedia list article"],
     "Q11266439": DescraptionsTable["Wikimedia template"],
     "Q11753321": DescraptionsTable["Wikimedia template"],
