@@ -81,9 +81,9 @@ def action_one_item(x, pa, new_translations):
 def make_translations(x, pa):
     ar, en = False, False
     # ---
-    if pa["ar"] != "":
+    if pa["ar"]:
         ar = True
-    if pa["en"] != "":
+    if pa["en"]:
         en = True
     descriptions = translations[x] if x in translations else {}
     # ---

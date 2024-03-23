@@ -609,7 +609,7 @@ translationsNationalities = {
         'ro': {'male': 'din Comore', 'female': 'din Comore'},
     },
     'Congolese': {
-        'ar': {'male': 'كونغولي', 'female': 'كونغولية'},
+        'ar': {'male': 'كونغوي', 'female': 'كونغوية'},
         'bn': {'male': 'কঙ্গোলীয়', 'female': 'কঙ্গোলীয়'},
         'ca': {'male': 'congolès', 'female': 'congolesa'},
         'en': {'male': 'Congolese', 'female': 'Congolese'},
@@ -1979,7 +1979,7 @@ translationsNationalities = {
         'ro': {'male': 'paraguayan', 'female': 'paraguayană'},
     },
     'Peruvian': {
-        'ar': {'male': 'بيروفي', 'female': 'بيروفية'},
+        'ar': {'male': 'بيروي', 'female': 'بيروية'},
         'bn': {'male': 'পেরুভীয়', 'female': 'পেরুভীয়'},
         'ca': {'male': 'peruà', 'female': 'peruana'},
         'en': {'male': 'Peruvian', 'female': 'Peruvian'},
@@ -2462,7 +2462,7 @@ translationsNationalities = {
         # 'ro': { 'male': 'UNKNOWN', 'female': 'UNKNOWN' },
     },
     'Togolese': {
-        'ar': {'male': 'توغولي', 'female': 'توغولية'},
+        'ar': {'male': 'توغوي', 'female': 'توغوية'},
         'bn': {'male': 'টোগান', 'female': 'টোগান'},
         'ca': {'male': 'togolès', 'female': 'togolesa'},
         'en': {'male': 'Togolese', 'female': 'Togolese'},

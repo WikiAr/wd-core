@@ -22,10 +22,10 @@ menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 tax_translations_lower = {}
 # ---
 for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
-    if tax_lab.strip() != "" and tax_key.strip() != "":
+    if tax_lab.strip() and tax_key.strip():
         for natkey in sorted(tax_translationsNationalities.keys()):  # النوع
             natar = tax_translationsNationalities[natkey]
-            if natkey.strip() != "" and natar.strip() != "":
+            if natkey.strip() and natar.strip():
                 kkey = tax_key.replace("~", natkey)
                 tax_translations_lower[kkey.lower()] = tax_lab.replace("~", natar)
 # ---

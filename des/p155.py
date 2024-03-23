@@ -174,7 +174,7 @@ def make_newlabel(label, ar, en):
         ).strip()
     # ---
     leb_test = re.sub(tests_ar, "", newlabel, flags=re.IGNORECASE)
-    if leb_test.strip() != "":
+    if leb_test.strip():
         printe.output(f'<<lightblue>> leb_test({leb_test.strip()}) ==  ')
         newlabel = ''
     # ---
@@ -221,17 +221,17 @@ def Item(item):
     newlabel = make_newlabel(label, ar, en)
     year = mat.group(1) if (mat := re.match(f".*{years}.*", item['label'])) else ''
     # ---
-    if newlabel.strip() != '' and year.strip() != "" and newlabel.find(year.strip()) == -1:
+    if newlabel.strip() and year.strip() and newlabel.find(year.strip()) == -1:
         printe.output(f"<<lightred>> cant find year:{year}, at newlabel ({newlabel}) ")
         return ''
     if Ask[1]:
-        if newlabel.strip() != "":
+        if newlabel.strip():
             sa = pywikibot.input(f'<<lightyellow>>himoAPI: Labels_API Add "{newlabel}" as label to "{q}"? ([y]es, [N]o):')
             if sa in yes_answer:
                 himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
             if sa == "a":
                 Ask[1] = False
-    elif newlabel.strip() != "":
+    elif newlabel.strip():
         himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
 
     # ---

@@ -121,7 +121,7 @@ def Get_label(qid):
     if lng in WDI.get("labels", {}):
         label = WDI.get("labels", {})[lng]
     # ---
-    if label != "":
+    if label:
         label = label.replace(" (كوكبة)", "")
         label = label.replace(" (نجم)", "")
         label = label.replace(" (مجرة)", "")

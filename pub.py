@@ -52,7 +52,7 @@ if "test" in sys.argv:
 
 def print_test(line, color=""):
     colors = {"red": "\033[91m%s\033[00m", "blue": "\033[94m%s\033[00m"}
-    if color != "" and colors.get(color):
+    if color and colors.get(color):
         line = colors[color] % line
     # ---
     if Ask[1] or Test[1]:
@@ -72,7 +72,7 @@ def get_and_load(url):
     # ---
     json1 = {}
     # ---
-    if html != "":
+    if html:
         try:
             json1 = json.loads(html)
         except Exception as ee:
@@ -115,7 +115,7 @@ def get_article_info(ext_id, id_type):
     # ---
     for source, url in urls.items():
         do = get_and_load(url)
-        # if do != '' and do != "Resource not found.":
+        # if do and do != "Resource not found.":
         # ---
         if not isinstance(do, dict):
             continue
@@ -188,14 +188,14 @@ if __name__ == "__main__":
         # print_test(str(lenth) + str(sys.argv) )
         for arg in sys.argv:
             arg, _, value = arg.partition(':')
-            if arg == 'type' and value != '':
+            if arg == 'type' and value:
                 typee = value
-            if arg == 'id' and value != '':
+            if arg == 'id' and value:
                 id = value
     # ---
     id = id.replace('https://doi.org/', '')
     # ---
-    if id != "":
+    if id:
         add(id, typee)
     else:
         print("id empty..")

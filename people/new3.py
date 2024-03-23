@@ -179,7 +179,7 @@ def check_quarry_new(tab):
             f'"{f}"@en "{f.lower()}"@en' for f in tabe[numb]
         )
         # ---
-        if limit[1] != "":
+        if limit[1]:
             qua += f"\n limit {limit[1]}"
         # ---
         if "printcheck" in sys.argv or numb == 0:
@@ -243,17 +243,17 @@ def make_Tabs(tabs):
                     femalee = ''
                     malee = ''
                     # ---
-                    if nat_ln['male'] != "" and occ_dict['male'] != "":
+                    if nat_ln['male'] and occ_dict['male']:
                         malee = occ_dict['male'].replace('~', nat_ln['male'])
                     # ---
-                    if nat_ln['female'] != "" and occ_dict['female'] != "":
+                    if nat_ln['female'] and occ_dict['female']:
                         femalee = occ_dict['female'].replace('~', nat_ln['female'])
                     # ---
                     if translang == "en":
                         male_k = malee
                         female_k = femalee
                     # ---
-                    if malee != "" or femalee != "":
+                    if malee or femalee:
                         translations_o[1][kkkk][translang] = {'male': malee, 'female': femalee}
                     # ---
             # ---
@@ -265,7 +265,7 @@ def make_Tabs(tabs):
             else:
                 del translations_o[1][kkkk]
             # ---
-            if female_k != "" and male_k != "":
+            if female_k and male_k:
                 if female_k != male_k:
                     if female_k.lower() not in translations_o[2]:
                         translations_o[2][female_k.lower()] = translations_o[1][kkkk]

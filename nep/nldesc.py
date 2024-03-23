@@ -550,7 +550,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
         # ---
         printe.output("Type: [%s]" % type_of_item)
         # ---
-        if type_of_item != "":
+        if type_of_item:
             if type_of_item == "Q7604686":
                 my_description = "صك قانوني في المملكة المتحدة"
             # ---

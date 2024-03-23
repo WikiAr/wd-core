@@ -72,7 +72,7 @@ LIMIT '''
         # if num < 2:
         pywikibot.output('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         # pywikibot.output( Table[item] )
-        if value_ != "":
+        if value_:
             lab = f'تصنيف:{Table[item]}'
             himoAPI.Labels_API(item, lab, "ar", False, Or_Alii=True)
 

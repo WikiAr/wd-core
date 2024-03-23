@@ -276,13 +276,13 @@ def make_temp_lines(table, title):
     # ---
     link = table.get('title', '')
     label = table.get('itemlab', '')
-    if link != '':
+    if link:
         race = f'[[{link}]]'
         label = link.split(" (")[0]
     # ---
     label = fix_label(label)
     # ---
-    if link != "":
+    if link:
         race = f'[[{link}|{label}]]' if label != link else f'[[{link}]]'
     else:
         race = label
@@ -352,7 +352,7 @@ def make_temp_lines(table, title):
                     print_test2( 'remove_date[fanco] += 1 (%d) date == "%s"' % (remove_date[fanco], date) )
                     return "", table2
     # ---'''
-    if ranke != "" and sss.strip() == "":
+    if ranke and sss.strip() == "":
         if Work_with_Stage[1] == False and Len_of_valid_results.get(title, 0) > 10:
             if re.sub(r"المرتبة 1 في", "", ranke) == ranke and re.sub(r"الأول في", "", ranke) == ranke:
                 printt(' *** remove line with rank < 1.')
@@ -815,7 +815,7 @@ def make_new_text(qid, title):
                 # ---
                 v, tab = make_temp_lines(table, title)
                 # ---
-                if v != "":
+                if v:
                     vvv = re.sub(r"\n", "", v)
                     new_lines[title][qoo] = tab
                     new_lines[title][qoo]["qid"] = qoo
@@ -851,7 +851,7 @@ def GetSectionNew3(text):
         FirsPart = Fristsss[0]
         printt(FirsPart)
     # ---
-    if FirsPart != '':
+    if FirsPart:
         text2 = text2.split(FirsPart)[1]
         text2 = FirsPart + text2
     # ---
@@ -1070,7 +1070,7 @@ def template_params(text, title):
 
 def CheckTempalteInPageText(text):
     printt(f'**CheckTempalteInPageText: {br}')
-    if text != '':
+    if text:
         # ---
         # \{\{template_tesult(\|id\=Q\d+|)\}\}
         Topname = r'نتيجة سباق الدراجات\/بداية'
@@ -1130,7 +1130,7 @@ def GetPageText(title):
         printt(f'find parse in json1:{br}')
         # ---
         text = parse.get('wikitext', {}).get('*', '')
-        if text != '':
+        if text:
             printt(f'find wikitext in parse:{br}')
             printt(f'find * in parse.wikitext :{br}')
         # ---
@@ -1168,7 +1168,7 @@ def StartOnePage(title):
     # ---
     text, item = GetPageText(title)
     # ---
-    if not text or text == '':
+    if not text:
         printo('الصفحة المطلوبة غير موجودة أو أن محتواها فارغ.')
         return
     # ---
@@ -1241,7 +1241,7 @@ def main():
     # make_new_text('Q286183')#
     # ---
     # StartOnePage('%D8%B3%D9%8A%D9%84%D9%81%D8%A7%D9%86_%D8%AA%D8%B4%D8%A7%D9%81%D8%A7%D9%86%D9%8A%D9%84')
-    if title != '':
+    if title:
         StartOnePage(title)
     else:
         printo('title==""')
