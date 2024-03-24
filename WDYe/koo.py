@@ -49,7 +49,7 @@ def woo(page):
     # ---
     P31 = wd_bot.Get_Claim_API(q=qid, p="P31")
     iin = wd_bot.Get_Property_API(q=qid, p="P8021", titles=title, sites="arwiki")
-    # pywikibot.output( "iin:%s" % iin )
+    # pywikibot.output(f"iin:{iin}")
     # ---
     pywikibot.output(f"P31:{P31}")
     # ---
