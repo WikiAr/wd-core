@@ -56,7 +56,7 @@ for arg in sys.argv:
         Limit[1] = value
         printe.output(f'<<lightred>> Limit = {value}.')
 # ---
-if Limit[1] != '':
+if Limit[1]:
     Quaa += f'limit {Limit[1]}'
 
 
@@ -80,7 +80,7 @@ def main():
         # ---
         printe.output(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')
         # ---
-        if page != "":
+        if page:
             himoAPI.Labels_API(qid, page, "ar", False, Or_Alii=True)
 
 

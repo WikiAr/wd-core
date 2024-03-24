@@ -252,12 +252,12 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     if placear == p17lab or placear.find(p17lab) != -1:
         p17lab = ''
     # ---
-    if placear != "" and p17lab != "":
+    if placear and p17lab:
         asd = f"{placear}، {p17lab}"
         arlabel2 = arlabel.format(asd)
     elif placear not in ["", p17lab]:
         arlabel2 = arlabel.format(placear)
-    elif p17lab != "":
+    elif p17lab:
         arlabel2 = arlabel.format(p17lab)
     # ---
     printe.output('  * action %d/%d "%s:%s"' % (c, total, q, arlabel2))

@@ -68,10 +68,10 @@ def work_railway(wditem, p31, q=""):
     # ---
     p17_labels, p131_labels = {}, {}
     # ---
-    if P17_qid != "":
+    if P17_qid:
         p17_labels = himoBOT2.Get_Item_API_From_Qid(P17_qid).get('labels', {})
     # ---
-    if P131_qid != "":
+    if P131_qid:
         p131_labels = himoBOT2.Get_Item_API_From_Qid(P131_qid).get('labels', {})
     # ---
     to_do_descs = railway_tables.get(p31, {})
@@ -124,13 +124,13 @@ def work_railway(wditem, p31, q=""):
         # make new desc
         # ---
         desc_n = des
-        if p17_desc != "":
-            if p31 != 'Q728937' and 'Q728937' not in P31_list and p131_desc != "":
+        if p17_desc:
+            if p31 != 'Q728937' and 'Q728937' not in P31_list and p131_desc:
                 desc_n = lang_format[lang][2].format(des, p131_desc, p17_desc)
             else:
                 desc_n = lang_format[lang][1].format(des, p17_desc)
         # ---
-        if desc_n != '':
+        if desc_n:
             newdesc[lang] = {"language": lang, "value": desc_n}
             # ---
     # ---

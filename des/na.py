@@ -45,7 +45,7 @@ def action(json1):
             ar_lab = tab["ar_name"]
             # ---
             kaka = re.sub(r"[abcdefghijklmnopqrstuvwxyz]", "", ar_lab)
-            if ar_lab != "" and kaka == ar_lab:
+            if ar_lab and kaka == ar_lab:
                 en_name = tab["en_name"]
                 printe.output(f'  * ar_lab:"{ar_lab}",en_name:"{en_name}"')
                 c += 1
@@ -284,7 +284,7 @@ def main():
         # ---
         quuu = quuu % taxose
         # ---
-        if limits[1] != "":
+        if limits[1]:
             quuu = f'{quuu}\n LIMIT {limits[1]}'
         # ---
         printe.output("quuu : %d/%d key:%s" % (number, len(qya), key))

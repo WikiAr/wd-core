@@ -62,7 +62,7 @@ def fixrow(row):
     if row.find("<ssss>") != -1:
         en = row.split('<ssss>')[0].strip()
         ar = row.split('<ssss>')[1].strip()
-        if en != "" and ar != "":
+        if en and ar:
             return en, ar
     # ---
     return en, ar
@@ -273,7 +273,7 @@ def looog():
         text2 += "}} ||"
         text2 += ",".join(value) + "\n"
     # ---
-    if text2 != "":
+    if text2:
         text2 = '''\n=={{subst:date}}==\n{| class="wikitable sortable"\n|-\n! item\n! en \n! ar\n|-''' + text2
         text2 = text2 + "|-\n|}"
         wikidatasite = pywikibot.Site('wikidata', 'wikidata')
@@ -428,7 +428,7 @@ def main():
         for tab in item:
             if tab not in Table[q]:
                 Table[q][tab] = []
-            # if item[tab] != "" :
+            # if item[tab] :
             Table[q][tab].append(item[tab])
     Tab_l = {
         it_em: {

@@ -149,12 +149,12 @@ def main():
             Limit[1] = value
             pywikibot.output(f'<<lightred>> Limit = {value}.')
     # ---
-    if val != "":
+    if val:
         val2 = allise.get(val, "")
         if qnew == "":
             qnew = qid_table.get(val, "")
     # ---
-    if val2 != "" and qnew != "":
+    if val2 and qnew:
         table_new = {}
         table_new[qnew] = {val: val2}
     for num_peo, qid in enumerate(table_new, start=1):

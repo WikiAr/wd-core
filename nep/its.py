@@ -37,23 +37,23 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
 
 def its_a_headquarted_thing(lng, wdi, thing):
     where = get_label_txt(lng, wdi, "P159", fallback=True)
-    return f"{thing} {where}" if where != "" else ""
+    return f"{thing} {where}" if where else ""
 
 
 def its_something_in_an_entity(wdi, something):
     # 'P131'    #P131
     # 'P17'   #P17
     LNKentity = get_mainsnak(wdi.get("claims", {}).get("P131", [{}])[0])  # .getTarget()
-    prnEntity = Get_label(LNKentity) if LNKentity != "" else ""
+    prnEntity = Get_label(LNKentity) if LNKentity else ""
     # ---
     LNKcountry = get_mainsnak(wdi.get("claims", {}).get("P17", [{}])[0])  # .getTarget()
-    prnCountry = Get_label(LNKcountry) if LNKcountry != "" else ""
+    prnCountry = Get_label(LNKcountry) if LNKcountry else ""
     # ---
-    if prnCountry != "" and prnEntity != "":
+    if prnCountry and prnEntity:
         return f"{something} {prnEntity}، {prnCountry}"
-    elif prnCountry != "":
+    elif prnCountry:
         return f"{something} {prnCountry}"
-    elif prnEntity != "":
+    elif prnEntity:
         return f"{something} {prnEntity}"
     # ---
     return ""
@@ -104,17 +104,17 @@ def its_something_in_a_country(wdi, something):
     # ---
     if something.strip() in males:
         ma = get_female_for_p17(prnCountry.strip(), "man")
-        if ma != "":
+        if ma:
             dara = ma
             if something.strip() == "نادي كرة قدم للهواة":
                 something = "نادي كرة قدم"
     # ---
     elif something.strip() in females:
         f = get_female_for_p17(prnCountry.strip(), "women")
-        if f != "":
+        if f:
             dara = f
     # ---
-    if prnCountry != "":
+    if prnCountry:
         fanee = f"{something.strip()} {dara.strip()}"
     # ---
     return fanee
@@ -129,7 +129,7 @@ def its_canton_of_France(wdi):  # Q184188
         if "P131" in clai:
             LNKcommunity = get_mainsnak(clai.get("P131")[0])  # .getTarget()
             label = Get_label(LNKcommunity)
-            if label != "":
+            if label:
                 label = label.replace("، فرنسا", "").replace(" (فرنسا)", "")
                 desco = f"كانتون في {label}، فرنسا"
     return desco
@@ -154,7 +154,7 @@ def its_an_episode(lng, wditem):
             wditem.get("claims", {}).get("P179")[0]
         )  # .getTarget()
         serienaam = Get_label(LNKseries)
-        if serienaam != "":
+        if serienaam:
             serienaam = serienaam.replace("، مسلسل", "").replace(" (مسلسل)", "")
             return f"حلقة من سلسلة {serienaam}"
     return ""
@@ -241,14 +241,14 @@ def its_a_computergame(lng, wditem):
         if LNKdeveloper is not None:
             WDitemdeveloper = wd_bot.Get_Item_API_From_Qid(LNKdeveloper)
             developer_name = Get_label_from_item(lng, WDitemdeveloper)
-            if developer_name != "":
+            if developer_name:
                 return f"لعبة فيديو من تطوير {developer_name}"
     if "P179" in wditem.get("claims", {}):  # السلسلة
         serieLNK = get_mainsnak(wditem.get("claims", {}).get("P179")[0])  # .getTarget()
         if serieLNK is not None:
             WDitemserie = wd_bot.Get_Item_API_From_Qid(serieLNK)
             seriename = Get_label_from_item(lng, WDitemserie)
-            if seriename != "":
+            if seriename:
                 # return 'computerspel uit de serie %s' % seriename
                 return f"لعبة فيديو من سلسلة {seriename}"
     return "لعبة فيديو"
@@ -301,7 +301,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
             LNKitem = get_mainsnak(x)
             claimstr = Get_label(LNKitem)
             printe.output(f"claimstr of {LNKitem}=[{claimstr}]")
-            if claimstr != "":
+            if claimstr:
                 if len(P175) > 1:
                     claimstr += " وآخرون"
                 break
@@ -311,7 +311,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
     # ---
     claimstr = claimstr.strip()
     # ---
-    if claimstr != "":
+    if claimstr:
         laste = f"{shortstr.strip()} من أداء {claimstr}"
     # ---
     sooo = [
@@ -328,10 +328,10 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
         for x in LNKdirector:
             LNKitem = get_mainsnak(x)
             directorname = Get_label(LNKitem)
-            if directorname != "":
+            if directorname:
                 break
         # ---
-        if directorname != "":
+        if directorname:
             laste = f"{shortstr} من إخراج {directorname}"
     # ---
     printe.output("its_songs:(%s)" % laste)
@@ -393,7 +393,7 @@ def its_a_thing_located_in_country(wditem, countryname, thing):
             wditem.get("claims", {}).get("P131")[0]
         )  # .getTarget()
         label = Get_label(LNKcommunity)
-        if label != "":
+        if label:
             return thing + " في " + label + "، " + countryname
         else:
             return thing + " في " + countryname
@@ -412,12 +412,12 @@ def its_a_film(wditem):
         q = get_mainsnak(x)
         directorname = Get_label(q)
         printe.output(f"directorname of {q}=[{directorname}]")
-        if directorname != "":
+        if directorname:
             if len(P57) > 1:
                 directorname += " وآخرون"
             break
     # ---
-    if directorname != "":
+    if directorname:
         return "فيلم من إخراج %s" % directorname
     # ---
     return ""

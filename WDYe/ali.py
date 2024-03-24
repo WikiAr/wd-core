@@ -232,14 +232,14 @@ def mains():
             Quarry[1] = Quarry[1].replace("#sr", tart + "\n#sr")
         elif arg.startswith("fafafa"):
             for uu in fafafa.split("\n"):
-                if uu != "":
+                if uu:
                     tart = f"FILTER (CONTAINS(?label, '{uu}')) ."
                     pywikibot.output(f'acd: "{tart}"')
                     qsa = Quarry[1].replace("#sr", tart + "\n#sr")
                     workqua(qsa)
         elif arg.startswith("sql"):
             for uu in fafafa.split("\n"):
-                if uu != "":
+                if uu:
                     fff = queries.replace("عبد_", uu)
                     tart3 = sql.Make_sql_2_rows(fff, wiki="wikidata")
                     pywikibot.output(f'tart3: "{tart3}"')

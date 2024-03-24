@@ -648,7 +648,7 @@ for sw in Taton_list:
         # ---
         const = space_list_and_other_2.get(sw, {}).get("P", "")
         # ---
-        if "a2r" in sys.argv and const != "":
+        if "a2r" in sys.argv and const:
             gtg = "SELECT ?item WHERE {"
 
             gtg += f"""

@@ -318,7 +318,7 @@ def change_one_lab(text, lang):
     new_lab2 = new_lab.lower()
     # ---
     for x in liste[lang]:
-        if x != '' and x.lower() in new_lab2:
+        if x and x.lower() in new_lab2:
             print(f'<<lightred>> new_lab has {x}')
             if table.get(x):
                 new_lab = new_lab.replace(x, table.get(x))
@@ -341,7 +341,7 @@ def make_en_label(labels, q, Add=False):
             # ---
             break
     # ---
-    if new_lab != "":
+    if new_lab:
         if Add:
             add_new_label(q, new_lab)
     # ---

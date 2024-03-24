@@ -116,17 +116,17 @@ def mainwithcat2():
         if arg == "-ns":
             namespaces = value
     # ---
-    if file != "":
+    if file:
         if not file.startswith(main_dir1):
             file = main_dir1 + file
         with open(file, "r", encoding="utf-8") as f:
             oco = f.read().split("\n")
         lista = [x.strip() for x in oco if x.strip() != ""]
     # ---
-    elif newpages != "":
+    elif newpages:
         lista = api_new.Get_Newpages(limit=newpages, namespace=namespaces, rcstart="", user="")
     # ---
-    elif user != "":
+    elif user:
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")
     # ---
     if lista == []:

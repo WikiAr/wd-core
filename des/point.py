@@ -44,7 +44,7 @@ def action(json1):
             if year == label:
                 year = ""
             # ---
-            if year != "":
+            if year:
                 year1 = year  # .group(1)
                 timestr = f"+{year1}-00-00T00:00:00Z"
                 # ---
@@ -120,7 +120,7 @@ def main():
         # ---
         quuu = quuu % taxose
         # ---
-        if limits[1] != "":
+        if limits[1]:
             quuu = f'{quuu}\n LIMIT {limits[1]}'
         # ---
         printe.output("quuu : %d/%d key:%s" % (number, len(qya), key))

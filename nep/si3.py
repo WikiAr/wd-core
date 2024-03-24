@@ -62,7 +62,7 @@ def work_new_list(item, p31, ardes):
     # ---
     for lang in gg.keys():
         if lang not in item.get("descriptions", {}).keys():
-            if gg[lang] != "":
+            if gg[lang]:
                 NewDesc[lang] = {"language": lang, "value": gg[lang]}
     # ---
     orig_desc = item.get("descriptions", {}).get("ar", "")
@@ -74,8 +74,8 @@ def work_new_list(item, p31, ardes):
         print("Make_space_desc ::::")
         ar_desc = Make_space_desc("ar", item, p31, orig_desc)
     # ---
-    # if ar_desc != "" and ardes != ar_desc :
-    if ar_desc != "":
+    # if ar_desc and ardes != ar_desc :
+    if ar_desc:
         NewDesc["ar"] = {"language": "ar", "value": ar_desc}
     # ---
     # printe.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
@@ -107,7 +107,7 @@ def work_people(item, topic, num, ardes):
     if en_des_to_ar.get(topic, "") != "":
         ara = en_des_to_ar[topic]
         # ---
-        if years != "":
+        if years:
             ara += f" {years}"
         # ---
         himoAPI.Des_API(q, ara, "ar")
@@ -146,7 +146,7 @@ def work_people(item, topic, num, ardes):
             if taber[lang].get(p21_c):
                 if lang not in descriptions.keys():
                     NewDesc[lang] = {"language": lang, "value": taber[lang].get(p21_c)}
-                    if years != "" and lang in ["en", "ar", "en-ca", "en-gb"]:
+                    if years and lang in ["en", "ar", "en-ca", "en-gb"]:
                         NewDesc[lang]["value"] += years
     # ---
     if NewDesc != {}:
@@ -226,7 +226,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
     # ---
     for P31 in P31_table:
         # ---
-        if not P31 or P31 == "":
+        if not P31:
             continue
         # ---
         # printe.output( item )

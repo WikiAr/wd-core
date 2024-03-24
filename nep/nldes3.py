@@ -402,7 +402,7 @@ def just_get_ar(labe):
     # ---
     for o in lab:
         test = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", o.lower())
-        if test.lower() == o.lower() and o != "":
+        if test.lower() == o.lower() and o:
             tab.append(o)
     # ---
     if tab != []:
