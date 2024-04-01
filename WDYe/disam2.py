@@ -110,7 +110,7 @@ def mainfromQuarry2():
     pywikibot.output('*<<lightyellow>> mainfromQuarry:')
     # quarrr = '207388'
     quarrr = '207496'
-    url = f'https://quarry.wmflabs.org/run/{quarrr}/output/1/json'
+    url = f'https://quarry.wmcloud.org/run/{quarrr}/output/1/json'
     sparql = open_url.getURL(url=url)
     jso = json.loads(sparql)
     topic = 'Wikimedia disambiguation page'
