@@ -3,7 +3,7 @@ import psutil
 import json
 import sys
 import time
-from pathlip import Path
+from pathlib import Path
 from qwikidata.json_dump import WikidataJsonDump
 def get_most_props():
     # ---
