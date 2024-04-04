@@ -38,7 +38,13 @@ def do_line(json1):
         "descriptions": list(json1.get("descriptions", {}).keys()),
         "aliases": list(json1.get("aliases", {}).keys()),
         "sitelinks": list(json1.get("sitelinks", {}).keys()),
-        "claims": {p: fix_property(pv) for p, pv in claims.items() if p in most_props}
+        #"claims": {p: fix_property(pv) for p, pv in claims.items() if p in most_props}
+    }
+    qid_text["claims"] = {
+	    p: fix_property(pv) 
+	    for p, pv in claims.items() 
+	    if p in most_props 
+	    and pv[0].get("mainsnak", {}).get("datatype", "") == "wikibase-item"
     }
     return qid_text
 
