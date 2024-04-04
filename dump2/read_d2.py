@@ -5,6 +5,12 @@ import sys
 import time
 from pathlib import Path
 from qwikidata.json_dump import WikidataJsonDump
+
+done_lines = "/data/project/himo/wd_core/dump2/done_lines.txt"
+
+with open(done_lines, "w", encoding="utf-8") as f:
+    f.write("")
+
 def get_most_props():
     # ---
     properties_path = Path(__file__).parent.parent / "dump/claims/properties.json"
