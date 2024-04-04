@@ -80,7 +80,12 @@ def do_line(json1):
 
     # qid_text["claims_keys"] = claims.keys()
 
-    qid_text["claims"] = {p: fix_property(pv) for p, pv in claims.items() if p in most_props }
+    qid_text["claims"] = {
+	    p: fix_property(pv) 
+	    for p, pv in claims.items() 
+	    if p in most_props 
+	    and pv[0].get("mainsnak", {}).get("datatype", "") == "wikibase-item"
+    }
 
     return qid_text
 
