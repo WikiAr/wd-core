@@ -7,7 +7,7 @@ from pathlib import Path
 from qwikidata.json_dump import WikidataJsonDump
 def get_most_props():
     # ---
-    properties_path = Path(__file__).parent.parent / "dump/properties.json"
+    properties_path = Path(__file__).parent.parent / "dump/claims/properties.json"
     with open(properties_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     # ---
