@@ -79,24 +79,12 @@ def do_line(json1):
     # ---
     return qid_text
 
-def read_lines():
+def read_lines(do_test, tst_limit):
     print("def read_lines():")
     # ---
     tt = time.time()
     # ---
-    do_test = "test" in sys.argv
-    # ---
-    test_limit = {1: 50000}
-    # ---
-    for arg in sys.argv:
-        arg, _, value = arg.partition(":")
-        if arg == "-limit":
-            test_limit[1] = int(value)
-    # ---
     numbs = 500 if do_test else 100000
-    # ---
-    with open(items_file, "w", encoding="utf-8") as f:
-        f.write("")
     # ---
     wjd = WikidataJsonDump(filename)
     # ---
@@ -109,11 +97,6 @@ def read_lines():
             line = do_line(entity_dict)
             lines.append(line)
             # ---
-            if "one" in sys.argv:
-                with open("/data/project/himo/wd_core/dump2/jsons/one.json", "w", encoding="utf-8") as f:
-                    json.dump(entity_dict, f, ensure_ascii=False)
-                break
-            # ---
             if cc % 10000 == 0:
                 dump_lines(lines)
                 lines = []
@@ -122,11 +105,10 @@ def read_lines():
             if cc % numbs == 0:
                 print("cc:", cc, time.time() - tt)
                 tt = time.time()
-
                 print_memory()
             # ---
-            if do_test and cc > test_limit[1]:
-                print("cc>test_limit[1]")
+            if do_test and cc > tst_limit:
+                print("cc>tst_limit")
                 break
             # ---
             if cc % 1000000 == 0:
@@ -134,10 +116,28 @@ def read_lines():
                     f.write(f"done: {cc:,}\n")
     # ---
     dump_lines(lines)
+    
+    
+def main():
+	time_start = time.time()
+	# ---
+	do_test = "test" in sys.argv
     # ---
+    with open(items_file, "w", encoding="utf-8") as f:
+        f.write("")
+    # ---
+    test_limit = {1: 50000}
+    # ---
+    for arg in sys.argv:
+        arg, _, value = arg.partition(":")
+        if arg == "-limit":
+            test_limit[1] = int(value)
+    # ---
+	read_lines(do_test, test_limit[1])
+	# ---
     end = time.time()
     delta = int(end - time_start)
     print(f"read_file: done in {delta}")
 
 if __name__ == "__main__":
-    read_lines()
+    main()
