@@ -13,7 +13,6 @@ import time
 from pathlip import Path
 from qwikidata.json_dump import WikidataJsonDump
 # ---
-va_dir = Path(__file__).parent
 
 time_start = time.time()
 print(f"time_start:{str(time_start)}")
@@ -31,7 +30,7 @@ with open(done_lines, "w", encoding="utf-8") as f:
 
 def get_most_props():
     # ---
-    properties_path = va_dir / "properties.json"
+    properties_path = Path(__file__).parent.parent / "dump/properties.json"
     with open(properties_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     # ---
