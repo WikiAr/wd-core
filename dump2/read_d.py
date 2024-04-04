@@ -71,12 +71,6 @@ def do_line(json1):
 
     qid_text["claims"] = {p: fix_property(pv) for p, pv in claims.items() if pv[0].get("mainsnak", {}).get("datatype", "") == "wikibase-item"}
 
-    if "one" in sys.argv:
-        print("qid_text:")
-        for key, tab in qid_text.items():
-            print(f"\033[93m{key}:\033[00m")
-            print(tab)
-    # ---
     return qid_text
 
 def read_lines(do_test, tst_limit):
@@ -84,12 +78,12 @@ def read_lines(do_test, tst_limit):
     # ---
     tt = time.time()
     # ---
-    numbs = 500 if do_test else 100000
-    # ---
     wjd = WikidataJsonDump(filename)
     # ---
     lines = []
     # ---
+    numbs = 500 if do_test else 100000
+    # ----
     for cc, entity_dict in enumerate(wjd):
         # ---
         if entity_dict["type"] == "item":
