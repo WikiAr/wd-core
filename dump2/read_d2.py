@@ -3,7 +3,17 @@ import psutil
 import json
 import sys
 import time
+from pathlip import Path
 from qwikidata.json_dump import WikidataJsonDump
+def get_most_props():
+    # ---
+    properties_path = va_dir / "properties.json"
+    with open(properties_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    # ---
+    return data
+    
+most_props = get_most_props()
 
 def print_memory():
     _yellow_ = "\033[93m%s\033[00m"
@@ -28,7 +38,7 @@ def do_line(json1):
         "descriptions": list(json1.get("descriptions", {}).keys()),
         "aliases": list(json1.get("aliases", {}).keys()),
         "sitelinks": list(json1.get("sitelinks", {}).keys()),
-        "claims": {p: fix_property(pv) for p, pv in claims.items() if pv[0].get("mainsnak", {}).get("datatype", "") == "wikibase-item"}
+        "claims": {p: fix_property(pv) for p, pv in claims.items() if p in most_props}
     }
     return qid_text
 
