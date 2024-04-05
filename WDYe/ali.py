@@ -249,7 +249,7 @@ def mains():
         # python pwb.py wd/ali ss:340662
         elif arg == "ss":
             fff = queries
-            tart3 = himoBOT2.getquarry2_raws(value)
+            tart3 = wd_bot.get_quarry_results(value, get_rows=2)
             FFF = False
             # pywikibot.output( 'tart3: "%s"' % tart3 )
             for te in tart3:
@@ -259,7 +259,7 @@ def mains():
             Limit[1] = f" limit {value}"
     # ---
     '''fff = queries
-    tart3 = himoBOT2.getquarry2_raws( "340662" )
+    tart3 = wd_bot.get_quarry_results("340662", get_rows=2)
     FFF = False
     #pywikibot.output( 'tart3: "%s"' % tart3 )
     for te in tart3 :
