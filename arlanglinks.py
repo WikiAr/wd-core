@@ -9,10 +9,10 @@ from pathlib import Path
 
 # ---
 # ---
-# Dump_Dir = Path(__file__).parent                      # /data/project/himo/wd_core/dump/labels
+# Dump_Dir = Path(__file__).parent                      # /data/project/himo/bots/dump_core/dump/labels
 Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
 # ---
-Dump_Dir = "/data/project/himo/dumps"
+Dump_Dir = "/data/project/himo/bots/dumps"
 Dump_Dir = f"{Himo_Dir}/dumps"
 # ---
 print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
