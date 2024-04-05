@@ -13,8 +13,8 @@ import sys
 filepath = str(os.path.abspath(__file__)).replace('\\', '/')
 # ---
 paths = [
-    '/data/project/himo/core1/',
-    '/data/project/himowd/wd_core/',
+    '/data/project/himo/bots/core1/',
+    '/data/project/himo/bots/wd_core/',
     './local/lib/python3.10/site-packages',
 ]
 # ---
