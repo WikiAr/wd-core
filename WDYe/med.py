@@ -22,10 +22,9 @@ import sys
 import urllib
 import urllib.request
 import urllib.parse
-
-# ---
-from API import himoBOT2
-
+from API import open_url
+# open_url.open_the_url(url)
+# open_url.open_json_url(url)
 # ---
 from wd_api import himoAPI_test as himoAPI
 
@@ -183,7 +182,7 @@ def Get_item_table(enlab):
     if url == "http://tbeeb.net/med/search.php?q=":
         return Item_tab
     # ---
-    html = himoBOT2.getURL(url=url)
+    html = open_url.open_the_url(url=url)
     if html.find('<table class="table">') == -1:
         return Item_tab
     # ---
@@ -225,7 +224,7 @@ def Get_item_table2(enlab):
     if url == "http://www.alqamoos.org/?search_fulltext=&field_magal=All":
         return Item_tab
     # ---
-    html = himoBOT2.getURL(url=url)
+    html = open_url.open_the_url(url=url)
     if html.find("No results matched your search") != -1:
         return Item_tab
     # ---
