@@ -103,7 +103,7 @@ limit 1'''
 wikidatasite = pywikibot.Site('wikidata', 'wikidata')
 repo = wikidatasite.data_repository()
 # ---
-# open_url.getURL( url )
+# open_url.open_the_url( url )
 
 
 def mainfromQuarry2():
@@ -111,7 +111,7 @@ def mainfromQuarry2():
     # quarrr = '207388'
     quarrr = '207496'
     url = f'https://quarry.wmcloud.org/run/{quarrr}/output/1/json'
-    sparql = open_url.getURL(url=url)
+    sparql = open_url.open_the_url(url=url)
     jso = json.loads(sparql)
     topic = 'Wikimedia disambiguation page'
     lista = [f"Q{str(x[0])}" for x in jso['rows'] if x[1] == "یک صفحهٔ ابهام\u200cزدایی در ویکی\u200cپدیا"]

@@ -19,7 +19,7 @@ paths = [
 ]
 # ---
 if "/data/project/" not in filepath and "labstore-secondary-tools-project" not in filepath:
-    paths = ['I:/core/wd_core/', 'I:/core/master/']
+    paths = ['I:/core/bots/wd_core/', 'I:/core/bots/core1/']
 # ---
 for x in paths:
     if os.path.isdir(x):

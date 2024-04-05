@@ -6,7 +6,7 @@
 
 جميع اللغات
 
-https://github.com/emijrp/wikidata/blob/core/master/human.descriptions.py
+https://github.com/emijrp/wikidata/blob/core/bots/master/human.descriptions.py
 
 """
 #
