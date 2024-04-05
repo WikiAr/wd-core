@@ -19,7 +19,7 @@ import sys
 
 # ---
 # ---
-from API import himoBOT2
+
 from wd_api import himoAPI_test as himoAPI
 
 # ---

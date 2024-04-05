@@ -12,7 +12,8 @@ python3 core8/pwb.py des/fam railway Q55488
 # ---
 import sys
 from wd_api import wd_desc
-from API import himoBOT2
+
+from wd_api import wd_bot
 
 # ---
 from des.ru_st_2_latin import make_en_label
@@ -47,7 +48,7 @@ def work_railway(wditem, p31, q=""):
         return
     # ---
     if wditem == {}:
-        wditem = himoBOT2.Get_Item_API_From_Qid(q)
+        wditem = wd_bot.Get_Item_API_From_Qid(q)
     # ---
     q = wditem.get("q", "")
     # ---
@@ -61,7 +62,7 @@ def work_railway(wditem, p31, q=""):
     Claims = wditem.get("claims", {})
     # ---
     if Claims == {}:
-        Claims = himoBOT2.Get_Item_API_From_Qid(q).get("claims", {})
+        Claims = wd_bot.Get_Item_API_From_Qid(q).get("claims", {})
     # ---
     P17_qid = Get_P_API_id(Claims, 'P17', onlyone=True)  # Claims.get('P17',[{}])[0].get("mainsnak",{}).get("datavalue",{}).get("value",{}).get("id",'')
     P131_qid = Get_P_API_id(Claims, 'P131', onlyone=True)
@@ -69,10 +70,10 @@ def work_railway(wditem, p31, q=""):
     p17_labels, p131_labels = {}, {}
     # ---
     if P17_qid:
-        p17_labels = himoBOT2.Get_Item_API_From_Qid(P17_qid).get('labels', {})
+        p17_labels = wd_bot.Get_Item_API_From_Qid(P17_qid).get('labels', {})
     # ---
     if P131_qid:
-        p131_labels = himoBOT2.Get_Item_API_From_Qid(P131_qid).get('labels', {})
+        p131_labels = wd_bot.Get_Item_API_From_Qid(P131_qid).get('labels', {})
     # ---
     to_do_descs = railway_tables.get(p31, {})
     # ---

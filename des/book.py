@@ -18,7 +18,7 @@ python pwb.py des/book
 import re
 import pywikibot
 import sys
-from API import himoBOT2
+
 from wd_api import wd_desc
 from wd_api import wd_bot
 from API import printe
@@ -71,7 +71,7 @@ Qlist = {
 
 
 def action_one_item(Qid, pa, lang, keys):
-    item = himoBOT2.Get_Item_API_From_Qid(pa['item'])
+    item = wd_bot.Get_Item_API_From_Qid(pa['item'])
     if not item:
         return
     # desc = MakeDesc(Qid, auth, lang)

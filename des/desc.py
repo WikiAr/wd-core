@@ -52,7 +52,7 @@ import sys
 # ---
 from API import printe
 from wd_api import himoAPI
-from API import himoBOT2
+
 from wd_api import wd_bot
 
 # ---
@@ -270,7 +270,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
         printe.output('test:[%s] != arlabel2[%s]')
         return ''
     # ---
-    item = himoBOT2.Get_Item_API_From_Qid(q, sites="", titles="", props="")
+    item = wd_bot.Get_Item_API_From_Qid(q, sites="", titles="", props="")
     # ---
     descriptions = item['descriptions']
     # NewDesc = {}
