@@ -147,7 +147,7 @@ def make_newlabel(label, ar, en):
     # ---
     printe.output(f'<<lightblue>> label:{label}, newlabel:"{newlabel}" ')
     # ---
-    if newlabel.strip() == "":
+    if not newlabel.strip():
         printe.output('<<lightblue>> newlabel = "" ')
         return ''
     # ---

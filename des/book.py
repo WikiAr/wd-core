@@ -212,7 +212,7 @@ def wd_sparql_query(query, ddf=False):
     # ---
     qua = query
     # ---
-    if qua == '':
+    if not qua:
         return New_List
     # ---
     # if limit[1] != 0 :

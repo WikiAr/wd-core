@@ -639,7 +639,7 @@ space_list_and_other_2 = {
 # ---
 for sw in Taton_list:
     if sw not in SPARQLSE:
-        # if not sw in SPARQLSE :
+        # if sw not in SPARQLSE:
         # SPARQLSE[sw] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % sw
         # ---
         # SPARQLSE[sw] = 'SELECT ?item WHERE {?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } ' % sw

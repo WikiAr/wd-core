@@ -288,7 +288,7 @@ letters_to_latin = {
 
 def add_new_label(q, enlabel):
     # ---
-    if enlabel == "":
+    if not enlabel:
         return
     # ---
     labels = {"en": {"language": "en", "value": enlabel}}

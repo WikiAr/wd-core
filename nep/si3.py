@@ -93,7 +93,7 @@ def work_people(item, topic, num, ardes):
     # ---
     topic = topic.lower().strip()
     # ---
-    if topic == "":
+    if not topic:
         return ""
     # ---
     years = ""
@@ -117,7 +117,7 @@ def work_people(item, topic, num, ardes):
     # ---
     printe.output(" work_people:")
     # ---
-    if taber == {}:
+    if not taber:
         printe.output(f" no table descraptions for topic:{topic}")
         return ""
     # ---
@@ -217,7 +217,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
     # ---
     descriptions = item.get("descriptions", {})
     endes = descriptions.get("en", "")
-    if endes == "":
+    if not endes:
         endes = descriptions.get("nl", "")
     ardes = descriptions.get("ar", "")
     # ---
@@ -264,7 +264,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
             work_qid_desc(item, P31, num)
             break
         # ---
-        elif ardes == "":
+        elif not ardes:
             printe.output(f"*<<lightred>> >P31 :{P31} not in Qids_translate.")
             # ---
             if P31 not in new_types:

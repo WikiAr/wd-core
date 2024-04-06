@@ -36,13 +36,13 @@ def make_tax_des_new(item):
     # ---
     P171 = Get_P_API_id(item, "P171")
     # ---
-    if P171 == []:
+    if not P171:
         return ""
     # ---
     P105 = Get_P_API_id(item, "P105")
     P105ar = next((labforP105[p] for p in P105 if p in labforP105), "")
     # ---
-    if P105ar == "":
+    if not P105ar:
         return ""
     # ---
     nan = """SELECT DISTINCT ?item ?P171 ?item105
@@ -90,7 +90,7 @@ def work_taxon_desc(item, endesc):
     q = item["q"]
     # printe.output( ' work_taxon_desc:endesc:"%s", ardesc:"%s"' % (endesc, ardesc) )
     printe.output(f' work_taxon_desc:ardesc:"{ardesc}"')
-    if ardesc == "":
+    if not ardesc:
         print(f" no ardesc for en:{endesc}.")
         make_tax_des_new(item)
 

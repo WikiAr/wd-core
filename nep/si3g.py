@@ -129,7 +129,7 @@ def mainwithcat2():
     elif user:
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")
     # ---
-    if lista == []:
+    if not lista:
         genet = gent.get_gent()
         lista = [page.title(as_link=False) for page in genet]
     printe.output("*<<lightred>> > mainwithcat2 :")

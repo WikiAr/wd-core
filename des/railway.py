@@ -47,7 +47,7 @@ def work_railway(wditem, p31, q=""):
     if "railway" not in sys.argv:
         return
     # ---
-    if wditem == {}:
+    if not wditem:
         wditem = wd_bot.Get_Item_API_From_Qid(q)
     # ---
     q = wditem.get("q", "")
@@ -61,7 +61,7 @@ def work_railway(wditem, p31, q=""):
     # ---
     Claims = wditem.get("claims", {})
     # ---
-    if Claims == {}:
+    if not Claims:
         Claims = wd_bot.Get_Item_API_From_Qid(q).get("claims", {})
     # ---
     P17_qid = Get_P_API_id(Claims, 'P17', onlyone=True)  # Claims.get('P17',[{}])[0].get("mainsnak",{}).get("datavalue",{}).get("value",{}).get("id",'')
@@ -82,7 +82,7 @@ def work_railway(wditem, p31, q=""):
         "en": {1: "{} in {}", 2: "{} in {}, {}"},
     }
     # ---
-    if to_do_descs == {}:
+    if not to_do_descs:
         return
     # ---
     wditem_desc = wditem.get("descriptions", {})
@@ -96,7 +96,7 @@ def work_railway(wditem, p31, q=""):
     P31_list = Get_P_API_id(Claims, 'P31')
     # ---
     for lang, des in to_do_descs.items():
-        if des == "":
+        if not des:
             continue
         # ---
         org_desc = wditem_desc.get(lang, "")
@@ -143,7 +143,7 @@ def work_railway(wditem, p31, q=""):
     # ---
     # if newdesc.get("en"):
     # for o in een:
-    # if not o in wditem_desc:
+    # if o not in wditem_desc:
     # newdesc[o] = {"language": o, "value": newdesc["en"]["value"]}
     # ---
     wd_desc.work_api_desc(newdesc, q)
