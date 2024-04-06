@@ -9,7 +9,7 @@
 #
 from wd_api import wd_bot
 from api_sql import sql
-from API import himoBOT2
+
 import pywikibot
 
 # import pywikibot.data.wikidataquery as wdquery

@@ -23,8 +23,6 @@ import urllib
 import urllib.request
 import urllib.parse
 from API import open_url
-# open_url.open_the_url(url)
-# open_url.open_json_url(url)
 # ---
 from wd_api import himoAPI_test as himoAPI
 
@@ -363,13 +361,13 @@ Limit = {1: "500"}
 
 
 def main():
-    # python3 core8/pwb.py wd/med
-    # python3 core8/pwb.py wd/med short
-    # python3 core8/pwb.py wd/med  ta:horror
-    # python3 core8/pwb.py wd/med qs:Q12136
-    # python3 core8/pwb.py wd/med qs:Q39546
-    # python3 core8/pwb.py wd/med qs:Q24017414
-    # python3 core8/pwb.py wd/med qs:Q27043950
+    # python3 core8/pwb.py WDYe/med
+    # python3 core8/pwb.py WDYe/med short
+    # python3 core8/pwb.py WDYe/med  ta:horror
+    # python3 core8/pwb.py WDYe/med qs:Q12136
+    # python3 core8/pwb.py WDYe/med qs:Q39546
+    # python3 core8/pwb.py WDYe/med qs:Q24017414
+    # python3 core8/pwb.py WDYe/med qs:Q27043950
     # ---
     # sat = "{?item wdt:%s  wd:%s. }" % (pp , qq)
     # sat = "{?item wdt:%s  wd:%s. }" % (pp , qq)
