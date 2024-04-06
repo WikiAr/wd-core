@@ -336,7 +336,7 @@ def make_temp_lines(table, title):
     fanco = title
     #fanco = qid
     # ---
-    if not fanco in remove_date :
+    if fanco not in remove_date:
         remove_date[fanco] = 0
     # ---
     if fanco in Work_with_Year :
