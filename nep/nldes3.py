@@ -100,7 +100,7 @@ import re
 from datetime import timedelta
 
 # ---
-from wd_api import himoAPI
+
 from wd_api import wd_bot
 
 # ---
