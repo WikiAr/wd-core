@@ -9,7 +9,7 @@ python pwb.py des/galaxy
 
 '''
 # ---
-# start of newdesc.py file
+
 from wd_api import newdesc
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 

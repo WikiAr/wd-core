@@ -124,7 +124,7 @@ def OOutPut(ss):
 # ---
 qq = {'Hebrew calendar year': f'{SELECT} wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.{GROUP}'}
 # ---
-# start of newdesc.py file
+
 # newdesc.work22(q , topic, DescraptionsTable)
 # newdesc.main_from_file(file , topic , DescraptionsTable)
 # newdesc.mainfromQuarry2( topic , Quarry, DescraptionsTable)
