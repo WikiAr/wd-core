@@ -52,6 +52,7 @@ import sys
 # ---
 from API import printe
 from wd_api import himoAPI
+from wd_api import qs_bot
 
 from wd_api import wd_bot
 
@@ -106,7 +107,7 @@ def descqs(q, value, lang):
         printe.output("<<lightyellow>>a %d\t%d:add %s to qlline " % (len(New_QS[1]), QSlimit[1], qsline))
     else:
         printe.output(f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements")
-        himoAPI.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
+        qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
 
 
@@ -367,7 +368,7 @@ def work_one_place(place):
         return ''
     # ---
     if New_QS[1] != [] and "cleanlist" in sys.argv:
-        himoAPI.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
+        qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
     quarry = Quase[place] if place in Quase else Quase[2020]
     # ---
@@ -408,7 +409,7 @@ def mainoo():
             work_one_place(place)
     # ---
     if New_QS[1] != []:
-        himoAPI.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
+        qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
 
 
