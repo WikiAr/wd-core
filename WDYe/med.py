@@ -295,7 +295,7 @@ def WORK(item, table):
     enlab = re.sub(r"_", " ", enlab.lower())
     # ---
     Item_tab = Get_item_table2(enlab)
-    if Item_tab == []:
+    if not Item_tab:
         Item_tab = Get_item_table(enlab)
     # ---
     Item_tab2 = Item_tab
@@ -314,7 +314,7 @@ def WORK(item, table):
     # ---
     NewALLi_to_add = []
     for ali in Item_tab:
-        if arlab == "":
+        if not arlab:
             arlab = ali
             if SaveR[1]:
                 himoAPI.Labels_API(item, ali, "ar", False)

@@ -178,7 +178,7 @@ def action_one_P131_item(lng, oneitem):
                 if (plang in oneitem.get("labels", {})) and not found:
                     data["labels"] = {lng: oneitem.get("labels", {}).get(plang, "")}
                     found = True
-    if adminname == "":
+    if not adminname:
         newdescription = f"{isaname}"
     else:
         newdescription = f"{shortname} in {adminname}, {countryname}"
@@ -430,7 +430,7 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
                     qura[type_of_item]["P31"], qura[type_of_item]["P17"]
                 )
     # ---
-    if my_description == "":
+    if not my_description:
         return my_description
     # ---
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]", "", my_description.lower())
@@ -637,7 +637,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
         my_description = re.sub(r"\s+", " ", my_description)
         my_description = my_description.strip()
         # ---
-        if my_description == "":
+        if not my_description:
             printe.output(
                 f"type of item: {type_of_item}, orig_desc: [{orig_desc}], new: [{my_description}]"
             )

@@ -340,7 +340,7 @@ def make_temp_lines(table, title):
         remove_date[fanco] = 0
     # ---
     if fanco in Work_with_Year :
-        if date == '' :
+        if not date:
             remove_date[fanco] += 1
             print_test2( 'remove_date[fanco] += 1 (%d) date == ""' % remove_date[fanco] )
             return "", table2
@@ -717,7 +717,7 @@ def fix_date(data, title):
                 date = ''
                 if ddds != []:
                     date = ddds[0]
-                if date == '':
+                if not date:
                     remove_date[fanco] += 1
                     # return ""
                     continue
@@ -770,7 +770,7 @@ def make_new_text(qid, title):
             qidso[qq] = {}
         # ---
         date = results[qq]['Date'][0]
-        if date == '':
+        if not date:
             if qq not in Date_List2:
                 Date_List2.append(qq)
         elif date not in Date_List2:
@@ -951,7 +951,7 @@ def work_tano(text, MainTitle):
     text = text.strip()
     if vf := text.split("{{نتيجة سباق الدراجات/سطر4"):
         for pp in vf:
-            if pp == "":
+            if not pp:
                 continue
             # ---
             if not pp.startswith("{{نتيجة سباق الدراجات/سطر4"):

@@ -21,11 +21,11 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     # ---
     for x in pp:
         LNKitem = get_mainsnak(x)
-        if claimstr == "":
+        if not claimstr:
             claimstr = Get_label(LNKitem)
     # ---
     claimstr = claimstr.strip()
-    if claimstr == "":
+    if not claimstr:
         return shortstr
     # ---
     laste = f"{longdescrstr.strip()} {claimstr}"
@@ -125,7 +125,7 @@ def its_canton_of_France(wdi):  # Q184188
     clai = wdi.get("claims", {})
     current_desc = wdi.get("descriptions", {}).get("ar", "")
     desco = "كانتون فرنسي"
-    if current_desc == "":
+    if not current_desc:
         if "P131" in clai:
             LNKcommunity = get_mainsnak(clai.get("P131")[0])  # .getTarget()
             label = Get_label(LNKcommunity)
@@ -261,21 +261,21 @@ def its_a_sports_season(wditem, claimstr=""):
     myclaim = "P3450"
     # ---
     pp = wditem.get("claims", {}).get(myclaim, [])
-    if claimstr.strip() == "":
+    if not claimstr.strip():
         # ---
         for x in pp:
             LNKitem = get_mainsnak(x)
-            if claimstr == "":
+            if not claimstr:
                 claimstr = Get_label(LNKitem)
     # ---
     claimstr = claimstr.strip()
     # ---
     shortstr = "موسم رياضي"
     # ---
-    if pp == []:
+    if not pp:
         printe.output("its_a_sports_season item has no %s claims.." % myclaim)
     # ---
-    if claimstr == "":
+    if not claimstr:
         return shortstr
     # ---
     laste = "موسم من %s" % claimstr
@@ -295,7 +295,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
     # ---
     P175 = wditem.get("claims", {}).get(myclaim, [])
     # ---
-    if claimstr == "":
+    if not claimstr:
         # ---
         for x in P175:
             LNKitem = get_mainsnak(x)
@@ -306,7 +306,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
                     claimstr += " وآخرون"
                 break
         # ---
-        if P175 == []:
+        if not P175:
             printe.output("its_songs item has no P175 claims..")
     # ---
     claimstr = claimstr.strip()
@@ -348,17 +348,17 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=""):
     # ---
     P50 = wditem.get("claims", {}).get(myclaim, [])
     # ---
-    if claimstr == "":
+    if not claimstr:
         # ---
         for x in P50:
             LNKitem = get_mainsnak(x)
-            if claimstr == "":
+            if not claimstr:
                 claimstr = Get_label(LNKitem)
     # ---
     claimstr = claimstr.strip()
     # ---
-    # if claimstr == '': return shortstr
-    if claimstr == "":
+    # if not claimstr: return shortstr
+    if not claimstr:
         return ""
     # ---
     jjj = [

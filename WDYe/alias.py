@@ -151,7 +151,7 @@ def main():
     # ---
     if val:
         val2 = allise.get(val, "")
-        if qnew == "":
+        if not qnew:
             qnew = qid_table.get(val, "")
     # ---
     if val2 and qnew:

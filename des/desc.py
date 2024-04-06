@@ -205,7 +205,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
     '''work_one_item used in np/si3.py'''
     # ---
-    if start.strip() == "":
+    if not start.strip():
         return ''
     # ---
     arlabel = start + ' في {}'
@@ -215,7 +215,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     p17 = tab.get('pp17', "")
     placear = tab.get('placear', "").split('@@')[0]
     # ---
-    if p17lab == "":
+    if not p17lab:
         p17lab = ContriesTable2.get(p17, {}).get(lang, "")
     # ---
     if findlab:
@@ -225,12 +225,12 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
             printe.output(df)
             # ---
         # ---
-        if p17lab == "":
+        if not p17lab:
             p17lab = df.get(q, {}).get("P17", "").split('@@')[0]
         # ---
-        if placear == "":
+        if not placear:
             placear = df.get(q, {}).get("P131", "").split('@@')[0]
-        if placear == "":
+        if not placear:
             placear = df.get(q, {}).get("P276", "").split('@@')[0]
     # ---
     placeartest = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", placear.lower())
@@ -263,7 +263,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
     printe.output('  * action %d/%d "%s:%s"' % (c, total, q, arlabel2))
     # ---
-    if arlabel2 == "":
+    if not arlabel2:
         return ''
     # ---
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", arlabel2.lower())
@@ -363,7 +363,7 @@ def work_one_place(place):
     lang = 'ar'
     # ---
     start = placesTable2[place].get(lang, '')
-    if start.strip() == "":
+    if not start.strip():
         printe.output('start.strip() == ""')
         return ''
     # ---
@@ -387,7 +387,7 @@ def work_one_place(place):
             printe.output("q in q_list_done")
             continue
         # ---
-        # if place == '':
+        # if not place:
         # Add_desc( q, arlabel2, lang  )
         # else:
         work_one_item(start, lang, tab, c, total)

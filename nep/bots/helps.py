@@ -113,7 +113,7 @@ def Get_label(qid):
     if qid in labels_cach.get(lng, {}):
         return labels_cach[lng][qid]
     # ---
-    if qid == "":
+    if not qid:
         return label
     # ---
     WDI = wd_bot.Get_Item_API_From_Qid(qid, sites="", titles="", props="labels")
@@ -133,7 +133,7 @@ def Get_label(qid):
 
 def get_female_for_p17(contry_lab, tyy):
     # ---
-    if contry_lab.strip() == "":
+    if not contry_lab.strip():
         return ""
     # ---
     lab = nationalities.get(contry_lab, {}).get(tyy, "")

@@ -198,7 +198,7 @@ def wd_sparql_query(spq, ddf=False):
     # ---
     qua = spq
     # ---
-    if qua == "":
+    if not qua:
         return New_List
     # ---
     Keep = True
@@ -419,7 +419,7 @@ def main(debug=False):
     # ---
     sasa = SPARQLSE.get(sparqler[1].strip(), "")
     # ---
-    if sasa == "":
+    if not sasa:
         printe.output(f"{sparqler[1]} not in SPARQLSE")
         sasa = (
             """SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') } } """
