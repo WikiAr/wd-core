@@ -66,9 +66,9 @@ Scientific_descraptions = {
     "zh-hant": "年學術文章",  # 年論文
 }
 # ---
-Scientific_descraptions['yue'] = Scientific_descraptions['zh-hant']
+Scientific_descraptions["yue"] = Scientific_descraptions["zh-hant"]
 # ---
-Scientific_descraptions['zh-hans'] = Scientific_descraptions['zh']
-Scientific_descraptions['wuu'] = Scientific_descraptions['zh']
+Scientific_descraptions["zh-hans"] = Scientific_descraptions["zh"]
+Scientific_descraptions["wuu"] = Scientific_descraptions["zh"]
 # ---
 # ---

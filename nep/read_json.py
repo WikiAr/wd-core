@@ -37,9 +37,7 @@ def read_bad_list(file):
             done_list7 = JJson.load(listt)
         # ---
         for type in done_list7:
-            printe.output(
-                f'find {len(done_list7[type])} cats in done_list7. "{type}" , file:"{file}"'
-            )
+            printe.output(f'find {len(done_list7[type])} cats in done_list7. "{type}" , file:"{file}"')
             for catee in done_list7[type]:
                 catee = catee.strip()
                 catee = re.sub(r'"', "", catee)

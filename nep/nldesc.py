@@ -32,12 +32,7 @@ from nep.tables.lists import (
 )
 from nep.tables.str_descs import descs, entities, countries, genese
 from nep.bots.helps import (
-    get_female_for_p17,
-    Get_label,
-    get_label_txt,
-    Get_label_from_item,
-    get_mainsnak,
-)
+    get_mainsnak, )
 from nep.its import (
     its_a_composition,
     its_a_computergame,
@@ -155,17 +150,13 @@ def action_one_P131_item(lng, oneitem):
 
     shortname = "قرية" if isaname in ["dorp in China"] else isaname
     if "P131" in oneitem.get("claims", {}):
-        LNKadmin = get_mainsnak(
-            oneitem.get("claims", {}).get("P131")[0]
-        )  # .getTarget()
+        LNKadmin = get_mainsnak(oneitem.get("claims", {}).get("P131")[0])  # .getTarget()
         if LNKadmin is not None:
             admin = wd_bot.Get_Item_API_From_Qid(LNKadmin)  # xzo
             if lng in admin.get("labels", {}):
                 adminname = admin.get("labels", {}).get(lng, "")
     if "P17" in oneitem.get("claims", {}):
-        LNKcountry = get_mainsnak(
-            oneitem.get("claims", {}).get("P17")[0]
-        )  # .getTarget()
+        LNKcountry = get_mainsnak(oneitem.get("claims", {}).get("P17")[0])  # .getTarget()
         if LNKcountry is not None:
             country = wd_bot.Get_Item_API_From_Qid(LNKcountry)  # xzo
             if lng in country.get("labels", {}):
@@ -182,9 +173,7 @@ def action_one_P131_item(lng, oneitem):
         newdescription = f"{isaname}"
     else:
         newdescription = f"{shortname} in {adminname}, {countryname}"
-    if (isaname != "") and (
-        nld in ["", "قرية", "dorp in China", "gemeente", "gemeente in China"]
-    ):
+    if (isaname != "") and (nld in ["", "قرية", "dorp in China", "gemeente", "gemeente in China"]):
         data["descriptions"] = {lng: newdescription}
     # ---
     try:
@@ -216,13 +205,9 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     # ---
     elif type_of_item in p50s:
         if orig_desc in ["", "عمل أدبي", p50s[type_of_item]["ar"]]:
-            my_description = its_a_p50(
-                type_of_item, wditem, p50s[type_of_item]["ar"], claimstr=claimstr
-            )
+            my_description = its_a_p50(type_of_item, wditem, p50s[type_of_item]["ar"], claimstr=claimstr)
     # ---
-    elif (
-        type_of_item == "Q7889"
-    ):  # computerspel  genre=P136   ontwikkelaar=P178  uitgeverij=P123
+    elif type_of_item == "Q7889":  # computerspel  genre=P136   ontwikkelaar=P178  uitgeverij=P123
         if orig_desc in ["لعبة فيديو", ""]:
             my_description = its_a_computergame(lng, wditem)
     # ---
@@ -240,29 +225,21 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
             my_description = its_something_in_a_country(wditem, "حزب سياسي")
     # ---
     elif type_of_item == "Q265158" and orig_desc in ["", "مراجعة"]:
-        my_description = its_a_generalthing(
-            wditem, "مراجعة", "مراجعة منشورة في", "P1433"
-        )
+        my_description = its_a_generalthing(wditem, "مراجعة", "مراجعة منشورة في", "P1433")
     # ---
     elif type_of_item == "Q13433827" and orig_desc in ["", "مقالة موسوعية"]:
-        my_description = its_a_generalthing(
-            wditem, "مقالة موسوعية", "مقالة في", "P1433"
-        )
+        my_description = its_a_generalthing(wditem, "مقالة موسوعية", "مقالة في", "P1433")
     # ---
     elif type_of_item == "Q191067" and orig_desc in ["مقالة", ""]:
         my_description = its_a_generalthing(wditem, "", "مقالة في ", "P1433")
     # ---
     elif type_of_item == "Q96739634":
         if orig_desc in ["", "حركة فردية"]:
-            my_description = its_a_generalthing(
-                wditem, "حركة فردية", "حركة فردية بواسطة", "P50"
-            )
+            my_description = its_a_generalthing(wditem, "حركة فردية", "حركة فردية بواسطة", "P50")
     # ---
     elif type_of_item == "Q3305213":  # لوحة فنية بواسطة P170
         if orig_desc in ["لوحة فنية", ""]:
-            my_description = its_a_generalthing(
-                wditem, "لوحة فنية", "لوحة فنية رسمها", "P170"
-            )
+            my_description = its_a_generalthing(wditem, "لوحة فنية", "لوحة فنية رسمها", "P170")
     # ---
     elif type_of_item == "Q7187":
         if orig_desc in ["جين", ""]:
@@ -271,9 +248,7 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     # جين كاذب
     elif type_of_item == "Q277338":
         if orig_desc in ["جين كاذب", "جين", "speudogen", ""]:
-            my_description = its_a_generalthing(
-                wditem, "", "جين كاذب في ", "P703"
-            )  # P1057 #fixed
+            my_description = its_a_generalthing(wditem, "", "جين كاذب في ", "P703")  # P1057 #fixed
     # ---
     # بروتين
     elif type_of_item == "Q8054":
@@ -282,15 +257,11 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     # ---
     elif type_of_item == "Q783866":
         if orig_desc in ["مكتبة جافا سكريبت", ""]:
-            my_description = its_a_generalthing(
-                wditem, "مكتبة جافا سكريبت", "مكتبة جافا سكريبت من تطوير ", "P178"
-            )
+            my_description = its_a_generalthing(wditem, "مكتبة جافا سكريبت", "مكتبة جافا سكريبت من تطوير ", "P178")
     # ---
     elif type_of_item == "Q620615":  # تطبيق محمول
         if orig_desc in ["تطبيق محمول", ""]:
-            my_description = its_a_generalthing(
-                wditem, "", "تطبيق محمول من تطوير ", "P178"
-            )
+            my_description = its_a_generalthing(wditem, "", "تطبيق محمول من تطوير ", "P178")
     # ---
     elif type_of_item in Space_tab:
         labr = Space_tab[type_of_item]
@@ -299,32 +270,22 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     # ---
     elif type_of_item == "Q2831984":  # ألبوم قصص مصورة uit de serie P179
         if orig_desc in ["", "ألبوم قصص مصورة"]:
-            my_description = its_a_generalthing(
-                wditem, "", "ألبوم قصص مصورة من سلسلة ", "P179"
-            )
+            my_description = its_a_generalthing(wditem, "", "ألبوم قصص مصورة من سلسلة ", "P179")
         if my_description in ["", "ألبوم قصص مصورة"]:
-            my_description = its_a_generalthing(
-                wditem, "", "ألبوم قصص مصورة من تأليف ", "P50"
-            )
+            my_description = its_a_generalthing(wditem, "", "ألبوم قصص مصورة من تأليف ", "P50")
     # ---
     elif type_of_item == "Q19389637":
         short = "مقالة سيرة ذاتية"
         if (orig_desc in [short, ""]) or (orig_desc.find(short) == 0):
             printe.output("work in Q19389637")
             # my_description ='biografisch artikel',''
-            my_description = its_a_generalthing(
-                wditem, short, "مقالة سيرة ذاتية للمؤلف", "P50"
-            )
+            my_description = its_a_generalthing(wditem, short, "مقالة سيرة ذاتية للمؤلف", "P50")
             # ---
             if my_description == short:
-                my_description = its_a_generalthing(
-                    wditem, short, "مقالة سيرة ذاتية منشورة في", "P1433"
-                )
+                my_description = its_a_generalthing(wditem, short, "مقالة سيرة ذاتية منشورة في", "P1433")
             # ---
             if my_description == short:
-                my_description = its_a_generalthing(
-                    wditem, short, "مقالة سيرة ذاتية عن", "P921"
-                )
+                my_description = its_a_generalthing(wditem, short, "مقالة سيرة ذاتية عن", "P921")
     # ---
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]", "", my_description.lower())
     if test.lower() != my_description.lower():
@@ -353,9 +314,7 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
             my_description = its_a_film(wditem)
     # ---
     elif type_of_item in bldiat:
-        my_description = its_a_thing_located_in_country(
-            wditem, bldiat[type_of_item], "بلدية"
-        )
+        my_description = its_a_thing_located_in_country(wditem, bldiat[type_of_item], "بلدية")
         if my_description in ["بلدية", ""]:
             my_description = "بلدية في %s" % bldiat[type_of_item]
     # ---
@@ -423,12 +382,10 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
         if orig_desc in [labr, ""]:
             my_description = its_something_in_a_country(wditem, labr)
             if type_of_item in qura and my_description in [
-                qura[type_of_item]["P31"],
-                "",
+                    qura[type_of_item]["P31"],
+                    "",
             ]:
-                my_description = "{} في {}".format(
-                    qura[type_of_item]["P31"], qura[type_of_item]["P17"]
-                )
+                my_description = "{} في {}".format(qura[type_of_item]["P31"], qura[type_of_item]["P17"])
     # ---
     if not my_description:
         return my_description
@@ -511,9 +468,7 @@ def make_nn(lng, wditem, p31, orig_desc):
     if genese.get(p31):
         p31_tab = genese[p31]
         if orig_desc in p31_tab["org"]:
-            desc = its_a_generalthing(
-                wditem, p31_tab["desc"], p31_tab["desc_in"], p31_tab["pid"]
-            )
+            desc = its_a_generalthing(wditem, p31_tab["desc"], p31_tab["desc_in"], p31_tab["pid"])
     # ---
     return desc
 
@@ -559,15 +514,11 @@ def action_one_item(lngr, q, item={}, claimstr=""):
             # ---
             elif type_of_item == "Q3231690":
                 if orig_desc in ["طراز سيارة", ""]:
-                    my_description = its_a_generalthing(
-                        wditem, "", "طراز سيارة من إنتاج", "P176", claimstr=claimstr
-                    )
+                    my_description = its_a_generalthing(wditem, "", "طراز سيارة من إنتاج", "P176", claimstr=claimstr)
                     # ---
             elif type_of_item == "Q571":
                 if orig_desc in ["", "كتاب"]:
-                    my_description = its_a_generalthing(
-                        wditem, "", "كتاب من تأليف", "P50"
-                    )
+                    my_description = its_a_generalthing(wditem, "", "كتاب من تأليف", "P50")
                 # ---
                 """
           elif type_of_item == 'Q3331189':
@@ -585,9 +536,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
                 if orig_desc in [""]:
                     my_description = "كويكب"
             # ---
-            elif (
-                type_of_item == "Q7889"
-            ):  # computerspel  genre=P136   ontwikkelaar=P178  uitgeverij=P123
+            elif type_of_item == "Q7889":  # computerspel  genre=P136   ontwikkelaar=P178  uitgeverij=P123
                 if orig_desc in ["لعبة فيديو", ""]:
                     my_description = its_a_computergame(lng, wditem)
             # ---
@@ -596,14 +545,10 @@ def action_one_item(lngr, q, item={}, claimstr=""):
             # ---
             # ---
             elif type_of_item in space_list_and_other:
-                my_description = Make_space_desc(
-                    lng, wditem, type_of_item, orig_desc, claimstr=claimstr
-                )
+                my_description = Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=claimstr)
             # ---
             elif type_of_item in others_list or type_of_item in others_list_2:
-                my_description = Make_others_desc(
-                    lng, wditem, type_of_item, orig_desc, claimstr=claimstr
-                )
+                my_description = Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=claimstr)
             # ---
             elif type_of_item == "سلالة كلب":  # hondenras
                 if orig_desc in ["سلالة", ""]:
@@ -638,9 +583,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
         my_description = my_description.strip()
         # ---
         if not my_description:
-            printe.output(
-                f"type of item: {type_of_item}, orig_desc: [{orig_desc}], new: [{my_description}]"
-            )
+            printe.output(f"type of item: {type_of_item}, orig_desc: [{orig_desc}], new: [{my_description}]")
             continue
         # ---
         if my_description.find("n/a") != -1:

@@ -38,18 +38,20 @@ python3 core8/pwb.py nep/si3g -newpages:200 ask
 # (C) Ibrahem Qasim, 2023
 #
 import sys
+
 # ---
 sys.argv.append("-family:wikidata")
 sys.argv.append("-lang:wikidata")
 # ---
-import codecs
 import time
 from pathlib import Path
+
 # ---
 from API import printe
 import gent
 from nep import si3
 from newapi.page import NEW_API
+
 # ---
 api_new = NEW_API("www", family="wikidata")
 api_new.Login_to_wiki()
@@ -119,7 +121,7 @@ def mainwithcat2():
     if file:
         if not file.startswith(main_dir1):
             file = main_dir1 + file
-        with open(file, "r", encoding="utf-8") as f:
+        with open(file, encoding="utf-8") as f:
             oco = f.read().split("\n")
         lista = [x.strip() for x in oco if x.strip() != ""]
     # ---

@@ -39,7 +39,7 @@ def action(json1):
             label = tab["label"]
             # ---
             # year =  re.match(r'(\d\d\d\d)', label)
-            year = re.sub(r'.*(\d+\d+\d+\d+).*', r"\g<1>", label)
+            year = re.sub(r".*(\d+\d+\d+\d+).*", r"\g<1>", label)
             # ---
             if year == label:
                 year = ""
@@ -58,14 +58,15 @@ def action(json1):
                 if PP_time != timestr:
                     himoAPI.Claim_API_time(q, "P585", precision=9, year=year1, strtime=timestr)
                 else:
-                    printe.output(f' <<lightred>> * time == timestr.{timestr} ')
+                    printe.output(f" <<lightred>> * time == timestr.{timestr} ")
         else:
-            printe.output(' <<lightred>> * q in items_done. ' % q)
+            printe.output(" <<lightred>> * q in items_done. " % q)
 
 
 # ---
 Quarry = {
-    "y": '''
+    "y":
+        """
 SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
  ?label WHERE {
     ?item wdt:P31 ?pp.
@@ -74,13 +75,13 @@ SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
     #?item wdt:P641/wdt:P279 wd:Q2215841.
     FILTER NOT EXISTS { ?item wdt:P585 ?P585. }
     FILTER NOT EXISTS { ?item wdt:P580 ?P580. }
-    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007C20)\d\d") )
-    ?item rdfs:label ?label . FILTER( REGEX(?label, "(\d\d\d\d)") )
+    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007C20)\\d\\d") )
+    ?item rdfs:label ?label . FILTER( REGEX(?label, "(\\d\\d\\d\\d)") )
     #%s
-    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007C20)\d\d") )
+    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007C20)\\d\\d") )
 }
 #LIMIT 2
-'''
+"""
 }
 
 
@@ -92,36 +93,36 @@ def main():
     qya = {}
     # ---
     for arg in sys.argv:
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---
-        if arg == '-limit':
-            printe.output(f'<<lightred>>>>  limit ( {value} )  ')
+        if arg == "-limit":
+            printe.output(f"<<lightred>>>>  limit ( {value} )  ")
             limits[1] = value
         # ---
         if arg in Quarry:
-            printe.output(f'<<lightred>>>>  use Quarry:{arg} . ')
+            printe.output(f"<<lightred>>>>  use Quarry:{arg} . ")
             qya[arg] = Quarry[arg]
     # ---
     if not qya:
         qya = Quarry
     for number, (key, quuu) in enumerate(qya.items(), start=1):
         for arg in sys.argv:
-            arg, _, value = arg.partition(':')
+            arg, _, value = arg.partition(":")
             # ---
-            if arg in ['P31', '-P31']:
-                printe.output(f'<<lightred>>>>  P31:{value}. ')
+            if arg in ["P31", "-P31"]:
+                printe.output(f"<<lightred>>>>  P31:{value}. ")
                 taxose = f"?item wdt:P31/wdt:P279* wd:{value}."
             # ---
-            if arg in ['lang', '-lang']:
+            if arg in ["lang", "-lang"]:
                 if value == "fr":
                     quuu = quuu.replace('"en"', '"fr"')
                     quuu = quuu.replace('"Category:"', '"Catégorie:"')
-                    printe.output('<<lightred>>>> change lang to france. ')
+                    printe.output("<<lightred>>>> change lang to france. ")
         # ---
         quuu = quuu % taxose
         # ---
         if limits[1]:
-            quuu = f'{quuu}\n LIMIT {limits[1]}'
+            quuu = f"{quuu}\n LIMIT {limits[1]}"
         # ---
         printe.output("quuu : %d/%d key:%s" % (number, len(qya), key))
         printe.output(quuu)

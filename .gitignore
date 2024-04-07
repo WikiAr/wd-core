@@ -4,7 +4,6 @@
 *.rar
 *.txt
 *.sh
-*.json
 *.log
 *.js
 *.css
@@ -46,3 +45,4 @@ people/compare_files/**
 *.c
 dump/colab.py
 wikidataintegratorxx/**
+nep/tables/new_types.json

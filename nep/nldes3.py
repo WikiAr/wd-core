@@ -249,9 +249,7 @@ def wd_sparql_query(spq, ddf=False):
 
 def wd_user_edits(username, ucsite, totaledits):
     repo = pywikibot.Site("wikidata", "wikidata").data_repository()
-    useredits = pg.UserContributionsGenerator(
-        username, site=ucsite, total=totaledits, namespaces=[0]
-    )
+    useredits = pg.UserContributionsGenerator(username, site=ucsite, total=totaledits, namespaces=[0])
     for oneedit in useredits:
         if oneedit.exists():
             wd = pywikibot.ItemPage(repo, oneedit.title())
@@ -260,9 +258,7 @@ def wd_user_edits(username, ucsite, totaledits):
 
 
 def sparql_nodescription(sparql):
-    return (
-        "select distinct ?item where {{%s}filter (!bound(?itemDescription))}" % sparql
-    )
+    return "select distinct ?item where {{%s}filter (!bound(?itemDescription))}" % sparql
 
 
 def some_items():
@@ -421,10 +417,7 @@ def main(debug=False):
     # ---
     if not sasa:
         printe.output(f"{sparqler[1]} not in SPARQLSE")
-        sasa = (
-            """SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') } } """
-            % sparqler[1]
-        )
+        sasa = """SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') } } """ % sparqler[1]
     # ---
     ssqq = [sasa]
     if sparqler[1].strip() == "" or "allkeys" in sys.argv:

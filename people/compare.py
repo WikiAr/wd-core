@@ -14,9 +14,9 @@ from people.occupationsall import translations_all as tota1
 # ---
 # ---
 # dump tota1 to tota1.json with sorting and utf8
-json.dump(tota1, codecs.open(f'{Dir}/compare_files/tota1old.json', 'w', encoding='utf-8'), sort_keys=True, indent=4, ensure_ascii=False)
+json.dump(tota1, codecs.open(f"{Dir}/compare_files/tota1old.json", "w", encoding="utf-8"), sort_keys=True, indent=4, ensure_ascii=False)
 
-json.dump(tota2, codecs.open(f'{Dir}/compare_files/tota2new.json', 'w', encoding='utf-8'), sort_keys=True, indent=4, ensure_ascii=False)
+json.dump(tota2, codecs.open(f"{Dir}/compare_files/tota2new.json", "w", encoding="utf-8"), sort_keys=True, indent=4, ensure_ascii=False)
 
 # keys in tota2 but not in tota1
 new_keys = [x for x in tota2.keys() if x not in tota1.keys()]
@@ -30,10 +30,10 @@ print(f"{len(new_keys)} keys present in old translations file but not in the new
 for key in new_keys:
     print(key)
 
-print('compare values:')
+print("compare values:")
 
 for x, tab in tota1.items():
     if x in tota2:
         tab2 = tota2[x]
         if tab2 != tab:
-            print(f'{x}: tab != tab2')
+            print(f"{x}: tab != tab2")
