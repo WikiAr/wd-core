@@ -52,11 +52,11 @@ def action(json1):
                 printe.output('  * action %d/%d "%s"' % (c, total, q))
                 himoAPI.Labels_API(q, ar_lab, "ar", False, Or_Alii=True)
         else:
-            printe.output(' <<lightred>> * q in items_done. ' % q)
+            printe.output(" <<lightred>> * q in items_done. " % q)
 
 
 def make_quarry(ar_suff="", item_p31_cat="", en_suff="", en_priff=""):
-    quaaa = '''
+    quaaa = """
 #تسمية تصانيف مواليد في
 SELECT DISTINCT  #?item ?label ?item_ar
 (concat("" , strafter(str(?cat),"/entity/") , "")  as ?item_q)
@@ -74,14 +74,15 @@ WHERE {
     BIND( concat("%s" , str(?item_en) , "%s") as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
 }
-'''
+"""
     quaaa %= (ar_suff, "%s", item_p31_cat, en_suff, en_priff)
     return quaaa
 
 
 # ---
 Quarry = {
-    'items': '''# تسمية  عناصر طبقاً لاسم التصنيف
+    "items":
+        """# تسمية  عناصر طبقاً لاسم التصنيف
 SELECT DISTINCT #?item ?label ?cat_ar
 (concat("" , strafter(str(?item),"/entity/") , "")  as ?item_q)
 (concat( (strafter(str(?cat_ar),"تصنيف:")) )  as ?ar_name)
@@ -103,64 +104,75 @@ WHERE {
 
     BIND( concat("Category:" , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
-}''',  # ---
-    'from': make_quarry(
-        ar_suff="تصنيف:أشخاص من ",
-        item_p31_cat="?item wdt:P1792 ?cat.",
-        en_suff="Category:People from ",
-    ),  # ---
-    'alumni': make_quarry(
-        ar_suff="تصنيف:خريجو ",
-        item_p31_cat="?item wdt:P3876 ?cat.",
-        en_suff="Category:",
-        en_priff=" alumni",
-    ),  # ---
-    'Taken': make_quarry(
-        ar_suff="تصنيف:صور التقطت باستخدام ",
-        item_p31_cat="?item wdt:P2033 ?cat.",
-        en_suff="Category:Taken with ",
-        en_priff="",
-    ),  # ---
-    'basin': make_quarry(
-        ar_suff="تصنيف:حوض ",
-        item_p31_cat="?item wdt:P1200 ?cat.",
-        en_suff="Category:",
-        en_priff=" basin",
-    ),  # ---
-    'shot': make_quarry(
-        ar_suff="تصنيف:أفلام مصورة في ",
-        item_p31_cat="?item wdt:P1740 ?cat.",
-        en_suff="Category:Films shot in ",
-        en_priff="",
-    ),  # ---
-    'employees': make_quarry(
-        ar_suff="تصنيف:موظفي ",
-        item_p31_cat="?item wdt:P4195 ?cat.",
-        en_suff="Category:",
-        en_priff=" employees",
-    ),  # ---
-    'faculty': make_quarry(
-        ar_suff="تصنيف:هيئة تدريس ",
-        item_p31_cat="?item wdt:P4195 ?cat.",
-        en_suff="Category:",
-        en_priff=" faculty",
-    ),  # ---
-    'buried': make_quarry(
-        ar_suff="تصنيف:مدفونون في ",
-        item_p31_cat="?item wdt:P1791 ?cat.",
-        en_suff="Category:Burials at ",
-    ),  # ---
-    'Births': make_quarry(
-        ar_suff="تصنيف:مواليد في ",
-        item_p31_cat="?item wdt:P1464 ?cat.",
-        en_suff="Category:Births in ",
-    ),  # ---
-    'Deaths': make_quarry(
-        ar_suff="تصنيف:وفيات في ",
-        item_p31_cat="?item wdt:P1465 ?cat.",
-        en_suff="Category:Deaths in ",
-    ),
-    1: '''
+}""",  # ---
+    "from":
+        make_quarry(
+            ar_suff="تصنيف:أشخاص من ",
+            item_p31_cat="?item wdt:P1792 ?cat.",
+            en_suff="Category:People from ",
+        ),  # ---
+    "alumni":
+        make_quarry(
+            ar_suff="تصنيف:خريجو ",
+            item_p31_cat="?item wdt:P3876 ?cat.",
+            en_suff="Category:",
+            en_priff=" alumni",
+        ),  # ---
+    "Taken":
+        make_quarry(
+            ar_suff="تصنيف:صور التقطت باستخدام ",
+            item_p31_cat="?item wdt:P2033 ?cat.",
+            en_suff="Category:Taken with ",
+            en_priff="",
+        ),  # ---
+    "basin":
+        make_quarry(
+            ar_suff="تصنيف:حوض ",
+            item_p31_cat="?item wdt:P1200 ?cat.",
+            en_suff="Category:",
+            en_priff=" basin",
+        ),  # ---
+    "shot":
+        make_quarry(
+            ar_suff="تصنيف:أفلام مصورة في ",
+            item_p31_cat="?item wdt:P1740 ?cat.",
+            en_suff="Category:Films shot in ",
+            en_priff="",
+        ),  # ---
+    "employees":
+        make_quarry(
+            ar_suff="تصنيف:موظفي ",
+            item_p31_cat="?item wdt:P4195 ?cat.",
+            en_suff="Category:",
+            en_priff=" employees",
+        ),  # ---
+    "faculty":
+        make_quarry(
+            ar_suff="تصنيف:هيئة تدريس ",
+            item_p31_cat="?item wdt:P4195 ?cat.",
+            en_suff="Category:",
+            en_priff=" faculty",
+        ),  # ---
+    "buried":
+        make_quarry(
+            ar_suff="تصنيف:مدفونون في ",
+            item_p31_cat="?item wdt:P1791 ?cat.",
+            en_suff="Category:Burials at ",
+        ),  # ---
+    "Births":
+        make_quarry(
+            ar_suff="تصنيف:مواليد في ",
+            item_p31_cat="?item wdt:P1464 ?cat.",
+            en_suff="Category:Births in ",
+        ),  # ---
+    "Deaths":
+        make_quarry(
+            ar_suff="تصنيف:وفيات في ",
+            item_p31_cat="?item wdt:P1465 ?cat.",
+            en_suff="Category:Deaths in ",
+        ),
+    1:
+        """
 #تسمية تصانيف طبقاً لاسماء العناصر
 SELECT DISTINCT  #?item ?label ?item_ar
 (concat("" , strafter(str(?cat),"/entity/") , "")  as ?item_q)
@@ -180,8 +192,9 @@ WHERE {
     BIND( concat("Category:" , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
 }
-''',
-    "Births2": '''
+""",
+    "Births2":
+        """
 #تسمية تصانيف مواليد في
 SELECT DISTINCT  #?item ?label ?item_ar
 (concat("" , strafter(str(?cat),"/entity/") , "")  as ?item_q)
@@ -199,8 +212,9 @@ WHERE {
     BIND( concat("Category:Births in " , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
 }
-''',
-    "items": '''
+""",
+    "items":
+        """
 # تسمية  عناصر طبقاً لاسم التصنيف
 SELECT DISTINCT #?item ?label ?cat_ar
 (concat("" , strafter(str(?item),"/entity/") , "")  as ?item_q)
@@ -224,7 +238,7 @@ WHERE {
     BIND( concat("Category:" , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
 }
-''',
+""",
 }
 
 
@@ -255,14 +269,14 @@ def main():
     qya = {}
     # ---
     for arg in sys.argv:
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---
-        if arg == '-limit':
-            printe.output(f'<<lightred>>>>  limit ( {value} )  ')
+        if arg == "-limit":
+            printe.output(f"<<lightred>>>>  limit ( {value} )  ")
             limits[1] = value
         # ---
         if arg in Quarry:
-            printe.output(f'<<lightred>>>>  use Quarry:{arg} . ')
+            printe.output(f"<<lightred>>>>  use Quarry:{arg} . ")
             qya[arg] = Quarry[arg]
     # ---
     if not qya:
@@ -270,22 +284,22 @@ def main():
     for number, key in enumerate(qya, start=1):
         quuu = qya[key]
         for arg in sys.argv:
-            arg, _, value = arg.partition(':')
+            arg, _, value = arg.partition(":")
             # ---
-            if arg in ['P31', '-P31']:
-                printe.output(f'<<lightred>>>>  P31:{value}. ')
+            if arg in ["P31", "-P31"]:
+                printe.output(f"<<lightred>>>>  P31:{value}. ")
                 taxose = f"?item wdt:P31/wdt:P279* wd:{value}."
             # ---
-            if arg in ['lang', '-lang']:
+            if arg in ["lang", "-lang"]:
                 if value == "fr":
                     quuu = quuu.replace('"en"', '"fr"')
                     quuu = quuu.replace('"Category:"', '"Catégorie:"')
-                    printe.output('<<lightred>>>> change lang to france. ')
+                    printe.output("<<lightred>>>> change lang to france. ")
         # ---
         quuu = quuu % taxose
         # ---
         if limits[1]:
-            quuu = f'{quuu}\n LIMIT {limits[1]}'
+            quuu = f"{quuu}\n LIMIT {limits[1]}"
         # ---
         printe.output("quuu : %d/%d key:%s" % (number, len(qya), key))
         printe.output(quuu)

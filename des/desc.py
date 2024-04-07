@@ -78,23 +78,23 @@ alllimit = {1: 50000}
 # ---
 for arg in sys.argv:
     # ---
-    arg, _, value = arg.partition(':')
+    arg, _, value = arg.partition(":")
     # ---
-    if arg == 'off':
+    if arg == "off":
         offset[1] = int(value)
-    elif arg == 'offplace':
+    elif arg == "offplace":
         offset_place[1] = int(value)
     # ---
     # python3 core8/pwb.py des/desc descqs limit:4000 optional place:Q185113
     # python3 core8/pwb.py des/desc descqs limit:1000 place:Q8054
-    if arg == 'place' and value in placesTable:
+    if arg == "place" and value in placesTable:
         placesTable2 = {value: placesTable[value]}
     # ---
-    if arg == 'alllimit':
+    if arg == "alllimit":
         alllimit[1] = int(value)
-    elif arg == 'limit':
+    elif arg == "limit":
         limit[1] = int(value)
-    elif arg == 'qslimit':
+    elif arg == "qslimit":
         QSlimit[1] = int(value)
     # ---
 New_QS = {1: []}
@@ -119,7 +119,7 @@ def Add_desc(q, value, lang):
     # ---
     if q in q_list_done:
         printe.output("q in q_list_done")
-        return ''
+        return ""
     # ---
     q_list_done.append(q)
     # ---
@@ -166,22 +166,22 @@ def wd_sparql_query(spq, ddf=False):
         off = int(off + limit[1])
         # ---
         if off == alllimit[1] or off > alllimit[1]:
-            printe.output('Keep = False 1 ')
+            printe.output("Keep = False 1 ")
             Keep = False
         # ---
         if not generator or generator == [] or "nokeep" in sys.argv:
-            printe.output('Keep = False 2 ')
+            printe.output("Keep = False 2 ")
             Keep = False
         # ---
         if not ddf or limit[1] == 0:
-            printe.output('Keep = False 3 ')
+            printe.output("Keep = False 3 ")
             Keep = False
     # ---
     return New_List
 
 
 # ---
-quarry34 = ''' SELECT DISTINCT
+quarry34 = """ SELECT DISTINCT
 (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 ?placear
 (CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
@@ -194,7 +194,7 @@ WHERE {
   ?p17 rdfs:label ?p17lab.FILTER((LANG(?p17lab)) = "ar")
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
   }
-'''
+"""
 # ---
 from wd_api import get_property_for_list
 
@@ -203,17 +203,17 @@ from wd_api import get_property_for_list
 
 def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
-    '''work_one_item used in np/si3.py'''
+    """work_one_item used in np/si3.py"""
     # ---
     if not start.strip():
-        return ''
+        return ""
     # ---
-    arlabel = start + ' في {}'
+    arlabel = start + " في {}"
     # ---
-    q = tab['q']
-    p17lab = tab.get('p17lab', "").split('@@')[0]
-    p17 = tab.get('pp17', "")
-    placear = tab.get('placear', "").split('@@')[0]
+    q = tab["q"]
+    p17lab = tab.get("p17lab", "").split("@@")[0]
+    p17 = tab.get("pp17", "")
+    placear = tab.get("placear", "").split("@@")[0]
     # ---
     if not p17lab:
         p17lab = ContriesTable2.get(p17, {}).get(lang, "")
@@ -221,37 +221,37 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     if findlab:
         if p17lab == "" or placear == "":
             df = get_property_for_list.get_property_label_for_qids(["P17", "P131", "P276"], [q]) or {}
-            printe.output('get_property_for_list')
+            printe.output("get_property_for_list")
             printe.output(df)
             # ---
         # ---
         if not p17lab:
-            p17lab = df.get(q, {}).get("P17", "").split('@@')[0]
+            p17lab = df.get(q, {}).get("P17", "").split("@@")[0]
         # ---
         if not placear:
-            placear = df.get(q, {}).get("P131", "").split('@@')[0]
+            placear = df.get(q, {}).get("P131", "").split("@@")[0]
         if not placear:
-            placear = df.get(q, {}).get("P276", "").split('@@')[0]
+            placear = df.get(q, {}).get("P276", "").split("@@")[0]
     # ---
     placeartest = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", placear.lower())
     # ---
     if placeartest.lower() != placear.lower():
-        printe.output(f'placeartest:[{placeartest}] != placear[{placear}]')
-        placear = ''
+        printe.output(f"placeartest:[{placeartest}] != placear[{placear}]")
+        placear = ""
     # ---
-    placecount = int(tab.get('placecount', 1))
+    placecount = int(tab.get("placecount", 1))
     if placecount != 1:
-        printe.output('<<lightred>> placecount :%d,placear:%s' % (placecount, placear))
+        printe.output("<<lightred>> placecount :%d,placear:%s" % (placecount, placear))
         # placear = ''
     # ---
-    p17count = int(tab.get('p17count', 1))
+    p17count = int(tab.get("p17count", 1))
     if p17count != 1:
-        printe.output('<<lightred>> p17count :%d,p17lab:%s' % (p17count, p17lab))
+        printe.output("<<lightred>> p17count :%d,p17lab:%s" % (p17count, p17lab))
     # ---
-    arlabel2 = ''
+    arlabel2 = ""
     # ---
     if placear == p17lab or placear.find(p17lab) != -1:
-        p17lab = ''
+        p17lab = ""
     # ---
     if placear and p17lab:
         asd = f"{placear}، {p17lab}"
@@ -264,23 +264,23 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     printe.output('  * action %d/%d "%s:%s"' % (c, total, q, arlabel2))
     # ---
     if not arlabel2:
-        return ''
+        return ""
     # ---
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", arlabel2.lower())
     if test.lower() != arlabel2.lower():
-        printe.output('test:[%s] != arlabel2[%s]')
-        return ''
+        printe.output("test:[%s] != arlabel2[%s]")
+        return ""
     # ---
     item = wd_bot.Get_Item_API_From_Qid(q, sites="", titles="", props="")
     # ---
-    descriptions = item['descriptions']
+    descriptions = item["descriptions"]
     # NewDesc = {}
     # addedlangs = []
     # ---
     if lang in descriptions:
-        printe.output(f'lang:ar in descriptions({descriptions[lang]})')
+        printe.output(f"lang:ar in descriptions({descriptions[lang]})")
         if descriptions[lang] != start:
-            return ''
+            return ""
     # ---
     # NewDesc[lang] = { "language":lang,"value": arlabel2 }
     # addedlangs.append(lang)
@@ -291,7 +291,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
 
 
 # ---
-Quase_old = ''' SELECT DISTINCT
+Quase_old = """ SELECT DISTINCT
 (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 ?placear
 (CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
@@ -308,10 +308,11 @@ WHERE {
 
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
 }
-'''
+"""
 # ---
 Quase = {
-    'Q8054': '''SELECT DISTINCT
+    "Q8054":
+        """SELECT DISTINCT
 (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 ?placear
 (CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
@@ -325,8 +326,9 @@ WHERE {
 
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
 }
-''',
-    2020: '''SELECT #DISTINCT
+""",
+    2020:
+        """SELECT #DISTINCT
 (GROUP_CONCAT(DISTINCT(STRAFTER(STR(?item), "/entity/")); separator="@@") as ?q) #(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 (GROUP_CONCAT(DISTINCT(STR(?placeare)); separator="@@") as ?placear) #?placear
 (GROUP_CONCAT(DISTINCT(STRAFTER(STR(?p17), "/entity/")); separator="@@") as ?pp17) #(CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
@@ -342,30 +344,30 @@ WHERE {
   FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
 }
 GROUP BY ?item# HAVING ( ?p17count = 1 )
-''',
+""",
 }
 # ---
-if 'optional' in sys.argv:
+if "optional" in sys.argv:
     # Quase[2020] = Quase[2020].replace('?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
     # Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
     Quase[2020] = Quase[2020].replace(
         '?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")',
-        '''
+        """
 optional { ?item (wdt:P131|wdt:P276) ?place. }
 SERVICE wikibase:label {
     bd:serviceParam wikibase:language "ar" .
     ?place rdfs:label ?placeare
-  }''',
+  }""",
     )
 
 
 def work_one_place(place):
-    lang = 'ar'
+    lang = "ar"
     # ---
-    start = placesTable2[place].get(lang, '')
+    start = placesTable2[place].get(lang, "")
     if not start.strip():
         printe.output('start.strip() == ""')
-        return ''
+        return ""
     # ---
     if New_QS[1] != [] and "cleanlist" in sys.argv:
         qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
@@ -381,7 +383,7 @@ def work_one_place(place):
     for tab in json1:  # عنصر ويكي بيانات
         # ---
         c += 1
-        q = tab['q']
+        q = tab["q"]
         # ---
         if q in q_list_done:
             printe.output("q in q_list_done")

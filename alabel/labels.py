@@ -20,14 +20,14 @@ from API import printe
 from wd_api import himoAPI_test as himoAPI
 
 # ---
-Limit = {1: ''}
+Limit = {1: ""}
 # ---
 from api_sql import wiki_sql
 
 # ---
 # result = wiki_sql.sql_new(qua, wiki="", printqua=False)
 # ---
-Quaa = '''#USE wikidatawiki_p;
+Quaa = """#USE wikidatawiki_p;
 SELECT
     CONCAT("Q", ips_item_id) as qid,
     ips_site_page as page
@@ -47,17 +47,17 @@ AND NOT EXISTS (
         AND wbxl_language = "ar"
         AND wbtl_type_id = 1
     )
-'''
+"""
 # ---
 for arg in sys.argv:
-    arg, _, value = arg.partition(':')
+    arg, _, value = arg.partition(":")
     # ---
-    if arg in ['-limit', 'limit']:
+    if arg in ["-limit", "limit"]:
         Limit[1] = value
-        printe.output(f'<<lightred>> Limit = {value}.')
+        printe.output(f"<<lightred>> Limit = {value}.")
 # ---
 if Limit[1]:
-    Quaa += f'limit {Limit[1]}'
+    Quaa += f"limit {Limit[1]}"
 
 
 def main():
@@ -68,14 +68,14 @@ def main():
     len_result = len(result)
     # ---
     for num, item in enumerate(result, start=1):
-        qid = item['qid']
-        page = item['page']
+        qid = item["qid"]
+        page = item["page"]
         # ---
         if isinstance(qid, bytes):
-            printe.output('type(qid) == bytes')
+            printe.output("type(qid) == bytes")
             qid = qid.decode("utf-8")
         if isinstance(page, bytes):
-            printe.output('type(page) == bytes')
+            printe.output("type(page) == bytes")
             page = page.decode("utf-8")
         # ---
         printe.output(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')
