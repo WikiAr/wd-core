@@ -150,9 +150,7 @@ def its_an_episode(lng, wditem):
     if lng in wditem.get("descriptions", {}):
         return wditem.get("descriptions", {})[lng]
     if "P179" in wditem.get("claims", {}):  # serie
-        LNKseries = get_mainsnak(
-            wditem.get("claims", {}).get("P179")[0]
-        )  # .getTarget()
+        LNKseries = get_mainsnak(wditem.get("claims", {}).get("P179")[0])  # .getTarget()
         serienaam = Get_label(LNKseries)
         if serienaam:
             serienaam = serienaam.replace("، مسلسل", "").replace(" (مسلسل)", "")
@@ -162,9 +160,7 @@ def its_an_episode(lng, wditem):
 
 def its_a_discography(lng, wditem):
     if "P175" in wditem.get("claims", {}):
-        artistLNK = get_mainsnak(
-            wditem.get("claims", {}).get("P175")[0]
-        )  # .getTarget()
+        artistLNK = get_mainsnak(wditem.get("claims", {}).get("P175")[0])  # .getTarget()
         if artistLNK is not None:
             wdArtist = wd_bot.Get_Item_API_From_Qid(artistLNK)  # xzo
             if lng in wdArtist.get("labels", {}):
@@ -172,9 +168,7 @@ def its_a_discography(lng, wditem):
             if lng != "ar":
                 for trylng in lng_canbeused:
                     if trylng in wdArtist.get("labels", {}):
-                        return "discografie van " + wdArtist.get("labels", {}).get(
-                            trylng, ""
-                        )
+                        return "discografie van " + wdArtist.get("labels", {}).get(trylng, "")
     return "discografie"
 
 
@@ -202,21 +196,17 @@ def its_a_composition(lng, wditem):
     find composer P86
     """
     if "P86" in wditem.get("claims", {}):
-        composerLNK = get_mainsnak(
-            wditem.get("claims", {}).get("P86")[0]
-        )  # .getTarget()
+        composerLNK = get_mainsnak(wditem.get("claims", {}).get("P86")[0])  # .getTarget()
         if composerLNK is not None:
             composer = wd_bot.Get_Item_API_From_Qid(composerLNK)  # xzo
             if lng in composer.get("labels", {}):
-                return "compositie van %s" % composer.get("labels", {}).get(lng, "")
+                return f"compositie van {composer.get('labels', {}).get(lng, '')}"
     return "compositie"
 
 
 def its_a_tabon_in_thailand(lng, wditem):
     if "P131" in wditem.get("claims", {}):
-        LNKtambon = get_mainsnak(
-            wditem.get("claims", {}).get("P131")[0]
-        )  # .getTarget()
+        LNKtambon = get_mainsnak(wditem.get("claims", {}).get("P131")[0])  # .getTarget()
         if LNKtambon is not None:
             WDitemtambon = wd_bot.Get_Item_API_From_Qid(LNKtambon)  # xzo
             return Get_label_from_item(lng, WDitemtambon)
@@ -235,9 +225,7 @@ def its_a_fictional_character(wditem):
 def its_a_computergame(lng, wditem):
     printe.output(" its_a_computergame ")
     if "P178" in wditem.get("claims", {}):  # المطور
-        LNKdeveloper = get_mainsnak(
-            wditem.get("claims", {}).get("P178")[0]
-        )  # .getTarget()
+        LNKdeveloper = get_mainsnak(wditem.get("claims", {}).get("P178")[0])  # .getTarget()
         if LNKdeveloper is not None:
             WDitemdeveloper = wd_bot.Get_Item_API_From_Qid(LNKdeveloper)
             developer_name = Get_label_from_item(lng, WDitemdeveloper)
@@ -273,14 +261,14 @@ def its_a_sports_season(wditem, claimstr=""):
     shortstr = "موسم رياضي"
     # ---
     if not pp:
-        printe.output("its_a_sports_season item has no %s claims.." % myclaim)
+        printe.output(f"its_a_sports_season item has no {myclaim} claims..")
     # ---
     if not claimstr:
         return shortstr
     # ---
-    laste = "موسم من %s" % claimstr
+    laste = f"موسم من {claimstr}"
     # ---
-    printe.output("its_a_sports_season:(%s)" % laste)
+    printe.output(f"its_a_sports_season:({laste})")
     # ---
     return laste
 
@@ -334,7 +322,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
         if directorname:
             laste = f"{shortstr} من إخراج {directorname}"
     # ---
-    printe.output("its_songs:(%s)" % laste)
+    printe.output(f"its_songs:({laste})")
     # ---
     return laste
 
@@ -383,15 +371,13 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=""):
     # ---
     # laste = laste.replace("كوكبة  ","كوكبة ")
     # ---
-    printe.output("its_a_p50:(%s)" % laste)
+    printe.output(f"its_a_p50:({laste})")
     return laste
 
 
 def its_a_thing_located_in_country(wditem, countryname, thing):
     if "P131" in wditem.get("claims", {}):
-        LNKcommunity = get_mainsnak(
-            wditem.get("claims", {}).get("P131")[0]
-        )  # .getTarget()
+        LNKcommunity = get_mainsnak(wditem.get("claims", {}).get("P131")[0])  # .getTarget()
         label = Get_label(LNKcommunity)
         if label:
             return thing + " في " + label + "، " + countryname
@@ -406,7 +392,7 @@ def its_a_film(wditem):
     # ---
     P57 = wditem.get("claims", {}).get("P57", [])
     # ---
-    print("len of P57: %d" % len(P57))
+    print(f"len of P57: {len(P57)}")
     # ---
     for x in P57:
         q = get_mainsnak(x)
@@ -418,6 +404,6 @@ def its_a_film(wditem):
             break
     # ---
     if directorname:
-        return "فيلم من إخراج %s" % directorname
+        return f"فيلم من إخراج {directorname}"
     # ---
     return ""

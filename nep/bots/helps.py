@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Import the traceback and pywikibot modules to handle exceptions.
 
@@ -27,12 +26,7 @@ def Get_P_API_id(item, P):
     lista = []
     claims = item.get("claims", {}).get(P, {})
     for c in claims:
-        if (
-            q := c.get("mainsnak", {})
-            .get("datavalue", {})
-            .get("value", {})
-            .get("id", False)
-        ):
+        if q := c.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", False):
             lista.append(q)
     # ---
     return lista
@@ -54,11 +48,7 @@ def Get_P_API_time(item, P):
     if len(qlist) == 1:
         return qlist[0]
     # ---
-    sasa = [
-        x["time"].split("-")[0].split("+0000000")[1]
-        for x in qlist
-        if x["time"].startswith("+0000000")
-    ]
+    sasa = [x["time"].split("-")[0].split("+0000000")[1] for x in qlist if x["time"].startswith("+0000000")]
     Faso = {i: "" for i in sasa}
     return qlist[0] if len(Faso.keys()) == 1 else False
 
@@ -76,7 +66,7 @@ def log_new_types(lists):
     tabe = {}
     # ---
     if os.path.exists(jsonfils):
-        with open(jsonfils, "r", encoding="utf-8-sig") as listt:
+        with open(jsonfils, encoding="utf-8-sig") as listt:
             try:
                 tabe = json.load(listt)
             except Exception:
@@ -174,9 +164,4 @@ def Get_label_from_item(lng, wditem):
 
 
 def get_mainsnak(datavalue):
-    return (
-        datavalue.get("mainsnak", {})
-        .get("datavalue", {})
-        .get("value", {})
-        .get("id", "")
-    )
+    return datavalue.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "")

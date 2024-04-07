@@ -3,7 +3,6 @@
 
 """
 
-
 #
 # (C) Ibrahem Qasim, 2022
 #
@@ -11,34 +10,43 @@ import sys
 import re
 from pathlib import Path
 from datetime import datetime
+
 # ---
 from wd_api import himoAPI
 from wd_api import wd_desc
+
 # ---
 from des.ru_st_2_latin import make_en_label
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
+
 # ---
 from API import printe
 from wd_api import wd_bot
 from people.new3 import translations_o
+
 # ---
 from desc_dicts.descraptions import replace_desc
+
 # ---
-from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_female_for_p17, Get_label
+from nep.bots.helps import Get_P_API_id, log_new_types
 from nep.tables.lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
 from nep.scientific_article import make_scientific_article
 from nep.nldesc import Make_space_desc, Make_others_desc
 from nep.bots.tax_desc import work_taxon_desc
+
 # ---
 from nep.tables.si_tables import genders, MainTestTable, new_types, offsetbg, Qids_translate, Add_en_labels, Geo_List
+
 # ---
 Dir = Path(__file__).parent
 # ---
 printe.output(f"<<lightyellow>> Dir = {Dir}")
 # ---
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
+
+
 # ---
 def make_scientific_art(item, P31, num):
     # ---
@@ -123,20 +131,11 @@ def work_people(item, topic, num, ardes):
     # ---
     printe.output(taber)
     # ---
-    if topic.startswith("researcher (orcid ") and (
-        ardes.strip() == "" or ardes.startswith("باحث (orcid ")
-    ):
+    if topic.startswith("researcher (orcid ") and (ardes.strip() == "" or ardes.startswith("باحث (orcid ")):
         arr = topic.replace("researcher (orcid ", "باحث (معرف أورسيد ")
         himoAPI.Des_API(q, arr, "ar")
     # ---
-    p21 = (
-        item.get("claims", {})
-        .get("P21", [{}])[0]
-        .get("mainsnak", {})
-        .get("datavalue", {})
-        .get("value", {})
-        .get("id", "")
-    )
+    p21 = item.get("claims", {}).get("P21", [{}])[0].get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "")
     printe.output(p21)
     # ---
     descriptions = item.get("descriptions", {})
@@ -282,6 +281,7 @@ def print_new_types():
     for lenth, p31 in lists:
         # ---
         printe.output("find:%d : P31:%s" % (lenth, p31))
+
 
 def work_a_desc(NewDesc, qid, fixlang):
     # ---

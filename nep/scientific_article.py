@@ -15,6 +15,7 @@ import dateutil.parser
 from nep.bots.helps import Get_P_API_time
 from API import printe
 from desc_dicts.scientific_article_desc import Scientific_descraptions
+
 # ---
 Desc_Just_year = {
     "zh": "%s年学术文章",  # 年论文
@@ -333,9 +334,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
     printe.output("<<lightyellow>> **%d: make_scientific_article: %s" % (num, q))
     # ---
     if p31 != "Q13442814":
-        printe.output(
-            "<<lightred>> make_scientific_article: can't make desc p31 != Q13442814"
-        )
+        printe.output("<<lightred>> make_scientific_article: can't make desc p31 != Q13442814")
         return tablem
     # ---
     precision = ""
@@ -382,9 +381,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
             NewDesc[lang] = {"language": lang, "value": lang_e}
             addedlangs.append(lang)
         # ---
-        elif item_desc == ses_desc or (
-            lang == "ar" and item_desc in ar_descs
-        ):  # or (lang == "bn"  and ):  # to fix bn descraptions
+        elif item_desc == ses_desc or (lang == "ar" and item_desc in ar_descs):  # or (lang == "bn"  and ):  # to fix bn descraptions
             if lang_e != item_desc:
                 printe.output(f'<<lightyellow>> replace desc "{item_desc}"@{lang}.')
                 NewDesc[lang] = {"language": lang, "value": lang_e}
@@ -410,4 +407,3 @@ def make_scientific_article(item, p31, num, TestTable=False):
         print("make_scientific_article nothing to add. ")
 
     return tablem
-

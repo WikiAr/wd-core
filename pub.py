@@ -10,22 +10,22 @@ import os
 import sys
 
 # ---
-filepath = str(os.path.abspath(__file__)).replace('\\', '/')
+filepath = str(os.path.abspath(__file__)).replace("\\", "/")
 # ---
 paths = [
-    '/data/project/himo/bots/core1/',
-    '/data/project/himo/bots/wd_core/',
-    './local/lib/python3.10/site-packages',
+    "/data/project/himo/bots/core1/",
+    "/data/project/himo/bots/wd_core/",
+    "./local/lib/python3.10/site-packages",
 ]
 # ---
 if "/data/project/" not in filepath and "labstore-secondary-tools-project" not in filepath:
-    paths = ['I:/core/bots/wd_core/', 'I:/core/bots/core1/']
+    paths = ["I:/core/bots/wd_core/", "I:/core/bots/core1/"]
 # ---
 for x in paths:
     if os.path.isdir(x):
         sys.path.append(x)
 # ---
-if 'wd' in sys.argv:
+if "wd" in sys.argv:
     from wikidataintegrator import wdi_helpers
     from wikidataintegrator import wdi_login
 else:
@@ -63,12 +63,12 @@ def get_and_load(url):
     # ---
     print_test(url)
     # ---
-    html = ''
+    html = ""
     try:
-        html = urllib.request.urlopen(url).read().strip().decode('utf-8')
+        html = urllib.request.urlopen(url).read().strip().decode("utf-8")
     except Exception as e:
         print_test(e)
-        html = ''
+        html = ""
     # ---
     json1 = {}
     # ---
@@ -94,7 +94,7 @@ def get_article_info(ext_id, id_type):
     # ---
     id_type = id_type.lower()
     # ---
-    print_test(f' get_article_info for {id_type}')
+    print_test(f" get_article_info for {id_type}")
     if id_type == "doi":
         # url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{}%22&resulttype=core&format=json"
         url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:{}&resulttype=core&format=json"
@@ -104,13 +104,13 @@ def get_article_info(ext_id, id_type):
         urls["crossref"] = url2.format(ext_id)
 
     elif id_type == "pmc":
-        url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
+        url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json"
         # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:{}&resulttype=core&format=json'
         # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
         urls["europepmc"] = url.format(ext_id)
 
     else:
-        url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:{}%20AND%20SRC:{}&resulttype=core&format=json'
+        url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:{}%20AND%20SRC:{}&resulttype=core&format=json"
         urls["europepmc"] = url.format(ext_id, id_type)
     # ---
     for source, url in urls.items():
@@ -120,10 +120,10 @@ def get_article_info(ext_id, id_type):
         if not isinstance(do, dict):
             continue
         # ---
-        if do.get('hitCount'):
-            if do.get('hitCount') != 1:
+        if do.get("hitCount"):
+            if do.get("hitCount") != 1:
                 continue
-            article = do.get('resultList', {}).get('result', [])
+            article = do.get("resultList", {}).get("result", [])
             if len(article) > 0:
                 article = article[0]
                 return source
@@ -149,7 +149,7 @@ def get_article_info(ext_id, id_type):
                 print_test("status == ok")
                 return source
             # ---
-    print('No results')
+    print("No results")
     return False
 
 
@@ -158,42 +158,42 @@ def add(id, typee):
     source = get_article_info(id, typee)
     typee = typee.lower()
     if source:
-        ty = ''
+        ty = ""
         # ---
-        if 'wd' in sys.argv:
+        if "wd" in sys.argv:
             qid, a, b = wdi_helpers.PublicationHelper(id, id_type=typee, source=source).get_or_create(login)
         else:
             qid, a, b, ty = wdi_helpers.PublicationHelper(id, id_type=typee, source=source).get_or_create(login)
         # ---
         if ty == "old":
             print(f'already in wikidata: <a target="_blank" href="https://www.wikidata.org/wiki/{qid}">{qid}</a>')
-            print_test(f'already in wikidata:{qid}', "red")
-        elif ty == 'new':
+            print_test(f"already in wikidata:{qid}", "red")
+        elif ty == "new":
             print(f'Create success: <a target="_blank" href="https://www.wikidata.org/wiki/{qid}">{qid}</a>')
-            print_test(f'Create success:{qid}', "blue")
+            print_test(f"Create success:{qid}", "blue")
         # ---
-        print_test(f'qid: {qid}')
-        print_test(f'a: {a}')
-        print_test(f'b: {b}')
-        print_test(f'ty: {ty}')
+        print_test(f"qid: {qid}")
+        print_test(f"a: {a}")
+        print_test(f"b: {b}")
+        print_test(f"ty: {ty}")
 
 
 if __name__ == "__main__":
-    br = '</br>'
+    br = "</br>"
     # python pwb.py pub type:PMC id:4080339
-    print_test(f'TestMain:{br}')
+    print_test(f"TestMain:{br}")
     typee = "MED"
     if sys.argv:
         # lenth = len(sys.argv)
         # print_test(str(lenth) + str(sys.argv) )
         for arg in sys.argv:
-            arg, _, value = arg.partition(':')
-            if arg == 'type' and value:
+            arg, _, value = arg.partition(":")
+            if arg == "type" and value:
                 typee = value
-            if arg == 'id' and value:
+            if arg == "id" and value:
                 id = value
     # ---
-    id = id.replace('https://doi.org/', '')
+    id = id.replace("https://doi.org/", "")
     # ---
     if id:
         add(id, typee)

@@ -39,16 +39,16 @@ SELECT * WHERE {
 # (C) Ibrahem Qasim, 2022
 #
 #
+import re
+import time
+import random
+import sys
+# ---
 from people.Nationalities import translationsNationalities
 import people.occupationsall as oc
 from wd_api import wd_bot
 from API import printe
 from wd_api import wd_desc
-import re
-
-import time
-import random
-import sys
 
 # ---
 # wd_bot.sparql_generator_url(query)

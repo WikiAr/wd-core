@@ -18,7 +18,7 @@ ORDER BY DESC(?count)
 '''
 
 # ---
-# start of newdesc.py file
+
 
 #   newdesc.main_from_file(file , topic , translations2)
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
@@ -68,7 +68,7 @@ SELECT DISTINCT
 LIMIT 100000""",
 }
 # ---
-# start of newdesc.py file
+
 
 # newdesc.work22(q , topic, translations)
 # newdesc.main_from_file(file , topic , translations)

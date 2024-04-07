@@ -3,9 +3,9 @@
 #
 #
 # ---
-# start of newdesc.py file
+
 # ---
-# start of newdesc.py file
+
 from wd_api import newdesc
 
 # newdesc.main_from_file(file , topic , translations2)

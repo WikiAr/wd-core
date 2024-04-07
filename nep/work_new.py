@@ -80,10 +80,7 @@ def WorkNew():
     list = range(end, start) if end < start else range(start, end)
     # ---
     lenth = len(list)
-    pywikibot.output(
-        "** <<lightyellow>> WorkNew in %d items (start:%d, end:%d)"
-        % (lenth, start, end)
-    )
+    pywikibot.output("** <<lightyellow>> WorkNew in %d items (start:%d, end:%d)" % (lenth, start, end))
     # ---
     for num, q in enumerate(list, start=1):
         qitem = "Q%d" % q

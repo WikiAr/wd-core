@@ -75,4 +75,3 @@ Add_en_labels = {}
 Add_en_labels[1] = True if "addenlabel" in sys.argv else False
 # ---
 Geo_List = list(placesTable.keys())
-

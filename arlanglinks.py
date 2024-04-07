@@ -2,7 +2,6 @@
 python3 core8/pwb.py dump/arlanglinks
 """
 
-
 import sys
 import json
 from pathlib import Path
@@ -15,26 +14,26 @@ Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/
 Dump_Dir = "/data/project/himo/bots/dumps"
 Dump_Dir = f"{Himo_Dir}/dumps"
 # ---
-print(f'Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}')
+print(f"Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}")
 # ---
 # ---
 from api_sql import wiki_sql
 
 # ---
-dump_file = f'{Dump_Dir}/langlinks.json'
+dump_file = f"{Dump_Dir}/langlinks.json"
 # ---
-qua = '''select
+qua = """select
 CONCAT('"Category:', p1.page_title, '"') AS en, CONCAT(':"',ll_title, '",') AS ar
 from page AS p1, langlinks
 where p1.page_id = ll_from
 AND ll_lang = "ar"
 AND p1.page_namespace = 14
 
-'''
+"""
 # ---
 table = {}
 # ---
-TEST = 'test' in sys.argv
+TEST = "test" in sys.argv
 all = 20 if TEST else 1000
 # ---
 offset = 0
@@ -45,7 +44,7 @@ for i in range(1, all):
     if i != 1:
         offset += limit
     # ---
-    line = f'limit {limit} offset {offset}'
+    line = f"limit {limit} offset {offset}"
     # ---
     print(line)
     # ---
@@ -59,15 +58,15 @@ for i in range(1, all):
     result = wiki_sql.sql_new(qun, wiki="en", printqua=False)
     # ---
     if not result or len(result) == 0:
-        print('result is empty...')
+        print("result is empty...")
         break
     # ---
     for x in result:
-        en = x['en'].replace('_', ' ')
-        ar = x['ar'].replace('_', ' ')
+        en = x["en"].replace("_", " ")
+        ar = x["ar"].replace("_", " ")
         table[en] = ar
     # ---
-    print(f'len of table:{len(table)}')
+    print(f"len of table:{len(table)}")
     # ---
-    json.dump(table, open(dump_file, 'w', encoding="utf-8"))
+    json.dump(table, open(dump_file, "w", encoding="utf-8"))
 # ---
