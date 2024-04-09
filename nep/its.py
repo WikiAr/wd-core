@@ -164,11 +164,11 @@ def its_a_discography(lng, wditem):
         if artistLNK is not None:
             wdArtist = wd_bot.Get_Item_API_From_Qid(artistLNK)  # xzo
             if lng in wdArtist.get("labels", {}):
-                return "discografie van " + wdArtist.get("labels", {}).get(lng, "")
+                return f"discografie van {wdArtist.get('labels', {}).get(lng, '')}"
             if lng != "ar":
                 for trylng in lng_canbeused:
                     if trylng in wdArtist.get("labels", {}):
-                        return "discografie van " + wdArtist.get("labels", {}).get(trylng, "")
+                        return f"discografie van {wdArtist.get('labels', {}).get(trylng, '')}"
     return "discografie"
 
 
@@ -380,10 +380,10 @@ def its_a_thing_located_in_country(wditem, countryname, thing):
         LNKcommunity = get_mainsnak(wditem.get("claims", {}).get("P131")[0])  # .getTarget()
         label = Get_label(LNKcommunity)
         if label:
-            return thing + " في " + label + "، " + countryname
+            return f"{thing} في {label}، {countryname}"
         else:
-            return thing + " في " + countryname
-    return thing + " في " + countryname
+            return f"{thing} في {countryname}"
+    return f"{thing} في {countryname}"
 
 
 def its_a_film(wditem):

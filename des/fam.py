@@ -133,7 +133,7 @@ for p31, p31_desc in desc_table.items():
         # ---
         numb += 1
         # ---
-        printe.output("work in %d from %d querirs" % (numb, all_lenth))
+        printe.output(f"work in {int(numb)} from {int(all_lenth)} querirs")
         # ---
         quarry = quarry.replace("wd:Q1457376", f"wd:{p31}")
         # ---
@@ -161,7 +161,7 @@ for p31, p31_desc in desc_table.items():
             # ---
             lang_to_add = list(set(p31_langs) - set(q_langs))
             # ---
-            tp = '<<lightyellow>>*mainfromQuarry: %d from %d p31:"%s", qid:"%s":<<lightblue>>%s' % (num, json_lenth, p31, q, topic_ar)
+            tp = f'<<lightyellow>>*mainfromQuarry: {int(num)} from {int(json_lenth)} p31:"{p31}", qid:"{q}":<<lightblue>>{topic_ar}'
             # ---
             if qu_numb == 1:
                 printe.output(tp)

@@ -23,7 +23,7 @@ def main():
     list = range(start, end)
     for numb, id in enumerate(list, start=1):
         id = str(id)
-        print("%d : id: %s" % (numb, id))
+        print(f"{int(numb)} : id: {id}")
         pub.add(id, type)
         time.sleep(2)
 

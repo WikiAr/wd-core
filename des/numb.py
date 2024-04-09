@@ -30,7 +30,7 @@ json1 = wd_bot.sparql_generator_url(quarry)
 total = len(json1)
 for c, q in enumerate(json1, start=1):
     Qid = q["q"]
-    printe.output("work %d from %d , %s" % (c, total, Qid))
+    printe.output(f"work {int(c)} from {int(total)} , {Qid}")
     descriptions = wd_bot.Get_item_descriptions_or_labels(Qid, "descriptions")
     if "ar" not in descriptions:
         himoAPI.Des_API(Qid, "عدد أولي", "ar", ask="")

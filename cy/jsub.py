@@ -32,7 +32,7 @@ def main2(*args):
     generator = gent.get_gent(*args)
     for numb, page in enumerate(generator, start=1):
         pagetitle = page.title()
-        pywikibot.output("page: %d : " % numb + pagetitle)
+        pywikibot.output(f"page: {int(numb)} : {pagetitle}")
         StartOnePage(pagetitle)
 
 
