@@ -223,19 +223,19 @@ def mains():
             lala = [x.strip() for x in names if x.strip() != ""]
             pywikibot.output(f'lala: "{lala}"')
             acd = "  wd:".join(lala)
-            tart = "?item (wdt:P734|wdt:P735) ?name. VALUES ?name { wd:" + acd + " } ."
+            tart = f"?item (wdt:P734|wdt:P735) ?name. VALUES ?name { wd:{acd} } ."
             pywikibot.output(f'acd: "{tart}"')
-            Quarry[1] = Quarry[1].replace("#sr", tart + "\n#sr")
+            Quarry[1] = Quarry[1].replace("#sr", f"{tart}\n#sr")
         elif arg.startswith("c"):
             tart = "FILTER (CONTAINS(?label, 'عبد الله')) ."
             pywikibot.output(f'acd: "{tart}"')
-            Quarry[1] = Quarry[1].replace("#sr", tart + "\n#sr")
+            Quarry[1] = Quarry[1].replace("#sr", f"{tart}\n#sr")
         elif arg.startswith("fafafa"):
             for uu in fafafa.split("\n"):
                 if uu:
                     tart = f"FILTER (CONTAINS(?label, '{uu}')) ."
                     pywikibot.output(f'acd: "{tart}"')
-                    qsa = Quarry[1].replace("#sr", tart + "\n#sr")
+                    qsa = Quarry[1].replace("#sr", f"{tart}\n#sr")
                     workqua(qsa)
         elif arg.startswith("sql"):
             for uu in fafafa.split("\n"):

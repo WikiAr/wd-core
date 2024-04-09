@@ -268,7 +268,7 @@ def WorkWithOneLang(Qid, lang, keys):
     # ---
     for num, pa in enumerate(PageList, start=1):
         pa["item"] = pa["item"].split("/entity/")[1]
-        printe.output('<<lightblue>>> %s "%s" :%s/%d : %s' % (lang, SAO, num, total, pa["item"]))
+        printe.output(f"<<lightblue>>> {lang} \"{SAO}\" :{num}/{int(total)} : {pa['item']}")
         action_one_item(Qid, pa, lang, keys)
 
 
@@ -329,7 +329,7 @@ def main():
 
         totalqueries = len(Qlist.keys()) * len(Qlist[Qid].keys())
         printe.output(f'*Qid "{Qid}":')
-        out = '<<lightgreen>>  *== Quary:"%s", %d/%d. ==' % (Qlist[Qid]["ar"], Queries, totalqueries)
+        out = f"<<lightgreen>>  *== Quary:\"{Qlist[Qid]['ar']}\", {int(Queries)}/{int(totalqueries)}. =="
         printe.output(out)
         # printe.output( 'lab: "%s". ' % Qlist[Qid]['ar'] )
         for lang in keys:

@@ -103,7 +103,7 @@ def main_from_quarry(x, Quarry, translations):
     for num, pa in enumerate(PageList, start=1):
         pa['item'] = pa['item'].split('/entity/')[1]
         pywikibot.output(pa)
-        pywikibot.output('<<lightblue>>> %s/%d : %s' % (num, total, pa['item']))
+        pywikibot.output(f"<<lightblue>>> {num}/{int(total)} : {pa['item']}")
         new_translations = make_translations(x, pa)
         pywikibot.output(new_translations)
         action_one_item(x, pa, new_translations)

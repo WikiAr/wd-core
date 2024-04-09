@@ -241,12 +241,12 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
     placecount = int(tab.get("placecount", 1))
     if placecount != 1:
-        printe.output("<<lightred>> placecount :%d,placear:%s" % (placecount, placear))
+        printe.output(f"<<lightred>> placecount :{int(placecount)},placear:{placear}")
         # placear = ''
     # ---
     p17count = int(tab.get("p17count", 1))
     if p17count != 1:
-        printe.output("<<lightred>> p17count :%d,p17lab:%s" % (p17count, p17lab))
+        printe.output(f"<<lightred>> p17count :{int(p17count)},p17lab:{p17lab}")
     # ---
     arlabel2 = ""
     # ---
@@ -261,7 +261,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     elif p17lab:
         arlabel2 = arlabel.format(p17lab)
     # ---
-    printe.output('  * action %d/%d "%s:%s"' % (c, total, q, arlabel2))
+    printe.output(f'  * action {int(c)}/{int(total)} "{q}:{arlabel2}"')
     # ---
     if not arlabel2:
         return ""
@@ -404,7 +404,7 @@ def mainoo():
         # ---
         ara = placesTable2[place].get("ar", "")
         # ---
-        printe.output('<<lightred>> %d/%d, place:"%s", arlabel:"%s". ' % (placenum, lenth_place, place, ara))
+        printe.output(f'<<lightred>> {int(placenum)}/{int(lenth_place)}, place:"{place}", arlabel:"{ara}". ')
         # ---
         if placenum >= offset_place[1]:
             # ---

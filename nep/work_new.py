@@ -80,10 +80,10 @@ def WorkNew():
     list = range(end, start) if end < start else range(start, end)
     # ---
     lenth = len(list)
-    pywikibot.output("** <<lightyellow>> WorkNew in %d items (start:%d, end:%d)" % (lenth, start, end))
+    pywikibot.output(f"** <<lightyellow>> WorkNew in {int(lenth)} items (start:{int(start)}, end:{int(end)})")
     # ---
     for num, q in enumerate(list, start=1):
-        qitem = "Q%d" % q
+        qitem = f"Q{int(q)}"
         si3.ISRE(qitem, num, lenth)
 
 

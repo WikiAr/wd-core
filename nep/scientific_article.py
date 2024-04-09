@@ -331,7 +331,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
     tablem = {"descriptions": {}, "qid": "", "fixlang": []}
     # ---
     q = item["q"]
-    printe.output("<<lightyellow>> **%d: make_scientific_article: %s" % (num, q))
+    printe.output(f"<<lightyellow>> **{int(num)}: make_scientific_article: {q}")
     # ---
     if p31 != "Q13442814":
         printe.output("<<lightred>> make_scientific_article: can't make desc p31 != Q13442814")
