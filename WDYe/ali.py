@@ -223,7 +223,11 @@ def mains():
             lala = [x.strip() for x in names if x.strip() != ""]
             pywikibot.output(f'lala: "{lala}"')
             acd = "  wd:".join(lala)
-            tart = f"?item (wdt:P734|wdt:P735) ?name. VALUES ?name { wd:{acd} } ."
+            
+            tart = "?item (wdt:P734|wdt:P735) ?name. VALUES ?name {"
+            tart += f"wd:{acd} "
+            tart += "} ."
+            
             pywikibot.output(f'acd: "{tart}"')
             Quarry[1] = Quarry[1].replace("#sr", f"{tart}\n#sr")
         elif arg.startswith("c"):
