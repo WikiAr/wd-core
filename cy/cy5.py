@@ -352,7 +352,7 @@ def make_temp_lines(table, title):
                     return "", table2
     # ---"""
     if ranke and sss.strip() == "":
-        if Work_with_Stage[1] == False and Len_of_valid_results.get(title, 0) > 10:
+        if Work_with_Stage[1] is False and Len_of_valid_results.get(title, 0) > 10:
             if re.sub(r"المرتبة 1 في", "", ranke) == ranke and re.sub(r"الأول في", "", ranke) == ranke:
                 printt(" *** remove line with rank < 1.")
                 return "", table2
