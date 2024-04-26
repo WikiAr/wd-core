@@ -9,20 +9,16 @@ python3 core8/pwb.py alabel/labels -limit:20
 
 """
 
-#
-# (C) Ibrahem Qasim, 2023
-#
-#
 import sys
 
 # ---
 from API import printe
 from wd_api import himoAPI_test as himoAPI
+from api_sql import wiki_sql
 
 # ---
 Limit = {1: ""}
 # ---
-from api_sql import wiki_sql
 
 # ---
 # result = wiki_sql.sql_new(qua, wiki="", printqua=False)
@@ -84,7 +80,5 @@ def main():
             himoAPI.Labels_API(qid, page, "ar", False, Or_Alii=True)
 
 
-# ---
 if __name__ == "__main__":
     main()
-# ---

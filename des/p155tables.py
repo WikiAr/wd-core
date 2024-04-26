@@ -12,7 +12,7 @@
 #
 #
 # ---
-from make.lists import Sport_key
+from ma_lists import Sport_key
 
 # ---
 Sports_Keys_Lab = Sport_key.Sports_Keys_For_Label
