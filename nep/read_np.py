@@ -44,7 +44,7 @@ def read_new_types_file():
     # ---
     Known = ["Q5", "Q16521"]
     # ---
-    # with codecs.open(jsonfile, "r", encoding="utf-8-sig") as listt:
+    # with open(jsonfile, "r", encoding="utf-8-sig") as listt:
     # wd_file = json.load(listt)
     # ---
     wd_file = read_json.read_bad_json(jsonfile)

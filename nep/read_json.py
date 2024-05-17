@@ -10,7 +10,7 @@
 
 import json as JJson
 import re
-import codecs
+
 import traceback
 
 # ---
@@ -79,7 +79,7 @@ def read_bad_json(file):
         pywikibot.output(traceback.format_exc())
         pywikibot.output("CRITICAL:")
         lala = {}
-        with codecs.open(file, "r", encoding="utf-8-sig") as listt2:
+        with open(file, "r", encoding="utf-8-sig") as listt2:
             lala = listt2.read()
         # ---
         fa = str(lala)
