@@ -69,7 +69,7 @@ def WORK(item, table, type):
             himoAPI.Alias_API(item, [arlab2], "ar", False)
         else:
             sa = pywikibot.input(f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
-            if sa in ['y', 'a', '']:
+            if sa in ['y', "a", '']:
                 himoAPI.Alias_API(item, [arlab2], "ar", False)
             else:
                 pywikibot.output(' himoAPI: wrong answer')

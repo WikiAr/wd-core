@@ -1,5 +1,5 @@
 import json
-import codecs
+
 from pathlib import Path
 
 Dir = Path(__file__).parent
@@ -14,9 +14,9 @@ from people.occupationsall import translations_all as tota1
 # ---
 # ---
 # dump tota1 to tota1.json with sorting and utf8
-json.dump(tota1, codecs.open(f"{Dir}/compare_files/tota1old.json", "w", encoding="utf-8"), sort_keys=True, indent=2, ensure_ascii=False)
+json.dump(tota1, open(f"{Dir}/compare_files/tota1old.json", "w", encoding="utf-8"), sort_keys=True, indent=2, ensure_ascii=False)
 
-json.dump(tota2, codecs.open(f"{Dir}/compare_files/tota2new.json", "w", encoding="utf-8"), sort_keys=True, indent=2, ensure_ascii=False)
+json.dump(tota2, open(f"{Dir}/compare_files/tota2new.json", "w", encoding="utf-8"), sort_keys=True, indent=2, ensure_ascii=False)
 
 # keys in tota2 but not in tota1
 new_keys = [x for x in tota2.keys() if x not in tota1.keys()]

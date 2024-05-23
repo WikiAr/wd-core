@@ -17,7 +17,7 @@ import pywikibot
 # ---
 import gent
 
-# generator = gent.get_gent(*args)
+
 # ---
 #
 
@@ -65,7 +65,7 @@ def woo(page):
 
 
 def main(*args):
-    generator = gent.get_gent(*args)
+    generator = gent.get_gent(listonly=False, *args)
 
     for page in generator:
         woo(page)
