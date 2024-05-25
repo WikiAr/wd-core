@@ -132,11 +132,18 @@ def mainwithcat2():
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")
     # ---
     if not lista:
-        genet = gent.get_gent(listonly=False)
-        lista = [page.title(as_link=False) for page in genet]
+        lista = gent.get_gent(listonly=True)
+        # lista = [page.title(as_link=False) for page in genet]
+    # ---
+    try:
+        lena = len(lista)
+    except:
+        lena = 0    
+    # ---
     printe.output("*<<lightred>> > mainwithcat2 :")
+    # ---
     for num, q in enumerate(lista, start=1):
-        si3.ISRE(q, num, len(lista))
+        si3.ISRE(q, num, lena)
     # ---
     si3.print_new_types()
     # ---
