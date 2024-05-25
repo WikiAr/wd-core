@@ -63,7 +63,7 @@ def main2(*args):
     result = c18sql.Make_sql_2_rows(quarry, wiki=WIKI[1])
     pywikibot.output("===============================")
     for counter, title in enumerate(result, start=1):
-        pywikibot.output(f" <<lightblue>> page: {int(counter)}/{len(result)} : {title}:{result[title]} ")
+        pywikibot.output(f" <<lightblue>> page: {counter}/{len(result)} : {title}:{result[title]} ")
         treat_page(result[title])
 
 

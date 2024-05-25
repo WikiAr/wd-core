@@ -35,7 +35,7 @@ def action(json1):
         q = tab["item_q"]
         if q not in items_done:
             c += 1
-            printe.output(f'action {int(c)}/{int(total)} "{q}"')
+            printe.output(f'action {c}/{total} "{q}"')
             label = tab["label"]
             # ---
             # year =  re.match(r'(\d\d\d\d)', label)
@@ -124,7 +124,7 @@ def main():
         if limits[1]:
             quuu = f"{quuu}\n LIMIT {limits[1]}"
         # ---
-        printe.output(f"quuu : {int(number)}/{len(qya)} key:{key}")
+        printe.output(f"quuu : {number}/{len(qya)} key:{key}")
         printe.output(quuu)
         # ---
         json1 = wd_bot.sparql_generator_url(quuu)

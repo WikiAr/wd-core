@@ -130,7 +130,7 @@ def mam():
     # ---
     for num, item in enumerate(json, start=1):
         q = item.title(as_link=False)
-        pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {int(num)}/{int(lenth)} topic:"{topic}" , q:"{q}".')
+        pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {num}/{lenth} topic:"{topic}" , q:"{q}".')
         work2(item, topic)
 
 
