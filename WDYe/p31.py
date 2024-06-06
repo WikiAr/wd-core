@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-
+# لا يعمل
 إضافة خاصية P31 للتصنيفات
 
 python pwb.py c30/p31
@@ -22,19 +22,39 @@ from api_sql import sql as c18sql
 # ---
 # use arwiki_p;
 mainquarry = '''
-select p.page_title , pp_value
-FROM page as p, page_props as pp, wikidatawiki_p.page as wdp
+SELECT p.page_title,
+       pp_value
+FROM page AS p,
+     page_props AS pp,
+     wikidatawiki_p.page AS wdp
 WHERE p.page_namespace = 14
-#and not exists (select * from wikidatawiki_p.pagelinks wdpl where wdpl.pl_from = wdp.page_id  AND wdpl.pl_title = 'P31' )
-and p.page_id not in (select tl_from from templatelinks, linktarget where lt_namespace = 10 and tl_target_id = lt_id and lt_title = "تحويل_تصنيف" )
-
-and p.page_is_redirect = 0
-AND pp_page = p.page_id AND pp_propname = 'wikibase_item' AND wdp.page_title = pp_value AND wdp.page_namespace = 0
-and wdp.page_id not in (select wdpl.pl_from from wikidatawiki_p.pagelinks wdpl where wdpl.pl_title = 'P31' and wdpl.pl_from = wdp.page_id)
-AND wdp.page_is_redirect = 0
-GROUP BY p.page_title
-#order by ll_from
-#LIMIT 2000;'''
+/*and NOT EXISTS
+        (SELECT *
+         FROM wikidatawiki_p.pagelinks wdpl
+         WHERE wdpl.pl_from = wdp.page_id
+             AND wdpl.pl_title = 'P31'
+             */
+    AND p.page_id not in
+        (SELECT tl_from
+         FROM templatelinks,
+              linktarget
+         WHERE lt_namespace = 10
+             AND tl_target_id = lt_id
+             AND lt_title = "تحويل_تصنيف" )
+    AND p.page_is_redirect = 0
+    AND pp_page = p.page_id
+    AND pp_propname = 'wikibase_item'
+    AND wdp.page_title = pp_value
+    AND wdp.page_namespace = 0
+    AND wdp.page_id not in
+        (SELECT wdpl.pl_from
+         FROM wikidatawiki_p.pagelinks wdpl
+         WHERE wdpl.pl_title = 'P31'
+             AND wdpl.pl_from = wdp.page_id)
+    AND wdp.page_is_redirect = 0
+GROUP BY p.page_title #order BY ll_from
+#LIMIT 2000;
+'''
 # ---
 # ---
 WIKI = {1: "arwiki"}
