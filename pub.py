@@ -4,10 +4,9 @@
 
 """
 
-import json
-import urllib
 import os
 import sys
+import requests
 
 # ---
 filepath = str(os.path.abspath(__file__)).replace("\\", "/")
@@ -15,7 +14,6 @@ filepath = str(os.path.abspath(__file__)).replace("\\", "/")
 paths = [
     "/data/project/himo/bots/core1/",
     "/data/project/himo/bots/wd_core/",
-    "./local/lib/python3.10/site-packages",
 ]
 # ---
 if "/data/project/" not in filepath and "labstore-secondary-tools-project" not in filepath:
@@ -63,100 +61,62 @@ def get_and_load(url):
     # ---
     print_test(url)
     # ---
-    html = ""
+    # get url content
     try:
-        html = urllib.request.urlopen(url).read().strip().decode("utf-8")
+        content = requests.get(url)
+        data = content.json()
+        return data
     except Exception as e:
-        print_test(e)
-        html = ""
-    # ---
-    json1 = {}
-    # ---
-    if html:
-        try:
-            json1 = json.loads(html)
-        except Exception as ee:
-            print_test(ee)
-            json1 = {}
-    # ---
-    return json1
+        print(f"Error: {e}")
+        return {}
 
 
-# ---
 def get_article_info(ext_id, id_type):
     # ---
-    id_types = {"MED", "PMC", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA", "AGR", "DOI"}
+    id_types = {"MED", "PMC", "PMID", "EUROPEPMC", "PAT", "NBK", "HIR", "ETH", "CTX", "CBA", "AGR", "DOI"}
     # ---
     if id_type.upper() not in id_types:
         print(f"id_type must be in {id_types}")
     # ---
-    urls = {}
-    # ---
     id_type = id_type.lower()
     # ---
     print_test(f" get_article_info for {id_type}")
-    if id_type == "doi":
-        # url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22{}%22&resulttype=core&format=json"
-        url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:{}&resulttype=core&format=json"
-        urls["europepmc"] = url.format(ext_id)
-
-        url2 = "https://api.crossref.org/v1/works/http://dx.doi.org/{}"
-        urls["crossref"] = url2.format(ext_id)
-
-    elif id_type == "pmc":
-        url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json"
-        # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:{}&resulttype=core&format=json'
-        # url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC{}&resulttype=core&format=json'
-        urls["europepmc"] = url.format(ext_id)
-
-    else:
-        url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:{}%20AND%20SRC:{}&resulttype=core&format=json"
-        urls["europepmc"] = url.format(ext_id, id_type)
     # ---
-    for source, url in urls.items():
-        do = get_and_load(url)
-        # if do and do != "Resource not found.":
+    url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/search?query={ext_id}&resulttype=core&format=json"
+    # ---
+    do = get_and_load(url)
+    # ---
+    hit = do.get("resultList", {}).get("result", [])
+    # ---
+    da_true = {}
+    # ---
+    for da in hit:
+        id_in = da.get(id_type, "")
         # ---
-        if not isinstance(do, dict):
-            continue
+        if id_in == ext_id:
+            da_true = da
+            break
+    # ---
+    if not da_true:
+        print("No results")
         # ---
-        if do.get("hitCount"):
-            if do.get("hitCount") != 1:
-                continue
-            article = do.get("resultList", {}).get("result", [])
-            if len(article) > 0:
-                article = article[0]
-                return source
-        else:
-            # ---
-            message = do.get("message", {})
-            if message != {}:
-                title = message.get("title", [""])[0]
-                print_test(f"title:{title}")
-                # ---
-                if title.find("افتتاحية") != -1:
-                    print("skip افتتاحية")
-                    return False
-                # ---
-                author = message.get("author", [])
-                if len(author) == 0:
-                    print("no author")
-                    return False
-            # ---
-            # status": "ok"
-            status = do.get("status", "")
-            if status == "ok":
-                print_test("status == ok")
-                return source
-            # ---
-    print("No results")
-    return False
+        return False
+    # ---
+    print(f"da_true id: {da_true['id']}")
+    # ---
+    return "europepmc"
 
 
 def add(id, typee):
     print_test(f'typee: "{typee}"')
+    # ---
+    if typee.lower() == "pmc":
+        typee = "PMID"
+    # ---
     source = get_article_info(id, typee)
+    # ---
     typee = typee.lower()
+    # ---
     if source:
         ty = ""
         # ---
@@ -180,7 +140,7 @@ def add(id, typee):
 
 if __name__ == "__main__":
     br = "</br>"
-    # python pwb.py pub type:PMC id:4080339
+    # python3 core8/pwb.py pub type:PMC id:4080339
     print_test(f"TestMain:{br}")
     typee = "MED"
     if sys.argv:
