@@ -121,7 +121,7 @@ def mainwithcat2():
     if file:
         if not file.startswith(main_dir1):
             file = main_dir1 + file
-        with open(file, encoding="utf-8") as f:
+        with open(file, "r", encoding="utf-8") as f:
             oco = f.read().split("\n")
         lista = [x.strip() for x in oco if x.strip() != ""]
     # ---
@@ -132,11 +132,18 @@ def mainwithcat2():
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")
     # ---
     if not lista:
-        genet = gent.get_gent()
-        lista = [page.title(as_link=False) for page in genet]
+        lista = gent.get_gent(listonly=True)
+        # lista = [page.title(as_link=False) for page in genet]
+    # ---
+    try:
+        lena = len(lista)
+    except:
+        lena = 0    
+    # ---
     printe.output("*<<lightred>> > mainwithcat2 :")
+    # ---
     for num, q in enumerate(lista, start=1):
-        si3.ISRE(q, num, len(lista))
+        si3.ISRE(q, num, lena)
     # ---
     si3.print_new_types()
     # ---

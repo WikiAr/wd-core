@@ -49,7 +49,7 @@ def action(json1):
                 en_name = tab["en_name"]
                 printe.output(f'  * ar_lab:"{ar_lab}",en_name:"{en_name}"')
                 c += 1
-                printe.output(f'  * action {int(c)}/{int(total)} "{q}"')
+                printe.output(f'  * action {c}/{total} "{q}"')
                 himoAPI.Labels_API(q, ar_lab, "ar", False, Or_Alii=True)
         else:
             printe.output(" <<lightred>> * q in items_done. " % q)
@@ -301,7 +301,7 @@ def main():
         if limits[1]:
             quuu = f"{quuu}\n LIMIT {limits[1]}"
         # ---
-        printe.output(f"quuu : {int(number)}/{len(qya)} key:{key}")
+        printe.output(f"quuu : {number}/{len(qya)} key:{key}")
         printe.output(quuu)
         # ---
         json1 = wd_bot.sparql_generator_url(quuu)

@@ -25,14 +25,14 @@ from cy.cy5 import *
 # ---
 import gent
 
-# generator = gent.get_gent(*args)
+
 
 
 def main2(*args):
-    generator = gent.get_gent(*args)
+    generator = gent.get_gent(listonly=False, *args)
     for numb, page in enumerate(generator, start=1):
         pagetitle = page.title()
-        pywikibot.output(f"page: {int(numb)} : {pagetitle}")
+        pywikibot.output(f"page: {numb} : {pagetitle}")
         StartOnePage(pagetitle)
 
 

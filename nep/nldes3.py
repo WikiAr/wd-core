@@ -236,7 +236,7 @@ def wd_sparql_query(spq, ddf=False):
         #
         if len(New_List) > 1:
             fandi = (len(New_List) / totallimit[1]) * 100
-            printe.output(f"fandi: {int(fandi)}.")
+            printe.output(f"fandi: {fandi}.")
             if fandi > 89:
                 Keep = False
                 printe.output("return New_List..")
@@ -276,7 +276,7 @@ def newest_items(repo, site):
         break
     startno = int(item.title()[1:])
     for itemno in range(startno, 0, -1):
-        yield pywikibot.ItemPage(repo, f"Q{int(itemno)}")
+        yield pywikibot.ItemPage(repo, f"Q{itemno}")
 
 
 def generator_last_hour():
@@ -315,7 +315,7 @@ def wd_all_items():
     repo = pywikibot.Site("wikidata", "wikidata").data_repository()
     for itemno in range(startrange, stoprange):
         # try:
-        wd = pywikibot.ItemPage(repo, f"Q{int(itemno)}")
+        wd = pywikibot.ItemPage(repo, f"Q{itemno}")
         if not wd.isRedirectPage():
             if wd.exists():
                 yield wd
@@ -433,7 +433,7 @@ def main(debug=False):
         numg += 1
         # ---
         printe.output("-------------------------")
-        printe.output(f"<<lightblue>> query {int(numg)} from {len(ssqq)} :")
+        printe.output(f"<<lightblue>> query {numg} from {len(ssqq)} :")
         # ---
         if Offq[1] > 0 and Offq[1] > numg:
             continue
@@ -464,7 +464,7 @@ def main(debug=False):
             q = wd["item"].split("/entity/")[1]
             if debug:
                 printe.output(f"Found: {q}")
-            printe.output(f"p{int(totalreads)}/{len(pigenerator)} q:{q}")
+            printe.output(f"p{totalreads}/{len(pigenerator)} q:{q}")
             # ---
             claimstr = just_get_ar(wd.get("lab", ""))
             # ---

@@ -321,7 +321,7 @@ def WORK(item, table):
                 Looogs[item].append(ali)
             else:
                 sa = pywikibot.input(f'<<lightyellow>>add ali : "{ali}" as label to item :{item}? ')
-                if sa in ['y', 'a', '']:
+                if sa in ['y', "a", '']:
                     himoAPI.Labels_API(item, ali, "ar", False)
                     Looogs[item].append(ali)
                 else:
@@ -348,7 +348,7 @@ def WORK(item, table):
             Looogs[item].append(",".join(NewALLi_to_add))
         else:
             sa = pywikibot.input(f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
-            if sa in ['y', 'a', '']:
+            if sa in ['y', "a", '']:
                 himoAPI.Alias_API(item, NewALLi_to_add, "ar", False)
                 Looogs[item].append(",".join(NewALLi_to_add))
             else:

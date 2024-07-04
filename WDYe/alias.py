@@ -69,7 +69,7 @@ def WORK(item, table, type):
             himoAPI.Alias_API(item, [arlab2], "ar", False)
         else:
             sa = pywikibot.input(f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
-            if sa in ['y', 'a', '']:
+            if sa in ['y', "a", '']:
                 himoAPI.Alias_API(item, [arlab2], "ar", False)
             else:
                 pywikibot.output(' himoAPI: wrong answer')
@@ -113,7 +113,7 @@ def WORK_table(qid, tables):
                     Table[q][tab].append(item[tab])
         for num, (item, value) in enumerate(Table.items(), start=1):
             # if num < 2:
-            pywikibot.output(f'<<lightgreen>> {int(num)}/{len(Table.keys())} item:"{item}" ')
+            pywikibot.output(f'<<lightgreen>> {num}/{len(Table.keys())} item:"{item}" ')
             # item['item'] = item['item'].split("/entity/")[1]
             WORK(item, value, peo)
 
@@ -158,7 +158,7 @@ def main():
         table_new = {}
         table_new[qnew] = {val: val2}
     for num_peo, qid in enumerate(table_new, start=1):
-        pywikibot.output(f'<<lightblue>> {int(num_peo)}/{len(table_new.keys())} peo:"{qid}" ')
+        pywikibot.output(f'<<lightblue>> {num_peo}/{len(table_new.keys())} peo:"{qid}" ')
         WORK_table(qid, table_new[qid])
 
         # ---
