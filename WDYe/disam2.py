@@ -95,7 +95,7 @@ limit 1'''
     # ---
     for num, item in enumerate(json1, start=1):
         q = item.title(as_link=False)
-        pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {int(num)}/{int(lenth)} topic:"{topic}" , q:"{q}".')
+        pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {num}/{lenth} topic:"{topic}" , q:"{q}".')
         work2(item, topic)
 
 
@@ -118,7 +118,7 @@ def mainfromQuarry2():
     for num, page in enumerate(lista, start=1):
         item = pywikibot.ItemPage(repo, page.strip())
         q = item.title(as_link=False)
-        pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {int(num)}/{len(lista)} topic:"{topic}" , q:"{q}".')
+        pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {num}/{len(lista)} topic:"{topic}" , q:"{q}".')
         work2(item, topic)
 
 

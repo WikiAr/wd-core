@@ -2,10 +2,6 @@
 """
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
 import pub
 import time
 import sys
@@ -23,12 +19,10 @@ def main():
     list = range(start, end)
     for numb, id in enumerate(list, start=1):
         id = str(id)
-        print(f"{int(numb)} : id: {id}")
+        print(f"{numb} : id: {id}")
         pub.add(id, type)
         time.sleep(2)
 
 
-# ---
 if __name__ == "__main__":
     main()
-# ---

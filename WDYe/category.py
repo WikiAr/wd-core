@@ -70,7 +70,7 @@ LIMIT '''
         Table[q] = item["ar_name"]
     for num, (item, value_) in enumerate(Table.items(), start=1):
         # if num < 2:
-        pywikibot.output(f'<<lightgreen>> {int(num)}/{len(Table.keys())} item:"{item}" ')
+        pywikibot.output(f'<<lightgreen>> {num}/{len(Table.keys())} item:"{item}" ')
         # pywikibot.output( Table[item] )
         if value_:
             lab = f'تصنيف:{Table[item]}'

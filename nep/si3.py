@@ -149,7 +149,7 @@ def work_people(item, topic, num, ardes):
                         NewDesc[lang]["value"] += years
     # ---
     if NewDesc != {}:
-        printe.output(f"<<lightyellow>> **{int(num)}: work_people:{q}  ({topic})")
+        printe.output(f"<<lightyellow>> **{num}: work_people:{q}  ({topic})")
         work_a_desc(NewDesc, q, [])
     else:
         print(" work_people nothing to add. ")
@@ -178,7 +178,7 @@ def work_qid_desc(item, topic, num):
         print("work_qid_desc nothing to add. ")
         return
     # ---
-    printe.output(f"<<lightyellow>> **{int(num)}: work_qid_desc:{q}  ({topic})")
+    printe.output(f"<<lightyellow>> **{num}: work_qid_desc:{q}  ({topic})")
     work_a_desc(NewDesc, q, [])
 
 
@@ -194,7 +194,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
     q = qitem
     # ---
     if not item:
-        printe.output(f'*<<lightred>> >{int(num)} error with item "{q}" < :')
+        printe.output(f'*<<lightred>> >{num} error with item "{q}" < :')
         return
     # ---
     if item.get("q", q) != q:
@@ -280,7 +280,7 @@ def print_new_types():
     # ---
     for lenth, p31 in lists:
         # ---
-        printe.output(f"find:{int(lenth)} : P31:{p31}")
+        printe.output(f"find:{lenth} : P31:{p31}")
 
 
 def work_a_desc(NewDesc, qid, fixlang):

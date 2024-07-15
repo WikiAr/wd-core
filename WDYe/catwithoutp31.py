@@ -118,7 +118,7 @@ def main(*args):
         for c, item in enumerate(json1, start=1):
             # ---
             q = item.title(as_link=False)
-            pywikibot.output(f'  * action {int(c)}/{int(total)} "{q}"')
+            pywikibot.output(f'  * action {c}/{total} "{q}"')
             work_one_item(item)
 
 
