@@ -22,7 +22,7 @@ from wd_api import wd_bot
 from wd_api import wd_desc
 
 # ---
-from wd_api import himoAPI
+from himo_api import himoAPI
 
 # ---
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions

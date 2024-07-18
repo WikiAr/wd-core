@@ -11,7 +11,7 @@ import sys
 
 # ---
 from API import printe
-from wd_api import himoAPI
+from himo_api import himoAPI
 from wd_api import wd_bot
 
 # ---

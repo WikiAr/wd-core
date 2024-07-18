@@ -20,7 +20,7 @@ import sys
 # ---
 # ---
 
-from wd_api import himoAPI_test as himoAPI
+from himo_api import himoAPI_test as himoAPI
 
 # ---
 SaveR = {1: False}

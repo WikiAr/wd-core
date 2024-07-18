@@ -24,11 +24,11 @@ File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
 
 # ---
 try:
-    from wd_api import himoAPI_test as himoAPI
+    from himo_api import himoAPI_test as himoAPI
 except ImportError:
     pywikibot.output('<<lightred>> Can\'t import himoAPI_test as himoAPI')
 # ---
-# from wd_api import himoAPI
+# from himo_api import himoAPI
 # ---
 ask = {1: True}
 OFFSET = {1: '   '}

@@ -24,7 +24,7 @@ import urllib.request
 import urllib.parse
 from API import open_url
 # ---
-from wd_api import himoAPI_test as himoAPI
+from himo_api import himoAPI_test as himoAPI
 
 
 def dec(xx):

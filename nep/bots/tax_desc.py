@@ -5,7 +5,7 @@ from nep.bots.tax_desc import work_taxon_desc
 import sys
 from pathlib import Path
 from datetime import datetime
-from wd_api import himoAPI
+from himo_api import himoAPI
 from wd_api import wd_bot
 from API import printe
 from desc_dicts.taxones import lab_for_p171, labforP105

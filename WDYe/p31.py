@@ -10,7 +10,7 @@ python pwb.py c30/p31 enwiki
 #
 # (C) Ibrahem Qasim, 2022
 #
-from wd_api import himoAPI
+from himo_api import himoAPI
 import pywikibot
 
 # ---
