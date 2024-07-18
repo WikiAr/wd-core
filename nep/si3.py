@@ -79,7 +79,7 @@ def work_new_list(item, p31, ardes):
         print("Make_others_desc ::::")
         ar_desc = Make_others_desc("ar", item, p31, orig_desc)
     else:
-        print("Make_space_desc ::::")
+        # print("Make_space_desc ::::")
         ar_desc = Make_space_desc("ar", item, p31, orig_desc)
     # ---
     # if ar_desc and ardes != ar_desc :

@@ -198,7 +198,7 @@ def Add_desc(q, value, lang):
 def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     my_description = ""
     # ---
-    printe.output("Make_space_desc::")
+    # printe.output("Make_space_desc::")
     # ---
     if type_of_item == "Q2467461":
         my_description = "قسم أكاديمي"
