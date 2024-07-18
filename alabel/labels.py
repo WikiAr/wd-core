@@ -13,7 +13,7 @@ import sys
 
 # ---
 from API import printe
-from wd_api import himoAPI_test as himoAPI
+from himo_api import himoAPI_test as himoAPI
 from api_sql import wiki_sql
 
 # ---

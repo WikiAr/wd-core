@@ -7,7 +7,7 @@ python3 core8/pwb.py des/ru_st_2_latin test
 
 """
 from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
-from wd_api import himoAPI
+from himo_api import himoAPI
 import pywikibot
 import sys
 

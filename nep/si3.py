@@ -12,7 +12,7 @@ from pathlib import Path
 from datetime import datetime
 
 # ---
-from wd_api import himoAPI
+from himo_api import himoAPI
 from wd_api import wd_desc
 
 # ---
