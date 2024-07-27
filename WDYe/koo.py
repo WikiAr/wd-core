@@ -32,7 +32,9 @@ done = []
 def woo(page):
     # ---
     title = page.title(as_link=False)
-    text = page.text
+    # ---
+    text = himoBOT2.GetarPageText(title, sitecode="ar") #from API import himoBOT2
+    # ---
     templates = textlib.extract_templates_and_params(text, True, True)
     # ---
     id = ''
