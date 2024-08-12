@@ -7,14 +7,9 @@
 
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-# ---
-from ma_lists import Sport_key
 
-# ---
+from ma_lists import Sport_key ## fine 
+
 Sports_Keys_Lab = Sport_key.Sports_Keys_For_Label
 Sports_Keys_Team = Sport_key.Sports_Keys_For_Team
 # ---

@@ -24,10 +24,8 @@ log/*.*
 old/*
 */__pycache__/*
 API/botpass.py
-*/useraccount.py
 c18/a.ipynb
 coppy/old/2
-useraccount.py
 000other/*/*
 000other/*
 stub/commands/**
