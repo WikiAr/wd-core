@@ -20,7 +20,6 @@ ORDER BY DESC(?count)
 # ---
 
 
-#   newdesc.main_from_file(file , topic , translations2)
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 # ---
 #
@@ -71,7 +70,7 @@ LIMIT 100000""",
 
 
 # newdesc.work22(q , topic, translations)
-# newdesc.main_from_file(file , topic , translations)
+
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 # ---
 # from API.replacement import replacement

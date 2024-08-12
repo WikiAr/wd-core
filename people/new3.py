@@ -51,7 +51,7 @@ from API import printe
 from wd_api import wd_desc
 
 # ---
-# wd_bot.sparql_generator_url(query)
+
 # ---
 # ---
 Testing = {1: False}

@@ -21,7 +21,7 @@ limit 3000
 }
 # ---
 # newdesc.work22(q , topic, translations)
-# newdesc.main_from_file(file , topic , translations)
+
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 # --- ----------------------
 translations = {

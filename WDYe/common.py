@@ -126,7 +126,6 @@ qq = {'Hebrew calendar year': f'{SELECT} wdt:P31 wd:Q577  . ?item schema:descrip
 # ---
 
 # newdesc.work22(q , topic, DescraptionsTable)
-# newdesc.main_from_file(file , topic , DescraptionsTable)
 # newdesc.mainfromQuarry2( topic , Quarry, DescraptionsTable)
 # ---
 limiTa = ['Wikimedia category', 'Wikimedia disambiguation page']
