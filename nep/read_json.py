@@ -17,6 +17,7 @@ import traceback
 from API import printe
 
 # ---
+from newapi.except_err import exception_err
 try:
     import pywikibot
 except ImportError:
@@ -45,10 +46,8 @@ def read_bad_list(file):
                     List.append(catee)
         print(f'Good JJson "{file}"')
         return List
-    except Exception:
-        pywikibot.output("<<lightred>> Traceback (most recent call last):")
-        pywikibot.output(traceback.format_exc())
-        pywikibot.output("CRITICAL:")
+    except Exception as e:
+        exception_err(e)
         # ---
         List = []
         with open(file) as listt:
@@ -74,10 +73,8 @@ def read_bad_json(file):
         # ---
         print(f'Good JJson "{file}"')
         return done_list7
-    except Exception:
-        pywikibot.output("<<lightred>> Traceback (most recent call last):")
-        pywikibot.output(traceback.format_exc())
-        pywikibot.output("CRITICAL:")
+    except Exception as e:
+        exception_err(e)
         lala = {}
         with open(file, "r", encoding="utf-8-sig") as listt2:
             lala = listt2.read()
@@ -100,11 +97,8 @@ def main(file, Type):
             return read_bad_list(file)
         else:
             print(f"* unknow type :{Type}")
-    except Exception:
-        pywikibot.output("<<lightred>> Traceback (most recent call last):")
-        pywikibot.output(f'* Cant work file:"{file}" , Type:"{Type}"')
-        pywikibot.output(traceback.format_exc())
-        pywikibot.output("CRITICAL:")
+    except Exception as e:
+        exception_err(e, text=f'* Cant work file:"{file}" , Type:"{Type}"')
     return False
 
 
