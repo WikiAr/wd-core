@@ -8,6 +8,7 @@ from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_fema
 import os
 import sys
 import traceback
+from newapi.except_err import exception_err
 import pywikibot
 import json
 from pathlib import Path
@@ -85,11 +86,7 @@ def log_new_types(lists):
             json.dump(tabe, nfile)
     # Handle the exception and log the traceback.
     except Exception as e:
-        # Log the traceback.
-        # Import the pywikibot module and call the output method.
-        pywikibot.output("<<lightred>> Traceback (most recent call last):")
-        pywikibot.output(traceback.format_exc())
-        pywikibot.output("CRITICAL:")
+        exception_err(e)
 
 
 def Get_label(qid):
