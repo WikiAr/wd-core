@@ -1,7 +1,6 @@
 PyMySQL
 python_stdnum
 Requests
-setuptools
 SPARQLWrapper
 waybackpy
 wikitextparser
