@@ -32,7 +32,8 @@ from nep.tables.lists import (
 )
 from nep.tables.str_descs import descs, entities, countries, genese
 from nep.bots.helps import (
-    get_mainsnak, )
+    get_mainsnak,
+)
 from nep.its import (
     its_a_composition,
     its_a_computergame,
@@ -339,13 +340,13 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     # ---
 
     elif type_of_item == "Q484170":  # بلدية في فرنسا
-        my_description = its_something_in_a_country(wditem, "بلدية")
+        my_description = its_something_in_an_entity(wditem, "بلدية في")
     # ---
     elif (type_of_item == "Q262166") or (type_of_item == "Q22865"):  # بلدية في ألمانيا
-        my_description = its_something_in_a_country(wditem, "بلدية")
+        my_description = its_something_in_an_entity(wditem, "بلدية في")
     # ---
     elif type_of_item == "Q747074":  # Italian communiity
-        my_description = its_something_in_a_country(wditem, "بلدية")
+        my_description = its_something_in_an_entity(wditem, "بلدية في")
     # ---
     elif type_of_item == "Q5398426":  # tv_series
         my_description = its_something_in_a_country(wditem, "مسلسل تلفزيوني")
@@ -356,14 +357,14 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     # ---
     elif type_of_item == "Q43229":  # organisation
         if orig_desc in ["منظمة", ""]:
-            my_description = its_something_in_a_country(wditem, "منظمة")
+            my_description = its_something_in_an_entity(wditem, "منظمة في")
     # ---
     elif type_of_item == "Q46970":  # شركة طيران uit P17
-        if orig_desc in ["شركة طيران", ""]:
-            my_description = its_something_in_a_country(wditem, "شركة طيران")
+        if orig_desc in ["شركة طيران", "شركة", ""]:
+            my_description = its_something_in_an_entity(wditem, "شركة طيران في")
     # ---
     elif (type_of_item == "Q783794") or (type_of_item == "Q4830453"):
-        my_description = its_something_in_a_country(wditem, "شركة")
+        my_description = its_something_in_an_entity(wditem, "شركة في")
     # ---
     elif type_of_item == "Q532":  # dorp in P17
         if orig_desc in ["قرية", ""]:
@@ -381,10 +382,7 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
         labr = others_list[type_of_item]["ar"]
         if orig_desc in [labr, ""]:
             my_description = its_something_in_a_country(wditem, labr)
-            if type_of_item in qura and my_description in [
-                    qura[type_of_item]["P31"],
-                    "",
-            ]:
+            if type_of_item in qura and my_description in [qura[type_of_item]["P31"], ""]:
                 my_description = "{} في {}".format(qura[type_of_item]["P31"], qura[type_of_item]["P17"])
     # ---
     if not my_description:

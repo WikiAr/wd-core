@@ -43,7 +43,11 @@ def its_a_headquarted_thing(lng, wdi, thing):
 def its_something_in_an_entity(wdi, something):
     # 'P131'    #P131
     # 'P17'   #P17
+    # ---
     LNKentity = get_mainsnak(wdi.get("claims", {}).get("P131", [{}])[0])  # .getTarget()
+    # ---
+    if not LNKentity:
+        LNKentity = get_mainsnak(wdi.get("claims", {}).get("P159", [{}])[0])
     prnEntity = Get_label(LNKentity) if LNKentity else ""
     # ---
     LNKcountry = get_mainsnak(wdi.get("claims", {}).get("P17", [{}])[0])  # .getTarget()
@@ -81,8 +85,6 @@ def its_something_in_a_country(wdi, something):
     # ---
     printe.output(f"prnCountry:{prnCountry}")
     # ---
-    fanee = something.strip()
-    # ---
     females = [
         "شركة طيران",
         "شركة",
@@ -98,7 +100,7 @@ def its_something_in_a_country(wdi, something):
         "نادي كرة قدم للهواة",
         "نادي كرة قدم",
     ]
-    ande = " من " if fanee in males else " في "
+    ande = " من " if something.strip() in males else " في "
     # ---
     dara = f"{ande.strip()} {prnCountry.strip()}"
     # ---
@@ -113,6 +115,8 @@ def its_something_in_a_country(wdi, something):
         f = get_female_for_p17(prnCountry.strip(), "women")
         if f:
             dara = f
+    # ---
+    fanee = ""
     # ---
     if prnCountry:
         fanee = f"{something.strip()} {dara.strip()}"
