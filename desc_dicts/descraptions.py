@@ -46,6 +46,7 @@ from desc_dicts.scientific_article_desc import Scientific_descraptions
 # ---
 DescraptionsTable = {
     "scientific article": Scientific_descraptions,
+    "scholarly article": Scientific_descraptions,
 }
 # ---
 Qid_Desc = {

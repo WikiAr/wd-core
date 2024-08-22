@@ -357,7 +357,9 @@ def make_scientific_article(item, p31, num, TestTable=False):
     translations = {}
     # ---
     for lang in Scientific_descraptions.keys():
-        if desc := make_scientific_desc(lang, pubdate, precision):
+        # if desc := make_scientific_desc(lang, pubdate, precision):
+        desc = make_scientific_desc(lang, pubdate, precision)
+        if desc:
             translations[lang] = desc
     # ---
     if TestTable:
@@ -369,6 +371,12 @@ def make_scientific_article(item, p31, num, TestTable=False):
     NewDesc = {}
     addedlangs = []
     replacelang = []
+    # ---
+    replaces = {
+        "ar": ["مقالة علمية", "مقالة بحثية"],
+        "en": ["scholarly article", "scientific article"],
+    }
+    # ---
     for lang, lang_e in translations.items():
         # ---
         ses_desc = Scientific_descraptions.get(lang, "")
@@ -381,13 +389,16 @@ def make_scientific_article(item, p31, num, TestTable=False):
             NewDesc[lang] = {"language": lang, "value": lang_e}
             addedlangs.append(lang)
         # ---
-        elif item_desc == ses_desc or (lang == "ar" and item_desc in ar_descs):  # or (lang == "bn"  and ):  # to fix bn descraptions
+        # elif item_desc == ses_desc or (lang == "ar" and item_desc in ar_descs):  # or (lang == "bn"  and ):  # to fix bn descraptions
+        elif item_desc == ses_desc or item_desc in replaces.get(lang, []):
             if lang_e != item_desc:
-                printe.output(f'<<lightyellow>> replace desc "{item_desc}"@{lang}.')
+                # ---
+                if lang == "en" and lang_e.find(item_desc) == -1 and item_desc in replaces.get(lang, []):
+                    lang_e = lang_e.replace("scientific article", item_desc)
+                    lang_e = lang_e.replace("scholarly article", item_desc)
+                # ---
+                printe.output(f'<<lightyellow>> replace desc "{item_desc}"@{lang}. by :{lang_e}')
                 NewDesc[lang] = {"language": lang, "value": lang_e}
-                # if lang == "bn":
-                # replacelang.append(lang)
-                # else:
                 addedlangs.append(lang)
         # ---
         # fix some error

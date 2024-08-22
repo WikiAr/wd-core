@@ -253,11 +253,13 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
             break
         # ---
         elif P31 == "Q13442814":
-            sc_desc = ["", "مقالة علمية", "مقالة بحثية"]
-            if ardes in sc_desc:
-                if "workibrahem" not in sys.argv:
-                    make_scientific_art(item, P31, num)
-            break
+            if "workibrahem" not in sys.argv:
+                make_scientific_art(item, P31, num)
+            # sc_desc = ["", "مقالة علمية", "مقالة بحثية"]
+            # if ardes in sc_desc:
+            #     if "workibrahem" not in sys.argv:
+            #         make_scientific_art(item, P31, num)
+            # break
         # ---
         elif P31 in Qids_translate:
             work_qid_desc(item, P31, num)
