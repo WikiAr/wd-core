@@ -390,7 +390,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
             addedlangs.append(lang)
         # ---
         # elif item_desc == ses_desc or (lang == "ar" and item_desc in ar_descs):  # or (lang == "bn"  and ):  # to fix bn descraptions
-        elif item_desc == ses_desc or item_desc in replaces.get(lang, []):
+        elif item_desc in [ses_desc, ""] or item_desc in replaces.get(lang, []):
             if lang_e != item_desc:
                 # ---
                 if lang == "en" and lang_e.find(item_desc) == -1 and item_desc in replaces.get(lang, []):
