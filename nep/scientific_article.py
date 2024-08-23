@@ -13,7 +13,7 @@ import dateutil.parser
 
 # ---
 from nep.bots.helps import Get_P_API_time
-from API import printe
+from newapi import printe
 from desc_dicts.scientific_article_desc import Scientific_descraptions
 
 # ---

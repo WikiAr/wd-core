@@ -48,7 +48,7 @@ import time
 from pathlib import Path
 
 # ---
-from API import printe
+from newapi import printe
 import gent
 from nep import si3
 from newapi.page import NEW_API

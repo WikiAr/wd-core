@@ -16,7 +16,7 @@ import pywikibot
 
 # ---
 
-from API import printe
+from newapi import printe
 
 # ---
 # ---

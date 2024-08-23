@@ -12,7 +12,7 @@
 
 import re
 import sys
-from API import printe
+from newapi import printe
 from himo_api import himoAPI, wd_bot
 
 # ---

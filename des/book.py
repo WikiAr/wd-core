@@ -21,7 +21,7 @@ import sys
 
 from wd_api import wd_desc
 from wd_api import wd_bot
-from API import printe
+from newapi import printe
 
 # ---
 AskSave = {1: True}

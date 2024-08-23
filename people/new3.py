@@ -47,7 +47,7 @@ import sys
 from people.Nationalities import translationsNationalities
 import people.occupationsall as oc
 from wd_api import wd_bot
-from API import printe
+from newapi import printe
 from wd_api import wd_desc
 
 # ---

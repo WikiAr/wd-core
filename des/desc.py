@@ -50,7 +50,7 @@ import re
 import sys
 
 # ---
-from API import printe
+from newapi import printe
 from himo_api import himoAPI
 from wd_api import qs_bot
 

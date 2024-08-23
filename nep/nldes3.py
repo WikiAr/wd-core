@@ -94,7 +94,7 @@ python3 core8/pwb.py nep/nldes3 a3r sparql:Q7278     # حزب سياسي
 import pywikibot
 from pywikibot import pagegenerators as pg
 import random
-from API import printe
+from newapi import printe
 import sys
 import re
 from datetime import timedelta
