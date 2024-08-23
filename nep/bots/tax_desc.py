@@ -7,7 +7,7 @@ from pathlib import Path
 from datetime import datetime
 from himo_api import himoAPI
 from wd_api import wd_bot
-from API import printe
+from newapi import printe
 from desc_dicts.taxones import lab_for_p171, labforP105
 from desc_dicts.taxones import tax_translationsNationalities, taxone_list
 

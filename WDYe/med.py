@@ -15,7 +15,7 @@ import pywikibot
 from wd_api import wd_bot
 
 # ---
-from API import printe
+from newapi import printe
 import sys
 
 # ---

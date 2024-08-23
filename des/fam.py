@@ -12,7 +12,7 @@ python3 core8/pwb.py des/fam
 # ---
 import sys
 import random
-from API import printe
+from newapi import printe
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
 from wd_api import wd_bot
 from wd_api import newdesc

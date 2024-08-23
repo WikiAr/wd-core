@@ -10,7 +10,7 @@ python3 core8/pwb.py des/numb
 #
 #
 
-from API import printe
+from newapi import printe
 
 # ---
 from wd_api import wd_bot

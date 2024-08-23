@@ -12,7 +12,7 @@ python3 core8/pwb.py alabel/labels -limit:20
 import sys
 
 # ---
-from API import printe
+from newapi import printe
 from himo_api import himoAPI_test as himoAPI
 from api_sql import wiki_sql
 
