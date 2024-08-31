@@ -7,7 +7,6 @@ from wd_api import wd_bot
 from nep.bots.helps import (
     get_female_for_p17,
     Get_label,
-    get_label_txt,
     Get_label_from_item,
     get_mainsnak,
 )
@@ -23,7 +22,8 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     # ---
     claimstr = claimstr.strip()
     if not claimstr:
-        return shortstr
+        # return shortstr
+        return ""
     # ---
     laste = f"{longdescrstr.strip()} {claimstr}"
     laste = laste.replace("جين في إنسان عاقل", "جين من أنواع جينات الإنسان العاقل")

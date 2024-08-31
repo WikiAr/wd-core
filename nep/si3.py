@@ -21,11 +21,23 @@ from people.new3 import translations_o
 from desc_dicts.descraptions import replace_desc
 
 from nep.bots.helps import Get_P_API_id, log_new_types
-from nep.tables.lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
-from nep.scientific_article import make_scientific_article
-from nep.nldesc import Make_space_desc, Make_others_desc
+from nep.bots.scientific_article import make_scientific_article
 from nep.bots.tax_desc import work_taxon_desc
+from nep.tables.lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
 from nep.tables.si_tables import genders, MainTestTable, new_types, offsetbg, Qids_translate, Add_en_labels, Geo_List
+from nep.space_others import Make_space_desc, Make_others_desc
+
+
+def work_a_desc(NewDesc, qid, fixlang):
+    # ---
+    if MainTestTable[1] or "dd" in sys.argv:
+        printe.output("<<lightyellow>> Without save:")
+        printe.output(NewDesc.keys())
+        printe.output(NewDesc)
+        return ""
+    # ---
+    wd_desc.work_api_desc(NewDesc, qid, fixlang=fixlang)
+
 
 def make_scientific_art(item, P31, num):
     # ---
@@ -58,7 +70,6 @@ def work_new_list(item, p31, ardes):
         print("Make_others_desc ::::")
         ar_desc = Make_others_desc("ar", item, p31, orig_desc)
     else:
-        # print("Make_space_desc ::::")
         ar_desc = Make_space_desc("ar", item, p31, orig_desc)
     # ---
     # if ar_desc and ardes != ar_desc :
@@ -195,8 +206,10 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
     # ---
     descriptions = item.get("descriptions", {})
     endes = descriptions.get("en", "")
+    # ---
     if not endes:
         endes = descriptions.get("nl", "")
+    # ---
     ardes = descriptions.get("ar", "")
     # ---
     if len(P31_table) == 0:
@@ -207,11 +220,9 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
         if not P31:
             continue
         # ---
-        # printe.output( item )
         printe.output(f'q:"{q}", P31:"{P31}", en:"{endes}", ar:"{ardes}"')
         # ---
         if P31 == "Q5":
-            # printe.output( 'endes "%s"' % endes )
             work_people(item, endes.lower(), num, ardes)
             break
         # ---
@@ -234,11 +245,6 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
         elif P31 == "Q13442814":
             if "workibrahem" not in sys.argv:
                 make_scientific_art(item, P31, num)
-            # sc_desc = ["", "مقالة علمية", "مقالة بحثية"]
-            # if ardes in sc_desc:
-            #     if "workibrahem" not in sys.argv:
-            #         make_scientific_art(item, P31, num)
-            # break
         # ---
         elif P31 in Qids_translate:
             work_qid_desc(item, P31, num)
@@ -262,14 +268,3 @@ def print_new_types():
     for lenth, p31 in lists:
         # ---
         printe.output(f"find:{lenth} : P31:{p31}")
-
-
-def work_a_desc(NewDesc, qid, fixlang):
-    # ---
-    if MainTestTable[1] or "dd" in sys.argv:
-        printe.output("<<lightyellow>> Without save:")
-        printe.output(NewDesc.keys())
-        printe.output(NewDesc)
-        return ""
-    # ---
-    wd_desc.work_api_desc(NewDesc, qid, fixlang=fixlang)

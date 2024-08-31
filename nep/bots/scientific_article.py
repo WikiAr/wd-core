@@ -1,13 +1,9 @@
 #!/usr/bin/python3
 """
 
-from nep.scientific_article import make_scientific_article
+from nep.bots.scientific_article import make_scientific_article
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
 import re
 import dateutil.parser
 
