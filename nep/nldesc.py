@@ -27,23 +27,15 @@ from nep.tables.lists import (
     qura,
     Geo_entity,
 )
-from nep.tables.str_descs import descs, entities, countries, genese
+from nep.tables.str_descs import make_nn
 from nep.bots.helps import get_mainsnak
 from nep.bots.its import (
-    its_a_composition,
     its_a_computergame,
-    its_a_discography,
-    its_a_fictional_character,
     its_a_film,
     its_a_generalthing,
-    its_a_headquarted_thing,
     its_a_p50,
-    its_a_publication,
     its_a_sports_season,
-    its_a_tabon_in_thailand,
-    its_a_taxon,
     its_a_thing_located_in_country,
-    its_an_audio_drama,
     its_an_episode,
     its_canton_of_France,
     its_something_in_a_country,
@@ -84,40 +76,6 @@ lng_canbeused = [
     "sv",
     "wa",
 ]
-# ---
-sparqler = {1: ""}
-Offq = {1: 0}
-Off = {1: 0}
-limit = {1: 0}
-# ---
-totallimit = {1: 10000}
-# ---
-for arg in sys.argv:
-    # ---
-    arg, _, value = arg.partition(":")
-    # ---
-    if arg.startswith("-"):
-        arg = arg[1:]
-    # ---
-    if arg == "off":
-        Off[1] = int(value)
-        printe.output("Off[1] = %d" % Off[1])
-    # ---
-    if arg == "offq":
-        Offq[1] = int(value)
-        printe.output("Offq[1] = %d" % Offq[1])
-    # ---
-    if arg in ["totallimit", "all"]:
-        totallimit[1] = int(value)
-        printe.output("totallimit[1] = %d" % totallimit[1])
-    # ---
-    if arg == "limit":
-        limit[1] = int(value)
-        printe.output("limit[1] = %d" % limit[1])
-    # ---
-    if arg == "sparql":
-        sparqler[1] = value
-        printe.output(f'sparqler[1] = "{sparqler[1]}"')
 
 
 def Make_railway_desc(wditem, p31):
@@ -390,79 +348,6 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     # printe.output('Make others desc:[%s]' % my_description )
     # ---
     return my_description
-
-
-def make_nn(lng, wditem, p31, orig_desc):
-    # ---
-    desc = ""
-    # ---
-    if descs.get(p31):
-        if orig_desc in descs[p31]["org"]:
-            desc = descs[p31]["desc"]
-            return desc
-    # ---
-    if p31 == "Q18340514":
-        desc = "مقالة عن أحداث في سنة أو فترة زمنية محددة"
-    # ---
-    elif p31 == "Q1539532":
-        desc = "موسم نادي رياضي"
-    # ---
-    if p31 == "Q207628":
-        if orig_desc in ["compositie", ""]:
-            desc = its_a_composition(lng, wditem)
-    # ---
-    elif p31 == "Q273057":
-        if orig_desc in ["", "discografie"]:
-            desc = its_a_discography(lng, wditem)
-    # ---
-    elif p31 == "Q95074":
-        if orig_desc in ["personage", ""]:
-            desc = its_a_fictional_character(wditem)
-    # ---
-    elif p31 == "Q3508250":
-        if orig_desc in ["", ""]:
-            desc = its_a_headquarted_thing(lng, wditem, "syndicat intercommunal in")
-    # ---
-    elif p31 == "Q732577":
-        if orig_desc in ["publicatie", ""]:
-            desc = its_a_publication(wditem)
-    # ---
-    elif p31 == "Q1077097":
-        if orig_desc in ["tambon", ""]:
-            desc = its_a_tabon_in_thailand(lng, wditem)
-    # ---
-    elif p31 == "Q16521":
-        if orig_desc in ["", ""]:
-            desc = its_a_taxon(lng, wditem)
-    # ---
-    elif p31 == "Q253019":
-        if orig_desc in ["", "ortsteil", "plaats in duitsland"]:
-            desc = its_a_thing_located_in_country(wditem, "Duitsland", "ortsteil")
-    # ---
-    elif p31 == "Q2635894":
-        if orig_desc in ["hoorspel", ""]:
-            desc = its_an_audio_drama(wditem)
-    # ---
-    elif p31 in ["Q515", "Q5119", "Q1549591", "Q3957"]:
-        desc = its_something_in_a_country(wditem, "stad")
-    # ---
-    if entities.get(p31):
-        p31_tab = entities[p31]
-        if orig_desc in p31_tab["org"]:
-            desc = its_something_in_an_entity(wditem, p31_tab["desc"])
-    # ---
-
-    if countries.get(p31):
-        p31_tab = countries[p31]
-        if orig_desc in p31_tab["org"]:
-            desc = its_something_in_a_country(wditem, p31_tab["desc"])
-    # ---
-    if genese.get(p31):
-        p31_tab = genese[p31]
-        if orig_desc in p31_tab["org"]:
-            desc = its_a_generalthing(wditem, p31_tab["desc"], p31_tab["desc_in"], p31_tab["pid"])
-    # ---
-    return desc
 
 
 def action_one_item(lngr, q, item={}, claimstr=""):

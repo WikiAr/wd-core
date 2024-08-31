@@ -137,7 +137,7 @@ def mainwithcat2():
     # ---
     try:
         lena = len(lista)
-    except:
+    except Exception:
         lena = 0
     # ---
     printe.output("*<<lightred>> > mainwithcat2 :")

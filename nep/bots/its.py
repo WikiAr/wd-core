@@ -12,9 +12,6 @@ from nep.bots.helps import (
     get_mainsnak,
 )
 
-lng_canbeused = []
-
-
 def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     # ---
     pp = wditem.get("claims", {}).get(myclaim, [])
@@ -33,11 +30,6 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     # ---
     printe.output(f"laste:({laste})")
     return laste
-
-
-def its_a_headquarted_thing(lng, wdi, thing):
-    where = get_label_txt(lng, wdi, "P159", fallback=True)
-    return f"{thing} {where}" if where else ""
 
 
 def its_something_in_an_entity(wdi, something):
@@ -139,16 +131,6 @@ def its_canton_of_France(wdi):  # Q184188
     return ""
 
 
-def its_a_publication(wditem):
-    if "P921" in wditem.get("claims", {}):
-        its_a_generalthing(wditem, "", "over", "P921")
-    if "P123" in wditem.get("claims", {}):
-        its_a_generalthing(wditem, "", "van uitgever", "P123")
-    if "P577" in wditem.get("claims", {}):
-        pass
-    return "publicatie"
-
-
 def its_an_episode(lng, wditem):
     if lng in wditem.get("descriptions", {}):
         return wditem.get("descriptions", {})[lng]
@@ -159,71 +141,6 @@ def its_an_episode(lng, wditem):
             serienaam = serienaam.replace("، مسلسل", "").replace(" (مسلسل)", "")
             return f"حلقة من سلسلة {serienaam}"
     return ""
-
-
-def its_a_discography(lng, wditem):
-    if "P175" in wditem.get("claims", {}):
-        artistLNK = get_mainsnak(wditem.get("claims", {}).get("P175")[0])  # .getTarget()
-        if artistLNK is not None:
-            wdArtist = wd_bot.Get_Item_API_From_Qid(artistLNK)  # xzo
-            if lng in wdArtist.get("labels", {}):
-                return f"discografie van {wdArtist.get('labels', {}).get(lng, '')}"
-            if lng != "ar":
-                for trylng in lng_canbeused:
-                    if trylng in wdArtist.get("labels", {}):
-                        return f"discografie van {wdArtist.get('labels', {}).get(trylng, '')}"
-    return ""
-
-
-def its_an_audio_drama(wditem):
-    if "P179" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "hoorspel", "hoorspel van", "P50")
-    if "P50" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "hoorspel", "hoorspel van", "P50")
-    if "P495" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "hoorspel", "hoorspel uit", "P495")
-    return ""
-
-
-def its_a_taxon(lng, wditem):
-    """
-    read P171/mother taxon until taxo-rang/P105 is <Q19970288/no value> -> that mother taxon is the first part (insect/)
-    """
-    if lng in wditem.get("descriptions", {}):
-        return wditem.get("descriptions", {})[lng]
-    return ""
-
-
-def its_a_composition(lng, wditem):
-    """
-    find composer P86
-    """
-    if "P86" in wditem.get("claims", {}):
-        composerLNK = get_mainsnak(wditem.get("claims", {}).get("P86")[0])  # .getTarget()
-        if composerLNK is not None:
-            composer = wd_bot.Get_Item_API_From_Qid(composerLNK)  # xzo
-            if lng in composer.get("labels", {}):
-                return f"compositie van {composer.get('labels', {}).get(lng, '')}"
-    return ""
-
-
-def its_a_tabon_in_thailand(lng, wditem):
-    if "P131" in wditem.get("claims", {}):
-        LNKtambon = get_mainsnak(wditem.get("claims", {}).get("P131")[0])  # .getTarget()
-        if LNKtambon is not None:
-            WDitemtambon = wd_bot.Get_Item_API_From_Qid(LNKtambon)  # xzo
-            return Get_label_from_item(lng, WDitemtambon)
-    return ""
-
-
-def its_a_fictional_character(wditem):
-    if "P1441" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "personage", "personage uit", "P1441")
-    elif "P1080" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "personage", "personage uit", "P1080")
-    else:
-        return ""
-
 
 def its_a_computergame(lng, wditem):
     printe.output(" its_a_computergame ")
