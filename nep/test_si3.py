@@ -2,14 +2,8 @@
 
 """
 import sys
-from pathlib import Path
-
-# ---
 from nep import si3
 
-# ---
-Dir = Path(__file__).parent
-# ---
 si3.MainTestTable[1] = True
 
 

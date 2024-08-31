@@ -3,8 +3,6 @@
 from nep.bots.tax_desc import work_taxon_desc
 """
 import sys
-from pathlib import Path
-from datetime import datetime
 from himo_api import himoAPI
 from wd_api import wd_bot
 from newapi import printe
@@ -14,13 +12,6 @@ from desc_dicts.taxones import tax_translationsNationalities, taxone_list
 # ---
 from nep.bots.helps import Get_P_API_id
 
-# ---
-Dir = Path(__file__).parent
-# ---
-printe.output(f"<<lightyellow>> Dir = {Dir}")
-# ---
-menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
-# ---
 tax_translations_lower = {}
 # ---
 for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
@@ -30,7 +21,6 @@ for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
             if natkey.strip() and natar.strip():
                 kkey = tax_key.replace("~", natkey)
                 tax_translations_lower[kkey.lower()] = tax_lab.replace("~", natar)
-# ---
 
 
 def make_tax_des_new(item):
@@ -57,7 +47,9 @@ def make_tax_des_new(item):
         ?item wdt:P171* ?P171.
         ?P171 wdt:P105 wd:Q37517.
         ?item wdt:P105 ?item105.
-    }""" % " ".join([f"wd:{x}" for x in lab_for_p171.keys()])
+    }""" % " ".join(
+        [f"wd:{x}" for x in lab_for_p171.keys()]
+    )
     nan = nan.replace("Q111771064", q)
     # ---
     if "err" in sys.argv:

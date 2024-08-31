@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-# (C) Edoderoo/Edoderoobot (meta.wikimedia.org), 2016–2019
-# Distributed under the terms of the CC-BY-SA 3.0 licence.
-# Q13005188 mandal
 """
 
 """
@@ -31,10 +28,8 @@ from nep.tables.lists import (
     Geo_entity,
 )
 from nep.tables.str_descs import descs, entities, countries, genese
-from nep.bots.helps import (
-    get_mainsnak,
-)
-from nep.its import (
+from nep.bots.helps import get_mainsnak
+from nep.bots.its import (
     its_a_composition,
     its_a_computergame,
     its_a_discography,
@@ -123,7 +118,6 @@ for arg in sys.argv:
     if arg == "sparql":
         sparqler[1] = value
         printe.output(f'sparqler[1] = "{sparqler[1]}"')
-# ---
 
 
 def Make_railway_desc(wditem, p31):

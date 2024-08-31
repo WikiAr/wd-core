@@ -50,23 +50,23 @@ DescraptionsTable = {
 }
 # ---
 Qid_Desc = {
+    # "Q29654788" :  {"ar":"محرف الترميز الموحد","en":"Unicode character"},# 129373
+    # "Q93184" :     {"ar":"رسم",                "en":"drawing"},# 92480
+    # "Q2319498": {"ar": "معالم", "en": "landmark"},  # 13445
+    # "Q47461344" :   {"ar":"عمل مكتوب",          "en":"written work"},# 16142
     "Q13424466": {"ar": "ميناء طبيعي", "en": "natural harbor"},
     "Q13433827": {"ar": "مقالة موسوعية", "en": "encyclopedia article"},  # 209000
     "Q18918145": {"ar": "مقالة أكاديمية", "en": "academic journal article"},  # 8407
     "Q2668072": {"ar": "مجموعة", "en": "collection"},  # 155928
-    # "Q29654788" :  {"ar":"محرف الترميز الموحد","en":"Unicode character"},# 129373
     "Q23038290": {"ar": "أصنوفة أحفورية", "en": "fossil taxon"},  # 110830
-    # "Q93184" :     {"ar":"رسم",                "en":"drawing"},# 92480
     "Q1580166": {"ar": "مدخلة قاموس", "en": "dictionary entry"},  # 57490
     "Q11060274": {"ar": "طباعة فنية", "en": "print"},  # 40547
     "Q220659": {"ar": "قطع أثرية", "en": "archaeological artifact"},  # 29283
     "Q860861": {"ar": "منحوتة", "en": "sculpture"},  # 22091
     "Q1539532": {"ar": "موسم نادي رياضي", "en": "sports season of a sports club"},  # 20501
-    # "Q47461344" :   {"ar":"عمل مكتوب",          "en":"written work"},# 16142
     "Q30612": {"ar": "تجربة سريرية", "en": "clinical trial"},  # 339121
     "Q152450": {"ar": "انتخابات محلية", "en": "municipal election"},  # 14289
     "Q15632617": {"ar": "إنسان خيالي", "en": "fictional human"},  # 13940
-    # "Q2319498": {"ar": "معالم", "en": "landmark"},  # 13445
     "Q838948": {"ar": "عمل فني", "en": "work of art"},  # 12626
     "Q2065736": {"ar": "ممتلكات ثقافية", "en": "cultural property"},  # 11435
     "Q2795484": {"ar": "تشريع تنفيذي", "en": "implementing regulation"},  # 10161
@@ -398,7 +398,7 @@ many_lang_qid_desc = {
         "he": "שם משפחה",
         "hi": "उपनाम",
         "hr": "prezime",
-        "hu": "családnév", # [[Topic:Y4mda8gast0i6t9o]] "hu": "vezetéknév",
+        "hu": "családnév",  # [[Topic:Y4mda8gast0i6t9o]] "hu": "vezetéknév",
         "hy": "ազգանուն",
         "id": "nama keluarga",
         "ig": "ahà nnà",
@@ -517,7 +517,7 @@ many_lang_qid_desc = {
         "he": "שם פרטי של אישה",
         "hr": "žensko ime",
         "hsb": "žonjace předmjeno",
-        "hu": "női utónév", #[[Topic:Y4mda8gast0i6t9o]] # "hu": "női keresztnév",
+        "hu": "női utónév",  # [[Topic:Y4mda8gast0i6t9o]] # "hu": "női keresztnév",
         "hy": "իգական անձնանուն",
         "id": "nama perempuan feminin",
         "is": "kvenmannsnafn",
@@ -569,7 +569,7 @@ many_lang_qid_desc = {
     },
     "Q3409032": {  # unisex given name
         "tr": "ön ad",  # [[Topic:Vavf6jigl4dwgkc4]]
-        "hu": "uniszex név", # [[Topic:Y4mda8gast0i6t9o]] "hu": "unisex név",
+        "hu": "uniszex név",  # [[Topic:Y4mda8gast0i6t9o]] "hu": "unisex név",
         "ar": "اسم شخصي محايد",
         "be": "унісекс-імя",
         "bs": "muško i žensko ime",
@@ -668,7 +668,7 @@ many_lang_qid_desc = {
         "gsw": "männlige Vorname",
         "he": "שם פרטי של גבר",
         "hr": "muško ime",
-        "hu": "férfiutónév", #[[Topic:Y4mda8gast0i6t9o]] "hu": "férfikeresztnév",
+        "hu": "férfiutónév",  # [[Topic:Y4mda8gast0i6t9o]] "hu": "férfikeresztnév",
         "hy": "արական անձնանուն",
         "id": "nama pemberian maskulin",
         "is": "mannsnafn",
@@ -1549,7 +1549,9 @@ Taxon_Descraptions = {
 }
 # ---
 replace_desc = {
-    "hu": {"férfi keresztnév": "férfikeresztnév", },
+    "hu": {
+        "férfi keresztnév": "férfikeresztnév",
+    },
     "sl": {
         "kategorija Wikimedije": "kategorija Wikimedie",
         "razločitvena stran Wikimedije": "razločitvena stran Wikimedie",

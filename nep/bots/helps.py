@@ -7,15 +7,13 @@ from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_fema
 """
 import os
 import sys
-import traceback
-from newapi.except_err import exception_err
-import pywikibot
 import json
 from pathlib import Path
 from nep import read_json
 from nep.tables.cash import labels_cach
 from nep.tables.nats import nationalities
 from wd_api import wd_bot
+from newapi.except_err import exception_err
 
 Dir = Path(__file__).parent.parent
 lng_canbeused = []

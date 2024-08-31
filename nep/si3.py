@@ -3,51 +3,30 @@
 
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
 import sys
 import re
-from pathlib import Path
-from datetime import datetime
 
-# ---
 from himo_api import himoAPI
 from wd_api import wd_desc
 
-# ---
 from des.ru_st_2_latin import make_en_label
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
 
-# ---
 from newapi import printe
 from wd_api import wd_bot
 from people.new3 import translations_o
 
-# ---
 from desc_dicts.descraptions import replace_desc
 
-# ---
 from nep.bots.helps import Get_P_API_id, log_new_types
 from nep.tables.lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
 from nep.scientific_article import make_scientific_article
 from nep.nldesc import Make_space_desc, Make_others_desc
 from nep.bots.tax_desc import work_taxon_desc
-
-# ---
 from nep.tables.si_tables import genders, MainTestTable, new_types, offsetbg, Qids_translate, Add_en_labels, Geo_List
 
-# ---
-Dir = Path(__file__).parent
-# ---
-printe.output(f"<<lightyellow>> Dir = {Dir}")
-# ---
-menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
-
-
-# ---
 def make_scientific_art(item, P31, num):
     # ---
     table = make_scientific_article(item, P31, num, TestTable=MainTestTable[1])
