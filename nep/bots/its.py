@@ -29,6 +29,7 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     laste = laste.replace("جين في إنسان عاقل", "جين من أنواع جينات الإنسان العاقل")
     # ---
     printe.output(f"laste:({laste})")
+    # ---
     return laste
 
 

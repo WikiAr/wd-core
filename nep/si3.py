@@ -58,8 +58,9 @@ def work_new_list(item, p31, ardes):
     NewDesc = {}
     # ---
     gg = Qids_translate.get(p31) or others_list.get(p31) or placesTable.get(p31) or {}
+    ggx = {}
     # ---
-    for lang in gg.keys():
+    for lang in ggx.keys():
         if lang not in item.get("descriptions", {}).keys():
             if gg[lang]:
                 NewDesc[lang] = {"language": lang, "value": gg[lang]}

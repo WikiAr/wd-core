@@ -104,13 +104,12 @@ def Get_label(qid):
     WDI = wd_bot.Get_Item_API_From_Qid(qid, sites="", titles="", props="labels")
     # ---
     if lng in WDI.get("labels", {}):
-        label = WDI.get("labels", {})[lng]
+        label = WDI.get("labels", {}).get(lng, "")
     # ---
     if label:
         label = label.replace(" (كوكبة)", "")
         label = label.replace(" (نجم)", "")
         label = label.replace(" (مجرة)", "")
-        # label = label.replace("كوكبة ",'')
         labels_cach[lng][qid] = label
     # ---
     return label

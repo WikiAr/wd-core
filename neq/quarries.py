@@ -31,16 +31,16 @@ sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 
 
 # ---
 def do_qua(qid, prop=""):
-    qua = "SELECT ?item WHERE {" + f" ?item wdt:P31 wd:{qid}. "
+    qua = "SELECT ?item WHERE {" + f" ?item wdt:P31 wd:{qid}. \n"
     # ---
     if prop:
-        qua += f" ?item {prop} ?constellation."
+        qua += f" ?item {prop} ?constellation. \n"
         # ---
         if "a2r" in sys.argv:
-            qua += ' ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")'
+            qua += ' ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") \n'
     # ---
-    qua += '\n FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }'
-    qua += "\n }"
+    qua += 'FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } \n'
+    qua += "}"
     # ---
     return qua
 
@@ -98,23 +98,8 @@ for scdw in others_list:
         SPARQLSE[scdw] = do_qua(scdw, prop=prop)
 # ---
 
-
 # مقالة سيرة ذاتية
 SPARQLSE["Q19389637"] = SPARQLSE[scdw] = do_qua("Q19389637", prop="wdt:P1433")
-
-if "Q665807" in sys.argv:
-    SPARQLSE["Q19389637"] = "select ?item where {?item wdt:P31 wd:Q19389637 . ?item wdt:P1433 wd:Q665807. FILTER NOT EXISTS { ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = 'ar') }} "  # biografisch artikel
-
-elif "noQ665807" in sys.argv:
-    SPARQLSE[
-        "Q19389637"
-    ] = """
-        SELECT DISTINCT ?item WHERE {
-        ?item wdt:P31 wd:Q8502; wdt:P17 ?dummy0.
-        FILTER NOT EXISTS { ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = "ar") }
-        }
-
-        """
 
 # biografisch artikel
 # ---Q19389637#Q2831984
@@ -126,7 +111,7 @@ SPARQLSE[
     { ?item wdt:P31 wd:Q571 .
     ?item wdt:P50 ?auth.
     ?auth rdfs:label ?authar. FILTER((LANG(?authar)) = "ar") .
-    FILTER NOT EXISTS { ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = "ar") }
+    FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }
     }
     """
 # ---
@@ -200,7 +185,7 @@ SPARQLSE[
 {
     ?item wdt:P31 wd:Q21191270.
     ?item wdt:P179 ?eps. ?eps rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")
-    FILTER NOT EXISTS {?item rdfs:label ?item_ar. FILTER((LANG(?item_ar)) = "ar") }
+    FILTER NOT EXISTS {?item schema:description ?item_ar. FILTER((LANG(?item_ar)) = "ar") }
 }
 """
 SPARQLSE[
@@ -209,7 +194,7 @@ SPARQLSE[
 {
     ?item wdt:P31 wd:Q1983062.
     ?item wdt:P179 ?eps. ?eps rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")
-    FILTER NOT EXISTS {?item rdfs:label ?item_ar. FILTER((LANG(?item_ar)) = "ar") }
+    FILTER NOT EXISTS {?item schema:description ?item_ar. FILTER((LANG(?item_ar)) = "ar") }
 }
 """
 # ---
@@ -387,7 +372,7 @@ SPARQLSE[
 {
     ?item wdt:P31 wd:Q7366.
     ?item wdt:P175 ?eps. ?eps rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")
-    FILTER NOT EXISTS {?item rdfs:label ?item_ar. FILTER((LANG(?item_ar)) = "ar") }
+    FILTER NOT EXISTS {?item schema:description ?item_ar. FILTER((LANG(?item_ar)) = "ar") }
 }
 """
 # ---
@@ -398,7 +383,7 @@ SPARQLSE[
 {
     ?item wdt:P31 wd:Q7366.
     ?item wdt:P175 ?eps. ?eps rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")
-    FILTER NOT EXISTS {?item rdfs:label ?item_ar. FILTER((LANG(?item_ar)) = "ar") }
+    FILTER NOT EXISTS {?item schema:description ?item_ar. FILTER((LANG(?item_ar)) = "ar") }
 }
 """
 # ---

@@ -11,6 +11,10 @@ python3 core8/pwb.py nep/si3g -ns:0 -offset:5000 -newpages:10000
 python3 core8/pwb.py nep/si3g -newpages:200
 python3 core8/pwb.py nep/si3g -newpages:100 ask
 
+python3 core8/pwb.py nep/si3g -page:Q21205603
+python3 core8/pwb.py nep/si3g -page:
+python3 core8/pwb.py nep/si3g -page:
+python3 core8/pwb.py nep/si3g -page:
 python3 core8/pwb.py nep/si3g -page:Q130212038
 python3 core8/pwb.py nep/si3g -page:Q129594209
 python3 core8/pwb.py nep/si3g -page:Q112167358
