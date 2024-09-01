@@ -49,62 +49,50 @@ for arg in sys.argv:
         printe.output(f'sparqler[1] = "{sparqler[1]}"')
 
 
+def just_get_ar(label):
+    parts = label.split("@@")
+    arabic_parts = [part for part in parts if part.lower() == re.sub(r"[a-z@]", "", part.lower()) and part]
 
-def just_get_ar(labe):
-    lab = labe.split("@@")
-    tab = []
+    if arabic_parts:
+        claim_str = "، و".join(arabic_parts)
+        printe.output(f"just_get_ar: {claim_str}.")
+        return claim_str
+
+    return ""
+
+
+def get_sparql_queries():
+    if sparqler[1].strip() == "" or "allkeys" in sys.argv:
+        return random.sample(list(SPARQLSE.values()), len(SPARQLSE))
     # ---
-    claimstr = ""
+    return [SPARQLSE.get(sparqler[1].strip(), f"SELECT ?item WHERE {{ ?item wdt:P31 wd:{sparqler[1]} . FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') }} }}")]
+
+
+def process_item(wd, n, total_reads):
+    q = wd["item"].split("/entity/")[1]
     # ---
-    for o in lab:
-        test = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", o.lower())
-        if test.lower() == o.lower() and o:
-            tab.append(o)
+    printe.output(f"p{n}/{total_reads} q:{q}")
     # ---
-    if tab != []:
-        claimstr = "، و".join(tab)
-        printe.output(f"just_get_ar:{claimstr}.")
+    claim_str = just_get_ar(wd.get("lab", ""))
     # ---
-    return claimstr
+    action_one_item("ar", q, claimstr=claim_str)
 
 
 def main():
+    sparql_queries = get_sparql_queries()
     # ---
-    sasa = SPARQLSE.get(sparqler[1].strip(), "")
-    # ---
-    if not sasa:
-        printe.output(f"({sparqler[1]}) not in SPARQLSE")
-        sasa = """SELECT ?item WHERE { ?item wdt:P31 wd:%s . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') } } """ % sparqler[1]
-    # ---
-    ssqq = [sasa]
-    if sparqler[1].strip() == "" or "allkeys" in sys.argv:
-        ssqq = [SPARQLSE[x] for x in SPARQLSE.keys()]
-        printe.output(f"work in all SPARQLSE.keys() len: {len(ssqq)}")
-    # ---
-    numg = 0
-    # ---
-    ssqq = random.sample(ssqq, len(ssqq))
-    # ---
-    for sparql_query in ssqq:
-        # ---
-        numg += 1
-        # ---
+    for query_num, sparql_query in enumerate(sparql_queries, 1):
         printe.output("-------------------------")
-        printe.output(f"<<lightblue>> query {numg} from {len(ssqq)} :")
+        printe.output(f"<<lightblue>> query {query_num} from {len(sparql_queries)} :")
         # ---
-        if Offq[1] > 0 and Offq[1] > numg:
+        if Offq[1] > 0 and Offq[1] > query_num:
             continue
         # ---
         pigenerator = wd_sparql_bot.sparql_generator_big_results(sparql_query, offset=Off[1], limit=limit[1])
         # ---
-        for totalreads, wd in enumerate(pigenerator, start=1):
+        for n, wd in enumerate(pigenerator, start=1):
             printe.output("<<lightblue>> ============")
-            q = wd["item"].split("/entity/")[1]
-            printe.output(f"p{totalreads}/{len(pigenerator)} q:{q}")
-            # ---
-            claimstr = just_get_ar(wd.get("lab", ""))
-            # ---
-            _, thisone = action_one_item("ar", q, claimstr=claimstr)
+            process_item(wd, n, len(pigenerator))
 
 
 if __name__ == "__main__":
