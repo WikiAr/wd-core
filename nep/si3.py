@@ -66,6 +66,11 @@ def work_new_list(item, p31, ardes):
     # ---
     orig_desc = item.get("descriptions", {}).get("ar", "")
     # ---
+    # ar_desc = Make_others_desc("ar", item, p31, orig_desc)
+    # # ---
+    # if not ar_desc:
+    #     ar_desc = Make_space_desc("ar", item, p31, orig_desc)
+    # ---
     if p31 in others_list or p31 in others_list_2:
         print("Make_others_desc ::::")
         ar_desc = Make_others_desc("ar", item, p31, orig_desc)

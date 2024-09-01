@@ -9,7 +9,7 @@ import os
 import sys
 import json
 from pathlib import Path
-from nep import read_json
+from nep.others import read_json
 from nep.tables.cash import labels_cach
 from nep.tables.nats import nationalities
 from wd_api import wd_bot

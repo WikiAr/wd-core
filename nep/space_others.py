@@ -166,7 +166,6 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
         if orig_desc in ["جبل", ""]:
             my_description = its_something_in_an_entity(wditem, "جبل في")
     # ---
-
     elif type_of_item == "Q484170":  # بلدية في فرنسا
         my_description = its_something_in_an_entity(wditem, "بلدية في")
     # ---

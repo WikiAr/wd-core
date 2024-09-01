@@ -9,7 +9,7 @@ from nep.bots.its import its_a_generalthing
 P1433_ids = {
     "Q13433827": {
         "false_labs": ["مقالة موسوعية", "مقالة", ""],
-        "props": [{"p": "P1433", "lab": "مقالة في"}],
+        "props": [{"p": "P1433", "lab": "مقالة في"}, {"p": "P361", "lab": "مقالة في"}],
     },
     "Q265158": {
         "false_labs": ["مراجعة", "", ""],
@@ -17,12 +17,14 @@ P1433_ids = {
     },
     "Q191067": {
         "false_labs": ["مقالة موسوعية", "مقالة", ""],
-        "props": [{"p": "P1433", "lab": "مقالة في"}],
+        "props": [{"p": "P1433", "lab": "مقالة في"}, {"p": "P361", "lab": "مقالة في"}],
     },
 }
 
 
 def do_P1433_ids(q, p31, orig_desc):
+    # ---
+    print("do_P1433_ids: ")
     # ---
     # if p31 == "Q265158" and orig_desc in ["", "مراجعة"]:
     #     my_description = its_a_generalthing(wditem, "مراجعة", "مراجعة منشورة في", "P1433")
@@ -34,11 +36,13 @@ def do_P1433_ids(q, p31, orig_desc):
     #     my_description = its_a_generalthing(wditem, "", "مقالة في ", "P1433")
     # # ---
     if p31 not in P1433_ids:
+        print(f"do_P1433_ids: {p31} not in {P1433_ids.keys()}")
         return ""
     # ---
     tab = P1433_ids[p31]
     # ---
     if orig_desc not in tab["false_labs"]:
+        print(f"do_P1433_ids: {orig_desc} not in {tab['false_labs']}")
         return ""
     # ---
     for prop in tab["props"]:

@@ -14,7 +14,7 @@ from nep.si3 import (
     others_list_2,
     Geo_List,
 )
-from nep import read_json
+from nep.others import read_json
 
 # ---
 Dir = Path(__file__).parent

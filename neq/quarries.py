@@ -27,18 +27,32 @@ sparql_query='SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P106 ?dummy0 
 sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 wd:Q4167836 }  service wikibase:label{bd:serviceParam wikibase:language "nl" . }  }}}'
 
 """
+
+
 # ---
-SPARQLSE = {tt: main_quarry % tt for tt in Qid_Descraptions}
+def do_qua(qid, prop=""):
+    qua = "SELECT ?item WHERE {" + f" ?item wdt:P31 wd:{qid}. "
+    # ---
+    if prop:
+        qua += f" ?item {prop} ?constellation."
+        # ---
+        if "a2r" in sys.argv:
+            qua += ' ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")'
+    # ---
+    qua += '\n FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }'
+    qua += "\n }"
+    # ---
+    return qua
+
+
+# ---
+# SPARQLSE = {tt: main_quarry % tt for tt in Qid_Descraptions}
+SPARQLSE = {tt: do_qua(tt) for tt in Qid_Descraptions}
 # ---
 # حركة فردية
 for p50 in p50s:
     # ---
-    SPARQLSE[
-        f"{p50}dfd"
-    ] = f"""
-        SELECT ?item WHERE {{ ?item wdt:P31 wd:{p50} . ?item wdt:P50 ?auth. ?auth rdfs:label ?authar. FILTER((LANG(?authar)) = "ar") . FILTER NOT EXISTS {{ ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = "ar") }} }}
-        """
-
+    SPARQLSE[f"{p50}dfd"] = do_qua(p50, prop="wdt:P50")
     # ---
     SPARQLSE[p50] = (
         """SELECT DISTINCT
@@ -81,21 +95,15 @@ for scdw in others_list:
         prop = "wdt:P175"
     # ---
     if scdw not in SPARQLSE:
-        SPARQLSE[scdw] = "SELECT ?item WHERE {" + f"?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation." + ' FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
-        # ---
-        if "a2r" in sys.argv:
-            SPARQLSE[scdw] = "SELECT ?item WHERE {" + f"?item wdt:P31 wd:{scdw}. ?item {prop} ?constellation." + ' ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar") FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
-        # ---
-        if "a3r" in sys.argv:
-            SPARQLSE[scdw] = "SELECT ?item WHERE { ?item wdt:P31 wd:" + scdw + ' . FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } } '
+        SPARQLSE[scdw] = do_qua(scdw, prop=prop)
 # ---
 
 
 # مقالة سيرة ذاتية
-SPARQLSE["Q19389637"] = p31_only_quarry % "Q19389637"  # biografisch artikel
+SPARQLSE["Q19389637"] = SPARQLSE[scdw] = do_qua("Q19389637", prop="wdt:P1433")
 
 if "Q665807" in sys.argv:
-    SPARQLSE["Q19389637"] = "select ?item where {?item wdt:P31 wd:Q19389637 . ?item wdt:P1433 wd:Q665807. } "  # biografisch artikel
+    SPARQLSE["Q19389637"] = "select ?item where {?item wdt:P31 wd:Q19389637 . ?item wdt:P1433 wd:Q665807. FILTER NOT EXISTS { ?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = 'ar') }} "  # biografisch artikel
 
 elif "noQ665807" in sys.argv:
     SPARQLSE[
@@ -394,3 +402,23 @@ SPARQLSE[
 }
 """
 # ---
+
+from nep.new_way import P1433_ids
+
+# ---
+for qid, va in P1433_ids.items():
+    prop = "|".join([f"wd:{p}" for p in va["props"]])
+    prop = f"({prop})"
+    # ---
+    if qid not in SPARQLSE:
+        qua = do_qua(qid, prop)
+        qua = "SELECT ?item WHERE {"
+        qua += f" ?item wdt:P31 wd:{qid}. ?item {prop} ?constellation."
+        # ---
+        if "a2r" in sys.argv:
+            qua += '\n ?constellation rdfs:label ?a2r. FILTER((LANG(?a2r)) = "ar")'
+        # ---
+        qua += '\n FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") }'
+        qua += "\n }"
+        # ---
+        SPARQLSE[qid] = qua
