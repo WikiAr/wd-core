@@ -2,15 +2,10 @@
 
 """
 import sys
-from pathlib import Path
 import pywikibot
 
-# ---
 from nep import si3
 
-# ---
-Dir = Path(__file__).parent
-# ---
 # 32500000   اكتمل حتى
 # 32897048  متبقي حتى
 

@@ -1,5 +1,5 @@
 """
-from nep.its import its_a_composition, its_a_computergame, its_a_discography, its_a_fictional_character, its_a_film, its_a_generalthing, its_a_headquarted_thing, its_a_p50, its_a_publication, its_a_sports_season, its_a_tabon_in_thailand, its_a_taxon, its_a_thing_located_in_country, its_an_audio_drama, its_an_episode, its_canton_of_France, its_something_in_a_country, its_something_in_an_entity, its_songs
+from nep.bots.its import its_a_composition, its_a_computergame, its_a_discography, its_a_fictional_character, its_a_film, its_a_generalthing, its_a_headquarted_thing, its_a_p50, its_a_publication, its_a_sports_season, its_a_tabon_in_thailand, its_a_taxon, its_a_thing_located_in_country, its_an_audio_drama, its_an_episode, its_canton_of_France, its_something_in_a_country, its_something_in_an_entity, its_songs
 """
 
 from newapi import printe
@@ -7,13 +7,9 @@ from wd_api import wd_bot
 from nep.bots.helps import (
     get_female_for_p17,
     Get_label,
-    get_label_txt,
     Get_label_from_item,
     get_mainsnak,
 )
-
-lng_canbeused = []
-
 
 def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     # ---
@@ -26,18 +22,15 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     # ---
     claimstr = claimstr.strip()
     if not claimstr:
-        return shortstr
+        # return shortstr
+        return ""
     # ---
     laste = f"{longdescrstr.strip()} {claimstr}"
     laste = laste.replace("جين في إنسان عاقل", "جين من أنواع جينات الإنسان العاقل")
     # ---
     printe.output(f"laste:({laste})")
+    # ---
     return laste
-
-
-def its_a_headquarted_thing(lng, wdi, thing):
-    where = get_label_txt(lng, wdi, "P159", fallback=True)
-    return f"{thing} {where}" if where else ""
 
 
 def its_something_in_an_entity(wdi, something):
@@ -125,29 +118,18 @@ def its_something_in_a_country(wdi, something):
 
 
 def its_canton_of_France(wdi):  # Q184188
-    # 'P131' = 'P131'
     clai = wdi.get("claims", {})
     current_desc = wdi.get("descriptions", {}).get("ar", "")
-    desco = "كانتون فرنسي"
-    if not current_desc:
+    # ---
+    if current_desc in ["", "كانتون فرنسي"]:
         if "P131" in clai:
             LNKcommunity = get_mainsnak(clai.get("P131")[0])  # .getTarget()
             label = Get_label(LNKcommunity)
             if label:
                 label = label.replace("، فرنسا", "").replace(" (فرنسا)", "")
                 desco = f"كانتون في {label}، فرنسا"
-    return desco
-
-
-def its_a_publication(wditem):
-    over = uitgever = datumstr = ""
-    if "P921" in wditem.get("claims", {}):
-        its_a_generalthing(wditem, "", "over", "P921")
-    if "P123" in wditem.get("claims", {}):
-        its_a_generalthing(wditem, "", "van uitgever", "P123")
-    if "P577" in wditem.get("claims", {}):
-        pass
-    return "publicatie"
+                return desco
+    return ""
 
 
 def its_an_episode(lng, wditem):
@@ -160,71 +142,6 @@ def its_an_episode(lng, wditem):
             serienaam = serienaam.replace("، مسلسل", "").replace(" (مسلسل)", "")
             return f"حلقة من سلسلة {serienaam}"
     return ""
-
-
-def its_a_discography(lng, wditem):
-    if "P175" in wditem.get("claims", {}):
-        artistLNK = get_mainsnak(wditem.get("claims", {}).get("P175")[0])  # .getTarget()
-        if artistLNK is not None:
-            wdArtist = wd_bot.Get_Item_API_From_Qid(artistLNK)  # xzo
-            if lng in wdArtist.get("labels", {}):
-                return f"discografie van {wdArtist.get('labels', {}).get(lng, '')}"
-            if lng != "ar":
-                for trylng in lng_canbeused:
-                    if trylng in wdArtist.get("labels", {}):
-                        return f"discografie van {wdArtist.get('labels', {}).get(trylng, '')}"
-    return "discografie"
-
-
-def its_an_audio_drama(wditem):
-    if "P179" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "hoorspel", "hoorspel van", "P50")
-    if "P50" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "hoorspel", "hoorspel van", "P50")
-    if "P495" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "hoorspel", "hoorspel uit", "P495")
-    return "hoorspel"
-
-
-def its_a_taxon(lng, wditem):
-    """
-    read P171/mother taxon until taxo-rang/P105 is <Q19970288/no value> -> that mother taxon is the first part (insect/)
-    """
-    if lng in wditem.get("descriptions", {}):
-        return wditem.get("descriptions", {})[lng]
-    return "taxon"
-
-
-def its_a_composition(lng, wditem):
-    """
-    find composer P86
-    """
-    if "P86" in wditem.get("claims", {}):
-        composerLNK = get_mainsnak(wditem.get("claims", {}).get("P86")[0])  # .getTarget()
-        if composerLNK is not None:
-            composer = wd_bot.Get_Item_API_From_Qid(composerLNK)  # xzo
-            if lng in composer.get("labels", {}):
-                return f"compositie van {composer.get('labels', {}).get(lng, '')}"
-    return "compositie"
-
-
-def its_a_tabon_in_thailand(lng, wditem):
-    if "P131" in wditem.get("claims", {}):
-        LNKtambon = get_mainsnak(wditem.get("claims", {}).get("P131")[0])  # .getTarget()
-        if LNKtambon is not None:
-            WDitemtambon = wd_bot.Get_Item_API_From_Qid(LNKtambon)  # xzo
-            return Get_label_from_item(lng, WDitemtambon)
-    return ""
-
-
-def its_a_fictional_character(wditem):
-    if "P1441" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "personage", "personage uit", "P1441")
-    elif "P1080" in wditem.get("claims", {}):
-        return its_a_generalthing(wditem, "personage", "personage uit", "P1080")
-    else:
-        return "personage"
-
 
 def its_a_computergame(lng, wditem):
     printe.output(" its_a_computergame ")
@@ -243,7 +160,7 @@ def its_a_computergame(lng, wditem):
             if seriename:
                 # return 'computerspel uit de serie %s' % seriename
                 return f"لعبة فيديو من سلسلة {seriename}"
-    return "لعبة فيديو"
+    return ""
 
 
 def its_a_sports_season(wditem, claimstr=""):
@@ -262,7 +179,7 @@ def its_a_sports_season(wditem, claimstr=""):
     # ---
     claimstr = claimstr.strip()
     # ---
-    shortstr = "موسم رياضي"
+    shortstr = ""# "موسم رياضي"
     # ---
     if not pp:
         printe.output(f"its_a_sports_season item has no {myclaim} claims..")
@@ -283,7 +200,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
     # ---
     # songs_type
     # ---
-    laste = shortstr
+    laste = ""# shortstr
     # ---
     P175 = wditem.get("claims", {}).get(myclaim, [])
     # ---

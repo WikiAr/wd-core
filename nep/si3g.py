@@ -2,6 +2,7 @@
 """
 
 tfj run ghu --mem 1Gi --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -usercontribs:Ghuron"
+tfj run Q482994 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py neq/nldes3 a2r sparql:Q482994"
 
 إضافة وصف لعناصر ويكي بيانات الجديدة
 
@@ -10,6 +11,11 @@ python3 core8/pwb.py nep/si3g -ns:0 -offset:5000 -newpages:10000
 python3 core8/pwb.py nep/si3g -newpages:200
 python3 core8/pwb.py nep/si3g -newpages:100 ask
 
+python3 core8/pwb.py nep/si3g ask -page:Q21205603
+python3 core8/pwb.py nep/si3g ask -page:
+python3 core8/pwb.py nep/si3g ask -page:
+python3 core8/pwb.py nep/si3g ask -page:
+python3 core8/pwb.py nep/si3g -page:Q130212038
 python3 core8/pwb.py nep/si3g -page:Q129594209
 python3 core8/pwb.py nep/si3g -page:Q112167358
 python3 core8/pwb.py nep/si3g -page:Q122652815
@@ -53,13 +59,11 @@ import gent
 from nep import si3
 from newapi.page import NEW_API
 
-# ---
 api_new = NEW_API("www", family="wikidata")
 api_new.Login_to_wiki()
-# ---
-Dir = Path(__file__).parent
+
 main_dir1 = f"{str(Path(__file__).parent.parent)}/"
-# ---
+
 printe.output(f"<<lightyellow>> main_dir1 = {main_dir1}")
 
 
@@ -138,7 +142,7 @@ def mainwithcat2():
     # ---
     try:
         lena = len(lista)
-    except:
+    except Exception:
         lena = 0
     # ---
     printe.output("*<<lightred>> > mainwithcat2 :")

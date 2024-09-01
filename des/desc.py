@@ -50,25 +50,21 @@ import re
 import sys
 
 # ---
+from wd_api import wd_sparql_bot
 from newapi import printe
 from himo_api import himoAPI
 from wd_api import qs_bot
-
 from wd_api import wd_bot
 
-# ---
-# from correct import CorrectList
-ContriesTable2 = {}
-from des.contries2 import *  # ContriesTable2
+from des.contries2 import ContriesTable2
+from des.places import placesTable
+from wd_api import get_property_for_list
 
-donelist = []
-# ---
-bylangs = False  # False#True
-from des.places import *  # placesTable
-
-placesTable = {"Q29701762": {"ar": "مستوطنة"}}
+# placesTable = {"Q29701762": {"ar": "مستوطنة"}}
 placesTable2 = {fg: placesTable[fg] for fg in placesTable}
 # ---
+q_list_done = []
+New_QS = {1: []}
 offset = {1: 0}
 offset_place = {1: 0}
 # ---
@@ -76,6 +72,56 @@ limit = {1: 0}
 QSlimit = {1: 3000}
 alllimit = {1: 50000}
 # ---
+
+Quase = {
+    "Q8054": """SELECT DISTINCT
+(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
+?placear
+(CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
+?p17lab
+WHERE {
+  ?item wdt:P31 wd:%s.
+  {?item wdt:P702 ?p17. }  union {?item wdt:P703 ?p17.}
+  #{?place wdt:P17 ?p17. } union {?item wdt:P17 ?p17.}
+
+  ?p17 rdfs:label ?p17lab.FILTER((LANG(?p17lab)) = "ar")
+
+  FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
+}
+""",
+    2020: """SELECT #DISTINCT
+(GROUP_CONCAT(DISTINCT(STRAFTER(STR(?item), "/entity/")); separator="@@") as ?q) #(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
+(GROUP_CONCAT(DISTINCT(STR(?placeare)); separator="@@") as ?placear) #?placear
+(GROUP_CONCAT(DISTINCT(STRAFTER(STR(?p17), "/entity/")); separator="@@") as ?pp17) #(CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
+(GROUP_CONCAT(DISTINCT(STR(?p17labe)); separator="@@") as ?p17lab) #?p17lab
+(COUNT(?p17) AS ?p17count)
+(COUNT(?place) AS ?placecount)
+WHERE {
+  ?item wdt:P31 wd:%s.
+  ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")
+  #?place wdt:P17 ?p17.
+  {?place wdt:P17 ?p17. } union {?item wdt:P17 ?p17.}
+  ?p17 rdfs:label ?p17labe.FILTER((LANG(?p17labe)) = "ar")
+  FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
+}
+GROUP BY ?item# HAVING ( ?p17count = 1 )
+""",
+}
+# ---
+if "optional" in sys.argv:
+    # Quase[2020] = Quase[2020].replace('?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
+    # Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
+    Quase[2020] = Quase[2020].replace(
+        '?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")',
+        """
+optional { ?item (wdt:P131|wdt:P276) ?place. }
+SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "ar" .
+    ?place rdfs:label ?placeare
+  }""",
+    )
+
+
 for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
@@ -97,7 +143,6 @@ for arg in sys.argv:
     elif arg == "qslimit":
         QSlimit[1] = int(value)
     # ---
-New_QS = {1: []}
 
 
 def descqs(q, value, lang):
@@ -109,10 +154,6 @@ def descqs(q, value, lang):
         printe.output(f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements")
         qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
-
-
-# ---
-q_list_done = []
 
 
 def Add_desc(q, value, lang):
@@ -127,78 +168,6 @@ def Add_desc(q, value, lang):
         descqs(q, value, lang)
     else:
         himoAPI.Des_API(q, value, lang, ask="")
-
-
-def wd_sparql_query(spq, ddf=False):
-    # ---
-    qua = spq
-    # ---
-    # if limit[1] != 0 :
-    # spq = spq + " limit " + str( limit[1] )
-    # ---
-    New_List = []
-    # ---
-    Keep = True
-    off = offset[1] if offset[1] != 0 else 0
-    # ---
-    printe.output(f'qua "{qua}"')
-    # ---
-    while Keep:
-        # ---
-        quarr = qua
-        # ---
-        # if ddf:
-        if limit[1] != 0:
-            quarr = quarr + "\n limit " + str(limit[1])
-        if off != 0:
-            quarr = f"{quarr} offset {str(off)}"
-        # else: offset[1] != 0 :
-        # quarr = quarr + " offset " + str( offset[1] )
-        # ---
-        # printe.output(quarr)
-        # ---
-        printe.output('limit[1]:"%d"\t offset:"%d"' % (limit[1], off))
-        # ---
-        generator = wd_bot.sparql_generator_url(quarr)
-        # ---
-        New_List.extend(iter(generator))
-        # ---
-        off = int(off + limit[1])
-        # ---
-        if off == alllimit[1] or off > alllimit[1]:
-            printe.output("Keep = False 1 ")
-            Keep = False
-        # ---
-        if not generator or generator == [] or "nokeep" in sys.argv:
-            printe.output("Keep = False 2 ")
-            Keep = False
-        # ---
-        if not ddf or limit[1] == 0:
-            printe.output("Keep = False 3 ")
-            Keep = False
-    # ---
-    return New_List
-
-
-# ---
-quarry34 = """ SELECT DISTINCT
-(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
-?placear
-(CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
-?p17lab
-WHERE {
-  ?item wdt:P31 wd:%s.
-  ?item wdt:P17 ?p17.
-  OPTIONAL {?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placear.FILTER((LANG(?placear)) = "ar")}
-  {?place wdt:P17 ?p17. } union {?item wdt:P17 ?p17.}
-  ?p17 rdfs:label ?p17lab.FILTER((LANG(?p17lab)) = "ar")
-  FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
-  }
-"""
-# ---
-from wd_api import get_property_for_list
-
-# get_property_for_list.get_property_label_for_qids( [property], List )
 
 
 def work_one_item(start, lang, tab, c, total, findlab=False):
@@ -290,77 +259,6 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     Add_desc(q, arlabel2, lang)
 
 
-# ---
-Quase_old = """ SELECT DISTINCT
-(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
-?placear
-(CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
-?p17lab
-WHERE {
-  ?item wdt:P31 wd:%s.
-  {
-  ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placear.FILTER((LANG(?placear)) = "ar")
-  ?place wdt:P17 ?p17.
-  }  union {?item wdt:P17 ?p17.}
-  #{?place wdt:P17 ?p17. } union {?item wdt:P17 ?p17.}
-
-  ?p17 rdfs:label ?p17lab.FILTER((LANG(?p17lab)) = "ar")
-
-  FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
-}
-"""
-# ---
-Quase = {
-    "Q8054":
-        """SELECT DISTINCT
-(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
-?placear
-(CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
-?p17lab
-WHERE {
-  ?item wdt:P31 wd:%s.
-  {?item wdt:P702 ?p17. }  union {?item wdt:P703 ?p17.}
-  #{?place wdt:P17 ?p17. } union {?item wdt:P17 ?p17.}
-
-  ?p17 rdfs:label ?p17lab.FILTER((LANG(?p17lab)) = "ar")
-
-  FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
-}
-""",
-    2020:
-        """SELECT #DISTINCT
-(GROUP_CONCAT(DISTINCT(STRAFTER(STR(?item), "/entity/")); separator="@@") as ?q) #(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
-(GROUP_CONCAT(DISTINCT(STR(?placeare)); separator="@@") as ?placear) #?placear
-(GROUP_CONCAT(DISTINCT(STRAFTER(STR(?p17), "/entity/")); separator="@@") as ?pp17) #(CONCAT(STRAFTER(STR(?p17), "/entity/")) AS ?pp17)
-(GROUP_CONCAT(DISTINCT(STR(?p17labe)); separator="@@") as ?p17lab) #?p17lab
-(COUNT(?p17) AS ?p17count)
-(COUNT(?place) AS ?placecount)
-WHERE {
-  ?item wdt:P31 wd:%s.
-  ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")
-  #?place wdt:P17 ?p17.
-  {?place wdt:P17 ?p17. } union {?item wdt:P17 ?p17.}
-  ?p17 rdfs:label ?p17labe.FILTER((LANG(?p17labe)) = "ar")
-  FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
-}
-GROUP BY ?item# HAVING ( ?p17count = 1 )
-""",
-}
-# ---
-if "optional" in sys.argv:
-    # Quase[2020] = Quase[2020].replace('?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
-    # Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
-    Quase[2020] = Quase[2020].replace(
-        '?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")',
-        """
-optional { ?item (wdt:P131|wdt:P276) ?place. }
-SERVICE wikibase:label {
-    bd:serviceParam wikibase:language "ar" .
-    ?place rdfs:label ?placeare
-  }""",
-    )
-
-
 def work_one_place(place):
     lang = "ar"
     # ---
@@ -376,11 +274,11 @@ def work_one_place(place):
     # ---
     quarry = quarry % place
     # ---
-    json1 = wd_sparql_query(quarry, ddf=True)
+    json1 = wd_sparql_bot.sparql_generator_big_results(quarry, offset=offset[1], limit=limit[1], alllimit=alllimit[1])
     total = len(json1)
     c = 1
     # ---
-    for tab in json1:  # عنصر ويكي بيانات
+    for tab in json1:
         # ---
         c += 1
         q = tab["q"]
@@ -389,9 +287,6 @@ def work_one_place(place):
             printe.output("q in q_list_done")
             continue
         # ---
-        # if not place:
-        # Add_desc( q, arlabel2, lang  )
-        # else:
         work_one_item(start, lang, tab, c, total)
 
 
@@ -415,7 +310,5 @@ def mainoo():
         New_QS[1] = []
 
 
-# ---
 if __name__ == "__main__":
     mainoo()
-# ---

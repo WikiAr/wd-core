@@ -7,15 +7,13 @@ from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_fema
 """
 import os
 import sys
-import traceback
-from newapi.except_err import exception_err
-import pywikibot
 import json
 from pathlib import Path
-from nep import read_json
+from nep.others import read_json
 from nep.tables.cash import labels_cach
 from nep.tables.nats import nationalities
 from wd_api import wd_bot
+from newapi.except_err import exception_err
 
 Dir = Path(__file__).parent.parent
 lng_canbeused = []
@@ -106,13 +104,12 @@ def Get_label(qid):
     WDI = wd_bot.Get_Item_API_From_Qid(qid, sites="", titles="", props="labels")
     # ---
     if lng in WDI.get("labels", {}):
-        label = WDI.get("labels", {})[lng]
+        label = WDI.get("labels", {}).get(lng, "")
     # ---
     if label:
         label = label.replace(" (كوكبة)", "")
         label = label.replace(" (نجم)", "")
         label = label.replace(" (مجرة)", "")
-        # label = label.replace("كوكبة ",'')
         labels_cach[lng][qid] = label
     # ---
     return label

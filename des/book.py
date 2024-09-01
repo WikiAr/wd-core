@@ -19,6 +19,7 @@ import re
 import pywikibot
 import sys
 
+from wd_api import wd_sparql_bot
 from wd_api import wd_desc
 from wd_api import wd_bot
 from newapi import printe
@@ -206,60 +207,12 @@ for arg in sys.argv:
         Off[1] = int(value)
 
 
-def wd_sparql_query(query, ddf=False):
-    # ---
-    New_List = []
-    # ---
-    qua = query
-    # ---
-    if not qua:
-        return New_List
-    # ---
-    # if limit[1] != 0 :
-    # query = query + " limit " + str( limit[1] )
-    # ---
-    Keep = True
-    offset = Off[1] if Off[1] != 0 else 0
-    # ---
-    while Keep:
-        # ---
-        quarry = qua
-        # ---
-        # if ddf:
-        if limit[1] != 0:
-            quarry = quarry + "\n limit " + str(limit[1])
-        if offset != 0:
-            quarry = f"{quarry} offset {str(offset)}"
-        # else: Off[1] != 0 :
-        # quarry = quarry + " offset " + str( Off[1] )
-        # ---
-        # printe.output( quarry )
-        # ---
-        printe.output(f'quarry "{quarry}"')
-        # ---
-        generator = wd_bot.sparql_generator_url(quarry)
-        # ---
-        New_List.extend(iter(generator))
-        # ---
-        offset = int(offset + limit[1])
-        # ---
-        if not generator or generator == [] or "nokeep" in sys.argv:
-            Keep = False
-        # ---
-        if not ddf or limit[1] == 0:
-            Keep = False
-    # ---
-    return New_List
-
-
 def WorkWithOneLang(Qid, lang, keys):
     printe.output("*<<lightyellow>> WorkWithOneLang: ")
     # ---
     query = GetQuery(Qid, lang, keys)
     # ---
-    # printe.output(query)
-    # ---
-    PageList = wd_sparql_query(query, ddf=True)
+    PageList = wd_sparql_bot.sparql_generator_big_results(query, offset=Off[1], limit=limit[1], alllimit=0)
     # ---
     printe.output("* PageList: ")
     SAO = Qlist[Qid][lang]
