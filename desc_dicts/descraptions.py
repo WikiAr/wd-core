@@ -733,7 +733,7 @@ many_lang_qid_desc = {
         # "fa":"یک صفحهٔ ابهام‌زدایی در ویکی‌پدیا",
         "fa": "یک صفحهٔ ابهام‌زدایی در ویکی‌مدیا",
         "fi": "Wikimedia-täsmennyssivu",
-        "fr": "page d'homonymie de Wikimedia",
+        "fr": "page d'homonymie de Wikimédia",
         "fy": "Wikimedia-betsjuttingsside",
         "gl": "páxina de homónimos de Wikimedia",
         "gsw": "Wikimedia-Begriffsklärigssite",
