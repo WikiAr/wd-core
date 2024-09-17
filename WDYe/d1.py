@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #  python pwb.py wd/wikinews
 #
-'''
+"""
 #استعلام خنافس
 
 SELECT DISTINCT
@@ -15,7 +15,7 @@ SELECT DISTINCT
 GROUP BY ?en
 ORDER BY DESC(?count)
 #LIMIT 3000
-'''
+"""
 
 # ---
 
@@ -44,7 +44,7 @@ from wd_api import wd_desc
 # wd_desc.work_api_desc(NewDesc, qid)
 # ---
 quuu = {
-    'species of beetle': """
+    "species of beetle": """
 SELECT DISTINCT
 ?item WHERE {
     BIND("species of beetle"@en AS ?en) ?item schema:description ?en.
@@ -55,7 +55,7 @@ SELECT DISTINCT
     #OPTIONAL { ?item schema:description ?en2. FILTER((LANG(?en2)) = "en") }
 }
 LIMIT 20000""",
-    'species of insect': """
+    "species of insect": """
 SELECT DISTINCT
 ?item WHERE {
     BIND("species of insect"@en AS ?en) ?item schema:description ?en.
@@ -76,24 +76,22 @@ LIMIT 100000""",
 # from API.replacement import replacement
 # ---
 translations = {
-    'species of beetle': {
-        'it': 'specie di coleotteri',
+    "species of beetle": {
+        "it": "specie di coleotteri",
         # 'fr': 'espèces de coléoptères',
-        'fr': 'espèce de coléoptères',
+        "fr": "espèce de coléoptères",
     },
-    'species of insect': {
-        'it': 'specie di insetti',
+    "species of insect": {
+        "it": "specie di insetti",
         # 'fr': "espèces d'insectes",
-        'fr': "espèce d'insectes",
+        "fr": "espèce d'insectes",
     },
 }
 
 
-def work2(item, topic):
-    item.get()
+def work2(q, topic):
     # ---
-    ItemDescriptions = item.descriptions
-    q = item.title(as_link=False)
+    ItemDescriptions = wd_bot.Get_item_descriptions_or_labels(q, "descriptions")
     # ---
     if "en" in ItemDescriptions.keys():
         en = ItemDescriptions["en"]  # ['value']
@@ -118,22 +116,19 @@ def work2(item, topic):
 
 
 def mam():
-    topic = 'species of insect'
-    pywikibot.output('*<<lightyellow>> mainfromQuarry:')
+    topic = "species of insect"
+    pywikibot.output("*<<lightyellow>> mainfromQuarry:")
     Quarry = quuu[topic]
     if sys.argv and "OFFSET" in sys.argv:
         Quarry = f"{Quarry} OFFSET 100000"
-    json = wd_bot.wd_sparql_generator_url(Quarry)
+    json = wd_bot.wd_sparql_generator_url(Quarry, returnq=True)
     lenth = len(json)
     # topic = 'Wikinews article'
     # ---
-    for num, item in enumerate(json, start=1):
-        q = item.title(as_link=False)
+    for num, q in enumerate(json, start=1):
         pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {num}/{lenth} topic:"{topic}" , q:"{q}".')
-        work2(item, topic)
+        work2(q, topic)
 
 
-# ---
 if __name__ == "__main__":
     mam()
-# ---

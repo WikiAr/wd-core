@@ -21,10 +21,6 @@ taxondescs = {
     'German politician': {'ar': 'سياسي ألماني'},
     'x!y~z': {'ar': ''},
 }
-debugedo = False
-debugedo = False
-debug = False
-
 # default_query='claim[31:16521]'  #all taxons
 default_language = 'ar'
 
@@ -139,14 +135,5 @@ def main():
 
 
 if __name__ == "__main__":
-    if debugedo:
-        print("debug is on")
-        site = pywikibot.Site('ar')
-        repo = site.data_repository()
-        wd = pywikibot.ItemPage(repo, 'Q17979303')
-        wd.get(get_redirect=True)
-        # addorreplace(wd)
-        action_one_item(wd)
-    else:
-        print("(---------- جاهز للبدء ----------)")
-        main()
+    print("(---------- جاهز للبدء ----------)")
+    main()

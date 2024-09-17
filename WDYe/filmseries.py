@@ -2,8 +2,6 @@
 #  python pwb.py wd/wikinews
 #
 #
-# site = pywikibot.Site('wikidata', 'wikidata')
-# repo = site.data_repository()
 
 # ---
 
