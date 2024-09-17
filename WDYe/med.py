@@ -25,7 +25,7 @@ import urllib.parse
 from API import open_url
 # ---
 from himo_api import himoAPI_test as himoAPI
-
+from newapi.page import MainPage
 
 def dec(xx):
     xx = xx.replace(" ", "_")
@@ -273,12 +273,16 @@ def looog():
     if text2:
         text2 = '''\n=={{subst:date}}==\n{| class="wikitable sortable"\n|-\n! item\n! en \n! ar\n|-''' + text2
         text2 = text2 + "|-\n|}"
-        wikidatasite = pywikibot.Site('wikidata', 'wikidata')
-        EngPage = pywikibot.Page(wikidatasite, "user:Mr._Ibrahem/medstat")
-        main_text = EngPage.text
-        text3 = main_text + text2
         # ---
-        himoAPI.page_put(text3, "update.", "user:Mr._Ibrahem/medstat")
+        title = "user:Mr._Ibrahem/medstat"
+        # ---
+        EngPage = MainPage(title, "wikidata", family="wikidata")
+        # ---
+        main_text = EngPage.get_text()
+        newtext = main_text + text2
+        # ---
+        # himoAPI.page_put(text3, "update.", title)
+        EngPage.save(newtext=newtext, summary="update.", nocreate=1)
 
 
 def WORK(item, table):

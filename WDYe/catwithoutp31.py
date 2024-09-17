@@ -20,18 +20,6 @@ Tras = {
 }
 
 
-def Get_P_API2(item, P):
-    if item:
-        item.get()
-        claims = item.claims
-        if P in claims:
-            PP31 = item.claims[P][0].toJSON()
-            if q := PP31["mainsnak"]["datavalue"]["value"]["numeric-id"] or "":
-                return f"Q{str(q)}"
-    return False
-
-
-# ---
 # python pwb.py np/d -family:wikidata -lang:wikidata -newpages:10
 # python pwb.py np/d -family:wikidata -lang:wikidata -ns:0 -start:Q32000000
 # ---
@@ -55,21 +43,23 @@ quaries = {
 }
 
 
-def work_one_item(item):
-    # ---
-    item.get()
-    # ---
-    q = item.title(as_link=False)
+def work_one_item(q):
     # ---
     # claims
-    P31 = Get_P_API2(item, "P31")
+    P31 = wd_bot.Get_Property_API(q=q, p="P31")
+    # ---
+    P31 = P31[0] if P31 and isinstance(P31, list) else ""
+    # ---
+    links = wd_bot.Get_Sitelinks_from_qid(ids=q)
+    # ---
+    labels = wd_bot.Get_item_descriptions_or_labels(q, "labels")
+    descriptions = wd_bot.Get_item_descriptions_or_labels(q, "descriptions")
+    # ---
     if not P31 or P31 != "Q4167836":
         himoAPI.Claim_API2(q, "P31", "Q4167836")
     # ---
     # labels
     data2 = {"labels": {}}
-    labels = item.labels
-    links = item.sitelinks
     # ---
     for site in links.keys():
         label = str(links[site])
@@ -85,7 +75,6 @@ def work_one_item(item):
         summary = f"Bot: - Add labels:({len(data2['labels'])} langs)."
         himoAPI.New_Mult_Des(q, data2, summary, False)
     # ---
-    descriptions = item.descriptions
     catdesc = Tras["Q4167836"]
     # ---
     if "en" in catdesc.keys():
@@ -106,19 +95,15 @@ def main():
     for qua_a in quaries:
         qua = quaries[qua_a]
         # ---
-        json1 = wd_bot.wd_sparql_generator_url(qua)
+        json1 = wd_bot.wd_sparql_generator_url(qua, returnq=True)
         # ---
         total = len(json1)
         # ---
-        for c, item in enumerate(json1, start=1):
-            # ---
-            print(item)
-            # ---
-            q = item.title(as_link=False)
+        for c, q in enumerate(json1, start=1):
             # ---
             pywikibot.output(f'  * action {c}/{total} "{q}"')
             # ---
-            work_one_item(item)
+            work_one_item(q)
 
 
 if __name__ == "__main__":

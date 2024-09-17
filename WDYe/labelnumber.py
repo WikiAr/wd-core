@@ -3,9 +3,6 @@
 import pywikibot
 from pywikibot import pagegenerators as pg
 
-debugedo = True
-debugedo = False
-debug = False
 default_language = 'ar'
 items2do = 0
 itemsdone = 0
@@ -50,13 +47,4 @@ def main():
 
 
 if __name__ == "__main__":
-    if debugedo:
-        print("debug is on")
-        site = pywikibot.Site('ar')
-        repo = site.data_repository()
-        wd = pywikibot.ItemPage(repo, 'Q17979303')
-        wd.get(get_redirect=True)
-        action_one_item(wd)
-    else:
-        print("(---------- جاهز للبدء ----------)")
-        main()
+    main()

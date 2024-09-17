@@ -29,9 +29,8 @@ import gent
 
 
 def main2(*args):
-    generator = gent.get_gent(listonly=False, *args)
-    for numb, page in enumerate(generator, start=1):
-        pagetitle = page.title()
+    generator = gent.get_gent(listonly=True, *args)
+    for numb, pagetitle in enumerate(generator, start=1):
         pywikibot.output(f"page: {numb} : {pagetitle}")
         StartOnePage(pagetitle)
 

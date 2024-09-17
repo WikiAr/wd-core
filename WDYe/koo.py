@@ -29,9 +29,7 @@ from pywikibot import textlib
 done = []
 
 
-def woo(page):
-    # ---
-    title = page.title(as_link=False)
+def woo(title):
     # ---
     text = himoBOT2.GetarPageText(title, sitecode="ar") #from API import himoBOT2
     # ---
@@ -67,7 +65,7 @@ def woo(page):
 
 
 def main(*args):
-    generator = gent.get_gent(listonly=False, *args)
+    generator = gent.get_gent(listonly=True, *args)
 
     for page in generator:
         woo(page)
