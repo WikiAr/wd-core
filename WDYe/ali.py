@@ -171,7 +171,7 @@ WHERE {
 }
 
 
-def action_one_item(q, ar):
+def action_one(q, ar):
     pywikibot.output(f'<<lightblue>>> {q}:{ar} ')
     ar2 = ar
     if ar.find("عبد ") != -1:
@@ -191,7 +191,7 @@ def workqua(qua):
     for pa in sparql:
         # pa = pigenerator[page]
         pa['item'] = pa['item'].split('/entity/')[1]
-        action_one_item(pa['item'], pa['label'])
+        action_one(pa['item'], pa['label'])
 
 
 # ---
@@ -223,11 +223,11 @@ def mains():
             lala = [x.strip() for x in names if x.strip() != ""]
             pywikibot.output(f'lala: "{lala}"')
             acd = "  wd:".join(lala)
-            
+
             tart = "?item (wdt:P734|wdt:P735) ?name. VALUES ?name {"
             tart += f"wd:{acd} "
             tart += "} ."
-            
+
             pywikibot.output(f'acd: "{tart}"')
             Quarry[1] = Quarry[1].replace("#sr", f"{tart}\n#sr")
         elif arg.startswith("c"):
@@ -248,7 +248,7 @@ def mains():
                     tart3 = sql.Make_sql_2_rows(fff, wiki="wikidata")
                     pywikibot.output(f'tart3: "{tart3}"')
                     for te in tart3:
-                        action_one_item(te[1], te[2])
+                        action_one(te[1], te[2])
         # ---
         # python pwb.py wd/ali ss:340662
         elif arg == "ss":
@@ -257,7 +257,7 @@ def mains():
             FFF = False
             # pywikibot.output( 'tart3: "%s"' % tart3 )
             for te in tart3:
-                action_one_item(te, tart3[te])
+                action_one(te, tart3[te])
         # ---
         if arg == 'limit':
             Limit[1] = f" limit {value}"
@@ -267,7 +267,7 @@ def mains():
     FFF = False
     #pywikibot.output( 'tart3: "%s"' % tart3 )
     for te in tart3 :
-        action_one_item( te , tart3[ te ] )
+        action_one( te , tart3[ te ] )
     # ---'''
     if FFF:
         workqua(Quarry[1])

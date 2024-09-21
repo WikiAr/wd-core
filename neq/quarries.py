@@ -276,3 +276,12 @@ for qid, va in P1433_ids.items():
     # ---
     # if "doar" in sys.argv: print(f"python3 core8/pwb.py neq/nldes3 a2r sparql:{qid} all:1000 doar")
 
+SPARQLSE["Q13442814"] = """SELECT ?item WHERE {
+  VALUES ?itemar {
+    "مقالة علمية"@ar
+    "مقالة بحثية"@ar
+  }
+  ?item wdt:P31 wd:Q13442814.
+  ?item schema:description ?itemar.
+}
+"""

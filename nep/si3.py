@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-
+from nep.si3 import do_P1433_new_list, work_new_list, work_people, make_scientific_art
 """
 
 import sys
@@ -259,6 +259,10 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
             work_people(item, endes.lower(), num, ardes)
             break
         # ---
+        elif P31 == "Q16521":
+            work_taxon_desc(item, endes)
+            break
+        # ---
         elif P31 in railway_tables:
             work_railway(item, P31)
             break
@@ -269,10 +273,6 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
         # ---
         elif P31 in space_list_and_other or P31 in others_list or P31 in others_list_2:
             work_new_list(item, P31, ardes)
-            break
-        # ---
-        elif P31 == "Q16521":
-            work_taxon_desc(item, endes)
             break
         # ---
         elif P31 in Geo_List and placesTable.get(P31, {}).get("ar"):

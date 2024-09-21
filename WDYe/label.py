@@ -34,7 +34,7 @@ def preee(wditem, data, site):
     wditem.editEntity(data, summary=f'Bot: Add Arabic label: {site}')
 
 
-def action_one_item(wditem):
+def one_q_item(wditem):
     global items2do
     items2do -= 1
     if 'arwiki' in wditem.sitelinks:
@@ -55,7 +55,7 @@ def action_one_item(wditem):
     return 1
 
 
-def action_one_item2(wditem):
+def action_item2(wditem):
     global items2do
     items2do -= 1
     if 'arwiki' in wditem.sitelinks:
@@ -124,7 +124,7 @@ def main():
     pigenerator = wd_sparql_generator(query)
     for wditem in pigenerator:
         # try:
-        action_one_item(wditem)
+        one_q_item(wditem)
         # addorreplace(wditem)
         itemsdone += 1
         # if itemsdone > 25  : break

@@ -11,6 +11,9 @@ from newapi import printe
 from himo_api import himoAPI
 from wd_api import wd_bot
 
+from nep.si3 import do_P1433_new_list, work_people, make_scientific_art
+from nep.bots.tax_desc import work_taxon_desc
+
 # ---
 from desc_dicts.descraptions import Qid_Descraptions
 from des.railway import railway_tables, work_railway
@@ -143,18 +146,31 @@ def Add_desc(q, value, lang):
 def action_one_item(lngr, q, item={}, claimstr=""):
     global items2do
     global totaledits
+    # ---
     wditem = wd_bot.Get_Item_API_From_Qid(q, sites="", titles="", props="")
+    # ---
+    item = wditem
+    # ---
     items_written = items_found = 0
+    # ---
     lng = "ar"
+    # ---
     my_description = ""
+    # ---
     orig_desc = wditem.get("descriptions", {}).get(lng, "").lower()
     # ---
     if "org" in sys.argv:
         orig_desc = ""
     # ---
+    ardes = wditem.get("descriptions", {}).get("ar", "").lower()
+    # ---
     en_description = wditem.get("descriptions", {}).get("en", "").lower()
+    endes = en_description
+    # ---
     printe.output(f"orig_desc:{orig_desc},en_description:{en_description}")
+    # ---
     claims = wditem["claims"]
+    # ---
     items2do -= 1
     # ---
     if "P31" not in claims:
@@ -166,9 +182,28 @@ def action_one_item(lngr, q, item={}, claimstr=""):
         # ---
         type_of_item = get_mainsnak(type_id)
         # ---
-        if type_of_item in railway_tables:
+        P31 = type_of_item
+        # ---
+        if P31 == "Q5":
+            work_people(wditem, endes.lower(), 0, ardes)
+            break
+        # ---
+        elif P31 == "Q16521":
+            work_taxon_desc(item, endes)
+            break
+        # ---
+        elif P31 == "Q13442814":
+            if "workibrahem" not in sys.argv:
+                make_scientific_art(wditem, P31, 0)
+            break
+        # ---
+        elif type_of_item in railway_tables:
             Make_railway_desc(wditem, type_of_item)
-            return items_found, items_written
+            break
+        # ---
+        elif type_of_item in P1433_ids or endes.lower() in P1433_en_to_qid:
+            do_P1433_new_list(wditem, P31)
+            break
         # ---
         printe.output("Type: [%s]" % type_of_item)
         # ---
