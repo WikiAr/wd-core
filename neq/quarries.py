@@ -30,7 +30,7 @@ sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 
 
 
 # ---
-def do_qua(qid, prop="", ad="", no_filter=True):
+def do_qua(qid, prop="", ad="", ar_values=""):
     qua = "SELECT ?item WHERE {\n"
     qua += f" ?item wdt:P31 wd:{qid}. \n"
     # ---
@@ -43,7 +43,10 @@ def do_qua(qid, prop="", ad="", no_filter=True):
     if ad:
         qua += f" {ad} \n"
     # ---
-    if no_filter:
+    if ar_values:
+        qua += "?item schema:description ?itemar \n"
+        qua += f"values ?itemar {{{ar_values}}} \n"
+    else:
         qua += 'FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } \n'
     # ---
     qua += "}"
@@ -259,8 +262,11 @@ for qid, va in P1433_ids.items():
     prop = "|".join([f"wdt:{p['p']}" for p in va["props"]])
     prop = f"({prop})"
     # ---
-    no_filter = "doar" not in sys.argv
+    ar_values = ""
+    # ---
+    if "doar" in sys.argv:
+        ar_values = " ".join([f'"{ar}"@ar' for ar in va["false_labs"] if ar])
     # ---
     if qid not in SPARQLSE:
-        qua = do_qua(qid, prop=prop, ad="", no_filter=no_filter)
+        qua = do_qua(qid, prop=prop, ad="", ar_values=ar_values)
         SPARQLSE[qid] = qua
