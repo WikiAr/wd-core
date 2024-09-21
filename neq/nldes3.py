@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """
+python3 core8/pwb.py neq/nldes3 a2r sparql:Q13433827,Q265158,Q191067,Q19389637,Q953806 all:1000 doar
+
 python3 core8/pwb.py neq/nldes3 a2r sparql:Q953806 ask all:100 doar
 
 python3 core8/pwb.py neq/nldes3 test
@@ -97,6 +99,8 @@ def process_item(wd, n, total_reads):
 
 def main():
     sparql_queries = get_sparql_queries()
+    # ---
+    random.shuffle(sparql_queries)
     # ---
     for query_num, sparql_query in enumerate(sparql_queries, 1):
         printe.output("-------------------------")
