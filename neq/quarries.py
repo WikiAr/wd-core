@@ -268,7 +268,7 @@ for qid, va in P1433_ids.items():
         ar_values = " ".join([f'"{ar}"@ar' for ar in va["false_labs"] if ar])
     # ---
     if qid not in SPARQLSE:
-        qua = do_qua(qid, prop=prop, ad="", ar_values=ar_values)
+        qua = do_qua(qid, prop=prop, ad="", ar_values=ar_values.strip())
         SPARQLSE[qid] = qua
     # ---
     # if "doar" in sys.argv: print(f"python3 core8/pwb.py neq/nldes3 a2r sparql:{qid} all:1000 doar")
