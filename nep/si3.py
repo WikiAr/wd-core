@@ -28,6 +28,9 @@ from nep.tables.si_tables import genders, MainTestTable, new_types, offsetbg, Qi
 from nep.space_others import Make_space_desc, Make_others_desc
 
 
+from nep.new_way import P1433_ids, do_P1433_ids, P1433_en_to_qid
+
+
 def work_a_desc(NewDesc, qid, fixlang):
     # ---
     if MainTestTable[1] or "dd" in sys.argv:
@@ -50,9 +53,28 @@ def make_scientific_art(item, P31, num):
     work_a_desc(NewDesc, qid, rep_langs)
 
 
+def do_P1433_new_list(item, p31):
+    # ---
+    printe.output(" do_P1433_new_list: ")
+    # ---
+    q = item["q"]
+    NewDesc = {}
+    # ---
+    orig_desc = item.get("descriptions", {}).get("ar", "")
+    # ---
+    ar_desc = do_P1433_ids(item, p31, orig_desc)
+    # ---
+    if ar_desc:
+        NewDesc["ar"] = {"language": "ar", "value": ar_desc}
+        printe.output(f"<<lightyellow>> ** do_P1433_new_list p31:{p31}")
+        work_a_desc(NewDesc, q, [])
+    else:
+        print("do_P1433_new_list nothing to add. ")
+
+
 def work_new_list(item, p31, ardes):
     # ---
-    printe.output(" work_new_list:")
+    printe.output(f" work_new_list: {ardes=}")
     # ---
     q = item["q"]
     NewDesc = {}
@@ -66,6 +88,7 @@ def work_new_list(item, p31, ardes):
                 NewDesc[lang] = {"language": lang, "value": gg[lang]}
     # ---
     orig_desc = item.get("descriptions", {}).get("ar", "")
+    en_desc = item.get("descriptions", {}).get("en", "")
     # ---
     # ar_desc = Make_others_desc("ar", item, p31, orig_desc)
     # # ---
@@ -75,6 +98,10 @@ def work_new_list(item, p31, ardes):
     if p31 in others_list or p31 in others_list_2:
         print("Make_others_desc ::::")
         ar_desc = Make_others_desc("ar", item, p31, orig_desc)
+
+    elif p31 in P1433_ids or en_desc.lower() in P1433_en_to_qid:
+        ar_desc = do_P1433_ids(item, p31, orig_desc)
+
     else:
         ar_desc = Make_space_desc("ar", item, p31, orig_desc)
     # ---
@@ -234,6 +261,10 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
         # ---
         elif P31 in railway_tables:
             work_railway(item, P31)
+            break
+        # ---
+        elif P31 in P1433_ids or endes.lower() in P1433_en_to_qid:
+            do_P1433_new_list(item, P31)
             break
         # ---
         elif P31 in space_list_and_other or P31 in others_list or P31 in others_list_2:

@@ -33,6 +33,8 @@ from nep.bots.its import (
     its_something_in_an_entity,
 )
 
+from nep.new_way import P1433_ids, do_P1433_ids, P1433_en_to_qid
+
 # ---
 items2do = 0  # global parameter to print progress
 totaledits = 0
@@ -212,6 +214,10 @@ def action_one_item(lngr, q, item={}, claimstr=""):
             elif type_of_item in space_list_and_other:
                 my_description = Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=claimstr)
             # ---
+            elif type_of_item in P1433_ids or en_description.lower() in P1433_en_to_qid:
+                my_description = do_P1433_ids(wditem, type_of_item, orig_desc)
+
+            # ---
             elif type_of_item in others_list or type_of_item in others_list_2:
                 my_description = Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=claimstr)
             # ---
@@ -276,6 +282,5 @@ def action_one_item(lngr, q, item={}, claimstr=""):
             break
         else:
             printe.output(f"test:[{test}] != value[{valuee}]")
-        # ---
     # ---
     return items_found, items_written

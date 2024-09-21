@@ -30,8 +30,9 @@ sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 
 
 
 # ---
-def do_qua(qid, prop="", ad=""):
-    qua = "SELECT ?item WHERE {" + f" ?item wdt:P31 wd:{qid}. \n"
+def do_qua(qid, prop="", ad="", no_filter=True):
+    qua = "SELECT ?item WHERE {\n"
+    qua += f" ?item wdt:P31 wd:{qid}. \n"
     # ---
     if prop:
         qua += f" ?item {prop} ?constellation. \n"
@@ -42,7 +43,9 @@ def do_qua(qid, prop="", ad=""):
     if ad:
         qua += f" {ad} \n"
     # ---
-    qua += 'FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } \n'
+    if no_filter:
+        qua += 'FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } \n'
+    # ---
     qua += "}"
     # ---
     return qua
@@ -253,9 +256,11 @@ from nep.new_way import P1433_ids
 
 # ---
 for qid, va in P1433_ids.items():
-    prop = "|".join([f"wd:{p}" for p in va["props"]])
+    prop = "|".join([f"wdt:{p['p']}" for p in va["props"]])
     prop = f"({prop})"
     # ---
+    no_filter = "doar" not in sys.argv
+    # ---
     if qid not in SPARQLSE:
-        qua = do_qua(qid, prop)
+        qua = do_qua(qid, prop=prop, ad="", no_filter=no_filter)
         SPARQLSE[qid] = qua

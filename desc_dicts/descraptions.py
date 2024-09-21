@@ -85,7 +85,7 @@ Qid_Desc = {
     "Q189118": {"ar": "نوع خلية", "en": "cell type"},  # 6946
     "Q40231": {"ar": "انتخابات", "en": "election"},  # 6680
     "Q2188189": {"ar": "عمل موسيقي", "en": "musical work"},  # 6391
-    "Q953806": {"ar": "محطة حافلات", "en": "bus stop"},  # 6231
+    # "Q953806": {"ar": "محطة حافلات", "en": "bus stop"},  # 6231
     "Q105774620": {"ar": "قانون برلمان المملكة المتحدة", "en": "Public General Act of the Parliament of the United Kingdom"},
     "Q7604693": {"ar": "القواعد القانونية لأيرلندا الشمالية", "en": "Statutory Rules of Northern Ireland"},  # 13624
     "Q427087": {"ar": "حمض نووي ريبوزي غير مشفر", "en": "non-coding RNA"},  # 698

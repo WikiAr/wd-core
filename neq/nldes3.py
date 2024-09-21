@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 """
+python3 core8/pwb.py neq/nldes3 a2r sparql:Q953806 ask all:100 doar
 
 python3 core8/pwb.py neq/nldes3 test
 
 python3 core8/pwb.py neq/nldes3 a2r sparql:dfd ask
+python3 core8/pwb.py neq/nldes3 a2r sparql:Q7889 ask
 python3 core8/pwb.py neq/nldes3 a2r sparql:Q7889 ask
 
 """
@@ -88,7 +90,7 @@ def main():
         if Offq[1] > 0 and Offq[1] > query_num:
             continue
         # ---
-        pigenerator = wd_sparql_bot.sparql_generator_big_results(sparql_query, offset=Off[1], limit=limit[1])
+        pigenerator = wd_sparql_bot.sparql_generator_big_results(sparql_query, offset=Off[1], limit=limit[1], alllimit=totallimit[1])
         # ---
         for n, wd in enumerate(pigenerator, start=1):
             printe.output("<<lightblue>> ============")

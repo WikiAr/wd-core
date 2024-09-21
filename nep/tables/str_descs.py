@@ -103,7 +103,6 @@ entities = {
     "Q751876": {"org": ["kasteel", ""], "desc": "kasteel in"},
     "Q811979": {"org": ["bouwwerk", ""], "desc": "bouwwerk in"},
     "Q88965416": {"org": ["", ""], "desc": "Zweedse schooleenheid in"},
-    "Q953806": {"org": ["bushalte", ""], "desc": "bushalte in"},
     "Q9842": {"org": ["basisschool", "basisschool in italië", ""], "desc": "basisschool in "},
 }
 
