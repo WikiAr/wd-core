@@ -67,7 +67,16 @@ def get_sparql_queries():
     if sparqler[1].strip() == "" or "allkeys" in sys.argv:
         return random.sample(list(SPARQLSE.values()), len(SPARQLSE))
     # ---
-    return [SPARQLSE.get(sparqler[1].strip(), f"SELECT ?item WHERE {{ ?item wdt:P31 wd:{sparqler[1]} . FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') }} }}")]
+    quas = [x.strip() for x in sparqler[1].split(",")]
+    # ---
+    quaries = []
+    # ---
+    for x in quas:
+        quaa = f"SELECT ?item WHERE {{ ?item wdt:P31 wd:{x} . FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') }} }}"
+        # ---
+        quaries.append(SPARQLSE.get(x, quaa))
+    # ---
+    return quaries
 
 
 def process_item(wd, n, total_reads):
