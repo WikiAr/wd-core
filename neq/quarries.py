@@ -257,7 +257,6 @@ SPARQLSE["Q7366"] = do_qua("Q7366", prop="wdt:P175", ad="")
 
 from nep.new_way import P1433_ids
 
-# ---
 for qid, va in P1433_ids.items():
     prop = "|".join([f"wdt:{p['p']}" for p in va["props"]])
     prop = f"({prop})"
@@ -267,7 +266,7 @@ for qid, va in P1433_ids.items():
     if "doar" in sys.argv:
         ar_values = " ".join([f'"{ar}"@ar' for ar in va["false_labs"] if ar])
     # ---
-    if qid not in SPARQLSE:
+    if qid not in SPARQLSE or "doar" in sys.argv:
         qua = do_qua(qid, prop=prop, ad="", ar_values=ar_values.strip())
         SPARQLSE[qid] = qua
     # ---

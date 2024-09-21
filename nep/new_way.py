@@ -2,6 +2,7 @@
 """
 
 from nep.new_way import P1433_ids, do_P1433_ids, P1433_en_to_qid
+tfj run nldes3 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py neq/nldes3 a2r sparql:Q13433827,Q265158,Q191067,Q19389637,Q953806 all:1000 doar"
 
 python3 core8/pwb.py neq/nldes3 a2r sparql:Q13433827,Q265158,Q191067,Q19389637,Q953806 all:1000 doar
 
