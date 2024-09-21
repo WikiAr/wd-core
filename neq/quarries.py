@@ -32,6 +32,10 @@ sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 
 # ---
 def do_qua(qid, prop="", ad="", ar_values=""):
     qua = "SELECT ?item WHERE {\n"
+    # ---
+    if ar_values:
+        qua += f"values ?itemar {{{ar_values}}} \n"
+    # ---
     qua += f" ?item wdt:P31 wd:{qid}. \n"
     # ---
     if prop:
@@ -45,7 +49,7 @@ def do_qua(qid, prop="", ad="", ar_values=""):
     # ---
     if ar_values:
         qua += "?item schema:description ?itemar \n"
-        qua += f"values ?itemar {{{ar_values}}} \n"
+        # qua += f"values ?itemar {{{ar_values}}} \n"
     else:
         qua += 'FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } \n'
     # ---
