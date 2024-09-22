@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 """
+python3 core8/pwb.py neq/nldes3 a2r sparql:Q13433827,Q265158,Q191067,Q19389637,Q953806 all:1000 doar
+
+python3 core8/pwb.py neq/nldes3 a2r sparql:Q953806 ask all:100 doar
 
 python3 core8/pwb.py neq/nldes3 test
 
 python3 core8/pwb.py neq/nldes3 a2r sparql:dfd ask
+python3 core8/pwb.py neq/nldes3 a2r sparql:Q7889 ask
 python3 core8/pwb.py neq/nldes3 a2r sparql:Q7889 ask
 
 """
@@ -65,7 +69,22 @@ def get_sparql_queries():
     if sparqler[1].strip() == "" or "allkeys" in sys.argv:
         return random.sample(list(SPARQLSE.values()), len(SPARQLSE))
     # ---
-    return [SPARQLSE.get(sparqler[1].strip(), f"SELECT ?item WHERE {{ ?item wdt:P31 wd:{sparqler[1]} . FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') }} }}")]
+    quas = [x.strip() for x in sparqler[1].split(",")]
+    # ---
+    quaries = []
+    # ---
+    for x in quas:
+        quaa = f"SELECT ?item WHERE {{ ?item wdt:P31 wd:{x} . FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') }} }}"
+        # ---
+        in_sp = SPARQLSE.get(x)
+        # ---
+        if not in_sp:
+            printe.output(f"not in SPARQLSE: {x}")
+            continue
+        # ---
+        quaries.append(in_sp)
+    # ---
+    return quaries
 
 
 def process_item(wd, n, total_reads):
@@ -81,6 +100,8 @@ def process_item(wd, n, total_reads):
 def main():
     sparql_queries = get_sparql_queries()
     # ---
+    random.shuffle(sparql_queries)
+    # ---
     for query_num, sparql_query in enumerate(sparql_queries, 1):
         printe.output("-------------------------")
         printe.output(f"<<lightblue>> query {query_num} from {len(sparql_queries)} :")
@@ -88,7 +109,7 @@ def main():
         if Offq[1] > 0 and Offq[1] > query_num:
             continue
         # ---
-        pigenerator = wd_sparql_bot.sparql_generator_big_results(sparql_query, offset=Off[1], limit=limit[1])
+        pigenerator = wd_sparql_bot.sparql_generator_big_results(sparql_query, offset=Off[1], limit=limit[1], alllimit=totallimit[1])
         # ---
         for n, wd in enumerate(pigenerator, start=1):
             printe.output("<<lightblue>> ============")

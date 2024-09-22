@@ -14,7 +14,7 @@ def fixlabel(oldlabel):
     return new.replace('٥', '5').replace('٦', '6').replace('٧', '7').replace('٨', '8').replace('٩', '9')
 
 
-def action_one_item(wditem):
+def one_item(wditem):
     global items2do
     items2do -= 1
     if wditem.labels:  # تسميات موجودة
@@ -47,7 +47,7 @@ def main():
     pigenerator = wd_sparql_generator(query)
     for wditem in pigenerator:
         try:
-            action_one_item(wditem)
+            one_item(wditem)
             itemsdone += 1
             print(f'العناصر المكتملة: {itemsdone}')
         except BaseException:

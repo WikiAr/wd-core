@@ -33,7 +33,7 @@ AskSave = {1: True}
 # def AddDes( item , pa , lang , Qid , keys):
 
 
-def action_one_item(Qid, pa, lang, keys):
+def one_film_item(Qid, pa, lang, keys):
     item = getwditem(pa["item"])
     if not item:
         return
@@ -234,7 +234,7 @@ def WorkWithOneLang(Qid, lang, keys):
         SAO = filmform[Qid][lang]
         printe.output("<<lightblue>>> %s (%s) :%s/%d : %s" % (lang, SAO, num, total, PageList[pa]["item"]))
         # ---
-        action_one_item(Qid, PageList[pa], lang, keys)
+        one_film_item(Qid, PageList[pa], lang, keys)
 
 
 # ---

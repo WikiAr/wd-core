@@ -30,8 +30,13 @@ sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 
 
 
 # ---
-def do_qua(qid, prop="", ad=""):
-    qua = "SELECT ?item WHERE {" + f" ?item wdt:P31 wd:{qid}. \n"
+def do_qua(qid, prop="", ad="", ar_values=""):
+    qua = "SELECT ?item WHERE {\n"
+    # ---
+    if ar_values:
+        qua += f"values ?itemar {{{ar_values}}} \n"
+    # ---
+    qua += f" ?item wdt:P31 wd:{qid}. \n"
     # ---
     if prop:
         qua += f" ?item {prop} ?constellation. \n"
@@ -42,7 +47,12 @@ def do_qua(qid, prop="", ad=""):
     if ad:
         qua += f" {ad} \n"
     # ---
-    qua += 'FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } \n'
+    if ar_values:
+        qua += "?item schema:description ?itemar \n"
+        # qua += f"values ?itemar {{{ar_values}}} \n"
+    else:
+        qua += 'FILTER NOT EXISTS { ?item schema:description ?itemar. FILTER((LANG(?itemar)) = "ar") } \n'
+    # ---
     qua += "}"
     # ---
     return qua
@@ -251,11 +261,27 @@ SPARQLSE["Q7366"] = do_qua("Q7366", prop="wdt:P175", ad="")
 
 from nep.new_way import P1433_ids
 
-# ---
 for qid, va in P1433_ids.items():
-    prop = "|".join([f"wd:{p}" for p in va["props"]])
+    prop = "|".join([f"wdt:{p['p']}" for p in va["props"]])
     prop = f"({prop})"
     # ---
-    if qid not in SPARQLSE:
-        qua = do_qua(qid, prop)
+    ar_values = ""
+    # ---
+    if "doar" in sys.argv:
+        ar_values = " ".join([f'"{ar}"@ar' for ar in va["false_labs"] if ar])
+    # ---
+    if qid not in SPARQLSE or "doar" in sys.argv:
+        qua = do_qua(qid, prop=prop, ad="", ar_values=ar_values.strip())
         SPARQLSE[qid] = qua
+    # ---
+    # if "doar" in sys.argv: print(f"python3 core8/pwb.py neq/nldes3 a2r sparql:{qid} all:1000 doar")
+
+SPARQLSE["Q13442814"] = """SELECT ?item WHERE {
+  VALUES ?itemar {
+    "مقالة علمية"@ar
+    "مقالة بحثية"@ar
+  }
+  ?item wdt:P31 wd:Q13442814.
+  ?item schema:description ?itemar.
+}
+"""

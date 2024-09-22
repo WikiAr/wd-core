@@ -9,7 +9,7 @@ itemsdone = 0
 missing_dict = {}
 
 
-def action_one_item(wditem):
+def onee_item(wditem):
     global items2do
     items2do -= 1
     if wditem.labels:  # تسميات موجودة
@@ -39,7 +39,7 @@ def main():
     pigenerator = wd_sparql_generator(query)
     for wditem in pigenerator:
         try:
-            action_one_item(wditem)
+            onee_item(wditem)
             itemsdone += 1
         except BaseException:
             print(f'{wditem} تخطي')

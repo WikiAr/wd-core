@@ -71,7 +71,7 @@ Qlist = {
 }
 
 
-def action_one_item(Qid, pa, lang, keys):
+def one_book_item(Qid, pa, lang, keys):
     item = wd_bot.Get_Item_API_From_Qid(pa["item"])
     if not item:
         return
@@ -222,7 +222,7 @@ def WorkWithOneLang(Qid, lang, keys):
     for num, pa in enumerate(PageList, start=1):
         pa["item"] = pa["item"].split("/entity/")[1]
         printe.output(f"<<lightblue>>> {lang} \"{SAO}\" :{num}/{total} : {pa['item']}")
-        action_one_item(Qid, pa, lang, keys)
+        one_book_item(Qid, pa, lang, keys)
 
 
 # ---
