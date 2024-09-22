@@ -62,7 +62,7 @@ Qid_Desc = {
     "Q1580166": {"ar": "مدخلة قاموس", "en": "dictionary entry"},  # 57490
     "Q11060274": {"ar": "طباعة فنية", "en": "print"},  # 40547
     "Q220659": {"ar": "قطع أثرية", "en": "archaeological artifact"},  # 29283
-    "Q860861": {"ar": "منحوتة", "en": "sculpture"},  # 22091
+    #"Q860861": {"ar": "منحوتة", "en": "sculpture"},  # 22091
     "Q1539532": {"ar": "موسم نادي رياضي", "en": "sports season of a sports club"},  # 20501
     "Q30612": {"ar": "تجربة سريرية", "en": "clinical trial"},  # 339121
     "Q152450": {"ar": "انتخابات محلية", "en": "municipal election"},  # 14289
