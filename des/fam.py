@@ -10,6 +10,7 @@ python3 core8/pwb.py des/fam
 
 """
 # ---
+import tqdm
 import sys
 import random
 from newapi import printe
@@ -79,9 +80,15 @@ temp_table = {}
 # ---
 if len(desc_table) > 1:
     # chose randomly 5 of the desc_table
+    # ---
     liste = list(desc_table.keys())
+    # ---
     list2 = random.sample(liste, 10)
+    # ---
     print(list2)
+    # ---
+    random.shuffle(list2)
+    # ---
     for x in list2:
         temp_table[x] = desc_table[x]
     # ---
@@ -112,72 +119,81 @@ quarry_list = [
 ]
 # ---
 qlist_done = []
-# ---
-# lenth of desc_table and quarry_list
-all_lenth = len(quarry_list) * len(desc_table)
-# ---
-numb = 0
-# ---
-for p31, p31_desc in desc_table.items():
+
+
+def work_one_json(json1, topic_ar, p31, p31_langs):
     # ---
-    quarry_result_lenth = 0
+    json_lenth = len(json1)
     # ---
-    qu_numb = 0
-    # ---
-    for quarry in quarry_list:
+    for num, item in tqdm.tqdm(enumerate(json1, start=1)):
+        num += 1
+        q = "item" in item and item["item"].split("/entity/")[1]
         # ---
-        qu_numb += 1
-        if quarry_result_lenth == 0 and qu_numb > 1:
-            printe.output("<<lightred>> len of first quarry == 0 continue")
+        q_langs = item.get("langs", "").split(",")
+        # ---
+        lang_to_add = list(set(p31_langs) - set(q_langs))
+        # ---
+        tp = f'<<lightyellow>>*mainfromQuarry: {num} from {json_lenth} p31:"{p31}", qid:"{q}":<<lightblue>>{topic_ar}'
+        # ---
+        if not lang_to_add:
+            printe.output(tp)
             continue
         # ---
-        numb += 1
+        if num % 50 == 0:
+            printe.output(tp)
         # ---
-        printe.output(f"work in {numb} from {all_lenth} querirs")
+        if p31 in railway_tables:
+            work_railway({}, p31, q=q)
+        # elif p31 in placesTable:
+        # work_railway( {}, p31, q=q )
+        else:
+            newdesc.work22(q, p31, desc_table)
+
+
+def work_one_quarry(quarry, p31, p31_desc):
+    json1 = wd_bot.sparql_generator_url(quarry)
+    # ---
+    quarry_result_lenth = len(json1)
+    # ---
+    topic_ar = p31_desc.get("ar") or p31_desc.get("en") or ""
+    # ---
+    p31_langs = list(p31_desc.keys())
+    # ---
+    work_one_json(json1, topic_ar, p31, p31_langs)
+    # ---
+    return quarry_result_lenth
+
+
+def main():
+    # lenth of desc_table and quarry_list
+    all_lenth = len(quarry_list) * len(desc_table)
+    # ---
+    numb = 0
+    # ---
+    for p31, p31_desc in desc_table.items():
         # ---
-        quarry = quarry.replace("wd:Q1457376", f"wd:{p31}")
+        quarry_result_lenth = 0
         # ---
-        if qu_numb == 1:
-            printe.output("<<lightred>> first quarry")
-            printe.output(quarry)
+        random.shuffle(quarry_list)
         # ---
-        json1 = wd_bot.sparql_generator_url(quarry)
-        # ---
-        json_lenth = len(json1)
-        # ---
-        quarry_result_lenth = len(json1)
-        # ---
-        num = 0
-        # ---
-        topic_ar = p31_desc.get("ar") or p31_desc.get("en") or ""
-        # ---
-        p31_langs = list(p31_desc.keys())
-        # ---
-        for item in json1:
-            num += 1
-            q = "item" in item and item["item"].split("/entity/")[1]
+        for qu_numb, quarry in enumerate(quarry_list):
             # ---
-            q_langs = item.get("langs", "").split(",")
-            # ---
-            lang_to_add = list(set(p31_langs) - set(q_langs))
-            # ---
-            tp = f'<<lightyellow>>*mainfromQuarry: {num} from {json_lenth} p31:"{p31}", qid:"{q}":<<lightblue>>{topic_ar}'
-            # ---
-            if qu_numb == 1:
-                printe.output(tp)
-            # ---
-            if not lang_to_add:
-                printe.output(tp)
+            if quarry_result_lenth == 0 and qu_numb > 1:
+                printe.output("<<lightred>> len of first quarry == 0 continue")
                 continue
             # ---
-            if num % 50 == 0:
-                printe.output(tp)
+            numb += 1
             # ---
-            if p31 in railway_tables:
-                work_railway({}, p31, q=q)
-            # elif p31 in placesTable:
-            # work_railway( {}, p31, q=q )
-            else:
-                newdesc.work22(q, p31, desc_table)
+            printe.output(f"work in {numb} from {all_lenth} querirs")
             # ---
-        # ---
+            quarry = quarry.replace("wd:Q1457376", f"wd:{p31}")
+            # ---
+            if qu_numb == 1:
+                printe.output("<<lightred>> first quarry")
+                printe.output(quarry)
+            # ---
+            quarry_result_lenth = work_one_quarry(quarry, p31, p31_desc)
+
+
+if __name__ == "__main__":
+    main()
