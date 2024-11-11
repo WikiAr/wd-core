@@ -82,4 +82,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if "test" in sys.argv:
+        himoAPI.Add_Labels_if_not_there("Q109927", "83 Beatrix", "ar", False)
+    else:
+        main()
