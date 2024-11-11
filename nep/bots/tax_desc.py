@@ -59,8 +59,8 @@ def make_tax_des_new(item):
     # ---
     if bs != []:
         bs = bs[0]
-        printe.output("bs:")
-        printe.output(bs)
+        # printe.output("bs:")
+        # printe.output(bs)
         # ---
         # [
         # {'P171': 'http://www.wikidata.org/entity/Q1390',
