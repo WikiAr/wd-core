@@ -1,41 +1,78 @@
 #!/usr/bin/python3
-# --
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-# ---
 """
-python pwb.py cy/jsub -page:كريس_فروم
-python pwb.py cy/jsub -ref:قالب:نتيجة_سباق_الدراجات/بداية
+
+python3 core8/pwb.py cy/jsub -page:جيروين_بلايلفينس ask
+python3 core8/pwb.py cy/jsub -page:إديتا_بوتشينسكايتي
+python3 core8/pwb.py cy/jsub -page:
+python3 core8/pwb.py cy/jsub -page:
+python3 core8/pwb.py cy/jsub -page:
+python3 core8/pwb.py cy/jsub -page:
+python3 core8/pwb.py cy/jsub -page:كريس_فروم
+
+python3 core8/pwb.py cy/jsub -ref:قالب:نتيجة_سباق_الدراجات/بداية
 python3 core8/pwb.py cy/jsub -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات
 
 https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_data_from_Arabic-Wikipedia
 
 """
 # ---
-#
-# (C) Ibrahem Qasim, 2022
-#
-# ---
+from newapi.page import MainPage
 
-import pywikibot
-
-# ---
-from cy.cy5 import *
-
-# ---
+from cy.do_text import make_new_text, template_params, do_One_Page
 import gent
 
 
+def onep(title):
+    # ---
+    page = MainPage(title, "ar", family="wikipedia")
+    # ---
+    if not page.exists():
+        return
+    # ---
+    if not page.can_edit():
+        return
+    # ---
+    if page.isDisambiguation():
+        return
+    # ---
+    if page.isRedirect():
+        return
+    # ---
+    text = page.get_text()
+    # ---
+    Qid, QidinTemplate = template_params(text, title)
+    # ---
+    if QidinTemplate:
+        item = Qid
+    # ---
+    if not item:
+        item = page.get_qid()
+    # ---
+    if not item:
+        return
+    # ---
+    # new_text = make_new_text(item, title, text)
+    new_text = do_One_Page(title, text, item)
+    # ---
+    if not new_text:
+        print(f"لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: {item}.")
+        return
+    # ---
+    if new_text == text:
+        print("no changes")
+        return
+    # ---
+    if new_text:
+        page.save(newtext=new_text, summary="بوت:تجربة تحديث بيانات اللاعب")
 
 
 def main2(*args):
     generator = gent.get_gent(listonly=True, *args)
+    # ---
     for numb, pagetitle in enumerate(generator, start=1):
-        pywikibot.output(f"page: {numb} : {pagetitle}")
-        StartOnePage(pagetitle)
+        print(f"page: {numb} : {pagetitle}")
+        onep(pagetitle)
 
 
-# ---
 if __name__ == "__main__":
     main2()
-# ---
