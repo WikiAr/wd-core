@@ -18,7 +18,7 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 # ---
 from newapi.page import MainPage
 
-from cy.do_text import make_new_text, template_params, do_One_Page
+from cy_bot.do_text import do_One_Page
 import gent
 
 
@@ -40,16 +40,7 @@ def onep(title):
     # ---
     text = page.get_text()
     # ---
-    Qid, QidinTemplate = template_params(text, title)
-    # ---
-    if QidinTemplate:
-        item = Qid
-    # ---
-    if not item:
-        item = page.get_qid()
-    # ---
-    if not item:
-        return
+    item = page.get_qid()
     # ---
     # new_text = make_new_text(item, title, text)
     new_text = do_One_Page(title, text, item)

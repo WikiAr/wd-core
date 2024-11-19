@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 """
+python3 /data/project/himo/bots/wd_core/cy/cy6.py -title:إديتا_بوتشينسكايتي
+python3 /data/project/himo/bots/wd_core/cy/cy6.py -title:جيروين_بلايلفينس
+
 python3 core8/pwb.py cy/cy6 -title:جيروين_بلايلفينس
 python3 core8/pwb.py cy/cy6 -title:إديتا_بوتشينسكايتي
 python3 core8/pwb.py cy/cy6 -title:
