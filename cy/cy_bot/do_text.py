@@ -7,14 +7,10 @@ from .do_text import make_new_text, do_One_Page
 import re
 
 # ---
-try:
-    from .cy_regs import make_data
-    from .cy_helps import printt, print_test2, GetSectionNew3, printo, TEST, CheckTempalteInPageText
-    from .cy_sparql import GetSparql
-except Exception:
-    from cy.cy_regs import make_data
-    from cy.cy_helps import printt, print_test2, GetSectionNew3, printo, TEST, CheckTempalteInPageText
-    from cy.cy_sparql import GetSparql
+from .cy_regs import make_data
+from .cy_helps import printt, print_test2, GetSectionNew3, printo, TEST, CheckTempalteInPageText
+from .cy_sparql import GetSparql
+
 # ---
 remove_date = {}
 Work_with_Year = {}

@@ -1,27 +1,30 @@
 #!/usr/bin/python3
 """
-python pwb.py cy/cy5 -page:باتريك_كونراد
-python pwb.py cy/cy5 -page:جويل_سوتير
-python pwb.py cy/cy5 -page:كريس_فروم
+python3 core8/pwb.py cy/cy6 -title:جيروين_بلايلفينس
+python3 core8/pwb.py cy/cy6 -title:إديتا_بوتشينسكايتي
+python3 core8/pwb.py cy/cy6 -title:
+python3 core8/pwb.py cy/cy6 -title:
+python3 core8/pwb.py cy/cy6 -title:
 
-python pwb.py cy/cy5  ask -title:إديتا_بوتشينسكايتي
-python pwb.py cy/cy5 workibrahem test2 -title:خوان_سباستيان_مولانو
-python pwb.py cy/cy5 workibrahem test2 -title:إليسا_ونغو_بورغيني ask
-python pwb.py cy/cy5 workibrahem test2 -title:كوين_سيمونز
+
+python3 core8/pwb.py cy/cy6 -title:باتريك_كونراد
+python3 core8/pwb.py cy/cy6 -title:جويل_سوتير
+python3 core8/pwb.py cy/cy6 -title:كريس_فروم
+
+python3 core8/pwb.py cy/cy6 -title:إديتا_بوتشينسكايتي
+python3 core8/pwb.py cy/cy6 workibrahem test2 -title:خوان_سباستيان_مولانو
+python3 core8/pwb.py cy/cy6 workibrahem test2 -title:إليسا_ونغو_بورغيني ask
+python3 core8/pwb.py cy/cy6 workibrahem test2 -title:كوين_سيمونز
 
 """
 
 import sys
 
 # ---
-try:
-    from .cy_api import page_put, GetPageText
-    from .do_text import do_One_Page
-    from .cy_helps import printt, printo, TEST
-except Exception:
-    from cy.cy_api import page_put, GetPageText
-    from cy.do_text import do_One_Page
-    from cy.cy_helps import printt, printo, TEST
+from cy_bot.cy_api import page_put, GetPageText
+from cy_bot.do_text import do_One_Page
+from cy_bot.cy_helps import printt, printo, TEST
+
 # ---
 workibrahem = "workibrahem" in sys.argv
 # ---
@@ -61,7 +64,7 @@ def main():
     # ---
     if TEST[1]:
         printt("TestMain:<br>")
-        # python pwb.py cy5 test
+        # python3 core8/pwb.py cy6 test
         StartOnePage("%D8%B1%D9%8A%D8%AA%D8%B4%D9%8A_%D8%A8%D9%88%D8%B1%D8%AA")
     # make_new_text('Q286183')#
     # ---
