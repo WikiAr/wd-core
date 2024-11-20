@@ -12,6 +12,7 @@ from newapi.page import MainPage
 from newapi import printe
 
 import tqdm
+import sys
 import gent
 
 
@@ -137,6 +138,16 @@ def main2(*args):
     generator = gent.get_gent(listonly=True, *args)
     # ---
     list_of_pages = [x for x in tqdm.tqdm(generator)]
+    # ---
+    # tfj run p1 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -ref:قالب:نتيجة_سباق_الدراجات/بداية p1"
+    if "p1" in sys.argv:
+        # split to 2 parts
+        list_of_pages = list_of_pages[: len(list_of_pages) // 2]
+    # ---
+    # tfj run p1 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -ref:قالب:نتيجة_سباق_الدراجات/بداية p2"
+    if "p2" in sys.argv:
+        # split to 2 parts
+        list_of_pages = list_of_pages[len(list_of_pages) // 2 :]
     # ---
     for numb, pagetitle in enumerate(list_of_pages, start=1):
         printe.output(f"<<yellow>> page: {numb}/{len(list_of_pages)} : {pagetitle}")

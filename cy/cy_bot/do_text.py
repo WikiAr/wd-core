@@ -5,10 +5,11 @@ from .do_text import make_new_text, do_One_Page
 """
 
 import re
+import wikitextparser as wtp
 
 # ---
 from .cy_regs import make_data
-from .cy_helps import printt, print_test2, GetSectionNew3, printo, TEST, CheckTempalteInPageText
+from .cy_helps import get_temps_str, get_temp_arg, printt, print_test2, GetSectionNew3, find_cy_temp, printo, TEST, CheckTempalteInPageText
 from .cy_sparql import GetSparql
 
 # ---
@@ -41,6 +42,46 @@ Work_with_Stage = {}
 
 
 def template_params(text, title):
+    # ---
+    parser = wtp.parse(text)
+    # ---
+    Qid = ""
+    results = False
+    # ---
+    for template in parser.templates:
+        # ---
+        temp_str = template.string
+        # ---
+        if not temp_str or temp_str.strip() == "":
+            continue
+        # ---
+        name = str(template.normal_name()).strip()
+        # ---
+        if name == "نتيجة سباق الدراجات/بداية":
+            # ---
+            t_date = get_temp_arg(template, "تاريخ")
+            if t_date and t_date.isdigit():
+                Work_with_Year[title] = int(t_date)
+                print_test2(f"Work_with_Year:{t_date}")
+            # ---
+            t_stages = get_temp_arg(template, "مراحل")
+            if t_stages:
+                printt("Work with Stage")
+                Work_with_Stage[title] = True
+            # ---
+            t_id = get_temp_arg(template, "id")
+            if t_id:
+                printt("** found currect line")
+                printt(f"id: {Qid}")
+                Qid = t_id
+                results = True
+            # ---
+            break
+    # ---
+    return Qid, results
+
+
+def template_params_old(text, title):
     # ---
     Frist = re.compile(r"\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}")
     # ---
@@ -205,7 +246,7 @@ def make_temp_lines(table, title, with_stages):
     if ranke and sss.strip() == "":
         if not with_stages and Len_of_valid_results.get(title, 0) > 10:
             if re.sub(r"المرتبة 1 في", "", ranke) == ranke and re.sub(r"الأول في", "", ranke) == ranke:
-                printt(" *** remove line with rank < 1.")
+                # printt(" *** remove line with rank < 1.")
                 return "", table2
     # ---
     if flag != newflag:
@@ -342,7 +383,7 @@ def fix_date(data, title):
 def make_new_section(qid, title):
     Date_List2 = []
     # ---
-    with_stages= Work_with_Stage.get(title, False)
+    with_stages = Work_with_Stage.get(title, False)
     # ---
     new_lines[title] = {}
     # ---
@@ -497,14 +538,26 @@ def make_new_text(item, title, text):
         printo(f"لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: {ur}.")
         return False
     # ---
-    sect, Frist = GetSectionNew3(text)
+    # old_sect, Frist = GetSectionNew3(text)
     # ---
-    work_tano(sect, title)
+    cy_temp = find_cy_temp(text)
+    # ---
+    old_sect = cy_temp
+    # ---
+    Frist = ""
+    first_tmp = ""
+    # ---
+    if cy_temp:
+        first_tmp = get_temps_str(cy_temp, "نتيجة سباق الدراجات/بداية")
+        if first_tmp:
+            Frist = first_tmp[0]
+    # ---
+    work_tano(old_sect, title)
     # ---
     Newsect = Frist + "\n" + Newsect + "{{نتيجة سباق الدراجات/نهاية}}"
     Newsect = re.sub(r"\n\n{{نتيجة سباق الدراجات/نهاية}}", "\n{{نتيجة سباق الدراجات/نهاية}}", Newsect)
     # ---
-    NewText = text.replace(sect, Newsect)
+    NewText = text.replace(old_sect, Newsect)
     # ---
     printt(f"showDiff of page: {title}<br>")
     # ---

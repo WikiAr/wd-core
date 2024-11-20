@@ -228,7 +228,7 @@ def findflag(race, flag):
 Skip_items = ["Q4115189"]
 
 
-def fix_label(label):
+def fx_label(label):
     label = label.strip()
 
     label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال", r"سباق الطريق في بطولة العالم \g<1>", label)
@@ -254,7 +254,7 @@ def fix_label(label):
     return label
 
 
-def make_temp_lines(table, title):
+def mk_temp_lines(table, title):
     # ---
     for rr in HeadVars:
         if rr not in table:
@@ -279,7 +279,7 @@ def make_temp_lines(table, title):
         race = f"[[{link}]]"
         label = link.split(" (")[0]
     # ---
-    label = fix_label(label)
+    label = fx_label(label)
     # ---
     if link:
         race = f"[[{link}|{label}]]" if label != link else f"[[{link}]]"
@@ -440,7 +440,7 @@ q22u = """SELECT
     }   } """
 
 
-def get_query_results(query):
+def gt_query_results(query):
     # ---
     query = re.sub(r"\n\s+", "\n", query)
     # ---
@@ -481,7 +481,7 @@ def get_query_results(query):
     return json1
 
 
-def GetSparql(qid, title):
+def GtSparql(qid, title):
     old_qu = """SELECT
     ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?p642label ?p585 ?p582 ?p580 ?title
     WHERE {
@@ -575,7 +575,7 @@ OPTIONAL { ?sitelink schema:about ?item
         qu2 = qu2.replace("FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q18131152 }", "")
     # }Limit 10  } """
     # ---
-    json1 = get_query_results(qu2)
+    json1 = gt_query_results(qu2)
     # ---
     for rr in json1.get("head", {}).get("vars", []):
         HeadVars.append(rr)
@@ -593,7 +593,7 @@ OPTIONAL { ?sitelink schema:about ?item
     qua3 = qua3.replace("FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q18131152 }", "")
     qua3 += f"\n#{menet}"
     # ---
-    json2 = get_query_results(qua3)
+    json2 = gt_query_results(qua3)
     # ---
     print("try 2")
     # ---
@@ -617,7 +617,7 @@ Len_of_results = {}
 Len_of_valid_results = {}
 
 
-def fix_results(table):
+def fx_results(table):
     results2 = {}
     # ---
     tata = {
@@ -641,7 +641,7 @@ def fix_results(table):
         },
     }
     # ---
-    printt(f"* Lenth fix_results: '{len(table)}' .")
+    printt(f"* Lenth fx_results: '{len(table)}' .")
     for params in table:
         # ---
         if params.get("itemlab", {}).get("value", "").lower().strip().startswith("q"):
@@ -692,7 +692,7 @@ def fix_results(table):
     return results2
 
 
-def fix_date(data, title):
+def fx_date(data, title):
     data2 = {}
     # ---
     p642label = 0
@@ -739,11 +739,11 @@ def fix_date(data, title):
     return data2
 
 
-def make_new_text(qid, title):
+def m_new_text(qid, title):
     Date_List2 = []
     # new_lines[title] = []
     new_lines[title] = {}
-    json1 = GetSparql(qid, title)
+    json1 = GtSparql(qid, title)
     # ---
     if not json1:
         return False
@@ -753,7 +753,7 @@ def make_new_text(qid, title):
     if len(bindings) < 1:
         return False
     # ---
-    results = fix_results(bindings)
+    results = fx_results(bindings)
     # ---
     Len_results = len(results)
     printt("* Lenth results: '%d' ." % Len_results)
@@ -775,7 +775,7 @@ def make_new_text(qid, title):
         # ---
         qidso[qq] = results[qq]
     # ---
-    qids_2 = fix_date(qidso, title)
+    qids_2 = fx_date(qidso, title)
     # ---
     Date_List2.sort()
     printt("**Date_List2: ")
@@ -810,7 +810,7 @@ def make_new_text(qid, title):
                         # ---
                         table[ss] = k
                 # ---
-                v, tab = make_temp_lines(table, title)
+                v, tab = mk_temp_lines(table, title)
                 # ---
                 if v:
                     vvv = re.sub(r"\n", "", v)
@@ -862,7 +862,7 @@ def GetSectionNew3(text):
 returntext = {1: True}
 
 
-def make_dada(NewText, MainTitle):
+def mk_dada(NewText, MainTitle):
     url = "https://" + "ar.wikipedia.org/w/index.php?title=" + ec_de_code(MainTitle, "decode") + "&action=submit"
     t = f"<form id='editform' name='editform' method='POST' action='{url}'>"
     t += f"<textarea id='wikitext-new' class='form-control' name='wpTextbox1'>{NewText}</textarea>"
@@ -908,7 +908,7 @@ def page_put(NewText, summ, MainTitle):
             # printo( r4.text )
         elif "abusefilter-disallowed" in r4.text and returntext[1]:
             texts = "</br>خطأ عند تعديل الصفحة، قم بنسخ المحتوى أدناه إلى الصفحة:</br>"
-            texts += make_dada(NewText, MainTitle)
+            texts += mk_dada(NewText, MainTitle)
             printo(texts)
         else:
             printo(r4.text)
@@ -1194,7 +1194,7 @@ def StartOnePage(title):
         return
     # ---
     printt(f"**item: {item}")
-    if NewText := make_new_text(item, title):
+    if NewText := m_new_text(item, title):
         printt("**puttext::: ")
         puttext(text, title, NewText)
     else:
@@ -1235,7 +1235,7 @@ def main():
         # StartOnePage('%D8%AF%D9%88%D9%85%D9%8A%D9%86%D9%8A%D9%83%D9%88_%D8%A8%D9%88%D8%B2%D9%88%D9%81%D9%8A%D9%81%D9%88')
         # StartOnePage('%D8%A2%D8%B4%D9%84%D9%8A_%D9%85%D9%88%D9%84%D9%85%D8%A7%D9%86')
         StartOnePage("%D8%B1%D9%8A%D8%AA%D8%B4%D9%8A_%D8%A8%D9%88%D8%B1%D8%AA")
-    # make_new_text('Q286183')#
+    # m_new_text('Q286183')#
     # ---
     # StartOnePage('%D8%B3%D9%8A%D9%84%D9%81%D8%A7%D9%86_%D8%AA%D8%B4%D8%A7%D9%81%D8%A7%D9%86%D9%8A%D9%84')
     if title:
@@ -1270,7 +1270,7 @@ tty = """
 
 """
 if __name__ == "__main__":
-    # GetSparql("Q3266987", "")
+    # GtSparql("Q3266987", "")
     main()
     # s, o = template_params(tty, "dfdfdf")
     # print(s)

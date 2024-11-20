@@ -1,10 +1,11 @@
 """
-from .cy_helps import printt, CheckTempalteInPageText, printo, print_test2, ec_de_code, TEST, GetSectionNew3, make_dada
+from .cy_helps import printt, CheckTempalteInPageText, printo, print_test2, ec_de_code, TEST, GetSectionNew3, make_dada, get_temp_arg
 
 """
 import sys
 import urllib.parse
 import re
+import wikitextparser as wtp
 
 br = "<br>"
 # ---
@@ -88,6 +89,15 @@ if "test2" in sys.argv:
     TEST[2] = True
 
 
+def get_temp_arg(temp, arg):
+    if temp.has_arg(arg):
+        dd = temp.get_arg(arg)
+        if dd and dd.value and dd.value.strip():
+            return dd.value.strip()
+    # --
+    return ""
+
+
 def ec_de_code(tt, type):
     fao = tt
     if type == "encode":
@@ -139,33 +149,44 @@ def printo(s):
 
 def CheckTempalteInPageText(text):
     printt("**CheckTempalteInPageText: <br>")
-    if text:
-        # ---
-        # \{\{template_tesult(\|id\=Q\d+|)\}\}
-        Topname = r"نتيجة سباق الدراجات\/بداية"
-        Top = r"\{\{" + Topname + r"\}\}"
-        # ---
-        Check_Top = re.sub(Top, "", text)
-        Top2 = r"\{\{" + Topname + r"\s*\|\s*id\s*\=\s*Q\d+\s*\}\}"
-        Check_Top2 = re.sub(Top2, "", text)
-        Top3 = r"\{\{" + Topname + r"\s*?.*?\}\}"
-        Check_Top3 = re.sub(Top3, "", text)
-        Bottom = r"\{\{نتيجة سباق الدراجات\/نهاية\}\}"
-        Check_Bottom = re.sub(Bottom, "", text)
-        # ---
-        if (text == Check_Top) and (text == Check_Top2) and (text == Check_Top3):
-            po = "لا يمكن إيجاد " + "{{نتيجة سباق الدراجات/بداية " + "في الصفحة. "
-            printo(po)
-            return False
-        elif text == Check_Bottom:
-            oo = "لا يمكن إيجاد " + "{{نتيجة سباق الدراجات/نهاية}} " + "في الصفحة. "
-            printo(oo)
-            return False
-        else:
-            printt(" * Tempaltes Already there.<br>")
-            return True
-    else:
+    if not text:
         printt(" * no text.<br>")
+        return
+    # ---
+    parser = wtp.parse(text)
+    # ---
+    temp_start = False
+    temp_end = False
+    # ---
+    temp_start_name = "نتيجة سباق الدراجات/بداية"
+    temp_end_name = "نتيجة سباق الدراجات/نهاية"
+    # ---
+    for template in parser.templates:
+        # ---
+        temp_str = template.string
+        # ---
+        if not temp_str or temp_str.strip() == "":
+            continue
+        # ---
+        name = str(template.normal_name()).strip()
+        # ---
+        if name == temp_end_name:
+            temp_end = True
+        # ---
+        if name == temp_start_name:
+            temp_start = True
+            # t_date = get_temp_arg(template, "تاريخ")
+    # ---
+    if not temp_start:
+        printo(f"لا يمكن إيجاد ({temp_start_name}) في الصفحة.")
+        return False
+    # ---
+    if not temp_end:
+        printo(f"لا يمكن إيجاد ({temp_end_name}) في الصفحة.")
+        return False
+    # ---
+    printt(" * Tempaltes Already there.<br>")
+    return True
 
 
 def GetSectionNew3(text):
@@ -190,3 +211,41 @@ def GetSectionNew3(text):
     text2 = text2 + "{{نتيجة سباق الدراجات/نهاية}}"
     # ---
     return text2, FirsPart
+
+
+def find_cy_temp(text):
+    start = "{{نتيجة سباق الدراجات/بداية"
+    end = "{{نتيجة سباق الدراجات/نهاية}}"
+    # ---
+    start_pos = text.find(start)
+    if start_pos < 0:
+        return
+    # ---
+    end_pos = text.find(end)
+    if end_pos < 0:
+        return
+    # ---
+    end_pos += len(end)
+    # ---
+    return text[start_pos:end_pos]
+
+
+def get_temps_str(text, temp_name):
+    # ---
+    parser = wtp.parse(text)
+    # ---
+    results = []
+    # ---
+    for template in parser.templates:
+        # ---
+        temp_str = template.string
+        # ---
+        if not temp_str or temp_str.strip() == "":
+            continue
+        # ---
+        name = str(template.normal_name()).strip()
+        # ---
+        if name == temp_name:
+            results.append(temp_str)
+    # ---
+    return results
