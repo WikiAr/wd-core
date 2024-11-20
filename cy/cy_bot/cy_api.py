@@ -12,12 +12,8 @@ import requests
 from urllib.parse import urlencode
 
 # ---
-try:
-    from . import useraccount
-    from .cy_helps import printt, printo, make_dada, ec_de_code, TEST
-except Exception:
-    from cy import useraccount
-    from cy.cy_helps import printt, printo, make_dada, ec_de_code, TEST
+from . import useraccount
+from .cy_helps import printt, printo, make_dada, ec_de_code, TEST
 
 api_url = "https://" + "ar.wikipedia.org/w/api.php"
 username = useraccount.username

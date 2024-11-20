@@ -12,10 +12,7 @@ import requests
 from datetime import datetime
 
 # ---
-try:
-    from .cy_helps import printt
-except Exception:
-    from cy.cy_helps import printt
+# from .cy_helps import printt
 # ---
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 

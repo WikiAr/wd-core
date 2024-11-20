@@ -4,12 +4,17 @@
 python3 core8/pwb.py cy/jsub -page:جيروين_بلايلفينس ask
 python3 core8/pwb.py cy/jsub -page:إديتا_بوتشينسكايتي
 python3 core8/pwb.py cy/jsub -page:
-python3 core8/pwb.py cy/jsub -page:
+python3 core8/pwb.py cy/jsub -page:قالب:نتيجة_سباق_الدراجات/ميغيل_إندوراين
+python3 core8/pwb.py cy/jsub -page:قالب:نتيجة_سباق_الدراجات/ألبيرتو_كونتادور
 python3 core8/pwb.py cy/jsub -page:
 python3 core8/pwb.py cy/jsub -page:
 python3 core8/pwb.py cy/jsub -page:كريس_فروم
 
 python3 core8/pwb.py cy/jsub -ref:قالب:نتيجة_سباق_الدراجات/بداية
+python3 core8/pwb.py cy/jsub -cat:
+python3 core8/pwb.py cy/jsub -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات/قوالب
+python3 core8/pwb.py cy/jsub -cat:
+python3 core8/pwb.py cy/jsub -cat:
 python3 core8/pwb.py cy/jsub -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات
 
 https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_data_from_Arabic-Wikipedia
@@ -18,7 +23,7 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 # ---
 from newapi.page import MainPage
 
-from cy.do_text import make_new_text, template_params, do_One_Page
+from cy_bot.do_text import do_One_Page
 import gent
 
 
@@ -40,18 +45,8 @@ def onep(title):
     # ---
     text = page.get_text()
     # ---
-    Qid, QidinTemplate = template_params(text, title)
+    item = page.get_qid()
     # ---
-    if QidinTemplate:
-        item = Qid
-    # ---
-    if not item:
-        item = page.get_qid()
-    # ---
-    if not item:
-        return
-    # ---
-    # new_text = make_new_text(item, title, text)
     new_text = do_One_Page(title, text, item)
     # ---
     if not new_text:
