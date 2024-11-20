@@ -27,8 +27,16 @@ from newapi.page import MainPage
 from cy_bot.do_text import do_One_Page
 import gent
 
+skip_titles = [
+    "قالب:نتيجة سباق الدراجات",
+    "قالب:نتيجة سباق الدراجات/بداية",
+]
+
 
 def onep(title):
+    # ---
+    if title in skip_titles:
+        return
     # ---
     page = MainPage(title, "ar", family="wikipedia")
     # ---

@@ -521,7 +521,7 @@ def make_new_text(item, title, text):
         ur = f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.'
         print_test2("no new section")
         printo(f"لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: {ur}.")
-        return False
+        return text
     # ---
     cy_temp = find_cy_temp(text)
     # ---
@@ -545,14 +545,14 @@ def make_new_text(item, title, text):
     printt(f"showDiff of page: {title}<br>")
     # ---
     if title not in states:
-        return False
+        return text
     # ---
     if states[title]["new_line"] != 0 or states[title]["removed_line"] != 0 and text != NewText:
         return NewText
     else:
         printo("nodiff")
     # ---
-    return "nodiff"
+    return text
 
 
 def do_One_Page(title, text, item=""):
@@ -561,7 +561,7 @@ def do_One_Page(title, text, item=""):
     # ---
     if not Check:
         printt("no Check: pass....<br>")
-        return
+        return text
     # ---
     printt("**Isre: ")
     # ---
@@ -579,7 +579,7 @@ def do_One_Page(title, text, item=""):
         printt(f"**{hte}")
     # ---
     if not item:
-        return
+        return text
     # ---
     printt(f"**item: {item}")
     # ---
@@ -588,10 +588,10 @@ def do_One_Page(title, text, item=""):
     if not NewText:
         ur = f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.'
         printo(f"لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: {ur}.")
-        return
+        return text
     # ---
     if NewText == "nodiff":
         printo("nodiff")
-        return
+        return text
     # ---
     return NewText
