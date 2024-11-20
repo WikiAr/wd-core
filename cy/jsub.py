@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """
+tfj run jsubx --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/jsub -ns:10 -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات/قوالب"
 
 python3 core8/pwb.py cy/jsub -page:جيروين_بلايلفينس ask
 python3 core8/pwb.py cy/jsub -page:إديتا_بوتشينسكايتي
