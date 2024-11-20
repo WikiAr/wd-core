@@ -72,8 +72,8 @@ def template_params(text, title):
             t_id = get_temp_arg(template, "id")
             if t_id:
                 printt("** found currect line")
-                printt(f"id: {Qid}")
                 Qid = t_id
+                printt(f"id: {Qid}")
                 results = True
             # ---
             break

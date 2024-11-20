@@ -74,6 +74,9 @@ def find_cy_temp(text):
     if end_pos < 0:
         return
     # ---
+    if end_pos < start_pos:
+        return
+    # ---
     end_pos += len(end)
     # ---
     return text[start_pos:end_pos]
