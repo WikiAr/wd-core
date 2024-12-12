@@ -8,8 +8,8 @@ import re
 import wikitextparser as wtp
 
 # ---
-from .cy_regs import make_data
-from .cy_helps import get_temps_str, get_temp_arg, printt, print_test2, GetSectionNew3, find_cy_temp, printo, TEST, CheckTempalteInPageText
+from .cy_regs import make_data_new
+from .cy_helps import get_temps_str, get_temp_arg, printt, print_test2, find_cy_temp, printo, TEST, CheckTempalteInPageText
 from .cy_sparql import GetSparql
 
 # ---
@@ -79,35 +79,6 @@ def template_params(text, title):
             break
     # ---
     return Qid, results
-
-
-def template_params_old(text, title):
-    # ---
-    Frist = re.compile(r"\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}")
-    # ---
-    pas = Frist.findall(text)
-    # ---
-    if not pas:
-        return False, False
-    # ---
-    params = str(pas[0])
-    params = re.sub(r"\s*\=\s*", "=", params)
-    params = re.sub(r"\s*\|\s*", "|", params)
-    if do := re.search(r".*\|تاريخ\=(\d+)(\}\}|\|)", text):
-        Work_with_Year[title] = int(do.group(1))
-        print_test2(f"Work_with_Year:{do.group(1)}")
-    # ---
-    if re.sub(r"مراحل\s*\=\s*نعم", "", params) != params:
-        printt("Work with Stage")
-        Work_with_Stage[title] = True
-    # ---
-    if re.sub(r".*id\s*\=\s*(Q\d+).*", r"\g<1>", params) != params:
-        printt("** found currect line")
-        Qid = re.sub(r".*id\=(Q\d+).*", r"\g<1>", params)
-        printt(f"id: {Qid}")
-        return Qid, True
-    # ---
-    return False, False
 
 
 def findflag(race, flag):
@@ -380,6 +351,60 @@ def fix_date(data, title):
     return data2
 
 
+def tab_sub_x(tao):
+    table = {}
+    # ---
+    for ss in tao:
+        space = "، "
+        # ---
+        if ss in ["imagejersey", "p17lab"]:
+            space = ""
+        # ---
+        faso = sorted(tao[ss])
+        # ---
+        if len(faso) > 0:
+            if len(faso) == 1 or ss == "p17lab":
+                k = faso[0]
+            elif len(faso) > 1:
+                k = space.join(faso)
+            # ---
+            if ss == "Date":
+                k = faso[0]
+            # ---
+            table[ss] = k
+    # ---
+    return table
+
+
+def make_text_sec(Date_List2, qids_2, title, with_stages):
+    texxt = ""
+    # ---
+    for dd in Date_List2:
+        for qoo, tao in qids_2.items():
+            # ---
+            if qoo in Skip_items:
+                continue
+            # ---
+            date = tao["Date"][0]
+            # ---
+            if dd == date:
+                table = tab_sub_x(tao)
+                # ---
+                v, tab = make_temp_lines(table, title, with_stages)
+                # ---
+                if v:
+                    # vvv = re.sub(r"\n", "", v)
+                    new_lines[title][qoo] = tab
+                    new_lines[title][qoo]["qid"] = qoo
+                    new_lines[title][qoo]["race"] = tab.get("race", "")
+                    new_lines[title][qoo]["p17"] = tab.get("p17", "")
+                    new_lines[title][qoo]["poss"] = tab.get("poss", "")
+                    # ---
+                    texxt = texxt + v + "\n"
+    # ---
+    return texxt
+
+
 def make_new_section(qid, title):
     Date_List2 = []
     # ---
@@ -427,48 +452,8 @@ def make_new_section(qid, title):
     Date_List2.sort()
     printt("**Date_List2: ")
     # ---
-    texxt = ""
-    for dd in Date_List2:
-        for qoo, tao in qids_2.items():
-            # ---
-            if qoo in Skip_items:
-                continue
-            # ---
-            date = tao["Date"][0]
-            # ---
-            if dd == date:
-                table = {}
-                # ---
-                for ss in tao:
-                    space = "، "
-                    if ss in ["imagejersey", "p17lab"]:
-                        space = ""
-                    # ---
-                    faso = sorted(tao[ss])
-                    # ---
-                    if len(faso) > 0:
-                        if len(faso) == 1 or ss == "p17lab":
-                            k = faso[0]
-                        elif len(faso) > 1:
-                            k = space.join(faso)
-                        # ---
-                        if ss == "Date":
-                            k = faso[0]
-                        # ---
-                        table[ss] = k
-                # ---
-                v, tab = make_temp_lines(table, title, with_stages)
-                # ---
-                if v:
-                    # vvv = re.sub(r"\n", "", v)
-                    new_lines[title][qoo] = tab
-                    new_lines[title][qoo]["qid"] = qoo
-                    new_lines[title][qoo]["race"] = tab.get("race", "")
-                    new_lines[title][qoo]["p17"] = tab.get("p17", "")
-                    new_lines[title][qoo]["poss"] = tab.get("poss", "")
-                    # ---
-                    texxt = texxt + v + "\n"
-                # ---
+    texxt = make_text_sec(Date_List2, qids_2, title, with_stages)
+    # ---
     note = "<!-- هذه القائمة يقوم بوت: [[مستخدم:Mr._Ibrahembot]] بتحديثها من ويكي بيانات بشكل دوري. -->\n"
     texxt = note + texxt
     # ---
@@ -484,7 +469,7 @@ def make_new_section(qid, title):
 
 def work_tano(text, MainTitle):
     # ---
-    lines[MainTitle] = make_data(text)
+    lines[MainTitle] = make_data_new(text)
     # ---
     new_line = 0
     same_line = 0
@@ -536,9 +521,7 @@ def make_new_text(item, title, text):
         ur = f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.'
         print_test2("no new section")
         printo(f"لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: {ur}.")
-        return False
-    # ---
-    # old_sect, Frist = GetSectionNew3(text)
+        return text
     # ---
     cy_temp = find_cy_temp(text)
     # ---
@@ -562,14 +545,14 @@ def make_new_text(item, title, text):
     printt(f"showDiff of page: {title}<br>")
     # ---
     if title not in states:
-        return False
+        return text
     # ---
     if states[title]["new_line"] != 0 or states[title]["removed_line"] != 0 and text != NewText:
         return NewText
     else:
         printo("nodiff")
     # ---
-    return "nodiff"
+    return text
 
 
 def do_One_Page(title, text, item=""):
@@ -578,7 +561,7 @@ def do_One_Page(title, text, item=""):
     # ---
     if not Check:
         printt("no Check: pass....<br>")
-        return
+        return text
     # ---
     printt("**Isre: ")
     # ---
@@ -596,7 +579,7 @@ def do_One_Page(title, text, item=""):
         printt(f"**{hte}")
     # ---
     if not item:
-        return
+        return text
     # ---
     printt(f"**item: {item}")
     # ---
@@ -605,10 +588,10 @@ def do_One_Page(title, text, item=""):
     if not NewText:
         ur = f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.'
         printo(f"لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: {ur}.")
-        return
+        return text
     # ---
     if NewText == "nodiff":
         printo("nodiff")
-        return
+        return text
     # ---
     return NewText

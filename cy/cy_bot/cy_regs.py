@@ -1,61 +1,68 @@
 """
 
-from .cy_regs import regline
+from .cy_regs import make_data_new
+
+python3 I:/core/bots/wd_core/cy/cy_bot/cy_regs.py
 
 """
-import re
+import wikitextparser as wtp
 
-regline = r"\{\{نتيجة سباق الدراجات/سطر4"
-regline += r"\|\s*qid\s*\=(?P<qid>Q\d+)"
-regline += r"\|\s*السباق\s*\=(?P<race>.*)"
-regline += r"\|\s*البلد\s*\=(?P<p17>.*)"
-regline += r"\|\s*التاريخ\s*\=(?P<date>.*)"
-regline += r"\|\s*المركز\s*\=(?P<poss>.*)"
-regline += r"\|\s*(?:rank|المرتبة)\s*\=(?P<rank>.*)"
-regline += r"\|\s*جيرسي\s*\=(?P<jersey>.*)"
-regline += r"\s*\|\}\}"
+from .cy_helps import get_temp_arg
 
 
-def make_data(text):
-    # ---
-    # reg_line = r"\{\{نتيجة سباق الدراجات\/سطر4([^{]|\{[^{]|\{\{[^{}]+\}\})+\}\}"
-    # re.compile(reg_line)
-    # ---
-    comont = "<!-- هذه القائمة يقوم بوت: [[مستخدم:Mr._Ibrahembot]] بتحديثها من ويكي بيانات بشكل دوري. -->"
-    # ---
-    if text.startswith("{{نتيجة سباق الدراجات/بداية}}\n" + comont):
-        text = text.replace("{{نتيجة سباق الدراجات/بداية}}\n" + comont, "")
-    # ---
-    text = text.replace("{{نتيجة سباق الدراجات/نهاية}}", "")
-    text = text.strip()
+def make_data_new(text):
     # ---
     tab = {}
     # ---
-    vf = text.split("{{نتيجة سباق الدراجات/سطر4")
+    temp_name = "نتيجة سباق الدراجات/سطر4"
     # ---
-    if vf:
+    parser = wtp.parse(text)
+    # ---
+    for template in parser.templates:
         # ---
-        for pp in vf:
-            if not pp:
+        temp_str = template.string
+        # ---
+        if not temp_str or temp_str.strip() == "":
+            continue
+        # ---
+        name = str(template.normal_name()).strip()
+        # ---
+        if name == temp_name:
+            q_id = get_temp_arg(template, "qid")
+            # ---
+            if not q_id:
                 continue
-            # ---
-            if not pp.startswith("{{نتيجة سباق الدراجات/سطر4"):
-                pp = "{{نتيجة سباق الدراجات/سطر4" + pp
-            # ---
-            q_id = ""
-            ppr = re.sub(r"\n", "", pp)
-            # ---
-            q_id = re.sub(r"\{\{نتيجة سباق الدراجات\/سطر4\|qid\s*\=\s*(Q\d+)\|.*\}\}", r"\g<1>", ppr)
-            # ---
-            if hhh := re.match(r".*(Q\d+).*", ppr):
-                if q_id != hhh.group(1):
-                    q_id = hhh.group(1)
             # ---
             tab[q_id] = {}
             tab[q_id]["qid"] = q_id
-            tab[q_id]["poss"] = re.sub(regline, r"\g<poss>", ppr)
-            tab[q_id]["rank"] = re.sub(regline, r"\g<rank>", ppr)
-            tab[q_id]["race"] = re.sub(regline, r"\g<race>", ppr)
-            tab[q_id]["p17"] = re.sub(regline, r"\g<p17>", ppr)
+            tab[q_id]["poss"] = get_temp_arg(template, "المركز")
+            tab[q_id]["rank"] = get_temp_arg(template, "المرتبة")
+            # ---
+            if not tab[q_id]["rank"]:
+                tab[q_id]["rank"] = get_temp_arg(template, "rank")
+            # ---
+            tab[q_id]["race"] = get_temp_arg(template, "السباق")
+            tab[q_id]["p17"] = get_temp_arg(template, "البلد")
+            tab[q_id]["jersey"] = get_temp_arg(template, "جيرسي")
     # ---
     return tab
+
+
+def test():
+    text = """{{نتيجة سباق الدراجات/سطر4
+|qid = Q110775370
+|السباق = 2022 Tour de Romandie Féminin
+|البلد = {{رمز علم|سويسرا}}
+|التاريخ = 2022-10-09T00:00:00Z
+|المركز = الفائز في التصنيف العام
+|المرتبة = الأول في التصنيف العام، الثالث في تصنيف الجبال، السادس في تصنيف النقاط
+|جيرسي = {{نتيجة سباق الدراجات/جيرسي|Jersey_green.svg|قميص أخضر لمتصدر الترتيب العام}}
+}}"""
+    # ---
+    tab2 = make_data_new(text)
+    # ---
+    print(tab2)
+
+
+if __name__ == "__main__":
+    test()

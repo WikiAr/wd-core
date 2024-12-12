@@ -2,10 +2,12 @@
 """
 
 python3 core8/pwb.py cy/mv -ns:0 -ref:قالب:نتيجة_سباق_الدراجات/بداية ask nodiff
+python3 core8/pwb.py cy/mv -ns:0 -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات nofa
 
 https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_data_from_Arabic-Wikipedia
 
-tfj run jsubp1 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -ref:قالب:نتيجة_سباق_الدراجات/بداية p1"
+tfj run jsuw1 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات p1 nofa"
+tfj run jsuw2 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات p2 nofa"
 tfj run jsubp2 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -ref:قالب:نتيجة_سباق_الدراجات/بداية p2"
 tfj run jsubp3 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -ref:قالب:نتيجة_سباق_الدراجات/بداية p3"
 tfj run jsubp4 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -ref:قالب:نتيجة_سباق_الدراجات/بداية p4"
@@ -117,6 +119,12 @@ def onep(title):
         return
     # ---
     if page.isRedirect():
+        return
+    # ---
+    ns = page.namespace()
+    # ---
+    if ns != 0:
+        printe.output(f"<<red>> page:{title} {ns=} not in main namespace.")
         return
     # ---
     text = page.get_text()

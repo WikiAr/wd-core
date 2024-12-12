@@ -1,14 +1,11 @@
 """
-from .cy_helps import printt, CheckTempalteInPageText, printo, print_test2, ec_de_code, TEST, GetSectionNew3, make_dada, get_temp_arg
+from .cy_helps import printt, CheckTempalteInPageText, printo, print_test2, ec_de_code, TEST, make_dada, get_temp_arg
 
 """
 import sys
 import urllib.parse
-import re
 import wikitextparser as wtp
 
-br = "<br>"
-# ---
 qu_2018 = """SELECT
 ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?jersey_3 ?jersey_4 ?p642label ?p585 ?p582 ?p580 ?title
 WHERE {
@@ -187,30 +184,6 @@ def CheckTempalteInPageText(text):
     # ---
     printt(" * Tempaltes Already there.<br>")
     return True
-
-
-def GetSectionNew3(text):
-    printt("**GetSectionNew3: ")
-    text = text
-    text2 = text
-    FirsPart = ""
-    # temp1 = '{{نتيجة سباق الدراجات/بداية|wikidatalist=t}}'
-    # temptop = '{{نتيجة سباق الدراجات/بداية}}'
-    # ---
-    Frist = re.compile(r"\{\{نتيجة سباق الدراجات\/بداية\s*?.*?\}\}")
-    if Fristsss := Frist.findall(text2):
-        printt("Section: ")
-        FirsPart = Fristsss[0]
-        printt(FirsPart)
-    # ---
-    if FirsPart:
-        text2 = text2.split(FirsPart)[1]
-        text2 = FirsPart + text2
-    # ---
-    text2 = text2.split("{{نتيجة سباق الدراجات/نهاية}}")[0]
-    text2 = text2 + "{{نتيجة سباق الدراجات/نهاية}}"
-    # ---
-    return text2, FirsPart
 
 
 def find_cy_temp(text):
