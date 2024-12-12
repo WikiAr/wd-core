@@ -52,6 +52,7 @@ sys.argv.append("-lang:wikidata")
 # ---
 import time
 from pathlib import Path
+
 # ---
 from newapi import printe
 import gent
@@ -130,7 +131,7 @@ def mainwithcat2():
         lista = [x.strip() for x in oco if x.strip() != ""]
     # ---
     elif newpages:
-        lista = api_new.Get_Newpages(limit=newpages, namespace=namespaces, rcstart="", user="")
+        lista = api_new.Get_Newpages(limit=newpages, namespace=namespaces, offset_hours=1)
     # ---
     elif user:
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")
