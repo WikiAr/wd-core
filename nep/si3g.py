@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """
+tfj run dsdcc --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -family:wikidata -lang:wikidata -start:Q500"
 
 tfj run ghu --mem 1Gi --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -usercontribs:Ghuron"
 tfj run Q482994 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py neq/nldes3 a2r sparql:Q482994"
