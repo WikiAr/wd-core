@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-tfj run dsdcc --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -family:wikidata -lang:wikidata -start:Q500"
+tfj run new1 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -family:wikidata -lang:wikidata -start:Q500"
 
+tfj run ghu --mem 1Gi --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -newpages:40000"
 tfj run ghu --mem 1Gi --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -usercontribs:Ghuron"
 tfj run Q482994 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py neq/nldes3 a2r sparql:Q482994"
 
@@ -16,6 +17,7 @@ python3 core8/pwb.py nep/si3g ask -page:Q21205603
 python3 core8/pwb.py nep/si3g ask -page:Q130316095
 python3 core8/pwb.py nep/si3g ask -page:Q130340916
 python3 core8/pwb.py nep/si3g ask -page:Q21032508
+python3 core8/pwb.py nep/si3g -page:Q131442910
 python3 core8/pwb.py nep/si3g -page:Q130212038
 python3 core8/pwb.py nep/si3g -page:Q129594209
 python3 core8/pwb.py nep/si3g -page:Q112167358
