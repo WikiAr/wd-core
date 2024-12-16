@@ -201,6 +201,10 @@ def work_qid_desc(item, topic, num):
         print("work_qid_desc nothing to add. ")
         return
     # ---
+    if len(NewDesc) < 5:
+        printe.output(f"<<lightyellow>> len of NewDesc < 5: ({str(NewDesc)})")
+        return
+    # ---
     printe.output(f"<<lightyellow>> **{num}: work_qid_desc:{q}  ({topic})")
     work_a_desc(NewDesc, q, [])
 
