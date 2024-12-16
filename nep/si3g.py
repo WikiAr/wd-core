@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """
+tfj run dsdcc --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -family:wikidata -lang:wikidata -start:Q500"
 
 tfj run ghu --mem 1Gi --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -usercontribs:Ghuron"
 tfj run Q482994 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py neq/nldes3 a2r sparql:Q482994"
@@ -52,6 +53,7 @@ sys.argv.append("-lang:wikidata")
 # ---
 import time
 from pathlib import Path
+
 # ---
 from newapi import printe
 import gent
@@ -130,7 +132,7 @@ def mainwithcat2():
         lista = [x.strip() for x in oco if x.strip() != ""]
     # ---
     elif newpages:
-        lista = api_new.Get_Newpages(limit=newpages, namespace=namespaces, rcstart="", user="")
+        lista = api_new.Get_Newpages(limit=newpages, namespace=namespaces, offset_minutes=20)
     # ---
     elif user:
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")

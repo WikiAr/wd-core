@@ -77,8 +77,12 @@ def main():
         printe.output(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')
         # ---
         if page:
-            himoAPI.Labels_API(qid, page, "ar", False, Or_Alii=True)
+            # himoAPI.Labels_API(qid, page, "ar", False, Or_Alii=True)
+            himoAPI.Add_Labels_if_not_there(qid, page, "ar", False)
 
 
 if __name__ == "__main__":
-    main()
+    if "test" in sys.argv:
+        himoAPI.Add_Labels_if_not_there("Q109927", "83 Beatrix", "ar", False)
+    else:
+        main()
