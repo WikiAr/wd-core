@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 
+from people.people_get_topic import job_to_qid, nat_to_qid
 from people.people_get_topic import get_topic
 
 python3 core8/pwb.py people/people_get_topic

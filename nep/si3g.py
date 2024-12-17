@@ -156,7 +156,7 @@ def mainwithcat2():
     printe.output("*<<lightred>> > mainwithcat2 :")
     # ---
     for num, q in enumerate(lista, start=1):
-        si3.ISRE(q, num, lena, get_nl_des=False)
+        si3.ISRE(q, num, lena)
     # ---
     si3.print_new_types()
     # ---
