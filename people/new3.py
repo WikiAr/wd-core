@@ -2,6 +2,7 @@
 """
 
 python3 core8/pwb.py people/new3
+python3 core8/pwb.py people/new3 -job:rules_footballer ask
 python3 core8/pwb.py people/new3 -nat:Yemeni ask
 python3 core8/pwb.py people/new3 -nat:American limit:200
 
