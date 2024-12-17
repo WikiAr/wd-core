@@ -17,6 +17,11 @@ python3 core8/pwb.py nep/si3g ask -page:Q21205603
 python3 core8/pwb.py nep/si3g ask -page:Q130316095
 python3 core8/pwb.py nep/si3g ask -page:Q130340916
 python3 core8/pwb.py nep/si3g ask -page:Q21032508
+python3 core8/pwb.py nep/si3g -page:
+python3 core8/pwb.py nep/si3g -page:
+python3 core8/pwb.py nep/si3g -page:Q301263
+python3 core8/pwb.py nep/si3g -page:
+python3 core8/pwb.py nep/si3g -page:
 python3 core8/pwb.py nep/si3g -page:Q131442910
 python3 core8/pwb.py nep/si3g -page:Q130212038
 python3 core8/pwb.py nep/si3g -page:Q129594209
@@ -151,7 +156,7 @@ def mainwithcat2():
     printe.output("*<<lightred>> > mainwithcat2 :")
     # ---
     for num, q in enumerate(lista, start=1):
-        si3.ISRE(q, num, lena)
+        si3.ISRE(q, num, lena, get_nl_des=False)
     # ---
     si3.print_new_types()
     # ---

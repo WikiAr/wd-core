@@ -144,7 +144,7 @@ def work_qid_desc(item, topic, num):
     work_a_desc(NewDesc, q, [])
 
 
-def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
+def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
     # ---
     printe.output(f"--- *<<lightyellow>> >{num}/{lenth}: q:{qitem}")
     # ---
@@ -179,7 +179,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
     descriptions = item.get("descriptions", {})
     endes = descriptions.get("en", "")
     # ---
-    if not endes:
+    if not endes and get_nl_des:
         endes = descriptions.get("nl", "")
     # ---
     ardes = descriptions.get("ar", "")
