@@ -27,6 +27,14 @@ Dir = Path(__file__).parent
 # ---
 translationsOccupations = {}
 tra_occ_2 = {
+    "~ lyricist": {
+        "ar": {"male": "شاعر غنائي ~", "female": "شاعرة غنائية ~"},
+        "en": {"male": "~ lyricist", "female": "~ lyricist"},
+    },
+    "~ imam": {
+        "ar": {"male": "إمام ~", "female": ""},
+        "en": {"male": "~ imam", "female": ""},
+    },
     "~ art historian": {
         "ar": {"male": "مؤرخ فن ~", "female": "مؤرخة فن ~"},
         "bn": {"male": "~ শিল্প ইতিহাসবিদ", "female": "~ শিল্প ইতিহাসবিদ"},

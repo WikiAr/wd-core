@@ -431,7 +431,8 @@ def get_topic(item):
     p27_lab = qid_to_p27.get(P27)
     # ---
     if p106_lab and p27_lab:
-        lab = p106_lab.replace("~", p27_lab)
+        # lab = p106_lab.replace("~", p27_lab)
+        lab = f"{p27_lab} {p106_lab}"
         printe.output(f" topic:{lab}")
     # ---
     if not lab:
