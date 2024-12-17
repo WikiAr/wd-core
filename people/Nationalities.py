@@ -6,7 +6,8 @@
 
 جميع اللغات
 
-https://github.com/emijrp/wikidata/blob/core/bots/master/human.descriptions.py
+https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
+
 
 """
 #
@@ -33,9 +34,9 @@ tra = translationsNationalities
 
 def main():
     for k in tra.keys():
-        if "ar" in tra[k] and "female" in tra[k]["ar"]:
-            pywikibot.output(f"   , \"{k}\" : \"{tra[k]['ar']['female']}\"")
+        pywikibot.output(f'\t"{k}" : "",')
 
 
 if __name__ == "__main__":
+    # python3 core8/pwb.py people/Nationalities
     main()

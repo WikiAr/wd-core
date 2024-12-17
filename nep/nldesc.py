@@ -11,8 +11,9 @@ from newapi import printe
 from himo_api import himoAPI
 from wd_api import wd_bot
 
-from nep.si3 import do_P1433_new_list, work_people, make_scientific_art
+from nep.si3 import do_P1433_new_list, make_scientific_art
 from nep.bots.tax_desc import work_taxon_desc
+from nep.wr_people import work_people
 
 # ---
 from desc_dicts.descraptions import Qid_Descraptions
