@@ -411,8 +411,8 @@ nat_to_qid = {
     "New Zealander": "Q664",
 }
 
-qid_to_p27 = {n: q for q, n in nat_to_qid.items()}
-qid_to_job = {n: q for q, n in job_to_qid.items()}
+qid_to_p27 = {q: n for n, q in nat_to_qid.items() if n != "" and q != ""}
+qid_to_job = {q: n for n, q in job_to_qid.items() if n != "" and q != ""}
 
 
 def get_claim_id(item, prop):
