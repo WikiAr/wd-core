@@ -10,60 +10,77 @@ import sys
 from newapi import printe
 from nep import si3
 from wd_api import wd_bot
-from people.people_get_topic import print_new_jobs, job_to_qid, nat_to_qid
+from people.people_get_topic import print_new_jobs, qid_to_p27, qid_to_job
 
-qua = """
-SELECT DISTINCT
-?item
-(concat(strafter(str(?item),"/entity/"))  as ?qid)
 
-WHERE {
-    #sr
-    ?item wdt:P31 wd:Q5 .
-    ?item wdt:P21 ?p211.
-    ?item wdt:P27 ?p27.
-    ?item wdt:P106 ?p106.
-    FILTER NOT EXISTS {?item schema:description ?en filter (lang(?en) = "en")} .
-}
+def get_qua():
+    qua = """
+    SELECT DISTINCT
+    ?item
+    (concat(strafter(str(?item),"/entity/"))  as ?qid)
 
-"""
-limit = {1: "500"}
-P106 = {1: []}
-P27 = {1: []}
+    WHERE {
+        #sr
+        ?item wdt:P31 wd:Q5 .
+        ?item wdt:P21 ?p211.
+        ?item wdt:P27 ?p27.
+        ?item wdt:P106 ?p106.
+        FILTER NOT EXISTS {?item schema:description ?en filter (lang(?en) = "en")} .
+    }
 
-for arg in sys.argv:
+    """
+    limit = {1: "500"}
     # ---
-    arg, _, value = arg.partition(":")
+    P106 = {1: []}
+    P27 = {1: []}
     # ---
-    if arg.startswith("-"):
-        arg = arg[1:]
-    # ---
-    if arg == "limit":
-        limit[1] = value
-    # ---
-    if arg.lower() == "p106":
-        P106[1].append(value)
-    # ---
-    if arg.lower() == "p27":
-        P27[1].append(value)
+    for arg in sys.argv:
+        # ---
+        arg, _, value = arg.partition(":")
+        # ---
+        if arg.startswith("-"):
+            arg = arg[1:]
+        # ---
+        if arg == "limit":
+            limit[1] = value
+        # ---
+        if arg.lower() == "p106":
+            P106[1].append(value)
+        # ---
+        if arg.lower() == "p27":
+            P27[1].append(value)
 
-qua += f"\n limit {limit[1]}"
-# ---
-if P106[1]:
-    line = "values ?p106 {" + " ".join([f"wd:{x}" for x in P106[1]]) + "} \n #sr"
-    qua = qua.replace("#sr", line, 1)
-# ---
-if P27[1]:
-    line = "values ?p27 {" + " ".join([f"wd:{x}" for x in P27[1]]) + "} \n #sr"
-    qua = qua.replace("#sr", line, 1)
+    qua += f"\n limit {limit[1]}"
+    # ---
+    if not P106[1]:
+        P106[1] = list(set(qid_to_job.keys()))
+    # ---
+    printe.output(f" len P106:{len(P106[1])}")
+    # ---
+    if not P27[1]:
+        P27[1] = list(set(qid_to_p27.keys()))
+    # ---
+    printe.output(f" len P27:{len(P27[1])}")
+    # ---
+    if P106[1]:
+        line = "values ?p106 {" + " ".join([f"wd:{x}" for x in P106[1]]) + "} \n #sr"
+        qua = qua.replace("#sr", line, 1)
+    # ---
+    if P27[1]:
+        line = "values ?p27 {" + " ".join([f"wd:{x}" for x in P27[1]]) + "} \n #sr"
+        qua = qua.replace("#sr", line, 1)
+    # ---
+    return qua
 
 
 def main():
     printe.output("*<<lightred>> > main:")
     # ---
-    lista = wd_bot.sparql_generator_url(qua)
+    qua = get_qua()
     # ---
     printe.output(f"*<<yellow>> {qua} :")
+    # ---
+    lista = wd_bot.sparql_generator_url(qua)
     # ---
     for num, tab in enumerate(lista, start=1):
         qid = tab["qid"]
