@@ -3,6 +3,7 @@
 
 from people.people_get_topic import job_to_qid, nat_to_qid
 from people.people_get_topic import get_topic
+from people.people_get_topic import print_new_jobs
 
 python3 core8/pwb.py people/people_get_topic
 

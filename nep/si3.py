@@ -16,6 +16,7 @@ from wd_api import wd_bot
 
 from desc_dicts.descraptions import replace_desc
 from nep.wr_people import work_people
+from people.people_get_topic import print_new_jobs
 from nep.bots.helps import Get_P_API_id, log_new_types
 from nep.bots.scientific_article import make_scientific_article
 from nep.bots.tax_desc import work_taxon_desc
@@ -244,3 +245,5 @@ def print_new_types():
     for lenth, p31 in lists:
         # ---
         printe.output(f"find:{lenth} : P31:{p31}")
+    # ---
+    print_new_jobs()
