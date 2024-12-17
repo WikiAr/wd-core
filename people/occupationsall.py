@@ -591,3 +591,8 @@ for yy in translationsOccupations.values():
 # ---
 
 # ---
+
+if __name__ == "__main__":
+    # python3 core8/pwb.py people/occupationsall
+    for k in translationsOccupations.keys():
+        print(f'\t"{k}" : "",')

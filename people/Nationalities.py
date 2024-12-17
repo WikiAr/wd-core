@@ -14,7 +14,6 @@ https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
 # (C) Ibrahem Qasim, 2022
 #
 #
-import pywikibot
 from pathlib import Path
 import json
 
@@ -31,12 +30,7 @@ translationsNationalities["New Zealander"] = translationsNationalities["New Zeal
 # ---
 tra = translationsNationalities
 
-
-def main():
-    for k in tra.keys():
-        pywikibot.output(f'\t"{k}" : "",')
-
-
 if __name__ == "__main__":
     # python3 core8/pwb.py people/Nationalities
-    main()
+    for k in tra.keys():
+        print(f'\t"{k}" : "",')
