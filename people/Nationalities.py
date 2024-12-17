@@ -6,14 +6,14 @@
 
 جميع اللغات
 
-https://github.com/emijrp/wikidata/blob/core/bots/master/human.descriptions.py
+https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
+
 
 """
 #
 # (C) Ibrahem Qasim, 2022
 #
 #
-import pywikibot
 from pathlib import Path
 import json
 
@@ -30,12 +30,7 @@ translationsNationalities["New Zealander"] = translationsNationalities["New Zeal
 # ---
 tra = translationsNationalities
 
-
-def main():
-    for k in tra.keys():
-        if "ar" in tra[k] and "female" in tra[k]["ar"]:
-            pywikibot.output(f"   , \"{k}\" : \"{tra[k]['ar']['female']}\"")
-
-
 if __name__ == "__main__":
-    main()
+    # python3 core8/pwb.py people/Nationalities
+    for k in tra.keys():
+        print(f'\t"{k}" : "",')

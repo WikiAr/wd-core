@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 """
-from nep.si3 import do_P1433_new_list, work_new_list, work_people, make_scientific_art
+from nep.si3 import do_P1433_new_list, work_new_list, make_scientific_art
 """
 
 import sys
-import re
-
-from himo_api import himoAPI
 from wd_api import wd_desc
 
 from des.ru_st_2_latin import make_en_label
@@ -16,15 +13,14 @@ from des.railway import railway_tables, work_railway
 
 from newapi import printe
 from wd_api import wd_bot
-from people.new3 import translations_o
 
 from desc_dicts.descraptions import replace_desc
-
+from nep.wr_people import work_people
 from nep.bots.helps import Get_P_API_id, log_new_types
 from nep.bots.scientific_article import make_scientific_article
 from nep.bots.tax_desc import work_taxon_desc
-from nep.tables.lists import space_list_and_other, others_list, others_list_2, en_des_to_ar
-from nep.tables.si_tables import genders, MainTestTable, new_types, offsetbg, Qids_translate, Add_en_labels, Geo_List
+from nep.tables.lists import space_list_and_other, others_list, others_list_2
+from nep.tables.si_tables import MainTestTable, new_types, offsetbg, Qids_translate, Add_en_labels, Geo_List
 from nep.space_others import Make_space_desc, Make_others_desc
 
 
@@ -117,67 +113,6 @@ def work_new_list(item, p31, ardes):
         print("work_new_list nothing to add. ")
 
 
-def work_people(item, topic, num, ardes):
-    q = item["q"]
-    # ---
-    translations = translations_o[2]
-    # ---
-    topic = topic.lower().strip()
-    # ---
-    if not topic:
-        return ""
-    # ---
-    years = ""
-    # ---
-    if topic.find("(") != -1:
-        if hhh := re.match(r"^(.*?) (\([\d\–-]+\))", topic):
-            topic = hhh.group(1)
-            years = f" {hhh.group(2)}"
-            print(f"topic:{topic},years:{years}")
-    # ---
-    if en_des_to_ar.get(topic, "") != "":
-        ara = en_des_to_ar[topic]
-        # ---
-        if years:
-            ara += f" {years}"
-        # ---
-        himoAPI.Des_API(q, ara, "ar")
-        return ""
-    # ---
-    taber = translations.get(topic, {})
-    # ---
-    printe.output(" work_people:")
-    # ---
-    if not taber:
-        printe.output(f" no table descraptions for topic:{topic}")
-        return ""
-    # ---
-    printe.output(taber)
-    # ---
-    if topic.startswith("researcher (orcid ") and (ardes.strip() == "" or ardes.startswith("باحث (orcid ")):
-        arr = topic.replace("researcher (orcid ", "باحث (معرف أورسيد ")
-        himoAPI.Des_API(q, arr, "ar")
-    # ---
-    p21 = item.get("claims", {}).get("P21", [{}])[0].get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "")
-    printe.output(p21)
-    # ---
-    descriptions = item.get("descriptions", {})
-    NewDesc = {}
-    if p21_c := genders.get(p21):
-        for lang in taber.keys():
-            if taber[lang].get(p21_c):
-                if lang not in descriptions.keys():
-                    NewDesc[lang] = {"language": lang, "value": taber[lang].get(p21_c)}
-                    if years and lang in ["en", "ar", "en-ca", "en-gb"]:
-                        NewDesc[lang]["value"] += years
-    # ---
-    if NewDesc != {}:
-        printe.output(f"<<lightyellow>> **{num}: work_people:{q}  ({topic})")
-        work_a_desc(NewDesc, q, [])
-    else:
-        print(" work_people nothing to add. ")
-
-
 def work_qid_desc(item, topic, num):
     printe.output("<<lightyellow>>  work_qid_desc: ")
     q = item["q"]
@@ -209,7 +144,7 @@ def work_qid_desc(item, topic, num):
     work_a_desc(NewDesc, q, [])
 
 
-def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
+def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
     # ---
     printe.output(f"--- *<<lightyellow>> >{num}/{lenth}: q:{qitem}")
     # ---
@@ -244,7 +179,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False):
     descriptions = item.get("descriptions", {})
     endes = descriptions.get("en", "")
     # ---
-    if not endes:
+    if not endes and get_nl_des:
         endes = descriptions.get("nl", "")
     # ---
     ardes = descriptions.get("ar", "")

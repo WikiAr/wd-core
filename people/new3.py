@@ -2,6 +2,7 @@
 """
 
 python3 core8/pwb.py people/new3
+python3 core8/pwb.py people/new3 -job:rules_footballer ask
 python3 core8/pwb.py people/new3 -nat:Yemeni ask
 python3 core8/pwb.py people/new3 -nat:American limit:200
 
@@ -379,6 +380,9 @@ def mainnat(Tabs):  # translations_for_nat
 def Main_Test():
     qua = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097' + ' . ?item schema:description "Argentinian actor"@en.  '
     qua += 'OPTIONAL { ?item schema:description ?de. FILTER(LANG(?de) = "fr"). } FILTER (!BOUND(?de)) }'
+    # ---
+
+    # ---
     wd_bot.sparql_generator_url(qua)
 
 

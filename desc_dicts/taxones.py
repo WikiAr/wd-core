@@ -4,7 +4,7 @@
 """
 
 # ---
-tax_translationsNationalities = {
+tax_translations = {
     "Branch of": "فرع من",
     "Capaxorder of": "رتبة كبرى من",
     "Class of": "طائفة من",

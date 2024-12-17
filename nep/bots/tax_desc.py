@@ -7,7 +7,7 @@ from himo_api import himoAPI
 from wd_api import wd_bot
 from newapi import printe
 from desc_dicts.taxones import lab_for_p171, labforP105
-from desc_dicts.taxones import tax_translationsNationalities, taxone_list
+from desc_dicts.taxones import tax_translations, taxone_list
 
 # ---
 from nep.bots.helps import Get_P_API_id
@@ -16,8 +16,8 @@ tax_translations_lower = {}
 # ---
 for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
     if tax_lab.strip() and tax_key.strip():
-        for natkey in sorted(tax_translationsNationalities.keys()):  # النوع
-            natar = tax_translationsNationalities[natkey]
+        for natkey in sorted(tax_translations.keys()):  # النوع
+            natar = tax_translations[natkey]
             if natkey.strip() and natar.strip():
                 kkey = tax_key.replace("~", natkey)
                 tax_translations_lower[kkey.lower()] = tax_lab.replace("~", natar)
