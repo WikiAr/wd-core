@@ -10,7 +10,7 @@ import sys
 from newapi import printe
 from nep import si3
 from wd_api import wd_bot
-from people.people_get_topic import job_to_qid, nat_to_qid
+from people.people_get_topic import print_new_jobs, job_to_qid, nat_to_qid
 
 qua = """
 SELECT DISTINCT
@@ -70,7 +70,7 @@ def main():
         # {'item': 'http://www.wikidata.org/entity/Q21457154', 'qid': 'Q21457154'}
         si3.ISRE(qid, num, len(lista), get_nl_des=False)
     # ---
-    si3.print_new_types()
+    print_new_jobs()
 
 
 if __name__ == "__main__":

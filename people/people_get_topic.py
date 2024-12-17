@@ -418,6 +418,10 @@ def get_claim_id(item, prop):
     return claim
 
 
+new_jobs = {}
+new_nats = {}
+
+
 def get_topic(item):
     # ---
     P106 = get_claim_id(item, "P106")
@@ -429,6 +433,14 @@ def get_topic(item):
     # ---
     p106_lab = qid_to_job.get(P106)
     p27_lab = qid_to_p27.get(P27)
+    # ---
+    if not p106_lab:
+        new_jobs.setdefault(P106, 0)
+        new_jobs[P106] += 1
+    # ---
+    if not p27_lab:
+        new_nats.setdefault(P27, 0)
+        new_nats[P27] += 1
     # ---
     if p106_lab and p27_lab:
         # lab = p106_lab.replace("~", p27_lab)
@@ -444,3 +456,20 @@ def get_topic(item):
     printe.output(f"<<yellow>> lab:{lab} add 'returnlab' to sys.argv to use it..!!")
     # ---
     return ""
+
+
+def print_new_jobs():
+    lists = [[y, x] for x, y in new_jobs.items()]
+    lists.sort(reverse=True)
+    # ---
+    for lenth, qid in lists:
+        # ---
+        printe.output(f"new_jobs:{lenth} : qid:{qid}")
+    # ---
+    lists1 = [[y, x] for x, y in new_nats.items()]
+    lists1.sort(reverse=True)
+    # ---
+    for lenth, qid in lists1:
+        # ---
+        printe.output(f"new_nats:{lenth} : qid:{qid}")
+    # ---
