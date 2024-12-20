@@ -6,7 +6,7 @@ python3 core8/pwb.py nep/si3g_qua returnlab -lang:ar
 
 python3 core8/pwb.py nep/si3g_qua returnlab
 
-python3 core8/pwb.py nep/si3g_qua returnlab ask -p27:Q1028
+python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q1028
 python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q79
 
 """

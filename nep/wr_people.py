@@ -47,7 +47,7 @@ def work_people2(item, topic, num=0, years=""):
     if not taber:
         return ""
     # ---
-    printe.output(taber)
+    # printe.output(taber)
     # ---
     descriptions = item.get("descriptions", {})
     # ---
