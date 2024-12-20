@@ -421,13 +421,21 @@ def get_claim_id(item, prop):
     return claim
 
 
+def get_claim_ids(item, prop):
+    claims = item.get("claims", {}).get(prop, [])
+    claim_ids = [claim.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "") for claim in claims]
+    return claim_ids
+
+
 new_jobs = {}
 new_nats = {}
 
 
 def get_topic(item):
     # ---
-    P106 = get_claim_id(item, "P106")
+    P106_list = get_claim_ids(item, "P106")
+    P106 = P106_list[0]
+    # ---
     P27 = get_claim_id(item, "P27")
     # ---
     printe.output(f" P106:{P106}: P27:{P27}")
@@ -435,6 +443,13 @@ def get_topic(item):
     lab = ""
     # ---
     p106_lab = qid_to_job.get(P106)
+    # ---
+    if not p106_lab:
+        for x in P106_list:
+            p106_lab = qid_to_job.get(x)
+            if p106_lab:
+                break
+    # ---
     p27_lab = qid_to_p27.get(P27)
     # ---
     if not p106_lab:
@@ -451,6 +466,7 @@ def get_topic(item):
         printe.output(f" topic:{lab}")
     # ---
     if not lab:
+        printe.output(f"{p106_lab=} {p27_lab=}")
         return ""
     # ---
     if "returnlab" in sys.argv:
