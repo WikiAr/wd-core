@@ -421,29 +421,41 @@ def get_claim_id(item, prop):
     return claim
 
 
+def get_claim_ids(item, prop):
+    claims = item.get("claims", {}).get(prop, [])
+    claim_ids = [claim.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "") for claim in claims]
+    return claim_ids
+
+
 new_jobs = {}
 new_nats = {}
 
 
 def get_topic(item):
     # ---
-    P106 = get_claim_id(item, "P106")
-    P27 = get_claim_id(item, "P27")
+    P106_list = get_claim_ids(item, "P106")
+    P27_list = get_claim_ids(item, "P27")
     # ---
-    printe.output(f" P106:{P106}: P27:{P27}")
+    p27_lab = ""
+    p106_lab = ""
+    # ---
+    for x in P106_list:
+        p106_lab = qid_to_job.get(x)
+        if p106_lab:
+            break
+        else:
+            new_jobs.setdefault(x, 0)
+            new_jobs[x] += 1
+    # ---
+    for x in P27_list:
+        p27_lab = qid_to_p27.get(x)
+        if p27_lab:
+            break
+        else:
+            new_nats.setdefault(x, 0)
+            new_nats[x] += 1
     # ---
     lab = ""
-    # ---
-    p106_lab = qid_to_job.get(P106)
-    p27_lab = qid_to_p27.get(P27)
-    # ---
-    if not p106_lab:
-        new_jobs.setdefault(P106, 0)
-        new_jobs[P106] += 1
-    # ---
-    if not p27_lab:
-        new_nats.setdefault(P27, 0)
-        new_nats[P27] += 1
     # ---
     if p106_lab and p27_lab:
         # lab = p106_lab.replace("~", p27_lab)
@@ -451,6 +463,7 @@ def get_topic(item):
         printe.output(f" topic:{lab}")
     # ---
     if not lab:
+        printe.output(f"{p106_lab=} {p27_lab=}")
         return ""
     # ---
     if "returnlab" in sys.argv:

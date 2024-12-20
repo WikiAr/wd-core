@@ -6,10 +6,12 @@ python3 core8/pwb.py nep/si3g_qua returnlab -lang:ar
 
 python3 core8/pwb.py nep/si3g_qua returnlab
 
+python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q1028
 python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q79
 
 """
 import time
+import random
 import sys
 from newapi import printe
 
@@ -48,6 +50,11 @@ if not P106[1]:
 if not P27[1]:
     P27[1] = list(set(qid_to_p27.keys()))
 
+# ---
+random.shuffle(P106[1])
+random.shuffle(P27[1])
+# ---
+
 
 def get_qua():
     # ---
@@ -76,9 +83,9 @@ def get_qua():
     # ---
     qua += f"\n limit {limit[1]}"
     # ---
-    printe.output(f" len P106:{len(P106[1])}")
+    printe.output(f" len P106 :{len(P106[1])}")
     # ---
-    printe.output(f" len P27:{len(P27[1])}")
+    printe.output(f" len P27 :{len(P27[1])}")
     # ---
     if P106[1]:
         line = "values ?p106 {" + " ".join([f"wd:{x}" for x in P106[1]]) + "} \n #sr"
@@ -93,7 +100,6 @@ def get_qua():
 
 def one_item(qid, num):
     # {'item': 'http://www.wikidata.org/entity/Q21457154', 'qid': 'Q21457154'}
-
     item = wd_bot.Get_Item_API_From_Qid(qid, props="claims|descriptions|labels")
     # ---
     if not item:
@@ -119,7 +125,7 @@ def main():
         # ---
         printe.output(f"n:{n}/{len(P27[1])} work:")
         # ---
-        line = f"?item wdt:P27 wd:{nat_qid}."
+        line = f"?item wdt:P27 wd:{nat_qid}. # " + qid_to_p27.get(nat_qid, "")
         # ---
         qua = base_qua
         # ---
@@ -132,6 +138,8 @@ def main():
         # ---
         for num, tab in enumerate(lista, start=1):
             qid = tab["qid"]
+            # ---
+            printe.output(f'*<<lightred>> >{num}/{len(lista)} one_item "{qid}" < :')
             # si3.ISRE(qid, num, len(lista), get_nl_des=False)
             one_item(qid, num)
             # ---
