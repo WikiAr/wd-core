@@ -652,7 +652,7 @@ many_lang_qid_desc = {
         "eu": "Wikimediako kategoria",
         "fa": "ردهٔ ویکی‌پدیا",
         "fi": "Wikimedia-luokka",
-        "fr": "page de catégorie de Wikimedia",
+        "fr": "page de catégorie d'un projet Wikimédia", #page de catégorie de Wikimedia",
         "fy": "Wikimedia-kategory",
         "gl": "categoría de Wikimedia",
         "gsw": "Wikimedia-Kategorie",
