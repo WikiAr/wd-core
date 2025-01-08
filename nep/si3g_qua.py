@@ -134,6 +134,8 @@ def main():
         if n == 1:
             print(qua)
         # ---
+        print(line)
+        # ---
         lista = wd_bot.sparql_generator_url(qua)
         # ---
         for num, tab in enumerate(lista, start=1):
