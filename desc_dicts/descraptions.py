@@ -680,7 +680,7 @@ many_lang_qid_desc = {
         "pl": "kategoria w projekcie Wikimedia",
         "pt": "categoria de um projeto da Wikimedia",
         "pt-br": "categoria de um projeto da Wikimedia",
-        "ro": "categorie a unui proiect Wikimedia",
+        "ro": "categorie în cadrul unui proiect Wikimedia", # https://www.wikidata.org/w/index.php?title=User_talk%3AMr._Ibrahem#c-Vargenau-20250307094900-Romanian_description_for_categories
         "ru": "категория в проекте Викимедиа",
         "sco": "Wikimedia category",
         "se": "Wikimedia-kategoriija",
