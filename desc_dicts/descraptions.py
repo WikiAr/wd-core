@@ -113,7 +113,7 @@ for qid, labs in Qid_Desc.items():
 # ---
 # many_lang_qid_desc = {}
 # ---
-many_lang_qid_desc["Q13442814"] = Scientific_descraptions,  # scientific article
+many_lang_qid_desc["Q13442814"] = Scientific_descraptions  # scientific article
 # ---
 # merge 2 dictionaries
 # ---
