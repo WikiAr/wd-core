@@ -62,7 +62,7 @@ Qid_Desc = {
     "Q1580166": {"ar": "مدخلة قاموس", "en": "dictionary entry"},  # 57490
     "Q11060274": {"ar": "طباعة فنية", "en": "print"},  # 40547
     "Q220659": {"ar": "قطع أثرية", "en": "archaeological artifact"},  # 29283
-    #"Q860861": {"ar": "منحوتة", "en": "sculpture"},  # 22091
+    # "Q860861": {"ar": "منحوتة", "en": "sculpture"},  # 22091
     "Q1539532": {"ar": "موسم نادي رياضي", "en": "sports season of a sports club"},  # 20501
     "Q30612": {"ar": "تجربة سريرية", "en": "clinical trial"},  # 339121
     "Q152450": {"ar": "انتخابات محلية", "en": "municipal election"},  # 14289
@@ -626,9 +626,10 @@ many_lang_qid_desc = {
         "ba": "Викимедиа категорияһы",
         "bar": "Wikimedia-Kategorie",
         "be": "катэгорыя ў праекце Вікімедыя",
-        "be-tarask": "катэгорыя ў праекце Вікімэдыя",
+        "be-tarask": "катэгорыя ў праектах Вікімэдыі",
+        # "be-tarask": "катэгорыя ў праекце Вікімэдыя",
         "bg": "категория на Уикимедия",
-        "bho": "विकिपीडिया:श्रेणी",
+        "bho": "विकिमीडिया श्रेणी",
         "bjn": "tumbung Wikimedia",
         "bn": "উইকিমিডিয়া বিষয়শ্রেণী",
         "br": "pajenn rummata eus Wikimedia",
@@ -641,18 +642,20 @@ many_lang_qid_desc = {
         "cs": "kategorie na projektech Wikimedia",
         "cy": "tudalen categori Wikimedia",
         "da": "Wikimedia-kategori",
+        "de": "Wikimedia-Kategorie",
         "de-at": "Wikimedia-Kategorie",
         "de-ch": "Wikimedia-Kategorie",
-        "de": "Wikimedia-Kategorie",
         "el": "κατηγορία εγχειρημάτων Wikimedia",
         "en": "Wikimedia category",
+        # "en-ca": "Wikimedia category",
+        # "en-gb": "Wikimedia category",
         "eo": "kategorio en Vikimedio",
         "es": "categoría de Wikimedia",
         "et": "Wikimedia kategooria",
         "eu": "Wikimediako kategoria",
         "fa": "ردهٔ ویکی‌پدیا",
         "fi": "Wikimedia-luokka",
-        "fr": "page de catégorie d'un projet Wikimédia", #page de catégorie de Wikimedia",
+        "fr": "page de catégorie d'un projet Wikimédia",  # page de catégorie de Wikimedia",
         "fy": "Wikimedia-kategory",
         "gl": "categoría de Wikimedia",
         "gsw": "Wikimedia-Kategorie",
@@ -668,6 +671,7 @@ many_lang_qid_desc = {
         "ja": "ウィキメディアのカテゴリ",
         "ko": "위키미디어 분류",
         "ky": "Wikimedia категориясы",
+        "la": "categoria Vicimediorum",
         "lb": "Wikimedia-Kategorie",
         "li": "Wikimedia-categorie",
         "lv": "Wikimedia projekta kategorija",
@@ -680,12 +684,13 @@ many_lang_qid_desc = {
         "pl": "kategoria w projekcie Wikimedia",
         "pt": "categoria de um projeto da Wikimedia",
         "pt-br": "categoria de um projeto da Wikimedia",
-        "ro": "categorie în cadrul unui proiect Wikimedia", # https://www.wikidata.org/w/index.php?title=User_talk%3AMr._Ibrahem#c-Vargenau-20250307094900-Romanian_description_for_categories
+        "ro": "categorie în cadrul unui proiect Wikimedia",  # https://www.wikidata.org/w/index.php?title=User_talk%3AMr._Ibrahem#c-Vargenau-20250307094900-Romanian_description_for_categories
         "ru": "категория в проекте Викимедиа",
         "sco": "Wikimedia category",
         "se": "Wikimedia-kategoriija",
         "sk": "kategória projektov Wikimedia",
         "sl": "kategorija Wikimedie",  # kategorija Wikimedije  [[wd:Topic:Xjpu4y312bxi699q]]
+        "smn": "Wikimedia-luokka",
         "sq": "kategori e Wikimedias",
         "sr": "категорија на Викимедији",
         "sv": "Wikimedia-kategori",
@@ -695,8 +700,8 @@ many_lang_qid_desc = {
         "tr": "Vikimedya kategorisi",
         "uk": "категорія проєкту Вікімедіа",  # категорія в проекті Вікімедіа [[Topic:Xdnbrl1aqt1lou5u]]
         "sw": "jamii ya Wikimedia",
-        "yi": "וויקימעדיע קאַטעגאָריע",
         "vi": "thể loại Wikimedia",
+        "yi": "וויקימעדיע קאַטעגאָריע",
         "yo": "ẹ̀ka Wikimedia",
         "yue": "維基媒體分類",
         "zea": "Wikimedia-categorie",
