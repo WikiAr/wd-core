@@ -1,5 +1,3 @@
-
-# ---
 many_lang_qid_desc = {
     "Q11173": {
         "af": "chemiese verbinding",
@@ -153,7 +151,7 @@ many_lang_qid_desc = {
         "nds": "Familiennaam",
         "ne": "थर",
         "new": "उपनां",
-        "nl": "achternaam",
+        "nl": "familienaam",
         "nn": "etternamn",
         "oc": "nom d’ostal",
         "or": "ସାଙ୍ଗିଆ",
@@ -173,6 +171,7 @@ many_lang_qid_desc = {
         "sl": "priimek",
         "sma": "fuelhkienomme",
         "smj": "maŋepnamma",
+        "smn": "suhânommâ",
         "sn": "Mazita eMhuri",
         "sq": "mbiemër",
         "sr": "презиме",
@@ -182,9 +181,11 @@ many_lang_qid_desc = {
         "sw": "jina la ukoo",
         "ta": "குடும்பப் பெயர்",
         "te": "ఇంటి పేర్లు",
+        "tg": "насаб",
+        "tg-cyrl": "насаб",
+        "tg-latn": "nasab",
         "th": "นามสกุล",
         "tl": "apelyido",
-        # "tr":"soyadı",
         "tr": "soyadı",  # Topic:V9p2mhq3iro7lp6y
         "uk": "прізвище",
         "uz": "familiya",
@@ -204,8 +205,6 @@ many_lang_qid_desc = {
         "zh-sg": "姓氏",
         "zh-tw": "姓氏",
         "zu": "isibongo",
-        "tg-cyrl": "насаб",
-        "tg-latn": "nasab",
     },
     "Q11879590": {  # female given name
         "af": "vroulike voornaam",
@@ -583,12 +582,12 @@ many_lang_qid_desc = {
         "sq": "kategori e Wikimedias",
         "sr": "категорија на Викимедији",
         "sv": "Wikimedia-kategori",
+        "sw": "jamii ya Wikimedia",
         "tg": "гурӯҳи Викимедиа",
         "tg-cyrl": "гурӯҳи Викимедиа",
         "tg-latn": "guruhi Vikimedia",
         "tr": "Vikimedya kategorisi",
         "uk": "категорія проєкту Вікімедіа",  # категорія в проекті Вікімедіа [[Topic:Xdnbrl1aqt1lou5u]]
-        "sw": "jamii ya Wikimedia",
         "vi": "thể loại Wikimedia",
         "yi": "וויקימעדיע קאַטעגאָריע",
         "yo": "ẹ̀ka Wikimedia",
@@ -996,4 +995,3 @@ many_lang_qid_desc = {
         "tg-latn": "sol",
     },
 }
-# ---
