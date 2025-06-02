@@ -72,6 +72,6 @@ for qid1 in others_list:
 # ---
 Add_en_labels = {}
 # ---
-Add_en_labels[1] = True if "addenlabel" in sys.argv else False
+Add_en_labels[1] = "addenlabel" in sys.argv
 # ---
 Geo_List = list(placesTable.keys())
