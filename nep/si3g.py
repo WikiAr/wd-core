@@ -68,7 +68,7 @@ from nep import si3
 from newapi.page import NEW_API
 
 api_new = NEW_API("www", family="wikidata")
-api_new.Login_to_wiki()
+# api_new.Login_to_wiki()
 
 main_dir1 = f"{str(Path(__file__).parent.parent)}/"
 
