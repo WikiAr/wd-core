@@ -10,6 +10,7 @@
         "fr": {"male": "afghan", "female": "afghane"},
         "gl": {"male": "afgán", "female": "afgá"},
         "he": {"male": "אפגני", "female": "אפגנית"},
+        "hr": {"male": "afganistanski", "female": "afganistanska"},
         "ro": {"male": "afgan", "female": "afgană"},
         "sq": {"male": "afgan", "female": "afgane"}
     },
@@ -23,6 +24,7 @@
         "fr": {"male": "albanais", "female": "albanaise"},
         "gl": {"male": "albanés", "female": "albanesa"},
         "he": {"male": "אלבני", "female": "אלבנית"},
+        "hr": {"male": "albanski", "female": "albanska"},
         "ro": {"male": "albanez", "female": "albaneză"},
         "sq": {"male": "shqiptar", "female": "shqiptare"}
     },
@@ -36,6 +38,7 @@
         "fr": {"male": "algérien", "female": "algérienne"},
         "gl": {"male": "alxeriano", "female": "alxeriana"},
         "he": {"male": "אלג'יראי", "female": "אלג'יראית"},
+        "hr": {"male": "alžirski", "female": "alžirska"},
         "ro": {"male": "algerian", "female": "algeriană"},
         "sq": {"male": "algjerian", "female": "algjeriane"}
     },
@@ -49,6 +52,7 @@
         "fr": {"male": "américain", "female": "américaine"},
         "gl": {"male": "estadounidense", "female": "estadounidense"},
         "he": {"male": "אמריקאי", "female": "אמריקאית"},
+        "hr": {"male": "američki", "female": "američka"},
         "ro": {"male": "american", "female": "americană"},
         "sq": {"male": "amerikan", "female": "amerikane"}
     },
@@ -62,6 +66,7 @@
         "fr": {"male": "andorran", "female": "andorrane"},
         "gl": {"male": "andorrano", "female": "andorrana"},
         "he": {"male": "אנדורי", "female": "אנדורית"},
+        "hr": {"male": "andorski", "female": "andorska"},
         "ro": {"male": "din Andorra", "female": "din Andorra"},
         "sq": {"male": "andorras", "female": "andorrase"}
     },
@@ -75,6 +80,7 @@
         "fr": {"male": "angolais", "female": "angolaise"},
         "gl": {"male": "angolano", "female": "angolana"},
         "he": {"male": "אנגולי", "female": "אנגולית"},
+        "hr": {"male": "angolski", "female": "angolska"},
         "ro": {"male": "angolez", "female": "angoleză"},
         "sq": {"male": "angolez", "female": "angoleze"}
     },
@@ -88,6 +94,7 @@
         "fr": {"male": "argentin", "female": "argentine"},
         "gl": {"male": "arxentino", "female": "arxentina"},
         "he": {"male": "ארגנטינאי", "female": "ארגנטינאית"},
+        "hr": {"male": "argentinski", "female": "argentinska"},
         "ro": {"male": "argentinian", "female": "argentiniană"},
         "sq": {"male": "argjentinas", "female": "argjentinase"}
     },
@@ -101,6 +108,7 @@
         "fr": {"male": "argentin", "female": "argentine"},
         "gl": {"male": "arxentino", "female": "arxentina"},
         "he": {"male": "ארגנטינאי", "female": "ארגנטינאית"},
+        "hr": {"male": "argentinski", "female": "argentinska"},
         "ro": {"male": "argentinian", "female": "argentiniană"},
         "sq": {"male": "argjentinas", "female": "argjentinase"}
     },
@@ -114,6 +122,7 @@
         "fr": {"male": "arménien", "female": "arménienne"},
         "gl": {"male": "armenio", "female": "armenia"},
         "he": {"male": "ארמני", "female": "ארמנית"},
+        "hr": {"male": "armenski", "female": "armenska"},
         "ro": {"male": "armean", "female": "armeană"},
         "sq": {"male": "armen", "female": "armene"}
     },
@@ -127,6 +136,7 @@
         "fr": {"male": "argentin", "female": "argentine"},
         "gl": {"male": "arxentino", "female": "arxentina"},
         "he": {"male": "ארגנטינאי", "female": "ארגנטינאית"},
+        "hr": {"male": "argentinski", "female": "argentinska"},
         "ro": {"male": "argentinian", "female": "argentiniană"},
         "sq": {"male": "argjentinas", "female": "argjentinase"}
     },
@@ -140,6 +150,7 @@
         "fr": {"male": "australien", "female": "australienne"},
         "gl": {"male": "australiano", "female": "australiana"},
         "he": {"male": "אוסטרלי", "female": "אוסטרלית"},
+        "hr": {"male": "australski", "female": "australska"},
         "ro": {"male": "australian", "female": "australiană"},
         "sq": {"male": "australian", "female": "australiane"}
     },
@@ -153,6 +164,7 @@
         "fr": {"male": "autrichien", "female": "autrichienne"},
         "gl": {"male": "austríaco", "female": "austríaca"},
         "he": {"male": "אוסטרי", "female": "אוסטרית"},
+        "hr": {"male": "austrijski", "female": "austrijska"},
         "ro": {"male": "austriac", "female": "austriacă"},
         "sq": {"male": "austriak", "female": "austriake"}
     },
@@ -166,6 +178,7 @@
         "fr": {"male": "azéri", "female": "azérie"},
         "gl": {"male": "acerbaixano", "female": "acerbaixana"},
         "he": {"male": "אזרי", "female": "אזרית"},
+        "hr": {"male": "azerbajdžanski", "female": "azerbajdžanska"},
         "ro": {"male": "azer", "female": "azeră"},
         "sq": {"male": "azer", "female": "azere"}
     },
@@ -179,6 +192,7 @@
         "fr": {"male": "bahaméen", "female": "bahaméenne"},
         "gl": {"male": "bahameño", "female": "bahameña"},
         "he": {"male": "בהאמי", "female": "בהאמית"},
+        "hr": {"male": "bahamski", "female": "bahamska"},
         "ro": {"male": "din Bahamas", "female": "din Bahamas"},
         "sq": {"male": "bahamas", "female": "bahamase"}
     },
@@ -192,6 +206,7 @@
         "fr": {"male": "bahreïni", "female": "bahreïnie"},
         "gl": {"male": "bahrainí", "female": "bahrainí"},
         "he": {"male": "בחרייני", "female": "בחריינית"},
+        "hr": {"male": "bahreinski", "female": "bahreinska"},
         "ro": {"male": "din Bahrain", "female": "din Bahrain"},
         "sq": {"male": "bahreinas", "female": "bahreinase"}
     },
@@ -205,6 +220,7 @@
         "fr": {"male": "bangladais", "female": "bangladaise"},
         "gl": {"male": "bangladesí", "female": "bangladesí"},
         "he": {"male": "בנגלי", "female": "בנגלית"},
+        "hr": {"male": "bangladeški", "female": "bangladeška"},
         "ro": {"male": "din Bangladesh", "female": "din Bangladesh"},
         "sq": {"male": "bangladeshas", "female": "bangladeshase"}
     },
@@ -218,6 +234,7 @@
         "fr": {"male": "barbadien", "female": "barbadienne"},
         "gl": {"male": "barbadense", "female": "barbadense"},
         "he": {"male": "ברבדי", "female": "ברבדית"},
+        "hr": {"male": "barbadoski", "female": "barbadoska"},
         "ro": {"male": "din Barbados", "female": "din Barbados"}
     },
     "Belarusian": {
@@ -230,6 +247,7 @@
         "fr": {"male": "biélorruse", "female": "biélorruse"},
         "gl": {"male": "bielorruso", "female": "bielorrusa"},
         "he": {"male": "בלארוסי", "female": "בלארוסית"},
+        "hr": {"male": "bjeloruski", "female": "bjeloruska"},
         "ro": {"male": "bielorus", "female": "bielorusă"},
         "sq": {"male": "bjellorus", "female": "bjelloruse"}
     },
@@ -243,6 +261,7 @@
         "fr": {"male": "belge", "female": "belge"},
         "gl": {"male": "belga", "female": "belga"},
         "he": {"male": "בלגי", "female": "בלגית"},
+        "hr": {"male": "belgijski", "female": "belgijska"},
         "ro": {"male": "belgian", "female": "belgiană"},
         "sq": {"male": "belg", "female": "belge"}
     },
@@ -256,6 +275,7 @@
         "fr": {"male": "bélizien", "female": "bélizienne"},
         "gl": {"male": "belizense", "female": "belizense"},
         "he": {"male": "בליזי", "female": "בליזית"},
+        "hr": {"male": "belizeanski", "female": "belizeanska"},
         "ro": {"male": "din Belize", "female": "din Belize"}
     },
     "Beninese": {
@@ -268,6 +288,7 @@
         "fr": {"male": "béninois", "female": "béninoise"},
         "gl": {"male": "beninés", "female": "beninesa"},
         "he": {"male": "מבנין", "female": "מבנין"},
+        "hr": {"male": "beninski", "female": "beninska"},
         "ro": {"male": "beninez", "female": "benineză"}
     },
     "Beninois": {
@@ -280,6 +301,7 @@
         "fr": {"male": "béninois", "female": "béninoise"},
         "gl": {"male": "beninés", "female": "beninesa"},
         "he": {"male": "מבנין", "female": "מבנין"},
+        "hr": {"male": "beninski", "female": "beninska"},
         "ro": {"male": "beninez", "female": "benineză"}
     },
     "Bermudan": {
@@ -291,7 +313,8 @@
         "et": {"male": "Bermuda", "female": "Bermuda"},
         "fr": {"male": "bermudaienne", "female": "bermudienne"},
         "gl": {"male": "bermudano", "female": "bermudana"},
-        "he": {"male": "ברמודי", "female": "ברמודית"}
+        "he": {"male": "ברמודי", "female": "ברמודית"},
+        "hr": {"male": "bermudski", "female": "bermudska"}
     },
     "Bermudian": {
         "ar": {"male": "برمودي", "female": "برمودية"},
@@ -302,7 +325,8 @@
         "et": {"male": "Bermuda", "female": "Bermuda"},
         "fr": {"male": "bermudaienne", "female": "bermudienne"},
         "gl": {"male": "bermudano", "female": "bermudana"},
-        "he": {"male": "ברמודי", "female": "ברמודית"}
+        "he": {"male": "ברמודי", "female": "ברמודית"},
+        "hr": {"male": "bermudski", "female": "bermudska"}
     },
     "Bhutanese": {
         "ar": {"male": "بوتاني", "female": "بوتانية"},
@@ -314,6 +338,7 @@
         "fr": {"male": "bhoutanais", "female": "bhoutanaise"},
         "gl": {"male": "butanés", "female": "butanesa"},
         "he": {"male": "בהוטני", "female": "בהוטנית"},
+        "hr": {"male": "butanski", "female": "butanska"},
         "ro": {"male": "bhutanez", "female": "bhutaneză"}
     },
     "Bissau-Guinean": {
@@ -326,6 +351,7 @@
         "fr": {"male": "bissau-guinéen", "female": "bissau-guinéenne"},
         "gl": {"male": "guineano", "female": "guineana"},
         "he": {"male": "מגינאה-ביסאו", "female": "מגינאה-ביסאו"},
+        "hr": {"male": "bisau-gvinejski", "female": "bisau-gvinejska"},
         "ro": {"male": "guineobissauan", "female": "guineobissauană"}
     },
     "Bolivian": {
@@ -338,6 +364,7 @@
         "fr": {"male": "bolivien", "female": "bolivienne"},
         "gl": {"male": "boliviano", "female": "boliviana"},
         "he": {"male": "בוליבאני", "female": "בוליבאנית"},
+        "hr": {"male": "bolivijski", "female": "bolivijska"},
         "ro": {"male": "bolivian", "female": "boliviană"},
         "sq": {"male": "bolivian", "female": "boliviane"}
     },
@@ -351,6 +378,7 @@
         "fr": {"male": "bosnien", "female": "bosnienne"},
         "gl": {"male": "bosníaco", "female": "bosníaca"},
         "he": {"male": "בוסני", "female": "בוסנית"},
+        "hr": {"male": "bosanskohercegovački", "female": "bosanskohercegovačka"},
         "ro": {"male": "bosniac", "female": "bosniacă"},
         "sq": {"male": "boshnjak", "female": "boshnjake"}
     },
@@ -364,6 +392,7 @@
         "fr": {"male": "botswanais", "female": "botswanaise"},
         "gl": {"male": "botswaniano", "female": "botswaniana"},
         "he": {"male": "בוטסואני", "female": "בוטסואנית"},
+        "hr": {"male": "bocvanski", "female": "bocvanska"},
         "ro": {"male": "botswanez", "female": "botswaneză"}
     },
     "Brazilian": {
@@ -376,6 +405,7 @@
         "fr": {"male": "brésilien", "female": "brésilienne"},
         "gl": {"male": "brasileiro", "female": "brasileira"},
         "he": {"male": "ברזילאי", "female": "ברזילאית"},
+        "hr": {"male": "brazilski", "female": "brazilska"},
         "ro": {"male": "brazilian", "female": "braziliană"},
         "sq": {"male": "brazilian", "female": "braziliane"}
     },
@@ -389,6 +419,7 @@
         "fr": {"male": "britannique", "female": "britannique"},
         "gl": {"male": "británico", "female": "británica"},
         "he": {"male": "בריטי", "female": "בריטית"},
+        "hr": {"male": "britanski", "female": "britanska"},
         "ro": {"male": "britanic", "female": "britanică"},
         "sq": {"male": "britanik", "female": "britanike"}
     },
@@ -402,6 +433,7 @@
         "fr": {"male": "brunéien", "female": "brunéienne"},
         "gl": {"male": "bruneano", "female": "bruneana"},
         "he": {"male": "מברוניי", "female": "מברוניי"},
+        "hr": {"male": "brunejski", "female": "brunejska"},
         "ro": {"male": "din Brunei", "female": "din Brunei"}
     },
     "Bulgarian": {
@@ -414,6 +446,7 @@
         "fr": {"male": "bulgare", "female": "bulgare"},
         "gl": {"male": "búlgaro", "female": "búlgara"},
         "he": {"male": "בולגרי", "female": "בולגרייה"},
+        "hr": {"male": "bugarski", "female": "bugarska"},
         "ro": {"male": "bulgar", "female": "bulgară"},
         "sq": {"male": "bullgar", "female": "bullgare"}
     },
@@ -427,6 +460,7 @@
         "fr": {"male": "burkinabé", "female": "burkinabée"},
         "gl": {"male": "burkinense", "female": "burkinense"},
         "he": {"male": "בורקינאי", "female": "בורקינאית"},
+        "hr": {"male": "burkinabeanski", "female": "burkinabeanska"},
         "ro": {"male": "burkinez", "female": "burkineză"}
     },
     "Burkinabé": {
@@ -439,6 +473,7 @@
         "fr": {"male": "burkinabé", "female": "burkinabée"},
         "gl": {"male": "burkinense", "female": "burkinense"},
         "he": {"male": "בורקינאי", "female": "בורקינאית"},
+        "hr": {"male": "burkinabeanski", "female": "burkinabeanska"},
         "ro": {"male": "burkinez", "female": "burkineză"}
     },
     "Burmese": {
@@ -451,6 +486,7 @@
         "fr": {"male": "birman", "female": "birmane"},
         "gl": {"male": "birmano", "female": "birmana"},
         "he": {"male": "בורמזי", "female": "בורמזית"},
+        "hr": {"male": "burmanski", "female": "burmanska"},
         "ro": {"male": "birman", "female": "birmană"}
     },
     "Burundian": {
@@ -475,6 +511,7 @@
         "fr": {"male": "capverdien", "female": "capverdienne"},
         "gl": {"male": "caboverdiano", "female": "caboverdiana"},
         "he": {"male": "כף ורדי", "female": "כף ורדית"},
+        "hr": {"male": "zelenortski", "female": "zelenortska"},
         "ro": {"male": "capverdian", "female": "capverdiană"}
     },
     "Cambodian": {
@@ -487,6 +524,7 @@
         "fr": {"male": "cambodgien", "female": "cambodgienne"},
         "gl": {"male": "camboxano", "female": "camboxana"},
         "he": {"male": "קמבודי", "female": "קמבודית"},
+        "hr": {"male": "kambodžanski", "female": "kambodžanska"},
         "ro": {"male": "cambodgian", "female": "cambodgiană"},
         "sq": {"male": "kamboxhian", "female": "kamboxhiane"}
     },
@@ -500,6 +538,7 @@
         "fr": {"male": "camerounais", "female": "camerounaise"},
         "gl": {"male": "camerunés", "female": "camerunesa"},
         "he": {"male": "קמרוני", "female": "קמרונית"},
+        "hr": {"male": "kamerunski", "female": "kamerunska"},
         "ro": {"male": "camerunez", "female": "cameruneză"}
     },
     "Canadian": {
@@ -512,6 +551,7 @@
         "fr": {"male": "canadien", "female": "canadienne"},
         "gl": {"male": "canadense", "female": "canadense"},
         "he": {"male": "קנדי", "female": "קנדית"},
+        "hr": {"male": "kanadski", "female": "kanadska"},
         "ro": {"male": "canadian", "female": "canadiană"},
         "sq": {"male": "kanadez", "female": "kanadeze"}
     },
@@ -525,6 +565,7 @@
         "fr": {"male": "tchadien", "female": "tchadienne"},
         "gl": {"male": "chadiano", "female": "chadiana"},
         "he": {"male": "צ'אדי", "female": "צ'אדית"},
+        "hr": {"male": "čadski", "female": "čadska"},
         "ro": {"male": "din Ciad", "female": "din Ciad"}
     },
     "Chilean": {
@@ -537,6 +578,7 @@
         "fr": {"male": "chilien", "female": "chilienne"},
         "gl": {"male": "chileno", "female": "chilena"},
         "he": {"male": "צ'יליאני", "female": "צ'יליאני"},
+        "hr": {"male": "čileanski", "female": "čileanska"},
         "ro": {"male": "chilian", "female": "chiliană"},
         "sq": {"male": "kilian", "female": "kiliane"}
     },
@@ -550,6 +592,7 @@
         "fr": {"male": "chinois", "female": "chinoise"},
         "gl": {"male": "chinés", "female": "chinesa"},
         "he": {"male": "סיני", "female": "סינית"},
+        "hr": {"male": "kineski", "female": "kineska"},
         "ro": {"male": "chinez", "female": "chineză"},
         "sq": {"male": "kinez", "female": "kineze"}
     },
@@ -563,6 +606,7 @@
         "fr": {"male": "colombien", "female": "colombienne"},
         "gl": {"male": "colombiano", "female": "colombiana"},
         "he": {"male": "קולומביאני", "female": "קולומביאנית"},
+        "hr": {"male": "kolumbijski", "female": "kolumbijska"},
         "ro": {"male": "columbian", "female": "columbiană"},
         "sq": {"male": "kolumbian", "female": "kolumbiane"}
     },
@@ -576,6 +620,7 @@
         "fr": {"male": "comorien", "female": "comorienne"},
         "gl": {"male": "comoriano", "female": "comoriana"},
         "he": {"male": "קומורואי", "female": "קומורואית"},
+        "hr": {"male": "komorski", "female": "komorska"},
         "ro": {"male": "din Comore", "female": "din Comore"}
     },
     "Comorian": {
@@ -588,6 +633,7 @@
         "fr": {"male": "comorien", "female": "comorienne"},
         "gl": {"male": "comoriano", "female": "comoriana"},
         "he": {"male": "קומורואי", "female": "קומורואית"},
+        "hr": {"male": "komorski", "female": "komorska"},
         "ro": {"male": "din Comore", "female": "din Comore"}
     },
     "Congolese": {
@@ -600,6 +646,7 @@
         "fr": {"male": "congolais", "female": "congolaise"},
         "gl": {"male": "congolés", "female": "congolesa"},
         "he": {"male": "קונגולזי", "female": "קונגולזית"},
+        "hr": {"male": "kongoanski", "female": "kongoanska"},
         "ro": {"male": "congolez", "female": "congoleză"},
         "sq": {"male": "kongolez", "female": "kongoleze"}
     },
@@ -613,6 +660,7 @@
         "fr": {"male": "costaricain", "female": "costaricaine"},
         "gl": {"male": "costarriqueño", "female": "costarriqueña"},
         "he": {"male": "קוסטה ריקני", "female": "קוסטה ריקנית"},
+        "hr": {"male": "kostarikanski", "female": "kostarikanska"},
         "ro": {"male": "costarican", "female": "costaricană"},
         "sq": {"male": "kostarikan", "female": "kostarikane"}
     },
@@ -626,6 +674,7 @@
         "fr": {"male": "croate", "female": "croate"},
         "gl": {"male": "croata", "female": "croata"},
         "he": {"male": "קרואטי", "female": "קרואטית"},
+        "hr": {"male": "hrvatski", "female": "hrvatska"},
         "ro": {"male": "croat", "female": "croată"},
         "sq": {"male": "kroat", "female": "kroate"}
     },
@@ -639,6 +688,7 @@
         "fr": {"male": "cubain", "female": "cubaine"},
         "gl": {"male": "cubano", "female": "cubana"},
         "he": {"male": "קובני", "female": "קובנית"},
+        "hr": {"male": "kubanski", "female": "kubanska"},
         "ro": {"male": "cubanez", "female": "cubaneză"},
         "sq": {"male": "kubanez", "female": "kubaneze"}
     },
@@ -652,6 +702,7 @@
         "fr": {"male": "chypriote", "female": "chypriote"},
         "gl": {"male": "chipriota", "female": "chipriota"},
         "he": {"male": "קפריסאי", "female": "קפריסאית"},
+        "hr": {"male": "ciparski", "female": "ciparska"},
         "ro": {"male": "cipriot", "female": "cipriotă"},
         "sq": {"male": "qipriot", "female": "qipriote"}
     },
@@ -665,6 +716,7 @@
         "fr": {"male": "tchèque", "female": "tchèque"},
         "gl": {"male": "checo", "female": "checa"},
         "he": {"male": "צ'כי", "female": "צ'כית"},
+        "hr": {"male": "češki", "female": "češka"},
         "ro": {"male": "ceh", "female": "cehă"},
         "sq": {"male": "çek", "female": "çeke"}
     },
@@ -678,6 +730,7 @@
         "fr": {"male": "danois", "female": "danoise"},
         "gl": {"male": "danés", "female": "danesa"},
         "he": {"male": "דני", "female": "דנית"},
+        "hr": {"male": "danski", "female": "danska"},
         "ro": {"male": "danez", "female": "daneză"},
         "sq": {"male": "danez", "female": "daneze"}
     },
@@ -691,6 +744,7 @@
         "fr": {"male": "djiboutien", "female": "djiboutienne"},
         "gl": {"male": "xibutiano", "female": "xibutiana"},
         "he": {"male": "ג'יבוטי", "female": "ג'יבוטית"},
+        "hr": {"male": "džibutski", "female": "džibutska"},
         "ro": {"male": "djiboutian", "female": "djiboutiană"}
     },
     "Dutch": {
@@ -703,6 +757,7 @@
         "fr": {"male": "néerlandais", "female": "néerlandaise"},
         "gl": {"male": "neerlandés", "female": "neerlandesa"},
         "he": {"male": "הולנדי", "female": "הולנדית"},
+        "hr": {"male": "nizozemski", "female": "nizozemska"},
         "ro": {"male": "olandez", "female": "olandeză"},
         "sq": {"male": "holandez", "female": "holandeze"}
     },
@@ -716,6 +771,7 @@
         "fr": {"male": "équatorien", "female": "équatorienne"},
         "gl": {"male": "ecuatoriano", "female": "ecuatoriana"},
         "he": {"male": "אקוודורי", "female": "אקוודורית"},
+        "hr": {"male": "ekvadorski", "female": "ekvadorska"},
         "ro": {"male": "ecuadorian", "female": "ecuadoriană"},
         "sq": {"male": "ekuatorian", "female": "ekuatoriane"}
     },
@@ -729,6 +785,7 @@
         "fr": {"male": "égyptien", "female": "égyptienne"},
         "gl": {"male": "exipcio", "female": "exipcia"},
         "he": {"male": "מצרי", "female": "מצרית"},
+        "hr": {"male": "egipatski", "female": "egipatska"},
         "ro": {"male": "egiptean", "female": "egipteană"},
         "sq": {"male": "egjiptian", "female": "egjiptiane"}
     },
@@ -742,6 +799,7 @@
         "fr": {"male": "émirati", "female": "émiratie"},
         "gl": {"male": "emiratí", "female": "emiratí"},
         "he": {"male": "מאיחוד האמירויות הערביות", "female": "מאיחוד האמירויות הערביות"},
+        "hr": {"male": "emiratski", "female": "emiratska"},
         "ro": {"male": "emirian", "female": "emiriană"}
     },
     "Emiri": {
@@ -754,6 +812,7 @@
         "fr": {"male": "émirati", "female": "émiratie"},
         "gl": {"male": "emiratí", "female": "emiratí"},
         "he": {"male": "מאיחוד האמירויות הערביות", "female": "מאיחוד האמירויות הערביות"},
+        "hr": {"male": "emiratski", "female": "emiratska"},
         "ro": {"male": "emirian", "female": "emiriană"}
     },
     "Emirian": {
@@ -766,6 +825,7 @@
         "fr": {"male": "émirati", "female": "émiratie"},
         "gl": {"male": "emiratí", "female": "emiratí"},
         "he": {"male": "מאיחוד האמירויות הערביות", "female": "מאיחוד האמירויות הערביות"},
+        "hr": {"male": "emiratski", "female": "emiratska"},
         "ro": {"male": "emirian", "female": "emiriană"}
     },
     "Equatoguinean": {
@@ -778,6 +838,7 @@
         "fr": {"male": "équatoguinéen", "female": "équatoguinéenne"},
         "gl": {"male": "ecuatoguineano", "female": "ecuatoguineana"},
         "he": {"male": "מגינאה המשוונית", "female": "מגינאה המשוונית"},
+        "hr": {"male": "ekvatogvinejski", "female": "ekvatogvinejska"},
         "ro": {"male": "guineoecuatorian", "female": "guineoecuatoriană"}
     },
     "Equatorial Guinean": {
@@ -790,6 +851,7 @@
         "fr": {"male": "équatoguinéen", "female": "équatoguinéenne"},
         "gl": {"male": "ecuatoguineano", "female": "ecuatoguineana"},
         "he": {"male": "מגינאה המשוונית", "female": "מגינאה המשוונית"},
+        "hr": {"male": "ekvatogvinejski", "female": "ekvatogvinejska"},
         "ro": {"male": "guineoecuatorian", "female": "guineoecuatoriană"}
     },
     "Eritrean": {
@@ -802,6 +864,7 @@
         "fr": {"male": "érythréen", "female": "érythréenne"},
         "gl": {"male": "eritreo", "female": "eritrea"},
         "he": {"male": "אריתריאי", "female": "אריתריאית"},
+        "hr": {"male": "eritrejski", "female": "eritrejska"},
         "ro": {"male": "din Eritreea", "female": "din Eritreea"}
     },
     "Estonian": {
@@ -814,6 +877,7 @@
         "fr": {"male": "estonien", "female": "estonienne"},
         "gl": {"male": "estoniano", "female": "estoniana"},
         "he": {"male": "אסטוני", "female": "אסטונית"},
+        "hr": {"male": "estonski", "female": "estonska"},
         "ro": {"male": "estonian", "female": "estoniană"},
         "sq": {"male": "estonez", "female": "estoneze"}
     },
@@ -827,6 +891,7 @@
         "fr": {"male": "éthiopien", "female": "éthiopienne"},
         "gl": {"male": "etíope", "female": "etíope"},
         "he": {"male": "אתיופי", "female": "אתיופית"},
+        "hr": {"male": "etiopski", "female": "etiopska"},
         "ro": {"male": "etiopian", "female": "etiopiană"},
         "sq": {"male": "etiopias", "female": "etiopiase"}
     },
@@ -840,6 +905,7 @@
         "fr": {"male": "fidjien", "female": "fidjienne"},
         "gl": {"male": "fidxiano", "female": "fidxiana"},
         "he": {"male": "פיג'יאני", "female": "פיג'יאנית"},
+        "hr": {"male": "fidžijski", "female": "fidžijska"},
         "ro": {"male": "din Fiji", "female": "din Fiji"}
     },
     "Filipino": {
@@ -852,6 +918,7 @@
         "fr": {"male": "philippin", "female": "philippine"},
         "gl": {"male": "filipino", "female": "filipina"},
         "he": {"male": "פיליפיני", "female": "פיליפינית"},
+        "hr": {"male": "filipinski", "female": "filipinska"},
         "ro": {"male": "filipinez", "female": "filipineză"},
         "sq": {"male": "filipinas", "female": "filipinase"}
     },
@@ -865,6 +932,7 @@
         "fr": {"male": "finnois", "female": "finnoise"},
         "gl": {"male": "finlandés", "female": "finlandesa"},
         "he": {"male": "פיני", "female": "פינית"},
+        "hr": {"male": "finski", "female": "finska"},
         "ro": {"male": "finlandez", "female": "finlandeză"},
         "sq": {"male": "finlandez", "female": "finlandeze"}
     },
@@ -878,6 +946,7 @@
         "fr": {"male": "français", "female": "française"},
         "gl": {"male": "francés", "female": "francesa"},
         "he": {"male": "צרפתי", "female": "צרפתייה"},
+        "hr": {"male": "francuski", "female": "francuska"},
         "ro": {"male": "francez", "female": "franceză"},
         "sq": {"male": "francez", "female": "franceze"}
     },
@@ -891,6 +960,7 @@
         "fr": {"male": "gabonais", "female": "gabonaise"},
         "gl": {"male": "gabonés", "female": "gabonesa"},
         "he": {"male": "גבונזי", "female": "גבונזית"},
+        "hr": {"male": "gabonski", "female": "gabonska"},
         "ro": {"male": "gabonez", "female": "gaboneză"}
     },
     "Gambian": {
@@ -903,6 +973,7 @@
         "fr": {"male": "gambien", "female": "gambienne"},
         "gl": {"male": "gambiano", "female": "gambiana"},
         "he": {"male": "גמביאני", "female": "גמביאנית"},
+        "hr": {"male": "gambijski", "female": "gambijska"},
         "ro": {"male": "gambian", "female": "gambiană"}
     },
     "Georgian": {
@@ -915,6 +986,7 @@
         "fr": {"male": "géorgien", "female": "géorgienne"},
         "gl": {"male": "xeorxiano", "female": "xeorxiana"},
         "he": {"male": "גאורגי", "female": "גאורגית"},
+        "hr": {"male": "gruzijski", "female": "gruzijska"},
         "ro": {"male": "georgian", "female": "georgiană"},
         "sq": {"male": "gjeorgjian", "female": "gjeorgjiane"}
     },
@@ -928,6 +1000,7 @@
         "fr": {"male": "allemand", "female": "allemande"},
         "gl": {"male": "alemán", "female": "alemá"},
         "he": {"male": "גרמני", "female": "גרמנייה"},
+        "hr": {"male": "njemački", "female": "njemačka"},
         "ro": {"male": "german", "female": "germană"},
         "sq": {"male": "gjerman", "female": "gjermane"}
     },
@@ -941,6 +1014,7 @@
         "fr": {"male": "ghanéen", "female": "ghanéenne"},
         "gl": {"male": "ghanés", "female": "ghanesa"},
         "he": {"male": "גאנאי", "female": "גאנאית"},
+        "hr": {"male": "ganski", "female": "ganska"},
         "ro": {"male": "ghanez", "female": "ghaneză"},
         "sq": {"male": "ganez", "female": "ganeze"}
     },
@@ -954,6 +1028,7 @@
         "fr": {"male": "grec", "female": "grecque"},
         "gl": {"male": "grego", "female": "grega"},
         "he": {"male": "יווני", "female": "יוונייה"},
+        "hr": {"male": "grčki", "female": "grčka"},
         "ro": {"male": "grec", "female": "greacă"},
         "sq": {"male": "grek", "female": "greke"}
     },
@@ -967,6 +1042,7 @@
         "fr": {"male": "groenlandais", "female": "groenlandaise"},
         "gl": {"male": "groenlandés", "female": "groenlandesa"},
         "he": {"male": "גרינלנדי", "female": "גרינלנדית"},
+        "hr": {"male": "grenlandski", "female": "grenlandska"},
         "ro": {"male": "groenlandez", "female": "groenlandeză"}
     },
     "Grenadian": {
@@ -979,6 +1055,7 @@
         "fr": {"male": "grenadin", "female": "grenadine"},
         "gl": {"male": "granadino", "female": "granadina"},
         "he": {"male": "גרנדי", "female": "גרנדית"},
+        "hr": {"male": "grenadski", "female": "grenadska"},
         "ro": {"male": "grenadian", "female": "grenadiană"}
     },
     "Guatemalan": {
@@ -991,6 +1068,7 @@
         "fr": {"male": "guatémaltèque", "female": "guatémaltèque"},
         "gl": {"male": "guatemalteco", "female": "guatemalteca"},
         "he": {"male": "גואטמלי", "female": "גואטמלית"},
+        "hr": {"male": "gvatemalski", "female": "gvatemalska"},
         "ro": {"male": "guatemalez", "female": "guatemaleză"}
     },
     "Guinean": {
@@ -1003,6 +1081,7 @@
         "fr": {"male": "guinéen", "female": "guinéenne"},
         "gl": {"male": "guineano", "female": "guineana"},
         "he": {"male": "גינאי", "female": "גינאית"},
+        "hr": {"male": "gvinejski", "female": "gvinejska"},
         "ro": {"male": "guineean", "female": "guineeană"}
     },
     "Guyanese": {
@@ -1015,6 +1094,7 @@
         "fr": {"male": "guyanien", "female": "guyanienne"},
         "gl": {"male": "güianés", "female": "güianesa"},
         "he": {"male": "גיאני", "female": "גיאנית"},
+        "hr": {"male": "gvajanski", "female": "gvajanska"},
         "ro": {"male": "guyanez", "female": "guyaneză"}
     },
     "Haitian": {
@@ -1027,6 +1107,7 @@
         "fr": {"male": "haïtien", "female": "haïtienne"},
         "gl": {"male": "haitiano", "female": "haitiana"},
         "he": {"male": "האיטי", "female": "האיטית"},
+        "hr": {"male": "haićanski", "female": "haićanska"},
         "ro": {"male": "haitian", "female": "haitiană"}
     },
     "Herzegovinian": {
@@ -1038,7 +1119,8 @@
         "et": {"male": "Hertsegoviina", "female": "Hertsegoviina"},
         "fr": {"male": "herzégovinien", "female": "herzégovinienne"},
         "gl": {"male": "hercegovino", "female": "hercegovina"},
-        "he": {"male": "הרצגוביני", "female": "הרצגובינית"}
+        "he": {"male": "הרצגוביני", "female": "הרצגובינית"},
+        "hr": {"male": "hercegovački", "female": "hercegovačka"}
     },
     "Honduran": {
         "ar": {"male": "هندوراسي", "female": "هندوراسية"},
@@ -1050,6 +1132,7 @@
         "fr": {"male": "hondurien", "female": "hondurienne"},
         "gl": {"male": "hondureño", "female": "hondureña"},
         "he": {"male": "הונדורסי", "female": "הונדורסית"},
+        "hr": {"male": "honduraški", "female": "honduraška"},
         "ro": {"male": "din Honduras", "female": "din Honduras"}
     },
     "Hungarian": {
@@ -1062,6 +1145,7 @@
         "fr": {"male": "hongrois", "female": "hongroise"},
         "gl": {"male": "húngaro", "female": "húngara"},
         "he": {"male": "הונגרי", "female": "הונגרייה"},
+        "hr": {"male": "mađarski", "female": "mađarska"},
         "ro": {"male": "maghiar", "female": "maghiară"},
         "sq": {"male": "hungarez", "female": "hungareze"}
     },
@@ -1075,6 +1159,7 @@
         "fr": {"male": "islandais", "female": "islandaise"},
         "gl": {"male": "islandés", "female": "islandesa"},
         "he": {"male": "איסלנדי", "female": "איסלנדית"},
+        "hr": {"male": "islandski", "female": "islandska"},
         "ro": {"male": "islandez", "female": "islandeză"},
         "sq": {"male": "islandez", "female": "islandeze"}
     },
@@ -1088,6 +1173,7 @@
         "fr": {"male": "gilbertin", "female": "gilbertine"},
         "gl": {"male": "kiribatiano", "female": "kiribatiana"},
         "he": {"male": "קיריבטי", "female": "קיריבטית"},
+        "hr": {"male": "kiribatski", "female": "kiribatska"},
         "ro": {"male": "kiribatian", "female": "kiribatiană"}
     },
     "Indian": {
@@ -1100,6 +1186,7 @@
         "fr": {"male": "indien", "female": "indienne"},
         "gl": {"male": "indio", "female": "india"},
         "he": {"male": "הודי", "female": "הודית"},
+        "hr": {"male": "indijski", "female": "indijska"},
         "ro": {"male": "indian", "female": "indiană"},
         "sq": {"male": "indian", "female": "indiane"}
     },
@@ -1113,6 +1200,7 @@
         "fr": {"male": "indonésien", "female": "indonésienne"},
         "gl": {"male": "indonesio", "female": "indonesia"},
         "he": {"male": "אינדונזי", "female": "אינדונזית"},
+        "hr": {"male": "indonezijski", "female": "indonezijska"},
         "ro": {"male": "indonezian", "female": "indoneziană"},
         "sq": {"male": "indonezian", "female": "indoneziane"}
     },
@@ -1126,6 +1214,7 @@
         "fr": {"male": "iranien", "female": "iranienne"},
         "gl": {"male": "iraniano", "female": "iraniana"},
         "he": {"male": "איראני", "female": "איראנית"},
+        "hr": {"male": "iranski", "female": "iranska"},
         "ro": {"male": "iranian", "female": "iraniană"},
         "sq": {"male": "iranian", "female": "iraniane"}
     },
@@ -1139,6 +1228,7 @@
         "fr": {"male": "irakien", "female": "irakienne"},
         "gl": {"male": "iraquí", "female": "iraquí"},
         "he": {"male": "עיראקי", "female": "עיראקית"},
+        "hr": {"male": "irački", "female": "iračka"},
         "ro": {"male": "irakian", "female": "irakiană"},
         "sq": {"male": "irakian", "female": "irakiane"}
     },
@@ -1152,6 +1242,7 @@
         "fr": {"male": "irlandais", "female": "irlandaise"},
         "gl": {"male": "irlandés", "female": "irlandesa"},
         "he": {"male": "אירי", "female": "אירית"},
+        "hr": {"male": "irski", "female": "irska"},
         "ro": {"male": "irlandez", "female": "irlandeză"},
         "sq": {"male": "irlandez", "female": "irlandeze"}
     },
@@ -1165,6 +1256,7 @@
         "fr": {"male": "israélien", "female": "israélienne"},
         "gl": {"male": "israelí", "female": "israelí"},
         "he": {"male": "ישראלי", "female": "ישראלית"},
+        "hr": {"male": "izraelski", "female": "izraelska"},
         "ro": {"male": "israelian", "female": "israeliană"},
         "sq": {"male": "izraelit", "female": "izraelite"}
     },
@@ -1178,6 +1270,7 @@
         "fr": {"male": "italien", "female": "italienne"},
         "gl": {"male": "italiano", "female": "italiana"},
         "he": {"male": "איטלקי", "female": "איטלקייה"},
+        "hr": {"male": "talijanski", "female": "talijanska"},
         "ro": {"male": "italian", "female": "italiană"},
         "sq": {"male": "italian", "female": "italiane"}
     },
@@ -1203,6 +1296,7 @@
         "fr": {"male": "jamaïcain", "female": "jamaïcaine"},
         "gl": {"male": "xamaicano", "female": "xamaicana"},
         "he": {"male": "ג'מייקני", "female": "ג'מייקנית"},
+        "hr": {"male": "jamajčanski", "female": "jamajčanska"},
         "ro": {"male": "jamaican", "female": "jamaicană"}
     },
     "Japanese": {
@@ -1215,6 +1309,7 @@
         "fr": {"male": "japonais", "female": "japonaise"},
         "gl": {"male": "xaponés", "female": "xaponesa"},
         "he": {"male": "יפני", "female": "יפנית"},
+        "hr": {"male": "japanski", "female": "japanska"},
         "ro": {"male": "japonez", "female": "japoneză"},
         "sq": {"male": "japonez", "female": "japoneze"}
     },
@@ -1228,6 +1323,7 @@
         "fr": {"male": "jordanien", "female": "jordanienne"},
         "gl": {"male": "xordano", "female": "xordana"},
         "he": {"male": "ירדני", "female": "ירדנית"},
+        "hr": {"male": "jordanski", "female": "jordanska"},
         "ro": {"male": "iordanian", "female": "iordaniană"},
         "sq": {"male": "jordanez", "female": "jordaneze"}
     },
@@ -1241,6 +1337,7 @@
         "fr": {"male": "kazakh", "female": "kazakhe"},
         "gl": {"male": "casaco", "female": "casaca"},
         "he": {"male": "קזחי", "female": "קזחית"},
+        "hr": {"male": "kazaški", "female": "kazaška"},
         "ro": {"male": "kazah", "female": "kazahă"}
     },
     "Kazakhstani": {
@@ -1253,6 +1350,7 @@
         "fr": {"male": "kazakh", "female": "kazakhe"},
         "gl": {"male": "casaco", "female": "casaca"},
         "he": {"male": "קזחי", "female": "קזחית"},
+        "hr": {"male": "kazaški", "female": "kazaška"},
         "ro": {"male": "kazah", "female": "kazahă"}
     },
     "Kenyan": {
@@ -1265,6 +1363,7 @@
         "fr": {"male": "kenyan", "female": "kenyanne"},
         "gl": {"male": "kenyano", "female": "kenyana"},
         "he": {"male": "קנייתי", "female": "קנייתית"},
+        "hr": {"male": "kenijski", "female": "kenijska"},
         "ro": {"male": "kenyan", "female": "kenyană"}
     },
     "Kirghiz": {
@@ -1277,6 +1376,7 @@
         "fr": {"male": "kirghiz", "female": "kirghize"},
         "gl": {"male": "kirguiz", "female": "kirguiz"},
         "he": {"male": "קירגיזי", "female": "קירגיזית"},
+        "hr": {"male": "kirgiski", "female": "kirgiska"},
         "ro": {"male": "kirghiz", "female": "kirghiză"}
     },
     "Kirgiz": {
@@ -1289,6 +1389,7 @@
         "fr": {"male": "kirghiz", "female": "kirghize"},
         "gl": {"male": "kirguiz", "female": "kirguiz"},
         "he": {"male": "קירגיזי", "female": "קירגיזית"},
+        "hr": {"male": "kirgiski", "female": "kirgiska"},
         "ro": {"male": "kirghiz", "female": "kirghiză"}
     },
     "Kiribati": {
@@ -1301,6 +1402,7 @@
         "fr": {"male": "gilbertin", "female": "gilbertine"},
         "gl": {"male": "kiribatiano", "female": "kiribatiana"},
         "he": {"male": "קיריבטי", "female": "קיריבטית"},
+        "hr": {"male": "kiribatski", "female": "kiribatska"},
         "ro": {"male": "kiribatian", "female": "kiribatiană"}
     },
     "Kosovan": {
@@ -1313,6 +1415,7 @@
         "fr": {"male": "kosovar", "female": "kosovare"},
         "gl": {"male": "kosovar", "female": "kosovar"},
         "he": {"male": "קוסוברי", "female": "קוסוברית"},
+        "hr": {"male": "kosovski", "female": "kosovska"},
         "ro": {"male": "kosovar", "female": "kosovară"},
         "sq": {"male": "kosovar", "female": "kosovare"}
     },
@@ -1326,6 +1429,7 @@
         "fr": {"male": "kosovar", "female": "kosovare"},
         "gl": {"male": "kosovar", "female": "kosovar"},
         "he": {"male": "קוסוברי", "female": "קוסוברית"},
+        "hr": {"male": "kosovski", "female": "kosovska"},
         "ro": {"male": "kosovar", "female": "kosovară"},
         "sq": {"male": "kosovar", "female": "kosovare"}
     },
@@ -1339,6 +1443,7 @@
         "fr": {"male": "koweïtien", "female": "koweïtienne"},
         "gl": {"male": "kuwaití", "female": "kuwaití"},
         "he": {"male": "כוויתי", "female": "כוויתית"},
+        "hr": {"male": "kuvajtski", "female": "kuvajtska"},
         "ro": {"male": "kuwaitian", "female": "kuwaitiană"}
     },
     "Kyrgyz": {
@@ -1351,6 +1456,7 @@
         "fr": {"male": "kirghiz", "female": "kirghize"},
         "gl": {"male": "kirguiz", "female": "kirguiz"},
         "he": {"male": "קירגיזי", "female": "קירגיזית"},
+        "hr": {"male": "kirgiski", "female": "kirgiska"},
         "ro": {"male": "kirghiz", "female": "kirghiză"}
     },
     "Kyrgyzstani": {
@@ -1363,6 +1469,7 @@
         "fr": {"male": "kirghiz", "female": "kirghize"},
         "gl": {"male": "kirguiz", "female": "kirguiz"},
         "he": {"male": "קירגיזי", "female": "קירגיזית"},
+        "hr": {"male": "kirgiski", "female": "kirgiska"},
         "ro": {"male": "kirghiz", "female": "kirghiză"}
     },
     "Lao": {
@@ -1375,6 +1482,7 @@
         "fr": {"male": "laotien", "female": "laotienne"},
         "gl": {"male": "laosiano", "female": "laosiana"},
         "he": {"male": "מלאוס", "female": "מלאוס"},
+        "hr": {"male": "laoski", "female": "laoska"},
         "ro": {"male": "laoțian", "female": "laoțiană"}
     },
     "Laotian": {
@@ -1387,6 +1495,7 @@
         "fr": {"male": "laotien", "female": "laotienne"},
         "gl": {"male": "laosiano", "female": "laosiana"},
         "he": {"male": "מלאוס", "female": "מלאוס"},
+        "hr": {"male": "laoski", "female": "laoska"},
         "ro": {"male": "laoțian", "female": "laoțiană"}
     },
     "Latvian": {
@@ -1399,6 +1508,7 @@
         "fr": {"male": "letton", "female": "lettone"},
         "gl": {"male": "letón", "female": "letoa"},
         "he": {"male": "לטבי", "female": "לטבית"},
+        "hr": {"male": "latvijski", "female": "latvijska"},
         "ro": {"male": "leton", "female": "letonă"},
         "sq": {"male": "leton", "female": "letone"}
     },
@@ -1412,6 +1522,7 @@
         "fr": {"male": "libanais", "female": "libanaise"},
         "gl": {"male": "libanés", "female": "libanesa"},
         "he": {"male": "לבנוני", "female": "לבנונית"},
+        "hr": {"male": "libanonski", "female": "libanonska"},
         "ro": {"male": "libanez", "female": "libaneză"},
         "sq": {"male": "libanez", "female": "libaneze"}
     },
@@ -1425,6 +1536,7 @@
         "fr": {"male": "libérien", "female": "libérienne"},
         "gl": {"male": "liberiano", "female": "liberiana"},
         "he": {"male": "ליברי", "female": "ליברית"},
+        "hr": {"male": "liberijski", "female": "liberijska"},
         "ro": {"male": "liberian", "female": "liberiană"}
     },
     "Libyan": {
@@ -1437,6 +1549,7 @@
         "fr": {"male": "libyen", "female": "libyenne"},
         "gl": {"male": "libio", "female": "libia"},
         "he": {"male": "לובי", "female": "לובית"},
+        "hr": {"male": "libijski", "female": "libijska"},
         "ro": {"male": "libian", "female": "libiană"},
         "sq": {"male": "libian", "female": "libiane"}
     },
@@ -1450,6 +1563,7 @@
         "fr": {"male": "liechtensteinois", "female": "liechtensteinoise"},
         "gl": {"male": "de Liechtenstein", "female": "de Liechtenstein"},
         "he": {"male": "ליכטנשטייני", "female": "ליכטנשטיינית"},
+        "hr": {"male": "lihtenštajnski", "female": "lihtenštajnska"},
         "ro": {"male": "liechtensteinian", "female": "liechtensteiniană"}
     },
     "Lithuanian": {
@@ -1462,6 +1576,7 @@
         "fr": {"male": "lituanien", "female": "lituanienne"},
         "gl": {"male": "lituano", "female": "lituana"},
         "he": {"male": "ליטאי", "female": "ליטאית"},
+        "hr": {"male": "litavski", "female": "litavska"},
         "ro": {"male": "lituanian", "female": "lituaniană"},
         "sq": {"male": "lituanez", "female": "lituaneze"}
     },
@@ -1475,6 +1590,7 @@
         "fr": {"male": "luxembourgeois", "female": "luxembourgeoise"},
         "gl": {"male": "luxemburgués", "female": "luxemburguesa"},
         "he": {"male": "לוקסמבורגי", "female": "לוקסמבורגית"},
+        "hr": {"male": "luksemburški", "female": "luksemburška"},
         "ro": {"male": "luxemburghez", "female": "luxemburgheză"}
     },
     "Luxembourgish": {
@@ -1487,6 +1603,7 @@
         "fr": {"male": "luxembourgeois", "female": "luxembourgeoise"},
         "gl": {"male": "luxemburgués", "female": "luxemburguesa"},
         "he": {"male": "לוקסמבורגי", "female": "לוקסמבורגית"},
+        "hr": {"male": "luksemburški", "female": "luksemburška"},
         "ro": {"male": "luxemburghez", "female": "luxemburgheză"}
     },
     "Macanese": {
@@ -1499,6 +1616,7 @@
         "fr": {"male": "macanais", "female": "macanaise"},
         "gl": {"male": "de Macau", "female": "de Macau"},
         "he": {"male": "ממקאו", "female": "ממקאו"},
+        "hr": {"male": "makaoanski", "female": "makaoanska"},
         "ro": {"male": "din Macao", "female": "din Macao"}
     },
     "Macedonian": {
@@ -1511,6 +1629,7 @@
         "fr": {"male": "macédonien", "female": "macédonienne"},
         "gl": {"male": "macedonio", "female": "macedonia"},
         "he": {"male": "מקדוני", "female": "מקדונית"},
+        "hr": {"male": "makedonski", "female": "makedonska"},
         "ro": {"male": "macedonean", "female": "macedoneană"},
         "sq": {"male": "maqedonas", "female": "maqedonase"}
     },
@@ -1524,6 +1643,7 @@
         "fr": {"male": "malgache", "female": "malgache"},
         "gl": {"male": "malgaxe", "female": "malgaxe"},
         "he": {"male": "מלגשי", "female": "מלגשית"},
+        "hr": {"male": "malgaški", "female": "malgaška"},
         "ro": {"male": "malgaș", "female": "malgașă"}
     },
     "Malawian": {
@@ -1536,6 +1656,7 @@
         "fr": {"male": "malawite", "female": "malawite"},
         "gl": {"male": "de Malawi", "female": "de Malawi"},
         "he": {"male": "מלאווי", "female": "מלאווית"},
+        "hr": {"male": "malavijski", "female": "malavijska"},
         "ro": {"male": "malawian", "female": "malawiană"}
     },
     "Malaysian": {
@@ -1548,6 +1669,7 @@
         "fr": {"male": "malaisien", "female": "malaisienne"},
         "gl": {"male": "malaisiano", "female": "malaisiana"},
         "he": {"male": "מלזי", "female": "מלזית"},
+        "hr": {"male": "malezijski", "female": "malezijska"},
         "ro": {"male": "malaysian", "female": "malaysiană"},
         "sq": {"male": "malajzian", "female": "malajziane"}
     },
@@ -1561,6 +1683,7 @@
         "fr": {"male": "maldivien", "female": "maldivienne"},
         "gl": {"male": "maldivano", "female": "maldivana"},
         "he": {"male": "מולדובי", "female": "מולדובית"},
+        "hr": {"male": "maldivski", "female": "maldivska"},
         "ro": {"male": "maldivian", "female": "maldiviană"}
     },
     "Malian": {
@@ -1573,6 +1696,7 @@
         "fr": {"male": "malien", "female": "malienne"},
         "gl": {"male": "maliano", "female": "maliana"},
         "he": {"male": "מאלי", "female": "מאלית"},
+        "hr": {"male": "malijski", "female": "malijska"},
         "ro": {"male": "malian", "female": "maliană"}
     },
     "Maltese": {
@@ -1585,6 +1709,7 @@
         "fr": {"male": "maltais", "female": "maltaise"},
         "gl": {"male": "maltés", "female": "maltesa"},
         "he": {"male": "מלטזי", "female": "מלטזית"},
+        "hr": {"male": "malteški", "female": "malteška"},
         "ro": {"male": "maltez", "female": "malteză"}
     },
     "Mauritanian": {
@@ -1621,6 +1746,7 @@
         "fr": {"male": "mexicain", "female": "mexicaine"},
         "gl": {"male": "mexicano", "female": "mexicana"},
         "he": {"male": "מקסיקני", "female": "מקסיקנית"},
+        "hr": {"male": "meksički", "female": "meksička"},
         "ro": {"male": "mexican", "female": "mexicană"},
         "sq": {"male": "meksikan", "female": "meksikane"}
     },
@@ -1634,6 +1760,7 @@
         "fr": {"male": "moldave", "female": "moldave"},
         "gl": {"male": "moldavo", "female": "moldava"},
         "he": {"male": "מולדובי", "female": "מולדובית"},
+        "hr": {"male": "moldavski", "female": "moldavska"},
         "ro": {"male": "moldovean", "female": "moldoveană"},
         "sq": {"male": "moldav", "female": "moldave"}
     },
@@ -1647,6 +1774,7 @@
         "fr": {"male": "monégasque", "female": "monégasque"},
         "gl": {"male": "monegasco", "female": "monegasca"},
         "he": {"male": "מונגאסקי", "female": "מונגאסקית"},
+        "hr": {"male": "monaški", "female": "monaška"},
         "ro": {"male": "monegasc", "female": "monegască"}
     },
     "Monégasque": {
@@ -1659,6 +1787,7 @@
         "fr": {"male": "monégasque", "female": "monégasque"},
         "gl": {"male": "monegasco", "female": "monegasca"},
         "he": {"male": "מונגאסקי", "female": "מונגאסקית"},
+        "hr": {"male": "monaški", "female": "monaška"},
         "ro": {"male": "monegasc", "female": "monegască"}
     },
     "Mongolian": {
@@ -1671,6 +1800,7 @@
         "fr": {"male": "mongol", "female": "mongole"},
         "gl": {"male": "mongol", "female": "mongol"},
         "he": {"male": "מונגולי", "female": "מונגולית"},
+        "hr": {"male": "mongolski", "female": "mongolska"},
         "ro": {"male": "mongol", "female": "mongolă"},
         "sq": {"male": "mongol", "female": "mongole"}
     },
@@ -1684,6 +1814,7 @@
         "fr": {"male": "monténégrin", "female": "monténégrine"},
         "gl": {"male": "montenegrino", "female": "montenegrina"},
         "he": {"male": "מונטנגרי", "female": "מונטנגרית"},
+        "hr": {"male": "crnogorski", "female": "crnogorska"},
         "ro": {"male": "muntenegrean", "female": "muntenegreană"},
         "sq": {"male": "malazez", "female": "malazeze"}
     },
@@ -1697,6 +1828,7 @@
         "fr": {"male": "marocain", "female": "marocaine"},
         "gl": {"male": "marroquí", "female": "marroquí"},
         "he": {"male": "מרוקאי", "female": "מרוקאית"},
+        "hr": {"male": "marokanski", "female": "marokanska"},
         "ro": {"male": "marocan", "female": "marocană"},
         "sq": {"male": "maroken", "female": "marokene"}
     },
@@ -1710,6 +1842,7 @@
         "fr": {"male": "lesothan", "female": "lesothane"},
         "gl": {"male": "lesotense", "female": "lesotense"},
         "he": {"male": "לסוטואי", "female": "לסוטואית"},
+        "hr": {"male": "lesotski", "female": "lesotska"},
         "ro": {"male": "lesothian", "female": "lesothiană"}
     },
     "Mozambican": {
@@ -1722,6 +1855,7 @@
         "fr": {"male": "mozambicain", "female": "mozambicaine"},
         "gl": {"male": "mozambicano", "female": "mozambicana"},
         "he": {"male": "מוזמביקי", "female": "מוזמביקית"},
+        "hr": {"male": "mozambički", "female": "mozambička"},
         "ro": {"male": "mozambican", "female": "mozambicană"}
     },
     "Namibian": {
@@ -1734,6 +1868,7 @@
         "fr": {"male": "namibien", "female": "namibienne"},
         "gl": {"male": "namibio", "female": "namibia"},
         "he": {"male": "נמיבי", "female": "נמיבית"},
+        "hr": {"male": "namibijski", "female": "namibijska"},
         "ro": {"male": "namibian", "female": "namibiană"}
     },
     "Nauruan": {
@@ -1746,6 +1881,7 @@
         "fr": {"male": "nauruan", "female": "nauruane"},
         "gl": {"male": "nauruano", "female": "nauruana"},
         "he": {"male": "נאורי", "female": "נאורית"},
+        "hr": {"male": "nauruanski", "female": "nauruanska"},
         "ro": {"male": "nauruan", "female": "nauruană"}
     },
     "Nepalese": {
@@ -1758,6 +1894,7 @@
         "fr": {"male": "népalais", "female": "népalaise"},
         "gl": {"male": "nepalés", "female": "nepalesa"},
         "he": {"male": "נפאלי", "female": "נפאלית"},
+        "hr": {"male": "nepalski", "female": "nepalska"},
         "ro": {"male": "nepalez", "female": "nepaleză"},
         "sq": {"male": "nepalez", "female": "nepaleze"}
     },
@@ -1771,6 +1908,7 @@
         "fr": {"male": "népalais", "female": "népalaise"},
         "gl": {"male": "nepalés", "female": "nepalesa"},
         "he": {"male": "נפאלי", "female": "נפאלית"},
+        "hr": {"male": "nepalski", "female": "nepalska"},
         "ro": {"male": "nepalez", "female": "nepaleză"},
         "sq": {"male": "nepalez", "female": "nepaleze"}
     },
@@ -1784,6 +1922,7 @@
         "fr": {"male": "néo-zélandais", "female": "néo-zélandaise"},
         "gl": {"male": "neozelandés", "female": "neozelandesa"},
         "he": {"male": "ניו זילנדי", "female": "ניו זילנדית"},
+        "hr": {"male": "novozelandski", "female": "novozelandska"},
         "ro": {"male": "neozeelandez", "female": "neozeelandeză"}
     },
     "Ni-Vanuatu": {
@@ -1796,6 +1935,7 @@
         "fr": {"male": "vanuatais", "female": "vanuataise"},
         "gl": {"male": "vanuatiano", "female": "vanuatiana"},
         "he": {"male": "ונואטי", "female": "ונואטית"},
+        "hr": {"male": "vanuatuanski", "female": "vanuatuanska"},
         "ro": {"male": "din Vanuatu", "female": "din Vanuatu"}
     },
     "Nicaraguan": {
@@ -1808,6 +1948,7 @@
         "fr": {"male": "nicaraguayen", "female": "nicaraguayenne"},
         "gl": {"male": "nicaraguano", "female": "nicaraguana"},
         "he": {"male": "ניקרגואי", "female": "ניקרגואית"},
+        "hr": {"male": "nikaragvanski", "female": "nikaragvanska"},
         "ro": {"male": "nicaraguan", "female": "nicaraguană"}
     },
     "Nigerian": {
@@ -1845,6 +1986,7 @@
         "fr": {"male": "nord-coréen", "female": "nord-coréenne"},
         "gl": {"male": "norcoreano", "female": "norcoreana"},
         "he": {"male": "צפון קוריאני", "female": "צפון קוריאנית"},
+        "hr": {"male": "sjevernokorejski", "female": "sjevernokorejska"},
         "ro": {"male": "nord-coreean", "female": "nord-coreeană"},
         "sq": {"male": "koreano-verior", "female": "koreano-veriore"}
     },
@@ -1858,6 +2000,7 @@
         "fr": {"male": "norvégien", "female": "norvégienne"},
         "gl": {"male": "noruegués", "female": "norueguesa"},
         "he": {"male": "נורווגי", "female": "נורווגית"},
+        "hr": {"male": "norveški", "female": "norveška"},
         "ro": {"male": "norvegian", "female": "norvegiană"},
         "sq": {"male": "norvegjez", "female": "norvegjeze"}
     },
@@ -1871,6 +2014,7 @@
         "fr": {"male": "omanais", "female": "omanaise"},
         "gl": {"male": "omaní", "female": "omaní"},
         "he": {"male": "עומאני", "female": "עומאנית"},
+        "hr": {"male": "omanski", "female": "omanska"},
         "ro": {"male": "omanez", "female": "omaneză"}
     },
     "Pakistani": {
@@ -1883,6 +2027,7 @@
         "fr": {"male": "pakistanais", "female": "pakistanaise"},
         "gl": {"male": "paquistaní", "female": "paquistaní"},
         "he": {"male": "פקיסטני", "female": "פקיסטנית"},
+        "hr": {"male": "pakistanski", "female": "pakistanska"},
         "ro": {"male": "pakistanez", "female": "pakistaneză"},
         "sq": {"male": "pakistanez", "female": "pakistaneze"}
     },
@@ -1896,6 +2041,7 @@
         "fr": {"male": "palaosien", "female": "palaosienne"},
         "gl": {"male": "de Palau", "female": "de Palau"},
         "he": {"male": "פלאואני", "female": "פלאואנית"},
+        "hr": {"male": "palauanski", "female": "palauanska"},
         "ro": {"male": "din Palau", "female": "din Palau"}
     },
     "Palestinian": {
@@ -1908,6 +2054,7 @@
         "fr": {"male": "palestinien", "female": "palestinienne"},
         "gl": {"male": "palestino", "female": "palestina"},
         "he": {"male": "פלסטיני", "female": "פלסטינית"},
+        "hr": {"male": "palestinski", "female": "palestinska"},
         "ro": {"male": "palestinian", "female": "palestiniană"},
         "sq": {"male": "palestinez", "female": "palestineze"}
     },
@@ -1921,6 +2068,7 @@
         "fr": {"male": "panaméen", "female": "panaméenne"},
         "gl": {"male": "panameño", "female": "panameña"},
         "he": {"male": "פנמי", "female": "פנמית"},
+        "hr": {"male": "panamski", "female": "panamska"},
         "ro": {"male": "panamez", "female": "panameză"}
     },
     "Papua New Guinean": {
@@ -1933,6 +2081,7 @@
         "fr": {"male": "papou", "female": "papoue"},
         "gl": {"male": "papú", "female": "papú"},
         "he": {"male": "מפפואה גינאה החדשה", "female": "מפפואה גינאה החדשה"},
+        "hr": {"male": "papuanski", "female": "papuanska"},
         "ro": {"male": "papua-neoguineean", "female": "papua-neoguineeană"}
     },
     "Papuan": {
@@ -1945,6 +2094,7 @@
         "fr": {"male": "papou", "female": "papoue"},
         "gl": {"male": "papú", "female": "papú"},
         "he": {"male": "פפואי", "female": "פפואית"},
+        "hr": {"male": "papuanski", "female": "papuanska"},
         "ro": {"male": "papuaș", "female": "papuașă"}
     },
     "Paraguayan": {
@@ -1957,6 +2107,7 @@
         "fr": {"male": "paraguayen", "female": "paraguayenne"},
         "gl": {"male": "paraguaio", "female": "paraguaia"},
         "he": {"male": "פרגוואי", "female": "פרגוואית"},
+        "hr": {"male": "paragvajski", "female": "paragvajska"},
         "ro": {"male": "paraguayan", "female": "paraguayană"}
     },
     "Peruvian": {
@@ -1969,6 +2120,7 @@
         "fr": {"male": "péruvien", "female": "péruvienne"},
         "gl": {"male": "peruano", "female": "peruana"},
         "he": {"male": "פרואני", "female": "פרואנית"},
+        "hr": {"male": "peruanski", "female": "peruanska"},
         "ro": {"male": "peruan", "female": "peruană"},
         "sq": {"male": "peruan", "female": "peruane"}
     },
@@ -1982,6 +2134,7 @@
         "fr": {"male": "philippin", "female": "philippine"},
         "gl": {"male": "filipino", "female": "filipina"},
         "he": {"male": "פיליפיני", "female": "פיליפינית"},
+        "hr": {"male": "filipinski", "female": "filipinska"},
         "ro": {"male": "filipinez", "female": "filipineză"},
         "sq": {"male": "filipinez", "female": "filipineze"}
     },
@@ -1995,6 +2148,7 @@
         "fr": {"male": "polonais", "female": "polonaise"},
         "gl": {"male": "polaco", "female": "polaca"},
         "he": {"male": "פולני", "female": "פולנייה"},
+        "hr": {"male": "poljski", "female": "poljska"},
         "ro": {"male": "polonez", "female": "poloneză"},
         "sq": {"male": "polak", "female": "polake"}
     },
@@ -2008,6 +2162,7 @@
         "fr": {"male": "portugais", "female": "portugaise"},
         "gl": {"male": "portugués", "female": "portuguesa"},
         "he": {"male": "פורטוגזי", "female": "פורטוגזית"},
+        "hr": {"male": "portugalski", "female": "portugalska"},
         "ro": {"male": "portughez", "female": "portugheză"},
         "sq": {"male": "portugez", "female": "portugeze"}
     },
@@ -2021,6 +2176,7 @@
         "fr": {"male": "portoricain", "female": "portoricaine"},
         "gl": {"male": "portorriqueño", "female": "portorriqueña"},
         "he": {"male": "פוארטו ריקני", "female": "פוארטו ריקנית"},
+        "hr": {"male": "portorikanski", "female": "portorikanska"},
         "ro": {"male": "portorican", "female": "portoricană"},
         "sq": {"male": "portorikan", "female": "portorikane"}
     },
@@ -2034,6 +2190,7 @@
         "fr": {"male": "qatari", "female": "qatarie"},
         "gl": {"male": "catarí", "female": "catarí"},
         "he": {"male": "קטרי", "female": "קטרית"},
+        "hr": {"male": "katarski", "female": "katarska"},
         "ro": {"male": "din Qatar", "female": "din Qatar"}
     },
     "Romanian": {
@@ -2046,6 +2203,7 @@
         "fr": {"male": "roumain", "female": "roumaine"},
         "gl": {"male": "romanés", "female": "romanesa"},
         "he": {"male": "רומני", "female": "רומנייה"},
+        "hr": {"male": "rumunjski", "female": "rumunjska"},
         "ro": {"male": "român", "female": "română"},
         "sq": {"male": "rumun", "female": "rumune"}
     },
@@ -2059,6 +2217,7 @@
         "fr": {"male": "russe", "female": "russe"},
         "gl": {"male": "ruso", "female": "rusa"},
         "he": {"male": "רוסי", "female": "רוסייה"},
+        "hr": {"male": "ruski", "female": "ruska"},
         "ro": {"male": "rus", "female": "rusă"},
         "sq": {"male": "rus", "female": "ruse"}
     },
@@ -2072,6 +2231,7 @@
         "fr": {"male": "rwandais", "female": "rwandaise"},
         "gl": {"male": "ruandés", "female": "ruandesa"},
         "he": {"male": "רואנדי", "female": "רואנדית"},
+        "hr": {"male": "ruandski", "female": "ruandska"},
         "ro": {"male": "rwandez", "female": "rwandeză"}
     },
     "Salvadoran": {
@@ -2084,6 +2244,7 @@
         "fr": {"male": "salvadorien", "female": "salvadorienne"},
         "gl": {"male": "salvadoreño", "female": "salvadoreña"},
         "he": {"male": "אל סלוודורי", "female": "אל סלוודורית"},
+        "hr": {"male": "salvadorski", "female": "salvadorska"},
         "ro": {"male": "salvadorian", "female": "salvadoriană"},
         "sq": {"male": "salvadoras", "female": "salvadorase"}
     },
@@ -2097,6 +2258,7 @@
         "fr": {"male": "saint-marinais", "female": "saint-marinaise"},
         "gl": {"male": "sanmariñés", "female": "sanmariñesa"},
         "he": {"male": "מסן מרינו", "female": "מסן מרינו"},
+        "hr": {"male": "sanmarinski", "female": "sanmarinska"},
         "ro": {"male": "din San Marino", "female": "din San Marino"}
     },
     "Samoan": {
@@ -2109,6 +2271,7 @@
         "fr": {"male": "samoan", "female": "samoane"},
         "gl": {"male": "samoano", "female": "samoana"},
         "he": {"male": "סמואי", "female": "סמואית"},
+        "hr": {"male": "samoanski", "female": "samoanska"},
         "ro": {"male": "samoan", "female": "samoană"},
         "sq": {"male": "samoan", "female": "samoane"}
     },
@@ -2122,6 +2285,7 @@
         "fr": {"male": "santoméen", "female": "santoméenne"},
         "gl": {"male": "santomense", "female": "santomense"},
         "he": {"male": "מסאו טומה ופרינסיפה", "female": "מסאו טומה ופרינסיפה"},
+        "hr": {"male": "saotomeanski", "female": "saotomeanska"},
         "ro": {"male": "din São Tomé și Príncipe", "female": "din São Tomé și Príncipe"}
     },
     "Saudi": {
@@ -2134,6 +2298,7 @@
         "fr": {"male": "saoudien", "female": "saoudienne"},
         "gl": {"male": "saudita", "female": "saudita"},
         "he": {"male": "סעודי", "female": "סעודית"},
+        "hr": {"male": "saudijski", "female": "saudijska"},
         "ro": {"male": "saudit", "female": "saudită"},
         "sq": {"male": "saudit", "female": "saudite"}
     },
@@ -2147,6 +2312,7 @@
         "fr": {"male": "saoudien", "female": "saoudienne"},
         "gl": {"male": "saudita", "female": "saudita"},
         "he": {"male": "סעודי", "female": "סעודית"},
+        "hr": {"male": "saudijski", "female": "saudijska"},
         "ro": {"male": "saudit", "female": "saudită"},
         "sq": {"male": "saudit", "female": "saudite "}
     },
@@ -2160,6 +2326,7 @@
         "fr": {"male": "sénégalais", "female": "sénégalaise"},
         "gl": {"male": "senegalés", "female": "senegalesa"},
         "he": {"male": "סנגלי", "female": "סנגלית"},
+        "hr": {"male": "senegalski", "female": "senegalska"},
         "ro": {"male": "senegalez", "female": "senegaleză"},
         "sq": {"male": "senegalez", "female": "senegaleze"}
     },
@@ -2173,6 +2340,7 @@
         "fr": {"male": "serbe", "female": "serbe"},
         "gl": {"male": "serbio", "female": "serbia"},
         "he": {"male": "סרבי", "female": "סרבית"},
+        "hr": {"male": "srpski", "female": "srpska"},
         "ro": {"male": "sârb", "female": "sârbă"},
         "sq": {"male": "serb", "female": "serbe"}
     },
@@ -2186,6 +2354,7 @@
         "fr": {"male": "seychellois", "female": "seychelloise"},
         "gl": {"male": "seychelense", "female": "seychelense"},
         "he": {"male": "סיישלי", "female": "סיישלית"},
+        "hr": {"male": "sejšelski", "female": "sejšelska"},
         "ro": {"male": "seychellez", "female": "seychelleză"}
     },
     "Sierra Leonean": {
@@ -2198,6 +2367,7 @@
         "fr": {"male": "sierra-léonais", "female": "sierra-léonaise"},
         "gl": {"male": "serraleonino", "female": "serraleonina"},
         "he": {"male": "סיירה לאוני", "female": "סיירה לאונית"},
+        "hr": {"male": "sijeraleonski", "female": "sijeraleonska"},
         "ro": {"male": "din Sierra Leone", "female": "din Sierra Leone"}
     },
     "Singapore": {
@@ -2210,6 +2380,7 @@
         "fr": {"male": "singapourien", "female": "singapourienne"},
         "gl": {"male": "singapurense", "female": "singapurense"},
         "he": {"male": "סינגפורי", "female": "סינגפורית"},
+        "hr": {"male": "singapurski", "female": "singapurska"},
         "ro": {"male": "singaporez", "female": "singaporeză"},
         "sq": {"male": "singaporas", "female": "singaporase"}
     },
@@ -2223,6 +2394,7 @@
         "fr": {"male": "singapourien", "female": "singapourienne"},
         "gl": {"male": "singapurense", "female": "singapurense"},
         "he": {"male": "סינגפורי", "female": "סינגפורית"},
+        "hr": {"male": "singapurski", "female": "singapurska"},
         "ro": {"male": "singaporez", "female": "singaporeză"},
         "sq": {"male": "singaporas", "female": "singaporase"}
     },
@@ -2236,6 +2408,7 @@
         "fr": {"male": "slovaque", "female": "slovaque"},
         "gl": {"male": "eslovaco", "female": "eslovaca"},
         "he": {"male": "סלובקי", "female": "סלובקית"},
+        "hr": {"male": "slovački", "female": "slovačka"},
         "ro": {"male": "slovac", "female": "slovacă"},
         "sq": {"male": "sllovak", "female": "sllovake"}
     },
@@ -2249,6 +2422,7 @@
         "fr": {"male": "slovène", "female": "slovène"},
         "gl": {"male": "esloveno", "female": "eslovena"},
         "he": {"male": "סלובני", "female": "סלובנית"},
+        "hr": {"male": "slovenski", "female": "slovenska"},
         "ro": {"male": "sloven", "female": "slovenă"},
         "sq": {"male": "slloven", "female": "sllovene"}
     },
@@ -2262,6 +2436,7 @@
         "fr": {"male": "slovène", "female": "slovène"},
         "gl": {"male": "esloveno", "female": "eslovena"},
         "he": {"male": "סלובני", "female": "סלובנית"},
+        "hr": {"male": "slovenski", "female": "slovenska"},
         "ro": {"male": "sloven", "female": "slovenă"},
         "sq": {"male": "slloven", "female": "sllovene"}
     },
@@ -2275,6 +2450,7 @@
         "fr": {"male": "somalien", "female": "somalienne"},
         "gl": {"male": "somalí", "female": "somalí"},
         "he": {"male": "סומלי", "female": "סומלית"},
+        "hr": {"male": "somalijski", "female": "somalijska"},
         "ro": {"male": "somalez", "female": "somaleză"},
         "sq": {"male": "somalez", "female": "somaleze"}
     },
@@ -2288,6 +2464,7 @@
         "fr": {"male": "sud-africain", "female": "sud-africaine"},
         "gl": {"male": "sudafricano", "female": "sudafricana"},
         "he": {"male": "דרום אפריקאי", "female": "דרום אפריקאית"},
+        "hr": {"male": "južnoafrički", "female": "južnoafrička"},
         "ro": {"male": "sud-african", "female": "sud-africană"},
         "sq": {"male": "afrikano-jugor", "female": "afrikano-jugore"}
     },
@@ -2301,6 +2478,7 @@
         "fr": {"male": "sud-coréen", "female": "sud-coréenne"},
         "gl": {"male": "surcoreano", "female": "surcoreana"},
         "he": {"male": "דרום קוריאני", "female": "דרום קוריאנית"},
+        "hr": {"male": "južnokorejski", "female": "južnokorejska"},
         "ro": {"male": "sud-coreean", "female": "sud-coreeană"},
         "sq": {"male": "koreano-jugor", "female": "koreano-jugore"}
     },
@@ -2314,6 +2492,7 @@
         "fr": {"male": "espagnol", "female": "espagnole"},
         "gl": {"male": "español", "female": "española"},
         "he": {"male": "ספרדי", "female": "ספרדייה"},
+        "hr": {"male": "španjolski", "female": "španjolska"},
         "ro": {"male": "spaniol", "female": "spaniolă"},
         "sq": {"male": "spanjoll", "female": "spanjolle"}
     },
@@ -2327,6 +2506,7 @@
         "fr": {"male": "sri-lankais", "female": "sri-lankaise"},
         "gl": {"male": "srilankés", "female": "srilankesa"},
         "he": {"male": "סרי לנקי", "female": "סרי לנקית"},
+        "hr": {"male": "šrilankanski", "female": "šrilankanska"},
         "ro": {"male": "srilankez", "female": "srilankeză"}
     },
     "Sudanese": {
@@ -2339,6 +2519,7 @@
         "fr": {"male": "soudanais", "female": "soudanaise"},
         "gl": {"male": "sudanés", "female": "sudanesa"},
         "he": {"male": "סודאני", "female": "סודאנית"},
+        "hr": {"male": "sudanski", "female": "sudanska"},
         "ro": {"male": "sudanez", "female": "sudaneză"},
         "sq": {"male": "sudanez", "female": "sudaneze"}
     },
@@ -2352,6 +2533,7 @@
         "fr": {"male": "surinamien", "female": "surinamienne"},
         "gl": {"male": "surinamés", "female": "surinamesa"},
         "he": {"male": "סורינאמי", "female": "סורינאמית"},
+        "hr": {"male": "surinamski", "female": "surinamska"},
         "ro": {"male": "surinamez", "female": "surinameză"}
     },
     "Swedish": {
@@ -2364,6 +2546,7 @@
         "fr": {"male": "suédois", "female": "suédoise"},
         "gl": {"male": "sueco", "female": "sueca"},
         "he": {"male": "שוודי", "female": "שוודית"},
+        "hr": {"male": "švedski", "female": "švedska"},
         "ro": {"male": "suedez", "female": "suedeză"},
         "sq": {"male": "suedez", "female": "suedeze"}
     },
@@ -2377,6 +2560,7 @@
         "fr": {"male": "suisse", "female": "suisse"},
         "gl": {"male": "suizo", "female": "suiza"},
         "he": {"male": "שווייצרי", "female": "שווייצרית"},
+        "hr": {"male": "švicarski", "female": "švicarska"},
         "ro": {"male": "elvețian", "female": "elvețiană"},
         "sq": {"male": "zviceran", "female": "zvicerane"}
     },
@@ -2390,6 +2574,7 @@
         "fr": {"male": "syrien", "female": "syrienne"},
         "gl": {"male": "sirio", "female": "siria"},
         "he": {"male": "סורי", "female": "סורית"},
+        "hr": {"male": "sirijski", "female": "sirijska"},
         "ro": {"male": "sirian", "female": "siriană"},
         "sq": {"male": "sirian", "female": "siriane"}
     },
@@ -2403,6 +2588,7 @@
         "fr": {"male": "tadjik", "female": "tadjike"},
         "gl": {"male": "taxiquistano", "female": "taxiquistana"},
         "he": {"male": "טג'יקי", "female": "טג'יקית"},
+        "hr": {"male": "tadžikistanski", "female": "tadžikistanska"},
         "ro": {"male": "tadjic", "female": "tadjică"}
     },
     "Tanzanian": {
@@ -2415,6 +2601,7 @@
         "fr": {"male": "tanzanien", "female": "tanzanienne"},
         "gl": {"male": "tanzano", "female": "tanzana"},
         "he": {"male": "טנזני", "female": "טנזנית"},
+        "hr": {"male": "tanzanijski", "female": "tanzanijska"},
         "ro": {"male": "tanzanian", "female": "tanzaniană"}
     },
     "Thai": {
@@ -2427,6 +2614,7 @@
         "fr": {"male": "thaïlandais", "female": "thaïlandaise"},
         "gl": {"male": "tailandés", "female": "tailandesa"},
         "he": {"male": "תאילנדי", "female": "תאילנדית"},
+        "hr": {"male": "tajlandski", "female": "tajlandska"},
         "ro": {"male": "thailandez", "female": "thailandeză"},
         "sq": {"male": "tajlandez", "female": "tajlandeze"}
     },
@@ -2439,7 +2627,8 @@
         "et": {"male": "Timori", "female": "Timori"},
         "fr": {"male": "timorais", "female": "timoraise"},
         "gl": {"male": "timorense", "female": "timorense"},
-        "he": {"male": "טימורי", "female": "טימורית"}
+        "he": {"male": "טימורי", "female": "טימורית"},
+        "hr": {"male": "timorski", "female": "timorska"}
     },
     "Togolese": {
         "ar": {"male": "توغوي", "female": "توغوية"},
@@ -2451,6 +2640,7 @@
         "fr": {"male": "togolais", "female": "togolaise"},
         "gl": {"male": "togolés", "female": "togolesa"},
         "he": {"male": "טוגולזי", "female": "טוגולזית"},
+        "hr": {"male": "togoanski", "female": "togoanska"},
         "ro": {"male": "togolez", "female": "togoleză"}
     },
     "Tongan": {
@@ -2463,6 +2653,7 @@
         "fr": {"male": "tongien", "female": "tongienne"},
         "gl": {"male": "tongano", "female": "tongana"},
         "he": {"male": "טונגי", "female": "טונגית"},
+        "hr": {"male": "tonganski", "female": "tonganska"},
         "ro": {"male": "din Tonga", "female": "din Tonga"}
     },
     "Trinidadian": {
@@ -2475,6 +2666,7 @@
         "fr": {"male": "trinidadien", "female": "trinidadienne"},
         "gl": {"male": "trinitense", "female": "trinitense"},
         "he": {"male": "מטרינידד וטובגו", "female": "מטרינידד וטובגו"},
+        "hr": {"male": "trinidadski", "female": "trinidadska"},
         "ro": {"male": "din Trinidad și Tobago", "female": "din Trinidad și Tobago"}
     },
     "Tobagonian": {
@@ -2487,6 +2679,7 @@
         "fr": {"male": "trinidadien", "female": "trinidadienne"},
         "gl": {"male": "trinitense", "female": "trinitense"},
         "he": {"male": "מטרינידד וטובגו", "female": "מטרינידד וטובגו"},
+        "hr": {"male": "tobagoanski", "female": "tobagoanska"},
         "ro": {"male": "din Trinidad și Tobago", "female": "din Trinidad și Tobago"}
     },
     "Tunisian": {
@@ -2499,6 +2692,7 @@
         "fr": {"male": "tunisien", "female": "tunisienne"},
         "gl": {"male": "tunesino", "female": "tunesina"},
         "he": {"male": "תוניסאי", "female": "תוניסאית"},
+        "hr": {"male": "tuniski", "female": "tuniska"},
         "ro": {"male": "tunisian", "female": "tunisiană"},
         "sq": {"male": "tunizian", "female": "tuniziane"}
     },
@@ -2512,6 +2706,7 @@
         "fr": {"male": "turc", "female": "turque"},
         "gl": {"male": "turco", "female": "turca"},
         "he": {"male": "טורקי", "female": "טורקייה"},
+        "hr": {"male": "turski", "female": "turska"},
         "ro": {"male": "turc", "female": "turcă"},
         "sq": {"male": "turk", "female": "turke"}
     },
@@ -2525,6 +2720,7 @@
         "fr": {"male": "turkmène", "female": "turkmène"},
         "gl": {"male": "turcomán", "female": "turcomá"},
         "he": {"male": "טורקמני", "female": "טורקמנית"},
+        "hr": {"male": "turkmenistanski", "female": "turkmenistanska"},
         "ro": {"male": "turkmen", "female": "turkmenă"},
         "sq": {"male": "turkmen", "female": "turkmene"}
     },
@@ -2538,6 +2734,7 @@
         "fr": {"male": "tuvalais", "female": "tuvalaise"},
         "gl": {"male": "tuvaluano", "female": "tuvaluana"},
         "he": {"male": "טובאלואני", "female": "טובאלואנית"},
+        "hr": {"male": "tuvaluanski", "female": "tuvaluanska"},
         "ro": {"male": "tuvaluan", "female": "tuvaluană"},
         "sq": {"male": "tuvaluas", "female": "tuvaluase"}
     },
@@ -2551,6 +2748,7 @@
         "fr": {"male": "ougandais", "female": "ougandaise"},
         "gl": {"male": "ugandés", "female": "ugandesa"},
         "he": {"male": "אוגנדי", "female": "אוגנדית"},
+        "hr": {"male": "ugandski", "female": "ugandska"},
         "ro": {"male": "ugandez", "female": "ugandeză"},
         "sq": {"male": "ugandas", "female": "ugandase"}
     },
@@ -2564,6 +2762,7 @@
         "fr": {"male": "britannique", "female": "britannique"},
         "gl": {"male": "británico", "female": "británica"},
         "he": {"male": "בריטי", "female": "בריטית"},
+        "hr": {"male": "britanski", "female": "britanska"},
         "ro": {"male": "britanic", "female": "britanică"},
         "sq": {"male": "britanik", "female": "britanike"}
     },
@@ -2577,6 +2776,7 @@
         "fr": {"male": "britannique", "female": "britannique"},
         "gl": {"male": "británico", "female": "británica"},
         "he": {"male": "בריטי", "female": "בריטית"},
+        "hr": {"male": "britanski", "female": "britanska"},
         "ro": {"male": "britanic", "female": "britanică"},
         "sq": {"male": "britanik", "female": "britanike"}
     },
@@ -2590,6 +2790,7 @@
         "fr": {"male": "ukrainien", "female": "ukrainienne"},
         "gl": {"male": "ucraíno", "female": "ucraína"},
         "he": {"male": "אוקראיני", "female": "אוקראינית"},
+        "hr": {"male": "ukrajinski", "female": "ukrajinska"},
         "ro": {"male": "ucrainean", "female": "ucraineană"},
         "sq": {"male": "ukrainas", "female": "ukrainase"}
     },
@@ -2603,6 +2804,7 @@
         "fr": {"male": "américain", "female": "américaine"},
         "gl": {"male": "estadounidense", "female": "estadounidense"},
         "he": {"male": "אמריקאי", "female": "אמריקאית"},
+        "hr": {"male": "američki", "female": "američka"},
         "ro": {"male": "american", "female": "americană"},
         "sq": {"male": "amerikan", "female": "amerikane"}
     },
@@ -2616,6 +2818,7 @@
         "fr": {"male": "uruguayen", "female": "uruguayenne"},
         "gl": {"male": "uruguaio", "female": "uruguaia"},
         "he": {"male": "אורוגוואי", "female": "אורוגוואית"},
+        "hr": {"male": "urugvajski", "female": "urugvajska"},
         "ro": {"male": "uruguayan", "female": "uruguayană"},
         "sq": {"male": "uruguajan", "female": "uruguajane"}
     },
@@ -2629,6 +2832,7 @@
         "fr": {"male": "américain", "female": "américaine"},
         "gl": {"male": "estadounidense", "female": "estadounidense"},
         "he": {"male": "אמריקאי", "female": "אמריקאית"},
+        "hr": {"male": "američki", "female": "američka"},
         "ro": {"male": "american", "female": "americană"},
         "sq": {"male": "amerikan", "female": "amerikane"}
     },
@@ -2642,6 +2846,7 @@
         "fr": {"male": "américain", "female": "américaine"},
         "gl": {"male": "estadounidense", "female": "estadounidense"},
         "he": {"male": "אמריקאי", "female": "אמריקאית"},
+        "hr": {"male": "američki", "female": "američka"},
         "ro": {"male": "american", "female": "americană"},
         "sq": {"male": "amerikan", "female": "amerikane"}
     },
@@ -2655,6 +2860,7 @@
         "fr": {"male": "ouzbek", "female": "ouzbèke"},
         "gl": {"male": "uzbeko", "female": "uzbeka"},
         "he": {"male": "אוזבקי", "female": "אוזבקית"},
+        "hr": {"male": "uzbečki", "female": "uzbečka"},
         "ro": {"male": "uzbec", "female": "uzbecă"},
         "sq": {"male": "uzbek", "female": "uzbeke"}
     },
@@ -2668,6 +2874,7 @@
         "fr": {"male": "ouzbek", "female": "ouzbèke"},
         "gl": {"male": "uzbeko", "female": "uzbeka"},
         "he": {"male": "אוזבקי", "female": "אוזבקית"},
+        "hr": {"male": "uzbekistanski", "female": "uzbekistanska"},
         "ro": {"male": "uzbec", "female": "uzbecă"},
         "sq": {"male": "uzbek", "female": "uzbeke"}
     },
@@ -2681,6 +2888,7 @@
         "fr": {"male": "vanuatais", "female": "vanuataise"},
         "gl": {"male": "vanuatiano", "female": "vanuatiana"},
         "he": {"male": "ונואטי", "female": "ונואטית"},
+        "hr": {"male": "vanuatuanski", "female": "vanuatuanska"},
         "ro": {"male": "din Vanuatu", "female": "din Vanuatu"},
         "sq": {"male": "vanautues", "female": "vanautuese"}
     },
@@ -2694,6 +2902,7 @@
         "fr": {"male": "vaticanais", "female": "vaticanaise"},
         "gl": {"male": "vaticano", "female": "vaticana"},
         "he": {"male": "מקריית הוותיקן", "female": "מקריית הוותיקן"},
+        "hr": {"male": "vatikanski", "female": "vatikanska"},
         "ro": {"male": "din Vatican", "female": "din Vatican"},
         "sq": {"male": "vatikanas", "female": "vatikanase"}
     },
@@ -2707,6 +2916,7 @@
         "fr": {"male": "vénézuélien", "female": "vénézuélienne"},
         "gl": {"male": "venezolano", "female": "venezolana"},
         "he": {"male": "ונצואלי", "female": "ונצואלית"},
+        "hr": {"male": "venezuelanski", "female": "venezuelanska"},
         "ro": {"male": "venezuelean", "female": "venezueleană"},
         "sq": {"male": "venezuelas", "female": "venezuelase"}
     },
@@ -2720,6 +2930,7 @@
         "fr": {"male": "vietnamien", "female": "vietnamienne"},
         "gl": {"male": "vietnamita", "female": "vietnamita"},
         "he": {"male": "וייטנאמי", "female": "וייטנאמית"},
+        "hr": {"male": "vijetnamski", "female": "vijetnamska"},
         "ro": {"male": "vietnamez", "female": "vietnameză"},
         "sq": {"male": "vietnamez", "female": "vietnameze"}
     },
@@ -2733,6 +2944,7 @@
         "fr": {"male": "yemenite", "female": "yemenite"},
         "gl": {"male": "iemení", "female": "iemení"},
         "he": {"male": "תימני", "female": "תימנייה"},
+        "hr": {"male": "jemenski", "female": "jemenska"},
         "ro": {"male": "yemenit", "female": "yemenită"},
         "sq": {"male": "jemenas", "female": "jemenase"}
     },
@@ -2746,6 +2958,7 @@
         "fr": {"male": "zambien", "female": "zambienne"},
         "gl": {"male": "zambiano", "female": "zambiana"},
         "he": {"male": "זמבי", "female": "זמבית"},
+        "hr": {"male": "zambijski", "female": "zambijska"},
         "ro": {"male": "zambian", "female": "zambiană"},
         "sq": {"male": "zambian", "female": "zambiane"}
     },
@@ -2759,6 +2972,7 @@
         "fr": {"male": "zimbabwéen", "female": "zimbabwéenne"},
         "gl": {"male": "cimbabuense", "female": "cimbabuense"},
         "he": {"male": "זימבבואי", "female": "זימבבואית"},
+        "hr": {"male": "zimbabveanski", "female": "zimbabveanska"},
         "ro": {"male": "zimbabwian", "female": "zimbabwiană"},
         "sq": {"male": "zimbabvian", "female": "zimbabviane"}
     }
