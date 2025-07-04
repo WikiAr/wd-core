@@ -20,7 +20,7 @@
         "ar": {"male": "رئيس أساقفة ~", "female": "رئيسة أساقفة ~"},
         "en": {"male": "~ archbishop", "female": "~ archbishop"},
         "es": {"male": "arzobispo ~", "female": "arzobispo ~"},
-        "hr": {"male": "~ nadbiskup", "female": "~ nadbiskupica"},
+        "hr": {"male": "~ nadbiskup", "female": "~ nadbiskupica"}
     },
     "~ activist": {
         "ar": {"male": "ناشط ~", "female": "ناشطة ~"},
@@ -512,7 +512,7 @@
     },
     "~ lexicographer": {
         "ar": {"male": "معجمي ~", "female": "معجمية ~"},
-        "en": {"male": "~ lexicographer", "female": "~ lexicographer"}
+        "en": {"male": "~ lexicographer", "female": "~ lexicographer"},
         "hr": {"male": "~ leksikograf", "female": "~ leksikografkinja"}
     },
     "~ mathematician": {
