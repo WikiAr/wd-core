@@ -19,11 +19,13 @@
     "~ archbishop": {
         "ar": {"male": "رئيس أساقفة ~", "female": "رئيسة أساقفة ~"},
         "en": {"male": "~ archbishop", "female": "~ archbishop"},
-        "es": {"male": "arzobispo ~", "female": "arzobispo ~"}
+        "es": {"male": "arzobispo ~", "female": "arzobispo ~"},
+        "hr": {"male": "~ nadbiskup", "female": "~ nadbiskupica"}
     },
     "~ activist": {
         "ar": {"male": "ناشط ~", "female": "ناشطة ~"},
-        "en": {"male": "~ activist", "female": "~ activist"}
+        "en": {"male": "~ activist", "female": "~ activist"},
+        "hr": {"male": "~ aktivist", "female": "~ aktivistica"}
     },
     "~ actor": {
         "ar": {"male": "ممثل ~", "female": "ممثلة ~"},
@@ -35,6 +37,7 @@
         "fr": {"male": "acteur ~", "female": "actrice ~"},
         "gl": {"male": "actor ~", "female": "actriz ~"},
         "he": {"male": "שחקן ~", "female": "שחקנית ~"},
+        "hr": {"male": "~ glumac", "female": "~ glumica"},
         "ro": {"male": "actor ~", "female": "actriță ~"},
         "sq": {"male": "aktor ~", "female": "aktore ~"}
     },
@@ -47,6 +50,7 @@
         "fr": {"male": "acteur ~", "female": "actrice ~"},
         "gl": {"male": "actor ~", "female": "actriz ~"},
         "he": {"male": "שחקן ~", "female": "שחקנית ~"},
+        "hr": {"male": "~ glumac", "female": "~ glumica"},
         "ro": {"male": "actor ~", "female": "actriță ~"}
     },
     "~ architect": {
@@ -59,6 +63,7 @@
         "fr": {"male": "architecte ~", "female": "architecte ~"},
         "gl": {"male": "arquitecto ~", "female": "arquitecta ~"},
         "he": {"male": "אדריכל ~", "female": "אדריכלית ~"},
+        "hr": {"male": "~ arhitekt", "female": "~ arhitektica"},
         "ro": {"male": "arhitect ~", "female": "arhitectă ~"},
         "sq": {"male": "arkitekt ~", "female": "arkitekte ~"}
     },
@@ -72,6 +77,7 @@
         "fr": {"male": "artiste ~", "female": "artiste ~"},
         "gl": {"male": "artista ~", "female": "artista ~"},
         "he": {"male": "אמן ~", "female": "אמנית ~"},
+        "hr": {"male": "~ umjetnik", "female": "~ umjetnica"},
         "ro": {"male": "artist ~", "female": "artistă ~"},
         "sq": {"male": "artist ~", "female": "artiste ~"}
     },
@@ -111,6 +117,7 @@
         "fr": {"male": "astronome ~", "female": "astronome ~"},
         "gl": {"male": "astrónomo ~", "female": "astrónoma ~"},
         "he": {"male": "אסטרונום ~", "female": "אסטרונומית ~"},
+        "hr": {"male": "~ astronom", "female": "~ astronomica"},
         "ro": {"male": "astronom ~", "female": "astronomă ~"},
         "sq": {"male": "astronom ~", "female": "astronome ~"}
     },
@@ -124,6 +131,7 @@
         "fr": {"male": "athlète ~", "female": "athlète ~"},
         "gl": {"male": "atleta ~", "female": "atleta ~"},
         "he": {"male": "אתלט ~", "female": "אתלטית ~"},
+        "hr": {"male": "~ atletičar", "female": "~ atletičarka"},
         "ro": {"male": "atlet ~", "female": "atletă ~"},
         "sq": {"male": "atlet ~", "female": "atlete ~"}
     },
@@ -137,6 +145,7 @@
         "fr": {"male": "athlète ~", "female": "athlète ~"},
         "gl": {"male": "atleta ~", "female": "atleta ~"},
         "he": {"male": "אתלט ~", "female": "אתלטית ~"},
+        "hr": {"male": "~ atletičar", "female": "~ atletičarka"},
         "ro": {"male": "atlet ~", "female": "atletă ~"},
         "sq": {"male": "atlet ~", "female": "atlet ~"}
     },
@@ -150,6 +159,7 @@
         "fr": {"male": "joueur de basket-ball ~", "female": "joueuse de basket-ball ~"},
         "gl": {"male": "baloncestista ~", "female": "baloncestista ~"},
         "he": {"male": "שחקן כדורסל ~", "female": "שחקנית כדורסל ~"},
+        "hr": {"male": "~ košarkaš", "female": "~ košarkašica"},
         "ro": {"male": "baschetbalist ~", "female": "baschetbalistă ~"},
         "sq": {"male": "basketbollist ~", "female": "basketbolliste ~"}
     },
@@ -163,6 +173,7 @@
         "fr": {"male": "cycliste ~", "female": "cycliste ~"},
         "gl": {"male": "ciclista ~", "female": "ciclista ~"},
         "he": {"male": "רוכב אופניים ~", "female": "רוכבת אופניים ~"},
+        "hr": {"male": "~ biciklist", "female": "~ biciklistica"},
         "ro": {"male": "ciclist ~", "female": "ciclistă ~"},
         "sq": {"male": "çiklist ~", "female": "çikliste ~"}
     },
@@ -176,6 +187,7 @@
         "fr": {"male": "botaniste ~", "female": "botaniste ~"},
         "gl": {"male": "botánico ~", "female": "botánica ~"},
         "he": {"male": "בוטנאי ~", "female": "בוטנאית ~"},
+        "hr": {"male": "~ botaničar", "female": "~ botaničarka"},
         "ro": {"male": "botanist ~", "female": "botanistă ~"},
         "sq": {"male": "botanist ~", "female": "botaniste ~"}
     },
@@ -197,6 +209,7 @@
         "fr": {"male": "prêtre catholique ~", "female": "prêtresse catholique ~"},
         "gl": {"male": "sacerdote católico ~", "female": "sacerdote católica ~"},
         "he": {"male": "כומר קתולי ~", "female": "כומרה קתולית ~"},
+        "hr": {"male": "~ katolički svećenik", "female": "~ katolička svećenica"},
         "ro": {"male": "preot catolic ~", "female": "preoteasă catolică ~"},
         "sq": {"male": "prift katolik ~", "female": "priftëreshë katolike ~"}
     },
@@ -210,6 +223,7 @@
         "fr": {"male": "prêtre catholique ~", "female": "prêtresse catholique ~"},
         "gl": {"male": "sacerdote católico ~", "female": "sacerdote católica ~"},
         "he": {"male": "כומר קתולי ~", "female": "כומרה קתולית ~"},
+        "hr": {"male": "~ katolički svećenik", "female": "~ katolička svećenica"},
         "ro": {"male": "preot catolic ~", "female": "preot catolic ~"},
         "sq": {"male": "prift katolik ~", "female": "priftëreshë katolike ~"}
     },
@@ -223,6 +237,7 @@
         "fr": {"male": "chimiste ~", "female": "chimiste ~"},
         "gl": {"male": "químico ~", "female": "química ~"},
         "he": {"male": "כימאי ~", "female": "כימאית ~"},
+        "hr": {"male": "~ kemičar", "female": "~ kemičarka"},
         "ro": {"male": "chimist ~", "female": "chimistă ~"},
         "sq": {"male": "kimist ~", "female": "kimiste ~"}
     },
@@ -236,6 +251,7 @@
         "fr": {"male": "chorégraphe ~", "female": "chorégraphe ~"},
         "gl": {"male": "coreógrafo ~", "female": "coreógrafa ~"},
         "he": {"male": "כוריאוגרף ~", "female": "כוריאוגרפית ~"},
+        "hr": {"male": "~ koreograf", "female": "~ koreografkinja"},
         "ro": {"male": "coregraf ~", "female": "coregrafă ~"},
         "sq": {"male": "koreograf ~", "female": "koreografe ~"}
     },
@@ -262,6 +278,7 @@
         "fr": {"male": "compositeur ~", "female": "compositrice ~"},
         "gl": {"male": "compositor ~", "female": "compositora ~"},
         "he": {"male": "מלחין ~", "female": "מלחינה ~"},
+        "hr": {"male": "~ skladatelj", "female": "~ skladateljica"},
         "ro": {"male": "compozitor ~", "female": "compozitoare ~"},
         "sq": {"male": "kompozitor ~", "female": "kompozitore ~"}
     },
@@ -288,6 +305,7 @@
         "fr": {"male": "diplomate ~", "female": "diplomate ~"},
         "gl": {"male": "diplomático ~", "female": "diplomática ~"},
         "he": {"male": "דיפולמט ~", "female": "דיפולמטית ~"},
+        "hr": {"male": "~ diplomat", "female": "~ diplomatkinja"},
         "ro": {"male": "diplomat ~", "female": "diplomată ~"},
         "sq": {"male": "diplomat ~", "female": "diplomate ~"}
     },
@@ -301,6 +319,7 @@
         "fr": {"male": "économiste ~", "female": "économiste ~"},
         "gl": {"male": "economista ~", "female": "economista ~"},
         "he": {"male": "כלכלן ~", "female": "כלכלנית ~"},
+        "hr": {"male": "~ ekonomist", "female": "~ ekonomistica"},
         "ro": {"male": "economist ~", "female": "economistă ~"},
         "sq": {"male": "ekonomist ~", "female": "ekonomiste ~"}
     },
@@ -322,6 +341,7 @@
         "fr": {"male": "ingénieur ~", "female": "ingénieure ~"},
         "gl": {"male": "enxeñeiro ~", "female": "enxeñeira ~"},
         "he": {"male": "מהנדס ~", "female": "מהנדסת ~"},
+        "hr": {"male": "~ inženjer", "female": "~ inženjerka"},
         "ro": {"male": "inginer ~", "female": "ingineră ~"},
         "sq": {"male": "inxhinier ~", "female": "inxhiniere ~"}
     },
@@ -348,6 +368,7 @@
         "fr": {"male": "explorateur ~", "female": "exploratrice ~"},
         "gl": {"male": "explorador ~", "female": "exploradora ~"},
         "he": {"male": "חוקר ארצות ~", "female": "חוקרת ארצות ~"},
+        "hr": {"male": "~ istraživač", "female": "~ istraživačica"},
         "ro": {"male": "explorator ~", "female": "exploratoare ~"},
         "sq": {"male": "eksplorues ~", "female": "eksploruese ~"}
     },
@@ -361,6 +382,7 @@
         "fr": {"male": "acteur ~", "female": "actrice ~"},
         "gl": {"male": "actor ~", "female": "actriz ~"},
         "he": {"male": "שחקן ~", "female": "שחקנית ~"},
+        "hr": {"male": "~ filmski glumac", "female": "~ filmska glumica"},
         "ro": {"male": "actor ~", "female": "actriță ~"},
         "sq": {"male": "aktor ~", "female": "aktore ~"}
     },
@@ -374,6 +396,7 @@
         "fr": {"male": "réalisateur ~", "female": "réalisatrice ~"},
         "gl": {"male": "director de cinema ~", "female": "directora de cinema ~"},
         "he": {"male": "במאי קולנוע ~", "female": "במאית קולנוע ~"},
+        "hr": {"male": "~ filmski redatelj", "female": "~ filmska redateljica"},
         "ro": {"male": "regizor de film ~", "female": "regizoare de film ~"},
         "sq": {"male": "regjisor ~", "female": "regjisore ~"}
     },
@@ -387,6 +410,7 @@
         "fr": {"male": "producteur ~", "female": "productrice ~"},
         "gl": {"male": "produtor de cinema ~", "female": "produtora de cinema ~"},
         "he": {"male": "מפיק קולנוע ~", "female": "מפיקת קולנוע ~"},
+        "hr": {"male": "~ filmski producent", "female": "~ filmska producentica"},
         "ro": {"male": "producător de film ~", "female": "producătoare de film ~"},
         "sq": {"male": "prodhues filmash ~", "female": "prodhuese filmash ~"}
     },
@@ -399,7 +423,8 @@
         "es": {"male": "futbolista ~", "female": "futbolista ~"},
         "fr": {"male": "joueur de football ~", "female": "joueuse de football ~"},
         "gl": {"male": "futbolista ~", "female": "futbolista ~"},
-        "he": {"male": "כדורגלן ~", "female": "כדורגלנית ~"}
+        "he": {"male": "כדורגלן ~", "female": "כדורגלנית ~"},
+        "hr": {"male": "~ nogometaš", "female": "~ nogometašica"}
     },
     "~ footballer": {
         "ar": {"male": "لاعب كرة قدم ~", "female": "لاعبة كرة قدم ~"},
@@ -411,6 +436,7 @@
         "fr": {"male": "joueur de football ~", "female": "joueuse de football ~"},
         "gl": {"male": "futbolista ~", "female": "futbolista ~"},
         "he": {"male": "כדורגלן ~", "female": "כדורגלנית ~"},
+        "hr": {"male": "~ nogometaš", "female": "~ nogometašica"},
         "ro": {"male": "fotbalist ~", "female": "fotbalistă ~"},
         "sq": {"male": "futbollist ~", "female": "futbolliste ~"}
     },
@@ -424,6 +450,7 @@
         "fr": {"male": "historien ~", "female": "historienne ~"},
         "gl": {"male": "historiador ~", "female": "historiadora ~"},
         "he": {"male": "היסטוריון ~", "female": "היסטוריונית ~"},
+        "hr": {"male": "~ povjesničar", "female": "~ povjesničarka"},
         "ro": {"male": "istoric ~", "female": "istorică ~"},
         "sq": {"male": "historian ~", "female": "historiane ~"}
     },
@@ -437,6 +464,7 @@
         "fr": {"male": "illustrateur ~", "female": "illustratrice ~"},
         "gl": {"male": "ilustrador ~", "female": "ilustradora ~"},
         "he": {"male": "מאייר ~", "female": "מאיירת ~"},
+        "hr": {"male": "~ ilustrator", "female": "~ ilustratorica"},
         "ro": {"male": "ilustrator ~", "female": "ilustratoare ~"},
         "sq": {"male": "ilustrator ~", "female": "ilustratore ~"}
     },
@@ -450,6 +478,7 @@
         "fr": {"male": "journaliste ~", "female": "journaliste ~"},
         "gl": {"male": "xornalista ~", "female": "xornalista ~"},
         "he": {"male": "עיתונאי ~", "female": "עיתונאית ~"},
+        "hr": {"male": "~ novinar", "female": "~ novinarka"},
         "ro": {"male": "jurnalist ~", "female": "jurnalistă ~"},
         "sq": {"male": "gazetar ~", "female": "gazetare ~"}
     },
@@ -463,6 +492,7 @@
         "fr": {"male": "juriste ~", "female": "juriste ~"},
         "gl": {"male": "xurista ~", "female": "xurista ~"},
         "he": {"male": "משפטן ~", "female": "משפטנית ~"},
+        "hr": {"male": "~ pravnik", "female": "~ pravnica"},
         "ro": {"male": "jurist ~", "female": "juristă ~"},
         "sq": {"male": "jurist ~", "female": "juriste ~"}
     },
@@ -476,12 +506,14 @@
         "fr": {"male": "avocat ~", "female": "avocate ~"},
         "gl": {"male": "xurista ~", "female": "xurista ~"},
         "he": {"male": "עורך דין ~", "female": "עורכת דין ~"},
+        "hr": {"male": "~ odvjetnik", "female": "~ odvjetnica"},
         "ro": {"male": "avocat ~", "female": "avocată ~"},
         "sq": {"male": "avokat ~", "female": "avokate ~"}
     },
     "~ lexicographer": {
         "ar": {"male": "معجمي ~", "female": "معجمية ~"},
-        "en": {"male": "~ lexicographer", "female": "~ lexicographer"}
+        "en": {"male": "~ lexicographer", "female": "~ lexicographer"},
+        "hr": {"male": "~ leksikograf", "female": "~ leksikografkinja"}
     },
     "~ mathematician": {
         "ar": {"male": "رياضياتي ~", "female": "رياضياتية ~"},
@@ -493,6 +525,7 @@
         "fr": {"male": "mathématicien ~", "female": "mathématicienne ~"},
         "gl": {"male": "matemático ~", "female": "matemática ~"},
         "he": {"male": "מתמטיקאי ~", "female": "מתמטיקאית ~"},
+        "hr": {"male": "~ matematičar", "female": "~ matematičarka"},
         "ro": {"male": "matematician ~", "female": "matematiciană ~"},
         "sq": {"male": "matematikan ~", "female": "matematikane ~"}
     },
@@ -506,6 +539,7 @@
         "fr": {"male": "musicien ~", "female": "musicienne ~"},
         "gl": {"male": "músico ~", "female": "música ~"},
         "he": {"male": "מוזיקאי ~", "female": "מוזיקאית ~"},
+        "hr": {"male": "~ glazbenik", "female": "~ glazbenica"},
         "ro": {"male": "muzician ~", "female": "muziciană ~"},
         "sq": {"male": "muzikant ~", "female": "muzikante ~"}
     },
@@ -519,6 +553,7 @@
         "fr": {"male": "romancier ~", "female": "romancière ~"},
         "gl": {"male": "novelista ~", "female": "novelista ~"},
         "he": {"male": "מחבר רומנים ~", "female": "מחברת רומנים ~"},
+        "hr": {"male": "~ novelist", "female": "~ novelistica"},
         "ro": {"male": "romancier ~", "female": "romancieră ~"},
         "sq": {"male": "novelist ~", "female": "noveliste ~"}
     },
@@ -532,6 +567,7 @@
         "fr": {"male": "peintre ~", "female": "peintre ~"},
         "gl": {"male": "pintor ~", "female": "pintora ~"},
         "he": {"male": "צייר ~", "female": "ציירת ~"},
+        "hr": {"male": "~ slikar", "female": "~ slikarica"},
         "ro": {"male": "pictor ~", "female": "pictoriță ~"},
         "sq": {"male": "piktor ~", "female": "piktore ~"}
     },
@@ -545,6 +581,7 @@
         "fr": {"male": "philosophe ~", "female": "philosophe ~"},
         "gl": {"male": "filósofo ~", "female": "filósofa ~"},
         "he": {"male": "פילוסוף ~", "female": "פילוסופית ~"},
+        "hr": {"male": "~ filozof", "female": "~ filozofkinja"},
         "ro": {"male": "filosof ~", "female": "filosoafă ~"},
         "sq": {"male": "filozof ~", "female": "filozofe ~"}
     },
@@ -558,6 +595,7 @@
         "fr": {"male": "photographe ~", "female": "photographe ~"},
         "gl": {"male": "fotógrafo ~", "female": "fotógrafa ~"},
         "he": {"male": "צלם ~", "female": "צלמת ~"},
+        "hr": {"male": "~ fotograf", "female": "~ fotografkinja"},
         "ro": {"male": "fotograf ~", "female": "fotografă ~"},
         "sq": {"male": "fotograf ~", "female": "fotografe ~"}
     },
@@ -571,6 +609,7 @@
         "fr": {"male": "médecin ~", "female": "médecin ~"},
         "gl": {"male": "médico ~", "female": "médica ~"},
         "he": {"male": "רופא ~", "female": "רופאה ~"},
+        "hr": {"male": "~ liječnik", "female": "~ liječnica"},
         "ro": {"male": "medic ~", "female": "doctoriță ~"},
         "sq": {"male": "mjek ~", "female": "mjeke ~"}
     },
@@ -584,6 +623,7 @@
         "fr": {"male": "physicien ~", "female": "physicienne ~"},
         "gl": {"male": "físico ~", "female": "física ~"},
         "he": {"male": "פיזיקאי ~", "female": "פיזיקאית ~"},
+        "hr": {"male": "~ fizičar", "female": "~ fizičarka"},
         "ro": {"male": "fizician ~", "female": "fiziciană ~"},
         "sq": {"male": "fizikan ~", "female": "fizikane ~"}
     },
@@ -597,6 +637,7 @@
         "fr": {"male": "pianiste ~", "female": "pianiste ~"},
         "gl": {"male": "pianista ~", "female": "pianista ~"},
         "he": {"male": "פסנתרן ~", "female": "פסנתרנית ~"},
+        "hr": {"male": "~ pijanist", "female": "~ pijanistica"},
         "ro": {"male": "pianist ~", "female": "pianistă ~"},
         "sq": {"male": "pianist ~", "female": "pianiste ~"}
     },
@@ -610,6 +651,7 @@
         "fr": {"male": "dramaturge ~", "female": "dramaturge ~"},
         "gl": {"male": "dramaturgo ~", "female": "dramaturga ~"},
         "he": {"male": "מחזאי ~", "female": "מחזאית ~"},
+        "hr": {"male": "~ dramaturg", "female": "~ dramaturginja"},
         "ro": {"male": "dramaturg ~", "female": "dramaturgă ~"},
         "sq": {"male": "dramaturg ~", "female": "dramaturge ~"}
     },
@@ -623,6 +665,7 @@
         "fr": {"male": "poète ~", "female": "poétesse ~"},
         "gl": {"male": "poeta ~", "female": "poetisa ~"},
         "he": {"male": "משורר ~", "female": "משוררת ~"},
+        "hr": {"male": "~ pjesnik", "female": "~ pjesnikinja"},
         "ro": {"male": "poet ~", "female": "poetă ~"},
         "sq": {"male": "poet ~", "female": "poete ~"}
     },
@@ -636,6 +679,7 @@
         "fr": {"male": "homme politique ~", "female": "femme politique ~"},
         "gl": {"male": "político ~", "female": "política ~"},
         "he": {"male": "פוליטיקאי ~", "female": "פוליטיקאית ~"},
+        "hr": {"male": "~ političar", "female": "~ političarka"},
         "ro": {"male": "politician ~", "female": "politiciană ~"},
         "sq": {"male": "politikan ~", "female": "politikane ~"}
     },
@@ -649,6 +693,7 @@
         "fr": {"male": "éditeur ~", "female": "éditrice ~"},
         "gl": {"male": "editor ~", "female": "editora ~"},
         "he": {"male": "מוציא לאור ~", "female": "מוציאה לאור ~"},
+        "hr": {"male": "~ izdavač", "female": "~ izdavačica"},
         "ro": {"male": "editor ~", "female": "editoare ~"},
         "sq": {"male": "botues ~", "female": "botuese ~"}
     },
@@ -662,6 +707,7 @@
         "fr": {"male": "rabbin ~", "female": "rabbine ~"},
         "gl": {"male": "rabino ~", "female": "rabina ~"},
         "he": {"male": "רב ~", "female": "רבנית ~"},
+        "hr": {"male": "~ rabin", "female": "~ rabinica"},
         "ro": {"male": "rabin ~", "female": "rabină ~"},
         "sq": {"male": "rabin ~", "female": "rabine ~"}
     },
@@ -675,6 +721,7 @@
         "fr": {"male": "cycliste ~", "female": "cycliste ~"},
         "gl": {"male": "ciclista ~", "female": "ciclista ~"},
         "he": {"male": "רוכב אופניים ~", "female": "רוכבת אופניים ~"},
+        "hr": {"male": "~ biciklist", "female": "~ biciklistica"},
         "ro": {"male": "ciclist ~", "female": "ciclistă ~"},
         "sq": {"male": "çiklist ~", "female": "çikliste ~"}
     },
@@ -706,6 +753,7 @@
         "fr": {"male": "scénariste ~", "female": "scénariste ~"},
         "gl": {"male": "guionista ~", "female": "guionista ~"},
         "he": {"male": "תסריטאי ~", "female": "תסריטאית ~"},
+        "hr": {"male": "~ scenarist", "female": "~ scenaristica"},
         "ro": {"male": "scenarist ~", "female": "scenaristă ~"},
         "sq": {"male": "skenarist ~", "female": "skenariste ~"}
     },
@@ -719,6 +767,7 @@
         "fr": {"male": "sculpteur ~", "female": "sculptrice ~"},
         "gl": {"male": "escultor ~", "female": "escultora ~"},
         "he": {"male": "פסל ~", "female": "פסלת ~"},
+        "hr": {"male": "~ kipar", "female": "~ kiparica"},
         "ro": {"male": "sculptor ~", "female": "sculptoriță ~"},
         "sq": {"male": "skulptor ~", "female": "skupltore ~"}
     },
@@ -732,6 +781,7 @@
         "fr": {"male": "chanteur ~", "female": "chanteuse ~"},
         "gl": {"male": "cantante ~", "female": "cantante ~"},
         "he": {"male": "זמר ~", "female": "זמרת ~"},
+        "hr": {"male": "~ pjevač", "female": "~ pjevačica"},
         "ro": {"male": "cântăreț ~", "female": "cântăreață ~"},
         "sq": {"male": "këngëtar ~", "female": "këngëtare ~"}
     },
@@ -741,7 +791,8 @@
         "en": {"male": "~ skier", "female": "~ skier"},
         "es": {"male": "esquiador ~", "female": "esquiadora ~"},
         "fr": {"male": "skieur ~", "female": "skieuse ~"},
-        "he": {"male": "גולש סקי ~", "female": "גולשת סקי ~"}
+        "he": {"male": "גולש סקי ~", "female": "גולשת סקי ~"},
+        "hr": {"male": "~ skijaš", "female": "~ skijašica"}
     },
     "~ sociologist": {
         "ar": {"male": "عالم اجتماع ~", "female": "عالمة اجتماع ~"},
@@ -753,6 +804,7 @@
         "fr": {"male": "sociologue ~", "female": "sociologue ~"},
         "gl": {"male": "sociólogo ~", "female": "socióloga ~"},
         "he": {"male": "סוציולוג ~", "female": "סוציולוגית ~"},
+        "hr": {"male": "~ sociolog", "female": "~ sociologinja"},
         "ro": {"male": "sociolog ~", "female": "sociologă ~"},
         "sq": {"male": "sociolog ~", "female": "sociologe ~"}
     },
@@ -766,6 +818,7 @@
         "fr": {"male": "militaire ~", "female": "militaire ~"},
         "gl": {"male": "militar ~", "female": "militar ~"},
         "he": {"male": "חייל ~", "female": "חיילת ~"},
+        "hr": {"male": "~ vojnik", "female": "~ vojnikinja"},
         "ro": {"male": "soldat ~", "female": "femeie soldat ~"},
         "sq": {"male": "ushtar ~", "female": "ushtare ~"}
     },
@@ -792,6 +845,7 @@
         "fr": {"male": "nageur ~", "female": "nageuse ~"},
         "gl": {"male": "nadador ~", "female": "nadadora ~"},
         "he": {"male": "שחיין ~", "female": "שחיינית ~"},
+        "hr": {"male": "~ plivač", "female": "~ plivačica"},
         "ro": {"male": "înotător ~", "female": "înotătoare ~"},
         "sq": {"male": "notues ~", "female": "notuese ~"}
     },
@@ -805,6 +859,7 @@
         "fr": {"male": "joueur de tennis ~", "female": "joueuse de tennis ~"},
         "gl": {"male": "tenista profesional ~", "female": "tenista profesional ~"},
         "he": {"male": "טניסאי ~", "female": "טניסאית ~"},
+        "hr": {"male": "~ tenisač", "female": "~ tenisačica"},
         "ro": {"male": "jucător de tenis ~", "female": "jucătoare de tenis ~"},
         "sq": {"male": "lojtar tenisi ~", "female": "lojtare tenisi ~"}
     },
@@ -814,7 +869,8 @@
         "en": {"male": "~ translator", "female": "~ translator"},
         "es": {"male": "traductor ~", "female": "traductora ~"},
         "fr": {"male": "traducteur ~", "female": "traductrice ~"},
-        "he": {"male": "מתרגם ~", "female": "מתרגמת ~"}
+        "he": {"male": "מתרגם ~", "female": "מתרגמת ~"},
+        "hr": {"male": "~ prevoditelj", "female": "~ prevoditeljica"}
     },
     "~ writer": {
         "ar": {"male": "كاتب ~", "female": "كاتبة ~"},
@@ -826,6 +882,7 @@
         "fr": {"male": "écrivain ~", "female": "écrivaine ~"},
         "gl": {"male": "escritor ~", "female": "escritora ~"},
         "he": {"male": "סופר ~", "female": "סופרת ~"},
+        "hr": {"male": "~ pisac", "female": "~ spisateljica"},
         "ro": {"male": "scriitor ~", "female": "scriitoare ~"},
         "sq": {"male": "shkrimtar ~", "female": "shkrimtare ~"}
     }
