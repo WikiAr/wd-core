@@ -168,6 +168,7 @@ Space_Desc = {
         "ca": "galàxia",
         "ast": "galaxa",
         "ga": "réaltra",
+        "hr": "galaktika",
     },
 }
 # ---
@@ -391,6 +392,13 @@ Taxon_Descraptions = {
 }
 # ---
 replace_desc = {
+    "hr": {
+        "kategorija na Wikimediji": "kategorija u wikimediju",
+        "popis na Wikimediji": "popis u wikimediju",
+        "predložak Wikimedija": "predložak za wikimedije",
+        "predložak na Wikimediji": "predložak za wikimedije",
+        "razdvojbena stranica na Wikimediji": "razdvojbena stranica u wikimediju",
+    },
     "hu": {
         "férfi keresztnév": "férfikeresztnév",
     },

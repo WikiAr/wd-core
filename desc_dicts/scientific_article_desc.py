@@ -33,6 +33,7 @@ Scientific_descraptions = {
     "fr": "article scientifique",
     "gl": "artigo científico",
     "he": "מאמר מדעי",
+    "hr": "znanstveni članak",
     "hu": "tudományos cikk",
     "id": "artikel ilmiah",
     "it": "articolo scientifico",
