@@ -41,7 +41,6 @@ sys.path.append("I:/core/bots/new/newapi_bot")
 from newapi import printe
 from newapi.accounts.useraccount import User_tables_ibrahem
 
-from gemini_bot import send_ai
 from translate_bot import translate_en_to_ar
 
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"
@@ -315,6 +314,8 @@ def start(args):
             else:
                 done_labels += 1
                 printe.output(f"<<green>> [ok][{pid}] label set.")
+
+            print(f"time.sleep({args.sleep})")
             time.sleep(args.sleep)
 
         if target_desc is not None:
@@ -329,6 +330,8 @@ def start(args):
             else:
                 done_descs += 1
                 printe.output(f"<<green>> [ok][{pid}] description set.")
+
+            print(f"time.sleep({args.sleep})")
             time.sleep(args.sleep)
 
     print(f"[*] finished. labels added: {done_labels}, descriptions added: {done_descs}")
@@ -340,8 +343,10 @@ def main():
     ap.add_argument("--offset", type=int, default=0, help="إزاحة في نتائج WDQS")
     ap.add_argument("--only", choices=["labels", "descriptions", "both"], default="both",
                     help="حدّد ما الذي ستعمل عليه")
+
     ap.add_argument("--dry-run", action="store_true", help="لا يرسل أي تعديلات، فقط يعرض ما سيفعله")
-    ap.add_argument("--sleep", type=float, default=0.5, help="زمن انتظار (ثوانٍ) بين الطلبات للاحترام")
+
+    ap.add_argument("--sleep", type=float, default=0.1, help="زمن انتظار (ثوانٍ) بين الطلبات للاحترام")
     args = ap.parse_args()
 
     start(args)

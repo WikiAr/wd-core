@@ -50,6 +50,8 @@ def translate_en_to_ar(en: str) -> str:
         "- لا تضف تعليقات أو أقواس.\n"
     )
     # ---
+    print(f"start translate: {en}")
+    # ---
     text = send_ai(prompt)
     # ---
     if text:
