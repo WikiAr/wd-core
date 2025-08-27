@@ -46,3 +46,7 @@ wikidataintegratorxx/**
 nep/tables/new_types.json
 tttt.py
 desc_dicts/__.py
+prop_labs/.env
+prop_labs/dump.jsonl
+prop_labs/.env2
+prop_labs/cache_data.json
