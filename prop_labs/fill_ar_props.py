@@ -213,7 +213,7 @@ def fetch_props_missing_ar(limit: int, offset: int = 0) -> List[str]:
         SELECT ?p ?pLabel ?pDescription WHERE {{
 
             ?p a wikibase:Property .
-            ?p wdt:P31 wd:Q54254515 .
+            # ?p wdt:P31 wd:Q54254515 .
 
             FILTER(NOT EXISTS {{ ?p wdt:P1630 ?P1630. }})
 
@@ -306,6 +306,9 @@ def start(args):
         if target_label is not None:
             # summary = "Add Arabic label via AI translation from English"
             summary = ""
+            # ---
+            print(f"en_label: {en_label}")
+            # ---
             resp = wd.set_label_ar(pid, target_label, summary=summary, assert_bot=False)
             if "error" in resp:
                 print(f"[err][{pid}] label: {resp['error']}")
@@ -317,6 +320,9 @@ def start(args):
         if target_desc is not None:
             # summary = "Add Arabic description via AI translation from English"
             summary = ""
+            # ---
+            print(f"en_desc: {en_desc}")
+            # ---
             resp = wd.set_description_ar(pid, target_desc, summary=summary, assert_bot=False)
             if "error" in resp:
                 print(f"[err][{pid}] desc: {resp['error']}")
