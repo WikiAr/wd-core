@@ -38,6 +38,7 @@ from typing import Dict, List, Optional, Tuple
 sys.path.append(str(Path(__file__).parent))
 sys.path.append("I:/core/bots/new/newapi_bot")
 
+from wd_Session import WikidataSession
 from newapi import printe
 from newapi.accounts.useraccount import User_tables_ibrahem
 
@@ -53,151 +54,6 @@ HEADERS_API = {
 username = User_tables_ibrahem["username"]
 password = User_tables_ibrahem["password"]
 
-# =========================
-# MediaWiki: جلسة وتوكينات
-# =========================
-ask_user = {1: False}
-if "ask" in sys.argv:
-    ask_user[1] = True
-    sys.argv.remove("ask")
-
-
-class WikidataSession:
-    def __init__(self, username: str, password: str):
-        self.s = requests.Session()
-        self.s.headers.update(HEADERS_API)
-        self.username = username
-        self.password = password
-        self.csrf_token = None
-        self.save_all = False
-
-    def _get_login_token(self) -> str:
-        r = self.s.get(
-            MW_API, params={"action": "query", "meta": "tokens", "type": "login", "format": "json"}, timeout=60
-        )
-        r.raise_for_status()
-        return r.json()["query"]["tokens"]["logintoken"]
-
-    def login(self):
-        token = self._get_login_token()
-        r = self.s.post(
-            MW_API,
-            data={
-                "action": "login",
-                "lgname": self.username,
-                "lgpassword": self.password,
-                "lgtoken": token,
-                "format": "json",
-            },
-            timeout=60,
-        )
-        r.raise_for_status()
-        data = r.json()
-        if data.get("login", {}).get("result") != "Success":
-            raise RuntimeError(f"Login failed: {data}")
-
-        # CSRF token
-        r2 = self.s.get(
-            MW_API, params={"action": "query", "meta": "tokens", "type": "csrf", "format": "json"}, timeout=60
-        )
-        r2.raise_for_status()
-        self.csrf_token = r2.json()["query"]["tokens"]["csrftoken"]
-
-    def wbgetentities_en(self, ids: List[str]) -> Dict[str, dict]:
-        """
-        يجلب labels/descriptions الإنجليزية لمجموعة معرّفات (خصائص).
-        """
-        results = {}
-        # تجزئة على دفعات حتى لا يزيد طول الرابط
-        CHUNK = 50
-        for i in range(0, len(ids), CHUNK):
-            chunk = ids[i : i + CHUNK]
-            r = self.s.get(
-                MW_API,
-                params={
-                    "action": "wbgetentities",
-                    "ids": "|".join(chunk),
-                    "props": "labels|descriptions",
-                    "languages": "en|ar",
-                    "format": "json",
-                },
-                timeout=60,
-            )
-            r.raise_for_status()
-            data = r.json()
-            results.update(data.get("entities", {}))
-        return results
-
-    def confirm_if_ask(self, pid: str, field: str, value: str) -> bool:
-        """
-        إذا كان "ask" موجود في sys.argv -> يسأل المستخدم للتأكيد.
-        - pid: رقم الخاصية (مثلاً P123)
-        - field: 'label' أو 'description'
-        - value: النص العربي المقترح
-
-        يرجع True إذا وافق المستخدم أو إذا لم يوجد "ask".
-        يرجع False إذا رفض المستخدم.
-        """
-        # ---
-        if not ask_user[1] or self.save_all:
-            return True
-        # ---
-        printe.output(f"<<yellow>> [ask][{pid}] Add AR {field}: '{value}'")
-        ans = input("(y/n)?").strip().lower()
-        # ---
-        answers = ["y", "yes", "", "a"]
-        # ---
-        if ans == "a":
-            self.save_all = True
-            printe.output("<<green>> SAVE ALL Without Asking\n" * 3)
-            return True
-        # ---
-        return ans in answers
-
-    def set_label_ar(self, pid: str, value: str, summary: str, assert_bot: bool = True) -> dict:
-        data = {
-            "action": "wbsetlabel",
-            "id": pid,
-            "language": "ar",
-            "value": value,
-            "token": self.csrf_token,
-            "format": "json",
-            "summary": summary,
-            "maxlag": "5",
-        }
-        if assert_bot:
-            data["assert"] = "bot"
-        # ---
-        if not self.confirm_if_ask(pid, "label", value):
-            print(f"[skip][{pid}] label skipped.")
-            return {"skipped": True}
-        # ---
-        r = self.s.post(MW_API, data=data, timeout=60)
-        # ---
-        return r.json()
-
-    def set_description_ar(self, pid: str, value: str, summary: str, assert_bot: bool = True) -> dict:
-        data = {
-            "action": "wbsetdescription",
-            "id": pid,
-            "language": "ar",
-            "value": value,
-            "token": self.csrf_token,
-            "format": "json",
-            "summary": summary,
-            "maxlag": "5",
-        }
-        if assert_bot:
-            data["assert"] = "bot"
-        # ---
-        if not self.confirm_if_ask(pid, "description", value):
-            print(f"[skip][{pid}] description skipped.")
-            return {"skipped": True}
-        # ---
-        r = self.s.post(MW_API, data=data, timeout=60)
-        # ---
-        return r.json()
-
 
 # =========================
 # ترجمات: اختر مزوّدك
@@ -206,7 +62,7 @@ class WikidataSession:
 # =========================
 # WDQS: جلب خصائص بلا وسم عربي
 # =========================
-def fetch_props_missing_ar(limit: int, offset: int = 0) -> List[str]:
+def fetch_props_missing_ar(limit: int, offset: int = 0) -> List[dict]:
     # ---
     query = f"""
         SELECT ?p ?pLabel ?pDescription WHERE {{
@@ -250,6 +106,14 @@ def fetch_props_missing_ar(limit: int, offset: int = 0) -> List[str]:
 # =========================
 
 
+cache_file = Path(__file__).parent / "cache_data.json"
+
+cache_data = {}
+if cache_file.exists():
+    with cache_file.open("r", encoding="utf-8") as f:
+        cache_data = json.load(f)
+
+
 def start(args):
     if not args.dry_run and (not username or not password):
         raise SystemExit("الرجاء ضبط WD_USERNAME و WD_PASSWORD في متغيرات البيئة أو استخدم --dry-run.")
@@ -277,7 +141,20 @@ def start(args):
 
     for p in props:
         pid, en_label, en_desc = p["id"], p["en_label"], p["en_desc"]
-
+        # ---
+        pid_data = {
+            "label" : {
+                "en": en_label,
+                "ar": ""
+            },
+            "description" : {
+                "en": en_desc,
+                "ar": ""
+            }
+        }
+        # ---
+        cache_data.setdefault(pid, pid_data)
+        # ---
         # لا نعمل على خصائص بلا نص إنجليزي
         # (يمكنك تعديل السياسة إن أردت الترجمة من مصدر آخر)
         target_label = None
@@ -292,10 +169,17 @@ def start(args):
         if target_label is None and target_desc is None:
             continue
 
+        if target_label is not None:
+            cache_data[pid]["label"]["ar"] = target_label
+
+        if target_desc is not None:
+            cache_data[pid]["description"]["ar"] = target_desc
+
         # عرض ما سنفعله (dry-run)
         if args.dry_run:
             if target_label is not None:
                 print(f"[dry-run][{pid}] set AR label: '{target_label}'  (from EN: '{en_label}')")
+
             if target_desc is not None:
                 print(f"[dry-run][{pid}] set AR description: '{target_desc}'  (from EN: '{en_desc}')")
             continue
@@ -306,7 +190,7 @@ def start(args):
             # summary = "Add Arabic label via AI translation from English"
             summary = ""
             # ---
-            print(f"en_label: {en_label}")
+            print(f"en_label: {en_label}, target_label: {target_label}")
             # ---
             resp = wd.set_label_ar(pid, target_label, summary=summary, assert_bot=False)
             if "error" in resp:
@@ -322,7 +206,7 @@ def start(args):
             # summary = "Add Arabic description via AI translation from English"
             summary = ""
             # ---
-            print(f"en_desc: {en_desc}")
+            print(f"en_desc: {en_desc}, target_desc: {target_desc}")
             # ---
             resp = wd.set_description_ar(pid, target_desc, summary=summary, assert_bot=False)
             if "error" in resp:
@@ -350,6 +234,9 @@ def main():
     args = ap.parse_args()
 
     start(args)
+
+    with cache_file.open("w", encoding="utf-8") as f:
+        json.dump(cache_data, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":

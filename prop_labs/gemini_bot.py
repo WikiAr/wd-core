@@ -12,14 +12,13 @@ import time
 
 env_path = Path(__file__).parent / ".env"
 
-with open(env_path, "r") as f:
+with open(env_path, "r", encoding="utf-8") as f:
     api_key = f.read().strip()
 
 genai.configure(api_key=api_key)
 
 Dir = Path(__file__).resolve().parent
-# Create the model
-# See https://ai.google.dev/api/python/google/generativeai/GenerativeModel
+
 generation_config = {
     "temperature": 1,
     "top_p": 0.95,
@@ -71,53 +70,9 @@ instractions = """أنت مترجم محترف من اللغة الإنجليز�
 
 ملاحظة أخيرة: قلل من استخدام الحركات التشكيلية، وأحرص على ترجمة أسماء الشركات والمؤسسات والأشخاص وأي اسم إنجليزي إلى العربية
 
-في حالة وجود أرقام المصادر في النص، حافظ عليها في أماكنها
-
 """
 
-
-data_parts = [
-    {
-        "en": """A mass grave with 283 bodies was uncovered in April 2024 at Khan Younis's Nasser medical complex in Gaza City. Further mass graves with several hundreds of bodies were found in the courtyard of Al-Shifa Hospital.[144][145] Reports indicated that some of the bodies were found with their hands and feet tied.[146][147] Following the discovery of the mass graves, UN human rights chief Volker Türk called for an independent investigation on the intentional killing of civilians by the Israeli Defense Forces. He stated the "intentional killing of civilians, detainees, and others who are hors de combat is a war crime."[148][149] A spokesperson for the U.N. High Commissioner for Human Rights described the discoveries, stating, "Some of them had their hands tied, which of course indicates serious violations of international human rights law and international humanitarian law, and these need to be subjected to further investigations".[150] William Schabas, a Canadian expert on international human rights law, stated mass graves have "always been an indication that war crimes have been committed".[151]""",
-        "ar": """كُشف عن مقبرة جماعية تضم 283 جثة في أبريل/نيسان 2024 في مجمع ناصر الطبي بخان يونس في مدينة غزة. كذلك عُثر على مقابر جماعية أخرى تضم عدة مئات من الجثث في فناء مستشفى الشفاء.[144][145] أشارت تقارير إلى أن بعض الجثث عُثر عليها وقد رُبطت أيديها وأرجلها.[146][147] في أعقاب اكتشاف المقابر الجماعية، دعا مفوض الأمم المتحدة السامي لحقوق الإنسان فولكر تورك إلى إجراء تحقيق مستقل في القتل العمد للمدنيين على يد قوات الدفاع الإسرائيلية. صرح بأن "القتل العمد للمدنيين والمعتقلين وغيرهم ممن هم خارج نطاق القتال هو جريمة حرب".[148][149] ووصف متحدث باسم المفوض السامي للأمم المتحدة لحقوق الإنسان هذه الاكتشافات، قائلاً: "كانت أيدي بعضهم مقيدة، مما يشير بالطبع إلى انتهاكات خطيرة للقانون الدولي لحقوق الإنسان والقانون الإنساني الدولي، ويجب إخضاعها لمزيد من التحقيقات".[150] وصرح ويليام شاباس، الخبير الكندي في القانون الدولي لحقوق الإنسان، بأن المقابر الجماعية "لطالما كانت دليلاً على ارتكاب جرائم حرب".[151]"""
-    },
-    {
-        "en": 'As of February and March, similar protests and calls for divestment had already been occurring at Goldsmiths, University of London, the University of Leeds, and the University of Bristol. After a campaign from students, the University of York announced on 27 April it "no longer holds investments in companies that primarily make or sell weapons and defence-related products or services".',
-        "ar": 'كانت احتجاجاتٌ مماثلة ودعواتٌ لسحبِ الاستثمارات قد اندلعت بالفعل في جامعات جولدسميث، ولندن، وليدز، وبريستول، وذلك بدءًا من فبراير ومارس. وبعد حملةٍ من الطلاب، أعلنتْ جامعة يورك في 27 أبريل أنها "لم تعدْ تُبقي على استثماراتٍ في الشركات التي تَصنع أو تبيعُ في المقام الأول الأسلحة والمنتجات أو الخدمات المتعلقة بالدفاع". '
-    },
-    {
-        "en": "On the evening of April 19, students from the University of Warwick occupied the campus piazza. On April 22, students from the University of Leicester Palestine Society held a protest. On April 26, a rally was held by students of University College London (UCL) on campus, though they had been campaigning for months. UCL Action for Palestine won a meeting with senior members of university's management, also on 26 April, to discuss divestment and propose aiding Palestinian students whose universities had been destroyed.\n\nOn May 1, encampments were established at the University of Bristol, the University of Leeds, the University of Manchester, and Newcastle University, as well as a joint one between the University of Sheffield and Sheffield Hallam University. On May 3, protesters set up an encampment at University College, London. Protesters also occupied the library at Goldsmiths, University of London. Goldsmiths agreed to the protester's demands, naming a building after Palestinian journalist Shireen Abu Akleh, review the University's policy regarding the IHRA working definition of antisemitism, and to erect an installation on campus memorializing the protest.",
-        "ar": 'في مساء يوم 19 أبريل، احتلَّ طلابٌ من جامعة وارويك ساحة الحرم الجامعي. وفي 22 أبريل، نظَّم طلابٌ من جمعية فلسطين بجامعة ليستر احتجاجًا. وفي 26 أبريل، نظَّم طلابٌ من كلية لندن الجامعية (UCL) مسيرةً في الحرم الجامعي، على الرغم من أنهم كانوا يُنظمون حملاتٍ منذ شهور. وقد فازَتْ مجموعة "عمل لندن من أجل فلسطين" بلقاءٍ مع أعضاءٍ بارزين في إدارة الجامعة، أيضًا في 26 أبريل، لمناقشة سحب الاستثمارات واقتراحِ مساعدةِ الطلاب الفلسطينيين الذين دُمِّرت جامعاتُهم.\n\nوفي الأول من مايو، أُقيمتْ اعتصاماتٌ في جامعة بريستول، وجامعة ليدز، وجامعة مانشستر، وجامعة نيوكاسل، بالإضافة إلى اعتصامٍ مُشتركٍ بين جامعة شيفيلد وجامعة هالام شيفيلد. وفي 3 مايو، أقامَ المُحتجُّون اعتصامًا في كلية لندن الجامعية. واحتلَّ المُحتجُّون أيضًا المكتبة في جامعة جولدسميث في لندن. وقد وافقتْ جولدسميث على مطالب المُحتجِّين، فأطلقتْ اسمَ الصحفية الفلسطينية شيرين أبو عاقلة على أحدِ المباني، ومراجعة سياسة الجامعة فيما يتعلق بتعريف IHRA العامل لمعاداة السامية، وإقامةِ نصبٍ تذكاريٍّ للاحتجاج في الحرم الجامعي. '
-    },
-    {
-        "en": """""",
-        "ar": """"""
-    },
-    {
-        "en": """""",
-        "ar": """"""
-    }
-]
-
 contents = []
-
-for x in data_parts:
-    ar = x["ar"]
-    en = x["en"]
-    # ---
-    if ar and en:
-        contents.append({
-            "role": "user",
-            "parts": [
-                en,
-            ],
-        })
-        contents.append({
-            "role": "model",
-            "parts": [
-                ar,
-            ],
-        })
 
 
 def send_ai(text):

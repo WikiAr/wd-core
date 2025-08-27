@@ -29,6 +29,7 @@ if dump_file.exists():
 def save_cache(en, ar):
     with jsonlines.open(dump_file, mode="a") as writer:
         writer.write({"en": en, "ar": ar})
+    cache_data[en] = ar
 
 
 def translate_en_to_ar(en: str) -> str:
