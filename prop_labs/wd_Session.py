@@ -139,6 +139,10 @@ class WikidataSession:
         return ans in answers
 
     def set_label_ar(self, pid: str, value: str, summary: str, assert_bot: bool = True) -> dict:
+        # remove . from end of value
+        if value.endswith("."):
+            value = value[:-1]
+
         data = {
             "action": "wbsetlabel",
             "id": pid,
@@ -161,6 +165,10 @@ class WikidataSession:
         return r.json()
 
     def set_description_ar(self, pid: str, value: str, summary: str, assert_bot: bool = True) -> dict:
+        # remove . from end of value
+        if value.endswith("."):
+            value = value[:-1]
+
         data = {
             "action": "wbsetdescription",
             "id": pid,
