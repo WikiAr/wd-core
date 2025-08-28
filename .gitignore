@@ -50,3 +50,5 @@ prop_labs/.env
 prop_labs/dump.jsonl
 prop_labs/.env2
 prop_labs/cache_data.json
+prop_labs/gemini_bot copy.py
+prop_labs/cache_data_labels.json

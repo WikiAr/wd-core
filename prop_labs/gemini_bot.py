@@ -79,8 +79,8 @@ def send_ai(text):
     time_start = time.time()
 
     model = genai.GenerativeModel(
-        # model_name="gemini-2.0-flash-lite",
-        model_name="gemini-2.5-flash-preview-05-20",
+        model_name="gemini-2.0-flash-lite",
+        # model_name="gemini-2.5-flash-preview-05-20",
         safety_settings=safety_settings,
         generation_config=generation_config,
 

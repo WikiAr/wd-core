@@ -70,7 +70,7 @@ def fetch_props_missing_ar(limit: int, offset: int = 0) -> List[dict]:
             ?p a wikibase:Property .
             # ?p wdt:P31 wd:Q54254515 .
 
-            FILTER(NOT EXISTS {{ ?p wdt:P1630 ?P1630. }})
+            # FILTER(NOT EXISTS {{ ?p wdt:P1630 ?P1630. }})
 
             FILTER(NOT EXISTS {{ ?p rdfs:label ?l . FILTER(LANG(?l) = "ar") }})
             SERVICE wikibase:label {{
@@ -106,8 +106,15 @@ def fetch_props_missing_ar(limit: int, offset: int = 0) -> List[dict]:
 # =========================
 
 
-cache_file = Path(__file__).parent / "cache_data.json"
+cache_file_labels = Path(__file__).parent / "cache_data_labels.json"
 
+cache_data_labels = {}
+if cache_file_labels.exists():
+    with cache_file_labels.open("r", encoding="utf-8") as f:
+        cache_data_labels = json.load(f)
+
+
+cache_file = Path(__file__).parent / "cache_data.json"
 cache_data = {}
 if cache_file.exists():
     with cache_file.open("r", encoding="utf-8") as f:
@@ -124,7 +131,7 @@ def start(args):
 
     # تسجيل الدخول
     wd = None
-    if not args.dry_run:
+    if not args.dry_run and not args.dumpen:
         print("[*] logging in to Wikidata...")
         wd = WikidataSession(username, password)
         wd.login()
@@ -153,7 +160,13 @@ def start(args):
             }
         }
         # ---
+        cache_data_labels.setdefault(en_label, "")
+        # ---
         cache_data.setdefault(pid, pid_data)
+        # ---
+        if args.dumpen:
+            print(f"en_label: {en_label}, en_desc: {en_desc}")
+            continue
         # ---
         # لا نعمل على خصائص بلا نص إنجليزي
         # (يمكنك تعديل السياسة إن أردت الترجمة من مصدر آخر)
@@ -231,12 +244,17 @@ def main():
     ap.add_argument("--dry-run", action="store_true", help="لا يرسل أي تعديلات، فقط يعرض ما سيفعله")
 
     ap.add_argument("--sleep", type=float, default=0.1, help="زمن انتظار (ثوانٍ) بين الطلبات للاحترام")
+
+    ap.add_argument("--dumpen", action="store_true", help="just dump en")
+
     args = ap.parse_args()
 
     start(args)
 
     with cache_file.open("w", encoding="utf-8") as f:
         json.dump(cache_data, f, ensure_ascii=False, indent=4)
+    with cache_file_labels.open("w", encoding="utf-8") as f:
+        json.dump(cache_data_labels, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
