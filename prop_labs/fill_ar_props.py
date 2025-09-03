@@ -67,11 +67,18 @@ def fetch_props_missing_ar(limit: int, offset: int = 0) -> List[dict]:
     # ---
     query = f"""
         SELECT ?p ?pLabel ?pDescription WHERE {{
-
+            values ?P31 {{
+                wd:Q54254515
+                wd:Q54275221
+                wd:Q54275340
+                wd:Q116547761
+                wd:Q56216056
+            }}
             ?p a wikibase:Property .
-            # ?p wdt:P31 wd:Q54254515 .
+            ?p wdt:P31 ?P31 .
+            # ?p wdt:P31/wdt:P279* wd:Q54076056 .
 
-            # FILTER(NOT EXISTS {{ ?p wdt:P1630 ?P1630. }})
+            FILTER(NOT EXISTS {{ ?p wdt:P1630 ?P1630. }})
 
             FILTER(NOT EXISTS {{ ?p rdfs:label ?l . FILTER(LANG(?l) = "ar") }})
             SERVICE wikibase:label {{

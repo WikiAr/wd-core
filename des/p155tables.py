@@ -8,10 +8,10 @@
 
 """
 
-from ma_lists import Sport_key ## fine 
+from ma_lists import Sports_Keys_For_Label, Sports_Keys_For_Team
 
-Sports_Keys_Lab = Sport_key.Sports_Keys_For_Label
-Sports_Keys_Team = Sport_key.Sports_Keys_For_Team
+Sports_Keys_Lab = Sports_Keys_For_Label
+Sports_Keys_Team = Sports_Keys_For_Team
 # ---
 cccccups = {
     "FIS Alpine Ski World Cup": "كأس العالم للتزلج على المنحدرات الثلجية",

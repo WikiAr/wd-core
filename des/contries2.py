@@ -248,7 +248,7 @@ ContriesTable2 = {
         "en": "Belize",
     },
     "Q244": {
-        "ar": "باربادوس",
+        "ar": "بربادوس",
         "en": "Barbados",
     },
     "Q424": {
