@@ -75,43 +75,58 @@ instractions = """أنت مترجم محترف من اللغة الإنجليز�
 contents = []
 
 
-def send_ai(text):
+def send_ai(text, sleep_time=3):
     time_start = time.time()
 
     model = genai.GenerativeModel(
-        # model_name="gemini-2.0-flash-lite",
-        model_name="gemini-2.5-flash-preview-05-20",
+        model_name="gemini-2.0-flash-lite",
+        # model_name="gemini-2.5-flash-preview-05-20",
         safety_settings=safety_settings,
         generation_config=generation_config,
 
         system_instruction=instractions,
     )
 
-    contents.append({
-        "role": "user",
-        "parts": [
-            text,
-        ],
-    })
-
     chat_session = model.start_chat(
         history=contents
     )
-
-    response = chat_session.send_message(text)
-
+    try:
+        response = chat_session.send_message(text)
+    except Exception as e:
+        # ---
+        e3 = "rate-limits" if "rate-limits" in str(e) else str(e)
+        # ---
+        print(f"Error sending message: ({e3})")
+        # ---
+        if e3 == "rate-limits":
+            print(f"time.sleep({sleep_time})")
+            time.sleep(sleep_time)
+            return send_ai(text, sleep_time=sleep_time+3)
+        # ---
+        return ""
+    # ---
     delta = time.time() - time_start
     # ---
     print(f"delta: {delta}")
     # ---
-    contents.append({
-        "role": "model",
-        "parts": [
-            response.text,
-        ],
-    })
+    result = response.text
     # ---
-    return response.text
+    if result:
+        contents.append({
+            "role": "user",
+            "parts": [
+                text,
+            ],
+        })
+        # ----
+        contents.append({
+            "role": "model",
+            "parts": [
+                result,
+            ],
+        })
+    # ---
+    return result
 
 
 def start():
