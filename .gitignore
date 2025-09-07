@@ -53,3 +53,5 @@ prop_labs/cache_data.json
 prop_labs/gemini_bot copy.py
 prop_labs/cache_data_labels.json
 prop_labs/cache_data_new.json
+lex-examples/quran-uthmani.json
+lex-examples/output.json
