@@ -1,104 +1,145 @@
-import requests
+import sys
 import json
 import re
+import requests
+from tqdm import tqdm
+from pathlib import Path
+
+Dir = Path(__file__).parent
+dump_path = Dir / "forms"
+dump_path.mkdir(exist_ok=True)
+
+file_uthmani = Dir / "quran-uthmani.json"
+if file_uthmani.exists():
+    # تحميل القرآن من الملف المحلي
+    with open(Dir / "quran-uthmani.json", "r", encoding="utf-8") as f:
+        quran_data = json.load(f)
+else:
+    # تحميل القرآن من موقع quran.com
+    url = "https://api.alquran.cloud/v1/quran/quran-uthmani"
+    response = requests.get(url)
+    quran_data = response.json()
+    with open(file_uthmani, "w", encoding="utf-8") as f:
+        json.dump(quran_data, f, ensure_ascii=False, indent=4)
+
+surahs = quran_data["data"]["surahs"]
+
+words_to_add = {}
+
+for surah in tqdm(surahs):
+    for ayah in surah["ayahs"]:
+        for word in ayah["text"].split(" "):
+            # ---
+            if word not in words_to_add:
+                words_to_add[word] = []
+            # ---
+            words_to_add[word].append({
+                "sura": surah["number"],
+                "sura_name": surah["name"],
+                "aya": ayah["numberInSurah"],
+                "text": ayah["text"]
+            })
 
 
-def get_forms_from_wikidata(lexeme_id):
-    """
-    Retrieves forms of an Arabic lexeme from Wikidata.
-    """
-    headers = {
-        'User-Agent': 'MyWikidataLexemeBot/1.0 (dev.mounir.info@gmail.com)'
-    }
+def search_in_quran_new(word):
+    results = words_to_add.get(word, [])
+    return results
+
+# دالة جلب الأشكال من Wikidata
+
+
+def get_forms_from_lexeme(lexeme_id):
     url = f"https://www.wikidata.org/wiki/Special:EntityData/{lexeme_id}.json"
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        data = response.json()
-        lexeme_data = data['entities'][lexeme_id]
-        return lexeme_data.get('forms', [])
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching data for {lexeme_id}: {e}")
-        return []
+    headers = {
+        "User-Agent": "MyQuranLexemeBot/1.0 (example@example.com)"
+    }
+    r = requests.get(url, headers=headers)
+    data = r.json()
 
-
-def get_quran_text_from_file(file_path="quran-uthmani.json"):
-    """
-    Reads the full Arabic text of the Quran from a local JSON file.
-    """
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            return data['data']['surahs']
-    except FileNotFoundError:
-        print(f"Error: The file '{file_path}' was not found.")
-        return []
-    except json.JSONDecodeError:
-        print(f"Error: Could not decode JSON from '{file_path}'. Check file format.")
-        return []
-
-
-def search_quran_for_word(word, quran_data):
-    """
-    Searches for a specific word in the Quran data.
-    """
-    for surah in quran_data:
-        for ayah in surah['ayahs']:
-            # Using a word boundary to ensure we match the full word, not a part of it
-            # The pattern is: \b + word + \b
-            if re.search(r'\b' + re.escape(word) + r'\b', ayah['text']):
-                return {
-                    "ayah_text": ayah['text'],
-                    "surah_name": surah['name'],
-                    "ayah_number": ayah['numberInSurah']
-                }
-    return None
-
-
-def process_lexeme(lexeme_id, quran_file_path, output_file="output.json"):
-    """
-    Main function to process the lexeme, find examples, and save to a JSON file.
-    """
-    forms = get_forms_from_wikidata(lexeme_id)
-    if not forms:
-        print("No forms found for this lexeme.")
-        return
-
-    quran_data = get_quran_text_from_file(quran_file_path)
-    if not quran_data:
-        print("Could not retrieve Quran data from file.")
-        return
-
-    results = []
-
+    entity = data["entities"][lexeme_id]
+    forms = entity.get("forms", [])
+    results = {}
+    already_has = 0
     for form in forms:
-        form_id = form.get('id')
-        arabic_value = form.get('representations', {}).get('ar', {}).get('value')
+        form_id = form["id"]
+        arabic_value = form.get("representations", {}).get("ar", {}).get("value")
 
         if not arabic_value:
             continue
 
-        if 'claims' not in form or 'P5831' not in form['claims']:
+        if 'claims' in form and 'P5831' in form['claims']:
+            already_has += 1
+        else:
+            matches = search_in_quran_new(arabic_value)
+            if matches:
+                results[form_id] = matches[0]
+    # print(f"{lexeme_id} \t forms: {len(forms)} \t results: {len(results)} \t already_has: {already_has}")
 
-            quran_example = search_quran_for_word(arabic_value, quran_data)
-            if quran_example:
-                results.append({
-                    "form_id": form_id,
-                    "word": arabic_value,
-                    "source": "Quran",
-                    "example": quran_example["ayah_text"],
-                    "surah_name": quran_example["surah_name"],
-                    "ayah_number": quran_example["ayah_number"]
-                })
-
-    # Save results to a JSON file
-    with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=4)
-
-    print(f"Processing complete. Results saved to {output_file}.")
+    return results
 
 
-# Run the script with your desired lexeme ID and the path to your Quran JSON file
-lexeme_id_to_process = "L1478647"  # Example for 'ضرب'
-quran_json_file = "quran-uthmani.json"
-process_lexeme(lexeme_id_to_process, quran_json_file)
+def get_arabic_lexemes():
+    file = Dir / "all_arabic_by_category.json"
+    with open(file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    categoryLabels = {
+        "Q1084": "اسم",
+        "Q24905": "فعل",
+        "Q34698": "صفة",
+        # "Q1050744": "اسم موصول",
+        # "Q111029": "جذر",
+        # "Q11563": "عدد",
+        # "Q1167104": "ظرف رابط",
+        # "Q1401131": "الجملة الاسمية",
+        # "Q147276": "اسم علم",
+        # "Q161873": "أداة جر لاحقة",
+        # "Q184943": "حرف معنى",
+        # "Q2146100": "ضمير  استئنافي",
+        # "Q2865743": "أداة تعريف",
+        # "Q29888377": "عبارة اسمية",
+        # "Q34793275": "ضمير إشارة",
+        # "Q36224": "ضمير",
+        # "Q36484": "حرف ربط",
+        # "Q380057": "ظرف",
+        # "Q468801": "ضمير شخصي",
+        # "Q4833830": "حرف جر",
+        # "Q503992": "الاسم الوظيفي",
+        # "Q576271": "مُحدِّد",
+        # "Q63116": "اسم عدد",
+        # "Q65279776": "أداة نفي",
+        # "Q83034": "التعجب",
+        # "Q9788": "حرف",
+    }
+    lexemes = []
+    for item, tab in data["list"].items():
+        if item not in categoryLabels:
+            continue
+        lexemes.extend(list(tab.keys()))
+    return lexemes
+
+
+def start():
+    lexemes = get_arabic_lexemes()
+    for lexeme_id in tqdm(lexemes):
+        extracted = get_forms_from_lexeme(lexeme_id)
+        if extracted:
+            with open(dump_path / f"{lexeme_id}.json", "w", encoding="utf-8") as f:
+                json.dump(extracted, f, ensure_ascii=False, indent=2)
+
+
+def test():
+    lexeme_id = "L1478647"
+    extracted = get_forms_from_lexeme(lexeme_id)
+
+    with open(Dir / "forms_examples.json", "w", encoding="utf-8") as f:
+        json.dump(extracted, f, ensure_ascii=False, indent=2)
+
+    print("saved forms_examples.json ✅")
+
+
+if __name__ == "__main__":
+    if "test" in sys.argv:
+        test()
+    else:
+        start()
