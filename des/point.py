@@ -13,7 +13,8 @@
 import re
 import sys
 from newapi import printe
-from himo_api import himoAPI, wd_bot
+from wd_api import wd_bot
+from himo_api import himoAPI
 
 # ---
 bylangs = False  # False#True
