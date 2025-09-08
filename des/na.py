@@ -18,7 +18,7 @@ from newapi import printe
 import sys
 
 # ---
-from himo_api import himoAPI_test as himoAPI
+from himo_api import himoAPI_my as himoAPI
 
 # ---
 from wd_api import wd_bot
