@@ -15,7 +15,10 @@ from newapi import printe
 # ---
 from wd_api import wd_bot
 
-from himo_api import himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
+# ---
 
 # ---
 limit = {1: 0}
@@ -33,7 +36,7 @@ for c, q in enumerate(json1, start=1):
     printe.output(f"work {c} from {total} , {Qid}")
     descriptions = wd_bot.Get_item_descriptions_or_labels(Qid, "descriptions")
     if "ar" not in descriptions:
-        himoAPI.Des_API(Qid, "عدد أولي", "ar", ask="")
+        WD_API_Bot.Des_API(Qid, "عدد أولي", "ar", ask="")
 # ---
 
 # ---

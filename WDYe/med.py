@@ -24,7 +24,9 @@ import urllib.request
 import urllib.parse
 from API import open_url
 # ---
-from himo_api import himoAPI_my as himoAPI
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+# ---
 from newapi.page import MainPage
 
 def dec(xx):
@@ -281,7 +283,7 @@ def looog():
         main_text = EngPage.get_text()
         newtext = main_text + text2
         # ---
-        # himoAPI.page_put(text3, "update.", title)
+        # WD_API_Bot.page_put(text3, "update.", title)
         EngPage.save(newtext=newtext, summary="update.", nocreate=1)
 
 
@@ -321,15 +323,15 @@ def WORK(item, table):
         if not arlab:
             arlab = ali
             if SaveR[1]:
-                himoAPI.Labels_API(item, ali, "ar", False)
+                WD_API_Bot.Labels_API(item, ali, "ar", False)
                 Looogs[item].append(ali)
             else:
                 sa = pywikibot.input(f'<<lightyellow>>add ali : "{ali}" as label to item :{item}? ')
                 if sa in ['y', "a", '']:
-                    himoAPI.Labels_API(item, ali, "ar", False)
+                    WD_API_Bot.Labels_API(item, ali, "ar", False)
                     Looogs[item].append(ali)
                 else:
-                    print(' himoAPI: wrong answer')
+                    print(' bot: wrong answer')
         else:
             NewALLi_to_add.append(ali)
     # ---
@@ -348,15 +350,15 @@ def WORK(item, table):
         printe.output("|".join(NewALLi_to_add))
         # printe.output( 'NewALLi_to_add: "%s"'  % str("|".join(NewALLi_to_add)) )
         if SaveR[1]:
-            himoAPI.Alias_API(item, NewALLi_to_add, "ar", False)
+            WD_API_Bot.Alias_API(item, NewALLi_to_add, "ar", False)
             Looogs[item].append(",".join(NewALLi_to_add))
         else:
-            sa = pywikibot.input(f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
+            sa = pywikibot.input(f'<<lightyellow>>bot: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
             if sa in ['y', "a", '']:
-                himoAPI.Alias_API(item, NewALLi_to_add, "ar", False)
+                WD_API_Bot.Alias_API(item, NewALLi_to_add, "ar", False)
                 Looogs[item].append(",".join(NewALLi_to_add))
             else:
-                print(' himoAPI: wrong answer')
+                print(' bot: wrong answer')
 
     # ---
 

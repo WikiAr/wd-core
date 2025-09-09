@@ -52,7 +52,10 @@ import sys
 # ---
 from wd_api import wd_sparql_bot
 from newapi import printe
-from himo_api import himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
+# ---
 from wd_api import qs_bot
 from wd_api import wd_bot
 
@@ -167,7 +170,7 @@ def Add_desc(q, value, lang):
     if "descqs" in sys.argv:
         descqs(q, value, lang)
     else:
-        himoAPI.Des_API(q, value, lang, ask="")
+        WD_API_Bot.Des_API(q, value, lang, ask="")
 
 
 def work_one_item(start, lang, tab, c, total, findlab=False):
@@ -254,7 +257,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # NewDesc[lang] = { "language":lang,"value": arlabel2 }
     # addedlangs.append(lang)
     # ---
-    # himoAPI.Des_API( q, arlabel2 ,lang)
+    # WD_API_Bot.Des_API( q, arlabel2 ,lang)
     # ---
     Add_desc(q, arlabel2, lang)
 

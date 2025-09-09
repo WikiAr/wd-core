@@ -9,7 +9,10 @@ python3 core8/pwb.py wd/koo -ns:0 -ref:قالب:كووورة
 #
 # (C) Ibrahem Qasim, 2022
 #
-from himo_api import himoAPI_my as himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+# ---
 from API import himoBOT2
 from wd_api import wd_bot
 import pywikibot
@@ -59,7 +62,7 @@ def woo(title):
     # pywikibot.output( "P31:%s" % P31 )
     # ---
     if not iin and id not in done:
-        himoAPI.Claim_API_string(qid, "P8021", id)
+        WD_API_Bot.Claim_API_string(qid, "P8021", id)
         done.append(id)
         # pywikibot.output( f )
 

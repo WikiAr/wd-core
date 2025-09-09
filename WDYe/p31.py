@@ -10,7 +10,10 @@ python pwb.py c30/p31 enwiki
 #
 # (C) Ibrahem Qasim, 2022
 #
-from himo_api import himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
+# ---
 import pywikibot
 
 # ---
@@ -62,7 +65,7 @@ AutoSave = {1: False}
 
 
 def treat_page(qid):
-    himoAPI.Claim_API2(qid, "P31", "Q4167836")
+    WD_API_Bot.Claim_API2(qid, "P31", "Q4167836")
 
 
 def main2(*args):

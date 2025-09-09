@@ -14,7 +14,10 @@ import re
 import sys
 from newapi import printe
 from wd_api import wd_bot
-from himo_api import himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
+# ---
 
 # ---
 bylangs = False  # False#True
@@ -57,7 +60,7 @@ def action(json1):
                 # ---
                 printe.output(f'  * year1:"{year1}"')
                 if PP_time != timestr:
-                    himoAPI.Claim_API_time(q, "P585", precision=9, year=year1, strtime=timestr)
+                    WD_API_Bot.Claim_API_time(q, "P585", precision=9, year=year1, strtime=timestr)
                 else:
                     printe.output(f" <<lightred>> * time == timestr.{timestr} ")
         else:

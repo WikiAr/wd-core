@@ -3,7 +3,10 @@
 from nep.bots.tax_desc import work_taxon_desc
 """
 import sys
-from himo_api import himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
+# ---
 from wd_api import wd_bot
 from newapi import printe
 from desc_dicts.taxones import lab_for_p171, labforP105
@@ -75,7 +78,7 @@ def make_tax_des_new(item):
             if P171 in lab_for_p171.keys():
                 P171ar = lab_for_p171[P171]
                 ar_lab = f"{P105ar} {P171ar}"
-                himoAPI.Des_API(q, ar_lab, "ar")
+                WD_API_Bot.Des_API(q, ar_lab, "ar")
 
 
 def work_taxon_desc(item, endesc):
@@ -88,4 +91,4 @@ def work_taxon_desc(item, endesc):
         print(f" no ardesc for en:{endesc}.")
         make_tax_des_new(item)
 
-    himoAPI.Des_API(q, ardesc, "ar")
+    WD_API_Bot.Des_API(q, ardesc, "ar")

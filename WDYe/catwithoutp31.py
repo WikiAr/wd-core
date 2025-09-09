@@ -12,7 +12,10 @@ import re
 from wd_api import wd_desc
 from wd_api import wd_bot
 
-from himo_api import himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
+# ---
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 
 Tras = {
@@ -56,7 +59,7 @@ def work_one_item(q):
     descriptions = wd_bot.Get_item_descriptions_or_labels(q, "descriptions")
     # ---
     if not P31 or P31 != "Q4167836":
-        himoAPI.Claim_API2(q, "P31", "Q4167836")
+        WD_API_Bot.Claim_API2(q, "P31", "Q4167836")
     # ---
     # labels
     data2 = {"labels": {}}
@@ -73,7 +76,7 @@ def work_one_item(q):
     # ---
     if len(data2["labels"].keys()) > 0:
         summary = f"Bot: - Add labels:({len(data2['labels'])} langs)."
-        himoAPI.New_Mult_Des(q, data2, summary, False)
+        WD_API_Bot.New_Mult_Des(q, data2, summary, False)
     # ---
     catdesc = Tras["Q4167836"]
     # ---

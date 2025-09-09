@@ -13,7 +13,10 @@ import sys
 
 # ---
 from newapi import printe
-from himo_api import himoAPI_my as himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+# ---
 from api_sql import wiki_sql
 
 # ---
@@ -77,12 +80,12 @@ def main():
         printe.output(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')
         # ---
         if page:
-            # himoAPI.Labels_API(qid, page, "ar", False, Or_Alii=True)
-            himoAPI.Add_Labels_if_not_there(qid, page, "ar", False)
+            # WD_API_Bot.Labels_API(qid, page, "ar", False, Or_Alii=True)
+            WD_API_Bot.Add_Labels_if_not_there(qid, page, "ar", False)
 
 
 if __name__ == "__main__":
     if "test" in sys.argv:
-        himoAPI.Add_Labels_if_not_there("Q109927", "83 Beatrix", "ar", False)
+        WD_API_Bot.Add_Labels_if_not_there("Q109927", "83 Beatrix", "ar", False)
     else:
         main()

@@ -18,7 +18,10 @@ from newapi import printe
 import sys
 
 # ---
-from himo_api import himoAPI_my as himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+# ---
 
 # ---
 from wd_api import wd_bot
@@ -50,7 +53,7 @@ def action(json1):
                 printe.output(f'  * ar_lab:"{ar_lab}",en_name:"{en_name}"')
                 c += 1
                 printe.output(f'  * action {c}/{total} "{q}"')
-                himoAPI.Labels_API(q, ar_lab, "ar", False, Or_Alii=True)
+                WD_API_Bot.Labels_API(q, ar_lab, "ar", False, Or_Alii=True)
         else:
             printe.output(" <<lightred>> * q in items_done. " % q)
 
