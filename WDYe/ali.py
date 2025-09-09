@@ -20,15 +20,11 @@ import sys
 # ---
 File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
 # ---
-# ---
-
-# ---
 try:
-    from himo_api import himoAPI_my as himoAPI
+    from himo_api import New_Himo_API
+    WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
 except ImportError:
-    pywikibot.output('<<lightred>> Can\'t import himoAPI_my as himoAPI')
-# ---
-# from himo_api import himoAPI
+    pywikibot.output('<<lightred>> Can\'t import New_Himo_API')
 # ---
 ask = {1: True}
 OFFSET = {1: '   '}
@@ -177,7 +173,7 @@ def action_one(q, ar):
     if ar.find("عبد ") != -1:
         ar2 = ar.replace("عبد ", "عبد")
     if ar != ar2:
-        himoAPI.Alias_API(q, [ar2], "ar", False)
+        WD_API_Bot.Alias_API(q, [ar2], "ar", False)
 
 
 def workqua(qua):

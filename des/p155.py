@@ -17,7 +17,10 @@ import sys
 import pywikibot
 from wd_api import wd_bot
 from newapi import printe
-from himo_api import himoAPI_my as himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+# ---
 from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
 from des.p155tables import keys_1, Sports_Keys_Lab
 
@@ -226,13 +229,13 @@ def Item(item):
         return ""
     if Ask[1]:
         if newlabel.strip():
-            sa = pywikibot.input(f'<<lightyellow>>himoAPI: Labels_API Add "{newlabel}" as label to "{q}"? ([y]es, [N]o):')
+            sa = pywikibot.input(f'<<lightyellow>>bot: Labels_API Add "{newlabel}" as label to "{q}"? ([y]es, [N]o):')
             if sa in yes_answer:
-                himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
+                WD_API_Bot.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
             if sa == "a":
                 Ask[1] = False
     elif newlabel.strip():
-        himoAPI.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
+        WD_API_Bot.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
 
     # ---
 

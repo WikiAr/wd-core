@@ -19,8 +19,10 @@ import sys
 
 # ---
 # ---
-
-from himo_api import himoAPI_my as himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+# ---
 
 # ---
 SaveR = {1: False}
@@ -66,13 +68,13 @@ def WORK(item, table, type):
     if arlab2 != arlab:
         pywikibot.output(f"arlab2 : {arlab2}")
         if SaveR[1]:
-            himoAPI.Alias_API(item, [arlab2], "ar", False)
+            WD_API_Bot.Alias_API(item, [arlab2], "ar", False)
         else:
-            sa = pywikibot.input(f'<<lightyellow>>himoAPI: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
+            sa = pywikibot.input(f'<<lightyellow>>bot: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
             if sa in ['y', "a", '']:
-                himoAPI.Alias_API(item, [arlab2], "ar", False)
+                WD_API_Bot.Alias_API(item, [arlab2], "ar", False)
             else:
-                pywikibot.output(' himoAPI: wrong answer')
+                pywikibot.output(' bot: wrong answer')
 
     # ---
 

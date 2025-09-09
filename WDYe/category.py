@@ -24,7 +24,10 @@ import sys
 
 
 # ---
-from himo_api import himoAPI_my as himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+# ---
 
 # ---
 Limit = {1: "500"}
@@ -74,7 +77,7 @@ LIMIT '''
         # pywikibot.output( Table[item] )
         if value_:
             lab = f'تصنيف:{Table[item]}'
-            himoAPI.Labels_API(item, lab, "ar", False, Or_Alii=True)
+            WD_API_Bot.Labels_API(item, lab, "ar", False, Or_Alii=True)
 
     # ---
 

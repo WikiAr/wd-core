@@ -33,7 +33,13 @@ if "workibrahem" in sys.argv:
     workibrahem = True
     print("workibrahem active")
 # ---
+# headers=headers,
+# session[1].headers.update(headers)
+headers = {"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"}
+# ---
 session = {1: requests.Session(), "csrftoken": ""}
+session[1].headers.update(headers)
+
 br = "<br>"
 
 
@@ -50,7 +56,10 @@ def login():
         timeout=10,
     )
     r1.raise_for_status()
-
+    # ---
+    # headers=headers,
+    headers = {"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"}
+    # ---
     # log in
     r2 = session[1].post(
         api_url,
@@ -62,6 +71,7 @@ def login():
             "lgtoken": r1.json()["query"]["tokens"]["logintoken"],
         },
         timeout=10,
+        headers=headers,
     )
 
     # print( str( r2.json() ) )
@@ -95,9 +105,13 @@ def page_put(NewText, MainTitle):
     printt(f" page_put {MainTitle}:<br>")
     # print_test2( NewText )
     # ---
+    # headers=headers,
+    headers = {"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"}
+    # ---
     if (not TEST[1] and not TEST[2]) or workibrahem:
         r4 = session[1].post(
             api_url,
+            headers=headers,
             data={
                 "action": "edit",
                 "format": "json",

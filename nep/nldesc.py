@@ -8,7 +8,10 @@ import sys
 
 # ---
 from newapi import printe
-from himo_api import himoAPI
+# ---
+from himo_api import New_Himo_API
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
+# ---
 from wd_api import wd_bot
 
 from nep.si3 import do_P1433_new_list, make_scientific_art
@@ -141,7 +144,7 @@ def action_one_P131_item(lng, oneitem):
 
 
 def Add_desc(q, value, lang):
-    himoAPI.Des_API(q, value, lang, ask="")
+    WD_API_Bot.Des_API(q, value, lang, ask="")
 
 
 def action_one_item(lngr, q, item={}, claimstr=""):
