@@ -186,6 +186,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
     ardes = descriptions.get("ar", "")
     # ---
     if len(P31_table) == 0:
+        # print(item)
         printe.output("no P31 at item. skip..")
     # ---
     for P31 in P31_table:
