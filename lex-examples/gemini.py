@@ -17,7 +17,11 @@ if file_uthmani.exists():
 else:
     # تحميل القرآن من موقع quran.com
     url = "https://api.alquran.cloud/v1/quran/quran-uthmani"
-    response = requests.get(url)
+    # ---
+    session = requests.session()
+    session.headers.update({"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"})
+    # ---
+    response = session.get(url, timeout=10)
     quran_data = response.json()
     with open(file_uthmani, "w", encoding="utf-8") as f:
         json.dump(quran_data, f, ensure_ascii=False, indent=4)
@@ -50,10 +54,11 @@ def search_in_quran_new(word):
 
 def get_forms_from_lexeme(lexeme_id):
     url = f"https://www.wikidata.org/wiki/Special:EntityData/{lexeme_id}.json"
-    headers = {
-        "User-Agent": "MyQuranLexemeBot/1.0 (example@example.com)"
-    }
-    r = requests.get(url, headers=headers)
+    # ---
+    session = requests.session()
+    session.headers.update({"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"})
+    # ---
+    r = session.get(url)
     data = r.json()
 
     entity = data["entities"][lexeme_id]

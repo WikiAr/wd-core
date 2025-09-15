@@ -33,8 +33,11 @@ def get_query_results(query):
     # ---
     req = False
     # ---
+    session = requests.session()
+    session.headers.update({"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"})
+    # ---
     try:
-        req = requests.Session().get(url, timeout=10)
+        req = session.get(url, timeout=10)
 
     except requests.exceptions.ReadTimeout:
         print(f"ReadTimeout: {url}")
