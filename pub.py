@@ -61,9 +61,12 @@ def get_and_load(url):
     # ---
     print_test(url)
     # ---
+    session = requests.session()
+    session.headers.update({"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"})
+    # ---
     # get url content
     try:
-        content = requests.get(url)
+        content = session.get(url)
         data = content.json()
         return data
     except Exception as e:
@@ -143,6 +146,7 @@ if __name__ == "__main__":
     # python3 core8/pwb.py pub type:PMC id:4080339
     print_test(f"TestMain:{br}")
     typee = "MED"
+    idz = ""
     if sys.argv:
         # lenth = len(sys.argv)
         # print_test(str(lenth) + str(sys.argv) )
@@ -151,11 +155,11 @@ if __name__ == "__main__":
             if arg == "type" and value:
                 typee = value
             if arg == "id" and value:
-                id = value
+                idz = value
     # ---
-    id = id.replace("https://doi.org/", "")
+    idz = idz.replace("https://doi.org/", "")
     # ---
-    if id:
-        add(id, typee)
+    if idz:
+        add(idz, typee)
     else:
         print("id empty..")

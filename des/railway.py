@@ -133,7 +133,6 @@ def work_railway(wditem, p31, q=""):
         # ---
         if desc_n:
             newdesc[lang] = {"language": lang, "value": desc_n}
-            # ---
     # ---
     if not newdesc:
         print("nothing to add..")
