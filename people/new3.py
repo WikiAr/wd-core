@@ -191,7 +191,6 @@ def check_quarry_new(tab):
         json = wd_bot.sparql_generator_url(qua)
         # ---
         New_Json.extend(iter(json))
-        # ---
     # ---
     return New_Json
 

@@ -440,7 +440,6 @@ def main():
         # ---
         if arg == "qua8":
             Quarry["use"] = Quarry[8]
-        # ---
     # ---
     for arg in sys.argv:
         arg, _, value = arg.partition(":")
