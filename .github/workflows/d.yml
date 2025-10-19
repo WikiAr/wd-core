@@ -18,4 +18,4 @@ jobs:
           script_stop: true
           key: ${{ secrets.KEY }}
           script: |
-            become himo sh -c "shs/update_wd.sh; echo ''"
+            become himo bash -lc "shs/update_wd.sh; echo ''"
