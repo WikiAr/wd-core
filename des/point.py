@@ -65,7 +65,7 @@ def action(json1):
                 else:
                     logger.info(f" <<lightred>> * time == timestr.{timestr} ")
         else:
-            logger.info(" <<lightred>> * q in items_done. " % q)
+            logger.info(f" <<lightred>> * q in items_done. {q}")
 
 # ---
 Quarry = {

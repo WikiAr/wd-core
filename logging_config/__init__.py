@@ -14,10 +14,10 @@ name = Path(__file__).parent.name
 def setup_logging(name):
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
-    handler = logging.StreamHandler(sys.stdout)
-    handler.setFormatter(logging.Formatter("%(filename)s:%(lineno)d %(funcName)s() - %(levelname)s - %(message)s"))
-    logger.addHandler(handler)
+    # Check if handler already exists to avoid duplicates
+    if not logger.handlers:
+        logger.setLevel(logging.DEBUG)
+        handler = logging.StreamHandler(sys.stdout)
+        handler.setFormatter(logging.Formatter("%(filename)s:%(lineno)d %(funcName)s() - %(levelname)s - %(message)s"))
+        logger.addHandler(handler)
 
-
-setup_logging(name)
