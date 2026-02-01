@@ -13,7 +13,9 @@ python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q79
 import time
 import random
 import sys
-from newapi import printe
+
+import logging
+logger = logging.getLogger(__name__)
 
 # from nep import si3
 from wd_api import wd_bot
@@ -55,7 +57,6 @@ random.shuffle(P106[1])
 random.shuffle(P27[1])
 # ---
 
-
 def get_qua():
     # ---
     lang = nolang[1].strip() or "en"
@@ -83,9 +84,9 @@ def get_qua():
     # ---
     qua += f"\n limit {limit[1]}"
     # ---
-    printe.output(f" len P106 :{len(P106[1])}")
+    logger.info(f" len P106 :{len(P106[1])}")
     # ---
-    printe.output(f" len P27 :{len(P27[1])}")
+    logger.info(f" len P27 :{len(P27[1])}")
     # ---
     if P106[1]:
         line = "values ?p106 {" + " ".join([f"wd:{x}" for x in P106[1]]) + "} \n #sr"
@@ -97,13 +98,12 @@ def get_qua():
     # ---
     return qua
 
-
 def one_item(qid, num):
     # {'item': 'http://www.wikidata.org/entity/Q21457154', 'qid': 'Q21457154'}
     item = wd_bot.Get_Item_API_From_Qid(qid, props="claims|descriptions|labels")
     # ---
     if not item:
-        printe.output(f'*<<lightred>> >{num} error with item "{qid}" < :')
+        logger.info(f'*<<lightred>> >{num} error with item "{qid}" < :')
         return
     # ---
     descriptions = item.get("descriptions", {})
@@ -113,17 +113,16 @@ def one_item(qid, num):
     # ---
     work_people(item, "", num, ardes)
 
-
 def main():
-    printe.output("*<<lightred>> > main:")
+    logger.info("*<<lightred>> > main:")
     # ---
     base_qua = get_qua()
     # ---
-    # printe.output(f"*<<yellow>> {base_qua} :")
+    # logger.info(f"*<<yellow>> {base_qua} :")
     # ---
     for n, nat_qid in enumerate(P27[1], start=1):
         # ---
-        printe.output(f"n:{n}/{len(P27[1])} work:")
+        logger.info(f"n:{n}/{len(P27[1])} work:")
         # ---
         line = f"?item wdt:P27 wd:{nat_qid}. # " + qid_to_p27.get(nat_qid, "")
         # ---
@@ -141,7 +140,7 @@ def main():
         for num, tab in enumerate(lista, start=1):
             qid = tab["qid"]
             # ---
-            printe.output(f'*<<lightred>> >{num}/{len(lista)} one_item "{qid}" < :')
+            logger.info(f'*<<lightred>> >{num}/{len(lista)} one_item "{qid}" < :')
             # si3.ISRE(qid, num, len(lista), get_nl_des=False)
             one_item(qid, num)
             # ---
@@ -150,7 +149,6 @@ def main():
                 time.sleep(1)
     # ---
     print_new_jobs()
-
 
 if __name__ == "__main__":
     main()

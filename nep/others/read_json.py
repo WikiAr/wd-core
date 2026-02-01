@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
 
-
 """
 #
 # (C) Ibrahem Qasim, 2023
@@ -10,11 +9,12 @@
 
 import json as JJson
 import re
+import logging
+logger = logging.getLogger(__name__)
 
 import traceback
 
 # ---
-from newapi import printe
 
 # ---
 from newapi.except_err import exception_err
@@ -23,13 +23,11 @@ try:
 except ImportError:
     pywikibot = False
 
-
 def printo(s):
     if pywikibot:
         pywikibot.output(s)
     else:
-        printe.output(s)
-
+        logger.info(s)
 
 def read_bad_list(file):
     try:
@@ -38,7 +36,7 @@ def read_bad_list(file):
             done_list7 = JJson.load(listt)
         # ---
         for type in done_list7:
-            printe.output(f'find {len(done_list7[type])} cats in done_list7. "{type}" , file:"{file}"')
+            logger.info(f'find {len(done_list7[type])} cats in done_list7. "{type}" , file:"{file}"')
             for catee in done_list7[type]:
                 catee = catee.strip()
                 catee = re.sub(r'"', "", catee)
@@ -65,7 +63,6 @@ def read_bad_list(file):
     # ---
     return False
 
-
 def read_bad_json(file):
     try:
         with open(file) as listt:
@@ -88,7 +85,6 @@ def read_bad_json(file):
     # ---
     return {}
 
-
 def main(file, Type):
     try:
         if Type == "dict":
@@ -100,7 +96,6 @@ def main(file, Type):
     except Exception as e:
         exception_err(e, text=f'* Cant work file:"{file}" , Type:"{Type}"')
     return False
-
 
 # ---
 if __name__ == "__main__":

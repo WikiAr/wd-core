@@ -29,6 +29,8 @@ import time
 import json
 import argparse
 import requests
+import logging
+logger = logging.getLogger(__name__)
 
 from tqdm import tqdm
 from pathlib import Path
@@ -40,7 +42,7 @@ sys.path.append(str(Path(__file__).parent))
 sys.path.append("I:/core/bots/new/newapi_bot")
 
 from wd_Session import WikidataSession
-from newapi import printe
+
 from newapi.accounts.useraccount import User_tables_ibrahem
 
 from translate_bot import translate_en_to_ar
@@ -54,7 +56,6 @@ HEADERS_API = {
 
 username = User_tables_ibrahem["username"]
 password = User_tables_ibrahem["password"]
-
 
 # =========================
 # ترجمات: اختر مزوّدك
@@ -113,14 +114,12 @@ def fetch_props_missing_ar(limit: int, offset: int = 0) -> List[dict]:
 # منطق التنفيذ
 # =========================
 
-
 cache_file_labels = Path(__file__).parent / "cache_data_labels.json"
 
 cache_data_labels = {}
 if cache_file_labels.exists():
     with cache_file_labels.open("r", encoding="utf-8") as f:
         cache_data_labels = json.load(f)
-
 
 cache_file = Path(__file__).parent / "cache_data.json"
 cache_data = {}
@@ -141,22 +140,19 @@ if cache_file.exists():
         if pid_data["description"]["ar"]:
             already_translated[pid_data["description"]["en"]] = pid_data["description"]["ar"]
 
-
 def translate_en_to_ar_wrap(text):
     if already_translated.get(text):
         return already_translated[text]
     return translate_en_to_ar(text)
 
-
 def dump_all():
-    printe.output("<<green>> dump_all():")
+    logger.info("<<green>> dump_all():")
 
     with cache_file.open("w", encoding="utf-8") as f:
         json.dump(cache_data, f, ensure_ascii=False, indent=4)
 
     with cache_file_labels.open("w", encoding="utf-8") as f:
         json.dump(cache_data_labels, f, ensure_ascii=False, indent=4)
-
 
 def start(args):
     if not args.dry_run and (not username or not password):
@@ -263,7 +259,7 @@ def start(args):
                     dump_all()
                     # ---
                     done_labels += 1
-                    printe.output(f"<<green>> [ok][{pid}] label set.")
+                    logger.info(f"<<green>> [ok][{pid}] label set.")
 
                 print(f"time.sleep({args.sleep})")
                 time.sleep(args.sleep)
@@ -286,13 +282,12 @@ def start(args):
                     dump_all()
                     # ---
                     done_descs += 1
-                    printe.output(f"<<green>> [ok][{pid}] description set.")
+                    logger.info(f"<<green>> [ok][{pid}] description set.")
 
                 print(f"time.sleep({args.sleep})")
                 time.sleep(args.sleep)
 
     print(f"[*] finished. labels added: {done_labels}, descriptions added: {done_descs}")
-
 
 def main():
     ap = argparse.ArgumentParser(description="Fill Arabic labels/descriptions for Wikidata properties.")
@@ -312,7 +307,6 @@ def main():
 
     start(args)
     dump_all()
-
 
 if __name__ == "__main__":
     main()

@@ -16,12 +16,13 @@ tfj run jsubp4 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py
 # ---
 import wikitextparser as wtp
 from newapi.page import MainPage
-from newapi import printe
+
+import logging
+logger = logging.getLogger(__name__)
 
 import tqdm
 import sys
 import gent
-
 
 def add_id_to_text(item, text):
     parser = wtp.parse(text)
@@ -44,7 +45,6 @@ def add_id_to_text(item, text):
     # ---
     return text
 
-
 def move_it_to_temp(title, item, text):
     # ---
     if not text:
@@ -62,7 +62,6 @@ def move_it_to_temp(title, item, text):
         do = temp_page.Create(text, summary="بوت:تجربة تحديث بيانات اللاعب")
     # ---
     return do
-
 
 def find_cy_temp(text):
     start = "{{نتيجة سباق الدراجات/بداية"
@@ -83,13 +82,12 @@ def find_cy_temp(text):
     # ---
     return text[start_pos:end_pos]
 
-
 def one_page_work(title, text, item):
     # ---
     cy_temp = find_cy_temp(text)
     # ---
     if not cy_temp:
-        printe.output(f"no cy temp on {title}")
+        logger.info(f"no cy temp on {title}")
         return text
     # ---
     temp = move_it_to_temp(title, item, cy_temp)
@@ -103,7 +101,6 @@ def one_page_work(title, text, item):
         text = text.replace(cy_temp, new_temp)
     # ---
     return text
-
 
 def onep(title):
     # ---
@@ -124,7 +121,7 @@ def onep(title):
     ns = page.namespace()
     # ---
     if ns != 0:
-        printe.output(f"<<red>> page:{title} {ns=} not in main namespace.")
+        logger.info(f"<<red>> page:{title} {ns=} not in main namespace.")
         return
     # ---
     text = page.get_text()
@@ -135,20 +132,19 @@ def onep(title):
     new_text = one_page_work(title, text, item)
     # ---
     if not new_text:
-        printe.output("no new text!!")
+        logger.info("no new text!!")
         return
     # ---
     if new_text.find("{{نتيجة سباق الدراجات/بداية") != -1 or new_text.find("{{نتيجة سباق الدراجات/نهاية}}") != -1:
-        printe.output("error when replacing templates")
+        logger.info("error when replacing templates")
         return
     # ---
     if new_text == text:
-        printe.output("no changes")
+        logger.info("no changes")
         return
     # ---
     if new_text:
         page.save(newtext=new_text, summary="بوت:تجربة تحديث بيانات اللاعب")
-
 
 def split_pages(pages, parts=4):
     length = len(pages)
@@ -166,11 +162,10 @@ def split_pages(pages, parts=4):
     # Return the specified part or the original list
     for part_name, part_pages in parts_dict.items():
         if part_name in sys.argv:
-            printe.output(f"<<yellow>> part: {part_name}: {len(part_pages):,}")
+            logger.info(f"<<yellow>> part: {part_name}: {len(part_pages):,}")
             return part_pages
 
     return pages
-
 
 def main2(*args):
     generator = gent.get_gent(listonly=True, *args)
@@ -180,9 +175,8 @@ def main2(*args):
     list_of_pages = split_pages(list_of_pages)
     # ---
     for numb, pagetitle in enumerate(list_of_pages, start=1):
-        printe.output(f"<<yellow>> page: {numb}/{len(list_of_pages)} : {pagetitle}")
+        logger.info(f"<<yellow>> page: {numb}/{len(list_of_pages)} : {pagetitle}")
         onep(pagetitle)
-
 
 if __name__ == "__main__":
     main2()

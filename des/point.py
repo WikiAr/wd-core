@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
 
-
 تسمية  عناصر ويكي بيانات
 
 """
@@ -12,10 +11,13 @@
 
 import re
 import sys
-from newapi import printe
+
 from wd_api import wd_bot
 # ---
 from himo_api import New_Himo_API
+import logging
+logger = logging.getLogger(__name__)
+
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
 # ---
 
@@ -26,7 +28,6 @@ limits = {1: "1000"}
 # ---
 items_done = []
 
-
 def action(json1):
     try:
         total = len(json1)
@@ -35,11 +36,11 @@ def action(json1):
     c = 1
     # ---
     for tab in json1:  # عنصر ويكي بيانات
-        printe.output(tab)
+        logger.info(tab)
         q = tab["item_q"]
         if q not in items_done:
             c += 1
-            printe.output(f'action {c}/{total} "{q}"')
+            logger.info(f'action {c}/{total} "{q}"')
             label = tab["label"]
             # ---
             # year =  re.match(r'(\d\d\d\d)', label)
@@ -56,16 +57,15 @@ def action(json1):
                 PP = wd_bot.Get_Property_API(q=q, p="P585")
                 if PP and PP[0] and PP[0]["time"]:
                     PP_time = PP[0]["time"]
-                    printe.output(f"  * PP:\"{PP[0]['time']}\"")
+                    logger.info(f"  * PP:\"{PP[0]['time']}\"")
                 # ---
-                printe.output(f'  * year1:"{year1}"')
+                logger.info(f'  * year1:"{year1}"')
                 if PP_time != timestr:
                     WD_API_Bot.Claim_API_time(q, "P585", precision=9, year=year1, strtime=timestr)
                 else:
-                    printe.output(f" <<lightred>> * time == timestr.{timestr} ")
+                    logger.info(f" <<lightred>> * time == timestr.{timestr} ")
         else:
-            printe.output(" <<lightred>> * q in items_done. " % q)
-
+            logger.info(f" <<lightred>> * q in items_done. {q}")
 
 # ---
 Quarry = {
@@ -88,7 +88,6 @@ SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
 """
 }
 
-
 def main():
     # ---
     # python pwb.py des/point -limit:2
@@ -100,11 +99,11 @@ def main():
         arg, _, value = arg.partition(":")
         # ---
         if arg == "-limit":
-            printe.output(f"<<lightred>>>>  limit ( {value} )  ")
+            logger.info(f"<<lightred>>>>  limit ( {value} )  ")
             limits[1] = value
         # ---
         if arg in Quarry:
-            printe.output(f"<<lightred>>>>  use Quarry:{arg} . ")
+            logger.info(f"<<lightred>>>>  use Quarry:{arg} . ")
             qya[arg] = Quarry[arg]
     # ---
     if not qya:
@@ -114,26 +113,25 @@ def main():
             arg, _, value = arg.partition(":")
             # ---
             if arg in ["P31", "-P31"]:
-                printe.output(f"<<lightred>>>>  P31:{value}. ")
+                logger.info(f"<<lightred>>>>  P31:{value}. ")
                 taxose = f"?item wdt:P31/wdt:P279* wd:{value}."
             # ---
             if arg in ["lang", "-lang"]:
                 if value == "fr":
                     quuu = quuu.replace('"en"', '"fr"')
                     quuu = quuu.replace('"Category:"', '"Catégorie:"')
-                    printe.output("<<lightred>>>> change lang to france. ")
+                    logger.info("<<lightred>>>> change lang to france. ")
         # ---
         quuu = quuu % taxose
         # ---
         if limits[1]:
             quuu = f"{quuu}\n LIMIT {limits[1]}"
         # ---
-        printe.output(f"quuu : {number}/{len(qya)} key:{key}")
-        printe.output(quuu)
+        logger.info(f"quuu : {number}/{len(qya)} key:{key}")
+        logger.info(quuu)
         # ---
         json1 = wd_bot.sparql_generator_url(quuu)
         action(json1)
-
 
 # ---
 if __name__ == "__main__":

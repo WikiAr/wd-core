@@ -13,6 +13,8 @@ import time
 import json
 import argparse
 import requests
+import logging
+logger = logging.getLogger(__name__)
 
 from pathlib import Path
 
@@ -22,7 +24,6 @@ from typing import Dict, List, Optional, Tuple
 sys.path.append(str(Path(__file__).parent))
 sys.path.append("I:/core/bots/new/newapi_bot")
 
-from newapi import printe
 from newapi.accounts.useraccount import User_tables_ibrahem
 
 from translate_bot import translate_en_to_ar
@@ -44,7 +45,6 @@ ask_user = {1: False}
 if "ask" in sys.argv:
     ask_user[1] = True
     sys.argv.remove("ask")
-
 
 class WikidataSession:
     def __init__(self, username: str, password: str):
@@ -126,14 +126,14 @@ class WikidataSession:
         if not ask_user[1] or self.save_all:
             return True
         # ---
-        printe.output(f"<<yellow>> [ask][{pid}] Add AR {field}: '{value}'")
+        logger.info(f"<<yellow>> [ask][{pid}] Add AR {field}: '{value}'")
         ans = input("(y/n)?").strip().lower()
         # ---
         answers = ["y", "yes", "", "a"]
         # ---
         if ans == "a":
             self.save_all = True
-            printe.output("<<green>> SAVE ALL Without Asking\n" * 3)
+            logger.info("<<green>> SAVE ALL Without Asking\n" * 3)
             return True
         # ---
         return ans in answers

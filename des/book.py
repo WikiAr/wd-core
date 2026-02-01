@@ -3,7 +3,6 @@
 
 إضافة وصف للكتب والقصص
 
-
 python3 core8/pwb.py des/book optional
 python3 core8/pwb.py des/book ask
 
@@ -18,11 +17,12 @@ python pwb.py des/book
 import re
 import pywikibot
 import sys
+import logging
+logger = logging.getLogger(__name__)
 
 from wd_api import wd_sparql_bot
 from wd_api import wd_desc
 from wd_api import wd_bot
-from newapi import printe
 
 # ---
 AskSave = {1: True}
@@ -70,7 +70,6 @@ Qlist = {
     },
 }
 
-
 def one_book_item(Qid, pa, lang, keys):
     item = wd_bot.Get_Item_API_From_Qid(pa["item"])
     if not item:
@@ -82,7 +81,7 @@ def one_book_item(Qid, pa, lang, keys):
     if "en" in keys:
         keys.append("en-gb")
         keys.append("en-ca")
-    printe.output(f"keys:{str(keys)}")
+    logger.info(f"keys:{str(keys)}")
     # ---
     descriptions = item["descriptions"]
     NewDesc = {}
@@ -99,27 +98,26 @@ def one_book_item(Qid, pa, lang, keys):
                 dns = ""
                 if "endes" in pa:
                     dns = pa["endes"]
-                printe.output(f"newar:{des},en:{dns}")
+                logger.info(f"newar:{des},en:{dns}")
                 addedlangs.append(lang)
             else:
-                printe.output(f'*no desc for "{lang}"')
+                logger.info(f'*no desc for "{lang}"')
         # ---
     if addedlangs:
         qitem = Qid  # item.title(as_link=False)
         if AskSave[1]:
-            printe.output(f"================== + {addedlangs}")
+            logger.info(f"================== + {addedlangs}")
             for lan, value in NewDesc.items():
-                printe.output(f"""lang:{lan}, value: \"{value['value']}\"""")
+                logger.info(f"""lang:{lan}, value: \"{value['value']}\"""")
             saaa = pywikibot.input("<<lightyellow>> Add as descriptions? ")
             if saaa in ["y", "a", ""]:
                 if saaa == "a":
                     AskSave[1] = False
                 wd_desc.work_api_desc(NewDesc, qitem)
             else:
-                printe.output("* rong answer")
+                logger.info("* rong answer")
         else:
             wd_desc.work_api_desc(NewDesc, qitem)
-
 
 # ---
 Comma = {
@@ -143,7 +141,6 @@ Comma = {
     "en": ", ",
 }
 Comma2 = {"ar": "، و", "en": ", ", "de": ", ", "fr": ", ", "nl": ", "}
-
 
 def GetQuery(Qid, lang, keys):
     P50 = "P175" if Qid == "Q482994" else "P50"
@@ -176,10 +173,9 @@ def GetQuery(Qid, lang, keys):
     ur += '\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang
     ur += "FILTER(!BOUND(?itemDes))  }\n GROUP BY ?item "
     # ---
-    # printe.output(ur)
+    # logger.info(ur)
     # ---
     return ur
-
 
 def Gquery2(json1):
     table = {}
@@ -191,7 +187,6 @@ def Gquery2(json1):
         s["item"] = q
         table[q] = s
     return table
-
 
 # ---
 Off = {1: 0}
@@ -206,28 +201,25 @@ for arg in sys.argv:
     elif arg == "off":
         Off[1] = int(value)
 
-
 def WorkWithOneLang(Qid, lang, keys):
-    printe.output("*<<lightyellow>> WorkWithOneLang: ")
+    logger.info("*<<lightyellow>> WorkWithOneLang: ")
     # ---
     query = GetQuery(Qid, lang, keys)
     # ---
     PageList = wd_sparql_bot.sparql_generator_big_results(query, offset=Off[1], limit=limit[1], alllimit=0)
     # ---
-    printe.output("* PageList: ")
+    logger.info("* PageList: ")
     SAO = Qlist[Qid][lang]
     # ---
     total = len(PageList)
     # ---
     for num, pa in enumerate(PageList, start=1):
         pa["item"] = pa["item"].split("/entity/")[1]
-        printe.output(f"<<lightblue>>> {lang} \"{SAO}\" :{num}/{total} : {pa['item']}")
+        logger.info(f"<<lightblue>>> {lang} \"{SAO}\" :{num}/{total} : {pa['item']}")
         one_book_item(Qid, pa, lang, keys)
-
 
 # ---
 by_list = {"ar": "من تأليف", "en": "by", "fr": "de", "de": "von", "nl": "van", "ca": "per", "cs": "od", "la": "ab", "it": "da", "io": "da", "eo": "de", "da": "af", "pl": "przez", "ro": "de", "es": "por", "sv": "av"}
-
 
 def MakeDesc(Qid, pa, lang):
     # for lang in language:
@@ -238,7 +230,7 @@ def MakeDesc(Qid, pa, lang):
         lang = "en"
     # ---
     if lang not in by_list:
-        printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
+        logger.info(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
     co = "من أداء " if (Qid == "Q482994") and (lang == "ar") else f"{by_list[lang]} "
     # ---
@@ -250,8 +242,8 @@ def MakeDesc(Qid, pa, lang):
                 # d = d + ' '                        # الرابط by
                 d = f"{d} {co}"
                 d = d + auth  # المؤلف
-                # printe.output( 'd' )
-                # printe.output( d )
+                # logger.info( 'd' )
+                # logger.info( d )
                 description = d
     # else:
     # description = False
@@ -261,10 +253,9 @@ def MakeDesc(Qid, pa, lang):
     # ---
     if lang == "ar":
         if description and description != re.sub(r"[abcdefghijklmnobqrstuvwxyz]", "", description):
-            printe.output(f'<<lightred>> arabic description test failed "{description}".')
+            logger.info(f'<<lightred>> arabic description test failed "{description}".')
             description = False
     return description
-
 
 def main():
     # ---
@@ -274,21 +265,20 @@ def main():
         # ---
         if arg == "save":
             AskSave[1] = False
-    printe.output("start with query")
+    logger.info("start with query")
     # ---
     for Queries, Qid in enumerate(Qlist, start=1):
         keys = Qlist[Qid].keys()
         keys = ["ar"]
 
         totalqueries = len(Qlist.keys()) * len(Qlist[Qid].keys())
-        printe.output(f'*Qid "{Qid}":')
+        logger.info(f'*Qid "{Qid}":')
         out = f"<<lightgreen>>  *== Quary:\"{Qlist[Qid]['ar']}\", {Queries}/{totalqueries}. =="
-        printe.output(out)
-        # printe.output( 'lab: "%s". ' % Qlist[Qid]['ar'] )
+        logger.info(out)
+        # logger.info( 'lab: "%s". ' % Qlist[Qid]['ar'] )
         for lang in keys:
-            # printe.output( Qlist[Qid][lang] )
+            # logger.info( Qlist[Qid][lang] )
             WorkWithOneLang(Qid, lang, keys)
-
 
 # ---
 if __name__ == "__main__":

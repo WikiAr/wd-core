@@ -5,10 +5,13 @@ from nep.bots.tax_desc import work_taxon_desc
 import sys
 # ---
 from himo_api import New_Himo_API
+import logging
+logger = logging.getLogger(__name__)
+
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
 # ---
 from wd_api import wd_bot
-from newapi import printe
+
 from desc_dicts.taxones import lab_for_p171, labforP105
 from desc_dicts.taxones import tax_translations, taxone_list
 
@@ -24,7 +27,6 @@ for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
             if natkey.strip() and natar.strip():
                 kkey = tax_key.replace("~", natkey)
                 tax_translations_lower[kkey.lower()] = tax_lab.replace("~", natar)
-
 
 def make_tax_des_new(item):
     q = item["q"]
@@ -56,14 +58,14 @@ def make_tax_des_new(item):
     nan = nan.replace("Q111771064", q)
     # ---
     if "err" in sys.argv:
-        printe.output(nan)
+        logger.info(nan)
     # ---
     bs = wd_bot.sparql_generator_url(nan)
     # ---
     if bs != []:
         bs = bs[0]
-        # printe.output("bs:")
-        # printe.output(bs)
+        # logger.info("bs:")
+        # logger.info(bs)
         # ---
         # [
         # {'P171': 'http://www.wikidata.org/entity/Q1390',
@@ -80,13 +82,12 @@ def make_tax_des_new(item):
                 ar_lab = f"{P105ar} {P171ar}"
                 WD_API_Bot.Des_API(q, ar_lab, "ar")
 
-
 def work_taxon_desc(item, endesc):
     # ---
     ardesc = tax_translations_lower.get(endesc.lower(), "")  # .get("ar", '')
     q = item["q"]
-    # printe.output( ' work_taxon_desc:endesc:"%s", ardesc:"%s"' % (endesc, ardesc) )
-    printe.output(f' work_taxon_desc:ardesc:"{ardesc}"')
+    # logger.info( ' work_taxon_desc:endesc:"%s", ardesc:"%s"' % (endesc, ardesc) )
+    logger.info(f' work_taxon_desc:ardesc:"{ardesc}"')
     if not ardesc:
         print(f" no ardesc for en:{endesc}.")
         make_tax_des_new(item)

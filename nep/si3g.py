@@ -53,6 +53,8 @@ python3 core8/pwb.py nep/si3g -newpages:200 ask
 # (C) Ibrahem Qasim, 2023
 #
 import sys
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
 sys.argv.append("-family:wikidata")
@@ -62,7 +64,7 @@ import time
 from pathlib import Path
 
 # ---
-from newapi import printe
+
 import gent
 from nep import si3
 from newapi.page import NEW_API
@@ -72,11 +74,10 @@ api_new = NEW_API("www", family="wikidata")
 
 main_dir1 = f"{str(Path(__file__).parent.parent)}/"
 
-printe.output(f"<<lightyellow>> main_dir1 = {main_dir1}")
-
+logger.info(f"<<lightyellow>> main_dir1 = {main_dir1}")
 
 def mainwithcat2():
-    printe.output("*<<lightred>> > mainwithcat2:")
+    logger.info("*<<lightred>> > mainwithcat2:")
     # ---
     # python3 core8/pwb.py nep/si3g -newpages:10
     # python3 core8/pwb.py nep/si3g -newpages:1000
@@ -153,7 +154,7 @@ def mainwithcat2():
     except Exception:
         lena = 0
     # ---
-    printe.output("*<<lightred>> > mainwithcat2 :")
+    logger.info("*<<lightred>> > mainwithcat2 :")
     # ---
     for num, q in enumerate(lista, start=1):
         si3.ISRE(q, num, lena)
@@ -163,8 +164,7 @@ def mainwithcat2():
     final = time.time()
     delta = int(final - start)
     # ---
-    printe.output(f"si3.py mainwithcat2 done in {delta} seconds")
-
+    logger.info(f"si3.py mainwithcat2 done in {delta} seconds")
 
 if __name__ == "__main__":
     mainwithcat2()

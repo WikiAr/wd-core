@@ -4,9 +4,11 @@ from nep.space_others import Make_space_desc, Make_others_desc
 """
 
 import re
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
-from newapi import printe
+
 from nep.new_way import P1433_ids, do_P1433_ids
 
 # ---
@@ -30,7 +32,6 @@ from nep.bots.its import (
     its_something_in_an_entity,
     its_songs,
 )
-
 
 def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     my_description = ""
@@ -106,7 +107,7 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     elif type_of_item == "Q19389637":
         short = "مقالة سيرة ذاتية"
         if (orig_desc in [short, ""]) or (orig_desc.find(short) == 0):
-            printe.output("work in Q19389637")
+            logger.info("work in Q19389637")
             # my_description ='biografisch artikel',''
             my_description = its_a_generalthing(wditem, short, "مقالة سيرة ذاتية للمؤلف", "P50")
             # ---
@@ -119,17 +120,16 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]", "", my_description.lower())
     if test.lower() != my_description.lower():
         my_description = ""
-        printe.output(f"test:[{test}] != my_description[{my_description}]")
+        logger.info(f"test:[{test}] != my_description[{my_description}]")
     # ---
-    printe.output("Make space desc:[%s]" % my_description)
+    logger.info("Make space desc:[%s]" % my_description)
     # ---
     return my_description
-
 
 def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     my_description = ""
     # ---
-    # printe.output( "Make others desc:P31:%s" % type_of_item )
+    # logger.info( "Make others desc:P31:%s" % type_of_item )
     # ---
     if type_of_item == "Q13417250":  # a
         if orig_desc in [""]:
@@ -218,8 +218,8 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz]", "", my_description.lower())
     if test.lower() != my_description.lower():
         my_description = ""
-        printe.output(f"test:[{test}] != my_description[{my_description}]")
+        logger.info(f"test:[{test}] != my_description[{my_description}]")
     # ---
-    # printe.output('Make others desc:[%s]' % my_description )
+    # logger.info('Make others desc:[%s]' % my_description )
     # ---
     return my_description
