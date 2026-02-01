@@ -5,13 +5,14 @@ from nep.si3 import do_P1433_new_list, work_new_list, make_scientific_art
 
 import sys
 from wd_api import wd_desc
+import logging
+logger = logging.getLogger(__name__)
 
 from des.ru_st_2_latin import make_en_label
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
 
-from newapi import printe
 from wd_api import wd_bot
 
 from desc_dicts.descraptions import replace_desc
@@ -24,20 +25,17 @@ from nep.tables.lists import space_list_and_other, others_list, others_list_2
 from nep.tables.si_tables import MainTestTable, new_types, offsetbg, Qids_translate, Add_en_labels, Geo_List
 from nep.space_others import Make_space_desc, Make_others_desc
 
-
 from nep.new_way import P1433_ids, do_P1433_ids, P1433_en_to_qid
-
 
 def work_a_desc(NewDesc, qid, fixlang):
     # ---
     if MainTestTable[1] or "dd" in sys.argv:
-        printe.output("<<lightyellow>> Without save:")
-        printe.output(NewDesc.keys())
-        printe.output(NewDesc)
+        logger.info("<<lightyellow>> Without save:")
+        logger.info(NewDesc.keys())
+        logger.info(NewDesc)
         return ""
     # ---
     wd_desc.work_api_desc(NewDesc, qid, fixlang=fixlang)
-
 
 def make_scientific_art(item, P31, num):
     # ---
@@ -49,10 +47,9 @@ def make_scientific_art(item, P31, num):
     # ---
     work_a_desc(NewDesc, qid, rep_langs)
 
-
 def do_P1433_new_list(item, p31):
     # ---
-    printe.output(" do_P1433_new_list: ")
+    logger.info(" do_P1433_new_list: ")
     # ---
     q = item["q"]
     NewDesc = {}
@@ -63,15 +60,14 @@ def do_P1433_new_list(item, p31):
     # ---
     if ar_desc:
         NewDesc["ar"] = {"language": "ar", "value": ar_desc}
-        printe.output(f"<<lightyellow>> ** do_P1433_new_list p31:{p31}")
+        logger.info(f"<<lightyellow>> ** do_P1433_new_list p31:{p31}")
         work_a_desc(NewDesc, q, [])
     else:
         print("do_P1433_new_list nothing to add. ")
 
-
 def work_new_list(item, p31, ardes):
     # ---
-    printe.output(f" work_new_list: {ardes=}")
+    logger.info(f" work_new_list: {ardes=}")
     # ---
     q = item["q"]
     NewDesc = {}
@@ -106,16 +102,15 @@ def work_new_list(item, p31, ardes):
     if ar_desc:
         NewDesc["ar"] = {"language": "ar", "value": ar_desc}
     # ---
-    # printe.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
+    # logger.info( '<<lightyellow>>  NewDesc' + str(NewDesc) )
     if NewDesc != {}:
-        printe.output(f"<<lightyellow>> ** work_new_list p31:{p31}")
+        logger.info(f"<<lightyellow>> ** work_new_list p31:{p31}")
         work_a_desc(NewDesc, q, [])
     else:
         print("work_new_list nothing to add. ")
 
-
 def work_qid_desc(item, topic, num):
-    printe.output("<<lightyellow>>  work_qid_desc: ")
+    logger.info("<<lightyellow>>  work_qid_desc: ")
     q = item["q"]
     descriptions = item.get("descriptions", {})
     NewDesc = {}
@@ -138,16 +133,15 @@ def work_qid_desc(item, topic, num):
         return
     # ---
     if len(NewDesc) < 5:
-        printe.output(f"<<lightyellow>> len of NewDesc < 5: ({str(NewDesc)})")
+        logger.info(f"<<lightyellow>> len of NewDesc < 5: ({str(NewDesc)})")
         return
     # ---
-    printe.output(f"<<lightyellow>> **{num}: work_qid_desc:{q}  ({topic})")
+    logger.info(f"<<lightyellow>> **{num}: work_qid_desc:{q}  ({topic})")
     work_a_desc(NewDesc, q, [])
-
 
 def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
     # ---
-    printe.output(f"--- *<<lightyellow>> >{num}/{lenth}: q:{qitem}")
+    logger.info(f"--- *<<lightyellow>> >{num}/{lenth}: q:{qitem}")
     # ---
     if num < offsetbg[1]:
         return ""
@@ -157,7 +151,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
     q = qitem
     # ---
     if not item:
-        printe.output(f'*<<lightred>> >{num} error with item "{q}" < :')
+        logger.info(f'*<<lightred>> >{num} error with item "{q}" < :')
         return
     # ---
     if item.get("q", q) != q:
@@ -167,7 +161,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
     if Add_en_labels[1]:
         labels = item.get("labels", {})
         if labels.get("en", "") == "":
-            printe.output("item enlabel == ''")
+            logger.info("item enlabel == ''")
             make_en_label(labels, q, Add=Add_en_labels[1])
     # ---
     P31_table = []
@@ -187,14 +181,14 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
     # ---
     if len(P31_table) == 0:
         # print(item)
-        printe.output("no P31 at item. skip..")
+        logger.info("no P31 at item. skip..")
     # ---
     for P31 in P31_table:
         # ---
         if not P31:
             continue
         # ---
-        printe.output(f'q:"{q}", P31:"{P31}", en:"{endes}", ar:"{ardes}"')
+        logger.info(f'q:"{q}", P31:"{P31}", en:"{endes}", ar:"{ardes}"')
         # ---
         if P31 == "Q5":
             work_people(item, endes.lower(), num, ardes)
@@ -229,13 +223,12 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
             break
         # ---
         elif not ardes:
-            printe.output(f"*<<lightred>> >P31 :{P31} not in Qids_translate.")
+            logger.info(f"*<<lightred>> >P31 :{P31} not in Qids_translate.")
             # ---
             if P31 not in new_types:
                 new_types[P31] = 0
             # ---
             new_types[P31] += 1
-
 
 def print_new_types():
     lists = [[y, x] for x, y in new_types.items()]
@@ -245,6 +238,6 @@ def print_new_types():
     # ---
     for lenth, p31 in lists:
         # ---
-        printe.output(f"find:{lenth} : P31:{p31}")
+        logger.info(f"find:{lenth} : P31:{p31}")
     # ---
     print_new_jobs()

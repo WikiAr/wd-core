@@ -14,10 +14,10 @@ Q24862
 #
 import re
 import pywikibot
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
-
-from newapi import printe
 
 # ---
 # ---
@@ -32,7 +32,6 @@ AskSave = {1: True}
 # ---
 # def AddDes( item , pa , lang , Qid , keys):
 
-
 def one_film_item(Qid, pa, lang, keys):
     item = getwditem(pa["item"])
     if not item:
@@ -42,7 +41,7 @@ def one_film_item(Qid, pa, lang, keys):
     keys = sorted(keys)
     # ---
 
-    printe.output(f"keys:{str(keys)}")
+    logger.info(f"keys:{str(keys)}")
     # ---
     descriptions = item.descriptions
     NewDesc = {}
@@ -60,27 +59,26 @@ def one_film_item(Qid, pa, lang, keys):
                 dns = ""
                 if "endes" in pa:
                     dns = pa["endes"]
-                printe.output(f"newar:{des},en:{dns}")
+                logger.info(f"newar:{des},en:{dns}")
                 addedlangs.append(lang)
             else:
-                printe.output(f'*no desc for "{lang}"')
+                logger.info(f'*no desc for "{lang}"')
     # ---
     if addedlangs:
         qitem = item.title(as_link=False)
         if AskSave[1]:
-            printe.output(f"================== + {addedlangs}")
+            logger.info(f"================== + {addedlangs}")
             for lan, value in NewDesc.items():
-                printe.output(f"""lang:{lan}, value: \"{value['value']}\"""")
+                logger.info(f"""lang:{lan}, value: \"{value['value']}\"""")
             saaa = pywikibot.input(" Add as descriptions? ")
             if saaa in ["y", "a", ""]:
                 if saaa == "a":
                     AskSave[1] = False
                 wd_desc.work_api_desc(NewDesc, qitem)
             else:
-                printe.output("* rong answer")
+                logger.info("* rong answer")
         else:
             wd_desc.work_api_desc(NewDesc, qitem)
-
 
 def getwditem(qitem):
     try:
@@ -90,7 +88,6 @@ def getwditem(qitem):
         return item
     except BaseException:
         return False
-
 
 # ---
 Comma = {
@@ -113,7 +110,6 @@ Comma = {
     "en": ", ",
 }
 Comma2 = {"ar": "، و", "en": ", ", "de": ", ", "fr": ", ", "nl": ", "}
-
 
 def GetQuery(Qid, lang, keys):
     # ---
@@ -148,10 +144,9 @@ def GetQuery(Qid, lang, keys):
     ur = ur + "SERVICE wikibase:label { "
     ur = f'{ur}     bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?{lang}'
     ur = ur + " }}\n"
-    # printe.output(ur)
+    # logger.info(ur)
     # ---
     return ur
-
 
 def Gquery2(json1):
     table = {}
@@ -163,7 +158,6 @@ def Gquery2(json1):
         s["item"] = q
         table[q] = s
     return table
-
 
 # ---
 xsxsx = {
@@ -209,9 +203,8 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en". ?auths rdfs:
 
 """
 
-
 def WorkWithOneLang(Qid, lang, keys):
-    printe.output("*<<lightyellow>> WorkWithOneLang: ")
+    logger.info("*<<lightyellow>> WorkWithOneLang: ")
     limit = 200
     # limit = '10000'
     # lang = 'de'
@@ -221,25 +214,23 @@ def WorkWithOneLang(Qid, lang, keys):
     quary = quaua
     # quary = GetQuery(Qid , lang, keys)
     quary = quary + "\n limit %d" % limit
-    printe.output(quary)
+    logger.info(quary)
     # ---
     PageList = wd_bot.sparql_generator_url(quary, key="item")
     # ---
     total = len(PageList)
     # ---
-    printe.output("* PageList: ")
+    logger.info("* PageList: ")
     for num, pa in enumerate(PageList.keys(), start=1):
-        printe.output(pa)
+        logger.info(pa)
         PageList[pa]["item"] = pa.split("/entity/")[1]
         SAO = filmform[Qid][lang]
-        printe.output("<<lightblue>>> %s (%s) :%s/%d : %s" % (lang, SAO, num, total, PageList[pa]["item"]))
+        logger.info("<<lightblue>>> %s (%s) :%s/%d : %s" % (lang, SAO, num, total, PageList[pa]["item"]))
         # ---
         one_film_item(Qid, PageList[pa], lang, keys)
 
-
 # ---
 by_list = {"ar": "من تأليف", "en": "by", "fr": "de", "de": "von", "nl": "van", "ca": "per", "cs": "od", "la": "ab", "it": "da", "io": "da", "eo": "de", "da": "af", "pl": "przez", "ro": "de", "es": "por", "sv": "av"}
-
 
 def MakeDesc(Qid, pa, lang):
     # for lang in language:
@@ -250,7 +241,7 @@ def MakeDesc(Qid, pa, lang):
         lang = "en"
     # ---
     if lang not in by_list:
-        printe.output(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
+        logger.info(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
     co = "من أداء " if (Qid == "Q482994") and (lang == "ar") else f"{by_list[lang]} "
     # ---
@@ -274,25 +265,23 @@ def MakeDesc(Qid, pa, lang):
                 # d = d + ' '                        # الرابط by
                 d = re.sub(r"~AUTHOR~", auth2, des)
                 d = re.sub(r"~YEAR~", true_year, d)
-                # printe.output( 'd' )
-                # printe.output( d )
+                # logger.info( 'd' )
+                # logger.info( d )
                 description = d
     # else:
     # description = False
     if lang == "ar":
         if description and description != re.sub(r"[abcdefghijklmnobqrstuvwxyz]", "", description):
-            printe.output(f'<<lightred>> arabic description test failed "{description}".')
+            logger.info(f'<<lightred>> arabic description test failed "{description}".')
             description = False
     return description
 
-
 def films():
-    printe.output("films: ")
+    logger.info("films: ")
     Q = "film"
     # for lang in language:
     keys = filmform[Q].keys()
     WorkWithOneLang(Q, "ar", keys)
-
 
 # ---
 if __name__ == "__main__":

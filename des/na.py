@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
 
-
 تسمية  عناصر ويكي بيانات
 
 """
@@ -11,10 +10,11 @@
 #
 
 import re
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
 
-from newapi import printe
 import sys
 
 # ---
@@ -33,7 +33,6 @@ limits = {1: "1000"}
 # ---
 items_done = []
 
-
 def action(json1):
     try:
         total = len(json1)
@@ -50,13 +49,12 @@ def action(json1):
             kaka = re.sub(r"[abcdefghijklmnopqrstuvwxyz]", "", ar_lab)
             if ar_lab and kaka == ar_lab:
                 en_name = tab["en_name"]
-                printe.output(f'  * ar_lab:"{ar_lab}",en_name:"{en_name}"')
+                logger.info(f'  * ar_lab:"{ar_lab}",en_name:"{en_name}"')
                 c += 1
-                printe.output(f'  * action {c}/{total} "{q}"')
+                logger.info(f'  * action {c}/{total} "{q}"')
                 WD_API_Bot.Labels_API(q, ar_lab, "ar", False, Or_Alii=True)
         else:
-            printe.output(" <<lightred>> * q in items_done. " % q)
-
+            logger.info(" <<lightred>> * q in items_done. " % q)
 
 def make_quarry(ar_suff="", item_p31_cat="", en_suff="", en_priff=""):
     quaaa = """
@@ -80,7 +78,6 @@ WHERE {
 """
     quaaa %= (ar_suff, "%s", item_p31_cat, en_suff, en_priff)
     return quaaa
-
 
 # ---
 Quarry = {
@@ -244,7 +241,6 @@ WHERE {
 """,
 }
 
-
 def main():
     # ---
     # python pwb.py des/na
@@ -275,11 +271,11 @@ def main():
         arg, _, value = arg.partition(":")
         # ---
         if arg == "-limit":
-            printe.output(f"<<lightred>>>>  limit ( {value} )  ")
+            logger.info(f"<<lightred>>>>  limit ( {value} )  ")
             limits[1] = value
         # ---
         if arg in Quarry:
-            printe.output(f"<<lightred>>>>  use Quarry:{arg} . ")
+            logger.info(f"<<lightred>>>>  use Quarry:{arg} . ")
             qya[arg] = Quarry[arg]
     # ---
     if not qya:
@@ -290,26 +286,25 @@ def main():
             arg, _, value = arg.partition(":")
             # ---
             if arg in ["P31", "-P31"]:
-                printe.output(f"<<lightred>>>>  P31:{value}. ")
+                logger.info(f"<<lightred>>>>  P31:{value}. ")
                 taxose = f"?item wdt:P31/wdt:P279* wd:{value}."
             # ---
             if arg in ["lang", "-lang"]:
                 if value == "fr":
                     quuu = quuu.replace('"en"', '"fr"')
                     quuu = quuu.replace('"Category:"', '"Catégorie:"')
-                    printe.output("<<lightred>>>> change lang to france. ")
+                    logger.info("<<lightred>>>> change lang to france. ")
         # ---
         quuu = quuu % taxose
         # ---
         if limits[1]:
             quuu = f"{quuu}\n LIMIT {limits[1]}"
         # ---
-        printe.output(f"quuu : {number}/{len(qya)} key:{key}")
-        printe.output(quuu)
+        logger.info(f"quuu : {number}/{len(qya)} key:{key}")
+        logger.info(quuu)
         # ---
         json1 = wd_bot.sparql_generator_url(quuu)
         action(json1)
-
 
 # ---
 if __name__ == "__main__":

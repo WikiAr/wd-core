@@ -14,10 +14,12 @@ python3 core8/pwb.py neq/nldes3 a2r sparql:Q7889 ask
 import sys
 import re
 import random
-from newapi import printe
+
 from nep.nldesc import action_one_item
 from neq.quarries import SPARQLSE
 from wd_api import wd_sparql_bot
+import logging
+logger = logging.getLogger(__name__)
 
 sparqler = {1: ""}
 Offq = {1: 0}
@@ -34,24 +36,23 @@ for arg in sys.argv:
     # ---
     if arg == "off":
         Off[1] = int(value)
-        printe.output("Off[1] = %d" % Off[1])
+        logger.info("Off[1] = %d" % Off[1])
     # ---
     if arg == "offq":
         Offq[1] = int(value)
-        printe.output("Offq[1] = %d" % Offq[1])
+        logger.info("Offq[1] = %d" % Offq[1])
     # ---
     if arg in ["totallimit", "all"]:
         totallimit[1] = int(value)
-        printe.output("totallimit[1] = %d" % totallimit[1])
+        logger.info("totallimit[1] = %d" % totallimit[1])
     # ---
     if arg == "limit":
         limit[1] = int(value)
-        printe.output("limit[1] = %d" % limit[1])
+        logger.info("limit[1] = %d" % limit[1])
     # ---
     if arg == "sparql":
         sparqler[1] = value
-        printe.output(f'sparqler[1] = "{sparqler[1]}"')
-
+        logger.info(f'sparqler[1] = "{sparqler[1]}"')
 
 def just_get_ar(label):
     parts = label.split("@@")
@@ -59,11 +60,10 @@ def just_get_ar(label):
 
     if arabic_parts:
         claim_str = "، و".join(arabic_parts)
-        printe.output(f"just_get_ar: {claim_str}.")
+        logger.info(f"just_get_ar: {claim_str}.")
         return claim_str
 
     return ""
-
 
 def get_sparql_queries():
     if sparqler[1].strip() == "" or "allkeys" in sys.argv:
@@ -79,23 +79,21 @@ def get_sparql_queries():
         in_sp = SPARQLSE.get(x)
         # ---
         if not in_sp:
-            printe.output(f"not in SPARQLSE: {x}")
+            logger.info(f"not in SPARQLSE: {x}")
             continue
         # ---
         quaries.append(in_sp)
     # ---
     return quaries
 
-
 def process_item(wd, n, total_reads):
     q = wd["item"].split("/entity/")[1]
     # ---
-    printe.output(f"p{n}/{total_reads} q:{q}")
+    logger.info(f"p{n}/{total_reads} q:{q}")
     # ---
     claim_str = just_get_ar(wd.get("lab", ""))
     # ---
     action_one_item("ar", q, claimstr=claim_str)
-
 
 def main():
     sparql_queries = get_sparql_queries()
@@ -103,8 +101,8 @@ def main():
     random.shuffle(sparql_queries)
     # ---
     for query_num, sparql_query in enumerate(sparql_queries, 1):
-        printe.output("-------------------------")
-        printe.output(f"<<lightblue>> query {query_num} from {len(sparql_queries)} :")
+        logger.info("-------------------------")
+        logger.info(f"<<lightblue>> query {query_num} from {len(sparql_queries)} :")
         # ---
         if Offq[1] > 0 and Offq[1] > query_num:
             continue
@@ -112,9 +110,8 @@ def main():
         pigenerator = wd_sparql_bot.sparql_generator_big_results(sparql_query, offset=Off[1], limit=limit[1], alllimit=totallimit[1])
         # ---
         for n, wd in enumerate(pigenerator, start=1):
-            printe.output("<<lightblue>> ============")
+            logger.info("<<lightblue>> ============")
             process_item(wd, n, len(pigenerator))
-
 
 if __name__ == "__main__":
     if "test" in sys.argv:

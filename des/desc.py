@@ -48,10 +48,12 @@ limit 100
 
 import re
 import sys
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
 from wd_api import wd_sparql_bot
-from newapi import printe
+
 # ---
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
@@ -124,7 +126,6 @@ SERVICE wikibase:label {
   }""",
     )
 
-
 for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
@@ -147,22 +148,20 @@ for arg in sys.argv:
         QSlimit[1] = int(value)
     # ---
 
-
 def descqs(q, value, lang):
     if len(New_QS[1]) < QSlimit[1]:
         qsline = f'{q}|D{lang}|"{value}"'
         New_QS[1].append(qsline)
-        printe.output("<<lightyellow>>a %d\t%d:add %s to qlline " % (len(New_QS[1]), QSlimit[1], qsline))
+        logger.info("<<lightyellow>>a %d\t%d:add %s to qlline " % (len(New_QS[1]), QSlimit[1], qsline))
     else:
-        printe.output(f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements")
+        logger.info(f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements")
         qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
-
 
 def Add_desc(q, value, lang):
     # ---
     if q in q_list_done:
-        printe.output("q in q_list_done")
+        logger.info("q in q_list_done")
         return ""
     # ---
     q_list_done.append(q)
@@ -171,7 +170,6 @@ def Add_desc(q, value, lang):
         descqs(q, value, lang)
     else:
         WD_API_Bot.Des_API(q, value, lang, ask="")
-
 
 def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
@@ -193,8 +191,8 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     if findlab:
         if p17lab == "" or placear == "":
             df = get_property_for_list.get_property_label_for_qids(["P17", "P131", "P276"], [q]) or {}
-            printe.output("get_property_for_list")
-            printe.output(df)
+            logger.info("get_property_for_list")
+            logger.info(df)
             # ---
         # ---
         if not p17lab:
@@ -208,17 +206,17 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     placeartest = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", placear.lower())
     # ---
     if placeartest.lower() != placear.lower():
-        printe.output(f"placeartest:[{placeartest}] != placear[{placear}]")
+        logger.info(f"placeartest:[{placeartest}] != placear[{placear}]")
         placear = ""
     # ---
     placecount = int(tab.get("placecount", 1))
     if placecount != 1:
-        printe.output(f"<<lightred>> placecount :{placecount},placear:{placear}")
+        logger.info(f"<<lightred>> placecount :{placecount},placear:{placear}")
         # placear = ''
     # ---
     p17count = int(tab.get("p17count", 1))
     if p17count != 1:
-        printe.output(f"<<lightred>> p17count :{p17count},p17lab:{p17lab}")
+        logger.info(f"<<lightred>> p17count :{p17count},p17lab:{p17lab}")
     # ---
     arlabel2 = ""
     # ---
@@ -233,14 +231,14 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     elif p17lab:
         arlabel2 = arlabel.format(p17lab)
     # ---
-    printe.output(f'  * action {c}/{total} "{q}:{arlabel2}"')
+    logger.info(f'  * action {c}/{total} "{q}:{arlabel2}"')
     # ---
     if not arlabel2:
         return ""
     # ---
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", arlabel2.lower())
     if test.lower() != arlabel2.lower():
-        printe.output("test:[%s] != arlabel2[%s]")
+        logger.info("test:[%s] != arlabel2[%s]")
         return ""
     # ---
     item = wd_bot.Get_Item_API_From_Qid(q, sites="", titles="", props="")
@@ -250,7 +248,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # addedlangs = []
     # ---
     if lang in descriptions:
-        printe.output(f"lang:ar in descriptions({descriptions[lang]})")
+        logger.info(f"lang:ar in descriptions({descriptions[lang]})")
         if descriptions[lang] != start:
             return ""
     # ---
@@ -261,13 +259,12 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
     Add_desc(q, arlabel2, lang)
 
-
 def work_one_place(place):
     lang = "ar"
     # ---
     start = placesTable2[place].get(lang, "")
     if not start.strip():
-        printe.output('start.strip() == ""')
+        logger.info('start.strip() == ""')
         return ""
     # ---
     if New_QS[1] != [] and "cleanlist" in sys.argv:
@@ -287,11 +284,10 @@ def work_one_place(place):
         q = tab["q"]
         # ---
         if q in q_list_done:
-            printe.output("q in q_list_done")
+            logger.info("q in q_list_done")
             continue
         # ---
         work_one_item(start, lang, tab, c, total)
-
 
 def mainoo():
     # ---
@@ -302,7 +298,7 @@ def mainoo():
         # ---
         ara = placesTable2[place].get("ar", "")
         # ---
-        printe.output(f'<<lightred>> {placenum}/{lenth_place}, place:"{place}", arlabel:"{ara}". ')
+        logger.info(f'<<lightred>> {placenum}/{lenth_place}, place:"{place}", arlabel:"{ara}". ')
         # ---
         if placenum >= offset_place[1]:
             # ---
@@ -311,7 +307,6 @@ def mainoo():
     if New_QS[1] != []:
         qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
-
 
 if __name__ == "__main__":
     mainoo()

@@ -5,7 +5,6 @@
 
 بناءاً على خاصية سبقه أو تبعه
 
-
 """
 #
 # (C) Ibrahem Qasim, 2022
@@ -16,9 +15,12 @@ import re
 import sys
 import pywikibot
 from wd_api import wd_bot
-from newapi import printe
+
 # ---
 from himo_api import New_Himo_API
+import logging
+logger = logging.getLogger(__name__)
+
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
 # ---
 from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
@@ -38,10 +40,9 @@ years = r"(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d
 tests_en = r"[abcdefghijklmnopqrstuvwxyz]"
 tests_ar = r"[ابتثجحخدذرزسشصضطظعغفقكلمنهويأآإىءئؤة1234567890\–\-\.]"
 
-
 def make_newlabel(label, ar, en):
     # ---
-    printe.output(f'<<lightblue>>make_newlabel label:"{label}",ar:"{ar}",en:"{en}" ')
+    logger.info(f'<<lightblue>>make_newlabel label:"{label}",ar:"{ar}",en:"{en}" ')
     newlabel = ""
     # ---
     label = f"{label.lower()} "
@@ -77,7 +78,7 @@ def make_newlabel(label, ar, en):
     else:
         newlabel = label
     # ---
-    printe.output(f'<<lightblue>>olympics newlabel:"{newlabel}" ')
+    logger.info(f'<<lightblue>>olympics newlabel:"{newlabel}" ')
     # ---
     for oll in olympics:
         newlabel = re.sub(oll, olympics[oll], newlabel, flags=re.IGNORECASE)
@@ -146,12 +147,12 @@ def make_newlabel(label, ar, en):
     newlabel = newlabel.replace("  ", " ")
     # ---
     # if newlabel2 != newlabel:
-    # printe.output( '<<lightblue>> newlabel2:%s, newlabel:"%s" ' % ( newlabel2 , newlabel ) )
+    # logger.info( '<<lightblue>> newlabel2:%s, newlabel:"%s" ' % ( newlabel2 , newlabel ) )
     # ---
-    printe.output(f'<<lightblue>> label:{label}, newlabel:"{newlabel}" ')
+    logger.info(f'<<lightblue>> label:{label}, newlabel:"{newlabel}" ')
     # ---
     if not newlabel.strip():
-        printe.output('<<lightblue>> newlabel = "" ')
+        logger.info('<<lightblue>> newlabel = "" ')
         return ""
     # ---
     newlabel = newlabel.strip()
@@ -178,7 +179,7 @@ def make_newlabel(label, ar, en):
     # ---
     leb_test = re.sub(tests_ar, "", newlabel, flags=re.IGNORECASE)
     if leb_test.strip():
-        printe.output(f"<<lightblue>> leb_test({leb_test.strip()}) ==  ")
+        logger.info(f"<<lightblue>> leb_test({leb_test.strip()}) ==  ")
         newlabel = ""
     # ---
     newlabel = newlabel.replace("ألعاب أولمبية شتوية", "الألعاب الأولمبية الشتوية")
@@ -186,7 +187,6 @@ def make_newlabel(label, ar, en):
     newlabel = newlabel.replace("  ", " ")
     # ---
     return newlabel.strip()
-
 
 def Item(item):
     # ---
@@ -199,7 +199,7 @@ def Item(item):
     item["label"] = re.sub(r"(.*) at the (\d+) (Winter|summer) youth olympics", r"\g<2> \g<1> at the \g<3> youth olympics", item["label"], flags=re.IGNORECASE)
     # ---
     lline = ",".join([f"{x}:{item[x]}" for x in item])
-    printe.output(lline)
+    logger.info(lline)
     # ---
     en = re.sub(r"^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) ", "", item["dden"], flags=re.IGNORECASE)
     if en == item["dden"]:
@@ -212,9 +212,9 @@ def Item(item):
     ar = ar.strip()
     if Usema[1]:
         if (ar == item["ddar"].strip() and ar.lower().strip() != "") or (en == item["dden"].strip() and en.lower().strip() != ""):
-            printe.output("<<lightred>> ar == item['ddar'] or en == item['dden'] ")
-            printe.output(f"<<lightred>> en:{en},dden:{item['dden']} ")
-            printe.output(f"<<lightred>> ar:{ar},ddar:{item['ddar']} ")
+            logger.info("<<lightred>> ar == item['ddar'] or en == item['dden'] ")
+            logger.info(f"<<lightred>> en:{en},dden:{item['dden']} ")
+            logger.info(f"<<lightred>> ar:{ar},ddar:{item['ddar']} ")
             # return ''
             ar = ""
             en = ""
@@ -225,7 +225,7 @@ def Item(item):
     year = mat.group(1) if (mat := re.match(f".*{years}.*", item["label"])) else ""
     # ---
     if newlabel.strip() and year.strip() and newlabel.find(year.strip()) == -1:
-        printe.output(f"<<lightred>> cant find year:{year}, at newlabel ({newlabel}) ")
+        logger.info(f"<<lightred>> cant find year:{year}, at newlabel ({newlabel}) ")
         return ""
     if Ask[1]:
         if newlabel.strip():
@@ -238,7 +238,6 @@ def Item(item):
         WD_API_Bot.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
 
     # ---
-
 
 Quarry = {
     "use":
@@ -392,7 +391,6 @@ LIMIT
 # ---
 Quarry["use"] = Quarry[2]
 
-
 def main():
     # ---
     # python pwb.py des/p155 qua0 P17:Q145
@@ -406,7 +404,7 @@ def main():
     # python pwb.py des/p155 qua4 -limit:400
     # python pwb.py des/p155 -limit:400
     # ---
-    printe.output(sys.argv)
+    logger.info(sys.argv)
     # ---
     for arg in sys.argv:
         arg, _, value = arg.partition(":")
@@ -450,26 +448,26 @@ def main():
         # ---
         if arg == "save":
             Ask[1] = False
-            printe.output("<<lightred>> Ask = False.")
+            logger.info("<<lightred>> Ask = False.")
         # ---
         if arg in ["-limit", "limit"]:
             Limit[1] = value
-            printe.output(f"<<lightred>> Limit = {value}.")
+            logger.info(f"<<lightred>> Limit = {value}.")
         # ---#
         # python pwb.py des/p155 qua0 P279:Q1079023
         if arg == "-P279":
             tart = f"?item wdt:P31/wdt:P279* wd:{value}."
-            printe.output(f'tart: "{tart}"')
+            logger.info(f'tart: "{tart}"')
             Quarry["use"] = Quarry["use"].replace("#sr", tart + "\n#sr")
         # ---#
         # python pwb.py des/p155 qua2 P31:Q18536594
         elif arg.startswith("P") and value.startswith("Q"):
             tart = f"?item wdt:{arg} wd:{value}."
-            printe.output(f'tart: "{tart}"')
+            logger.info(f'tart: "{tart}"')
             Quarry["use"] = Quarry["use"].replace("#sr", tart + "\n#sr")
             # ---#
     Quaa = Quarry["use"] + Limit[1]
-    printe.output(Quaa)
+    logger.info(Quaa)
     sparql = wd_bot.sparql_generator_url(Quaa)
     # ---
     Table = {}
@@ -478,9 +476,8 @@ def main():
         item["item"] = q
         Table[q] = item
     for num, (item, tabj) in enumerate(Table.items(), start=1):
-        printe.output('<<lightblue>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
+        logger.info('<<lightblue>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         Item(tabj)
-
 
 def test():
     # cc = "2010 World Figure Skating Championships - ladies' singles free skating"
@@ -490,9 +487,8 @@ def test():
     # ar = make_newlabel( "1998 cross-country skiing at the winter olympics – women's 10 kilometre freestyle pursuit" , '' , '' )
     # ar = make_newlabel( "1964 weightlifting at the summer olympics – men's 82.5 kg" , '' , '' )
     ar = make_newlabel("2014 world team table tennis championships", "", "")
-    # printe.output( cc )
-    printe.output(ar)
-
+    # logger.info( cc )
+    logger.info(ar)
 
 # ---
 if __name__ == "__main__":

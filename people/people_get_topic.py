@@ -15,8 +15,9 @@ SELECT ?item ?dem WHERE {
 
 """
 import sys
-from newapi import printe
 
+import logging
+logger = logging.getLogger(__name__)
 
 job_to_qid = {
     # "businessman": "Q43845",
@@ -378,25 +379,20 @@ nat_to_qid = {
     "Ukrainian": "Q212",
 }
 
-
 qid_to_p27 = {q: n for n, q in nat_to_qid.items() if n != "" and q != ""}
 qid_to_job = {q: n for n, q in job_to_qid.items() if n != "" and q != ""}
-
 
 def get_claim_id(item, prop):
     claim = item.get("claims", {}).get(prop, [{}])[0].get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "")
     return claim
-
 
 def get_claim_ids(item, prop):
     claims = item.get("claims", {}).get(prop, [])
     claim_ids = [claim.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "") for claim in claims]
     return claim_ids
 
-
 new_jobs = {}
 new_nats = {}
-
 
 def get_topic(item):
     # ---
@@ -427,19 +423,18 @@ def get_topic(item):
     if p106_lab and p27_lab:
         # lab = p106_lab.replace("~", p27_lab)
         lab = f"{p27_lab} {p106_lab}"
-        printe.output(f" topic:{lab}")
+        logger.info(f" topic:{lab}")
     # ---
     if not lab:
-        printe.output(f"{p106_lab=} {p27_lab=}")
+        logger.info(f"{p106_lab=} {p27_lab=}")
         return ""
     # ---
     if "returnlab" in sys.argv:
         return lab
     # ---
-    printe.output(f"<<yellow>> lab:{lab} add 'returnlab' to sys.argv to use it..!!")
+    logger.info(f"<<yellow>> lab:{lab} add 'returnlab' to sys.argv to use it..!!")
     # ---
     return ""
-
 
 def print_new_jobs():
     lists = [[y, x] for x, y in new_jobs.items()]
@@ -447,12 +442,12 @@ def print_new_jobs():
     # ---
     for lenth, qid in lists:
         # ---
-        printe.output(f"new_jobs:{lenth} : qid:{qid}")
+        logger.info(f"new_jobs:{lenth} : qid:{qid}")
     # ---
     lists1 = [[y, x] for x, y in new_nats.items()]
     lists1.sort(reverse=True)
     # ---
     for lenth, qid in lists1:
         # ---
-        printe.output(f"new_nats:{lenth} : qid:{qid}")
+        logger.info(f"new_nats:{lenth} : qid:{qid}")
     # ---

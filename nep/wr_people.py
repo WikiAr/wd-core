@@ -6,16 +6,16 @@ from nep.wr_people import work_people
 """
 
 import re
+import logging
+logger = logging.getLogger(__name__)
 
 from wd_api import wd_desc
 
-from newapi import printe
 from people.new3 import translations_o
 
 from nep.tables.lists import en_des_to_ar
 from nep.tables.si_tables import genders
 from people.people_get_topic import get_topic
-
 
 def add_only_ar(q, ara):
     # ---
@@ -24,10 +24,8 @@ def add_only_ar(q, ara):
     # ---
     return
 
-
 def get_claim_id(item, prop):
     return item.get("claims", {}).get(prop, [{}])[0].get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "")
-
 
 def work_people2(item, topic, num=0, years=""):
     # ---
@@ -40,14 +38,14 @@ def work_people2(item, topic, num=0, years=""):
     taber = translations.get(topic, {})
     # ---
     if not taber:
-        printe.output(f" no table descraptions for topic:{topic}")
+        logger.info(f" no table descraptions for topic:{topic}")
     # ---
-    printe.output(" work_people:")
+    logger.info(" work_people:")
     # ---
     if not taber:
         return ""
     # ---
-    # printe.output(taber)
+    # logger.info(taber)
     # ---
     descriptions = item.get("descriptions", {})
     # ---
@@ -71,10 +69,9 @@ def work_people2(item, topic, num=0, years=""):
         print(" work_people nothing to add. ")
         return
     # ---
-    printe.output(f"<<lightyellow>> **{num}: work_people:{q}  ({topic})")
+    logger.info(f"<<lightyellow>> **{num}: work_people:{q}  ({topic})")
     # ---
     wd_desc.work_api_desc(NewDesc, q, fixlang=[])
-
 
 def work_people(item, topic, num, ardes):
     q = item["q"]

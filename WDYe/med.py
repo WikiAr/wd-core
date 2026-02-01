@@ -13,9 +13,11 @@
 import re
 import pywikibot
 from wd_api import wd_bot
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
-from newapi import printe
+
 import sys
 
 # ---
@@ -35,13 +37,12 @@ def dec(xx):
     try:
         fao = urllib.parse.quote(xx)
     except BaseException:
-        printe.output(f'<<lightred>> except when urllib.parse.quote({xx})')
+        logger.info(f'<<lightred>> except when urllib.parse.quote({xx})')
     return fao
-
 
 def fixrow(row):
     en, ar = False, False
-    # printe.output( "===============================" )
+    # logger.info( "===============================" )
     row = re.sub(r"\n+", "", row)
     row = re.sub(r"\t+", "", row)
     row = re.sub(r"\s+", " ", row)
@@ -49,14 +50,14 @@ def fixrow(row):
     row = re.sub(r"<strong>", "", row)
     row = re.sub(r"</strong>", "", row)
     row = re.sub(r'<td class="views-field views-field-field-hadaf-value views-align-center" >', "<tdss>", row)
-    # printe.output( row )
+    # logger.info( row )
     # ---
     if row.find('<td class="views-field views-field-title views-align-center" >') != -1:
         row = row.split('<td class="views-field views-field-title views-align-center" >')[1]
         row = row.split('</p>')[0]
         # if row.find('<tdss>') != -1:
         row = re.sub(r'</td><tdss><p>', "<ssss>", row)
-        # printe.output( row )
+        # logger.info( row )
     # ---
     if row.find("<ssss>") != -1:
         en = row.split('<ssss>')[0].strip()
@@ -66,11 +67,9 @@ def fixrow(row):
     # ---
     return en, ar
 
-
 # ---
 Labels = {}
 SaveR = {1: False}
-
 
 def fixo(stro):
     stro = stro.strip()
@@ -78,7 +77,6 @@ def fixo(stro):
     stro = stro.split("[")[0]
     stro = stro.split(":")[0]
     return stro
-
 
 def Fix_List(List):
     New_List = []
@@ -107,11 +105,11 @@ def Fix_List(List):
         for coma in comas:
             if ar.find(coma) != -1:
                 Conn = False
-                printe.output(f'ca "{ar}" , .find("{coma}") != -1')
+                logger.info(f'ca "{ar}" , .find("{coma}") != -1')
                 # New_List.remove(ar)
                 ars = ar.split(coma)
                 # ---
-                printe.output(f"ars:\"{'|'.join(ars)}\"")
+                logger.info(f"ars:\"{'|'.join(ars)}\"")
                 for aa in ars:
                     if aa.strip() not in New_List2:
                         New_List2.append(fixo(aa))
@@ -128,7 +126,7 @@ def Fix_List(List):
                     # ---
                     ar1 = re.sub(mate, r'\g<4>', ar)
                     ar2 = re.sub(mate, r'\g<1>', ar)
-                    printe.output(f'ar2:"{ar2}",ar1:"{ar1}" ')
+                    logger.info(f'ar2:"{ar2}",ar1:"{ar1}" ')
                     # ---
                     if ar1.strip() not in New_List2:
                         New_List2.append(fixo(ar1))
@@ -142,9 +140,8 @@ def Fix_List(List):
                 New_List2.append(fixo(ar))
         # ---
     New_List = [fixo(x) for x in New_List2]
-    printe.output("New_List: " + "|".join(New_List))
+    logger.info("New_List: " + "|".join(New_List))
     return New_List
-
 
 def fixrow2(row):
     en, ar = False, False
@@ -154,16 +151,16 @@ def fixrow2(row):
     row = re.sub(r"\t+", "", row)
     row = re.sub(r"\s+", " ", row)
     row = re.sub(r'\<tr bgcolor\=\"\#\w+\"\>', "", row)
-    # printe.output( "===============================" )
+    # logger.info( "===============================" )
     rowss = row.split("</td>")
-    # printe.output( rowss )
-    # printe.output( "===============================" )
+    # logger.info( rowss )
+    # logger.info( "===============================" )
     # ---
     # en = re.sub(r'\<td class\=\"tden\"\>(.*)\<\/td\>' , '\g<1>', row )
     # ar = re.sub(r'\<td class\=\"tdar\"\>(.*)\<\/td\>' , '\g<1>', row )
     # ---
     for x in rowss:
-        # printe.output( x )
+        # logger.info( x )
         if x.startswith('<td class="tdar">'):
             ar = x.split('<td class="tdar">')[1]
         elif x.startswith('<td class="tden">'):
@@ -171,13 +168,12 @@ def fixrow2(row):
     # ---
     return en, ar
 
-
 def Get_item_table(enlab):
     Item_tab = []
     so = enlab
     so = so.replace(" ", "+")
     url = f"http://tbeeb.net/med/search.php?q={so}"
-    printe.output(url)
+    logger.info(url)
     # ---
     if url == "http://tbeeb.net/med/search.php?q=":
         return Item_tab
@@ -192,7 +188,7 @@ def Get_item_table(enlab):
     html = re.sub(r"\t+", "", html)
     html = re.sub(r"\s+", " ", html)
     html = re.sub(r"> <", "><", html)
-    # printe.output( html )
+    # logger.info( html )
     # ---
     if enlab in Labels:
         for eee in Labels[enlab]:
@@ -213,12 +209,11 @@ def Get_item_table(enlab):
                     Item_tab.append(ar)
     return Fix_List(Item_tab)
 
-
 def Get_item_table2(enlab):
     Item_tab = []
     # url = "http://www.alqamoos.org/?search_fulltext={}&field_magal=Medical".format( dec(enlab) )
     url = f"http://www.alqamoos.org/?search_fulltext={dec(enlab)}&field_magal=All"
-    printe.output(url)
+    logger.info(url)
     # ---
     # if url == "http://www.alqamoos.org/?search_fulltext=&field_magal=Medical" :
     if url == "http://www.alqamoos.org/?search_fulltext=&field_magal=All":
@@ -234,7 +229,7 @@ def Get_item_table2(enlab):
     html = re.sub(r"\t+", "", html)
     html = re.sub(r"\s+", " ", html)
     html = re.sub(r"> <", "><", html)
-    # printe.output( html )
+    # logger.info( html )
     # ---
     if enlab in Labels:
         for eee in Labels[enlab]:
@@ -255,10 +250,8 @@ def Get_item_table2(enlab):
                     Item_tab.append(ar)
     return Fix_List(Item_tab)
 
-
 # ---
 Looogs = {}
-
 
 def looog():
     log2 = {x: Looogs[x] for x in Looogs if Looogs[x] != []}
@@ -286,15 +279,14 @@ def looog():
         # WD_API_Bot.page_put(text3, "update.", title)
         EngPage.save(newtext=newtext, summary="update.", nocreate=1)
 
-
 def WORK(item, table):
-    # printe.output( item )
-    printe.output(table)
+    # logger.info( item )
+    logger.info(table)
     # ---
     if item not in Looogs:
         Looogs[item] = []
     # ---
-    # printe.output( '<<lightgreen>> item:"%s" ' % item )
+    # logger.info( '<<lightgreen>> item:"%s" ' % item )
     # ---
     arlab = table["ar"]
     enlab = table["en"]
@@ -305,18 +297,18 @@ def WORK(item, table):
         Item_tab = Get_item_table(enlab)
     # ---
     Item_tab2 = Item_tab
-    # printe.output( ",".join(Item_tab) )
+    # logger.info( ",".join(Item_tab) )
     for alia in Item_tab:
         if alia in table["alias"]:
             Item_tab.remove(alia)
-            printe.output(f'alia : "{alia}" in alias')
+            logger.info(f'alia : "{alia}" in alias')
         # ---
         elif alia == table["ar"]:
             Item_tab.remove(alia)
-            printe.output(f'alia : "{alia}" == ar label')
+            logger.info(f'alia : "{alia}" == ar label')
     # ---
     if Item_tab != Item_tab2:
-        printe.output(",".join(Item_tab))
+        logger.info(",".join(Item_tab))
     # ---
     NewALLi_to_add = []
     for ali in Item_tab:
@@ -341,14 +333,14 @@ def WORK(item, table):
     for uu in NewALLi_to_add:
         if uu in table["alias"]:
             NewALLi_to_add.remove(uu)
-            printe.output(f'uu : "{uu}" in table["alias"]')
+            logger.info(f'uu : "{uu}" in table["alias"]')
         elif SaveR[1] and uu.find("(") != -1:
             NewALLi_to_add.remove(uu)
-            printe.output(f'uu : "{uu}" in table["alias"]')
+            logger.info(f'uu : "{uu}" in table["alias"]')
     # ---
     if NewALLi_to_add != []:
-        printe.output("|".join(NewALLi_to_add))
-        # printe.output( 'NewALLi_to_add: "%s"'  % str("|".join(NewALLi_to_add)) )
+        logger.info("|".join(NewALLi_to_add))
+        # logger.info( 'NewALLi_to_add: "%s"'  % str("|".join(NewALLi_to_add)) )
         if SaveR[1]:
             WD_API_Bot.Alias_API(item, NewALLi_to_add, "ar", False)
             Looogs[item].append(",".join(NewALLi_to_add))
@@ -362,9 +354,7 @@ def WORK(item, table):
 
     # ---
 
-
 Limit = {1: "500"}
-
 
 def main():
     # python3 core8/pwb.py WDYe/med
@@ -395,11 +385,11 @@ def main():
         # ---#
         if arg == 'always':
             SaveR[1] = True
-            printe.output('<<lightred>> SaveR = True.')
+            logger.info('<<lightred>> SaveR = True.')
         # ---#limit[1]
         if arg in ['-limit', 'limit']:
             Limit[1] = value
-            printe.output(f'<<lightred>> Limit = {value}.')
+            logger.info(f'<<lightred>> Limit = {value}.')
             # ---#
     sat %= (pp, qq)
     # ?item wdt:P1343 ?P1343.
@@ -420,7 +410,7 @@ def main():
 
     Quaa += Limit[1]
 
-    printe.output(Quaa)
+    logger.info(Quaa)
     sparql = wd_bot.sparql_generator_url(Quaa)
     # ---
     Table = {}
@@ -443,7 +433,7 @@ def main():
     }
     for num, (item, value_) in enumerate(Tab_l.items(), start=1):
         # if num < 2:
-        printe.output('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Tab_l.keys()), item))
+        logger.info('<<lightgreen>> %d/%d item:"%s" ' % (num, len(Tab_l.keys()), item))
         # item['item'] = item['item'].split("/entity/")[1]
         WORK(item, value_)
     # ---
@@ -451,12 +441,11 @@ def main():
 
     # ---
 
-
 if __name__ == "__main__":
     main()
-    # printe.output(Get_item_table("ships")  )
+    # logger.info(Get_item_table("ships")  )
     # t = fixrow2('<tr bgcolor="#FCFCFC"><td class="tden"> ship | ships | </td><td class="tdar"> فلك سفينة, سفينة, قارب, زورق بخاري, نوتية المركب</td>')
-    # printe.output( t )
+    # logger.info( t )
     # Fix_List(["الفروة","الشواة (فروة الرأس)","الشواة","الفروة، الشواة، فروة الرأس","فروة"])
     # Fix_List(['صدر', 'صدر [:صدور]', 'كلاب [ج=كب]'])
     # Fix_List(["الترقوة","الناحرة","الترقوة (الجمع: التراقي)","عظم الترقوة"])

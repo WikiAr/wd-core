@@ -2,9 +2,11 @@
 from nep.bots.its import its_a_composition, its_a_computergame, its_a_discography, its_a_fictional_character, its_a_film, its_a_generalthing, its_a_headquarted_thing, its_a_p50, its_a_publication, its_a_sports_season, its_a_tabon_in_thailand, its_a_taxon, its_a_thing_located_in_country, its_an_audio_drama, its_an_episode, its_canton_of_France, its_something_in_a_country, its_something_in_an_entity, its_songs
 """
 
-from newapi import printe
 from wd_api import wd_bot
 from nep.bots.helps import (
+import logging
+logger = logging.getLogger(__name__)
+
     get_female_for_p17,
     Get_label,
     Get_label_from_item,
@@ -28,10 +30,9 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     laste = f"{longdescrstr.strip()} {claimstr}"
     laste = laste.replace("جين في إنسان عاقل", "جين من أنواع جينات الإنسان العاقل")
     # ---
-    printe.output(f"laste:({laste})")
+    logger.info(f"laste:({laste})")
     # ---
     return laste
-
 
 def its_something_in_an_entity(wdi, something):
     # 'P131'    #P131
@@ -55,10 +56,9 @@ def its_something_in_an_entity(wdi, something):
     # ---
     return ""
 
-
 def its_something_in_a_country(wdi, something):
     # ---
-    printe.output(f"its_something_in_a_country,something:{something}")
+    logger.info(f"its_something_in_a_country,something:{something}")
     # ---
     prnCountry = ""
     # ---
@@ -76,7 +76,7 @@ def its_something_in_a_country(wdi, something):
         LNKcountry = get_mainsnak(Claims.get("P131")[0])  # .getTarget()
         prnCountry = Get_label(LNKcountry)
     # ---
-    printe.output(f"prnCountry:{prnCountry}")
+    logger.info(f"prnCountry:{prnCountry}")
     # ---
     females = [
         "شركة طيران",
@@ -116,7 +116,6 @@ def its_something_in_a_country(wdi, something):
     # ---
     return fanee
 
-
 def its_canton_of_France(wdi):  # Q184188
     clai = wdi.get("claims", {})
     current_desc = wdi.get("descriptions", {}).get("ar", "")
@@ -131,7 +130,6 @@ def its_canton_of_France(wdi):  # Q184188
                 return desco
     return ""
 
-
 def its_an_episode(lng, wditem):
     if lng in wditem.get("descriptions", {}):
         return wditem.get("descriptions", {})[lng]
@@ -144,7 +142,7 @@ def its_an_episode(lng, wditem):
     return ""
 
 def its_a_computergame(lng, wditem):
-    printe.output(" its_a_computergame ")
+    logger.info(" its_a_computergame ")
     if "P178" in wditem.get("claims", {}):  # المطور
         LNKdeveloper = get_mainsnak(wditem.get("claims", {}).get("P178")[0])  # .getTarget()
         if LNKdeveloper is not None:
@@ -161,7 +159,6 @@ def its_a_computergame(lng, wditem):
                 # return 'computerspel uit de serie %s' % seriename
                 return f"لعبة فيديو من سلسلة {seriename}"
     return ""
-
 
 def its_a_sports_season(wditem, claimstr=""):
     # ---
@@ -182,17 +179,16 @@ def its_a_sports_season(wditem, claimstr=""):
     shortstr = ""# "موسم رياضي"
     # ---
     if not pp:
-        printe.output(f"its_a_sports_season item has no {myclaim} claims..")
+        logger.info(f"its_a_sports_season item has no {myclaim} claims..")
     # ---
     if not claimstr:
         return shortstr
     # ---
     laste = f"موسم من {claimstr}"
     # ---
-    printe.output(f"its_a_sports_season:({laste})")
+    logger.info(f"its_a_sports_season:({laste})")
     # ---
     return laste
-
 
 def its_songs(type_of_item, wditem, shortstr, claimstr=""):
     # my_description = its_a_generalthing( wditem , da , '%s من أداء ' % da ,'P175')
@@ -209,14 +205,14 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
         for x in P175:
             LNKitem = get_mainsnak(x)
             claimstr = Get_label(LNKitem)
-            printe.output(f"claimstr of {LNKitem}=[{claimstr}]")
+            logger.info(f"claimstr of {LNKitem}=[{claimstr}]")
             if claimstr:
                 if len(P175) > 1:
                     claimstr += " وآخرون"
                 break
         # ---
         if not P175:
-            printe.output("its_songs item has no P175 claims..")
+            logger.info("its_songs item has no P175 claims..")
     # ---
     claimstr = claimstr.strip()
     # ---
@@ -243,10 +239,9 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
         if directorname:
             laste = f"{shortstr} من إخراج {directorname}"
     # ---
-    printe.output(f"its_songs:({laste})")
+    logger.info(f"its_songs:({laste})")
     # ---
     return laste
-
 
 def its_a_p50(type_of_item, wditem, shortstr, claimstr=""):
     myclaim = "P50"
@@ -292,9 +287,8 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=""):
     # ---
     # laste = laste.replace("كوكبة  ","كوكبة ")
     # ---
-    printe.output(f"its_a_p50:({laste})")
+    logger.info(f"its_a_p50:({laste})")
     return laste
-
 
 def its_a_thing_located_in_country(wditem, countryname, thing):
     if "P131" in wditem.get("claims", {}):
@@ -305,7 +299,6 @@ def its_a_thing_located_in_country(wditem, countryname, thing):
         else:
             return f"{thing} في {countryname}"
     return f"{thing} في {countryname}"
-
 
 def its_a_film(wditem):
     # ---
@@ -318,7 +311,7 @@ def its_a_film(wditem):
     for x in P57:
         q = get_mainsnak(x)
         directorname = Get_label(q)
-        printe.output(f"directorname of {q}=[{directorname}]")
+        logger.info(f"directorname of {q}=[{directorname}]")
         if directorname:
             if len(P57) > 1:
                 directorname += " وآخرون"

@@ -20,9 +20,7 @@ WHERE {
   }
 }
 
-
 بوت إضافة الوصوف عن الأشخاص في ويكي بيانات
-
 
 SELECT * WHERE {
     values (?lowerdesc) { ("yemeni footballer"@en) }
@@ -48,8 +46,10 @@ import sys
 from people.Nationalities import translationsNationalities
 import people.occupationsall as oc
 from wd_api import wd_bot
-from newapi import printe
+
 from wd_api import wd_desc
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
 
@@ -71,8 +71,8 @@ Tab = {
     "Occupations": oc.translationsOccupations,
 }
 # ---
-printe.output(f'len of Nationalities = {len(translationsNationalities.keys())}')
-printe.output(f'len of Occupations = {len(oc.translationsOccupations.keys())}')
+logger.info(f'len of Nationalities = {len(translationsNationalities.keys())}')
+logger.info(f'len of Occupations = {len(oc.translationsOccupations.keys())}')
 time.sleep(1)
 # ---
 qualimit = {1: 20}
@@ -119,11 +119,10 @@ targetlangs = ['ar', 'bn', 'ca', 'es', 'fr', 'gl', 'he']
 # ---
 W_check = {1: True}
 
-
 def check_quarry_new(tab):
     # ---
-    printe.output(f'check quarry_new: {len(tab)} jobs')
-    # printe.output( tab  )
+    logger.info(f'check quarry_new: {len(tab)} jobs')
+    # logger.info( tab  )
     # ---
     tabe = {}
     d = 0
@@ -158,9 +157,9 @@ def check_quarry_new(tab):
     # ---
     for numb, value in tabe.items():
         # ---
-        # printe.output( en_list )
-        # printe.output( "@@".join( tabe[numb] ) )
-        printe.output(f"find qua for {len(value)} description.")
+        # logger.info( en_list )
+        # logger.info( "@@".join( tabe[numb] ) )
+        logger.info(f"find qua for {len(value)} description.")
         # ---
         qua = '''SELECT
     (concat(strafter(str(?item),"/entity/")) as ?q)#?item
@@ -194,11 +193,9 @@ def check_quarry_new(tab):
     # ---
     return New_Json
 
-
 # ---
 translations_o = {1: {}, 2: {}}
 translations_for_nat = {1: {}}
-
 
 def make_Tabs(tabs):
     # من هذا البوت
@@ -236,7 +233,7 @@ def make_Tabs(tabs):
             # ---
             for translang, occ_dict in occupdic.items():  # المهن حسب اللغة
                 if translang in natdic:
-                    # printe.output(occupkey + '\t' + natkey + '\t' + translang)
+                    # logger.info(occupkey + '\t' + natkey + '\t' + translang)
                     # ---
                     nat_ln = natdic[translang]
                     # ---
@@ -269,17 +266,17 @@ def make_Tabs(tabs):
                 if female_k != male_k:
                     if female_k.lower() not in translations_o[2]:
                         translations_o[2][female_k.lower()] = translations_o[1][kkkk]
-                        # printe.output( '<<lightpurple>> new way adding key: %s' % female_k )
+                        # logger.info( '<<lightpurple>> new way adding key: %s' % female_k )
                         allnewkeys += 1
                         newkeys += 1
             # ---
             translations_for_nat[1][natkey][kkkk] = translations_o[1][kkkk]
         # ---
-        # printe.output( '<<lightpurple>> new way adding %d keys for lang %s' % (newkeys,natkey) )
+        # logger.info( '<<lightpurple>> new way adding %d keys for lang %s' % (newkeys,natkey) )
     # ---
-    printe.output('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
-    printe.output('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
-    printe.output('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
+    logger.info('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
+    logger.info('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
+    logger.info('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
     # ---
     for occupkey, occupdic in TraOc.items():  # المهن
         kkkk = occupkey.replace('~', '').strip()
@@ -295,13 +292,11 @@ def make_Tabs(tabs):
                 translations_o[2][kkkk.lower()] = {}
             translations_o[2][kkkk.lower()]["ar"] = {'male': malee, 'female': femalee}
 
-
 # ---
 make_Tabs(Tab)
 translations_o_lower = translations_o[2]
 # ---
 q_dones = []
-
 
 def start_one_nat(nat_tab):
     # ---
@@ -309,7 +304,7 @@ def start_one_nat(nat_tab):
     # ---
     total_nat = len(check)
     # ---
-    printe.output(' find %d qid in check quarry new.' % total_nat)
+    logger.info(' find %d qid in check quarry new.' % total_nat)
     # ---
     c = 0
     # ---
@@ -321,7 +316,7 @@ def start_one_nat(nat_tab):
         endesc = x["desc"]
         # ---
         if q in q_dones:
-            printe.output(f'<<lightpurple>>*q {q} in q_dones')
+            logger.info(f'<<lightpurple>>*q {q} in q_dones')
             continue
         # ---
         q_dones.append(q)
@@ -329,7 +324,7 @@ def start_one_nat(nat_tab):
         if "printx" in sys.argv:
             print(x)
         # ---
-        printe.output('<<lightpurple>>*Action %d from %d; q:%s,endesc:%s.==' % (c, total_nat, q.ljust(10), endesc))
+        logger.info('<<lightpurple>>*Action %d from %d; q:%s,endesc:%s.==' % (c, total_nat, q.ljust(10), endesc))
         # ---
         x_table = translations_o_lower.get(endesc.lower())
         # ---
@@ -341,13 +336,12 @@ def start_one_nat(nat_tab):
         if NewDesc != {}:
             wd_desc.work_api_desc(NewDesc, q)
 
-
 def mainnat(Tabs):  # translations_for_nat
     # ---
     # python pwb.py people/new3 mainnat -nat:American
     #
     # ---
-    printe.output('<<lightpurple>>------------\n mainnat :')
+    logger.info('<<lightpurple>>------------\n mainnat :')
     # ---
     if Tabs != {}:
         make_Tabs(Tabs)
@@ -366,15 +360,14 @@ def mainnat(Tabs):  # translations_for_nat
         nat_tab = translations_for_nat[1][nat]
         # ---
         Queries += 1
-        printe.output('<<lightyellow>>  *nat %d from %d; nat:%s.==' % (Queries, len(list_na), nat))
+        logger.info('<<lightyellow>>  *nat %d from %d; nat:%s.==' % (Queries, len(list_na), nat))
         # ---
         if Queries < offset[1]:
             continue
         # ---
         start_one_nat(nat_tab)
         # ---
-    printe.output("انتهت بنجاح")
-
+    logger.info("انتهت بنجاح")
 
 def Main_Test():
     qua = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097' + ' . ?item schema:description "Argentinian actor"@en.  '
@@ -383,7 +376,6 @@ def Main_Test():
 
     # ---
     wd_bot.sparql_generator_url(qua)
-
 
 # ---
 if __name__ == "__main__":

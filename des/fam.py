@@ -13,11 +13,13 @@ python3 core8/pwb.py des/fam
 import tqdm
 import sys
 import random
-from newapi import printe
+
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
 from wd_api import wd_bot
 from wd_api import newdesc
 from des.railway import railway_tables, work_railway
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
 desc_table = {
@@ -120,7 +122,6 @@ quarry_list = [
 # ---
 qlist_done = []
 
-
 def work_one_json(json1, topic_ar, p31, p31_langs):
     # ---
     json_lenth = len(json1)
@@ -136,11 +137,11 @@ def work_one_json(json1, topic_ar, p31, p31_langs):
         tp = f'<<lightyellow>>*mainfromQuarry: {num} from {json_lenth} p31:"{p31}", qid:"{q}":<<lightblue>>{topic_ar}'
         # ---
         if not lang_to_add:
-            printe.output(tp)
+            logger.info(tp)
             continue
         # ---
         if num % 50 == 0:
-            printe.output(tp)
+            logger.info(tp)
         # ---
         if p31 in railway_tables:
             work_railway({}, p31, q=q)
@@ -148,7 +149,6 @@ def work_one_json(json1, topic_ar, p31, p31_langs):
         # work_railway( {}, p31, q=q )
         else:
             newdesc.work22(q, p31, desc_table)
-
 
 def work_one_quarry(quarry, p31, p31_desc):
     json1 = wd_bot.sparql_generator_url(quarry)
@@ -162,7 +162,6 @@ def work_one_quarry(quarry, p31, p31_desc):
     work_one_json(json1, topic_ar, p31, p31_langs)
     # ---
     return quarry_result_lenth
-
 
 def main():
     # lenth of desc_table and quarry_list
@@ -179,21 +178,20 @@ def main():
         for qu_numb, quarry in enumerate(quarry_list):
             # ---
             if quarry_result_lenth == 0 and qu_numb > 1:
-                printe.output("<<lightred>> len of first quarry == 0 continue")
+                logger.info("<<lightred>> len of first quarry == 0 continue")
                 continue
             # ---
             numb += 1
             # ---
-            printe.output(f"work in {numb} from {all_lenth} querirs")
+            logger.info(f"work in {numb} from {all_lenth} querirs")
             # ---
             quarry = quarry.replace("wd:Q1457376", f"wd:{p31}")
             # ---
             if qu_numb == 1:
-                printe.output("<<lightred>> first quarry")
-                printe.output(quarry)
+                logger.info("<<lightred>> first quarry")
+                logger.info(quarry)
             # ---
             quarry_result_lenth = work_one_quarry(quarry, p31, p31_desc)
-
 
 if __name__ == "__main__":
     main()

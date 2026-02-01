@@ -5,9 +5,11 @@
 
 import re
 import sys
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
-from newapi import printe
+
 # ---
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
@@ -76,11 +78,9 @@ lng_canbeused = [
     "wa",
 ]
 
-
 def Make_railway_desc(wditem, p31):
     # ---
     return work_railway(wditem, p31)
-
 
 def action_one_P131_item(lng, oneitem):
     global totaledits
@@ -142,10 +142,8 @@ def action_one_P131_item(lng, oneitem):
     # ---
     return 0
 
-
 def Add_desc(q, value, lang):
     WD_API_Bot.Des_API(q, value, lang, ask="")
-
 
 def action_one_item(lngr, q, item={}, claimstr=""):
     global items2do
@@ -171,7 +169,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
     en_description = wditem.get("descriptions", {}).get("en", "").lower()
     endes = en_description
     # ---
-    printe.output(f"orig_desc:{orig_desc},en_description:{en_description}")
+    logger.info(f"orig_desc:{orig_desc},en_description:{en_description}")
     # ---
     claims = wditem["claims"]
     # ---
@@ -209,7 +207,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
             do_P1433_new_list(wditem, P31)
             break
         # ---
-        printe.output("Type: [%s]" % type_of_item)
+        logger.info("Type: [%s]" % type_of_item)
         # ---
         if type_of_item:
             if type_of_item == "Q7604686":
@@ -293,7 +291,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
         my_description = my_description.strip()
         # ---
         if not my_description:
-            printe.output(f"type of item: {type_of_item}, orig_desc: [{orig_desc}], new: [{my_description}]")
+            logger.info(f"type of item: {type_of_item}, orig_desc: [{orig_desc}], new: [{my_description}]")
             continue
         # ---
         if my_description.find("n/a") != -1:
@@ -320,6 +318,6 @@ def action_one_item(lngr, q, item={}, claimstr=""):
             items_found += 1
             break
         else:
-            printe.output(f"test:[{test}] != value[{valuee}]")
+            logger.info(f"test:[{test}] != value[{valuee}]")
     # ---
     return items_found, items_written

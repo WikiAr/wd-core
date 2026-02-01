@@ -10,9 +10,11 @@ python3 core8/pwb.py alabel/labels -limit:20
 """
 
 import sys
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
-from newapi import printe
+
 # ---
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
@@ -53,11 +55,10 @@ for arg in sys.argv:
     # ---
     if arg in ["-limit", "limit"]:
         Limit[1] = value
-        printe.output(f"<<lightred>> Limit = {value}.")
+        logger.info(f"<<lightred>> Limit = {value}.")
 # ---
 if Limit[1]:
     Quaa += f"limit {Limit[1]}"
-
 
 def main():
     # python3 core8/pwb.py alabel/labels -limit:20
@@ -71,18 +72,17 @@ def main():
         page = item["page"]
         # ---
         if isinstance(qid, bytes):
-            printe.output("type(qid) == bytes")
+            logger.info("type(qid) == bytes")
             qid = qid.decode("utf-8")
         if isinstance(page, bytes):
-            printe.output("type(page) == bytes")
+            logger.info("type(page) == bytes")
             page = page.decode("utf-8")
         # ---
-        printe.output(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')
+        logger.info(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')
         # ---
         if page:
             # WD_API_Bot.Labels_API(qid, page, "ar", False, Or_Alii=True)
             WD_API_Bot.Add_Labels_if_not_there(qid, page, "ar", False)
-
 
 if __name__ == "__main__":
     if "test" in sys.argv:
