@@ -238,7 +238,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
     test = re.sub(r"[abcdefghijklmnopqrstuvwxyz@]", "", arlabel2.lower())
     if test.lower() != arlabel2.lower():
-        logger.info("test:[%s] != arlabel2[%s]")
+        logger.info(f"test:[{test}] != arlabel2[{arlabel2}]")
         return ""
     # ---
     item = wd_bot.Get_Item_API_From_Qid(q, sites="", titles="", props="")

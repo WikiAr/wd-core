@@ -54,7 +54,7 @@ def action(json1):
                 logger.info(f'  * action {c}/{total} "{q}"')
                 WD_API_Bot.Labels_API(q, ar_lab, "ar", False, Or_Alii=True)
         else:
-            logger.info(" <<lightred>> * q in items_done. " % q)
+            logger.info(f" <<lightred>> * q in items_done. {q}")
 
 def make_quarry(ar_suff="", item_p31_cat="", en_suff="", en_priff=""):
     quaaa = """
