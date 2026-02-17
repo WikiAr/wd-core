@@ -8,12 +8,14 @@ from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_fema
 import os
 import sys
 import json
+import logging
 from pathlib import Path
 from nep.others import read_json
 from nep.tables.cash import labels_cach
 from nep.tables.nats import nationalities
 from wd_api import wd_bot
-from newapi.except_err import exception_err
+
+logger = logging.getLogger(__name__)
 
 Dir = Path(__file__).parent.parent
 lng_canbeused = []
@@ -84,7 +86,7 @@ def log_new_types(lists):
             json.dump(tabe, nfile)
     # Handle the exception and log the traceback.
     except Exception as e:
-        exception_err(e)
+        logger.warning(e)
 
 
 def Get_label(qid):
