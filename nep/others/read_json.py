@@ -2,21 +2,15 @@
 """
 
 """
-#
-# (C) Ibrahem Qasim, 2023
-#
-#
+
 
 import json as JJson
 import re
 import logging
-logger = logging.getLogger(__name__)
-
 import traceback
 
-# ---
+logger = logging.getLogger(__name__)
 
-# ---
 def printo(s):
     logger.info(s)
 
