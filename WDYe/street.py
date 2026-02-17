@@ -3,7 +3,9 @@
 #
 #
 
-import pywikibot
+
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
 
@@ -431,6 +433,6 @@ for topic in topics:
             wal = wal.replace('2', str(taop[city][lang2]))
             # re.sub(r'2' , taop[city][lang2] ,topics[topic][lang] )
             translations[topic][lang] = wal
-        pywikibot.output(translations)
+        logger.info(translations)
         newdesc.mainfromQuarry2(topic, quarry, translations)
 # ---

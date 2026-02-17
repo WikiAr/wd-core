@@ -2,7 +2,9 @@
 
 """
 import sys
-import pywikibot
+
+import logging
+logger = logging.getLogger(__name__)
 
 from nep import si3
 
@@ -75,7 +77,7 @@ def WorkNew():
     list = range(end, start) if end < start else range(start, end)
     # ---
     lenth = len(list)
-    pywikibot.output(f"** <<lightyellow>> WorkNew in {lenth} items (start:{start}, end:{end})")
+    logger.info(f"** <<lightyellow>> WorkNew in {lenth} items (start:{start}, end:{end})")
     # ---
     for num, q in enumerate(list, start=1):
         qitem = f"Q{q}"

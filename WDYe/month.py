@@ -2,7 +2,9 @@
 #
 # ---
 import sys
-import pywikibot
+
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
 from wd_api import newdesc
@@ -31,7 +33,7 @@ translations = {
 
 
 def main_from_quarry(topic):
-    pywikibot.output('*<<lightyellow>> main_from_quarry:')
+    logger.info('*<<lightyellow>> main_from_quarry:')
     Quarry = quuu["month"] % topic
     if sys.argv and "OFFSET" in sys.argv:
         Quarry = f"{Quarry} OFFSET 100000"

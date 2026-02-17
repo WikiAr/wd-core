@@ -4,7 +4,9 @@
 
 import sys
 from pathlib import Path
-import pywikibot
+
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
 from nep.si3 import (
@@ -53,12 +55,12 @@ def read_new_types_file():
     PP = [[leen, gf] for gf, leen in wd_file.items()]
     PP.sort(reverse=True)
     # ---Geo_List
-    pywikibot.output("===================")
+    logger.info("===================")
     for yy, xh in PP:
         if yy > number and xh not in Qids_translate.keys() and xh not in Known and xh not in space_list_and_other and xh not in others_list and xh not in others_list_2 and xh not in Geo_List:
-            # pywikibot.output( '* %d\t \t{{Q|%s}}' % (yy, xh) )
-            pywikibot.output("*'%s':{'ar':'{{#invoke:Wikidata2|labelIn|ar|%s}}', 'en':'{{#invoke:Wikidata2|labelIn|en|%s}}' }, # %d" % (xh, xh, xh, yy))
-    pywikibot.output("===================")
+            # logger.info( '* %d\t \t{{Q|%s}}' % (yy, xh) )
+            logger.info("*'%s':{'ar':'{{#invoke:Wikidata2|labelIn|ar|%s}}', 'en':'{{#invoke:Wikidata2|labelIn|en|%s}}' }, # %d" % (xh, xh, xh, yy))
+    logger.info("===================")
     # ---
     print("done")
 

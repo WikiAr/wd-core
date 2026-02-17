@@ -11,7 +11,8 @@
 #
 
 import re
-import pywikibot
+import logging
+logger = logging.getLogger(__name__)
 from wd_api import wd_bot
 
 # ---
@@ -53,28 +54,28 @@ for qid in main_table:
 
 
 def WORK(item, table, type):
-    # pywikibot.output( item )
-    pywikibot.output(table)
-    # pywikibot.output( '<<lightgreen>> item:"%s" ' % item )
+    # logger.info( item )
+    logger.info(table)
+    # logger.info( '<<lightgreen>> item:"%s" ' % item )
     # ---
     arlab = table["label"][0]
     arlab2 = arlab
     alias = table["alias"]
     if type in allise:
-        pywikibot.output(f'<<lightgreen>> type:"{type}" in allise:"{allise[type]}" ')
+        logger.info(f'<<lightgreen>> type:"{type}" in allise:"{allise[type]}" ')
         arlab2 = re.sub(f"^{type} ", f"{allise[type]} ", arlab2)
         arlab2 = re.sub(f" {type} ", f" {allise[type]} ", arlab2)
     # ---
     if arlab2 != arlab:
-        pywikibot.output(f"arlab2 : {arlab2}")
+        logger.info(f"arlab2 : {arlab2}")
         if SaveR[1]:
             WD_API_Bot.Alias_API(item, [arlab2], "ar", False)
         else:
-            sa = pywikibot.input(f'<<lightyellow>>bot: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
+            sa = input(f'<<lightyellow>>bot: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
             if sa in ['y', "a", '']:
                 WD_API_Bot.Alias_API(item, [arlab2], "ar", False)
             else:
-                pywikibot.output(' bot: wrong answer')
+                logger.info(' bot: wrong answer')
 
     # ---
 
@@ -99,9 +100,9 @@ def WORK_table(qid, tables):
     for peo in tables:
         qua = Quaa % (qid, peo)
         qua = qua + Limit[1]
-        # pywikibot.output( qua )
+        # logger.info( qua )
         sparql = wd_bot.sparql_generator_url(qua, printq=True)
-        # pywikibot.output( sparql )
+        # logger.info( sparql )
         # ---
         Table = {}
         for item in sparql:
@@ -115,7 +116,7 @@ def WORK_table(qid, tables):
                     Table[q][tab].append(item[tab])
         for num, (item, value) in enumerate(Table.items(), start=1):
             # if num < 2:
-            pywikibot.output(f'<<lightgreen>> {num}/{len(Table.keys())} item:"{item}" ')
+            logger.info(f'<<lightgreen>> {num}/{len(Table.keys())} item:"{item}" ')
             # item['item'] = item['item'].split("/entity/")[1]
             WORK(item, value, peo)
 
@@ -145,11 +146,11 @@ def main():
         # ---
         if arg == 'always':
             SaveR[1] = True
-            pywikibot.output('<<lightred>> SaveR = True.')
+            logger.info('<<lightred>> SaveR = True.')
         # ---#limit[1]
         if arg in ['-limit', 'limit']:
             Limit[1] = value
-            pywikibot.output(f'<<lightred>> Limit = {value}.')
+            logger.info(f'<<lightred>> Limit = {value}.')
     # ---
     if val:
         val2 = allise.get(val, "")
@@ -160,7 +161,7 @@ def main():
         table_new = {}
         table_new[qnew] = {val: val2}
     for num_peo, qid in enumerate(table_new, start=1):
-        pywikibot.output(f'<<lightblue>> {num_peo}/{len(table_new.keys())} peo:"{qid}" ')
+        logger.info(f'<<lightblue>> {num_peo}/{len(table_new.keys())} peo:"{qid}" ')
         WORK_table(qid, table_new[qid])
 
         # ---

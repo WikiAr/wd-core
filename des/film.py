@@ -70,7 +70,7 @@ def one_film_item(Qid, pa, lang, keys):
             logger.info(f"================== + {addedlangs}")
             for lan, value in NewDesc.items():
                 logger.info(f"""lang:{lan}, value: \"{value['value']}\"""")
-            saaa = pywikibot.input(" Add as descriptions? ")
+            saaa = input(" Add as descriptions? ")
             if saaa in ["y", "a", ""]:
                 if saaa == "a":
                     AskSave[1] = False

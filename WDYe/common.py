@@ -9,23 +9,13 @@ python pwb.py wd/common
 """
 
 
-#
-# (C) Ibrahem Qasim, 2022
-#
+import pywikibot
+import logging
 from wd_api import newdesc
 
-import pywikibot
-
-# import pwb
-
-# ---
-# ---
-# ---
-# import urllib
-# import urllib.request
-# import urllib.parse
-# ---
 from desc_dicts.descraptions import DescraptionsTable
+
+logger = logging.getLogger(__name__)
 
 queries2 = {
     # 'chemical compound': 'SELECT ?item   WHERE { ?item wdt:P31 wd:Q11173 ;      wdt:P31 ?instance .    ?item schema:description "chemical compound"@en.  }   GROUP BY ?item  HAVING(COUNT(?instance) = 1)',
@@ -118,7 +108,7 @@ queriestest = {
 
 
 def OOutPut(ss):
-    pywikibot.output(ss)
+    logger.info(ss)
 
 
 # ---
@@ -132,12 +122,12 @@ limiTa = ['Wikimedia category', 'Wikimedia disambiguation page']
 
 
 def main():
-    pywikibot.output('*<<lightyellow>> main:')
+    logger.info('*<<lightyellow>> main:')
     queries_list = sorted(list(queries.keys()))
     lenth = len(queries_list)
     for numb, topic in enumerate(queries_list, start=1):
         if topic in DescraptionsTable:
-            pywikibot.output('**<<lightyellow>> %d/%d: topic: %s' % (numb, lenth, topic))
+            logger.info('**<<lightyellow>> %d/%d: topic: %s' % (numb, lenth, topic))
             # ---
             quary = queries[topic]
             Limit = 'Limit 5000'
@@ -149,16 +139,16 @@ def main():
             trans2 = {topic: DescraptionsTable[topic]}
             newdesc.mainfromQuarry2(topic, quary, trans2)
         else:
-            pywikibot.output("topic not in DescraptionsTable")
+            logger.info("topic not in DescraptionsTable")
     # ---
-    pywikibot.output("Finished successfully")
+    logger.info("Finished successfully")
 
 
 def Main_Test():
     wikidatasite = pywikibot.Site('wikidata', 'wikidata')
     repo = wikidatasite.data_repository()
     # ---
-    pywikibot.output('**<<lightyellow>> test:')
+    logger.info('**<<lightyellow>> test:')
     topic = 'chemical compound'
     q = 'Q27198088'
     item = pywikibot.ItemPage(repo, q)

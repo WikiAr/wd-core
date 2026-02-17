@@ -7,7 +7,8 @@
 python3 core8/pwb.py WDYe/catwithoutp31
 
 """
-import pywikibot
+import logging
+logger = logging.getLogger(__name__)
 import re
 from wd_api import wd_desc
 from wd_api import wd_bot
@@ -70,9 +71,9 @@ def work_one_item(q):
         if lang != label and lang not in labels.keys():
             data2["labels"][lang] = {"language": lang, "value": label}
     # ---
-    pywikibot.output(f"<<lightred>>* links :{links}")
-    pywikibot.output(f"<<lightred>>* labels :{labels}")
-    pywikibot.output(f"<<lightred>>* data2[\"labels\"] :{data2['labels']}")
+    logger.info(f"<<lightred>>* links :{links}")
+    logger.info(f"<<lightred>>* labels :{labels}")
+    logger.info(f"<<lightred>>* data2[\"labels\"] :{data2['labels']}")
     # ---
     if len(data2["labels"].keys()) > 0:
         summary = f"Bot: - Add labels:({len(data2['labels'])} langs)."
@@ -87,10 +88,10 @@ def work_one_item(q):
     NewDesc = {str(lang): {"language": str(lang), "value": str(catdesc[lang])} for lang in catdesc.keys() if lang not in descriptions.keys()}
     # ---
     if NewDesc:
-        pywikibot.output(f"<<lightyellow>>* adding descriptions to :{q} ")
+        logger.info(f"<<lightyellow>>* adding descriptions to :{q} ")
         wd_desc.work_api_desc(NewDesc, q)
     else:
-        pywikibot.output(f"<<lightred>>* work 2 :{q} no descriptions to add.")
+        logger.info(f"<<lightred>>* work 2 :{q} no descriptions to add.")
 
 
 def main():
@@ -104,7 +105,7 @@ def main():
         # ---
         for c, q in enumerate(json1, start=1):
             # ---
-            pywikibot.output(f'  * action {c}/{total} "{q}"')
+            logger.info(f'  * action {c}/{total} "{q}"')
             # ---
             work_one_item(q)
 

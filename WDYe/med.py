@@ -318,7 +318,7 @@ def WORK(item, table):
                 WD_API_Bot.Labels_API(item, ali, "ar", False)
                 Looogs[item].append(ali)
             else:
-                sa = pywikibot.input(f'<<lightyellow>>add ali : "{ali}" as label to item :{item}? ')
+                sa = input(f'<<lightyellow>>add ali : "{ali}" as label to item :{item}? ')
                 if sa in ['y', "a", '']:
                     WD_API_Bot.Labels_API(item, ali, "ar", False)
                     Looogs[item].append(ali)
@@ -345,7 +345,7 @@ def WORK(item, table):
             WD_API_Bot.Alias_API(item, NewALLi_to_add, "ar", False)
             Looogs[item].append(",".join(NewALLi_to_add))
         else:
-            sa = pywikibot.input(f'<<lightyellow>>bot: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
+            sa = input(f'<<lightyellow>>bot: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
             if sa in ['y', "a", '']:
                 WD_API_Bot.Alias_API(item, NewALLi_to_add, "ar", False)
                 Looogs[item].append(",".join(NewALLi_to_add))

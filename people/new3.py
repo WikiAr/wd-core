@@ -321,9 +321,6 @@ def start_one_nat(nat_tab):
         # ---
         q_dones.append(q)
         # ---
-        if "printx" in sys.argv:
-            print(x)
-        # ---
         logger.info('<<lightpurple>>*Action %d from %d; q:%s,endesc:%s.==' % (c, total_nat, q.ljust(10), endesc))
         # ---
         x_table = translations_o_lower.get(endesc.lower())

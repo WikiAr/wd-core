@@ -86,7 +86,7 @@ def log_new_types(lists):
             json.dump(tabe, nfile)
     # Handle the exception and log the traceback.
     except Exception as e:
-        logger.warning(e)
+        logger.exception('Exception:', exc_info=True)
 
 
 def Get_label(qid):
