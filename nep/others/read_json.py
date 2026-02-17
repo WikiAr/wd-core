@@ -17,7 +17,6 @@ import traceback
 # ---
 
 # ---
-from newapi.except_err import exception_err
 try:
     import pywikibot
 except ImportError:
@@ -45,7 +44,7 @@ def read_bad_list(file):
         print(f'Good JJson "{file}"')
         return List
     except Exception as e:
-        exception_err(e)
+        logger.warning(e)
         # ---
         List = []
         with open(file) as listt:
@@ -71,7 +70,7 @@ def read_bad_json(file):
         print(f'Good JJson "{file}"')
         return done_list7
     except Exception as e:
-        exception_err(e)
+        logger.warning(e)
         lala = {}
         with open(file, "r", encoding="utf-8-sig") as listt2:
             lala = listt2.read()
@@ -94,7 +93,7 @@ def main(file, Type):
         else:
             print(f"* unknow type :{Type}")
     except Exception as e:
-        exception_err(e, text=f'* Cant work file:"{file}" , Type:"{Type}"')
+        logger.warning(e)
     return False
 
 # ---
