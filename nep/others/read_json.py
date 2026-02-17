@@ -17,16 +17,8 @@ import traceback
 # ---
 
 # ---
-try:
-    import pywikibot
-except ImportError:
-    pywikibot = False
-
 def printo(s):
-    if pywikibot:
-        pywikibot.output(s)
-    else:
-        logger.info(s)
+    logger.info(s)
 
 def read_bad_list(file):
     try:

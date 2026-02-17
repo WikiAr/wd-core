@@ -10,7 +10,8 @@
 from wd_api import wd_bot
 from api_sql import sql
 
-import pywikibot
+import logging
+logger = logging.getLogger(__name__)
 
 # import pywikibot.data.wikidataquery as wdquery
 # used in logfiles, unicoded strings
@@ -24,7 +25,7 @@ try:
     from himo_api import New_Himo_API
     WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
 except ImportError:
-    pywikibot.output('<<lightred>> Can\'t import New_Himo_API')
+    logger.info('<<lightred>> Can\'t import New_Himo_API')
 # ---
 ask = {1: True}
 OFFSET = {1: '   '}
@@ -168,7 +169,7 @@ WHERE {
 
 
 def action_one(q, ar):
-    pywikibot.output(f'<<lightblue>>> {q}:{ar} ')
+    logger.info(f'<<lightblue>>> {q}:{ar} ')
     ar2 = ar
     if ar.find("عبد ") != -1:
         ar2 = ar.replace("عبد ", "عبد")
@@ -180,7 +181,7 @@ def workqua(qua):
     qua = qua + OFFSET[1]
     # ---
     qua = qua + Limit[1]
-    pywikibot.output(qua)
+    logger.info(qua)
     # ---
     sparql = wd_bot.sparql_generator_url(qua)
     total = len(sparql)
@@ -203,7 +204,7 @@ LIMIT 500
 
 
 def mains():
-    pywikibot.output('start with query')
+    logger.info('start with query')
     # ---
     FFF = True
     # ---
@@ -217,24 +218,24 @@ def mains():
             # python3 core8/pwb.py wd/ali fafafa
             lala = ""
             lala = [x.strip() for x in names if x.strip() != ""]
-            pywikibot.output(f'lala: "{lala}"')
+            logger.info(f'lala: "{lala}"')
             acd = "  wd:".join(lala)
 
             tart = "?item (wdt:P734|wdt:P735) ?name. VALUES ?name {"
             tart += f"wd:{acd} "
             tart += "} ."
 
-            pywikibot.output(f'acd: "{tart}"')
+            logger.info(f'acd: "{tart}"')
             Quarry[1] = Quarry[1].replace("#sr", f"{tart}\n#sr")
         elif arg.startswith("c"):
             tart = "FILTER (CONTAINS(?label, 'عبد الله')) ."
-            pywikibot.output(f'acd: "{tart}"')
+            logger.info(f'acd: "{tart}"')
             Quarry[1] = Quarry[1].replace("#sr", f"{tart}\n#sr")
         elif arg.startswith("fafafa"):
             for uu in fafafa.split("\n"):
                 if uu:
                     tart = f"FILTER (CONTAINS(?label, '{uu}')) ."
-                    pywikibot.output(f'acd: "{tart}"')
+                    logger.info(f'acd: "{tart}"')
                     qsa = Quarry[1].replace("#sr", f"{tart}\n#sr")
                     workqua(qsa)
         elif arg.startswith("sql"):
@@ -242,7 +243,7 @@ def mains():
                 if uu:
                     fff = queries.replace("عبد_", uu)
                     tart3 = sql.Make_sql_2_rows(fff, wiki="wikidata")
-                    pywikibot.output(f'tart3: "{tart3}"')
+                    logger.info(f'tart3: "{tart3}"')
                     for te in tart3:
                         action_one(te[1], te[2])
         # ---
@@ -251,7 +252,7 @@ def mains():
             fff = queries
             tart3 = wd_bot.get_quarry_results(value, get_rows=2)
             FFF = False
-            # pywikibot.output( 'tart3: "%s"' % tart3 )
+            # logger.info( 'tart3: "%s"' % tart3 )
             for te in tart3:
                 action_one(te, tart3[te])
         # ---
@@ -261,7 +262,7 @@ def mains():
     '''fff = queries
     tart3 = wd_bot.get_quarry_results("340662", get_rows=2)
     FFF = False
-    #pywikibot.output( 'tart3: "%s"' % tart3 )
+    #logger.info( 'tart3: "%s"' % tart3 )
     for te in tart3 :
         action_one( te , tart3[ te ] )
     # ---'''

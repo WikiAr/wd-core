@@ -14,7 +14,9 @@ python pwb.py c30/p31 enwiki
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
 # ---
-import pywikibot
+
+import logging
+logger = logging.getLogger(__name__)
 
 # ---
 import sys
@@ -82,11 +84,11 @@ def main2(*args):
         if arg == 'enwiki':
             WIKI[1] = "enwiki"
     # ---
-    pywikibot.output(quarry)
+    logger.info(quarry)
     result = c18sql.Make_sql_2_rows(quarry, wiki=WIKI[1])
-    pywikibot.output("===============================")
+    logger.info("===============================")
     for counter, title in enumerate(result, start=1):
-        pywikibot.output(f" <<lightblue>> page: {counter}/{len(result)} : {title}:{result[title]} ")
+        logger.info(f" <<lightblue>> page: {counter}/{len(result)} : {title}:{result[title]} ")
         treat_page(result[title])
 
 

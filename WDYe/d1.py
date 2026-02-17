@@ -24,7 +24,8 @@ ORDER BY DESC(?count)
 # ---
 #
 
-import pywikibot
+import logging
+logger = logging.getLogger(__name__)
 
 # import sys
 # import urllib
@@ -105,19 +106,19 @@ def work2(q, topic):
                     value = ItemDescriptions[lang]  # ['value']
                     if value != replacement[lang]:
                         NewDesc[lang] = {"language": lang, "value": replacement[lang]}
-                        pywikibot.output(f'<<lightyellow>> {lang}:replace "{value}" by: "{replacement[lang]}".')
+                        logger.info(f'<<lightyellow>> {lang}:replace "{value}" by: "{replacement[lang]}".')
                         fixlang.append(lang)
                 else:
                     NewDesc[lang] = {"language": lang, "value": translations[topic][lang]}
                     # addedlangs.append(lang)
             # ---
-            # pywikibot.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
+            # logger.info( '<<lightyellow>>  NewDesc' + str(NewDesc) )
             wd_desc.wwdesc(NewDesc, q, 1, fixlang, ask=False)
 
 
 def mam():
     topic = "species of insect"
-    pywikibot.output("*<<lightyellow>> mainfromQuarry:")
+    logger.info("*<<lightyellow>> mainfromQuarry:")
     Quarry = quuu[topic]
     if sys.argv and "OFFSET" in sys.argv:
         Quarry = f"{Quarry} OFFSET 100000"
@@ -126,7 +127,7 @@ def mam():
     # topic = 'Wikinews article'
     # ---
     for num, q in enumerate(json, start=1):
-        pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {num}/{lenth} topic:"{topic}" , q:"{q}".')
+        logger.info(f'<<lightyellow>>*mainfromQuarry: {num}/{lenth} topic:"{topic}" , q:"{q}".')
         work2(q, topic)
 
 

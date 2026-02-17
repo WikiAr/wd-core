@@ -119,14 +119,14 @@ def make_dada(NewText, MainTitle):
 
 def print_test2(s):
     if TEST[2]:
-        # pywikibot.output(s)
+        # logger.info(s)
         print(s)
 
 
 def printt(s):
     SS = False
     if SS or "test" in sys.argv or "test2" in sys.argv:
-        # pywikibot.output(s)
+        # logger.info(s)
         print(s)
 
 

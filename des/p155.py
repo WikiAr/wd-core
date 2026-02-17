@@ -229,7 +229,7 @@ def Item(item):
         return ""
     if Ask[1]:
         if newlabel.strip():
-            sa = pywikibot.input(f'<<lightyellow>>bot: Labels_API Add "{newlabel}" as label to "{q}"? ([y]es, [N]o):')
+            sa = input(f'<<lightyellow>>bot: Labels_API Add "{newlabel}" as label to "{q}"? ([y]es, [N]o):')
             if sa in yes_answer:
                 WD_API_Bot.Labels_API(q, newlabel, "ar", False, Or_Alii=True)
             if sa == "a":

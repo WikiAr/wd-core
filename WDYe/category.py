@@ -12,7 +12,8 @@
 #
 #
 
-import pywikibot
+import logging
+logger = logging.getLogger(__name__)
 from wd_api import wd_bot
 
 # ---
@@ -41,7 +42,7 @@ def main():
         # ---
         if arg in ['-limit', 'limit']:
             Limit[1] = value
-            pywikibot.output(f'<<lightred>> Limit = {value}.')
+            logger.info(f'<<lightred>> Limit = {value}.')
             # ---#
     Quaa = '''
 SELECT DISTINCT
@@ -64,7 +65,7 @@ WHERE {
 }
 LIMIT '''
     Quaa += Limit[1]
-    pywikibot.output(Quaa)
+    logger.info(Quaa)
     sparql = wd_bot.sparql_generator_url(Quaa)
     # ---
     Table = {}
@@ -73,8 +74,8 @@ LIMIT '''
         Table[q] = item["ar_name"]
     for num, (item, value_) in enumerate(Table.items(), start=1):
         # if num < 2:
-        pywikibot.output(f'<<lightgreen>> {num}/{len(Table.keys())} item:"{item}" ')
-        # pywikibot.output( Table[item] )
+        logger.info(f'<<lightgreen>> {num}/{len(Table.keys())} item:"{item}" ')
+        # logger.info( Table[item] )
         if value_:
             lab = f'تصنيف:{Table[item]}'
             WD_API_Bot.Labels_API(item, lab, "ar", False, Or_Alii=True)

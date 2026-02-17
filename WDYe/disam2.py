@@ -8,6 +8,7 @@
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 # ---
 #
+import logging
 from API import open_url
 
 from wd_api import wd_bot
@@ -16,7 +17,8 @@ import json
 
 from wd_api import wd_desc
 from desc_dicts.descraptions import DescraptionsTable
-# from desc_dicts.descraptions import *
+
+logger = logging.getLogger(__name__)
 
 # ---
 translations = {"Wikimedia disambiguation page": DescraptionsTable["Wikimedia disambiguation page"]}
@@ -51,7 +53,7 @@ def work2(q, topic):
             # ---
             if value in replacement[lang]:
                 NewDesc[lang] = {"language": lang, "value": replacement[lang][value]}
-                # pywikibot.output( '<<lightyellow>>  replace "%s" by: "%s".' % ( value , replacement[lang][value]) )
+                # logger.info( '<<lightyellow>>  replace "%s" by: "%s".' % ( value , replacement[lang][value]) )
                 replacelang.append(lang)
     # ---
     for lang in keys:
@@ -59,13 +61,13 @@ def work2(q, topic):
             NewDesc[lang] = {"language": lang, "value": translations[topic][lang]}
             addedlangs.append(lang)
     # ---
-    # pywikibot.output( '<<lightyellow>>  NewDesc' + str(NewDesc) )
+    # logger.info( '<<lightyellow>>  NewDesc' + str(NewDesc) )
 
     wd_desc.work_api_desc(NewDesc, q)
 
 
 def mainfromQuarry():
-    pywikibot.output("*<<lightyellow>> mainfromQuarry:")
+    logger.info("*<<lightyellow>> mainfromQuarry:")
     Quarry = """SELECT DISTINCT ?item
 WHERE {
   ?item schema:description "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا"@fa.
@@ -81,7 +83,7 @@ limit 1"""
     topic = "Wikimedia disambiguation page"
     # ---
     for num, q in enumerate(json1, start=1):
-        pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {num}/{lenth} topic:"{topic}" , q:"{q}".')
+        logger.info(f'<<lightyellow>>*mainfromQuarry: {num}/{lenth} topic:"{topic}" , q:"{q}".')
         work2(q, topic)
 
 
@@ -93,7 +95,7 @@ repo = wikidatasite.data_repository()
 
 
 def mainfromQuarry2():
-    pywikibot.output("*<<lightyellow>> mainfromQuarry:")
+    logger.info("*<<lightyellow>> mainfromQuarry:")
     # ---
     # quarrr = '207388'
     quarrr = "207496"
@@ -110,7 +112,7 @@ def mainfromQuarry2():
     # ---
     for num, page in enumerate(lista, start=1):
         q = page.strip()
-        pywikibot.output(f'<<lightyellow>>*mainfromQuarry: {num}/{len(lista)} topic:"{topic}" , q:"{q}".')
+        logger.info(f'<<lightyellow>>*mainfromQuarry: {num}/{len(lista)} topic:"{topic}" , q:"{q}".')
         work2(q, topic)
 
 
