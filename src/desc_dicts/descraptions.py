@@ -374,7 +374,7 @@ Space_Descraptions.update({
 })
 
 many_lang_qid_desc = get_data("descraptions")
-
+replace_descraptions = get_data("replace_descraptions")
 # ======================
 # Qid_Descraptions
 # ======================

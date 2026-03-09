@@ -29,6 +29,7 @@ def get_data(file_name: str) -> dict[str, dict[str, str]]:
         data = load_data_from_url(page_name=file_name)
         if data:
             save_json_data(file_path, data)
+
     if not data:
         data = back_up_data.get(file_name, {})
 

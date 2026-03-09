@@ -11,6 +11,9 @@ logger = logging.getLogger(__name__)
 
 
 def load_data_from_url(page_name="descraptions.json"):
+    if not page_name.endswith(".json"):
+        page_name = f"{page_name}.json"
+
     url = f"https://www.wikidata.org/wiki/User:Mr._Ibrahem/{page_name}?action=raw"
 
     headers = {"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"}
