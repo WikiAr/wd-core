@@ -8,7 +8,6 @@
 .env
 .env2
 src/desc_dicts/__.py
-src/himowd-public_html/**
 src/lex-examples/*.json
 src/lex-examples/forms
 src/nep/tables/new_types.json
@@ -20,3 +19,4 @@ src/prop_labs/dump.jsonl
 src/tttt.py
 yemen-pip.txt
 src/cy/jsub.sh
+/himowd-public_html
