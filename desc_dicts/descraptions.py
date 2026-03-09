@@ -382,7 +382,7 @@ Taxon_Descraptions = {
     },
 }
 # ---
-# https://www.wikidata.org/wiki/User:Mr._Ibrahem/replace_descraptions.json
+# https://www.wikidata.org/wiki/User:Mr._Ibrahem/replace_descraptions.json?action=raw
 replace_desc = {
     "hr": {
         # https://www.wikidata.org/w/index.php?title=User_talk:Mr._Ibrahem&oldid=2470736170#c-Vargenau-20260309134900-Vargenau-20260223164500

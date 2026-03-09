@@ -1,4 +1,4 @@
-# https://www.wikidata.org/wiki/User:Mr._Ibrahem/descraptions.json
+# https://www.wikidata.org/wiki/User:Mr._Ibrahem/descraptions.json?action=raw
 
 many_lang_qid_desc = {
     "Q11173": {
