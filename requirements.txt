@@ -1,13 +1,6 @@
 PyMySQL
-python_stdnum
 Requests
 SPARQLWrapper
-waybackpy
 wikitextparser
-pandas
-rdflib
-shexer
-regex
 python-dotenv
 tqdm
-psutil

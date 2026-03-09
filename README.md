@@ -1,5 +1,5 @@
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/WikiAr/wd-core)
-  
+
 # wd-core
 
 wikidata core
@@ -16,22 +16,22 @@ This feature generates a table that displays the number of labels, descriptions,
 
 ### Commands
 
-- `python3 core8/pwb.py dump/labels/do_text`: This command runs the feature.
-- `python3 core8/pwb.py dump/labels/do_text test`: This command runs the feature in test mode.
+-   `python3 core8/pwb.py dump/labels/do_text`: This command runs the feature.
+-   `python3 core8/pwb.py dump/labels/do_text test`: This command runs the feature in test mode.
 
 ### Files
 
-- `dump/labels/do_text.py`: This file contains the main code for the feature.
-- `dump/labels/labels_old_values.py`: This file contains the code for handling the JSON file that stores old data.
+-   `dump/labels/do_text.py`: This file contains the main code for the feature.
+-   `dump/labels/labels_old_values.py`: This file contains the code for handling the JSON file that stores old data.
 
-- Python 3.6 or higher
-- cython
-- numpy
+-   Python 3.6 or higher
+-   cython
+-   numpy
 
 ### New Commands
 
-- `read_dump`: This command reads a dump file.
-- `add_descriptions`: This command adds descriptions to new Wikidata items.
+-   `read_dump`: This command reads a dump file.
+-   `add_descriptions`: This command adds descriptions to new Wikidata items.
 
 ### How to Use
 
@@ -40,5 +40,22 @@ This feature generates a table that displays the number of labels, descriptions,
 
 ### Known Issues
 
-- The `read_dump` command may take a long time to run for large dump files.
-- The `add_descriptions` command may not add descriptions to all new Wikidata items if there are too many new items.
+-   The `read_dump` command may take a long time to run for large dump files.
+-   The `add_descriptions` command may not add descriptions to all new Wikidata items if there are too many new items.
+
+# Entry points:
+
+-   [src/alabel/labels.py](src/alabel/labels.py)
+
+-   [src/cy/jsub.py](src/cy/jsub.py)
+
+-   [src/des/fam.py](src/des/fam.py)
+
+-   [src/nep/si3g.py](src/nep/si3g.py)
+-   [src/nep/si3g_qua.py](src/nep/si3g_qua.py)
+
+-   [src/neq/nldes3.py](src/neq/nldes3.py)
+
+-   [src/people/new3.py](src/people/new3.py)
+
+-   [src/lex-examples/gemini_new.py](src/lex-examples/gemini_new.py)

@@ -16,7 +16,7 @@ $HOME/local/bin/python3 -V
 $HOME/local/bin/python3 -V
 $HOME/local/bin/python3 -m pip install --upgrade pip
 $HOME/local/bin/python3 -m pip install -r core8/requirements.txt
-$HOME/local/bin/python3 -m pip install -r requirements.in
+$HOME/local/bin/python3 -m pip install -r requirements.txt
 $HOME/local/bin/python3 -m pip install wikitextparser
 $HOME/local/bin/python3 -m pip install pipreqs
 $HOME/local/bin/python3 -m pip install requests
