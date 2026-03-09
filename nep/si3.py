@@ -4,9 +4,9 @@ from nep.si3 import do_P1433_new_list, work_new_list, make_scientific_art
 """
 
 import sys
-from wd_api import wd_desc
 import logging
-logger = logging.getLogger(__name__)
+
+from wd_api import wd_desc
 
 from des.ru_st_2_latin import make_en_label
 from des.desc import work_one_item
@@ -15,7 +15,7 @@ from des.railway import railway_tables, work_railway
 
 from wd_api import wd_bot
 
-from desc_dicts.descraptions import replace_desc
+from desc_dicts.descraptions_dict_new import get_data
 from nep.wr_people import work_people
 from people.people_get_topic import print_new_jobs
 from nep.bots.helps import Get_P_API_id, log_new_types
@@ -27,6 +27,9 @@ from nep.space_others import Make_space_desc, Make_others_desc
 
 from nep.new_way import P1433_ids, do_P1433_ids, P1433_en_to_qid
 
+logger = logging.getLogger(__name__)
+
+
 def work_a_desc(NewDesc, qid, fixlang):
     # ---
     if MainTestTable[1] or "dd" in sys.argv:
@@ -37,6 +40,7 @@ def work_a_desc(NewDesc, qid, fixlang):
     # ---
     wd_desc.work_api_desc(NewDesc, qid, fixlang=fixlang)
 
+
 def make_scientific_art(item, P31, num):
     # ---
     table = make_scientific_article(item, P31, num, TestTable=MainTestTable[1])
@@ -46,6 +50,7 @@ def make_scientific_art(item, P31, num):
     rep_langs = table["fixlang"]
     # ---
     work_a_desc(NewDesc, qid, rep_langs)
+
 
 def do_P1433_new_list(item, p31):
     # ---
@@ -64,6 +69,7 @@ def do_P1433_new_list(item, p31):
         work_a_desc(NewDesc, q, [])
     else:
         print("do_P1433_new_list nothing to add. ")
+
 
 def work_new_list(item, p31, ardes):
     # ---
@@ -109,6 +115,7 @@ def work_new_list(item, p31, ardes):
     else:
         print("work_new_list nothing to add. ")
 
+
 def work_qid_desc(item, topic, num):
     logger.info("<<lightyellow>>  work_qid_desc: ")
     q = item["q"]
@@ -116,9 +123,11 @@ def work_qid_desc(item, topic, num):
     NewDesc = {}
     addedlangs = []
     # ---
+    replace_descraptions = get_data("replace_descraptions")
+    # ---
     for lang in Qids_translate[topic].keys():
         # ---
-        des_for_lang = replace_desc.get(lang, {})
+        des_for_lang = replace_descraptions.get(lang, {})
         # ---
         if lang not in descriptions.keys():
             # descriptions[lang] = Qids_translate[topic][lang]
@@ -138,6 +147,7 @@ def work_qid_desc(item, topic, num):
     # ---
     logger.info(f"<<lightyellow>> **{num}: work_qid_desc:{q}  ({topic})")
     work_a_desc(NewDesc, q, [])
+
 
 def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
     # ---
@@ -229,6 +239,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
                 new_types[P31] = 0
             # ---
             new_types[P31] += 1
+
 
 def print_new_types():
     lists = [[y, x] for x, y in new_types.items()]

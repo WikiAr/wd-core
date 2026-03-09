@@ -4,7 +4,7 @@ from nep.tables.si_tables import genders, MainTestTable, new_types, offsetbg, Qi
 import sys
 from des.places import placesTable
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
-from desc_dicts.scientific_article_desc import Scientific_descraptions
+from desc_dicts.descraptions_dict import Scientific_descraptions
 from nep.tables.lists import others_list
 
 # ---

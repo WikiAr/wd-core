@@ -7,46 +7,25 @@ from nep.bots.scientific_article import make_scientific_article
 import re
 import dateutil.parser
 import logging
+
+from nep.bots.helps import Get_P_API_time
+from desc_dicts.descraptions_dict import Scientific_descraptions
+
 logger = logging.getLogger(__name__)
 
-# ---
-from nep.bots.helps import Get_P_API_time
-
-from desc_dicts.scientific_article_desc import Scientific_descraptions
-
-# ---
 Desc_Just_year = {
     "zh": "%s年学术文章",  # 年论文
+    "zh-hans": "%s年学术文章",  # same as zh
+    "wuu": "%s年学术文章",  # same as zh
     # ---
     "zh-hant": "%s年學術文章",  # 年論文
+    "yue": "%s年學術文章",  # same as zh-hant
     # ---
     "ja": "%s年の論文",
     "ko": "%s년 논문",
     "nan": "%s nî lūn-bûn",
 }
-# ---
-Desc_Just_year["yue"] = Desc_Just_year["zh-hant"]
-# ---
-Desc_Just_year["zh-hans"] = Desc_Just_year["zh"]
-Desc_Just_year["wuu"] = Desc_Just_year["zh"]
-# ---
-"""
-# ---
-"zh":"%s年论文",
-"zh-hans":"%s年论文",
-"zh-cn":"%s年论文",
-"zh-sg":"%s年论文",
-"zh-my":"%s年论文",
-"wuu":"%s年论文",
-# ---
-"zh-hant":"%s年學術文章",#年論文
-"zh-hk":"%s年論文",
-"zh-mo":"%s年論文",
-"zh-tw":"%s年論文",
-"yue":"%s年論文",
-# ---
-"""
-# ---
+
 pubtxt = {
     "ar": "نشرت في",
     "de": "veröffentlicht",
@@ -63,7 +42,7 @@ pubtxt = {
     "cs": "publikovaný v roce",
     "sk": "publikovaný",
 }
-# ---
+
 Month_Table = {
     "ar": {
         "1": "يناير",
@@ -136,7 +115,7 @@ Month_Table = {
         "12": "в грудні",
     },
 }
-# ---
+
 format_l = {
     "da": "videnskabelig artikel udgivet %s",
     # 'ar' : "مقالة علمية نشرت في %s",
@@ -146,6 +125,7 @@ format_l = {
     "es": "artículo científico publicado en %s",
     "bn": "%s-এ প্রকাশিত বৈজ্ঞানিক নিবন্ধ",
 }
+
 JustYear = [
     "zh",
     "zh-hans",
@@ -162,6 +142,7 @@ JustYear = [
     "ko",
     "nan",
 ]
+
 
 def bnyear(date):
     digits = {
@@ -181,6 +162,7 @@ def bnyear(date):
         date = re.sub(k, v, date)
     return date
 
+
 def Monthname(lang, month):
     if month not in ["10", "11", "12"]:
         month = re.sub(r"0", "", month)
@@ -196,8 +178,10 @@ def Monthname(lang, month):
     # ---
     return False
 
+
 def Make_uk_desc(desc):
     return desc
+
 
 def fixdate(date):
     table = {"year": "", "month": "", "day": ""}
@@ -226,12 +210,8 @@ def fixdate(date):
     # logger.info(table)
     return table
 
+
 def make_scientific_desc(lang, date, precision):
-    # year, sep, mo = date.partition('-')
-    # month, sep2, day = mo.partition('-')
-    # date = date.split('Z')[0].split('+')[1]
-    # date = dateutil.parser.parse(date)
-    # year , month , day = str(date.year) ,str(date.month) , str(date.day)
     year, month, day = date["year"], date["month"], date["day"]
     # _Year , _Day = year, day
     Correctdate = True
@@ -303,20 +283,9 @@ def make_scientific_desc(lang, date, precision):
             desc = f"наукова стаття, опублікована в {year}"
         elif year.startswith("2"):
             desc = f"наукова стаття, опублікована у {year}"
-            # logger.info( 'uk date2:"%s"' % date2 )
-    # ---
-    # if lang == "uk":
-    # _Year , _Day = bnyear(year), bnyear(day)
-    # تعديل التاريخ للغة bn
-    # logger.info(desc)#
-    # desc = Make_uk_desc(desc)
-    # logger.info(desc)#
-    # return fafa
-    # ---
 
-    # ---
-    # logger.info(desc)#
     return desc
+
 
 def make_scientific_article(item, p31, num, TestTable=False):
     # ---
@@ -375,7 +344,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
         # ---
         item_desc = item_descriptions.get(lang, "")
         # ---
-        ar_descs = ["مقالة علمية", "مقالة بحثية"]
+        _ar_descs = ["مقالة علمية", "مقالة بحثية"]
         # ---
         if lang not in item_descriptions.keys():
             NewDesc[lang] = {"language": lang, "value": lang_e}
