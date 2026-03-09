@@ -36,9 +36,18 @@ def load_data_from_url(page_name="descraptions.json"):
     return {}
 
 
+def _get_file_date(file_path: Path) -> str:
+    """Get file modification date as YYYY-MM-DD string, or empty string if file doesn't exist."""
+    if not file_path.exists():
+        return ""
+    mtime = os.path.getmtime(file_path)
+    return datetime.datetime.fromtimestamp(mtime).strftime("%Y-%m-%d")
+
+
 def open_file_json(file_path: Path):
     if not file_path.exists():
         return {}
+
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -49,22 +58,23 @@ def open_file_json(file_path: Path):
     return {}
 
 
-def _get_file_date(file_path: Path) -> str:
-    """Get file modification date as YYYY-MM-DD string, or empty string if file doesn't exist."""
-    if not file_path.exists():
-        return ""
-    mtime = os.path.getmtime(file_path)
-    return datetime.datetime.fromtimestamp(mtime).strftime("%Y-%m-%d")
-
-
 @functools.lru_cache(maxsize=1)
 def get_data(file_name: str) -> dict[str, dict[str, str]]:
     """
     Fetch data from file, URL, or backup. Returns data and file path.
     file_name one of ("descraptions", "replace_descraptions")
     """
+    data = {}
+
     file_path = Path(__file__).parent / f"{file_name}.json"
-    data = open_file_json(file_path)
+
+    if file_path.exists():
+        today = datetime.datetime.now().strftime("%Y-%m-%d")
+        file_date = _get_file_date(file_path)
+
+        # Check if file date matches today's date
+        if file_date == today:
+            data = open_file_json(file_path)
 
     if not data:
         data = load_data_from_url(page_name=file_name)
