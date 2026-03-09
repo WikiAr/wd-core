@@ -5,7 +5,7 @@ import functools
 import logging
 from pathlib import Path
 from desc_dicts.descraptions_dict import many_lang_qid_desc, replace_desc
-from wd_utils.utils import load_data_from_url, open_file_json_check_time
+from wd_utils.utils import load_data_from_url, open_file_json_check_time, save_json_data
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +27,8 @@ def get_data(file_name: str) -> dict[str, dict[str, str]]:
 
     if not data:
         data = load_data_from_url(page_name=file_name)
-
+        if data:
+            save_json_data(file_path, data)
     if not data:
         data = back_up_data.get(file_name, {})
 
