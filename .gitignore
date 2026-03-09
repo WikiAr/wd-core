@@ -1,13 +1,10 @@
 **/old/**
+**/**copy.py
 *.7z
 *.pyc
 *.rar
-*.sh
 *.tmp.py
-*.tsv
 *.zip
-*/__pycache__/*
-*/old/*
 .env
 .env2
 src/desc_dicts/__.py
@@ -20,6 +17,6 @@ src/prop_labs/cache_data.json
 src/prop_labs/cache_data_labels.json
 src/prop_labs/cache_data_new.json
 src/prop_labs/dump.jsonl
-src/prop_labs/gemini_bot copy.py
 src/tttt.py
 yemen-pip.txt
+src/cy/jsub.sh
