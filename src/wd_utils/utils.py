@@ -50,6 +50,10 @@ def open_file_json(file_path: Path):
     return {}
 
 
+def are_dates_same(today, file_date) -> bool:
+    return file_date == today
+
+
 def open_file_json_check_time(file_path: Path):
     """
     file_name one of ("descraptions", "replace_descraptions")
@@ -61,7 +65,7 @@ def open_file_json_check_time(file_path: Path):
         file_date = get_file_date(file_path)
 
         # Check if file date matches today's date
-        if file_date == today:
+        if are_dates_same(today, file_date):
             data = open_file_json(file_path)
 
     return data
