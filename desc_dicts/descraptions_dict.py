@@ -1,3 +1,5 @@
+# https://www.wikidata.org/wiki/User:Mr._Ibrahem/descraptions.json
+
 many_lang_qid_desc = {
     "Q11173": {
         "af": "chemiese verbinding",
@@ -559,7 +561,7 @@ many_lang_qid_desc = {
         "gu": "વિકિપીડિયા શ્રેણી",
         "he": "קטגוריה במיזמי ויקימדיה",
         "hi": "विकिमीडिया श्रेणी",
-        "hr": "kategorija u wikimediju",
+        "hr": "kategorija na Wikimediji",  # https://www.wikidata.org/w/index.php?title=User_talk:Mr._Ibrahem&oldid=2470736170#c-Vargenau-20260309134900-Vargenau-20260223164500
         "hu": "Wikimédia-kategória",
         "hy": "Վիքիմեդիայի նախագծի կատեգորիա",
         "id": "kategori Wikimedia",

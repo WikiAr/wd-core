@@ -15,41 +15,37 @@ python3 core8/pwb.py update/update
 SELECT ?P31 (count(*) as ?d)
 WHERE {
   VALUES ?P31 { wd:Q10870555 wd:Q1457376 wd:Q39614 wd:Q19389637 wd:Q15917122 wd:Q4502142
-                              wd:Q1332364
-                              wd:Q204194
-                              wd:Q130019
-                              wd:Q523
-                              wd:Q6243
-                              wd:Q6979593
-                              wd:Q6979593
-                              wd:Q24856
-                              wd:Q4167836
-                              wd:Q11173
-                              wd:Q101352
-                              wd:Q11879590
-                              wd:Q3409032
-                              wd:Q21199
-                              wd:Q12308941
-                              wd:Q13442814
-                              wd:Q13100073
-                              wd:Q4167836
+    wd:Q1332364
+    wd:Q204194
+    wd:Q130019
+    wd:Q523
+    wd:Q6243
+    wd:Q6979593
+    wd:Q6979593
+    wd:Q24856
+    wd:Q4167836
+    wd:Q11173
+    wd:Q101352
+    wd:Q11879590
+    wd:Q3409032
+    wd:Q21199
+    wd:Q12308941
+    wd:Q13442814
+    wd:Q13100073
+    wd:Q4167836
               }
   ?item wdt:P31 ?P31. }
 group by ?P31
 
 """
 
-# ---
-# from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions, Taxon_Descraptions
 from desc_dicts.scientific_article_desc import Scientific_descraptions
 from desc_dicts.descraptions_dict import many_lang_qid_desc
 
-# ---
 DescraptionsTable = {
     "scientific article": Scientific_descraptions,
     "scholarly article": Scientific_descraptions,
 }
-# ---
 Qid_Desc = {
     # "Q29654788" :  {"ar":"محرف الترميز الموحد","en":"Unicode character"},# 129373
     # "Q93184" :     {"ar":"رسم",                "en":"drawing"},# 92480
@@ -119,10 +115,6 @@ many_lang_qid_desc["Q13442814"] = Scientific_descraptions  # scientific article
 # ---
 for q2, labse in many_lang_qid_desc.items():
     Qid_Descraptions[q2] = labse
-    # if labse.get("uk", '') != '':
-    # en = labse.get("en", '')
-    # uk = labse.get("uk", '')
-    # pkrint(f'*{en}\t{uk}')
     if labse.get("en", "") != "":
         DescraptionsTable[labse["en"]] = labse
 # ---
@@ -391,9 +383,11 @@ Taxon_Descraptions = {
     },
 }
 # ---
+# https://www.wikidata.org/wiki/User:Mr._Ibrahem/replace_descraptions.json
 replace_desc = {
     "hr": {
-        "kategorija na Wikimediji": "kategorija u wikimediju",
+        # https://www.wikidata.org/w/index.php?title=User_talk:Mr._Ibrahem&oldid=2470736170#c-Vargenau-20260309134900-Vargenau-20260223164500
+        # "kategorija na Wikimediji": "kategorija u wikimediju",
         "popis na Wikimediji": "popis u wikimediju",
         "predložak Wikimedija": "predložak za wikimedije",
         "predložak na Wikimediji": "predložak za wikimedije",
@@ -408,21 +402,3 @@ replace_desc = {
         "seznam Wikimedije": "seznam Wikimedie",
     },
 }
-# ---
-if __name__ == "__main__":
-    # python3 core8/pwb.py desc_dicts/descraptions
-    u1 = ""
-    u2 = ""
-    for taba in DescraptionsTable.values():
-        en_d = taba.get("en", "")
-        sl_d = taba.get("sl", "")
-        line = f"\n|-\n| {en_d} || {sl_d}"
-        if "sl" in taba:
-            u1 += line
-        elif len(taba) > 2:
-            u2 += line
-    # ---
-    # print(u1)
-    # print(u2)
-    # ---
-# ---
