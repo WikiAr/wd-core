@@ -5,9 +5,8 @@ python3 core8/pwb.py dump/arlanglinks
 import sys
 import json
 from pathlib import Path
+from api_sql import wiki_sql
 
-# ---
-# ---
 # Dump_Dir = Path(__file__).parent                      # /data/project/himo/bots/dump_core/dump/labels
 Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
 # ---
@@ -17,7 +16,6 @@ Dump_Dir = f"{Himo_Dir}/dumps"
 print(f"Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}")
 # ---
 # ---
-from api_sql import wiki_sql
 
 # ---
 dump_file = f"{Dump_Dir}/langlinks.json"
