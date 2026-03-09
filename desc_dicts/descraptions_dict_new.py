@@ -1,7 +1,11 @@
+"""
 # https://www.wikidata.org/wiki/User:Mr._Ibrahem/descraptions.json?action=raw
+"""
 import functools
+import datetime
 import json
 import logging
+import os
 import requests
 from pathlib import Path
 from desc_dicts.descraptions_dict import many_lang_qid_desc, replace_desc
@@ -45,9 +49,18 @@ def open_file_json(file_path: Path):
     return {}
 
 
+def _get_file_date(file_path: Path) -> str:
+    """Get file modification date as YYYY-MM-DD string, or empty string if file doesn't exist."""
+    if not file_path.exists():
+        return ""
+    mtime = os.path.getmtime(file_path)
+    return datetime.datetime.fromtimestamp(mtime).strftime("%Y-%m-%d")
+
+
 @functools.lru_cache(maxsize=1)
 def get_data(file_name: str) -> dict[str, dict[str, str]]:
     """
+    Fetch data from file, URL, or backup. Returns data and file path.
     file_name one of ("descraptions", "replace_descraptions")
     """
     file_path = Path(__file__).parent / f"{file_name}.json"
