@@ -46,6 +46,7 @@ DescraptionsTable = {
     "scientific article": Scientific_descraptions,
     "scholarly article": Scientific_descraptions,
 }
+
 Qid_Desc = {
     # "Q29654788" :  {"ar":"محرف الترميز الموحد","en":"Unicode character"},# 129373
     # "Q93184" :     {"ar":"رسم",                "en":"drawing"},# 92480
@@ -106,9 +107,7 @@ Qid_Descraptions = {}  # مستخدم في عدة بوتات
 for qid, labs in Qid_Desc.items():
     Qid_Descraptions[qid] = {"ar": labs["ar"]}
     DescraptionsTable[labs["en"]] = {"ar": labs["ar"]}
-# ---
-# many_lang_qid_desc = {}
-# ---
+
 many_lang_qid_desc["Q13442814"] = Scientific_descraptions  # scientific article
 # ---
 # merge 2 dictionaries

@@ -7,14 +7,8 @@ descraptions.py
 np/si3.py
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-# from descs_dicts.scientific_article_desc import Scientific_descraptions
-# ---
+
 Scientific_descraptions = {
-    # "ar":"مقالة علمية",
     "sl": "znanstveni članek",
     "ar": "مقالة بحثية",
     "ast": "artículu científicu",
@@ -63,13 +57,12 @@ Scientific_descraptions = {
     "tr": "bilimsel makale",
     "uk": "наукова стаття",
     "vi": "bài báo khoa học",
+    # ---
     "zh": "年学术文章",  # 年论文
+    "zh-hans": "年学术文章",  # same as zh
+    "wuu": "年学术文章",  # same as zh
+
+    # ---
     "zh-hant": "年學術文章",  # 年論文
+    "yue": "年學術文章",  # same as zh-hant
 }
-# ---
-Scientific_descraptions["yue"] = Scientific_descraptions["zh-hant"]
-# ---
-Scientific_descraptions["zh-hans"] = Scientific_descraptions["zh"]
-Scientific_descraptions["wuu"] = Scientific_descraptions["zh"]
-# ---
-# ---
