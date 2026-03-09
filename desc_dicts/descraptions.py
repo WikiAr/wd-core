@@ -1,45 +1,10 @@
 #!/usr/bin/python3
-r"""
-
-likeapi.descraptions
-
-"([\w\s]+)"(\s*\:\s*{\s*"ar"\s*\:\s*"[\w\s]+")\s*\}\s*\,\s*\#(Q\d+)
-"$3"$2, "en":"$1"},
-
-new pages from file
-
-python3 core8/pwb.py API/descraptions
-python3 core8/pwb.py update/update
-
-
-SELECT ?P31 (count(*) as ?d)
-WHERE {
-  VALUES ?P31 { wd:Q10870555 wd:Q1457376 wd:Q39614 wd:Q19389637 wd:Q15917122 wd:Q4502142
-    wd:Q1332364
-    wd:Q204194
-    wd:Q130019
-    wd:Q523
-    wd:Q6243
-    wd:Q6979593
-    wd:Q6979593
-    wd:Q24856
-    wd:Q4167836
-    wd:Q11173
-    wd:Q101352
-    wd:Q11879590
-    wd:Q3409032
-    wd:Q21199
-    wd:Q12308941
-    wd:Q13442814
-    wd:Q13100073
-    wd:Q4167836
-              }
-  ?item wdt:P31 ?P31. }
-group by ?P31
+"""
 
 """
 
-from desc_dicts.descraptions_dict import many_lang_qid_desc, Scientific_descraptions
+from desc_dicts.descraptions_dict import Scientific_descraptions
+from desc_dicts.descraptions_dict_new import get_data
 
 DescraptionsTable = {
     "scientific article": Scientific_descraptions,
@@ -47,10 +12,6 @@ DescraptionsTable = {
 }
 
 Qid_Desc = {
-    # "Q29654788" :  {"ar":"محرف الترميز الموحد","en":"Unicode character"},# 129373
-    # "Q93184" :     {"ar":"رسم",                "en":"drawing"},# 92480
-    # "Q2319498": {"ar": "معالم", "en": "landmark"},  # 13445
-    # "Q47461344" :   {"ar":"عمل مكتوب",          "en":"written work"},# 16142
     "Q13424466": {"ar": "ميناء طبيعي", "en": "natural harbor"},
     "Q13433827": {"ar": "مقالة موسوعية", "en": "encyclopedia article"},  # 209000
     "Q18918145": {"ar": "مقالة أكاديمية", "en": "academic journal article"},  # 8407
@@ -59,7 +20,6 @@ Qid_Desc = {
     "Q1580166": {"ar": "مدخلة قاموس", "en": "dictionary entry"},  # 57490
     "Q11060274": {"ar": "طباعة فنية", "en": "print"},  # 40547
     "Q220659": {"ar": "قطع أثرية", "en": "archaeological artifact"},  # 29283
-    # "Q860861": {"ar": "منحوتة", "en": "sculpture"},  # 22091
     "Q1539532": {"ar": "موسم نادي رياضي", "en": "sports season of a sports club"},  # 20501
     "Q30612": {"ar": "تجربة سريرية", "en": "clinical trial"},  # 339121
     "Q152450": {"ar": "انتخابات محلية", "en": "municipal election"},  # 14289
@@ -82,7 +42,6 @@ Qid_Desc = {
     "Q189118": {"ar": "نوع خلية", "en": "cell type"},  # 6946
     "Q40231": {"ar": "انتخابات", "en": "election"},  # 6680
     "Q2188189": {"ar": "عمل موسيقي", "en": "musical work"},  # 6391
-    # "Q953806": {"ar": "محطة حافلات", "en": "bus stop"},  # 6231
     "Q105774620": {"ar": "قانون برلمان المملكة المتحدة", "en": "Public General Act of the Parliament of the United Kingdom"},
     "Q7604693": {"ar": "القواعد القانونية لأيرلندا الشمالية", "en": "Statutory Rules of Northern Ireland"},  # 13624
     "Q427087": {"ar": "حمض نووي ريبوزي غير مشفر", "en": "non-coding RNA"},  # 698
@@ -100,43 +59,93 @@ Qid_Desc = {
     "Q10870555": {"ar": "تقرير", "en": "report"},
     "Q4502142": {"ar": "عمل فني مرئي", "en": "visual artwork"},
 }
-# ---
-Qid_Descraptions = {}  # مستخدم في عدة بوتات
-# ---
-for qid, labs in Qid_Desc.items():
-    Qid_Descraptions[qid] = {"ar": labs["ar"]}
-    DescraptionsTable[labs["en"]] = {"ar": labs["ar"]}
 
-# ---
-# merge 2 dictionaries
-# ---
-for q2, labse in many_lang_qid_desc.items():
-    Qid_Descraptions[q2] = labse
-    if labse.get("en", "") != "":
-        DescraptionsTable[labse["en"]] = labse
-# ---
-# 'Q7278',   #حزب سياسي
 Space_Desc = {
-    "Q44559": {"ar": "كوكب خارج المجموعة الشمسية", "en": "extrasolar planet"},
-    "Q13890": {"ar": "نجم مزدوج", "en": "double star"},
-    "Q83373": {"ar": "نجم زائف", "en": "quasar"},
-    "Q46587": {"ar": "نواة مجرة نشطة", "en": "active galactic nucleus"},
-    "Q6999": {"ar": "جرم فلكي", "en": "astronomical object"},
-    "Q13632": {"ar": "سديم كوكبي", "en": "planetary nebula"},
-    "Q1931185": {"ar": "مصدر راديو فلكي", "en": "astronomical radio source"},
-    "Q71963409": {"ar": "تجمع مجري مدمج", "en": "compact group of galaxies"},
-    "Q67206691": {"ar": "مصدر أشعة تحت حمراء", "en": "infrared source"},
-    "Q3863": {"ar": "كويكب", "en": "asteroid"},
-    "Q1153690": {"ar": "نجم متغير طويل", "en": "long period variable"},
-    "Q168845": {"ar": "عنقود نجمي", "en": "star cluster"},
-    "Q1457376": {"ar": "كسوف نجم ثنائي", "en": "eclipsing binary star"},  # 288516 pages
-    "Q15917122": {"ar": "نجم متغير دوار", "en": "rotating variable star"},
-    "Q1332364": {"ar": "متغير بيضاوي دوار", "en": "rotating ellipsoidal variable"},
-    "Q204194": {"ar": "سديم مظلم", "en": "dark nebula"},
-    "Q130019": {"ar": "نجم كربوني", "en": "carbon star"},
-    "Q523": {"ar": "نجم", "en": "star", "nl": "ster", "sl": "zvezda"},
-    "Q6243": {"ar": "نجم متغير", "en": "variable star"},
-    "Q115518": {"ar": "مجرة ذات سطوع سطحي منخفض", "en": "low-surface-brightness galaxy"},
+    "Q44559": {
+        "ar": "كوكب خارج المجموعة الشمسية",
+        "en": "extrasolar planet"
+    },
+    "Q13890": {
+        "ar": "نجم مزدوج",
+        "en": "double star"
+    },
+    "Q83373": {
+        "ar": "نجم زائف",
+        "en": "quasar"
+    },
+    "Q46587": {
+        "ar": "نواة مجرة نشطة",
+        "en": "active galactic nucleus"
+    },
+    "Q6999": {
+        "ar": "جرم فلكي",
+        "en": "astronomical object"
+    },
+    "Q13632": {
+        "ar": "سديم كوكبي",
+        "en": "planetary nebula"
+    },
+    "Q1931185": {
+        "ar": "مصدر راديو فلكي",
+        "en": "astronomical radio source"
+    },
+    "Q71963409": {
+        "ar": "تجمع مجري مدمج",
+        "en": "compact group of galaxies"
+    },
+    "Q67206691": {
+        "ar": "مصدر أشعة تحت حمراء",
+        "en": "infrared source"
+    },
+    "Q3863": {
+        "ar": "كويكب",
+        "en": "asteroid"
+    },
+    "Q1153690": {
+        "ar": "نجم متغير طويل",
+        "en": "long period variable"
+    },
+    "Q168845": {
+        "ar": "عنقود نجمي",
+        "en": "star cluster"
+    },
+    "Q1457376": {
+        "ar": "كسوف نجم ثنائي",
+        "en": "eclipsing binary star"
+    },
+    "Q15917122": {
+        "ar": "نجم متغير دوار",
+        "en": "rotating variable star"
+    },
+    "Q1332364": {
+        "ar": "متغير بيضاوي دوار",
+        "en": "rotating ellipsoidal variable"
+    },
+    "Q204194": {
+        "ar": "سديم مظلم",
+        "en": "dark nebula"
+    },
+    "Q130019": {
+        "ar": "نجم كربوني",
+        "en": "carbon star"
+    },
+    "Q6243": {
+        "ar": "نجم متغير",
+        "en": "variable star"
+    },
+    "Q115518": {
+        "ar": "مجرة ذات سطوع سطحي منخفض",
+        "en": "low-surface-brightness galaxy"
+    }
+}
+
+Space_Descraptions = {
+    "Q523": {
+        "ar": "نجم",
+        "en": "star",
+        "nl": "ster",
+        "sl": "zvezda"
+    },
     "Q318": {
         "ar": "مجرة",
         "nl": "sterrenstelsel",
@@ -146,9 +155,7 @@ Space_Desc = {
         "sl": "galaksija",
         "id": "galaksi",
         "ne": "आकासगङ्गा",
-        # "de": "Galaxie im Sternbild Jagdhunde",
         "es": "galaxia",
-        # "it": "galassia nella costellazione dei Cani da Caccia",
         "fr": "galaxie",
         "ru": "галактика",
         "pt": "galáxia",
@@ -157,29 +164,10 @@ Space_Desc = {
         "ca": "galàxia",
         "ast": "galaxa",
         "ga": "réaltra",
-        "hr": "galaktika",
-    },
+        "hr": "galaktika"
+    }
 }
-# ---
-Space_Descraptions = {}
-# ---
-for k, val in Space_Desc.items():
-    if len(val.keys()) > 2:
-        Space_Descraptions[k] = val
-    else:
-        Space_Descraptions[k] = {"ar": val["ar"]}
-# ---
-# enlab:primary school, q:Q9842
-# enlab:taxon, q:Q16521
-# ---
-# Space_Descraptions["Q726242"] = { "ar":"نجم","en":"RR Lyrae variable" }
-# Space_Descraptions["Q2247863"] = { "ar":"نجم", "en":"high proper-motion star" }
-# Space_Descraptions["Q66619666"] = { "ar":"نجم","en":"Red Giant Branch star" }
-# Space_Descraptions["Q72803622"] = { "ar":"نجم","en":"emission-line star" }
-# ---
-for xd in Space_Descraptions:
-    DescraptionsTable[xd] = Space_Descraptions[xd]
-# ---
+
 Taxon_Descraptions = {
     "species of insect": {
         "ar": "نوع من الحشرات",
@@ -379,4 +367,39 @@ Taxon_Descraptions = {
         "sq": "e zvarranikëve",
     },
 }
-# ---
+
+Space_Descraptions.update({
+    k: {"ar": val["ar"]}
+    for k, val in Space_Desc.items()
+})
+
+many_lang_qid_desc = get_data("descraptions")
+
+# ======================
+# Qid_Descraptions
+# ======================
+
+# Qid_Descraptions used in many codes within `wd_core`
+Qid_Descraptions = {
+    qid: {"ar": labs["ar"]}
+    for qid, labs in Qid_Desc.items()
+}
+
+Qid_Descraptions.update(many_lang_qid_desc)
+
+# ======================
+# DescraptionsTable
+# ======================
+
+DescraptionsTable.update({
+    labs["en"]: {"ar": labs["ar"]}
+    for qid, labs in Qid_Desc.items()
+})
+
+DescraptionsTable.update({
+    labse.get("en"): labse
+    for _, labse in many_lang_qid_desc.items()
+    if labse.get("en", "") != ""
+})
+
+DescraptionsTable.update(Space_Descraptions)
