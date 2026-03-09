@@ -1,4 +1,63 @@
-# https://www.wikidata.org/wiki/User:Mr._Ibrahem/descraptions.json?action=raw
+# many_lang_qid_desc at: https://www.wikidata.org/wiki/User:Mr._Ibrahem/descraptions.json?action=raw
+
+Scientific_descraptions = {
+    "sl": "znanstveni članek",
+    "ar": "مقالة بحثية",
+    "ast": "artículu científicu",
+    "bg": "научна статия",
+    "bn": "বৈজ্ঞানিক নিবন্ধ",
+    "ca": "article científic",
+    "cs": "vědecký článek",
+    "da": "videnskabelig artikel",
+    "de": "wissenschaftlicher Artikel",
+    "el": "επιστημονικό άρθρο",
+    "en": "scientific article",
+    "eo": "scienca artikolo",
+    "es": "artículo científico",
+    "et": "teaduslik artikkel",
+    "fi": "tieteellinen artikkeli",
+    "fr": "article scientifique",
+    "gl": "artigo científico",
+    "he": "מאמר מדעי",
+    "hr": "znanstveni članak",
+    "hu": "tudományos cikk",
+    "id": "artikel ilmiah",
+    "it": "articolo scientifico",
+    "ja": "年の論文",
+    "ka": "სამეცნიერო სტატია",
+    "ko": "년 논문",
+    "nan": "nî lūn-bûn",
+    "nb": "vitenskapelig artikkel",
+    "nl": "wetenschappelijk artikel",
+    "nn": "vitskapeleg artikkel",
+    "oc": "article scientific",
+    "pl": "artykuł naukowy",
+    "pt": "artigo científico",
+    "pt-br": "artigo científico",
+    "ro": "articol științific",
+    "ru": "научная статья",
+    "sk": "vedecký článok",
+    "sq": "artikull shkencor",
+    "sr": "научни чланак",
+    "sr-ec": "научни чланак",
+    "sr-el": "naučni članak",
+    "sv": "vetenskaplig artikel",
+    "tg-cyrl": "мақолаи илмӣ",
+    # "tg-latn":"maqolai ilmiy",
+    "th": "บทความทางวิทยาศาสตร์",
+    "tl": "artikulong pang-agham",
+    "tr": "bilimsel makale",
+    "uk": "наукова стаття",
+    "vi": "bài báo khoa học",
+    # ---
+    "zh": "年学术文章",  # 年论文
+    "zh-hans": "年学术文章",  # same as zh
+    "wuu": "年学术文章",  # same as zh
+
+    # ---
+    "zh-hant": "年學術文章",  # 年論文
+    "yue": "年學術文章",  # same as zh-hant
+}
 
 many_lang_qid_desc = {
     "Q11173": {
@@ -1155,7 +1214,6 @@ many_lang_qid_desc["Q11266439"] = {  # Wikimedia template#Q11753321
     "zh-tw": "維基媒體模板",
 }
 
-
 # https://www.wikidata.org/wiki/MediaWiki:Gadget-autoEdit.js
 many_lang_qid_desc["Q11266439_xx"] = {  # Wikimedia template#Q11753321
     "ab": "ашаблон Авикипедиа",
@@ -1396,4 +1454,26 @@ many_lang_qid_desc["Q11266439_xx"] = {  # Wikimedia template#Q11753321
     "zh-mo": "維基媒體模板",
     "zh-sg": "维基媒体模板",
     "zh-tw": "維基媒體模板",
+}
+
+many_lang_qid_desc["Q13442814"] = Scientific_descraptions  # scientific article
+
+# https://www.wikidata.org/wiki/User:Mr._Ibrahem/replace_descraptions.json?action=raw
+replace_desc = {
+    "hr": {
+        # https://www.wikidata.org/w/index.php?title=User_talk:Mr._Ibrahem&oldid=2470736170#c-Vargenau-20260309134900-Vargenau-20260223164500
+        # "kategorija na Wikimediji": "kategorija u wikimediju",
+        "popis na Wikimediji": "popis u wikimediju",
+        "predložak Wikimedija": "predložak za wikimedije",
+        "predložak na Wikimediji": "predložak za wikimedije",
+        "razdvojbena stranica na Wikimediji": "razdvojbena stranica u wikimediju",
+    },
+    "hu": {
+        "férfi keresztnév": "férfikeresztnév",
+    },
+    "sl": {
+        "kategorija Wikimedije": "kategorija Wikimedie",
+        "razločitvena stran Wikimedije": "razločitvena stran Wikimedie",
+        "seznam Wikimedije": "seznam Wikimedie",
+    }
 }

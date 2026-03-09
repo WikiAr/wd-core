@@ -39,8 +39,7 @@ group by ?P31
 
 """
 
-from desc_dicts.scientific_article_desc import Scientific_descraptions
-from desc_dicts.descraptions_dict import many_lang_qid_desc
+from desc_dicts.descraptions_dict import many_lang_qid_desc, Scientific_descraptions
 
 DescraptionsTable = {
     "scientific article": Scientific_descraptions,
@@ -108,7 +107,6 @@ for qid, labs in Qid_Desc.items():
     Qid_Descraptions[qid] = {"ar": labs["ar"]}
     DescraptionsTable[labs["en"]] = {"ar": labs["ar"]}
 
-many_lang_qid_desc["Q13442814"] = Scientific_descraptions  # scientific article
 # ---
 # merge 2 dictionaries
 # ---
@@ -382,22 +380,3 @@ Taxon_Descraptions = {
     },
 }
 # ---
-# https://www.wikidata.org/wiki/User:Mr._Ibrahem/replace_descraptions.json?action=raw
-replace_desc = {
-    "hr": {
-        # https://www.wikidata.org/w/index.php?title=User_talk:Mr._Ibrahem&oldid=2470736170#c-Vargenau-20260309134900-Vargenau-20260223164500
-        # "kategorija na Wikimediji": "kategorija u wikimediju",
-        "popis na Wikimediji": "popis u wikimediju",
-        "predložak Wikimedija": "predložak za wikimedije",
-        "predložak na Wikimediji": "predložak za wikimedije",
-        "razdvojbena stranica na Wikimediji": "razdvojbena stranica u wikimediju",
-    },
-    "hu": {
-        "férfi keresztnév": "férfikeresztnév",
-    },
-    "sl": {
-        "kategorija Wikimedije": "kategorija Wikimedie",
-        "razločitvena stran Wikimedije": "razločitvena stran Wikimedie",
-        "seznam Wikimedije": "seznam Wikimedie",
-    },
-}

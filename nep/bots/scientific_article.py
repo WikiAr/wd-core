@@ -7,8 +7,9 @@ from nep.bots.scientific_article import make_scientific_article
 import re
 import dateutil.parser
 import logging
+
 from nep.bots.helps import Get_P_API_time
-from desc_dicts.scientific_article_desc import Scientific_descraptions
+from desc_dicts.descraptions_dict import Scientific_descraptions
 
 logger = logging.getLogger(__name__)
 
@@ -343,7 +344,7 @@ def make_scientific_article(item, p31, num, TestTable=False):
         # ---
         item_desc = item_descriptions.get(lang, "")
         # ---
-        ar_descs = ["مقالة علمية", "مقالة بحثية"]
+        _ar_descs = ["مقالة علمية", "مقالة بحثية"]
         # ---
         if lang not in item_descriptions.keys():
             NewDesc[lang] = {"language": lang, "value": lang_e}

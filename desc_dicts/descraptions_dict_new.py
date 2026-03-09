@@ -1,12 +1,17 @@
 # https://www.wikidata.org/wiki/User:Mr._Ibrahem/descraptions.json?action=raw
+import functools
 import json
 import logging
 import requests
 from pathlib import Path
-from desc_dicts.descraptions_dict import many_lang_qid_desc as backup_data
+from desc_dicts.descraptions_dict import many_lang_qid_desc, replace_desc
 
-many_lang_qid_desc = {}
 logger = logging.getLogger(__name__)
+
+back_up_data = {
+    "descraptions": many_lang_qid_desc,
+    "replace_descraptions": replace_desc,
+}
 
 
 def load_data_from_url(page_name="descraptions.json"):
@@ -40,6 +45,7 @@ def open_file_json(file_path: Path):
     return {}
 
 
+@functools.lru_cache(maxsize=1)
 def get_data(file_name: str) -> dict[str, dict[str, str]]:
     """
     file_name one of ("descraptions", "replace_descraptions")
@@ -50,7 +56,7 @@ def get_data(file_name: str) -> dict[str, dict[str, str]]:
     if not data:
         data = load_data_from_url(page_name=file_name)
 
-    if not data and file_name == "descraptions":
-        data = backup_data
+    if not data:
+        data = back_up_data.get(file_name, {})
 
     return data
