@@ -1,33 +1,19 @@
 import sys
 import os
-import configparser
 
-project = "/data/project/himo"
-# ---
-if not os.path.isdir(project):
-    project = "I:/core/bots/core1"
-# ---
-config = configparser.ConfigParser()
-config.read(f"{project}/confs/user.ini")
-DEFAULT = config["DEFAULT"]
+from dotenv import load_dotenv
+load_dotenv()
 
-username = config["DEFAULT"].get("botusername", "")
-password = config["DEFAULT"].get("botpassword", "")
-# ---
+qs_token = os.getenv("QS_TOKEN")
+qs_tokenbot = os.getenv("QS_TOKEN_BOT")
 
-passworden = config["DEFAULT"].get("passworden", "")
-passwordwd = config["DEFAULT"].get("passwordwd", "")
 
-password_ar = config["DEFAULT"].get("password_ar", "")
-password_en = config["DEFAULT"].get("password_en", "")
 
-hiacc = config["DEFAULT"].get("hiacc", "")
-hipass = config["DEFAULT"].get("hipass", "")
+username = os.getenv("WIKIPEDIA_BOT_USERNAME")
+password = os.getenv("WIKIPEDIA_BOT_PASSWORD")
 
-mdwiki_pass = config["DEFAULT"].get("mdwiki_pass", "")
-
-qs_token = config["DEFAULT"].get("qs_token", "")
-qs_tokenbot = config["DEFAULT"].get("qs_tokenbot", "")
+hiacc = os.getenv("WIKIPEDIA_HIMO_USERNAME")
+hipass = os.getenv("WIKIPEDIA_HIMO_PASSWORD")
 
 if "workibrahem" in sys.argv:
     username = hiacc
