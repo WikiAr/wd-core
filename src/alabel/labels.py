@@ -28,6 +28,8 @@ Limit = {1: ""}
 # ---
 # result = wiki_sql.sql_new(qua, wiki="", printqua=False)
 # ---
+# TODO: Table 'wikidatawiki_p.wbt_item_terms' doesn't exist
+# ---
 Quaa = """#USE wikidatawiki_p;
 SELECT
     CONCAT("Q", ips_item_id) as qid,
@@ -63,7 +65,11 @@ if Limit[1]:
 def main():
     # python3 core8/pwb.py alabel/labels -limit:20
     # ---
-    result = wiki_sql.sql_new(Quaa, wiki="wikidata", printqua=True)
+    try:
+        result = wiki_sql.sql_new(Quaa, wiki="wikidata", printqua=True)
+    except Exception as e:
+        print(f"Exception: {e}")
+        return
     # ---
     len_result = len(result)
     # ---
