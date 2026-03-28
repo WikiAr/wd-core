@@ -139,6 +139,7 @@ def setup_logging(
     name: str = __name__,
     level: str = "DEBUG",
     log_file: str | None = None,
+    propagate: bool = False,
 ) -> None:
     """
     Configure logging for the entire project namespace only.
@@ -150,7 +151,7 @@ def setup_logging(
 
     numeric_level = getattr(logging, level.upper(), logging.INFO) if isinstance(level, str) else level
     project_logger.setLevel(numeric_level)
-    project_logger.propagate = False
+    project_logger.propagate = propagate
 
     formatter = colorlog.ColoredFormatter(
         fmt="%(name)s:%(lineno)s %(funcName)s() - %(log_color)s%(levelname)-s %(reset)s%(message)s",
