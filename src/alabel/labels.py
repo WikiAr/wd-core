@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 # ---
 from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 # ---
 from api_sql import wiki_sql
 

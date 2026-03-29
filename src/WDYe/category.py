@@ -27,7 +27,7 @@ import sys
 # ---
 # ---
 from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 # ---
 
 # ---

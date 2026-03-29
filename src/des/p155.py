@@ -21,7 +21,7 @@ from himo_api import New_Himo_API
 import logging
 logger = logging.getLogger(__name__)
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="mr", www="www")
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 # ---
 from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
 from des.p155tables import keys_1, Sports_Keys_Lab

@@ -56,7 +56,7 @@ from wd_api import wd_sparql_bot
 
 # ---
 from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(Mr_or_bot="bot", www="www")
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 # ---
 from wd_api import qs_bot
 from wd_api import wd_bot
