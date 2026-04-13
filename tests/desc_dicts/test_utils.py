@@ -5,10 +5,10 @@ import os
 import pytest
 
 from src.wd_utils.utils import (
+    are_dates_same,
     get_file_date,
     open_file_json,
     open_file_json_check_time,
-    are_dates_same,
 )
 
 
