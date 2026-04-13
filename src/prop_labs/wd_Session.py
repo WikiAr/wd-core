@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 
 """
 
@@ -16,19 +16,16 @@ import time
 
 import requests
 
-logger = logging.getLogger(__name__)
-
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-
-from SPARQLWrapper import JSON, SPARQLWrapper
+from typing import Dict, List
 
 sys.path.append(str(Path(__file__).parent))
 sys.path.append("I:/core/bots/new/newapi_bot")
 
 from newapi.accounts.useraccount import User_tables_ibrahem
-from translate_bot import translate_en_to_ar
 
+
+logger = logging.getLogger(__name__)
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"
 MW_API = "https://www.wikidata.org/w/api.php"
 

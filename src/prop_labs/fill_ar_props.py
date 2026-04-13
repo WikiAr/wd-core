@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 
 """
 Wikidata Properties Arabic Labels/Descriptions Filler
@@ -26,26 +26,17 @@ Wikidata Properties Arabic Labels/Descriptions Filler
 import argparse
 import json
 import logging
-import os
-import sys
 import time
-
-import requests
-
-logger = logging.getLogger(__name__)
-
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-
+from typing import List
 from SPARQLWrapper import JSON, SPARQLWrapper
 from tqdm import tqdm
-
-sys.path.append(str(Path(__file__).parent))
-sys.path.append("I:/core/bots/new/newapi_bot")
-
-from newapi.accounts.useraccount import User_tables_ibrahem
 from translate_bot import translate_en_to_ar
 from wd_Session import WikidataSession
+
+from newapi.accounts.useraccount import User_tables_ibrahem
+
+logger = logging.getLogger(__name__)
 
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"
 MW_API = "https://www.wikidata.org/w/api.php"
