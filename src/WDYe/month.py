@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 #
 
+import logging
 import sys
 
-import logging
 from wd_api import newdesc
-
 
 logger = logging.getLogger(__name__)
 

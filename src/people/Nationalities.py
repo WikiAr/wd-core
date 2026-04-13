@@ -10,13 +10,8 @@ https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
 
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-from pathlib import Path
 import json
-
+from pathlib import Path
 
 Dir = Path(__file__).parent
 

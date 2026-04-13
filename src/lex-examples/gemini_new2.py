@@ -1,10 +1,10 @@
-import sys
 import json
-import requests
-from tqdm import tqdm
+import sys
 from pathlib import Path
-from SPARQLWrapper import SPARQLWrapper, JSON
 
+import requests
+from SPARQLWrapper import JSON, SPARQLWrapper
+from tqdm import tqdm
 
 Dir = Path(__file__).parent
 dump_path = Dir / "forms"

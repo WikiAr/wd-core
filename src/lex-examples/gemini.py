@@ -1,9 +1,10 @@
-import sys
 import json
 import re
+import sys
+from pathlib import Path
+
 import requests
 from tqdm import tqdm
-from pathlib import Path
 
 Dir = Path(__file__).parent
 dump_path = Dir / "forms"

@@ -11,10 +11,8 @@ python3 core8/pwb.py des/fam railway Q55488
 #
 
 import sys
-from wd_api import wd_desc
 
-from wd_api import wd_bot
-
+from wd_api import wd_bot, wd_desc
 
 from des.ru_st_2_latin import make_en_label
 

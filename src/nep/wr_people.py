@@ -5,17 +5,16 @@ from nep.wr_people import work_people
 
 """
 
-import re
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 
 from wd_api import wd_desc
 
-from people.new3 import translations_o
-
 from nep.tables.lists import en_des_to_ar
 from nep.tables.si_tables import genders
+from people.new3 import translations_o
 from people.people_get_topic import get_topic
 
 

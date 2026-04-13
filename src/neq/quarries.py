@@ -7,8 +7,9 @@ from nep.tables.quarries import SPARQLSE
 
 
 import sys
-from nep.tables.lists import p50s, Taton_list, Space_tab, others_list, songs_type, space_list_and_other_2
+
 from desc_dicts.descraptions import Qid_Descraptions
+from nep.tables.lists import Space_tab, Taton_list, others_list, p50s, songs_type, space_list_and_other_2
 
 p31_only_quarry = "select ?item where {?item wdt:P31 wd:%s}"
 

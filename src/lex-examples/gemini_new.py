@@ -1,10 +1,11 @@
-import sys
 import json
+import sys
 import time
-import requests
-from tqdm import tqdm
 from pathlib import Path
-from SPARQLWrapper import SPARQLWrapper, JSON
+
+import requests
+from SPARQLWrapper import JSON, SPARQLWrapper
+from tqdm import tqdm
 
 Dir = Path(__file__).parent
 

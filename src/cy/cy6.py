@@ -23,11 +23,9 @@ python3 core8/pwb.py cy/cy6 workibrahem test2 -title:كوين_سيمونز
 
 import sys
 
-
-from cy_bot.cy_api import page_put, GetPageText
+from cy_bot.cy_api import GetPageText, page_put
+from cy_bot.cy_helps import TEST, printo, printt
 from cy_bot.do_text import do_One_Page
-from cy_bot.cy_helps import printt, printo, TEST
-
 
 workibrahem = "workibrahem" in sys.argv
 

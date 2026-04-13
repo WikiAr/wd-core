@@ -8,20 +8,15 @@ python pwb.py des/filmnew
 Q24862
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-import re
-import pywikibot
 import logging
+import re
+
+import pywikibot
 
 logger = logging.getLogger(__name__)
 
 
-from wd_api import wd_desc
-from wd_api import wd_bot
-
+from wd_api import wd_bot, wd_desc
 
 wikidatasite = pywikibot.Site("wikidata", "wikidata")
 repo = wikidatasite.data_repository()

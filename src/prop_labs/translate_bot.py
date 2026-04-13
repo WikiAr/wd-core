@@ -3,13 +3,14 @@
 
 """ """
 
+import json
 import os
 import sys
 import time
-import jsonlines
-import json
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+
+import jsonlines
 
 sys.path.append(str(Path(__file__).parent))
 

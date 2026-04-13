@@ -3,24 +3,12 @@
 from nep.space_others import Make_space_desc, Make_others_desc
 """
 
-import re
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 
 
-from nep.new_way import P1433_ids, do_P1433_ids
-
-
-from nep.tables.lists import (
-    bldiat,
-    Space_tab,
-    p50s,
-    songs_type,
-    others_list,
-    qura,
-    Geo_entity,
-)
 from nep.bots.its import (
     its_a_computergame,
     its_a_film,
@@ -31,6 +19,16 @@ from nep.bots.its import (
     its_something_in_a_country,
     its_something_in_an_entity,
     its_songs,
+)
+from nep.new_way import P1433_ids, do_P1433_ids
+from nep.tables.lists import (
+    Geo_entity,
+    Space_tab,
+    bldiat,
+    others_list,
+    p50s,
+    qura,
+    songs_type,
 )
 
 

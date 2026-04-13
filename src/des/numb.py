@@ -5,20 +5,13 @@ python3 core8/pwb.py des/numb
 
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-from wd_api import wd_bot
-
-
 from himo_api import New_Himo_API
+from wd_api import wd_bot
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 

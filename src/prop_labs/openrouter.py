@@ -1,9 +1,9 @@
 import json
-import requests
 import os
-
-from tqdm import tqdm
 from pathlib import Path
+
+import requests
+from tqdm import tqdm
 
 env_path = Path(__file__).parent / ".env2"
 

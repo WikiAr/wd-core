@@ -5,22 +5,21 @@ from .do_text import make_new_text, do_One_Page
 """
 
 import re
+
 import wikitextparser as wtp
 
-
-from .cy_regs import make_data_new
 from .cy_helps import (
-    get_temps_str,
-    get_temp_arg,
-    printt,
-    print_test2,
-    find_cy_temp,
-    printo,
     TEST,
     CheckTempalteInPageText,
+    find_cy_temp,
+    get_temp_arg,
+    get_temps_str,
+    print_test2,
+    printo,
+    printt,
 )
+from .cy_regs import make_data_new
 from .cy_sparql import GetSparql
-
 
 remove_date = {}
 Work_with_Year = {}

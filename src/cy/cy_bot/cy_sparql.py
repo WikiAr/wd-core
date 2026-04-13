@@ -8,9 +8,9 @@ import re
 import sys
 import urllib
 import urllib.parse
-import requests
 from datetime import datetime
 
+import requests
 
 # from .cy_helps import printt
 

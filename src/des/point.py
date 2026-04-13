@@ -4,18 +4,14 @@
 تسمية  عناصر ويكي بيانات
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
 
+
+import logging
 import re
 import sys
 
-from wd_api import wd_bot
-
 from himo_api import New_Himo_API
-import logging
+from wd_api import wd_bot
 
 logger = logging.getLogger(__name__)
 

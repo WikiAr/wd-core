@@ -4,9 +4,7 @@
 
 from wd_api import newdesc
 
-
 from desc_dicts.descraptions import Qid_Descraptions
-
 
 QS = {"Q11173": Qid_Descraptions["Q11173"]}
 

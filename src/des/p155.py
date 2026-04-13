@@ -6,27 +6,30 @@
 بناءاً على خاصية سبقه أو تبعه
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
 
+
+import logging
 import re
 import sys
+
 import pywikibot
-from wd_api import wd_bot
-
-
 from himo_api import New_Himo_API
-import logging
+from wd_api import wd_bot
 
 logger = logging.getLogger(__name__)
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 
-from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
-from des.p155tables import keys_1, Sports_Keys_Lab
-
+from des.p155tables import (
+    International_Federation,
+    Mako_keys,
+    Mako_keys2,
+    Mako_keys_4,
+    Sports_Keys_Lab,
+    cccccups,
+    keys_1,
+    olympics,
+)
 
 Usema = {1: True}
 Ask = {1: True}

@@ -6,9 +6,10 @@
 
 from wd_api import newdesc
 
+from desc_dicts.descraptions import DescraptionsTable
+
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 
-from desc_dicts.descraptions import DescraptionsTable
 
 translations = {"film series": DescraptionsTable["film series"]}
 

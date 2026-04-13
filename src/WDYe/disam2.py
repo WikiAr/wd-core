@@ -5,15 +5,15 @@
 
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 
-#
-import logging
-from API import open_url
-
-from wd_api import wd_bot
-import pywikibot
 import json
 
-from wd_api import wd_desc
+#
+import logging
+
+import pywikibot
+from API import open_url
+from wd_api import wd_bot, wd_desc
+
 from desc_dicts.descraptions import DescraptionsTable
 
 logger = logging.getLogger(__name__)

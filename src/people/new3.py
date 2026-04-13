@@ -34,21 +34,16 @@ SELECT * WHERE {
 
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-import re
-import time
-import random
-import sys
-
-from people.Nationalities import translationsNationalities
-import people.occupationsall as oc
-from wd_api import wd_bot
-
-from wd_api import wd_desc
 import logging
+import random
+import re
+import sys
+import time
+
+from wd_api import wd_bot, wd_desc
+
+import people.occupationsall as oc
+from people.Nationalities import translationsNationalities
 
 logger = logging.getLogger(__name__)
 

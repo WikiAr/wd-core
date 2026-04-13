@@ -33,11 +33,7 @@ logger = logging.getLogger(__name__)
 
 import sys
 
-
-from wd_api import wd_bot
-
-
-from wd_api import wd_desc
+from wd_api import wd_bot, wd_desc
 
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
 # wd_desc.work_api_desc(NewDesc, qid)

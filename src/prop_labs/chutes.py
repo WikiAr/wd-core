@@ -1,7 +1,8 @@
-import aiohttp
 import asyncio
 import json
 from pathlib import Path
+
+import aiohttp
 
 env_path = Path(__file__).parent / ".env2"
 

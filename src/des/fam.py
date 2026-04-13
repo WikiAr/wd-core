@@ -10,15 +10,15 @@ python3 core8/pwb.py des/fam
 
 """
 
-import tqdm
-import sys
-import random
-
-from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
-from wd_api import wd_bot
-from wd_api import newdesc
-from des.railway import railway_tables, work_railway
 import logging
+import random
+import sys
+
+import tqdm
+from wd_api import newdesc, wd_bot
+
+from des.railway import railway_tables, work_railway
+from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
 
 logger = logging.getLogger(__name__)
 

@@ -49,25 +49,21 @@ python3 core8/pwb.py nep/si3g -newpages:200 ask
 
 """
 
-#
-# (C) Ibrahem Qasim, 2023
-#
-import sys
 import logging
+import sys
+import time
+from pathlib import Path
+
+import gent
+from newapi.page import NEW_API
+
+from nep import si3
 
 logger = logging.getLogger(__name__)
-
 
 sys.argv.append("-family:wikidata")
 sys.argv.append("-lang:wikidata")
 
-import time
-from pathlib import Path
-
-
-import gent
-from nep import si3
-from newapi.page import NEW_API
 
 api_new = NEW_API("www", family="wikidata")
 # api_new.Login_to_wiki()

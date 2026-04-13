@@ -36,7 +36,6 @@ from nep.tables.lists import space_list_and_other, others_list, Space_tab, other
 
 from desc_dicts.descraptions import Space_Descraptions
 
-
 en_des_to_ar_no_lower = {
     "Royal Dutch East indies Army personel": "أفراد جيش جزر الهند الشرقية الملكية الهولندية",
     "duits beeldend kunstenaar": "فنان تشكيلي ألماني",

@@ -4,7 +4,6 @@
 
 from wd_api import newdesc
 
-
 quuu = {
     "species of beetle": """
 SELECT DISTINCT

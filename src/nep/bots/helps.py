@@ -6,15 +6,17 @@ Usage:
 from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_female_for_p17, Get_label, get_label_txt, get_lng_description, Get_label_from_item, get_mainsnak
 """
 
-import os
-import sys
 import json
 import logging
+import os
+import sys
 from pathlib import Path
+
+from wd_api import wd_bot
+
 from nep.others import read_json
 from nep.tables.cash import labels_cach
 from nep.tables.nats import nationalities
-from wd_api import wd_bot
 
 logger = logging.getLogger(__name__)
 

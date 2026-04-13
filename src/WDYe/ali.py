@@ -4,23 +4,14 @@
 اضافة تسميات بناءاً على الاسم الأول واسم العائلة
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-from wd_api import wd_bot
-from api_sql import sql
-
 import logging
-
-logger = logging.getLogger(__name__)
-
-# import pywikibot.data.wikidataquery as wdquery
-# used in logfiles, unicoded strings
-
 import sys
 
+from api_sql import sql
+from wd_api import wd_bot
 
-File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
+logger = logging.getLogger(__name__)
+WD_API_Bot = None
 
 try:
     from himo_api import New_Himo_API
@@ -28,6 +19,8 @@ try:
     WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 except ImportError:
     logger.info("<<lightred>> Can't import New_Himo_API")
+
+File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
 
 ask = {1: True}
 OFFSET = {1: "   "}

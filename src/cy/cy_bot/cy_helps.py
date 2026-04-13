@@ -5,6 +5,7 @@ from .cy_helps import printt, CheckTempalteInPageText, printo, print_test2, ec_d
 
 import sys
 import urllib.parse
+
 import wikitextparser as wtp
 
 qu_2018 = """SELECT

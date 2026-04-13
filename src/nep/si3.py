@@ -3,29 +3,25 @@
 from nep.si3 import do_P1433_new_list, work_new_list, make_scientific_art
 """
 
-import sys
 import logging
+import sys
 
-from wd_api import wd_desc
+from wd_api import wd_bot, wd_desc
 
-from des.ru_st_2_latin import make_en_label
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway
-
-from wd_api import wd_bot
-
+from des.ru_st_2_latin import make_en_label
 from desc_dicts.descraptions_dict_new import get_data
-from nep.wr_people import work_people
-from people.people_get_topic import print_new_jobs
 from nep.bots.helps import Get_P_API_id, log_new_types
 from nep.bots.scientific_article import make_scientific_article
 from nep.bots.tax_desc import work_taxon_desc
-from nep.tables.lists import space_list_and_other, others_list, others_list_2
-from nep.tables.si_tables import MainTestTable, new_types, offsetbg, Qids_translate, Add_en_labels, Geo_List
-from nep.space_others import Make_space_desc, Make_others_desc
-
-from nep.new_way import P1433_ids, do_P1433_ids, P1433_en_to_qid
+from nep.new_way import P1433_en_to_qid, P1433_ids, do_P1433_ids
+from nep.space_others import Make_others_desc, Make_space_desc
+from nep.tables.lists import others_list, others_list_2, space_list_and_other
+from nep.tables.si_tables import Add_en_labels, Geo_List, MainTestTable, Qids_translate, new_types, offsetbg
+from nep.wr_people import work_people
+from people.people_get_topic import print_new_jobs
 
 logger = logging.getLogger(__name__)
 

@@ -22,10 +22,9 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 
 """
 
-from newapi.page import MainPage
-
-from cy_bot.do_text import do_One_Page
 import gent
+from cy_bot.do_text import do_One_Page
+from newapi.page import MainPage
 
 skip_titles = [
     "قالب:نتيجة سباق الدراجات",

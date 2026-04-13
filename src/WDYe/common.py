@@ -9,8 +9,9 @@ python pwb.py wd/common
 """
 
 
-import pywikibot
 import logging
+
+import pywikibot
 from wd_api import newdesc
 
 from desc_dicts.descraptions import DescraptionsTable

@@ -11,14 +11,15 @@ python3 core8/pwb.py neq/nldes3 a2r sparql:Q7889 ask
 python3 core8/pwb.py neq/nldes3 a2r sparql:Q7889 ask
 
 """
-import sys
-import re
+import logging
 import random
+import re
+import sys
+
+from wd_api import wd_sparql_bot
 
 from nep.nldesc import action_one_item
 from neq.quarries import SPARQLSE
-from wd_api import wd_sparql_bot
-import logging
 
 logger = logging.getLogger(__name__)
 

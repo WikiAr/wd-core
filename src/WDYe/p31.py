@@ -7,24 +7,18 @@ python pwb.py c30/p31
 python pwb.py c30/p31 enwiki
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
+import sys
 
 from himo_api import New_Himo_API
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 
+from api_sql import sql as c18sql
 
 import logging
 
 logger = logging.getLogger(__name__)
 
-
-import sys
-
-
-from api_sql import sql as c18sql
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 
 
 # use arwiki_p;

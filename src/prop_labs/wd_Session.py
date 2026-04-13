@@ -7,26 +7,26 @@ from wd_Session import WikidataSession
 
 """
 
+import argparse
+import json
+import logging
 import os
 import sys
 import time
-import json
-import argparse
+
 import requests
-import logging
 
 logger = logging.getLogger(__name__)
 
 from pathlib import Path
-
-from SPARQLWrapper import SPARQLWrapper, JSON
 from typing import Dict, List, Optional, Tuple
+
+from SPARQLWrapper import JSON, SPARQLWrapper
 
 sys.path.append(str(Path(__file__).parent))
 sys.path.append("I:/core/bots/new/newapi_bot")
 
 from newapi.accounts.useraccount import User_tables_ibrahem
-
 from translate_bot import translate_en_to_ar
 
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"

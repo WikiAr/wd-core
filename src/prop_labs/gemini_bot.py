@@ -5,10 +5,11 @@ python3 core8/pwb.py I:/core/bots/wd_core/prop_labs/gemini_bot.py
 
 """
 
-import tqdm
-from pathlib import Path
-import google.generativeai as genai
 import time
+from pathlib import Path
+
+import google.generativeai as genai
+import tqdm
 
 env_path = Path(__file__).parent / ".env"
 

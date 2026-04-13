@@ -6,10 +6,11 @@
 
 from wd_api import newdesc
 
+from desc_dicts.descraptions import Qid_Descraptions
+
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 
 
-from desc_dicts.descraptions import Qid_Descraptions
 
 
 translations = {"Q11173": Qid_Descraptions["Q11173"]}

@@ -163,16 +163,16 @@ genese = {
 
 from wd_api import wd_bot
 
+from nep.bots.helps import (
+    Get_label_from_item,
+    get_label_txt,
+    get_mainsnak,
+)
 from nep.bots.its import (
     its_a_generalthing,
     its_a_thing_located_in_country,
     its_something_in_a_country,
     its_something_in_an_entity,
-)
-from nep.bots.helps import (
-    get_label_txt,
-    Get_label_from_item,
-    get_mainsnak,
 )
 
 lng_canbeused = [

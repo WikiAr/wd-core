@@ -6,14 +6,14 @@ from .cy_api import page_put, GetPageText
 """
 
 import sys
-import requests
 
 # import urlencode
 from urllib.parse import urlencode
 
+import requests
 
 from . import useraccount
-from .cy_helps import printt, printo, make_dada, ec_de_code, TEST
+from .cy_helps import TEST, ec_de_code, make_dada, printo, printt
 
 api_url = "https://" + "ar.wikipedia.org/w/api.php"
 username = useraccount.username

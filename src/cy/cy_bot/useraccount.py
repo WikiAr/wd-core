@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 username = os.getenv("WIKIPEDIA_BOT_USERNAME", "")
 password = os.getenv("WIKIPEDIA_BOT_PASSWORD", "")

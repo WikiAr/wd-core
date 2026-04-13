@@ -2,9 +2,10 @@
 python3 core8/pwb.py dump/arlanglinks
 """
 
-import sys
 import json
+import sys
 from pathlib import Path
+
 from api_sql import wiki_sql
 
 # Dump_Dir = Path(__file__).parent                      # /data/project/himo/bots/dump_core/dump/labels

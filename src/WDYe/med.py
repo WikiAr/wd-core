@@ -5,27 +5,23 @@
 إضافة تسميات مواضيع طبية
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
 
+
+import logging
 import re
+
 import pywikibot
 from wd_api import wd_bot
-import logging
 
 logger = logging.getLogger(__name__)
 
 
 import sys
-
-
 import urllib
-import urllib.request
 import urllib.parse
-from API import open_url
+import urllib.request
 
+from API import open_url
 from himo_api import New_Himo_API
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")

@@ -10,21 +10,13 @@ python pwb.py des/book
 
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-import re
-import pywikibot
-import sys
 import logging
+import re
+import sys
+
+from wd_api import wd_bot, wd_desc, wd_sparql_bot
 
 logger = logging.getLogger(__name__)
-
-from wd_api import wd_sparql_bot
-from wd_api import wd_desc
-from wd_api import wd_bot
-
 
 AskSave = {1: True}
 """Qlist['Q19389637'] = {# مقالة سيرة ذاتية

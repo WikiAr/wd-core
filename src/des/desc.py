@@ -41,31 +41,22 @@ GROUP BY ?item
 limit 100
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-
+import logging
 import re
 import sys
-import logging
 
 logger = logging.getLogger(__name__)
 
 
-from wd_api import wd_sparql_bot
-
-
 from himo_api import New_Himo_API
+from wd_api import wd_sparql_bot
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 
-from wd_api import qs_bot
-from wd_api import wd_bot
+from wd_api import get_property_for_list, qs_bot, wd_bot
 
 from des.contries2 import ContriesTable2
 from des.places import placesTable
-from wd_api import get_property_for_list
 
 # placesTable = {"Q29701762": {"ar": "مستوطنة"}}
 placesTable2 = {fg: placesTable[fg] for fg in placesTable}

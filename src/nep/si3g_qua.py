@@ -10,18 +10,18 @@ python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q1028
 python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q79
 
 """
-import time
+import logging
 import random
 import sys
-
-import logging
+import time
 
 logger = logging.getLogger(__name__)
 
 # from nep import si3
 from wd_api import wd_bot
+
 from nep.wr_people import work_people
-from people.people_get_topic import print_new_jobs, qid_to_p27, qid_to_job
+from people.people_get_topic import print_new_jobs, qid_to_job, qid_to_p27
 
 limit = {1: "500"}
 P106 = {1: []}

@@ -7,15 +7,14 @@ python3 core8/pwb.py des/ru_st_2_latin test
 
 """
 
-from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
-
 from himo_api import New_Himo_API
+from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 
-import pywikibot
 import sys
 
+import pywikibot
 
 letters_to_latin = {
     "ru": {
