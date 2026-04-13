@@ -3,9 +3,9 @@
 import logging
 import sys
 
-logger = logging.getLogger(__name__)
-
 from nep import si3
+
+logger = logging.getLogger(__name__)
 
 # 32500000   اكتمل حتى
 # 32897048  متبقي حتى

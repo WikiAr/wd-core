@@ -19,12 +19,12 @@ import logging
 import wikitextparser as wtp
 from newapi.page import MainPage
 
-logger = logging.getLogger(__name__)
-
 import sys
 
 import gent
 import tqdm
+
+logger = logging.getLogger(__name__)
 
 
 def add_id_to_text(item, text):

@@ -9,15 +9,15 @@ python3 core8/pwb.py WDYe/catwithoutp31
 """
 import logging
 
-logger = logging.getLogger(__name__)
 import re
 
 from himo_api import New_Himo_API
 from wd_api import wd_bot, wd_desc
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
+
+logger = logging.getLogger(__name__)
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 
 Tras = {
     "Q4167836": DescraptionsTable.get("Wikimedia category") or Qid_Descraptions.get("Q4167836") or {},

@@ -4,8 +4,6 @@ import logging
 import sys
 from pathlib import Path
 
-logger = logging.getLogger(__name__)
-
 
 from nep.others import read_json
 from nep.si3 import (
@@ -17,6 +15,8 @@ from nep.si3 import (
 )
 
 Dir = Path(__file__).parent
+
+logger = logging.getLogger(__name__)
 
 
 def read_new_types_file():

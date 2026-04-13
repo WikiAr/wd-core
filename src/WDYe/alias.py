@@ -7,13 +7,13 @@
 
 import logging
 import re
-
-logger = logging.getLogger(__name__)
 import sys
 
 from himo_api import New_Himo_API
 from wd_api import wd_bot
 
+
+logger = logging.getLogger(__name__)
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 
 

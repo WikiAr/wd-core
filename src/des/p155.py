@@ -16,10 +16,6 @@ import pywikibot
 from himo_api import New_Himo_API
 from wd_api import wd_bot
 
-logger = logging.getLogger(__name__)
-
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-
 from des.p155tables import (
     International_Federation,
     Mako_keys,
@@ -30,6 +26,10 @@ from des.p155tables import (
     keys_1,
     olympics,
 )
+
+logger = logging.getLogger(__name__)
+
+WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 
 Usema = {1: True}
 Ask = {1: True}

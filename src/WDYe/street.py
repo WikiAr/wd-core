@@ -6,10 +6,10 @@
 
 import logging
 
+from wd_api import newdesc
+
 logger = logging.getLogger(__name__)
 
-
-from wd_api import newdesc
 
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 

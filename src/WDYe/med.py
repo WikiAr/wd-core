@@ -13,9 +13,6 @@ import re
 import pywikibot
 from wd_api import wd_bot
 
-logger = logging.getLogger(__name__)
-
-
 import sys
 import urllib
 import urllib.parse
@@ -24,9 +21,12 @@ import urllib.request
 from API import open_url
 from himo_api import New_Himo_API
 
+from newapi.page import MainPage
+
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 
-from newapi.page import MainPage
+logger = logging.getLogger(__name__)
+
 
 
 def dec(xx):

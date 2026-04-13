@@ -12,14 +12,14 @@ python3 core8/pwb.py alabel/labels -limit:20
 import logging
 import sys
 
-logger = logging.getLogger(__name__)
-
-
 from himo_api import New_Himo_API
+
+from api_sql import wiki_sql
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 
-from api_sql import wiki_sql
+logger = logging.getLogger(__name__)
+
 
 Limit = {1: ""}
 

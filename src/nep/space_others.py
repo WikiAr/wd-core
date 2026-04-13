@@ -6,9 +6,6 @@ from nep.space_others import Make_space_desc, Make_others_desc
 import logging
 import re
 
-logger = logging.getLogger(__name__)
-
-
 from nep.bots.its import (
     its_a_computergame,
     its_a_film,
@@ -30,6 +27,9 @@ from nep.tables.lists import (
     qura,
     songs_type,
 )
+
+
+logger = logging.getLogger(__name__)
 
 
 def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):

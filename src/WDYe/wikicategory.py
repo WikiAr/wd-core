@@ -3,8 +3,6 @@
 #
 #
 from wd_api import newdesc
-
-# repo = site.data_repository()
 from desc_dicts.descraptions import DescraptionsTable
 
 translations = {"Wikimedia category": DescraptionsTable["Wikimedia category"]}

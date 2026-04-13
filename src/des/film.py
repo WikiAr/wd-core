@@ -13,10 +13,10 @@ import re
 
 import pywikibot
 
-logger = logging.getLogger(__name__)
-
 
 from wd_api import wd_bot, wd_desc
+
+logger = logging.getLogger(__name__)
 
 wikidatasite = pywikibot.Site("wikidata", "wikidata")
 repo = wikidatasite.data_repository()
