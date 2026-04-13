@@ -8,7 +8,7 @@ from nep.wr_people import work_people
 import logging
 import re
 
-from wd_api import wd_desc
+from bots_subs.wd_api.wd_desc import work_api_desc
 
 from nep.tables.lists import en_des_to_ar
 from nep.tables.si_tables import genders
@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 def add_only_ar(q, ara):
     # ---
     tab = {"ar": {"language": "ar", "value": ara}}
-    wd_desc.work_api_desc(tab, q, fixlang=[])
+    work_api_desc(tab, q, fixlang=[])
     # ---
     return
 
@@ -81,7 +81,7 @@ def work_people2(item, topic, num=0, years=""):
     # ---
     logger.info(f"<<lightyellow>> **{num}: work_people:{q}  ({topic})")
     # ---
-    wd_desc.work_api_desc(NewDesc, q, fixlang=[])
+    work_api_desc(NewDesc, q, fixlang=[])
 
 
 def work_people(item, topic, num, ardes):

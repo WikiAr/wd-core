@@ -127,8 +127,7 @@ class WikidataSession:
 
     def set_label_ar(self, pid: str, value: str, summary: str, assert_bot: bool = True) -> dict:
         # remove . from end of value
-        if value.endswith("."):
-            value = value[:-1]
+        value = value.removesuffix(".")
 
         data = {
             "action": "wbsetlabel",
@@ -153,8 +152,7 @@ class WikidataSession:
 
     def set_description_ar(self, pid: str, value: str, summary: str, assert_bot: bool = True) -> dict:
         # remove . from end of value
-        if value.endswith("."):
-            value = value[:-1]
+        value = value.removesuffix(".")
 
         data = {
             "action": "wbsetdescription",

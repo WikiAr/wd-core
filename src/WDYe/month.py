@@ -4,7 +4,7 @@
 import logging
 import sys
 
-from wd_api import newdesc
+from bots_subs.wd_api import newdesc
 
 logger = logging.getLogger(__name__)
 

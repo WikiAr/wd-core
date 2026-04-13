@@ -2,7 +2,7 @@
 #  python pwb.py wd/wikicatategory
 #
 #
-from wd_api import newdesc
+from bots_subs.wd_api import newdesc
 
 from desc_dicts.descraptions import DescraptionsTable
 

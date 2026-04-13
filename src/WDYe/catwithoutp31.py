@@ -10,13 +10,13 @@ python3 core8/pwb.py WDYe/catwithoutp31
 import logging
 import re
 
-from himo_api import New_Himo_API
-from wd_api import wd_bot, wd_desc
-
+from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 
 logger = logging.getLogger(__name__)
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
+WD_API_Bot = NewHimoAPIBot(mr_or_bot="bot", www="www")
 
 Tras = {
     "Q4167836": DescraptionsTable.get("Wikimedia category") or Qid_Descraptions.get("Q4167836") or {},
@@ -92,7 +92,7 @@ def work_one_item(q):
     # ---
     if NewDesc:
         logger.info(f"<<lightyellow>>* adding descriptions to :{q} ")
-        wd_desc.work_api_desc(NewDesc, q)
+        work_api_desc(NewDesc, q)
     else:
         logger.info(f"<<lightred>>* work 2 :{q} no descriptions to add.")
 

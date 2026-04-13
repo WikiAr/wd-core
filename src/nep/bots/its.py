@@ -4,7 +4,7 @@ from nep.bots.its import its_a_composition, its_a_computergame, its_a_discograph
 
 import logging
 
-from wd_api import wd_bot
+from bots_subs.wd_api import wd_bot
 
 from nep.bots.helps import (
     Get_label,

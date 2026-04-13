@@ -124,8 +124,8 @@ def mainwithcat2():
         if arg == "-ns":
             namespaces = value
     # ---
-    wd_api = load_main_api("wikidata", "wikidata")
-    api_new = wd_api.NEW_API()
+    api = load_main_api("wikidata", "wikidata")
+    api_new = api.NEW_API()
     # ---
     if file:
         if not file.startswith(main_dir1):

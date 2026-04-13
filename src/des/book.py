@@ -14,7 +14,9 @@ import logging
 import re
 import sys
 
-from wd_api import wd_bot, wd_desc, wd_sparql_bot
+from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
+from bots_subs.wd_api.wd_sparql_bot import sparql_generator_big_results
 
 logger = logging.getLogger(__name__)
 
@@ -107,11 +109,11 @@ def one_book_item(Qid, pa, lang, keys):
             if saaa in ["y", "a", ""]:
                 if saaa == "a":
                     AskSave[1] = False
-                wd_desc.work_api_desc(NewDesc, qitem)
+                work_api_desc(NewDesc, qitem)
             else:
                 logger.info("* rong answer")
         else:
-            wd_desc.work_api_desc(NewDesc, qitem)
+            work_api_desc(NewDesc, qitem)
 
 
 Comma = {
@@ -203,7 +205,7 @@ def WorkWithOneLang(Qid, lang, keys):
     # ---
     query = GetQuery(Qid, lang, keys)
     # ---
-    PageList = wd_sparql_bot.sparql_generator_big_results(query, offset=Off[1], limit=limit[1], alllimit=0)
+    PageList = sparql_generator_big_results(query, offset=Off[1], limit=limit[1], alllimit=0)
     # ---
     logger.info("* PageList: ")
     SAO = Qlist[Qid][lang]

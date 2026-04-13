@@ -7,12 +7,12 @@
 import logging
 import sys
 
-from himo_api import New_Himo_API
-from wd_api import wd_bot
+from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.wd_api import wd_bot
 
 logger = logging.getLogger(__name__)
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
+WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
 Limit = {1: " limit 100 "}
 
 names = [
@@ -209,14 +209,6 @@ def mains():
                     logger.info(f'acd: "{tart}"')
                     qsa = Quarry[1].replace("#sr", f"{tart}\n#sr")
                     workqua(qsa)
-        # ---
-        # python pwb.py wd/ali ss:340662
-        elif arg == "ss":
-            tart3 = wd_bot.get_quarry_results(value, get_rows=2)
-            FFF = False
-            # logger.info( 'tart3: "%s"' % tart3 )
-            for te in tart3:
-                action_one(te, tart3[te])
         # ---
         if arg == "limit":
             Limit[1] = f" limit {value}"

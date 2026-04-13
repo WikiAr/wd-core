@@ -2,7 +2,7 @@
 #  python pwb.py wd/wikinews
 #
 
-from wd_api import newdesc
+from bots_subs.wd_api import newdesc
 
 quuu = {
     "species of beetle": """

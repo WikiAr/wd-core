@@ -40,8 +40,8 @@ import re
 import sys
 import time
 
-from wd_api import wd_bot, wd_desc
-
+from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
 import people.occupationsall as oc
 from people.Nationalities import translationsNationalities
 
@@ -331,7 +331,7 @@ def start_one_nat(nat_tab):
         }
         # ---
         if NewDesc != {}:
-            wd_desc.work_api_desc(NewDesc, q)
+            work_api_desc(NewDesc, q)
 
 
 def mainnat(Tabs):  # translations_for_nat

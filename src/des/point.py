@@ -10,12 +10,12 @@ import logging
 import re
 import sys
 
-from himo_api import New_Himo_API
-from wd_api import wd_bot
+from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.wd_api import wd_bot
 
 logger = logging.getLogger(__name__)
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
+WD_API_Bot = NewHimoAPIBot(mr_or_bot="bot", www="www")
 
 
 bylangs = False  # False#True

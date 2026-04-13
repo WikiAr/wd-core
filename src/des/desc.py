@@ -45,19 +45,22 @@ import logging
 import re
 import sys
 
-from himo_api import New_Himo_API
-from wd_api import get_property_for_list, qs_bot, wd_bot, wd_sparql_bot
+from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.wd_api.get_property_for_list import get_property_label_for_qids
+from bots_subs.wd_api.qs_bot import QS_line
+from bots_subs.wd_api.wd_sparql_bot import sparql_generator_big_results
+from bots_subs.wd_api import wd_bot
 
 from des.contries2 import ContriesTable2
 from des.places import placesTable
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
+WD_API_Bot = NewHimoAPIBot(mr_or_bot="bot", www="www")
 
 logger = logging.getLogger(__name__)
 
 
 # placesTable = {"Q29701762": {"ar": "مستوطنة"}}
-placesTable2 = {fg: placesTable[fg] for fg in placesTable}
+placestable2 = {fg: placesTable[fg] for fg in placesTable}
 
 q_list_done = []
 New_QS = {1: []}
@@ -129,7 +132,7 @@ for arg in sys.argv:
     # python3 core8/pwb.py des/desc descqs limit:4000 optional place:Q185113
     # python3 core8/pwb.py des/desc descqs limit:1000 place:Q8054
     if arg == "place" and value in placesTable:
-        placesTable2 = {value: placesTable[value]}
+        placestable2 = {value: placesTable[value]}
     # ---
     if arg == "alllimit":
         alllimit[1] = int(value)
@@ -147,7 +150,7 @@ def descqs(q, value, lang):
         logger.info("<<lightyellow>>a %d\t%d:add %s to qlline " % (len(New_QS[1]), QSlimit[1], qsline))
     else:
         logger.info(f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements")
-        qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
+        QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
 
 
@@ -184,8 +187,8 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
     if findlab:
         if p17lab == "" or placear == "":
-            df = get_property_for_list.get_property_label_for_qids(["P17", "P131", "P276"], [q]) or {}
-            logger.info("get_property_for_list")
+            df = get_property_label_for_qids(["P17", "P131", "P276"], [q]) or {}
+            logger.info("get_property_label_for_qids")
             logger.info(df)
             # ---
         # ---
@@ -257,19 +260,19 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
 def work_one_place(place):
     lang = "ar"
     # ---
-    start = placesTable2[place].get(lang, "")
+    start = placestable2[place].get(lang, "")
     if not start.strip():
         logger.info('start.strip() == ""')
         return ""
     # ---
     if New_QS[1] != [] and "cleanlist" in sys.argv:
-        qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
+        QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
     quarry = Quase[place] if place in Quase else Quase[2020]
     # ---
     quarry = quarry % place
     # ---
-    json1 = wd_sparql_bot.sparql_generator_big_results(quarry, offset=offset[1], limit=limit[1], alllimit=alllimit[1])
+    json1 = sparql_generator_big_results(quarry, offset=offset[1], limit=limit[1], alllimit=alllimit[1])
     total = len(json1)
     c = 1
     # ---
@@ -287,12 +290,12 @@ def work_one_place(place):
 
 def mainoo():
     # ---
-    kee = sorted(placesTable2.keys())
+    kee = sorted(placestable2.keys())
     # ---
-    lenth_place = len(placesTable2)
+    lenth_place = len(placestable2)
     for placenum, place in enumerate(kee, start=1):
         # ---
-        ara = placesTable2[place].get("ar", "")
+        ara = placestable2[place].get("ar", "")
         # ---
         logger.info(f'<<lightred>> {placenum}/{lenth_place}, place:"{place}", arlabel:"{ara}". ')
         # ---
@@ -301,7 +304,7 @@ def mainoo():
             work_one_place(place)
     # ---
     if New_QS[1] != []:
-        qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
+        QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
 
 

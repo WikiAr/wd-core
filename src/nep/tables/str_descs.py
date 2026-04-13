@@ -3,7 +3,7 @@
 from nep.tables.str_descs import descs, entities, countries, genese, make_nn
 """
 
-from wd_api import wd_bot
+from bots_subs.wd_api import wd_bot
 
 from nep.bots.helps import (
     Get_label_from_item,

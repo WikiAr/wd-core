@@ -13,13 +13,13 @@ import sys
 import urllib
 import urllib.parse
 
-from himo_api import New_Himo_API
-from wd_api import wd_bot
+from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.wd_api import wd_bot
 
 from api_page import load_main_api
 from bots_subs import open_url
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
+WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
 
 logger = logging.getLogger(__name__)
 
@@ -74,10 +74,10 @@ def fixo(stro):
     return stro
 
 
-def Fix_List(List):
+def Fix_List(list_data):
     New_List = []
     # ---
-    for y in List:
+    for y in list_data:
         yy = y
         yy = re.sub(r";", "،", yy)
         yy = re.sub(r"؛", "،", yy)
@@ -265,7 +265,7 @@ def looog():
         text2 += "}} ||"
         text2 += ",".join(value) + "\n"
     # ---
-    wd_api = load_main_api("wikidata", "wikidata")
+    api = load_main_api("wikidata", "wikidata")
     # ---
     if text2:
         text2 = """\n=={{subst:date}}==\n{| class="wikitable sortable"\n|-\n! item\n! en \n! ar\n|-""" + text2
@@ -273,7 +273,7 @@ def looog():
         # ---
         title = "user:Mr._Ibrahem/medstat"
         # ---
-        EngPage = wd_api.MainPage(title, "wikidata", family="wikidata")
+        EngPage = api.MainPage(title, "wikidata", family="wikidata")
         # ---
         main_text = EngPage.get_text()
         newtext = main_text + text2

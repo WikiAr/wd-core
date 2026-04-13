@@ -12,7 +12,8 @@ import logging
 import re
 
 import pywikibot
-from wd_api import wd_bot, wd_desc
+from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
 
 logger = logging.getLogger(__name__)
 
@@ -66,11 +67,11 @@ def one_film_item(Qid, pa, lang, keys):
             if saaa in ["y", "a", ""]:
                 if saaa == "a":
                     AskSave[1] = False
-                wd_desc.work_api_desc(NewDesc, qitem)
+                work_api_desc(NewDesc, qitem)
             else:
                 logger.info("* rong answer")
         else:
-            wd_desc.work_api_desc(NewDesc, qitem)
+            work_api_desc(NewDesc, qitem)
 
 
 def getwditem(qitem):

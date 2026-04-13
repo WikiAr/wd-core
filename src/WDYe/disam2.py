@@ -11,8 +11,8 @@ import json
 import logging
 
 import pywikibot
-from wd_api import wd_bot, wd_desc
-
+from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
 from bots_subs import open_url
 from desc_dicts.descraptions import DescraptionsTable
 
@@ -61,7 +61,7 @@ def work2(q, topic):
     # ---
     # logger.info( '<<lightyellow>>  NewDesc' + str(NewDesc) )
 
-    wd_desc.work_api_desc(NewDesc, q)
+    work_api_desc(NewDesc, q)
 
 
 def mainfromQuarry():

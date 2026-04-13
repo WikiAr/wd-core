@@ -12,11 +12,11 @@ python3 core8/pwb.py alabel/labels -limit:20
 import logging
 import sys
 
-from himo_api import New_Himo_API
+from bots_subs.hi_api import NewHimoAPIBot
 
 from bots_subs import wiki_sql
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
+WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
 
 logger = logging.getLogger(__name__)
 
@@ -90,10 +90,3 @@ def main():
         if page:
             # WD_API_Bot.Labels_API(qid, page, "ar", False, Or_Alii=True)
             WD_API_Bot.Add_Labels_if_not_there(qid, page, "ar", False)
-
-
-if __name__ == "__main__":
-    if "test" in sys.argv:
-        WD_API_Bot.Add_Labels_if_not_there("Q109927", "83 Beatrix", "ar", False)
-    else:
-        main()

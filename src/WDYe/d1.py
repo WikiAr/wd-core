@@ -24,15 +24,12 @@ ORDER BY DESC(?count)
 
 import logging
 
-logger = logging.getLogger(__name__)
-
-
 import sys
 
-from wd_api import wd_bot, wd_desc
+from bots_subs.wd_api import wd_bot, wd_desc
 
-# wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
-# wd_desc.work_api_desc(NewDesc, qid)
+logger = logging.getLogger(__name__)
+
 
 quuu = {
     "species of beetle": """

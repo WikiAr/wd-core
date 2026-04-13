@@ -6,7 +6,8 @@ from nep.si3 import do_P1433_new_list, work_new_list, make_scientific_art
 import logging
 import sys
 
-from wd_api import wd_bot, wd_desc
+from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
 
 from des.desc import work_one_item
 from des.places import placesTable
@@ -34,7 +35,7 @@ def work_a_desc(NewDesc, qid, fixlang):
         logger.info(NewDesc)
         return ""
     # ---
-    wd_desc.work_api_desc(NewDesc, qid, fixlang=fixlang)
+    work_api_desc(NewDesc, qid, fixlang=fixlang)
 
 
 def make_scientific_art(item, P31, num):

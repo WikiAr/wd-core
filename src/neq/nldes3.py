@@ -16,8 +16,7 @@ import random
 import re
 import sys
 
-from wd_api import wd_sparql_bot
-
+from bots_subs.wd_api.wd_sparql_bot import sparql_generator_big_results
 from nep.nldesc import action_one_item
 from neq.quarries import SPARQLSE
 
@@ -33,8 +32,7 @@ for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
     # ---
-    if arg.startswith("-"):
-        arg = arg[1:]
+    arg = arg.removeprefix("-")
     # ---
     if arg == "off":
         Off[1] = int(value)
@@ -113,7 +111,7 @@ def main():
         if Offq[1] > 0 and Offq[1] > query_num:
             continue
         # ---
-        pigenerator = wd_sparql_bot.sparql_generator_big_results(
+        pigenerator = sparql_generator_big_results(
             sparql_query, offset=Off[1], limit=limit[1], alllimit=totallimit[1]
         )
         # ---
