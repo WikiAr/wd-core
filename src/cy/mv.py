@@ -17,11 +17,9 @@ tfj run jsubp4 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py
 import logging
 import sys
 
+import gent
 import tqdm
 import wikitextparser as wtp
-
-import gent
-
 from api_page import load_main_api
 
 logger = logging.getLogger(__name__)
@@ -55,7 +53,7 @@ def move_it_to_temp(title, item, text):
         return None
     # ---
     ar_api = load_main_api("ar", "wikipedia")
-    temp_page = ar_api.MainPage('Main Page Title')
+    temp_page = ar_api.MainPage("Main Page Title")
     # ---
     temp_title = f"قالب:نتيجة سباق الدراجات/{title}"
     # ---
@@ -181,9 +179,9 @@ def split_pages(pages, parts=4):
 
 
 def main2(*args):
-    generator = gent.get_gent(listonly=True, *args)
+    generator = gent.get_gent(listonly=True, *args)  # noqa: B026
     # ---
-    list_of_pages = [x for x in tqdm.tqdm(generator)]
+    list_of_pages = list(tqdm.tqdm(generator))
     # ---
     list_of_pages = split_pages(list_of_pages)
     # ---

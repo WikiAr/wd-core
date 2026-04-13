@@ -32,7 +32,7 @@ workibrahem = "workibrahem" in sys.argv
 br = "</br>"
 
 
-def StartOnePage(title):
+def StartOnePage(title) -> None:
     printt("**StartOnePage: <br>")
     # ---
     title = title.replace("_", " ")
@@ -41,16 +41,16 @@ def StartOnePage(title):
     # ---
     if not text:
         printo("الصفحة المطلوبة غير موجودة أو أن محتواها فارغ.")
-        return
+        return None
     # ---
     NewText = do_One_Page(title, text, item)
     # ---
     if not NewText:
         ur = f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.'
         printo(f"لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: {ur}.")
-        return
+        return None
     # ---
-    page_put(NewText, title)
+    return page_put(NewText, title)
 
 
 def main():

@@ -261,7 +261,7 @@ def make_temp_lines(table, title, with_stages):
 def fix_results(table):
     results2 = {}
     # ---
-    tata = {
+    _tata = {
         "head": {
             "vars": [
                 "item",
@@ -443,10 +443,10 @@ def tab_sub_x(tao):
     return table
 
 
-def make_text_sec(Date_List2, qids_2, title, with_stages):
+def make_text_sec(date_list2, qids_2, title, with_stages):
     texxt = ""
     # ---
-    for dd in Date_List2:
+    for dd in date_list2:
         for qoo, tao in qids_2.items():
             # ---
             if qoo in Skip_items:
@@ -500,7 +500,7 @@ def make_new_section(qid, title):
     # Len_of_results[title] = Len_results
     # ---
     qidso = {}
-    for num, qq in enumerate(results):
+    for qq in results:
         # ---
         if qq not in qidso:
             qidso[qq] = {}
@@ -534,25 +534,25 @@ def make_new_section(qid, title):
     return texxt
 
 
-def work_tano(text, MainTitle):
+def work_tano(text, maintitle):
     # ---
-    lines[MainTitle] = make_data_new(text)
+    lines[maintitle] = make_data_new(text)
     # ---
     new_line = 0
     same_line = 0
     removed_line = 0
     # ---
-    if MainTitle in new_lines:
-        for line in new_lines[MainTitle].keys():
+    if maintitle in new_lines:
+        for line in new_lines[maintitle].keys():
             # ---
             if line == "Q49164584" and TEST[1]:
-                print(new_lines[MainTitle][line])
+                print(new_lines[maintitle][line])
             # ---
             same = 0
             new = 0
-            if line in lines[MainTitle].keys():
+            if line in lines[maintitle].keys():
                 for x in ["poss", "race", "p17"]:
-                    if new_lines[MainTitle][line][x] == lines[MainTitle][line][x]:
+                    if new_lines[maintitle][line][x] == lines[maintitle][line][x]:
                         same = 1
                     else:
                         new = 1
@@ -565,17 +565,17 @@ def work_tano(text, MainTitle):
                 new_line += 1
             # ---
         # ---
-        for liner in lines[MainTitle].keys():
-            if liner not in new_lines[MainTitle].keys():
+        for liner in lines[maintitle].keys():
+            if liner not in new_lines[maintitle].keys():
                 removed_line += 1
     # ---
-    states[MainTitle] = {"new_line": new_line, "same_line": same_line, "removed_line": removed_line}
+    states[maintitle] = {"new_line": new_line, "same_line": same_line, "removed_line": removed_line}
     # ---
     liner = "new_line:%d,same_line:%d,removed_line:%d" % (new_line, same_line, removed_line)
     # ---
-    if MainTitle in remove_date and remove_date[MainTitle] != 0:
-        liner += ",removed_line_date:%d" % remove_date[MainTitle]
-        states[MainTitle]["removed_line_date"] = remove_date[MainTitle]
+    if maintitle in remove_date and remove_date[maintitle] != 0:
+        liner += ",removed_line_date:%d" % remove_date[maintitle]
+        states[maintitle]["removed_line_date"] = remove_date[maintitle]
     # ---
     return liner
 

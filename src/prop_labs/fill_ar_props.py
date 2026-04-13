@@ -36,6 +36,7 @@ from translate_bot import translate_en_to_ar
 from wd_Session import WikidataSession
 
 from wd_core_useraccount import User_tables_ibrahem
+
 logger = logging.getLogger(__name__)
 
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"

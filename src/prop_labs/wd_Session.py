@@ -10,7 +10,9 @@ from wd_Session import WikidataSession
 import logging
 import sys
 from typing import Dict, List
+
 import requests
+
 from wd_core_useraccount import User_tables_ibrahem
 
 logger = logging.getLogger(__name__)

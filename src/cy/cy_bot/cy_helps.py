@@ -106,10 +106,10 @@ def ec_de_code(tt, type):
     return fao
 
 
-def make_dada(NewText, MainTitle):
-    url = "https://" + "ar.wikipedia.org/w/index.php?title=" + ec_de_code(MainTitle, "decode") + "&action=submit"
+def make_dada(newtext, maintitle):
+    url = "https://" + "ar.wikipedia.org/w/index.php?title=" + ec_de_code(maintitle, "decode") + "&action=submit"
     t = f"<form id='editform' name='editform' method='POST' action='{url}'>"
-    t += f"<textarea id='wikitext-new' class='form-control' name='wpTextbox1'>{NewText}</textarea>"
+    t += f"<textarea id='wikitext-new' class='form-control' name='wpTextbox1'>{newtext}</textarea>"
     t += """
 <input type='hidden' name='wpSummary' value='تحديث نتائج اللاعب'/>
 <input id='btn-saveandreturn' type='submit' class='btn' name='wpDiff' value='Save &amp; Return' title='Open the edit interface in a new tab/window, then quietly return to the main page.'/>
@@ -150,7 +150,7 @@ def CheckTempalteInPageText(text):
     printt("**CheckTempalteInPageText: <br>")
     if not text:
         printt(" * no text.<br>")
-        return
+        return None
     # ---
     parser = wtp.parse(text)
     # ---
@@ -194,14 +194,14 @@ def find_cy_temp(text):
     # ---
     start_pos = text.find(start)
     if start_pos < 0:
-        return
+        return None
     # ---
     end_pos = text.find(end)
     if end_pos < 0:
-        return
+        return None
     # ---
     if end_pos < start_pos:
-        return
+        return None
     # ---
     end_pos += len(end)
     # ---

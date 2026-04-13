@@ -23,9 +23,8 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 """
 
 import gent
-from cy_bot.do_text import do_One_Page
-
 from api_page import load_main_api
+from cy_bot.do_text import do_One_Page
 
 skip_titles = [
     "قالب:نتيجة سباق الدراجات",
@@ -73,7 +72,7 @@ def onep(title):
 
 
 def main2(*args):
-    generator = gent.get_gent(listonly=True, *args)
+    generator = gent.get_gent(listonly=True, *args)  # noqa: B026
     # ---
     for numb, pagetitle in enumerate(generator, start=1):
         print(f"page: {numb} : {pagetitle}")
