@@ -13,7 +13,6 @@ from ..utils import lag_bot
 from ..utils.out_json import outbot_json
 
 logger = logging.getLogger(__name__)
-from ..qs_bot import QS_line as qs_line
 
 
 class WD_Claims:
