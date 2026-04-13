@@ -55,7 +55,7 @@ import time
 from pathlib import Path
 
 import gent
-from newapi.page import NEW_API
+from api_page import load_main_api
 
 from nep import si3
 
@@ -63,10 +63,6 @@ logger = logging.getLogger(__name__)
 
 sys.argv.append("-family:wikidata")
 sys.argv.append("-lang:wikidata")
-
-
-api_new = NEW_API("www", family="wikidata")
-# api_new.Login_to_wiki()
 
 main_dir1 = f"{str(Path(__file__).parent.parent)}/"
 
@@ -129,6 +125,9 @@ def mainwithcat2():
         if arg == "-ns":
             namespaces = value
     # ---
+    wd_api = load_main_api("wikidata", "wikidata")
+    api_new = wd_api.NEW_API()
+    # ---
     if file:
         if not file.startswith(main_dir1):
             file = main_dir1 + file
@@ -143,7 +142,7 @@ def mainwithcat2():
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")
     # ---
     if not lista:
-        lista = gent.get_gent(listonly=True)
+        lista = gent.get_gent_list()
         # lista = [page.title(as_link=False) for page in genet]
     # ---
     try:

@@ -63,7 +63,7 @@ def treat_page(qid):
     WD_API_Bot.Claim_API2(qid, "P31", "Q4167836")
 
 
-def main2(*args):
+def main2():
     # ---
     quarry = mainquarry
     result = []

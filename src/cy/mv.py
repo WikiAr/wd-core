@@ -178,8 +178,8 @@ def split_pages(pages, parts=4):
     return pages
 
 
-def main2(*args):
-    generator = gent.get_gent(listonly=True, *args)  # noqa: B026
+def main2():
+    generator = gent.get_gent_list()  # noqa: B026
     # ---
     list_of_pages = list(tqdm.tqdm(generator))
     # ---

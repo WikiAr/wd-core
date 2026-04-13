@@ -71,8 +71,8 @@ def onep(title):
         page.save(newtext=new_text, summary="بوت:تجربة تحديث بيانات اللاعب")
 
 
-def main2(*args):
-    generator = gent.get_gent(listonly=True, *args)  # noqa: B026
+def main2():
+    generator = gent.get_gent_list()  # noqa: B026
     # ---
     for numb, pagetitle in enumerate(generator, start=1):
         print(f"page: {numb} : {pagetitle}")
