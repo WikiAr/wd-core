@@ -13,19 +13,19 @@ import re
 import sys
 
 from wd_api import wd_bot
-# ---
+
 from himo_api import New_Himo_API
 import logging
 logger = logging.getLogger(__name__)
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
 
-# ---
+
+
 bylangs = False  # False#True
-# ---
+
 limits = {1: "1000"}
-# ---
+
 items_done = []
 
 def action(json1):
@@ -67,7 +67,7 @@ def action(json1):
         else:
             logger.info(f" <<lightred>> * q in items_done. {q}")
 
-# ---
+
 Quarry = {
     "y":
         """
@@ -133,7 +133,7 @@ def main():
         json1 = wd_bot.sparql_generator_url(quuu)
         action(json1)
 
-# ---
+
 if __name__ == "__main__":
     main()
-# ---
+

@@ -10,21 +10,21 @@ python pwb.py c30/p31 enwiki
 #
 # (C) Ibrahem Qasim, 2022
 #
-# ---
+
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
+
 
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
+
 import sys
 
-# ---
+
 from api_sql import sql as c18sql
 
-# ---
+
 # use arwiki_p;
 mainquarry = '''
 SELECT p.page_title,
@@ -60,8 +60,8 @@ WHERE p.page_namespace = 14
 GROUP BY p.page_title #order BY ll_from
 #LIMIT 2000;
 '''
-# ---
-# ---
+
+
 WIKI = {1: "arwiki"}
 AutoSave = {1: False}
 
@@ -92,7 +92,7 @@ def main2(*args):
         treat_page(result[title])
 
 
-# ---
+
 if __name__ == '__main__':
     main2()
-# ---
+

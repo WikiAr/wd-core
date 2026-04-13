@@ -84,8 +84,8 @@ def WorkNew():
         si3.ISRE(qitem, num, lenth)
 
 
-# ---
+
 # python3 core8/pwb.py nep/work_new
-# ---
+
 if __name__ == "__main__":
     WorkNew()

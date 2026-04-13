@@ -13,24 +13,24 @@ import re
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
+
 
 import sys
 
-# ---
-# ---
+
+
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-# ---
 
-# ---
+
+
 from wd_api import wd_bot
 
-# ---
+
 bylangs = False  # False#True
-# ---
+
 limits = {1: "1000"}
-# ---
+
 items_done = []
 
 def action(json1):
@@ -79,7 +79,7 @@ WHERE {
     quaaa %= (ar_suff, "%s", item_p31_cat, en_suff, en_priff)
     return quaaa
 
-# ---
+
 Quarry = {
     "items":
         """# تسمية  عناصر طبقاً لاسم التصنيف
@@ -306,7 +306,7 @@ def main():
         json1 = wd_bot.sparql_generator_url(quuu)
         action(json1)
 
-# ---
+
 if __name__ == "__main__":
     main()
-# ---
+

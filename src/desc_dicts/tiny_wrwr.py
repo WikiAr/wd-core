@@ -3,7 +3,7 @@
 
 """
 from desc_dicts.descraptions import Qid_Desc
-# ---
+
 tiny_wrwr = {
     "Q1260524": {"ar": "وقت من اليوم", "en": ""},  # 68707
     "Q76130167": {"ar": "مبنى بحثي", "en": ""},  # 27575
@@ -90,8 +90,8 @@ tiny_wrwr = {
     "Q180846": {"ar": "سوبرماركت", "en": ""},  # 511
     "Q8362": {"ar": "منمنمة", "en": ""},  # 506
 }
-# ---
+
 for ps in tiny_wrwr:
     if ps in Qid_Desc:
         print(ps)
-# ---
+

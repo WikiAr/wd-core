@@ -3,23 +3,23 @@
 from nep.bots.tax_desc import work_taxon_desc
 """
 import sys
-# ---
+
 from himo_api import New_Himo_API
 import logging
 logger = logging.getLogger(__name__)
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
+
 from wd_api import wd_bot
 
 from desc_dicts.taxones import lab_for_p171, labforP105
 from desc_dicts.taxones import tax_translations, taxone_list
 
-# ---
+
 from nep.bots.helps import Get_P_API_id
 
 tax_translations_lower = {}
-# ---
+
 for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
     if tax_lab.strip() and tax_key.strip():
         for natkey in sorted(tax_translations.keys()):  # النوع

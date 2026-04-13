@@ -45,7 +45,7 @@ SELECT ?item  ?itemlab ?jerseylab ?p17lab
                                     }
 
 } } """
-# ---
+
 q22u = """SELECT
     ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?p642label ?p585 ?p582 ?p580
     WHERE {
@@ -76,12 +76,12 @@ q22u = """SELECT
                                         }
 
     }   } """
-# ---
+
 TEST = {1: False, 2: False}
-# ---
+
 if "test" in sys.argv:
     TEST[1] = True
-# ---
+
 if "test2" in sys.argv:
     TEST[2] = True
 

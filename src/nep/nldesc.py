@@ -38,7 +38,7 @@ from nep.new_way import P1433_ids, do_P1433_ids, P1433_en_to_qid
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 logger = logging.getLogger(__name__)
-# ---
+
 items2do = 0  # global parameter to print progress
 totaledits = 0
 lng_canbeused = [

@@ -24,7 +24,7 @@ from wd_api import wd_sparql_bot
 from wd_api import wd_desc
 from wd_api import wd_bot
 
-# ---
+
 AskSave = {1: True}
 """Qlist['Q19389637'] = {# مقالة سيرة ذاتية
                 'ar' : 'مقالة سيرة ذاتية' ,
@@ -119,7 +119,7 @@ def one_book_item(Qid, pa, lang, keys):
         else:
             wd_desc.work_api_desc(NewDesc, qitem)
 
-# ---
+
 Comma = {
     "an": " y ",
     "ar": "/",
@@ -188,10 +188,10 @@ def Gquery2(json1):
         table[q] = s
     return table
 
-# ---
+
 Off = {1: 0}
 limit = {1: 0}
-# ---
+
 for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
@@ -218,7 +218,7 @@ def WorkWithOneLang(Qid, lang, keys):
         logger.info(f"<<lightblue>>> {lang} \"{SAO}\" :{num}/{total} : {pa['item']}")
         one_book_item(Qid, pa, lang, keys)
 
-# ---
+
 by_list = {"ar": "من تأليف", "en": "by", "fr": "de", "de": "von", "nl": "van", "ca": "per", "cs": "od", "la": "ab", "it": "da", "io": "da", "eo": "de", "da": "af", "pl": "przez", "ro": "de", "es": "por", "sv": "av"}
 
 def MakeDesc(Qid, pa, lang):
@@ -280,7 +280,7 @@ def main():
             # logger.info( Qlist[Qid][lang] )
             WorkWithOneLang(Qid, lang, keys)
 
-# ---
+
 if __name__ == "__main__":
     main()
-# ---
+

@@ -8,7 +8,7 @@ from pathlib import Path
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
+
 from nep.si3 import (
     Qids_translate,
     space_list_and_other,
@@ -18,7 +18,7 @@ from nep.si3 import (
 )
 from nep.others import read_json
 
-# ---
+
 Dir = Path(__file__).parent
 
 
@@ -65,8 +65,8 @@ def read_new_types_file():
     print("done")
 
 
-# ---
+
 # python3 core8/pwb.py nep/read_np
-# ---
+
 if __name__ == "__main__":
     read_new_types_file()

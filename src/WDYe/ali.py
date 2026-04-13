@@ -15,22 +15,22 @@ logger = logging.getLogger(__name__)
 
 # import pywikibot.data.wikidataquery as wdquery
 # used in logfiles, unicoded strings
-# ---
+
 import sys
 
-# ---
+
 File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
-# ---
+
 try:
     from himo_api import New_Himo_API
     WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 except ImportError:
     logger.info('<<lightred>> Can\'t import New_Himo_API')
-# ---
+
 ask = {1: True}
 OFFSET = {1: '   '}
 Limit = {1: ' limit 100 '}
-# ---
+
 names = [
     "Q307288",  # عبد الملك
     "Q307378",  # عبد الرحمن
@@ -91,7 +91,7 @@ names = [
     "Q56597708",  # عبد النور
     "Q56870624",  # عبد القوي
 ]
-# ---
+
 fafafa = """عبد الملك
 عبد الرحمن
 عبد الله
@@ -150,7 +150,7 @@ fafafa = """عبد الملك
 عبد العزيز
 عبد النور
 عبد القوي"""
-# ---
+
 Quarry = {
     1: '''
 
@@ -191,7 +191,7 @@ def workqua(qua):
         action_one(pa['item'], pa['label'])
 
 
-# ---
+
 queries = '''use wikidatawiki_p;
 SELECT term_full_entity_id , term_text
 from wb_terms
@@ -270,7 +270,7 @@ def mains():
         workqua(Quarry[1])
 
 
-# ---
+
 if __name__ == "__main__":
     mains()
-# ---
+

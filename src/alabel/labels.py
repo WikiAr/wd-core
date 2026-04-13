@@ -13,23 +13,23 @@ import sys
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
 
-# ---
+
+
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-# ---
+
 from api_sql import wiki_sql
 
-# ---
-Limit = {1: ""}
-# ---
 
-# ---
+Limit = {1: ""}
+
+
+
 # result = wiki_sql.sql_new(qua, wiki="", printqua=False)
-# ---
+
 # TODO: Table 'wikidatawiki_p.wbt_item_terms' doesn't exist
-# ---
+
 Quaa = """#USE wikidatawiki_p;
 SELECT
     CONCAT("Q", ips_item_id) as qid,
@@ -51,14 +51,14 @@ AND NOT EXISTS (
         AND wbtl_type_id = 1
     )
 """
-# ---
+
 for arg in sys.argv:
     arg, _, value = arg.partition(":")
     # ---
     if arg in ["-limit", "limit"]:
         Limit[1] = value
         logger.info(f"<<lightred>> Limit = {value}.")
-# ---
+
 if Limit[1]:
     Quaa += f"limit {Limit[1]}"
 

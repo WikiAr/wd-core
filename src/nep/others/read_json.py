@@ -82,7 +82,7 @@ def main(file, Type):
         logger.exception('Exception:', exc_info=True)
     return False
 
-# ---
+
 if __name__ == "__main__":
     main("{}", "dict")
-# ---
+

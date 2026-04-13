@@ -17,10 +17,10 @@ empty_dump_path.mkdir(exist_ok=True)
 
 # تحميل القرآن من موقع quran.com
 url = "https://api.alquran.cloud/v1/quran/quran-uthmani"
-# ---
+
 session = requests.session()
 session.headers.update({"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"})
-# ---
+
 response = session.get(url, timeout=10)
 quran_data = response.json()
 
@@ -163,7 +163,7 @@ def print_status():
 
 
 lexemes = get_arabic_lexemes_new()
-# ---
+
 for n, lexeme_id in tqdm(enumerate(lexemes), total=len(lexemes)):
     # ---
     if n % 500 == 0:
@@ -186,7 +186,7 @@ for n, lexeme_id in tqdm(enumerate(lexemes), total=len(lexemes)):
     # ---
     with open(file, "w", encoding="utf-8") as f:
         json.dump(extracted, f, ensure_ascii=False, indent=2)
-# ---
+
 print("Done.")
 print(f"all lexemes: {len(lexemes):,}")
 print_status()

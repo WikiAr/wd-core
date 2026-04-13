@@ -17,11 +17,11 @@ ORDER BY DESC(?count)
 #LIMIT 3000
 """
 
-# ---
+
 
 
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
-# ---
+
 #
 
 import logging
@@ -31,19 +31,19 @@ logger = logging.getLogger(__name__)
 # import urllib
 # import urllib.request
 # import urllib.parse
-# ---
+
 import sys
 
-# ---
-# ---
+
+
 from wd_api import wd_bot
 
-# ---
+
 from wd_api import wd_desc
 
 # wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
 # wd_desc.work_api_desc(NewDesc, qid)
-# ---
+
 quuu = {
     "species of beetle": """
 SELECT DISTINCT
@@ -67,15 +67,15 @@ SELECT DISTINCT
 }
 LIMIT 100000""",
 }
-# ---
+
 
 
 # newdesc.work22(q , topic, translations)
 
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
-# ---
+
 # from API.replacement import replacement
-# ---
+
 translations = {
     "species of beetle": {
         "it": "specie di coleotteri",

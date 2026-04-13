@@ -15,19 +15,19 @@ import logging
 logger = logging.getLogger(__name__)
 from wd_api import wd_bot
 
-# ---
+
 import sys
 
-# ---
-# ---
-# ---
+
+
+
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-# ---
 
-# ---
+
+
 SaveR = {1: False}
-# ---
+
 main_table = {
     "Q4167836": {
         "كرواتيون": "كروات",
@@ -37,10 +37,10 @@ main_table = {
     },
     "Q5": {"جلاسر": "غلاسر"},
 }
-# ---
+
 allise = {}
 qid_table = {}
-# ---
+
 for qid in main_table:
     for lab in main_table[qid]:
         # ---
@@ -81,7 +81,7 @@ def WORK(item, table, type):
 
 
 Limit = {1: "10"}
-# ---
+
 Quaa = '''SELECT ?item ?label ?alias
     WHERE
     {
@@ -169,4 +169,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-# ---
+

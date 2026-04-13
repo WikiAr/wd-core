@@ -16,21 +16,21 @@ import logging
 logger = logging.getLogger(__name__)
 from wd_api import wd_bot
 
-# ---
+
 import sys
 
-# ---
-
-# ---
 
 
-# ---
-# ---
+
+
+
+
+
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-# ---
 
-# ---
+
+
 Limit = {1: "500"}
 
 
@@ -85,4 +85,4 @@ LIMIT '''
 
 if __name__ == "__main__":
     main()
-# ---
+

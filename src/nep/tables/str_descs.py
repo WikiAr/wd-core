@@ -4,7 +4,7 @@ from nep.tables.str_descs import descs, entities, countries, genese, make_nn
 """
 
 
-# ---
+
 descs = {
     "Q1149652": {"org": ["", "district"], "desc": "district in India"},
     # ---
@@ -132,7 +132,7 @@ countries = {
     "Q742421": {"org": ["", "theatergezelschap"], "desc": "theatergezelschap"},
     "Q985488": {"org": ["bewonersgemeenschap", ""], "desc": "bewonersgemeenschap"},
 }
-# ---
+
 genese = {
     "Q1002697": {"org": ["periodiek", ""], "desc": "", "desc_in": "periodiek over", "pid": "P641"},
     "Q1004": {"org": ["stripverhaal", ""], "desc": "stripverhaal", "desc_in": "stripverhaal من سلسلة ", "pid": "P179"},
@@ -146,7 +146,7 @@ genese = {
     "Q5633421": {"org": ["", "tijdschrift", "wetenschappelijk tijdschrift"], "desc": "", "desc_in": "wetenschappelijk tijdschrift van ", "pid": "P123"},
     "Q6451276": {"org": ["CSR-rapport", ""], "desc": "CSR-rapport", "desc_in": "CSR-rapport over ", "pid": "P921"},
 }
-# ---
+
 from wd_api import wd_bot
 
 from nep.bots.its import (

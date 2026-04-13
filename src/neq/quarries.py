@@ -5,7 +5,7 @@ from nep.tables.quarries import SPARQLSE
 
 """
 
-# ---
+
 import sys
 from nep.tables.lists import p50s, Taton_list, Space_tab, others_list, songs_type, space_list_and_other_2
 from desc_dicts.descraptions import Qid_Descraptions
@@ -29,7 +29,7 @@ sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 
 """
 
 
-# ---
+
 def do_qua(qid, prop="", ad="", ar_values=""):
     qua = "SELECT ?item WHERE {\n"
     # ---
@@ -58,7 +58,7 @@ def do_qua(qid, prop="", ad="", ar_values=""):
     return qua
 
 
-# ---
+
 # SPARQLSE = {tt: main_quarry % tt for tt in Qid_Descraptions}
 SPARQLSE = {tt: do_qua(tt) for tt in Qid_Descraptions}
 
@@ -81,7 +81,7 @@ for p50 in p50s:
         % p50
     )
 
-# ---
+
 # رواية
 SPARQLSE[
     "Q7725634"
@@ -95,7 +95,7 @@ SPARQLSE[
     FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
     }
     GROUP BY ?item """
-# ---
+
 for scdw in others_list:
     prop = "(wdt:P17|wdt:P131)"
     # ---
@@ -104,7 +104,7 @@ for scdw in others_list:
     # ---
     if scdw not in SPARQLSE:
         SPARQLSE[scdw] = do_qua(scdw, prop=prop)
-# ---
+
 
 # مقالة سيرة ذاتية
 # .
@@ -115,12 +115,12 @@ SPARQLSE["Q19389637"] = SPARQLSE[scdw] = do_qua("Q19389637", prop="wdt:P1433", a
 
 # كتاب
 SPARQLSE["Q571"] = SPARQLSE[scdw] = do_qua("Q571", prop="wdt:P50", ad="")
-# ---
+
 
 # مجرة
 SPARQLSE["Q318"] = do_qua("Q318", prop="wdt:P59", ad="?constellation wdt:P31 wd:Q8928.")
 
-# ---
+
 SPARQLSE[
     "Q318"
 ] = """SELECT DISTINCT ?item
@@ -140,7 +140,7 @@ INCLUDE %b
 OPTIONAL { ?item rdfs:label ?l5 . FILTER(lang(?l5)="en") }
 }
 ORDER BY DESC(xsd:integer(SUBSTR(STR(?item),33)))"""
-# ---
+
 # كسوف نجم ثنائي
 SPARQLSE["Q1457376"] = do_qua("Q1457376", prop="wdt:P59", ad="?constellation wdt:P31 wd:Q8928.")
 # ---s
@@ -168,7 +168,7 @@ if "yuy" in sys.argv:
 FILTER NOT EXISTS {?item rdfs:label ?itemar. FILTER((LANG(?itemar)) = "ar") }
 FILTER NOT EXISTS {?item wdt:P31 wd:Q11173}  .
 } """
-# ---
+
 # حلقة
 # Q21191270#Q1983062
 SPARQLSE["Q21191270"] = do_qua("Q21191270", prop="wdt:P179", ad="")
@@ -179,9 +179,9 @@ SPARQLSE["Q44559"] = do_qua("Q44559", prop="", ad="")
 # جبل
 SPARQLSE["Q8502"] = do_qua("Q8502", prop="wdt:P17", ad="")
 
-# ---
+
 SPARQLSE["Q45382"] = do_qua("Q45382", prop="wdt:P17", ad="")
-# ---
+
 for sw in Taton_list:
     if sw not in SPARQLSE:
         # ---
@@ -204,16 +204,16 @@ for sw in Taton_list:
             """
             SPARQLSE[sw] = gtg
 
-# ---
+
 for st in Space_tab:
     if st not in SPARQLSE:
         # if SPARQLSE.get( st , '' ) == '' :
         SPARQLSE[st] = do_qua(st, prop="wdt:P59", ad="?constellation wdt:P31 wd:Q8928. # كوكبة")
 
-# ---
+
 # Q11424  فيلم
 SPARQLSE["Q11424"] = do_qua("Q11424", prop="wdt:P57", ad="")
-# ---
+
 
 
 # موسم رياضي
@@ -250,10 +250,10 @@ if "optional" in sys.argv:
         '?pp rdfs:label ?labe . FILTER((LANG(?labe)) = "ar") .',
         'optional{?pp rdfs:label ?labe . FILTER((LANG(?labe)) = "ar") .}',
     )
-# ---
+
 SPARQLSE["Q3331189"] = do_qua("Q3331189", prop="wdt:P629", ad="")
 
-# ---
+
 SPARQLSE["Q7889"] = do_qua("Q7889", prop="(wdt:P178|wdt:P179)", ad="")
 # أغنية
 SPARQLSE["Q7366"] = do_qua("Q7366", prop="wdt:P175", ad="")

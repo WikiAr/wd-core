@@ -16,26 +16,26 @@ import sys
 import pywikibot
 from wd_api import wd_bot
 
-# ---
+
 from himo_api import New_Himo_API
 import logging
 logger = logging.getLogger(__name__)
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-# ---
+
 from des.p155tables import cccccups, Mako_keys_4, Mako_keys2, Mako_keys, International_Federation, olympics
 from des.p155tables import keys_1, Sports_Keys_Lab
 
-# ---
+
 Usema = {1: True}
 Ask = {1: True}
 Limit = {1: "100"}
 yes_answer = ["y", "a", "", "Y", "A", "all"]
-# ---
 
-# ---
+
+
 log_done = []
-# ---
+
 years = r"(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)"
 tests_en = r"[abcdefghijklmnopqrstuvwxyz]"
 tests_ar = r"[ابتثجحخدذرزسشصضطظعغفقكلمنهويأآإىءئؤة1234567890\–\-\.]"
@@ -388,7 +388,7 @@ WHERE {
 LIMIT
 """,
 }
-# ---
+
 Quarry["use"] = Quarry[2]
 
 def main():
@@ -490,7 +490,7 @@ def test():
     # logger.info( cc )
     logger.info(ar)
 
-# ---
+
 if __name__ == "__main__":
     if sys.argv and "test" in sys.argv:
         test()
@@ -498,7 +498,7 @@ if __name__ == "__main__":
         main()
     # Item({'ddar': 'بطولة العالم لتنس الطاولة 1932', 'dden': '1932 World Table Tennis Championships', 'item': 'Q203962', 'label': '1933 World Table Tennis Championships (January)'})
     # Item({'ddar': 'بطولة العالم للشطرنج 1975', 'dden': 'World Chess Championship 1975', 'item': 'Q1999918', 'label': 'World Chess Championship 1978'})
-# ---
+
 
 # python pwb.py des/p155 qua7 -P279:Q13219666 limit:200
 # python pwb.py des/p155 qua4 -P279:Q1344963 limit:200

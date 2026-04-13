@@ -7,21 +7,21 @@ from .do_text import make_new_text, do_One_Page
 import re
 import wikitextparser as wtp
 
-# ---
+
 from .cy_regs import make_data_new
 from .cy_helps import get_temps_str, get_temp_arg, printt, print_test2, find_cy_temp, printo, TEST, CheckTempalteInPageText
 from .cy_sparql import GetSparql
 
-# ---
+
 remove_date = {}
 Work_with_Year = {}
 Len_of_results = {}
 Len_of_valid_results = {}
 new_lines = {}
-# ---
+
 states = {}
 lines = {}
-# ---
+
 HeadVars = ["imagejersey"]
 JOJOJO = "نتيجة سباق الدراجات/جيرسي"
 
@@ -29,14 +29,14 @@ JOJOJO = "نتيجة سباق الدراجات/جيرسي"
 Skip_items = ["Q4115189"]
 
 NoAppend = ["p585", "p582", "p580"]
-# ---
+
 ranks_label = {
     "P4323": "المرتبة %s في تصنيف أفضل شاب",
     "P2321": "المرتبة %s في التصنيف العام",
     "P4320": "المرتبة %s في تصنيف الجبال",
     "P3494": "المرتبة %s في تصنيف النقاط",
 }
-# ---
+
 
 Work_with_Stage = {}
 

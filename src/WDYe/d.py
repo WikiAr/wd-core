@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 #  python pwb.py wd/wikinews
 #
-# ---
+
 from wd_api import newdesc
 
-# ---
+
 quuu = {
     'species of beetle': """
 SELECT DISTINCT
@@ -25,9 +25,9 @@ SELECT DISTINCT
 }
 LIMIT 20000""",
 }
-# ---
+
 # from API.replacement import replacement
-# ---
+
 translations = {
     'species of beetle': {
         'it': 'specie di coleotteri',
@@ -38,14 +38,14 @@ translations = {
         'fr': "espèces d'insectes",
     },
 }
-# ---
+
 
 
 
 # newdesc.mainfromQuarry ( topic, Quarry, translations)
 # newdesc.mainfromQuarry2( topic, Quarry, translations)
-# ---
+
 if __name__ == "__main__":
     for x in translations:
         newdesc.mainfromQuarry(x, quuu[x], translations)
-# ---
+

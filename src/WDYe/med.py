@@ -16,19 +16,19 @@ from wd_api import wd_bot
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
+
 
 import sys
 
-# ---
+
 import urllib
 import urllib.request
 import urllib.parse
 from API import open_url
-# ---
+
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-# ---
+
 from newapi.page import MainPage
 
 def dec(xx):
@@ -67,7 +67,7 @@ def fixrow(row):
     # ---
     return en, ar
 
-# ---
+
 Labels = {}
 SaveR = {1: False}
 
@@ -250,7 +250,7 @@ def Get_item_table2(enlab):
                     Item_tab.append(ar)
     return Fix_List(Item_tab)
 
-# ---
+
 Looogs = {}
 
 def looog():
@@ -458,4 +458,4 @@ if __name__ == "__main__":
     # Fix_List(['الطبلة (ج=غشاء الطبل)'])
     # WORK("Q4115189" , {'en': 'orbitofrontal cortex','ar': 'يمو', "alias" :[] })
     # WORK("Q4115189" , {'en': 'orbitofrontal cortex','ar': 'يمو', "alias" :[] })
-# ---
+

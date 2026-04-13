@@ -9,17 +9,17 @@ python3 core8/pwb.py des/fam railway Q784159
 python3 core8/pwb.py des/fam railway Q55488
 """
 #
-# ---
+
 import sys
 from wd_api import wd_desc
 
 from wd_api import wd_bot
 
-# ---
+
 from des.ru_st_2_latin import make_en_label
 
 # enlabel = make_en_label(labels, Add=False)
-# ---
+
 railway_tables = {
     "Q728937": {"ar": "خط سكة حديدية", "en": "railway line"},
     "Q55678": {"ar": "نقطة سكة حديدية", "en": "railway stop"},
@@ -150,4 +150,4 @@ def work_railway(wditem, p31, q=""):
     return ""
 
 
-# ---
+

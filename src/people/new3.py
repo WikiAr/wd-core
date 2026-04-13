@@ -42,7 +42,7 @@ import re
 import time
 import random
 import sys
-# ---
+
 from people.Nationalities import translationsNationalities
 import people.occupationsall as oc
 from wd_api import wd_bot
@@ -51,12 +51,12 @@ from wd_api import wd_desc
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
 
-# ---
-# ---
+
+
+
 Testing = {1: False}
-# ---
+
 genders = {
     'Q6581097': 'male',
     'Q2449503': 'male',  # transgender male
@@ -64,21 +64,21 @@ genders = {
     'Q1052281': 'female',  # transgender female
 }
 genders_list = sorted([[x, y] for x, y in genders.items()])
-# ---
-# ---
+
+
 Tab = {
     "Nationalities": translationsNationalities,
     "Occupations": oc.translationsOccupations,
 }
-# ---
+
 logger.info(f'len of Nationalities = {len(translationsNationalities.keys())}')
 logger.info(f'len of Occupations = {len(oc.translationsOccupations.keys())}')
 time.sleep(1)
-# ---
+
 qualimit = {1: 20}
 limit = {1: ""}
 offset = {1: 0}
-# ---
+
 # python3 core8/pwb.py people/new3 occnew
 # python3 core8/pwb.py people/new3 -job:researcher
 # python3 core8/pwb.py people/new3 -nat:Yemeni -job:footballer
@@ -113,10 +113,10 @@ for arg in sys.argv:
             Tab["Occupations"] = {value: oc.translationsOccupations[value]}
         else:
             print(f"job value:({value}) not in oc.translationsOccupations")
-# ---
+
 targetlangs2 = ['ar']
 targetlangs = ['ar', 'bn', 'ca', 'es', 'fr', 'gl', 'he']
-# ---
+
 W_check = {1: True}
 
 def check_quarry_new(tab):
@@ -193,7 +193,7 @@ def check_quarry_new(tab):
     # ---
     return New_Json
 
-# ---
+
 translations_o = {1: {}, 2: {}}
 translations_for_nat = {1: {}}
 
@@ -292,10 +292,10 @@ def make_Tabs(tabs):
                 translations_o[2][kkkk.lower()] = {}
             translations_o[2][kkkk.lower()]["ar"] = {'male': malee, 'female': femalee}
 
-# ---
+
 make_Tabs(Tab)
 translations_o_lower = translations_o[2]
-# ---
+
 q_dones = []
 
 def start_one_nat(nat_tab):
@@ -374,10 +374,10 @@ def Main_Test():
     # ---
     wd_bot.sparql_generator_url(qua)
 
-# ---
+
 if __name__ == "__main__":
     if "test" in sys.argv:
         Main_Test()
     else:
         mainnat({})
-# ---
+

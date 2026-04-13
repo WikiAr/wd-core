@@ -38,7 +38,7 @@ python3 core8/pwb.py nep/si3g -newpages:200
 
 python pwb.py nep/si3g -newpages:200
 python3 core8/pwb.py nep/si3g -newpages:200 ask
-# ---
+
 # python3 core8/pwb.py nep/si3g -newpages:50
 # python3 core8/pwb.py nep/si3g -newpages:500
 # python pwb.py nep/si3g -newpages:100
@@ -46,7 +46,7 @@ python3 core8/pwb.py nep/si3g -newpages:200 ask
 # python3 core8/pwb.py nep/si3g -limit:6000 -ns:0 -usercontribs:Succu
 # python3 core8/pwb.py nep/si3g -limit:6000 -ns:0 -usercontribs:LargeDatasetBot
 # python3 core8/pwb.py nep/si3g -limit:6000 -ns:0 -usercontribs:Research_Bot
-# ---
+
 """
 
 #
@@ -56,14 +56,14 @@ import sys
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
+
 sys.argv.append("-family:wikidata")
 sys.argv.append("-lang:wikidata")
-# ---
+
 import time
 from pathlib import Path
 
-# ---
+
 
 import gent
 from nep import si3

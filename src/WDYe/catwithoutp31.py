@@ -13,10 +13,10 @@ import re
 from wd_api import wd_desc
 from wd_api import wd_bot
 
-# ---
+
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
+
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 
 Tras = {
@@ -26,7 +26,7 @@ Tras = {
 
 # python pwb.py np/d -family:wikidata -lang:wikidata -newpages:10
 # python pwb.py np/d -family:wikidata -lang:wikidata -ns:0 -start:Q32000000
-# ---
+
 quaries = {
     "ar": """ SELECT ?item
         WHERE

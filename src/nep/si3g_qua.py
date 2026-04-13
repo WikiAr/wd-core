@@ -26,7 +26,7 @@ limit = {1: "500"}
 P106 = {1: []}
 P27 = {1: []}
 nolang = {1: "en"}
-# ---
+
 for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
@@ -45,17 +45,17 @@ for arg in sys.argv:
     # ---
     if arg.lower() == "p27":
         P27[1].append(value)
-# ---
+
 if not P106[1]:
     P106[1] = list(set(qid_to_job.keys()))
-# ---
+
 if not P27[1]:
     P27[1] = list(set(qid_to_p27.keys()))
 
-# ---
+
 random.shuffle(P106[1])
 random.shuffle(P27[1])
-# ---
+
 
 def get_qua():
     # ---

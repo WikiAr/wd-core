@@ -51,13 +51,13 @@ import sys
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
+
 from wd_api import wd_sparql_bot
 
-# ---
+
 from himo_api import New_Himo_API
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
+
 from wd_api import qs_bot
 from wd_api import wd_bot
 
@@ -67,16 +67,16 @@ from wd_api import get_property_for_list
 
 # placesTable = {"Q29701762": {"ar": "مستوطنة"}}
 placesTable2 = {fg: placesTable[fg] for fg in placesTable}
-# ---
+
 q_list_done = []
 New_QS = {1: []}
 offset = {1: 0}
 offset_place = {1: 0}
-# ---
+
 limit = {1: 0}
 QSlimit = {1: 3000}
 alllimit = {1: 50000}
-# ---
+
 
 Quase = {
     "Q8054": """SELECT DISTINCT
@@ -112,7 +112,7 @@ WHERE {
 GROUP BY ?item# HAVING ( ?p17count = 1 )
 """,
 }
-# ---
+
 if "optional" in sys.argv:
     # Quase[2020] = Quase[2020].replace('?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
     # Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )

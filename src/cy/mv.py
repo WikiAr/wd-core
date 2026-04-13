@@ -13,7 +13,7 @@ tfj run jsubp3 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py
 tfj run jsubp4 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -ref:قالب:نتيجة_سباق_الدراجات/بداية p4"
 
 """
-# ---
+
 import wikitextparser as wtp
 from newapi.page import MainPage
 

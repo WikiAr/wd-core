@@ -17,19 +17,19 @@ import pywikibot
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
 
-# ---
-# ---
+
+
+
 from wd_api import wd_desc
 from wd_api import wd_bot
 
-# ---
+
 wikidatasite = pywikibot.Site("wikidata", "wikidata")
 repo = wikidatasite.data_repository()
-# ---
+
 AskSave = {1: True}
-# ---
+
 # def AddDes( item , pa , lang , Qid , keys):
 
 def one_film_item(Qid, pa, lang, keys):
@@ -89,7 +89,7 @@ def getwditem(qitem):
     except BaseException:
         return False
 
-# ---
+
 Comma = {
     "an": " y ",
     "ar": "، و",
@@ -159,7 +159,7 @@ def Gquery2(json1):
         table[q] = s
     return table
 
-# ---
+
 xsxsx = {
     "an": "cinta de ~YEAR~ dirichita por ~AUTHOR~",
     "ar": "فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~",
@@ -184,7 +184,7 @@ filmform = {"film": {
     "en": "~YEAR~ film by ~AUTHOR~",
     "nl": "film uit ~YEAR~ van ~AUTHOR~",
 }}
-# ---
+
 quaua = """SELECT #DISTINCT
 ?item ?ar ?nl ?en ?endes  ?dates ?auths
 WHERE {
@@ -229,7 +229,7 @@ def WorkWithOneLang(Qid, lang, keys):
         # ---
         one_film_item(Qid, PageList[pa], lang, keys)
 
-# ---
+
 by_list = {"ar": "من تأليف", "en": "by", "fr": "de", "de": "von", "nl": "van", "ca": "per", "cs": "od", "la": "ab", "it": "da", "io": "da", "eo": "de", "da": "af", "pl": "przez", "ro": "de", "es": "por", "sv": "av"}
 
 def MakeDesc(Qid, pa, lang):
@@ -283,7 +283,7 @@ def films():
     keys = filmform[Q].keys()
     WorkWithOneLang(Q, "ar", keys)
 
-# ---
+
 if __name__ == "__main__":
     films()
-# ---
+

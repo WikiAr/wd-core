@@ -9,7 +9,7 @@ python3 core8/pwb.py des/fam Q318
 python3 core8/pwb.py des/fam
 
 """
-# ---
+
 import tqdm
 import sys
 import random
@@ -21,7 +21,7 @@ from des.railway import railway_tables, work_railway
 import logging
 logger = logging.getLogger(__name__)
 
-# ---
+
 desc_table = {
     "Q318": Space_Descraptions.get("Q318", {}),
     "Q523": Space_Descraptions.get("Q523", {}),
@@ -64,22 +64,22 @@ desc_table = {
     # 'Q39614' : placesTable.get('Q39614', {}),   # مقبرة
     # 'Q79007' : placesTable.get('Q79007', {}),   # شارع
 }
-# ---
+
 desc_table["Q726242"] = {"ar": "نجم"}
 desc_table["Q2247863"] = {"ar": "نجم"}
 desc_table["Q66619666"] = {"ar": "نجم"}
 desc_table["Q72803622"] = {"ar": "نجم"}
-# ---
+
 for x, dd in railway_tables.items():
     desc_table[x] = dd
-# ---
+
 for x in desc_table:
     if x in sys.argv:
         desc_table = {x: desc_table[x]}
         break
-# ---
+
 temp_table = {}
-# ---
+
 if len(desc_table) > 1:
     # chose randomly 5 of the desc_table
     # ---
@@ -95,7 +95,7 @@ if len(desc_table) > 1:
         temp_table[x] = desc_table[x]
     # ---
     desc_table = temp_table
-# ---
+
 quarry_o = """
     SELECT DISTINCT ?item ?langs
     WITH { SELECT ?item WHERE {
@@ -110,7 +110,7 @@ quarry_o = """
     }
     ORDER BY DESC(xsd:integer(SUBSTR(STR(?item),33)))
 """
-# ---
+
 quarry_list = [
     quarry_o,
     quarry_o.replace("limit 1000", "limit 1000 offset 1000"),
@@ -119,7 +119,7 @@ quarry_list = [
     quarry_o.replace("limit 1000", "limit 1000 offset 4000"),
     quarry_o.replace("limit 1000", "limit 1000 offset 5000"),
 ]
-# ---
+
 qlist_done = []
 
 def work_one_json(json1, topic_ar, p31, p31_langs):
