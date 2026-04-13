@@ -4,10 +4,10 @@
 import sys
 
 import logging
-logger = logging.getLogger(__name__)
-
-
 from wd_api import newdesc
+
+
+logger = logging.getLogger(__name__)
 
 
 quuu = {
@@ -25,7 +25,7 @@ limit 3000
 # newdesc.work22(q , topic, translations)
 
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
-# --- ----------------------
+
 translations = {
     'month': {'ar': 'شهر'},
     "island in Indonesia": {"ar": "جزيرة في إندونيسيا"},
@@ -40,8 +40,6 @@ def main_from_quarry(topic):
     newdesc.mainfromQuarry2(topic, Quarry, translations)
 
 
-
 if __name__ == "__main__":
     main_from_quarry("island in Indonesia")
     main_from_quarry('month')
-
