@@ -12,6 +12,7 @@ import logging
 import re
 
 import pywikibot
+
 from bots_subs.wd_api import wd_sparql_bot
 from bots_subs.wd_api.wd_desc import work_api_desc
 

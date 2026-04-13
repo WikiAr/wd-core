@@ -14,12 +14,10 @@ import logging
 import random
 import sys
 import time
-from bots_subs.wd_api import wd_sparql_bot
-from bots_subs.wd_api import wd_bot
 
+from bots_subs.wd_api import wd_bot, wd_sparql_bot
 from nep.wr_people import work_people
 from people.people_get_topic import print_new_jobs, qid_to_job, qid_to_p27
-
 
 logger = logging.getLogger(__name__)
 

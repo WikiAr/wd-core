@@ -13,7 +13,6 @@ import sys
 from pathlib import Path
 
 from bots_subs.wd_api import wd_bot
-
 from nep.others import read_json
 from nep.tables.cash import labels_cach
 from nep.tables.nats import nationalities

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from bots_subs.wd_api import newdesc
-
 from desc_dicts.descraptions import DescraptionsTable
 
 translations = {"Wikimedia module": DescraptionsTable.get("Wikimedia module", {})}

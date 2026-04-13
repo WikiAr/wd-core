@@ -20,8 +20,8 @@ from .wd_bots import wb_rest_api
 
 import logging
 import sys
-from bots_subs.hi_api import NewHimoAPIBot
 
+from bots_subs.hi_api import NewHimoAPIBot
 
 logger = logging.getLogger(__name__)
 

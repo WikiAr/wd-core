@@ -12,9 +12,8 @@ python3 core8/pwb.py alabel/labels -limit:20
 import logging
 import sys
 
-from bots_subs.hi_api import NewHimoAPIBot
-
 from bots_subs import wiki_sql
+from bots_subs.hi_api import NewHimoAPIBot
 
 WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
 

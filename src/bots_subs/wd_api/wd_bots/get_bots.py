@@ -1,7 +1,5 @@
+""" """
 
-"""
-
-"""
 import logging
 
 from .submit_bot import submitAPI

@@ -8,7 +8,6 @@ import sys
 
 from bots_subs.wd_api import wd_bot
 from bots_subs.wd_api.wd_desc import work_api_desc
-
 from des.desc import work_one_item
 from des.places import placesTable
 from des.railway import railway_tables, work_railway

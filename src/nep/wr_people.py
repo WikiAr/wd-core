@@ -9,7 +9,6 @@ import logging
 import re
 
 from bots_subs.wd_api.wd_desc import work_api_desc
-
 from nep.tables.lists import en_des_to_ar
 from nep.tables.si_tables import genders
 from people.new3 import translations_o

@@ -11,7 +11,6 @@ python pwb.py des/galaxy
 
 
 from bots_subs.wd_api import newdesc
-
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 
 # newdesc.mainfromQuarry2( topic , Quarry, translations)

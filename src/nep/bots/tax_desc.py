@@ -7,7 +7,6 @@ import sys
 
 from bots_subs.hi_api import NewHimoAPIBot
 from bots_subs.wd_api import wd_sparql_bot
-
 from desc_dicts.taxones import lab_for_p171, labforP105, tax_translations, taxone_list
 from nep.bots.helps import Get_P_API_id
 

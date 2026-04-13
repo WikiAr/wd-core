@@ -11,10 +11,10 @@ import json
 import logging
 
 import pywikibot
-from bots_subs.wd_api import wd_bot
-from bots_subs.wd_api import wd_sparql_bot
-from bots_subs.wd_api.wd_desc import work_api_desc
+
 from bots_subs import open_url
+from bots_subs.wd_api import wd_bot, wd_sparql_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
 from desc_dicts.descraptions import DescraptionsTable
 
 logger = logging.getLogger(__name__)

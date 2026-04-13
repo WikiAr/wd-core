@@ -5,10 +5,7 @@
 
 import logging
 
-from . import wd_desc
-
-from . import wd_bot
-from . import wd_sparql_bot
+from . import wd_bot, wd_desc, wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 translations = {

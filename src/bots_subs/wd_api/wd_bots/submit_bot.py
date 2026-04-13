@@ -1,9 +1,9 @@
-
 """
 
 from .wd_bots.submit_bot import submitAPI
 
 """
+
 import logging
 
 import pywikibot.data.api as apit

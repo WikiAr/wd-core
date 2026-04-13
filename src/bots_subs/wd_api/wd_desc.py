@@ -8,14 +8,13 @@ from bots_subs.wd_api import wd_desc
 """
 
 import json
+import logging
 import os
 import sys
 import time
+from datetime import datetime
 
 from bots_subs.hi_api import NewHimoAPIBot
-
-import logging
-from datetime import datetime
 
 WD_API_Bot = NewHimoAPIBot(mr_or_bot="bot", www="www")
 

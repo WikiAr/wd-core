@@ -11,9 +11,7 @@ import re
 import sys
 
 from bots_subs.hi_api import NewHimoAPIBot
-
 from bots_subs.wd_api import wd_sparql_bot
-
 
 logger = logging.getLogger(__name__)
 

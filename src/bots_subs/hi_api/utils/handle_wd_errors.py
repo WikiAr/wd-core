@@ -1,7 +1,4 @@
-"""
-
-
-"""
+""" """
 
 import logging
 import sys

@@ -40,9 +40,9 @@ import re
 import sys
 import time
 
+import people.occupationsall as oc
 from bots_subs.wd_api import wd_sparql_bot
 from bots_subs.wd_api.wd_desc import work_api_desc
-import people.occupationsall as oc
 from people.Nationalities import translationsNationalities
 
 logger = logging.getLogger(__name__)

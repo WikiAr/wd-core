@@ -23,11 +23,9 @@ ORDER BY DESC(?count)
 #
 
 import logging
-
 import sys
 
-from bots_subs.wd_api import wd_sparql_bot
-from bots_subs.wd_api import wd_bot, wd_desc
+from bots_subs.wd_api import wd_bot, wd_desc, wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 

@@ -14,7 +14,6 @@ import sys
 
 from bots_subs.wd_api import wd_bot
 from bots_subs.wd_api.wd_desc import work_api_desc
-
 from des.ru_st_2_latin import make_en_label
 
 # enlabel = make_en_label(labels, Add=False)

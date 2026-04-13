@@ -111,9 +111,7 @@ def main():
         if Offq[1] > 0 and Offq[1] > query_num:
             continue
         # ---
-        pigenerator = sparql_generator_big_results(
-            sparql_query, offset=Off[1], limit=limit[1], alllimit=totallimit[1]
-        )
+        pigenerator = sparql_generator_big_results(sparql_query, offset=Off[1], limit=limit[1], alllimit=totallimit[1])
         # ---
         for n, wd in enumerate(pigenerator, start=1):
             logger.info("<<lightblue>> ============")
