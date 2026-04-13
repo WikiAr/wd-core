@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """
-(Add_Labels_if_not_there|Alias_API|Claim_API2|Claim_API_time|Des_API|get_rest_result|Labels_API|New_Mult_Des|New_Mult_Des_2|page_put)
 """
 from newapi import Login
 
@@ -15,8 +14,6 @@ class NewHimoAPIBot:
         self.login_bot: Login = log_in_wikidata(mr_or_bot=mr_or_bot, www=www)
         # ---
         self.wdapi_new = WD_API(self.login_bot, mr_or_bot=mr_or_bot)
-        # ---
-        self.get_rest_result = self.wdapi_new.get_rest_result
         # ---
         self.session_post = self.wdapi_new.post_to_newapi
 

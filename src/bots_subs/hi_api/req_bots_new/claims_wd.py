@@ -18,7 +18,6 @@ logger = logging.getLogger(__name__)
 class WD_Claims:
     def __init__(self, wdapi_new):
         self.wdapi_new = wdapi_new
-        self.post_continue_wrap = self.wdapi_new.post_continue
         self.session_post = self.wdapi_new.post_to_newapi
         # pass
 

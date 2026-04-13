@@ -22,27 +22,14 @@ class WD_API(WD_ERRORS_HANDLER):
         # ---
         self.usernamex = self.login_bot.user_login
         # ---
-        # super().__init__(self.post_continue)
-        # ---
         WD_ERRORS_HANDLER.__init__(self)
         # ---
         logger.info(f"<<lightgreen>> WD_API: {mr_or_bot}, {self.usernamex=} \n")
-
-    def get_rest_result(self, url) -> dict:
-        # ---
-        return self.login_bot.get_rest_result(url)
 
     def post_params(self, params, Type="get", addtoken=False, GET_CSRF=True, files=None, do_error=False, max_retry=0):
         # ---
         return self.login_bot.post_params(
             params, Type=Type, addtoken=addtoken, GET_CSRF=GET_CSRF, files=files, do_error=do_error, max_retry=max_retry
-        )
-
-    def post_continue(
-        self, params, action, _p_="pages", p_empty=None, Max=500000, first=False, _p_2="", _p_2_empty=None
-    ):
-        return self.login_bot.post_continue(
-            params, action, _p_=_p_, p_empty=p_empty, Max=Max, first=first, _p_2=_p_2, _p_2_empty=_p_2_empty
         )
 
     def post_to_newapi(self, params={}, data={}, tage="", editgroups="", max_retry=0, **kwargs):
