@@ -1,17 +1,19 @@
 #!/usr/bin/python3
 """ """
 
+import os
 import logging
 import time
 from datetime import datetime
 from pathlib import Path
 
 import requests
-from API import useraccount
 
 Dir = Path(__file__).parent.parent
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 
+qs_token = os.getenv("QS_TOKEN", "")
+qs_tokenbot = os.getenv("QS_TOKEN_BOT", "")
 
 logger = logging.getLogger(__name__)
 
@@ -24,8 +26,8 @@ def QS_line(line, user="Mr. Ibrahem"):
     # return ''
     # ---
     tokens = {
-        "Mr. Ibrahem": useraccount.qs_token,
-        "Mr.Ibrahembot": useraccount.qs_tokenbot,
+        "Mr. Ibrahem": qs_token,
+        "Mr.Ibrahembot": qs_tokenbot,
     }
     # ---
     token = tokens.get(user)

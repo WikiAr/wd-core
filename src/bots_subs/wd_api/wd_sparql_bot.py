@@ -83,7 +83,7 @@ def sparql_generator_url(quary, printq=False, add_date=True, key="", geterror=Fa
         return qlist
     # ---
     heads = json1.get("head", {}).get("vars", [])
-    var = sorted([x for x in heads])
+    var = sorted(heads)
     # ---
     bindings = json1.get("results", {}).get("bindings", [])
     # ---
