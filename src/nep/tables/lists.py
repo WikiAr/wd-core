@@ -34,18 +34,18 @@ from nep.tables.lists import space_list_and_other, others_list, Space_tab, other
 'Q163740':		{	'ar':'منظمة غير ربحية', 'en':'nonprofit organization' }, # 18634
 """
 
-# ---
+
 from desc_dicts.descraptions import Space_Descraptions
 
-# ---
+
 en_des_to_ar_no_lower = {
     "Royal Dutch East indies Army personel": "أفراد جيش جزر الهند الشرقية الملكية الهولندية",
     "duits beeldend kunstenaar": "فنان تشكيلي ألماني",
     "politician from Trinidad and Tobago": "سياسي من ترينيداد وتوباغو",
 }
-# ---
+
 en_des_to_ar = {x.lower(): z for x, z in en_des_to_ar_no_lower.items()}
-# ---
+
 Space_tab = {
     "Q18611609": "كوكب غير مؤكد خارج المجموعة الشمسية",  # unconfirmed exoplanet # 20689
     "Q13890": "نجم مزدوج",
@@ -73,10 +73,10 @@ Space_tab = {
     "Q726242": "نجم",
     "Q72803622": "نجم",
 }
-# ---
+
 for q in Space_Descraptions:
     Space_tab[q] = Space_Descraptions[q]["ar"]
-# ---
+
 """
 query = default_query #later, I want to manage this with params
 sparql_query = 'SELECT ?item WHERE {   ?item wdt:P31 wd:Q21191270 .   ?item wdt:P179 ?dummy0 . }'
@@ -88,7 +88,7 @@ sparql_query='SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P106 ?dummy0 
 sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 wd:Q4167836 }  service wikibase:label{bd:serviceParam wikibase:language "nl" . }  }}}'
 
 """
-# ---
+
 all_types_list = [
     "Q571",  # boek
     "Q134556",  # single
@@ -102,7 +102,7 @@ all_types_list = [
     "Q273057",  # discografie
     "Q207628",  # compositie
 ]
-# ---
+
 simple_set_byP131 = [
     "Q24764",
     "Q70208",
@@ -173,7 +173,7 @@ simple_set_byP131 = [
     "",
     "",
 ]
-# ---
+
 Geo_entity = {
     "Q4989906": "معلم تذكاري",
     "Q13424466": "ميناء طبيعي",
@@ -190,7 +190,7 @@ Geo_entity = {
     "Q131681": "خزان مائي",
     "Q4421": "غابة",
 }
-# ---
+
 p50s = {
     "Q571": {"ar": "كتاب", "P": "P50"},
     "Q7725634": {"ar": "عمل أدبي", "P": "P50"},  # رواية
@@ -204,13 +204,13 @@ p50s = {
     # 'Q571': "كتاب",
     # 'Q2831984': 'ألبوم قصص مصورة',
 }
-# ---
+
 
 
 # حركة فردية
-# ---
+
 # رواية
-# ---
+
 space_list_and_other = {
     # ---
     # 'Q72802508',#emission-line galaxy
@@ -236,16 +236,16 @@ space_list_and_other = {
     "Q7278": "حزب سياسي",
 }
 Taton_list = {kj: space_list_and_other[kj] for kj in space_list_and_other}
-# ---
+
 # p50s جاهزة في SPARQLSE
 for dd in p50s:
     space_list_and_other[dd] = p50s[dd]["ar"]
-# ---
+
 # Space_tab جاهزة في SPARQLSE
 for sss in Space_tab:
     # space_list_and_other.append(sss)
     space_list_and_other[sss] = Space_tab[sss]
-# ---
+
 others_list_2 = [
     "Q820655",  # قانون تشريعي
     "Q21191270",  # حلقة مسلسل تلفزيوني
@@ -257,7 +257,7 @@ others_list_2 = [
     "Q24862",  # فيلم قصير
     "Q3231690",  # طراز سيارة
 ]
-# ---
+
 others_list = {
     # ---
     "Q43229": {"ar": "منظمة"},
@@ -303,10 +303,10 @@ others_list = {
     # 'Q15416':{"ar":"برنامج تلفزيوني", "en":"" },
     # 'Q11424':{"ar":"فيلم", "en":"" },
 }
-# ---
+
 for geo in Geo_entity:
     others_list[geo] = {"ar": Geo_entity[geo], "en": ""}
-# ---
+
 bldiat = {
     "Q484170": "فرنسا",  # a 37477
     "Q262166": "ألمانيا",  # a 7941
@@ -327,10 +327,10 @@ bldiat = {
     "Q856076": "فنلندا ",  # a 219
     "Q378508": "أنغولا",  # a 158
 }
-# ---
+
 for vv in bldiat:
     others_list[vv] = {"ar": f"بلدية في {bldiat[vv]}" ""}
-# ---
+
 qura = {
     "Q21672098": {"P17": "أوكرانيا", "P31": "قرية"},
     "Q1529096": {"P17": "تركيا", "P31": "قرية"},
@@ -343,22 +343,22 @@ qura = {
     "Q13417250": {"P17": "أذربيجان", "P31": "بلدية"},
     # ---
 }
-# ---
-"""
-
-
-
-
 
 """
-# ---
+
+
+
+
+
+"""
+
 for q in qura:
     # labs = '%s في %s' % ( qura[q]['P31'] , qura[q]['P17'] )
     others_list[q] = {"ar": qura[q]["P31"], "en": ""}
-# ---
 
 
-# ---
+
+
 songs_type = {
     "Q7366": "أغنية",
     "Q482994": "ألبوم",
@@ -367,10 +367,10 @@ songs_type = {
     "Q1573906": "جولة موسيقية",
     "Q182832": "حفلة موسيقية",
 }
-# ---
+
 for son in songs_type:
     others_list[son] = {"ar": songs_type[son], "en": ""}
-# ---
+
 
 
 # مقالة سيرة ذاتية
@@ -379,10 +379,10 @@ for son in songs_type:
 # ---Q19389637#Q2831984
 
 # كتاب
-# ---
+
 
 # مجرة
-# ---
+
 
 
 # كسوف نجم ثنائي
@@ -397,11 +397,11 @@ for son in songs_type:
 
 # بروتين
 
-# ---
+
 # حلقة
 # Q21191270#Q1983062
 
-# ---
+
 space_list_and_other_2 = {
     "Q96739634": {"ar": "حركة فردية", "P": "P50"},
     "Q3331189": {"ar": "طبعة", "P": "P629"},
@@ -420,16 +420,16 @@ space_list_and_other_2 = {
     # ---
     "Q7278": {"ar": "حزب سياسي", "P": ""},
 }
-# ---
+
 # Q11424  فيلم
 
 
 # موسم رياضي
-# ---
+
 
 # طراز سيارة
 # ---x
 
 # أغنية
-# ---
-# ---
+
+

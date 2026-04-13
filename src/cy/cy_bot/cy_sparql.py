@@ -11,13 +11,13 @@ import urllib.parse
 import requests
 from datetime import datetime
 
-# ---
+
 # from .cy_helps import printt
-# ---
+
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 
 Stage = {"": ""}
-# ---
+
 
 
 def get_query_results(query):

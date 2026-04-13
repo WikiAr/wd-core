@@ -9,17 +9,17 @@ from api_sql import wiki_sql
 
 # Dump_Dir = Path(__file__).parent                      # /data/project/himo/bots/dump_core/dump/labels
 Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
-# ---
+
 Dump_Dir = "/data/project/himo/bots/dumps"
 Dump_Dir = f"{Himo_Dir}/dumps"
-# ---
-print(f"Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}")
-# ---
-# ---
 
-# ---
+print(f"Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}")
+
+
+
+
 dump_file = f"{Dump_Dir}/langlinks.json"
-# ---
+
 qua = """select
 CONCAT('"Category:', p1.page_title, '"') AS en, CONCAT(':"',ll_title, '",') AS ar
 from page AS p1, langlinks
@@ -28,15 +28,15 @@ AND ll_lang = "ar"
 AND p1.page_namespace = 14
 
 """
-# ---
+
 table = {}
-# ---
+
 TEST = "test" in sys.argv
 all = 20 if TEST else 1000
-# ---
+
 offset = 0
 limit = 200000
-# ---
+
 for i in range(1, all):
     # ---
     if i != 1:
@@ -67,4 +67,4 @@ for i in range(1, all):
     print(f"len of table:{len(table)}")
     # ---
     json.dump(table, open(dump_file, "w", encoding="utf-8"))
-# ---
+

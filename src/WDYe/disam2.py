@@ -2,11 +2,11 @@
 #  fix disambiguation
 #
 
-# ---
+
 
 
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
-# ---
+
 #
 import logging
 from API import open_url
@@ -20,9 +20,9 @@ from desc_dicts.descraptions import DescraptionsTable
 
 logger = logging.getLogger(__name__)
 
-# ---
+
 translations = {"Wikimedia disambiguation page": DescraptionsTable["Wikimedia disambiguation page"]}
-# ---
+
 replacement = {}
 replacement["fa"] = {
     "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable["Wikimedia disambiguation page"]["fa"],
@@ -87,10 +87,10 @@ limit 1"""
         work2(q, topic)
 
 
-# ---
+
 wikidatasite = pywikibot.Site("wikidata", "wikidata")
 repo = wikidatasite.data_repository()
-# ---
+
 # open_url.open_the_url( url )
 
 

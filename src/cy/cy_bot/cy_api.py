@@ -11,19 +11,19 @@ import requests
 # import urlencode
 from urllib.parse import urlencode
 
-# ---
+
 from . import useraccount
 from .cy_helps import printt, printo, make_dada, ec_de_code, TEST
 
 api_url = "https://" + "ar.wikipedia.org/w/api.php"
 username = useraccount.username
 password = useraccount.password
-# ---
+
 returntext = {1: True}
-# ---
+
 if "text" in sys.argv:
     returntext[1] = False
-# ---
+
 workibrahem = False
 if "workibrahem" in sys.argv:
     from API import useraccount
@@ -32,11 +32,11 @@ if "workibrahem" in sys.argv:
     password = useraccount.hipass
     workibrahem = True
     print("workibrahem active")
-# ---
+
 # headers=headers,
 # session[1].headers.update(headers)
 headers = {"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"}
-# ---
+
 session = {1: requests.Session(), "csrftoken": ""}
 session[1].headers.update(headers)
 
