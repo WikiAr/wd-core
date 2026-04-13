@@ -12,6 +12,7 @@ import re
 
 from bots_subs.hi_api import NewHimoAPIBot
 from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 from bots_subs.wd_api.wd_desc import work_api_desc
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 
@@ -49,11 +50,11 @@ quaries = {
 def work_one_item(q):
     # ---
     # claims
-    P31 = wd_bot.Get_Property_API(q=q, p="P31")
+    P31 = wd_bot.Get_Property_API_1(q=q, p="P31")
     # ---
     P31 = P31[0] if P31 and isinstance(P31, list) else ""
     # ---
-    links = wd_bot.Get_Sitelinks_from_qid(ids=q)
+    links = wd_bot.Get_Sitelinks_From_wikidata("", "", ssite="", ids=q)
     # ---
     labels = wd_bot.Get_item_descriptions_or_labels(q, "labels")
     descriptions = wd_bot.Get_item_descriptions_or_labels(q, "descriptions")
@@ -102,7 +103,7 @@ def main():
     for qua_a in quaries:
         qua = quaries[qua_a]
         # ---
-        json1 = wd_bot.wd_sparql_generator_url(qua, returnq=True)
+        json1 = wd_sparql_bot.wd_sparql_generator_url(qua, returnq=True)
         # ---
         total = len(json1)
         # ---

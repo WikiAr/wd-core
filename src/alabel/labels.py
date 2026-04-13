@@ -88,5 +88,4 @@ def main():
         logger.info(f'<<lightgreen>> {num}/{len_result} qid:"{qid}", page:"{page}"')
         # ---
         if page:
-            # WD_API_Bot.Labels_API(qid, page, "ar", False, Or_Alii=True)
             WD_API_Bot.Add_Labels_if_not_there(qid, page, "ar", False)

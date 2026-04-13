@@ -7,15 +7,13 @@ import time
 
 from newapi import Login
 
-from ..groups_bots.edit_groups import build_editgroups_summary
-from ..himo_wd_bots.bot_wd import WD_Functions
 from ..utils import lag_bot
 from ..utils.handle_wd_errors import WD_ERRORS_HANDLER
 
 logger = logging.getLogger(__name__)
 
 
-class WD_API(WD_Functions, WD_ERRORS_HANDLER):
+class WD_API(WD_ERRORS_HANDLER):
     def __init__(self, login_bot, mr_or_bot="bot"):
         # ---
         self.login_bot: Login = login_bot
@@ -27,7 +25,6 @@ class WD_API(WD_Functions, WD_ERRORS_HANDLER):
         # ---
         # super().__init__(self.post_continue)
         # ---
-        WD_Functions.__init__(self)
         WD_ERRORS_HANDLER.__init__(self)
         # ---
         logger.info(f"<<lightgreen>> WD_API: {mr_or_bot}, {self.usernamex=} \n")
@@ -106,12 +103,6 @@ class WD_API(WD_Functions, WD_ERRORS_HANDLER):
         if "summary" in data:
             if self.usernamex.find("bot") == -1:
                 del data["summary"]
-        # ---
-        deav_new = build_editgroups_summary(self.usernamex, data, editgroups, tage)
-        # ---
-        if deav_new:
-            data["summary"] = f"{data.get('summary', '')} {deav_new}"
-            logger.info(data["summary"])
         # ---
         data.setdefault("formatversion", 1)
         # ---

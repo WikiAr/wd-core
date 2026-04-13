@@ -4,11 +4,9 @@
 """
 from . import wd_sparql_bot
 from .wd_bots.get_bots import (
-    Get_infos_wikidata,
     Get_Item_API_From_Qid,
     Get_item_descriptions_or_labels,
-    Get_Property_API,
-    Get_Sitelinks_from_qid,
+    Get_Property_API_1,
     Get_Sitelinks_From_wikidata,
 )
 
@@ -28,12 +26,10 @@ def sparql_generator_big_results(spq, offset=0, limit=20000, alllimit=0):
 
 
 __all__ = [
-    "Get_infos_wikidata",
     "Get_Sitelinks_From_wikidata",
-    "Get_Sitelinks_from_qid",
     "Get_item_descriptions_or_labels",
     "Get_Item_API_From_Qid",
-    "Get_Property_API",
+    "Get_Property_API_1",
     "wd_sparql_generator_url",
     "sparql_generator_url",
     "sparql_generator_big_results",

@@ -1,6 +1,5 @@
 """
 
-# from .himo_wd_bots.handle_wd_errors import WD_ERRORS_HANDLER
 
 """
 

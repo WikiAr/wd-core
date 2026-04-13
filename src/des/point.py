@@ -51,7 +51,7 @@ def action(json1):
                 timestr = f"+{year1}-00-00T00:00:00Z"
                 # ---
                 PP_time = ""
-                PP = wd_bot.Get_Property_API(q=q, p="P585")
+                PP = wd_bot.Get_Property_API_1(q=q, p="P585")
                 if PP and PP[0] and PP[0]["time"]:
                     PP_time = PP[0]["time"]
                     logger.info(f"  * PP:\"{PP[0]['time']}\"")

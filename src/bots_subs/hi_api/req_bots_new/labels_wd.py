@@ -9,16 +9,10 @@ import logging
 import re
 import sys
 
-from ..himo_wd_bots.bot_wd import WD_Functions
 from ..utils import lag_bot
 from ..utils.out_json import outbot_json
 
 logger = logging.getLogger(__name__)
-bot_wd = WD_Functions()
-
-Get_item_descriptions_or_labels = bot_wd.Get_item_descriptions_or_labels
-Get_Property_API = bot_wd.Get_Property_API
-
 
 label_ask = {1: True}
 Save_2020_wd = {1: False}

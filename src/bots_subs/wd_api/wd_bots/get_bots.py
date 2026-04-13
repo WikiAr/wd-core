@@ -102,10 +102,6 @@ def Get_Sitelinks_From_wikidata(site, title, ssite="", ids="", props="", add_pro
     # ---
     return table
 
-
-def Get_Sitelinks_from_qid(ssite="", ids=""):
-    return Get_Sitelinks_From_wikidata("", "", ssite=ssite, ids=ids)
-
 def Get_item_descriptions_or_labels(q, ty="descriptions or labels"):
     """Retrieve item descriptions or labels from a given entity ID.
 
@@ -210,7 +206,7 @@ def Get_Item_API_From_Qid(q, sites="", titles="", props=""):
     return table
 
 
-def Get_Property_API(q="", p="", titles="", sites=""):
+def Get_Property_API_1(q="", p="", titles="", sites=""):
     # url = 'https://www.wikidata.org/w/api.php?action=wbgetclaims&entity=' + q + '&property=' + p + '&format=json'
     # json1 = tools.loads_json( html)
     # ---

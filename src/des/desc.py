@@ -241,18 +241,11 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     item = wd_bot.Get_Item_API_From_Qid(q, sites="", titles="", props="")
     # ---
     descriptions = item["descriptions"]
-    # NewDesc = {}
-    # addedlangs = []
     # ---
     if lang in descriptions:
         logger.info(f"lang:ar in descriptions({descriptions[lang]})")
         if descriptions[lang] != start:
             return ""
-    # ---
-    # NewDesc[lang] = { "language":lang,"value": arlabel2 }
-    # addedlangs.append(lang)
-    # ---
-    # WD_API_Bot.Des_API( q, arlabel2 ,lang)
     # ---
     Add_desc(q, arlabel2, lang)
 
