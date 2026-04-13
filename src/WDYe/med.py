@@ -14,7 +14,7 @@ import urllib
 import urllib.parse
 
 from bots_subs.hi_api import NewHimoAPIBot
-from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 
 from api_page import load_main_api
 from bots_subs import open_url
@@ -416,7 +416,7 @@ def main():
     Quaa += Limit[1]
 
     logger.info(Quaa)
-    sparql = wd_bot.sparql_generator_url_Z(Quaa)
+    sparql = wd_sparql_bot.sparql_generator_url(Quaa)
     # ---
     Table = {}
     for item in sparql:

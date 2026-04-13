@@ -12,7 +12,7 @@ import logging
 import re
 
 import pywikibot
-from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 from bots_subs.wd_api.wd_desc import work_api_desc
 
 logger = logging.getLogger(__name__)
@@ -215,7 +215,7 @@ def WorkWithOneLang(Qid, lang, keys):
     quary = quary + "\n limit %d" % limit
     logger.info(quary)
     # ---
-    PageList = wd_bot.sparql_generator_url_Z(quary, key="item")
+    PageList = wd_sparql_bot.sparql_generator_url(quary, key="item")
     # ---
     total = len(PageList)
     # ---

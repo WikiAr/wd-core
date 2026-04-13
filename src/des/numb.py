@@ -9,6 +9,7 @@ import logging
 
 from bots_subs.hi_api import NewHimoAPIBot
 from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +24,7 @@ quarry = """SELECT (CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
 FILTER NOT EXISTS {?item schema:description ?ar filter (lang(?ar) = "ar")} .
 }
 """
-json1 = wd_bot.sparql_generator_url_Z(quarry)
+json1 = wd_sparql_bot.sparql_generator_url(quarry)
 total = len(json1)
 for c, q in enumerate(json1, start=1):
     Qid = q["q"]

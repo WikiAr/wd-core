@@ -13,6 +13,7 @@ import re
 from bots_subs.hi_api import NewHimoAPIBot
 from bots_subs.wd_api import wd_bot
 from bots_subs.wd_api import wd_sparql_bot
+from bots_subs.wd_api.wd_bots.get_bots import Get_infos_wikidata
 from bots_subs.wd_api.wd_desc import work_api_desc
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 
@@ -47,14 +48,65 @@ quaries = {
 }
 
 
+def Get_Sitelinks_From_wikidata(site, title, ssite="", ids="", props="", add_props=None, return_main_table=False):
+    # ---
+    sitewiki = site
+    if site.find("wiki") == -1:
+        sitewiki = f"{site}wiki"
+    # ---
+    params = {
+        "action": "wbgetentities",
+        "props": "sitelinks",
+        # "props": "sitelinks|templates",
+        "sites": sitewiki,
+        "titles": title,
+        "normalize": 1,
+        # "tlnamespace": "10",
+        # "tllimit": "max",
+        # "tltemplates": "Template:Category redirect",
+    }
+    # ---
+    if props:
+        params["props"] = props
+    # ---
+    if isinstance(add_props, (list, tuple)):
+        for x in add_props:
+            if x not in params["props"]:
+                params["props"] += f"|{x}"
+    # ---
+    if ids:
+        params["ids"] = ids
+        del params["sites"]
+        del params["titles"]
+    # ---
+    table = Get_infos_wikidata(params)
+    # ---
+    if return_main_table:
+        return table
+    # ---
+    if table:
+        table["site"] = sitewiki
+    # ---
+    ssite2 = ssite
+    if not ssite.endswith("wiki"):
+        ssite2 += "wiki"
+    # ---
+    if ssite:
+        sitelinks = table.get("sitelinks", {})
+        result = sitelinks.get(ssite) or sitelinks.get(ssite2) or ""
+        return result
+    # ---
+    return table
+
+
 def work_one_item(q):
     # ---
     # claims
-    P31 = wd_bot.Get_Property_API_1(q=q, p="P31")
+    P31 = wd_bot.Get_Property_API(q=q, p="P31")
     # ---
     P31 = P31[0] if P31 and isinstance(P31, list) else ""
     # ---
-    links = wd_bot.Get_Sitelinks_From_wikidata("", "", ssite="", ids=q)
+    links = Get_Sitelinks_From_wikidata("", "", ssite="", ids=q)
     # ---
     labels = wd_bot.Get_item_descriptions_or_labels(q, "labels")
     descriptions = wd_bot.Get_item_descriptions_or_labels(q, "descriptions")

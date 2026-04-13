@@ -12,9 +12,8 @@ import logging
 import re
 import sys
 
-import pywikibot
 from bots_subs.hi_api import NewHimoAPIBot
-from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 
 from des.p155tables import (
     International_Federation,
@@ -555,7 +554,7 @@ def main():
             # ---#
     Quaa = Quarry["use"] + Limit[1]
     logger.info(Quaa)
-    sparql = wd_bot.sparql_generator_url_Z(Quaa)
+    sparql = wd_sparql_bot.sparql_generator_url(Quaa)
     # ---
     Table = {}
     for item in sparql:

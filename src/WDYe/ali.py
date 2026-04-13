@@ -8,7 +8,7 @@ import logging
 import sys
 
 from bots_subs.hi_api import NewHimoAPIBot
-from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 
@@ -166,7 +166,7 @@ def workqua(qua):
     qua = qua + Limit[1]
     logger.info(qua)
     # ---
-    sparql = wd_bot.sparql_generator_url_Z(qua)
+    sparql = wd_sparql_bot.sparql_generator_url(qua)
     # ---
     for pa in sparql:
         pa["item"] = pa["item"].split("/entity/")[1]

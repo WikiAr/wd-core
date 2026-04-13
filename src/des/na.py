@@ -8,18 +8,18 @@
 
 import logging
 import re
-
-logger = logging.getLogger(__name__)
-
-
 import sys
 
 from bots_subs.hi_api import NewHimoAPIBot
 
+from bots_subs.wd_api import wd_sparql_bot
+
+
+logger = logging.getLogger(__name__)
+
+
 WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
 
-
-from bots_subs.wd_api import wd_bot
 
 bylangs = False  # False#True
 
@@ -286,7 +286,7 @@ def main():
         logger.info(f"quuu : {number}/{len(qya)} key:{key}")
         logger.info(quuu)
         # ---
-        json1 = wd_bot.sparql_generator_url_Z(quuu)
+        json1 = wd_sparql_bot.sparql_generator_url(quuu)
         action(json1)
 
 

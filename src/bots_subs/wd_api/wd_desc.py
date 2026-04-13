@@ -14,13 +14,13 @@ import time
 
 from bots_subs.hi_api import NewHimoAPIBot
 
+import logging
+from datetime import datetime
+
 WD_API_Bot = NewHimoAPIBot(mr_or_bot="bot", www="www")
 
 
-import logging
-
 logger = logging.getLogger(__name__)
-from datetime import datetime
 
 file_name = os.path.basename(__file__)
 

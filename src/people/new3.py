@@ -40,7 +40,7 @@ import re
 import sys
 import time
 
-from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 from bots_subs.wd_api.wd_desc import work_api_desc
 import people.occupationsall as oc
 from people.Nationalities import translationsNationalities
@@ -181,7 +181,7 @@ def check_quarry_new(tab):
             print(qua)
             print("qua .")
         # ---
-        json = wd_bot.sparql_generator_url_Z(qua)
+        json = wd_sparql_bot.sparql_generator_url(qua)
         # ---
         New_Json.extend(iter(json))
     # ---
@@ -377,7 +377,7 @@ def Main_Test():
     # ---
 
     # ---
-    wd_bot.sparql_generator_url_Z(qua)
+    wd_sparql_bot.sparql_generator_url(qua)
 
 
 if __name__ == "__main__":

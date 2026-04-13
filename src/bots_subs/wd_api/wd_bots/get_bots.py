@@ -52,56 +52,6 @@ def Get_infos_wikidata(params):
     return table
 
 
-def Get_Sitelinks_From_wikidata(site, title, ssite="", ids="", props="", add_props=None, return_main_table=False):
-    # ---
-    sitewiki = site
-    if site.find("wiki") == -1:
-        sitewiki = f"{site}wiki"
-    # ---
-    params = {
-        "action": "wbgetentities",
-        "props": "sitelinks",
-        # "props": "sitelinks|templates",
-        "sites": sitewiki,
-        "titles": title,
-        "normalize": 1,
-        # "tlnamespace": "10",
-        # "tllimit": "max",
-        # "tltemplates": "Template:Category redirect",
-    }
-    # ---
-    if props:
-        params["props"] = props
-    # ---
-    if isinstance(add_props, (list, tuple)):
-        for x in add_props:
-            if x not in params["props"]:
-                params["props"] += f"|{x}"
-    # ---
-    if ids:
-        params["ids"] = ids
-        del params["sites"]
-        del params["titles"]
-    # ---
-    table = Get_infos_wikidata(params)
-    # ---
-    if return_main_table:
-        return table
-    # ---
-    if table:
-        table["site"] = sitewiki
-    # ---
-    ssite2 = ssite
-    if not ssite.endswith("wiki"):
-        ssite2 += "wiki"
-    # ---
-    if ssite:
-        sitelinks = table.get("sitelinks", {})
-        result = sitelinks.get(ssite) or sitelinks.get(ssite2) or ""
-        return result
-    # ---
-    return table
-
 def Get_item_descriptions_or_labels(q, ty="descriptions or labels"):
     """Retrieve item descriptions or labels from a given entity ID.
 
@@ -165,8 +115,7 @@ def Get_Item_API_From_Qid(q, sites="", titles="", props=""):
     # ---
     sitecode = sites
     # ---
-    if sitecode.endswith("wiki"):
-        sitecode = sitecode[:-4]
+    sitecode = sitecode.removesuffix("wiki")
     sitecode = f"{sitecode}wiki"
     # ---
     if props:
@@ -206,7 +155,7 @@ def Get_Item_API_From_Qid(q, sites="", titles="", props=""):
     return table
 
 
-def Get_Property_API_1(q="", p="", titles="", sites=""):
+def Get_Property_API(q="", p="", titles="", sites=""):
     # url = 'https://www.wikidata.org/w/api.php?action=wbgetclaims&entity=' + q + '&property=' + p + '&format=json'
     # json1 = tools.loads_json( html)
     # ---

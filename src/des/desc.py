@@ -43,14 +43,14 @@ limit 100
 
 import logging
 import re
+import json
 import sys
 
 from bots_subs.hi_api import NewHimoAPIBot
-from bots_subs.wd_api.get_property_for_list import get_property_label_for_qids
 from bots_subs.wd_api.qs_bot import QS_line
 from bots_subs.wd_api.wd_sparql_bot import sparql_generator_big_results
 from bots_subs.wd_api import wd_bot
-
+from api_page import load_main_api
 from des.contries2 import ContriesTable2
 from des.places import placesTable
 
@@ -141,6 +141,47 @@ for arg in sys.argv:
     elif arg == "qslimit":
         QSlimit[1] = int(value)
     # ---
+
+
+def get_property_label_for_qids(properties, List):
+    # ---
+    # logger.info('start get_property_label_for_qids:' )
+    # ---
+    text = ""
+    # ---
+    num = 0
+    # ---
+    for qid in List:
+        num += 1
+        lino = "{{subst:user:Mr._Ibrahem/line2|%s" % qid
+        for prop in properties:
+            lino += f"|{prop}"
+        lino += "}}\n"
+        # if num == 1 : logger.info(lino)
+        text += lino
+    # ---
+    if "printprase" in sys.argv:
+        print(text)
+    # ---
+    api = load_main_api("ar")
+    jso = api.NEW_API().Parse_Text(text, "ويكيبيديا:ملعب")
+    # ---
+    if not jso:
+        logger.info('get_property_label_for_qids: jso == ""')
+        return False
+    # ---
+    elif jso == text:
+        logger.info("<<lightred>> get_property_label_for_qids: jso == text ")
+        return False
+    # ---
+    newtabe = json.loads("{\n" + jso + '\n"cdcdcd":{}\n}')
+    # ---
+    if newtabe:
+        del newtabe["cdcdcd"]
+    # ---
+    # logger.info( newtabe )
+    # ---
+    return newtabe
 
 
 def descqs(q, value, lang):

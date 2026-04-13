@@ -1,10 +1,5 @@
 """
 
-from bots_subs.wd_api import wd_sparql_bot
-# wd_sparql_bot.wd_sparql_generator_url(quary, returnq=False)
-# wd_sparql_bot.sparql_generator_url(quary, printq=False, add_date=True, key='', geterror=False, returndict=False)
-# wd_sparql_bot.sparql_generator_big_results(spq, offset=0, limit=5000, alllimit=0)
-
 """
 
 import logging

@@ -15,7 +15,7 @@ import random
 import sys
 
 import tqdm
-from bots_subs.wd_api import newdesc, wd_bot
+from bots_subs.wd_api import newdesc, wd_sparql_bot
 
 from des.railway import railway_tables, work_railway
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
@@ -154,7 +154,7 @@ def work_one_json(json1, topic_ar, p31, p31_langs):
 
 
 def work_one_quarry(quarry, p31, p31_desc):
-    json1 = wd_bot.sparql_generator_url_Z(quarry)
+    json1 = wd_sparql_bot.sparql_generator_url(quarry)
     # ---
     quarry_result_lenth = len(json1)
     # ---

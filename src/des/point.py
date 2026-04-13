@@ -12,6 +12,7 @@ import sys
 
 from bots_subs.hi_api import NewHimoAPIBot
 from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +52,7 @@ def action(json1):
                 timestr = f"+{year1}-00-00T00:00:00Z"
                 # ---
                 PP_time = ""
-                PP = wd_bot.Get_Property_API_1(q=q, p="P585")
+                PP = wd_bot.Get_Property_API(q=q, p="P585")
                 if PP and PP[0] and PP[0]["time"]:
                     PP_time = PP[0]["time"]
                     logger.info(f"  * PP:\"{PP[0]['time']}\"")
@@ -127,7 +128,7 @@ def main():
         logger.info(f"quuu : {number}/{len(qya)} key:{key}")
         logger.info(quuu)
         # ---
-        json1 = wd_bot.sparql_generator_url_Z(quuu)
+        json1 = wd_sparql_bot.sparql_generator_url(quuu)
         action(json1)
 
 

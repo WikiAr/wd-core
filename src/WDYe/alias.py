@@ -10,7 +10,7 @@ import re
 import sys
 
 from bots_subs.hi_api import NewHimoAPIBot
-from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
@@ -91,7 +91,7 @@ def WORK_table(qid, tables):
         qua = Quaa % (qid, peo)
         qua = qua + Limit[1]
         # logger.info( qua )
-        sparql = wd_bot.sparql_generator_url_Z(qua, printq=True)
+        sparql = wd_sparql_bot.sparql_generator_url(qua, printq=True)
         # logger.info( sparql )
         # ---
         Table = {}

@@ -14,13 +14,14 @@ import logging
 import random
 import sys
 import time
-
-logger = logging.getLogger(__name__)
-
+from bots_subs.wd_api import wd_sparql_bot
 from bots_subs.wd_api import wd_bot
 
 from nep.wr_people import work_people
 from people.people_get_topic import print_new_jobs, qid_to_job, qid_to_p27
+
+
+logger = logging.getLogger(__name__)
 
 limit = {1: "500"}
 P106 = {1: []}
@@ -137,7 +138,7 @@ def main():
         # ---
         print(line)
         # ---
-        lista = wd_bot.sparql_generator_url_Z(qua)
+        lista = wd_sparql_bot.sparql_generator_url(qua)
         # ---
         for num, tab in enumerate(lista, start=1):
             qid = tab["qid"]

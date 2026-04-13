@@ -7,14 +7,10 @@ import logging
 
 from . import wd_desc
 
-# from bots_subs.wd_api import newdesc
-# newdesc.mainfromQuarry ( topic, Quarry, translations)
-# newdesc.mainfromQuarry2( topic, Quarry, translations)
-
+from . import wd_bot
+from . import wd_sparql_bot
 
 logger = logging.getLogger(__name__)
-from . import wd_bot
-
 translations = {
     "Wikimedia module": {  # Q4167836
         "ar": "وحدة ويكيميديا",
@@ -101,7 +97,7 @@ def work22(q, topic, translations):
 def mainfromQuarry(topic, Quarry, translations):
     # logger.info( '*<<lightyellow>> mainfromQuarry:' )
     # Quarry = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q17633526.}'
-    json = wd_bot.sparql_generator_url_Z(Quarry)
+    json = wd_sparql_bot.sparql_generator_url(Quarry)
     lenth = len(json)
     num = 0
     # ---
@@ -113,7 +109,7 @@ def mainfromQuarry(topic, Quarry, translations):
 
 
 def Quarry_with_item_langs(p31, Quarry, translations):
-    json = wd_bot.sparql_generator_url_Z(Quarry)
+    json = wd_sparql_bot.sparql_generator_url(Quarry)
     lenth = len(json)
     num = 0
     # ---

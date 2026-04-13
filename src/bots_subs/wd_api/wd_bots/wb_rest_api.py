@@ -20,13 +20,10 @@ from .wd_bots import wb_rest_api
 
 import logging
 import sys
+from bots_subs.hi_api import NewHimoAPIBot
+
 
 logger = logging.getLogger(__name__)
-
-
-# get_rest_result = login_bot.get_rest_result
-
-from bots_subs.hi_api import NewHimoAPIBot
 
 WD_API_Bot = NewHimoAPIBot(mr_or_bot="bot", www="www")
 
@@ -34,10 +31,6 @@ get_rest_result = WD_API_Bot.get_rest_result
 
 
 wd_cach = {}
-
-
-def get_rest_result_wrap(url):
-    return get_rest_result(url)
 
 
 def Get_one_qid_info(qid, only=None):
@@ -85,7 +78,7 @@ def Get_one_qid_info(qid, only=None):
     if "printurl" in sys.argv:
         logger.info(url)
     # ---
-    result = get_rest_result_wrap(url)
+    result = get_rest_result(url)
     # ---
     if only in props:
         result = {only: result}

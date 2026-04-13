@@ -6,7 +6,7 @@ import logging
 import sys
 
 from bots_subs.hi_api import NewHimoAPIBot
-from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api import wd_sparql_bot
 
 from desc_dicts.taxones import lab_for_p171, labforP105, tax_translations, taxone_list
 from nep.bots.helps import Get_P_API_id
@@ -58,7 +58,7 @@ def make_tax_des_new(item):
     if "err" in sys.argv:
         logger.info(nan)
     # ---
-    bs = wd_bot.sparql_generator_url_Z(nan)
+    bs = wd_sparql_bot.sparql_generator_url(nan)
     # ---
     if bs != []:
         bs = bs[0]
