@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""
-"""
+""" """
 import logging
 import sys
 import time
 
 import requests
+
 logger = logging.getLogger(__name__)
 
 

@@ -12,10 +12,12 @@ import re
 import sys
 import urllib
 import urllib.parse
-from bots_subs import open_url
+
 from himo_api import New_Himo_API
 from wd_api import wd_bot
+
 from api_page import load_main_api
+from bots_subs import open_url
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 

@@ -12,7 +12,6 @@ from datetime import datetime
 
 import requests
 
-
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 
 Stage = {"": ""}

@@ -11,9 +11,9 @@ import json
 import logging
 
 import pywikibot
-from bots_subs import open_url
 from wd_api import wd_bot, wd_desc
 
+from bots_subs import open_url
 from desc_dicts.descraptions import DescraptionsTable
 
 logger = logging.getLogger(__name__)

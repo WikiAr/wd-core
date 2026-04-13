@@ -56,7 +56,6 @@ from pathlib import Path
 
 import wd_gent
 from api_page import load_main_api
-
 from nep import si3
 
 logger = logging.getLogger(__name__)

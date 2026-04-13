@@ -6,9 +6,9 @@
 """
 import logging
 import sys
-from wd_api import wd_bot
 
 from himo_api import New_Himo_API
+from wd_api import wd_bot
 
 logger = logging.getLogger(__name__)
 

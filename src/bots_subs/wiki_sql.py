@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""
-
-"""
+""" """
 import logging
-import time
 import os
+import time
+
 import pymysql
 import pymysql.cursors
 from pywikibot import config
@@ -133,7 +132,15 @@ def make_labsdb_dbs_p(wiki):
     return host, dbs_p
 
 
-def sql_connect_pymysql(query, db="", host="", update=False, default_return=None, return_dict=False, values=None,):
+def sql_connect_pymysql(
+    query,
+    db="",
+    host="",
+    update=False,
+    default_return=None,
+    return_dict=False,
+    values=None,
+):
     # ---
     if not default_return:
         default_return = []
@@ -186,7 +193,15 @@ def sql_connect_pymysql(query, db="", host="", update=False, default_return=None
         return results
 
 
-def make_sql_connect(query, db="", host="", update=False, default_return=None, return_dict=False, values=None,):
+def make_sql_connect(
+    query,
+    db="",
+    host="",
+    update=False,
+    default_return=None,
+    return_dict=False,
+    values=None,
+):
     # ---
     if not default_return:
         default_return = []
@@ -213,7 +228,11 @@ def make_sql_connect(query, db="", host="", update=False, default_return=None, r
     return rows
 
 
-def sql_new(queries, wiki="", values=None,):
+def sql_new(
+    queries,
+    wiki="",
+    values=None,
+):
     # ---
     logger.debug(f"wiki_sql.py sql_new wiki '{wiki}'")
     # ---
