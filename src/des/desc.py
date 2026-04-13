@@ -48,8 +48,8 @@ import sys
 
 from api_page import load_main_api
 from bots_subs.hi_api import NewHimoAPIBot
-from bots_subs.wd_api import wd_bot
 from bots_subs.qs_bot import QS_line
+from bots_subs.wd_api import wd_bot
 from bots_subs.wd_api.wd_sparql_bot import sparql_generator_big_results
 from des.contries2 import ContriesTable2
 from des.places import placesTable

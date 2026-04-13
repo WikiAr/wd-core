@@ -26,12 +26,6 @@ class WD_API(WD_ERRORS_HANDLER):
         # ---
         logger.info(f"<<lightgreen>> WD_API: {mr_or_bot}, {self.usernamex=} \n")
 
-    def post_params(self, params, Type="get", addtoken=False, GET_CSRF=True, files=None, do_error=False, max_retry=0):
-        # ---
-        return self.login_bot.post_params(
-            params, Type=Type, addtoken=addtoken, GET_CSRF=GET_CSRF, files=files, do_error=do_error, max_retry=max_retry
-        )
-
     def post_to_newapi(self, params={}, data={}, tage="", editgroups="", max_retry=0, **kwargs):
         # ---
         if not params and data:
@@ -39,7 +33,7 @@ class WD_API(WD_ERRORS_HANDLER):
         # ---
         params = self.filter_data(params, tage=tage, editgroups=editgroups)
         # ---
-        results = self.post_params(params, do_error=False)
+        results = self.login_bot.post_params(params, Type="get", GET_CSRF=True, do_error=False, max_retry=max_retry)
         # ---
         if results.get("servedby"):
             results["servedby"] = ""

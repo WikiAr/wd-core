@@ -4,13 +4,13 @@
 """
 
 import json
+import logging
 import sys
+
+from bots_subs.qs_bot import QS_line
 
 from ..utils import lag_bot
 from ..utils.out_json import outbot_json
-from bots_subs.qs_bot import QS_line
-
-import logging
 
 logger = logging.getLogger(__name__)
 

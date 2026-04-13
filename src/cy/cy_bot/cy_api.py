@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ """
 
-import sys
 import os
+import sys
 from urllib.parse import urlencode
 
 import requests
