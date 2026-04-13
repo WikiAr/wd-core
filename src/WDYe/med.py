@@ -264,7 +264,7 @@ def looog():
         text2 += "}} ||"
         text2 += ",".join(value) + "\n"
     # ---
-    api = load_main_api("wikidata", "wikidata")
+    api = load_main_api("www", "wikidata")
     # ---
     if text2:
         text2 = """\n=={{subst:date}}==\n{| class="wikitable sortable"\n|-\n! item\n! en \n! ar\n|-""" + text2
