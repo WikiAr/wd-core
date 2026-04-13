@@ -9,11 +9,11 @@ import logging
 import re
 import sys
 
-from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.hi_api import HimoAPIBot
 from bots_subs.wd_api import wd_sparql_bot
 
 logger = logging.getLogger(__name__)
-WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
+WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
 
 
 SaveR = {1: False}

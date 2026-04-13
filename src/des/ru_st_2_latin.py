@@ -12,9 +12,9 @@ import sys
 import pywikibot
 from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
 
-from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.hi_api import HimoAPIBot
 
-WD_API_Bot = NewHimoAPIBot(mr_or_bot="bot", www="www")
+WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
 
 letters_to_latin = {
     "ru": {

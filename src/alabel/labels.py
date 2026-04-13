@@ -13,9 +13,9 @@ import logging
 import sys
 
 from bots_subs import wiki_sql
-from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.hi_api import HimoAPIBot
 
-WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
+WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
 
 logger = logging.getLogger(__name__)
 

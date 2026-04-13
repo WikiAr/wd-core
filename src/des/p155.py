@@ -12,7 +12,7 @@ import logging
 import re
 import sys
 
-from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.hi_api import HimoAPIBot
 from bots_subs.wd_api import wd_sparql_bot
 from des.p155tables import (
     International_Federation,
@@ -27,7 +27,7 @@ from des.p155tables import (
 
 logger = logging.getLogger(__name__)
 
-WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
+WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
 
 Usema = {1: True}
 Ask = {1: True}

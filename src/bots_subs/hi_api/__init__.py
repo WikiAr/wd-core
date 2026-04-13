@@ -7,7 +7,7 @@ from .h_wd_newapi.wd_newapi_bot import WD_API
 from .req_bots_new import claims_wd, descriptions_wd, labels_wd
 
 
-class NewHimoAPIBot:
+class HimoAPIBot:
     def __init__(self, mr_or_bot="bot", www="www"):
         # ---
         self.login_bot: Login = log_in_wikidata(mr_or_bot=mr_or_bot, www=www)
@@ -46,5 +46,5 @@ class NewHimoAPIBot:
 
 
 __all__ = [
-    "NewHimoAPIBot",
+    "HimoAPIBot",
 ]

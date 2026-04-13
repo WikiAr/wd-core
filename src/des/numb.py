@@ -7,12 +7,12 @@ python3 core8/pwb.py des/numb
 
 import logging
 
-from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.hi_api import HimoAPIBot
 from bots_subs.wd_api import wd_bot, wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 
-WD_API_Bot = NewHimoAPIBot(mr_or_bot="bot", www="www")
+WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
 
 
 limit = {1: 0}

@@ -15,10 +15,10 @@ import urllib.parse
 
 from api_page import load_main_api
 from bots_subs import open_url
-from bots_subs.hi_api import NewHimoAPIBot
+from bots_subs.hi_api import HimoAPIBot
 from bots_subs.wd_api import wd_sparql_bot
 
-WD_API_Bot = NewHimoAPIBot(mr_or_bot="mr", www="www")
+WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
 
 logger = logging.getLogger(__name__)
 
