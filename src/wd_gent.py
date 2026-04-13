@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 def fetch_user_new_pages(limit="max", namespace="0", user=""):
-    api = load_main_api("ar", "wikipedia")
+    api = load_main_api("wikidata", "wikidata")
     new_api = api.NEW_API()
     generator = new_api.Get_Newpages(limit=limit, namespace=namespace, user=user)
     return generator
@@ -58,7 +58,7 @@ def do_title(generator):
 
 
 def fetch_new_pages(value):
-    api = load_main_api("ar", "wikipedia")
+    api = load_main_api("wikidata", "wikidata")
     new_api = api.NEW_API()
     generator = new_api.Get_Newpages(limit=value, namespace="0", three_houers=True)
     return generator
