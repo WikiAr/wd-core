@@ -11,8 +11,6 @@ from desc_dicts.descraptions import Qid_Descraptions
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 
 
-
-
 translations = {"Q11173": Qid_Descraptions["Q11173"]}
 
 for p31 in translations:

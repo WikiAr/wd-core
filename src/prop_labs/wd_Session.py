@@ -13,17 +13,15 @@ import logging
 import os
 import sys
 import time
-
-import requests
-
 from pathlib import Path
 from typing import Dict, List
+
+import requests
 
 sys.path.append(str(Path(__file__).parent))
 sys.path.append("I:/core/bots/new/newapi_bot")
 
 from newapi.accounts.useraccount import User_tables_ibrahem
-
 
 logger = logging.getLogger(__name__)
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"

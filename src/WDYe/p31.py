@@ -7,14 +7,11 @@ python pwb.py c30/p31
 python pwb.py c30/p31 enwiki
 
 """
+import logging
 import sys
 
-from himo_api import New_Himo_API
-
-
 from api_sql import sql as c18sql
-
-import logging
+from himo_api import New_Himo_API
 
 logger = logging.getLogger(__name__)
 
