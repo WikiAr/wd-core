@@ -8,29 +8,23 @@ python pwb.py des/filmnew
 Q24862
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-import re
-import pywikibot
 import logging
+import re
+
+import pywikibot
+
+from bots_subs.wd_api import wd_sparql_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
+
 logger = logging.getLogger(__name__)
 
-# ---
-
-# ---
-# ---
-from wd_api import wd_desc
-from wd_api import wd_bot
-
-# ---
 wikidatasite = pywikibot.Site("wikidata", "wikidata")
 repo = wikidatasite.data_repository()
-# ---
+
 AskSave = {1: True}
-# ---
+
 # def AddDes( item , pa , lang , Qid , keys):
+
 
 def one_film_item(Qid, pa, lang, keys):
     item = getwditem(pa["item"])
@@ -74,11 +68,12 @@ def one_film_item(Qid, pa, lang, keys):
             if saaa in ["y", "a", ""]:
                 if saaa == "a":
                     AskSave[1] = False
-                wd_desc.work_api_desc(NewDesc, qitem)
+                work_api_desc(NewDesc, qitem)
             else:
                 logger.info("* rong answer")
         else:
-            wd_desc.work_api_desc(NewDesc, qitem)
+            work_api_desc(NewDesc, qitem)
+
 
 def getwditem(qitem):
     try:
@@ -89,7 +84,7 @@ def getwditem(qitem):
     except BaseException:
         return False
 
-# ---
+
 Comma = {
     "an": " y ",
     "ar": "، و",
@@ -110,6 +105,7 @@ Comma = {
     "en": ", ",
 }
 Comma2 = {"ar": "، و", "en": ", ", "de": ", ", "fr": ", ", "nl": ", "}
+
 
 def GetQuery(Qid, lang, keys):
     # ---
@@ -148,6 +144,7 @@ def GetQuery(Qid, lang, keys):
     # ---
     return ur
 
+
 def Gquery2(json1):
     table = {}
     # table = []
@@ -159,7 +156,7 @@ def Gquery2(json1):
         table[q] = s
     return table
 
-# ---
+
 xsxsx = {
     "an": "cinta de ~YEAR~ dirichita por ~AUTHOR~",
     "ar": "فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~",
@@ -179,12 +176,14 @@ xsxsx = {
     "ro": "film din ~YEAR~ regizat de ~AUTHOR~",
     "sv": "film från ~YEAR~ regisserad av ~AUTHOR~",
 }
-filmform = {"film": {
-    "ar": "فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~",
-    "en": "~YEAR~ film by ~AUTHOR~",
-    "nl": "film uit ~YEAR~ van ~AUTHOR~",
-}}
-# ---
+filmform = {
+    "film": {
+        "ar": "فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~",
+        "en": "~YEAR~ film by ~AUTHOR~",
+        "nl": "film uit ~YEAR~ van ~AUTHOR~",
+    }
+}
+
 quaua = """SELECT #DISTINCT
 ?item ?ar ?nl ?en ?endes  ?dates ?auths
 WHERE {
@@ -203,6 +202,7 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en". ?auths rdfs:
 
 """
 
+
 def WorkWithOneLang(Qid, lang, keys):
     logger.info("*<<lightyellow>> WorkWithOneLang: ")
     limit = 200
@@ -216,7 +216,7 @@ def WorkWithOneLang(Qid, lang, keys):
     quary = quary + "\n limit %d" % limit
     logger.info(quary)
     # ---
-    PageList = wd_bot.sparql_generator_url(quary, key="item")
+    PageList = wd_sparql_bot.sparql_generator_url(quary, key="item")
     # ---
     total = len(PageList)
     # ---
@@ -229,8 +229,26 @@ def WorkWithOneLang(Qid, lang, keys):
         # ---
         one_film_item(Qid, PageList[pa], lang, keys)
 
-# ---
-by_list = {"ar": "من تأليف", "en": "by", "fr": "de", "de": "von", "nl": "van", "ca": "per", "cs": "od", "la": "ab", "it": "da", "io": "da", "eo": "de", "da": "af", "pl": "przez", "ro": "de", "es": "por", "sv": "av"}
+
+by_list = {
+    "ar": "من تأليف",
+    "en": "by",
+    "fr": "de",
+    "de": "von",
+    "nl": "van",
+    "ca": "per",
+    "cs": "od",
+    "la": "ab",
+    "it": "da",
+    "io": "da",
+    "eo": "de",
+    "da": "af",
+    "pl": "przez",
+    "ro": "de",
+    "es": "por",
+    "sv": "av",
+}
+
 
 def MakeDesc(Qid, pa, lang):
     # for lang in language:
@@ -276,6 +294,7 @@ def MakeDesc(Qid, pa, lang):
             description = False
     return description
 
+
 def films():
     logger.info("films: ")
     Q = "film"
@@ -283,7 +302,6 @@ def films():
     keys = filmform[Q].keys()
     WorkWithOneLang(Q, "ar", keys)
 
-# ---
+
 if __name__ == "__main__":
     films()
-# ---

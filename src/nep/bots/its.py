@@ -4,15 +4,16 @@ from nep.bots.its import its_a_composition, its_a_computergame, its_a_discograph
 
 import logging
 
-from wd_api import wd_bot
+from bots_subs.wd_api import wd_bot
 from nep.bots.helps import (
-    get_female_for_p17,
     Get_label,
     Get_label_from_item,
+    get_female_for_p17,
     get_mainsnak,
 )
 
 logger = logging.getLogger(__name__)
+
 
 def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     # ---
@@ -35,6 +36,7 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     # ---
     return laste
 
+
 def its_something_in_an_entity(wdi, something):
     # 'P131'    #P131
     # 'P17'   #P17
@@ -56,6 +58,7 @@ def its_something_in_an_entity(wdi, something):
         return f"{something} {prnEntity}"
     # ---
     return ""
+
 
 def its_something_in_a_country(wdi, something):
     # ---
@@ -117,6 +120,7 @@ def its_something_in_a_country(wdi, something):
     # ---
     return fanee
 
+
 def its_canton_of_France(wdi):  # Q184188
     clai = wdi.get("claims", {})
     current_desc = wdi.get("descriptions", {}).get("ar", "")
@@ -131,6 +135,7 @@ def its_canton_of_France(wdi):  # Q184188
                 return desco
     return ""
 
+
 def its_an_episode(lng, wditem):
     if lng in wditem.get("descriptions", {}):
         return wditem.get("descriptions", {})[lng]
@@ -141,6 +146,7 @@ def its_an_episode(lng, wditem):
             serienaam = serienaam.replace("، مسلسل", "").replace(" (مسلسل)", "")
             return f"حلقة من سلسلة {serienaam}"
     return ""
+
 
 def its_a_computergame(lng, wditem):
     logger.info(" its_a_computergame ")
@@ -161,6 +167,7 @@ def its_a_computergame(lng, wditem):
                 return f"لعبة فيديو من سلسلة {seriename}"
     return ""
 
+
 def its_a_sports_season(wditem, claimstr=""):
     # ---
     # LNKsport=wditem.get('claims',{}).get('P3450')[0].get('mainsnak',{}).get('datavalue',{}).get('value',{}).get('id','')#.getTarget()
@@ -177,7 +184,7 @@ def its_a_sports_season(wditem, claimstr=""):
     # ---
     claimstr = claimstr.strip()
     # ---
-    shortstr = ""# "موسم رياضي"
+    shortstr = ""  # "موسم رياضي"
     # ---
     if not pp:
         logger.info(f"its_a_sports_season item has no {myclaim} claims..")
@@ -191,13 +198,14 @@ def its_a_sports_season(wditem, claimstr=""):
     # ---
     return laste
 
+
 def its_songs(type_of_item, wditem, shortstr, claimstr=""):
     # my_description = its_a_generalthing( wditem , da , '%s من أداء ' % da ,'P175')
     myclaim = "P175"
     # ---
     # songs_type
     # ---
-    laste = ""# shortstr
+    laste = ""  # shortstr
     # ---
     P175 = wditem.get("claims", {}).get(myclaim, [])
     # ---
@@ -243,6 +251,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
     logger.info(f"its_songs:({laste})")
     # ---
     return laste
+
 
 def its_a_p50(type_of_item, wditem, shortstr, claimstr=""):
     myclaim = "P50"
@@ -291,6 +300,7 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=""):
     logger.info(f"its_a_p50:({laste})")
     return laste
 
+
 def its_a_thing_located_in_country(wditem, countryname, thing):
     if "P131" in wditem.get("claims", {}):
         LNKcommunity = get_mainsnak(wditem.get("claims", {}).get("P131")[0])  # .getTarget()
@@ -300,6 +310,7 @@ def its_a_thing_located_in_country(wditem, countryname, thing):
         else:
             return f"{thing} في {countryname}"
     return f"{thing} في {countryname}"
+
 
 def its_a_film(wditem):
     # ---

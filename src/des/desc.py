@@ -41,42 +41,36 @@ GROUP BY ?item
 limit 100
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-
+import json
+import logging
 import re
 import sys
-import logging
-logger = logging.getLogger(__name__)
 
-# ---
-from wd_api import wd_sparql_bot
-
-# ---
-from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
-from wd_api import qs_bot
-from wd_api import wd_bot
-
+from api_page import load_main_api
+from bots_subs.hi_api import HimoAPIBot
+from bots_subs.qs_bot import QS_line
+from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api.wd_sparql_bot import sparql_generator_big_results
 from des.contries2 import ContriesTable2
 from des.places import placesTable
-from wd_api import get_property_for_list
+
+WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
+
+logger = logging.getLogger(__name__)
+
 
 # placesTable = {"Q29701762": {"ar": "مستوطنة"}}
-placesTable2 = {fg: placesTable[fg] for fg in placesTable}
-# ---
+placestable2 = {fg: placesTable[fg] for fg in placesTable}
+
 q_list_done = []
 New_QS = {1: []}
 offset = {1: 0}
 offset_place = {1: 0}
-# ---
+
 limit = {1: 0}
 QSlimit = {1: 3000}
 alllimit = {1: 50000}
-# ---
+
 
 Quase = {
     "Q8054": """SELECT DISTINCT
@@ -112,7 +106,7 @@ WHERE {
 GROUP BY ?item# HAVING ( ?p17count = 1 )
 """,
 }
-# ---
+
 if "optional" in sys.argv:
     # Quase[2020] = Quase[2020].replace('?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
     # Quase[2020] = Quase[2020].replace('?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar")', 'optional { ?item (wdt:P131|wdt:P276) ?place. ?place rdfs:label ?placeare.FILTER((LANG(?placeare)) = "ar") }' )
@@ -138,7 +132,7 @@ for arg in sys.argv:
     # python3 core8/pwb.py des/desc descqs limit:4000 optional place:Q185113
     # python3 core8/pwb.py des/desc descqs limit:1000 place:Q8054
     if arg == "place" and value in placesTable:
-        placesTable2 = {value: placesTable[value]}
+        placestable2 = {value: placesTable[value]}
     # ---
     if arg == "alllimit":
         alllimit[1] = int(value)
@@ -148,6 +142,48 @@ for arg in sys.argv:
         QSlimit[1] = int(value)
     # ---
 
+
+def get_property_label_for_qids(properties, List):
+    # ---
+    # logger.info('start get_property_label_for_qids:' )
+    # ---
+    text = ""
+    # ---
+    num = 0
+    # ---
+    for qid in List:
+        num += 1
+        lino = "{{subst:user:Mr._Ibrahem/line2|%s" % qid
+        for prop in properties:
+            lino += f"|{prop}"
+        lino += "}}\n"
+        # if num == 1 : logger.info(lino)
+        text += lino
+    # ---
+    if "printprase" in sys.argv:
+        print(text)
+    # ---
+    api = load_main_api("ar")
+    jso = api.NEW_API().Parse_Text(text, "ويكيبيديا:ملعب")
+    # ---
+    if not jso:
+        logger.info('get_property_label_for_qids: jso == ""')
+        return False
+    # ---
+    elif jso == text:
+        logger.info("<<lightred>> get_property_label_for_qids: jso == text ")
+        return False
+    # ---
+    newtabe = json.loads("{\n" + jso + '\n"cdcdcd":{}\n}')
+    # ---
+    if newtabe:
+        del newtabe["cdcdcd"]
+    # ---
+    # logger.info( newtabe )
+    # ---
+    return newtabe
+
+
 def descqs(q, value, lang):
     if len(New_QS[1]) < QSlimit[1]:
         qsline = f'{q}|D{lang}|"{value}"'
@@ -155,8 +191,9 @@ def descqs(q, value, lang):
         logger.info("<<lightyellow>>a %d\t%d:add %s to qlline " % (len(New_QS[1]), QSlimit[1], qsline))
     else:
         logger.info(f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements")
-        qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
+        QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
+
 
 def Add_desc(q, value, lang):
     # ---
@@ -170,6 +207,7 @@ def Add_desc(q, value, lang):
         descqs(q, value, lang)
     else:
         WD_API_Bot.Des_API(q, value, lang, ask="")
+
 
 def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
@@ -190,8 +228,8 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
     if findlab:
         if p17lab == "" or placear == "":
-            df = get_property_for_list.get_property_label_for_qids(["P17", "P131", "P276"], [q]) or {}
-            logger.info("get_property_for_list")
+            df = get_property_label_for_qids(["P17", "P131", "P276"], [q]) or {}
+            logger.info("get_property_label_for_qids")
             logger.info(df)
             # ---
         # ---
@@ -244,37 +282,31 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     item = wd_bot.Get_Item_API_From_Qid(q, sites="", titles="", props="")
     # ---
     descriptions = item["descriptions"]
-    # NewDesc = {}
-    # addedlangs = []
     # ---
     if lang in descriptions:
         logger.info(f"lang:ar in descriptions({descriptions[lang]})")
         if descriptions[lang] != start:
             return ""
     # ---
-    # NewDesc[lang] = { "language":lang,"value": arlabel2 }
-    # addedlangs.append(lang)
-    # ---
-    # WD_API_Bot.Des_API( q, arlabel2 ,lang)
-    # ---
     Add_desc(q, arlabel2, lang)
+
 
 def work_one_place(place):
     lang = "ar"
     # ---
-    start = placesTable2[place].get(lang, "")
+    start = placestable2[place].get(lang, "")
     if not start.strip():
         logger.info('start.strip() == ""')
         return ""
     # ---
     if New_QS[1] != [] and "cleanlist" in sys.argv:
-        qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
+        QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
     quarry = Quase[place] if place in Quase else Quase[2020]
     # ---
     quarry = quarry % place
     # ---
-    json1 = wd_sparql_bot.sparql_generator_big_results(quarry, offset=offset[1], limit=limit[1], alllimit=alllimit[1])
+    json1 = sparql_generator_big_results(quarry, offset=offset[1], limit=limit[1], alllimit=alllimit[1])
     total = len(json1)
     c = 1
     # ---
@@ -289,14 +321,15 @@ def work_one_place(place):
         # ---
         work_one_item(start, lang, tab, c, total)
 
+
 def mainoo():
     # ---
-    kee = sorted(placesTable2.keys())
+    kee = sorted(placestable2.keys())
     # ---
-    lenth_place = len(placesTable2)
+    lenth_place = len(placestable2)
     for placenum, place in enumerate(kee, start=1):
         # ---
-        ara = placesTable2[place].get("ar", "")
+        ara = placestable2[place].get("ar", "")
         # ---
         logger.info(f'<<lightred>> {placenum}/{lenth_place}, place:"{place}", arlabel:"{ara}". ')
         # ---
@@ -305,8 +338,9 @@ def mainoo():
             work_one_place(place)
     # ---
     if New_QS[1] != []:
-        qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
+        QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
+
 
 if __name__ == "__main__":
     mainoo()

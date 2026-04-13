@@ -5,23 +5,31 @@ from .do_text import make_new_text, do_One_Page
 """
 
 import re
+
 import wikitextparser as wtp
 
-# ---
+from .cy_helps import (
+    TEST,
+    CheckTempalteInPageText,
+    find_cy_temp,
+    get_temp_arg,
+    get_temps_str,
+    print_test2,
+    printo,
+    printt,
+)
 from .cy_regs import make_data_new
-from .cy_helps import get_temps_str, get_temp_arg, printt, print_test2, find_cy_temp, printo, TEST, CheckTempalteInPageText
 from .cy_sparql import GetSparql
 
-# ---
 remove_date = {}
 Work_with_Year = {}
 Len_of_results = {}
 Len_of_valid_results = {}
 new_lines = {}
-# ---
+
 states = {}
 lines = {}
-# ---
+
 HeadVars = ["imagejersey"]
 JOJOJO = "نتيجة سباق الدراجات/جيرسي"
 
@@ -29,14 +37,14 @@ JOJOJO = "نتيجة سباق الدراجات/جيرسي"
 Skip_items = ["Q4115189"]
 
 NoAppend = ["p585", "p582", "p580"]
-# ---
+
 ranks_label = {
     "P4323": "المرتبة %s في تصنيف أفضل شاب",
     "P2321": "المرتبة %s في التصنيف العام",
     "P4320": "المرتبة %s في تصنيف الجبال",
     "P3494": "المرتبة %s في تصنيف النقاط",
 }
-# ---
+
 
 Work_with_Stage = {}
 
@@ -114,19 +122,39 @@ def findflag(race, flag):
 def fix_label(label):
     label = label.strip()
 
-    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال", r"سباق الطريق في بطولة العالم \g<1>", label)
+    label = re.sub(
+        r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
+        r"سباق الطريق في بطولة العالم \g<1>",
+        label,
+    )
 
-    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – سيدات فردي سباق الطريق", r"سباق الطريق للسيدات في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
+    label = re.sub(
+        r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – سيدات فردي سباق الطريق",
+        r"سباق الطريق للسيدات في ركوب الدراجات الأولمبية الصيفية \g<1>",
+        label,
+    )
 
-    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – فريق رجال سباق الطريق", r"سباق الطريق لفرق الرجال في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
+    label = re.sub(
+        r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – فريق رجال سباق الطريق",
+        r"سباق الطريق لفرق الرجال في ركوب الدراجات الأولمبية الصيفية \g<1>",
+        label,
+    )
 
     # بطولة العالم لسباق الدراجات على الطريق 1966 – سباق الطريق الفردي للرجال
-    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال", r"سباق الطريق للرجال في بطولة العالم \g<1>", label)
+    label = re.sub(
+        r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
+        r"سباق الطريق للرجال في بطولة العالم \g<1>",
+        label,
+    )
 
     label = re.sub(r"سباق الطريق المداري ", "سباق الطريق ", label)
     label = re.sub(r"(بطولة [\s\w]+) الوطنية ", r"\g<1> ", label)
-    label = re.sub(r"^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label)
-    label = re.sub(r"^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label)
+    label = re.sub(
+        r"^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label
+    )
+    label = re.sub(
+        r"^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label
+    )
 
     # سباق الطريق للسيدات في ركوب الدراجات في الألعاب الأولمبية الصيفية 2016
     label = re.sub(r"في ركوب الدراجات في الألعاب الأولمبية ", "في ركوب الدراجات الأولمبية ", label)
@@ -233,20 +261,59 @@ def make_temp_lines(table, title, with_stages):
 def fix_results(table):
     results2 = {}
     # ---
-    tata = {
-        "head": {"vars": ["item", "p17lab", "itemlab", "jersey_1", "jersey_2", "jersey_3", "jersey_4", "p642label", "p585", "p582", "p580", "rankP4323", "rankP2321", "rankP4320", "rankP3494", "title"]},
+    _tata = {
+        "head": {
+            "vars": [
+                "item",
+                "p17lab",
+                "itemlab",
+                "jersey_1",
+                "jersey_2",
+                "jersey_3",
+                "jersey_4",
+                "p642label",
+                "p585",
+                "p582",
+                "p580",
+                "rankP4323",
+                "rankP2321",
+                "rankP4320",
+                "rankP3494",
+                "title",
+            ]
+        },
         "results": {
             "bindings": [
                 {
                     "item": {"type": "uri", "value": "http://www.wikidata.org/entity/Q53557910"},
                     "title": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
-                    "p580": {"datatype": "http://www.w3.org/2001/XMLSchema#dateTime", "type": "literal", "value": "2018-05-25T00:00:00Z"},
-                    "p582": {"datatype": "http://www.w3.org/2001/XMLSchema#dateTime", "type": "literal", "value": "2018-05-26T00:00:00Z"},
+                    "p580": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                        "type": "literal",
+                        "value": "2018-05-25T00:00:00Z",
+                    },
+                    "p582": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                        "type": "literal",
+                        "value": "2018-05-26T00:00:00Z",
+                    },
                     "p17lab": {"xml:lang": "ar", "type": "literal", "value": "إستونيا"},
                     "itemlab": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
-                    "rankP2321": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "2"},
-                    "rankP4323": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "1"},
-                    "rankP3494": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "1"},
+                    "rankP2321": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                        "type": "literal",
+                        "value": "2",
+                    },
+                    "rankP4323": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                        "type": "literal",
+                        "value": "1",
+                    },
+                    "rankP3494": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                        "type": "literal",
+                        "value": "1",
+                    },
                     "p642label": {"xml:lang": "ar", "type": "literal", "value": "الفائز وفقاً لترتيب النقاط"},
                     "jersey_1": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},
                     "jersey_2": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},
@@ -376,10 +443,10 @@ def tab_sub_x(tao):
     return table
 
 
-def make_text_sec(Date_List2, qids_2, title, with_stages):
+def make_text_sec(date_list2, qids_2, title, with_stages):
     texxt = ""
     # ---
-    for dd in Date_List2:
+    for dd in date_list2:
         for qoo, tao in qids_2.items():
             # ---
             if qoo in Skip_items:
@@ -433,7 +500,7 @@ def make_new_section(qid, title):
     # Len_of_results[title] = Len_results
     # ---
     qidso = {}
-    for num, qq in enumerate(results):
+    for qq in results:
         # ---
         if qq not in qidso:
             qidso[qq] = {}
@@ -467,25 +534,25 @@ def make_new_section(qid, title):
     return texxt
 
 
-def work_tano(text, MainTitle):
+def work_tano(text, maintitle):
     # ---
-    lines[MainTitle] = make_data_new(text)
+    lines[maintitle] = make_data_new(text)
     # ---
     new_line = 0
     same_line = 0
     removed_line = 0
     # ---
-    if MainTitle in new_lines:
-        for line in new_lines[MainTitle].keys():
+    if maintitle in new_lines:
+        for line in new_lines[maintitle].keys():
             # ---
             if line == "Q49164584" and TEST[1]:
-                print(new_lines[MainTitle][line])
+                print(new_lines[maintitle][line])
             # ---
             same = 0
             new = 0
-            if line in lines[MainTitle].keys():
+            if line in lines[maintitle].keys():
                 for x in ["poss", "race", "p17"]:
-                    if new_lines[MainTitle][line][x] == lines[MainTitle][line][x]:
+                    if new_lines[maintitle][line][x] == lines[maintitle][line][x]:
                         same = 1
                     else:
                         new = 1
@@ -498,17 +565,17 @@ def work_tano(text, MainTitle):
                 new_line += 1
             # ---
         # ---
-        for liner in lines[MainTitle].keys():
-            if liner not in new_lines[MainTitle].keys():
+        for liner in lines[maintitle].keys():
+            if liner not in new_lines[maintitle].keys():
                 removed_line += 1
     # ---
-    states[MainTitle] = {"new_line": new_line, "same_line": same_line, "removed_line": removed_line}
+    states[maintitle] = {"new_line": new_line, "same_line": same_line, "removed_line": removed_line}
     # ---
     liner = "new_line:%d,same_line:%d,removed_line:%d" % (new_line, same_line, removed_line)
     # ---
-    if MainTitle in remove_date and remove_date[MainTitle] != 0:
-        liner += ",removed_line_date:%d" % remove_date[MainTitle]
-        states[MainTitle]["removed_line_date"] = remove_date[MainTitle]
+    if maintitle in remove_date and remove_date[maintitle] != 0:
+        liner += ",removed_line_date:%d" % remove_date[maintitle]
+        states[maintitle]["removed_line_date"] = remove_date[maintitle]
     # ---
     return liner
 

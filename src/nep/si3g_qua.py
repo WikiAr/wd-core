@@ -10,23 +10,22 @@ python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q1028
 python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q79
 
 """
-import time
+import logging
 import random
 import sys
+import time
 
-import logging
-logger = logging.getLogger(__name__)
-
-# from nep import si3
-from wd_api import wd_bot
+from bots_subs.wd_api import wd_bot, wd_sparql_bot
 from nep.wr_people import work_people
-from people.people_get_topic import print_new_jobs, qid_to_p27, qid_to_job
+from people.people_get_topic import print_new_jobs, qid_to_job, qid_to_p27
+
+logger = logging.getLogger(__name__)
 
 limit = {1: "500"}
 P106 = {1: []}
 P27 = {1: []}
 nolang = {1: "en"}
-# ---
+
 for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
@@ -45,17 +44,17 @@ for arg in sys.argv:
     # ---
     if arg.lower() == "p27":
         P27[1].append(value)
-# ---
+
 if not P106[1]:
     P106[1] = list(set(qid_to_job.keys()))
-# ---
+
 if not P27[1]:
     P27[1] = list(set(qid_to_p27.keys()))
 
-# ---
+
 random.shuffle(P106[1])
 random.shuffle(P27[1])
-# ---
+
 
 def get_qua():
     # ---
@@ -98,6 +97,7 @@ def get_qua():
     # ---
     return qua
 
+
 def one_item(qid, num):
     # {'item': 'http://www.wikidata.org/entity/Q21457154', 'qid': 'Q21457154'}
     item = wd_bot.Get_Item_API_From_Qid(qid, props="claims|descriptions|labels")
@@ -112,6 +112,7 @@ def one_item(qid, num):
     ardes = descriptions.get("ar", "")
     # ---
     work_people(item, "", num, ardes)
+
 
 def main():
     logger.info("*<<lightred>> > main:")
@@ -135,7 +136,7 @@ def main():
         # ---
         print(line)
         # ---
-        lista = wd_bot.sparql_generator_url(qua)
+        lista = wd_sparql_bot.sparql_generator_url(qua)
         # ---
         for num, tab in enumerate(lista, start=1):
             qid = tab["qid"]
@@ -149,6 +150,7 @@ def main():
                 time.sleep(1)
     # ---
     print_new_jobs()
+
 
 if __name__ == "__main__":
     main()

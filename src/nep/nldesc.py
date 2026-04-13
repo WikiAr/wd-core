@@ -1,37 +1,14 @@
 #!/usr/bin/python3
-"""
+""" """
 
-"""
-
+import logging
 import re
 import sys
-import logging
-logger = logging.getLogger(__name__)
 
-# ---
-
-# ---
-from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
-from wd_api import wd_bot
-
-from nep.si3 import do_P1433_new_list, make_scientific_art
-from nep.bots.tax_desc import work_taxon_desc
-from nep.wr_people import work_people
-
-# ---
-from desc_dicts.descraptions import Qid_Descraptions
+from bots_subs.hi_api import HimoAPIBot
+from bots_subs.wd_api import wd_bot
 from des.railway import railway_tables, work_railway
-from nep.space_others import Make_space_desc, Make_others_desc
-
-# ---
-from nep.tables.lists import (
-    others_list,
-    others_list_2,
-    space_list_and_other,
-)
-from nep.tables.str_descs import make_nn
+from desc_dicts.descraptions import Qid_Descraptions
 from nep.bots.helps import get_mainsnak
 from nep.bots.its import (
     its_a_computergame,
@@ -41,10 +18,21 @@ from nep.bots.its import (
     its_something_in_a_country,
     its_something_in_an_entity,
 )
+from nep.bots.tax_desc import work_taxon_desc
+from nep.new_way import P1433_en_to_qid, P1433_ids, do_P1433_ids
+from nep.si3 import do_P1433_new_list, make_scientific_art
+from nep.space_others import Make_others_desc, Make_space_desc
+from nep.tables.lists import (
+    others_list,
+    others_list_2,
+    space_list_and_other,
+)
+from nep.tables.str_descs import make_nn
+from nep.wr_people import work_people
 
-from nep.new_way import P1433_ids, do_P1433_ids, P1433_en_to_qid
+WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
+logger = logging.getLogger(__name__)
 
-# ---
 items2do = 0  # global parameter to print progress
 totaledits = 0
 lng_canbeused = [
@@ -78,9 +66,11 @@ lng_canbeused = [
     "wa",
 ]
 
+
 def Make_railway_desc(wditem, p31):
     # ---
     return work_railway(wditem, p31)
+
 
 def action_one_P131_item(lng, oneitem):
     global totaledits
@@ -142,8 +132,10 @@ def action_one_P131_item(lng, oneitem):
     # ---
     return 0
 
+
 def Add_desc(q, value, lang):
     WD_API_Bot.Des_API(q, value, lang, ask="")
+
 
 def action_one_item(lngr, q, item={}, claimstr=""):
     global items2do
@@ -207,7 +199,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
             do_P1433_new_list(wditem, P31)
             break
         # ---
-        logger.info("Type: [%s]" % type_of_item)
+        logger.info("o_type: [%s]" % type_of_item)
         # ---
         if type_of_item:
             if type_of_item == "Q7604686":

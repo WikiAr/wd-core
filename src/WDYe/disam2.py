@@ -2,27 +2,26 @@
 #  fix disambiguation
 #
 
-# ---
-
 
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
-# ---
-#
-import logging
-from API import open_url
 
-from wd_api import wd_bot
-import pywikibot
 import json
 
-from wd_api import wd_desc
+#
+import logging
+
+import pywikibot
+
+from bots_subs import open_url
+from bots_subs.wd_api import wd_bot, wd_sparql_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
 from desc_dicts.descraptions import DescraptionsTable
 
 logger = logging.getLogger(__name__)
 
-# ---
+
 translations = {"Wikimedia disambiguation page": DescraptionsTable["Wikimedia disambiguation page"]}
-# ---
+
 replacement = {}
 replacement["fa"] = {
     "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا": DescraptionsTable["Wikimedia disambiguation page"]["fa"],
@@ -63,7 +62,7 @@ def work2(q, topic):
     # ---
     # logger.info( '<<lightyellow>>  NewDesc' + str(NewDesc) )
 
-    wd_desc.work_api_desc(NewDesc, q)
+    work_api_desc(NewDesc, q)
 
 
 def mainfromQuarry():
@@ -78,7 +77,7 @@ limit 10000"""
 WHERE {VALUES (?item) {(wd:Q29976539) }
 ?item ?s ?ss}
 limit 1"""
-    json1 = wd_bot.wd_sparql_generator_url(Quarry2, returnq=True)
+    json1 = wd_sparql_bot.wd_sparql_generator_url(Quarry2, returnq=True)
     lenth = len(json1)
     topic = "Wikimedia disambiguation page"
     # ---
@@ -87,11 +86,8 @@ limit 1"""
         work2(q, topic)
 
 
-# ---
 wikidatasite = pywikibot.Site("wikidata", "wikidata")
 repo = wikidatasite.data_repository()
-# ---
-# open_url.open_the_url( url )
 
 
 def mainfromQuarry2():

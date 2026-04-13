@@ -38,7 +38,7 @@ python3 core8/pwb.py nep/si3g -newpages:200
 
 python pwb.py nep/si3g -newpages:200
 python3 core8/pwb.py nep/si3g -newpages:200 ask
-# ---
+
 # python3 core8/pwb.py nep/si3g -newpages:50
 # python3 core8/pwb.py nep/si3g -newpages:500
 # python pwb.py nep/si3g -newpages:100
@@ -46,35 +46,27 @@ python3 core8/pwb.py nep/si3g -newpages:200 ask
 # python3 core8/pwb.py nep/si3g -limit:6000 -ns:0 -usercontribs:Succu
 # python3 core8/pwb.py nep/si3g -limit:6000 -ns:0 -usercontribs:LargeDatasetBot
 # python3 core8/pwb.py nep/si3g -limit:6000 -ns:0 -usercontribs:Research_Bot
-# ---
+
 """
 
-#
-# (C) Ibrahem Qasim, 2023
-#
-import sys
 import logging
-logger = logging.getLogger(__name__)
-
-# ---
-sys.argv.append("-family:wikidata")
-sys.argv.append("-lang:wikidata")
-# ---
+import sys
 import time
 from pathlib import Path
 
-# ---
-
-import gent
+import wd_gent
+from api_page import load_main_api
 from nep import si3
-from newapi.page import NEW_API
 
-api_new = NEW_API("www", family="wikidata")
-# api_new.Login_to_wiki()
+logger = logging.getLogger(__name__)
+
+sys.argv.append("-family:wikidata")
+sys.argv.append("-lang:wikidata")
 
 main_dir1 = f"{str(Path(__file__).parent.parent)}/"
 
 logger.info(f"<<lightyellow>> main_dir1 = {main_dir1}")
+
 
 def mainwithcat2():
     logger.info("*<<lightred>> > mainwithcat2:")
@@ -132,6 +124,9 @@ def mainwithcat2():
         if arg == "-ns":
             namespaces = value
     # ---
+    api = load_main_api("www", "wikidata")
+    api_new = api.NEW_API()
+    # ---
     if file:
         if not file.startswith(main_dir1):
             file = main_dir1 + file
@@ -146,7 +141,7 @@ def mainwithcat2():
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")
     # ---
     if not lista:
-        lista = gent.get_gent(listonly=True)
+        lista = wd_gent.get_gent_list()
         # lista = [page.title(as_link=False) for page in genet]
     # ---
     try:
@@ -165,6 +160,7 @@ def mainwithcat2():
     delta = int(final - start)
     # ---
     logger.info(f"si3.py mainwithcat2 done in {delta} seconds")
+
 
 if __name__ == "__main__":
     mainwithcat2()

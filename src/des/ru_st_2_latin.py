@@ -1,20 +1,21 @@
 """
-# ---
+
 from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)
-# ---
+
 python3 core8/pwb.py des/ru_st_2_latin test
 
 """
-from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
-# ---
-from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
-import pywikibot
+
 import sys
 
-# ---
+import pywikibot
+from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
+
+from bots_subs.hi_api import HimoAPIBot
+
+WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
+
 letters_to_latin = {
     "ru": {
         " ": " ",
@@ -302,10 +303,9 @@ def add_new_label(q, enlabel):
     WD_API_Bot.New_Mult_Des(q, data, "Bot: cyrillic2latin-labels", False)
 
 
-# ---
 # abcd = "abcdefghijklmnopqrstuvwxyz".split('')
 abcd = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(",")
-# ---
+
 liste = {
     "ru": list(set(letters_to_latin["ru"].keys()) - set(letters_to_latin["ru"].values()) - set(abcd)),
     "sr": list(set(letters_to_latin["sr"].keys()) - set(letters_to_latin["sr"].values()) - set(abcd)),
@@ -377,7 +377,6 @@ limit 10"""
             make_en_label(labels, q)
 
 
-# ---
 if __name__ == "__main__":
     if "test" in sys.argv:
         change_one_lab("Уркальту", "ru")

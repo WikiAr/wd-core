@@ -4,34 +4,27 @@
 تسمية  عناصر ويكي بيانات
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
 
-import re
+
 import logging
-logger = logging.getLogger(__name__)
-
-# ---
-
+import re
 import sys
 
-# ---
-# ---
-from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-# ---
+from bots_subs.hi_api import HimoAPIBot
+from bots_subs.wd_api import wd_sparql_bot
 
-# ---
-from wd_api import wd_bot
+logger = logging.getLogger(__name__)
 
-# ---
+
+WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
+
+
 bylangs = False  # False#True
-# ---
+
 limits = {1: "1000"}
-# ---
+
 items_done = []
+
 
 def action(json1):
     try:
@@ -56,6 +49,7 @@ def action(json1):
         else:
             logger.info(f" <<lightred>> * q in items_done. {q}")
 
+
 def make_quarry(ar_suff="", item_p31_cat="", en_suff="", en_priff=""):
     quaaa = """
 #تسمية تصانيف مواليد في
@@ -79,10 +73,9 @@ WHERE {
     quaaa %= (ar_suff, "%s", item_p31_cat, en_suff, en_priff)
     return quaaa
 
-# ---
+
 Quarry = {
-    "items":
-        """# تسمية  عناصر طبقاً لاسم التصنيف
+    "items": """# تسمية  عناصر طبقاً لاسم التصنيف
 SELECT DISTINCT #?item ?label ?cat_ar
 (concat("" , strafter(str(?item),"/entity/") , "")  as ?item_q)
 (concat( (strafter(str(?cat_ar),"تصنيف:")) )  as ?ar_name)
@@ -105,74 +98,63 @@ WHERE {
     BIND( concat("Category:" , str(?item_en)) as ?change_name)
     FILTER ( str(?cat_en) = str(?change_name) )
 }""",  # ---
-    "from":
-        make_quarry(
-            ar_suff="تصنيف:أشخاص من ",
-            item_p31_cat="?item wdt:P1792 ?cat.",
-            en_suff="Category:People from ",
-        ),  # ---
-    "alumni":
-        make_quarry(
-            ar_suff="تصنيف:خريجو ",
-            item_p31_cat="?item wdt:P3876 ?cat.",
-            en_suff="Category:",
-            en_priff=" alumni",
-        ),  # ---
-    "Taken":
-        make_quarry(
-            ar_suff="تصنيف:صور التقطت باستخدام ",
-            item_p31_cat="?item wdt:P2033 ?cat.",
-            en_suff="Category:Taken with ",
-            en_priff="",
-        ),  # ---
-    "basin":
-        make_quarry(
-            ar_suff="تصنيف:حوض ",
-            item_p31_cat="?item wdt:P1200 ?cat.",
-            en_suff="Category:",
-            en_priff=" basin",
-        ),  # ---
-    "shot":
-        make_quarry(
-            ar_suff="تصنيف:أفلام مصورة في ",
-            item_p31_cat="?item wdt:P1740 ?cat.",
-            en_suff="Category:Films shot in ",
-            en_priff="",
-        ),  # ---
-    "employees":
-        make_quarry(
-            ar_suff="تصنيف:موظفي ",
-            item_p31_cat="?item wdt:P4195 ?cat.",
-            en_suff="Category:",
-            en_priff=" employees",
-        ),  # ---
-    "faculty":
-        make_quarry(
-            ar_suff="تصنيف:هيئة تدريس ",
-            item_p31_cat="?item wdt:P4195 ?cat.",
-            en_suff="Category:",
-            en_priff=" faculty",
-        ),  # ---
-    "buried":
-        make_quarry(
-            ar_suff="تصنيف:مدفونون في ",
-            item_p31_cat="?item wdt:P1791 ?cat.",
-            en_suff="Category:Burials at ",
-        ),  # ---
-    "Births":
-        make_quarry(
-            ar_suff="تصنيف:مواليد في ",
-            item_p31_cat="?item wdt:P1464 ?cat.",
-            en_suff="Category:Births in ",
-        ),  # ---
-    "Deaths":
-        make_quarry(
-            ar_suff="تصنيف:وفيات في ",
-            item_p31_cat="?item wdt:P1465 ?cat.",
-            en_suff="Category:Deaths in ",
-        ),
-    1:
-        """
+    "from": make_quarry(
+        ar_suff="تصنيف:أشخاص من ",
+        item_p31_cat="?item wdt:P1792 ?cat.",
+        en_suff="Category:People from ",
+    ),  # ---
+    "alumni": make_quarry(
+        ar_suff="تصنيف:خريجو ",
+        item_p31_cat="?item wdt:P3876 ?cat.",
+        en_suff="Category:",
+        en_priff=" alumni",
+    ),  # ---
+    "Taken": make_quarry(
+        ar_suff="تصنيف:صور التقطت باستخدام ",
+        item_p31_cat="?item wdt:P2033 ?cat.",
+        en_suff="Category:Taken with ",
+        en_priff="",
+    ),  # ---
+    "basin": make_quarry(
+        ar_suff="تصنيف:حوض ",
+        item_p31_cat="?item wdt:P1200 ?cat.",
+        en_suff="Category:",
+        en_priff=" basin",
+    ),  # ---
+    "shot": make_quarry(
+        ar_suff="تصنيف:أفلام مصورة في ",
+        item_p31_cat="?item wdt:P1740 ?cat.",
+        en_suff="Category:Films shot in ",
+        en_priff="",
+    ),  # ---
+    "employees": make_quarry(
+        ar_suff="تصنيف:موظفي ",
+        item_p31_cat="?item wdt:P4195 ?cat.",
+        en_suff="Category:",
+        en_priff=" employees",
+    ),  # ---
+    "faculty": make_quarry(
+        ar_suff="تصنيف:هيئة تدريس ",
+        item_p31_cat="?item wdt:P4195 ?cat.",
+        en_suff="Category:",
+        en_priff=" faculty",
+    ),  # ---
+    "buried": make_quarry(
+        ar_suff="تصنيف:مدفونون في ",
+        item_p31_cat="?item wdt:P1791 ?cat.",
+        en_suff="Category:Burials at ",
+    ),  # ---
+    "Births": make_quarry(
+        ar_suff="تصنيف:مواليد في ",
+        item_p31_cat="?item wdt:P1464 ?cat.",
+        en_suff="Category:Births in ",
+    ),  # ---
+    "Deaths": make_quarry(
+        ar_suff="تصنيف:وفيات في ",
+        item_p31_cat="?item wdt:P1465 ?cat.",
+        en_suff="Category:Deaths in ",
+    ),
+    1: """
 #تسمية تصانيف طبقاً لاسماء العناصر
 SELECT DISTINCT  #?item ?label ?item_ar
 (concat("" , strafter(str(?cat),"/entity/") , "")  as ?item_q)
@@ -193,8 +175,7 @@ WHERE {
     FILTER ( str(?cat_en) = str(?change_name) )
 }
 """,
-    "Births2":
-        """
+    "Births2": """
 #تسمية تصانيف مواليد في
 SELECT DISTINCT  #?item ?label ?item_ar
 (concat("" , strafter(str(?cat),"/entity/") , "")  as ?item_q)
@@ -213,8 +194,7 @@ WHERE {
     FILTER ( str(?cat_en) = str(?change_name) )
 }
 """,
-    "items":
-        """
+    "items": """
 # تسمية  عناصر طبقاً لاسم التصنيف
 SELECT DISTINCT #?item ?label ?cat_ar
 (concat("" , strafter(str(?item),"/entity/") , "")  as ?item_q)
@@ -240,6 +220,7 @@ WHERE {
 }
 """,
 }
+
 
 def main():
     # ---
@@ -303,10 +284,9 @@ def main():
         logger.info(f"quuu : {number}/{len(qya)} key:{key}")
         logger.info(quuu)
         # ---
-        json1 = wd_bot.sparql_generator_url(quuu)
+        json1 = wd_sparql_bot.sparql_generator_url(quuu)
         action(json1)
 
-# ---
+
 if __name__ == "__main__":
     main()
-# ---

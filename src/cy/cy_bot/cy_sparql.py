@@ -8,16 +8,13 @@ import re
 import sys
 import urllib
 import urllib.parse
-import requests
 from datetime import datetime
 
-# ---
-# from .cy_helps import printt
-# ---
+import requests
+
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 
 Stage = {"": ""}
-# ---
 
 
 def get_query_results(query):
@@ -65,7 +62,7 @@ def get_query_results(query):
 
 
 def GetSparql(qid, title):
-    old_qu = """SELECT
+    _old_qu = """SELECT
     ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?p642label ?p585 ?p582 ?p580 ?title
     WHERE {
     SELECT ?item  ?itemlab ?jerseylab ?image  ?p17lab

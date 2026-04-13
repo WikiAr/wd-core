@@ -9,17 +9,15 @@ python3 core8/pwb.py des/fam railway Q784159
 python3 core8/pwb.py des/fam railway Q55488
 """
 #
-# ---
+
 import sys
-from wd_api import wd_desc
 
-from wd_api import wd_bot
-
-# ---
+from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
 from des.ru_st_2_latin import make_en_label
 
 # enlabel = make_en_label(labels, Add=False)
-# ---
+
 railway_tables = {
     "Q728937": {"ar": "خط سكة حديدية", "en": "railway line"},
     "Q55678": {"ar": "نقطة سكة حديدية", "en": "railway stop"},
@@ -64,7 +62,9 @@ def work_railway(wditem, p31, q=""):
     if not Claims:
         Claims = wd_bot.Get_Item_API_From_Qid(q).get("claims", {})
     # ---
-    P17_qid = Get_P_API_id(Claims, "P17", onlyone=True)  # Claims.get('P17',[{}])[0].get("mainsnak",{}).get("datavalue",{}).get("value",{}).get("id",'')
+    P17_qid = Get_P_API_id(
+        Claims, "P17", onlyone=True
+    )  # Claims.get('P17',[{}])[0].get("mainsnak",{}).get("datavalue",{}).get("value",{}).get("id",'')
     P131_qid = Get_P_API_id(Claims, "P131", onlyone=True)
     # ---
     p17_labels, p131_labels = {}, {}
@@ -145,9 +145,6 @@ def work_railway(wditem, p31, q=""):
     # if o not in wditem_desc:
     # newdesc[o] = {"language": o, "value": newdesc["en"]["value"]}
     # ---
-    wd_desc.work_api_desc(newdesc, q)
+    work_api_desc(newdesc, q)
     # ---
     return ""
-
-
-# ---

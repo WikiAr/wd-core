@@ -1,10 +1,10 @@
-import sys
 import json
-import requests
-from tqdm import tqdm
+import sys
 from pathlib import Path
-from SPARQLWrapper import SPARQLWrapper, JSON
 
+import requests
+from SPARQLWrapper import JSON, SPARQLWrapper
+from tqdm import tqdm
 
 Dir = Path(__file__).parent
 dump_path = Dir / "forms"
@@ -13,10 +13,10 @@ dump_path.mkdir(exist_ok=True)
 
 # تحميل القرآن من موقع quran.com
 url = "https://api.alquran.cloud/v1/quran/quran-uthmani"
-# ---
+
 session = requests.session()
 session.headers.update({"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"})
-# ---
+
 response = session.get(url, timeout=10)
 quran_data = response.json()
 
@@ -31,12 +31,14 @@ for surah in tqdm(surahs):
             if word not in words_to_add:
                 words_to_add[word] = []
             # ---
-            words_to_add[word].append({
-                "sura": surah["number"],
-                "sura_name": surah["name"],
-                "aya": ayah["numberInSurah"],
-                "text": ayah["text"]
-            })
+            words_to_add[word].append(
+                {
+                    "sura": surah["number"],
+                    "sura_name": surah["name"],
+                    "aya": ayah["numberInSurah"],
+                    "text": ayah["text"],
+                }
+            )
 
 
 def search_in_quran_new(word):
@@ -65,7 +67,7 @@ def get_forms_from_lexeme(forms):
 
 def get_results(query):
     user_agent = "WDQS-example Python/%s.%s" % (sys.version_info[0], sys.version_info[1])
-    endpoint_url = 'https://query.wikidata.org/sparql'
+    endpoint_url = "https://query.wikidata.org/sparql"
     # TODO adjust user agent; see https://w.wiki/CX6
     sparql = SPARQLWrapper(endpoint_url, agent=user_agent)
     sparql.setQuery(query)
@@ -124,7 +126,7 @@ def get_arabic_lexemes_new(limit, offset):
     # ---
     data = get_results(sparql_query)
     # ---
-    result = {x['item']: x['forms'] for x in data}
+    result = {x["item"]: x["forms"] for x in data}
     # ---
     return result
 

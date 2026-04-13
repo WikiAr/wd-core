@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 
 """
 
@@ -7,33 +7,19 @@ from wd_Session import WikidataSession
 
 """
 
-import os
-import sys
-import time
-import json
-import argparse
-import requests
 import logging
+import sys
+from typing import Dict, List
+
+import requests
+
+from wd_core_useraccount import User_tables_ibrahem
+
 logger = logging.getLogger(__name__)
-
-from pathlib import Path
-
-from SPARQLWrapper import SPARQLWrapper, JSON
-from typing import Dict, List, Optional, Tuple
-
-sys.path.append(str(Path(__file__).parent))
-sys.path.append("I:/core/bots/new/newapi_bot")
-
-from newapi.accounts.useraccount import User_tables_ibrahem
-
-from translate_bot import translate_en_to_ar
-
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"
 MW_API = "https://www.wikidata.org/w/api.php"
 
-HEADERS_API = {
-    "User-Agent": "WD-Ar-Props-Filler/1.0 (contact: your-email@example.com)"
-}
+HEADERS_API = {"User-Agent": "WD-Ar-Props-Filler/1.0 (contact: your-email@example.com)"}
 
 username = User_tables_ibrahem["username"]
 password = User_tables_ibrahem["password"]
@@ -45,6 +31,7 @@ ask_user = {1: False}
 if "ask" in sys.argv:
     ask_user[1] = True
     sys.argv.remove("ask")
+
 
 class WikidataSession:
     def __init__(self, username: str, password: str):
@@ -140,8 +127,7 @@ class WikidataSession:
 
     def set_label_ar(self, pid: str, value: str, summary: str, assert_bot: bool = True) -> dict:
         # remove . from end of value
-        if value.endswith("."):
-            value = value[:-1]
+        value = value.removesuffix(".")
 
         data = {
             "action": "wbsetlabel",
@@ -166,8 +152,7 @@ class WikidataSession:
 
     def set_description_ar(self, pid: str, value: str, summary: str, assert_bot: bool = True) -> dict:
         # remove . from end of value
-        if value.endswith("."):
-            value = value[:-1]
+        value = value.removesuffix(".")
 
         data = {
             "action": "wbsetdescription",

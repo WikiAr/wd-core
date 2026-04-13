@@ -5,10 +5,11 @@ python3 core8/pwb.py I:/core/bots/wd_core/prop_labs/gemini_bot.py
 
 """
 
-import tqdm
-from pathlib import Path
-import google.generativeai as genai
 import time
+from pathlib import Path
+
+import google.generativeai as genai
+import tqdm
 
 env_path = Path(__file__).parent / ".env"
 
@@ -83,13 +84,10 @@ def send_ai(text, sleep_time=3):
         # model_name="gemini-2.5-flash-preview-05-20",
         safety_settings=safety_settings,
         generation_config=generation_config,
-
         system_instruction=instractions,
     )
 
-    chat_session = model.start_chat(
-        history=contents
-    )
+    chat_session = model.start_chat(history=contents)
     try:
         response = chat_session.send_message(text)
     except Exception as e:
@@ -101,7 +99,7 @@ def send_ai(text, sleep_time=3):
         if e3 == "rate-limits":
             print(f"time.sleep({sleep_time})")
             time.sleep(sleep_time)
-            return send_ai(text, sleep_time=sleep_time+3)
+            return send_ai(text, sleep_time=sleep_time + 3)
         # ---
         return ""
     # ---
@@ -112,19 +110,23 @@ def send_ai(text, sleep_time=3):
     result = response.text
     # ---
     if result:
-        contents.append({
-            "role": "user",
-            "parts": [
-                text,
-            ],
-        })
+        contents.append(
+            {
+                "role": "user",
+                "parts": [
+                    text,
+                ],
+            }
+        )
         # ----
-        contents.append({
-            "role": "model",
-            "parts": [
-                result,
-            ],
-        })
+        contents.append(
+            {
+                "role": "model",
+                "parts": [
+                    result,
+                ],
+            }
+        )
     # ---
     return result
 

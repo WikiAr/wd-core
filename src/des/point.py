@@ -4,29 +4,26 @@
 تسمية  عناصر ويكي بيانات
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
 
+
+import logging
 import re
 import sys
 
-from wd_api import wd_bot
-# ---
-from himo_api import New_Himo_API
-import logging
+from bots_subs.hi_api import HimoAPIBot
+from bots_subs.wd_api import wd_bot, wd_sparql_bot
+
 logger = logging.getLogger(__name__)
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
+WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
 
-# ---
+
 bylangs = False  # False#True
-# ---
+
 limits = {1: "1000"}
-# ---
+
 items_done = []
+
 
 def action(json1):
     try:
@@ -67,10 +64,9 @@ def action(json1):
         else:
             logger.info(f" <<lightred>> * q in items_done. {q}")
 
-# ---
+
 Quarry = {
-    "y":
-        """
+    "y": """
 SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
  ?label WHERE {
     ?item wdt:P31 ?pp.
@@ -79,14 +75,15 @@ SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
     #?item wdt:P641/wdt:P279 wd:Q2215841.
     FILTER NOT EXISTS { ?item wdt:P585 ?P585. }
     FILTER NOT EXISTS { ?item wdt:P580 ?P580. }
-    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007C20)\\d\\d") )
+    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007c20)\\d\\d") )
     ?item rdfs:label ?label . FILTER( REGEX(?label, "(\\d\\d\\d\\d)") )
     #%s
-    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007C20)\\d\\d") )
+    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007c20)\\d\\d") )
 }
 #LIMIT 2
 """
 }
+
 
 def main():
     # ---
@@ -130,10 +127,9 @@ def main():
         logger.info(f"quuu : {number}/{len(qya)} key:{key}")
         logger.info(quuu)
         # ---
-        json1 = wd_bot.sparql_generator_url(quuu)
+        json1 = wd_sparql_bot.sparql_generator_url(quuu)
         action(json1)
 
-# ---
+
 if __name__ == "__main__":
     main()
-# ---

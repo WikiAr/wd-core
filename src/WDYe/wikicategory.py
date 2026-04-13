@@ -2,13 +2,10 @@
 #  python pwb.py wd/wikicatategory
 #
 #
-from wd_api import newdesc
-
-# repo = site.data_repository()
+from bots_subs.wd_api import newdesc
 from desc_dicts.descraptions import DescraptionsTable
 
-translations = {'Wikimedia category': DescraptionsTable['Wikimedia category']}
-# import pywikibot
+translations = {"Wikimedia category": DescraptionsTable["Wikimedia category"]}
 
 # item = pywikibot.ItemPage(repo, 'Q20509009')
 # item.get()
@@ -22,11 +19,11 @@ list = [
     "Q29848066",  # تصنيف حول حدث في سنة أو فترة زمنية محددة
     "Q30330522",  # Unknown parameters category
 ]
-topic = 'Wikimedia category'
+topic = "Wikimedia category"
 
-quarry2 = 'SELECT ?item  WHERE {  ?item wdt:P31 wd:Q4167836.}'
+quarry2 = "SELECT ?item  WHERE {  ?item wdt:P31 wd:Q4167836.}"
 # newdesc.mainfromQuarry( topic , quarry2, translations)
 
 for ll in list:
-    quarry = 'SELECT ?item  WHERE {  ?item wdt:P31 wd:%s.}' % ll
+    quarry = "SELECT ?item  WHERE {  ?item wdt:P31 wd:%s.}" % ll
     newdesc.mainfromQuarry2(topic, quarry, translations)

@@ -1,26 +1,27 @@
 """
 from nep.tables.si_tables import genders, MainTestTable, new_types, offsetbg, Qids_translate, Add_en_labels, Geo_List
 """
+
 import sys
+
 from des.places import placesTable
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 from desc_dicts.descraptions_dict import Scientific_descraptions
 from nep.tables.lists import others_list
 
-# ---
 genders = {
     "Q6581097": "male",
     "Q2449503": "male",  # transgender male
     "Q6581072": "female",
     "Q1052281": "female",  # transgender female
 }
-# ---
+
 MainTestTable = {1: False}
-# ---
+
 new_types = {}
-# ---
+
 offsetbg = {1: 0}
-# ---
+
 for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
@@ -31,7 +32,7 @@ for arg in sys.argv:
     if arg.lower() in ["offset", "off"]:
         print(f"offsetbg[1] = int({value})")
         offsetbg[1] = int(value)
-# ---
+
 Qids_translate = {
     "Q13442814 ": Scientific_descraptions,
     "Q21014462": DescraptionsTable["cell line"],
@@ -62,16 +63,16 @@ Qids_translate = {
     "Q19389637": DescraptionsTable["biographical article"],
     # space
 }
-# ---
+
 for x, taba in Qid_Descraptions.items():
     Qids_translate[x] = taba
-# ---
+
 for qid1 in others_list:
     if qid1 not in Qids_translate:
         Qids_translate[qid1] = others_list[qid1]
-# ---
+
 Add_en_labels = {}
-# ---
+
 Add_en_labels[1] = "addenlabel" in sys.argv
-# ---
+
 Geo_List = list(placesTable.keys())

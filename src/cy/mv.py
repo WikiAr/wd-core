@@ -13,16 +13,18 @@ tfj run jsubp3 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py
 tfj run jsubp4 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/mv -ns:0 -ref:قالب:نتيجة_سباق_الدراجات/بداية p4"
 
 """
-# ---
-import wikitextparser as wtp
-from newapi.page import MainPage
 
 import logging
-logger = logging.getLogger(__name__)
+import sys
 
 import tqdm
-import sys
-import gent
+import wikitextparser as wtp
+
+import wd_gent
+from api_page import load_main_api
+
+logger = logging.getLogger(__name__)
+
 
 def add_id_to_text(item, text):
     parser = wtp.parse(text)
@@ -45,16 +47,20 @@ def add_id_to_text(item, text):
     # ---
     return text
 
+
 def move_it_to_temp(title, item, text):
     # ---
     if not text:
-        return
+        return None
+    # ---
+    ar_api = load_main_api("ar", "wikipedia")
+    temp_page = ar_api.MainPage("Main Page Title")
     # ---
     temp_title = f"قالب:نتيجة سباق الدراجات/{title}"
     # ---
     text = add_id_to_text(item, text)
     # ---
-    temp_page = MainPage(temp_title, "ar", family="wikipedia")
+    temp_page = ar_api.MainPage(temp_title)
     # ---
     if temp_page.exists():
         do = temp_page.save(text, summary="بوت:تجربة تحديث بيانات اللاعب")
@@ -63,24 +69,26 @@ def move_it_to_temp(title, item, text):
     # ---
     return do
 
+
 def find_cy_temp(text):
     start = "{{نتيجة سباق الدراجات/بداية"
     end = "{{نتيجة سباق الدراجات/نهاية}}"
     # ---
     start_pos = text.find(start)
     if start_pos < 0:
-        return
+        return None
     # ---
     end_pos = text.find(end)
     if end_pos < 0:
-        return
+        return None
     # ---
     if end_pos < start_pos:
-        return
+        return None
     # ---
     end_pos += len(end)
     # ---
     return text[start_pos:end_pos]
+
 
 def one_page_work(title, text, item):
     # ---
@@ -102,9 +110,11 @@ def one_page_work(title, text, item):
     # ---
     return text
 
+
 def onep(title):
     # ---
-    page = MainPage(title, "ar", family="wikipedia")
+    ar_api = load_main_api("ar", "wikipedia")
+    page = ar_api.MainPage(title)
     # ---
     if not page.exists():
         return
@@ -146,6 +156,7 @@ def onep(title):
     if new_text:
         page.save(newtext=new_text, summary="بوت:تجربة تحديث بيانات اللاعب")
 
+
 def split_pages(pages, parts=4):
     length = len(pages)
     part_size = length // parts
@@ -159,7 +170,7 @@ def split_pages(pages, parts=4):
         parts_dict[f"p{i+1}"] = pages[start_index:end_index]
         start_index = end_index
 
-    # Return the specified part or the original list
+    # default_return the specified part or the original list
     for part_name, part_pages in parts_dict.items():
         if part_name in sys.argv:
             logger.info(f"<<yellow>> part: {part_name}: {len(part_pages):,}")
@@ -167,16 +178,18 @@ def split_pages(pages, parts=4):
 
     return pages
 
-def main2(*args):
-    generator = gent.get_gent(listonly=True, *args)
+
+def main2():
+    generator = wd_gent.get_gent_list()
     # ---
-    list_of_pages = [x for x in tqdm.tqdm(generator)]
+    list_of_pages = list(tqdm.tqdm(generator))
     # ---
     list_of_pages = split_pages(list_of_pages)
     # ---
     for numb, pagetitle in enumerate(list_of_pages, start=1):
         logger.info(f"<<yellow>> page: {numb}/{len(list_of_pages)} : {pagetitle}")
         onep(pagetitle)
+
 
 if __name__ == "__main__":
     main2()

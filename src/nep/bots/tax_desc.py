@@ -2,24 +2,20 @@
 """
 from nep.bots.tax_desc import work_taxon_desc
 """
-import sys
-# ---
-from himo_api import New_Himo_API
 import logging
-logger = logging.getLogger(__name__)
+import sys
 
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
-from wd_api import wd_bot
-
-from desc_dicts.taxones import lab_for_p171, labforP105
-from desc_dicts.taxones import tax_translations, taxone_list
-
-# ---
+from bots_subs.hi_api import HimoAPIBot
+from bots_subs.wd_api import wd_sparql_bot
+from desc_dicts.taxones import lab_for_p171, labforP105, tax_translations, taxone_list
 from nep.bots.helps import Get_P_API_id
 
+logger = logging.getLogger(__name__)
+
+WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
+
 tax_translations_lower = {}
-# ---
+
 for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
     if tax_lab.strip() and tax_key.strip():
         for natkey in sorted(tax_translations.keys()):  # النوع
@@ -27,6 +23,7 @@ for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
             if natkey.strip() and natar.strip():
                 kkey = tax_key.replace("~", natkey)
                 tax_translations_lower[kkey.lower()] = tax_lab.replace("~", natar)
+
 
 def make_tax_des_new(item):
     q = item["q"]
@@ -60,7 +57,7 @@ def make_tax_des_new(item):
     if "err" in sys.argv:
         logger.info(nan)
     # ---
-    bs = wd_bot.sparql_generator_url(nan)
+    bs = wd_sparql_bot.sparql_generator_url(nan)
     # ---
     if bs != []:
         bs = bs[0]
@@ -81,6 +78,7 @@ def make_tax_des_new(item):
                 P171ar = lab_for_p171[P171]
                 ar_lab = f"{P105ar} {P171ar}"
                 WD_API_Bot.Des_API(q, ar_lab, "ar")
+
 
 def work_taxon_desc(item, endesc):
     # ---

@@ -1,44 +1,39 @@
 #!/usr/bin/python3
-"""
+""" """
 
-from .cy_api import page_put, GetPageText
-
-"""
-
+import os
 import sys
-import requests
-
-# import urlencode
 from urllib.parse import urlencode
 
-# ---
-from . import useraccount
-from .cy_helps import printt, printo, make_dada, ec_de_code, TEST
+import requests
+
+from .cy_helps import TEST, ec_de_code, make_dada, printo, printt
+
+username = os.getenv("WIKIPEDIA_BOT_USERNAME", "")
+password = os.getenv("WIKIPEDIA_BOT_PASSWORD", "")
+
+hiacc = os.getenv("WIKIPEDIA_HIMO_USERNAME", "")
+hipass = os.getenv("WIKIPEDIA_HIMO_PASSWORD", "")
 
 api_url = "https://" + "ar.wikipedia.org/w/api.php"
-username = useraccount.username
-password = useraccount.password
-# ---
-returntext = {1: True}
-# ---
-if "text" in sys.argv:
-    returntext[1] = False
-# ---
-workibrahem = False
-if "workibrahem" in sys.argv:
-    from API import useraccount
 
-    username = useraccount.hiacc
-    password = useraccount.hipass
+workibrahem = False
+
+if "workibrahem" in sys.argv:
+    username = hiacc
+    password = hipass
     workibrahem = True
     print("workibrahem active")
-# ---
-# headers=headers,
-# session[1].headers.update(headers)
+
 headers = {"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"}
-# ---
+
 session = {1: requests.Session(), "csrftoken": ""}
 session[1].headers.update(headers)
+
+returntext = {1: True}
+
+if "text" in sys.argv:
+    returntext[1] = False
 
 br = "<br>"
 
@@ -95,14 +90,14 @@ def login():
 login()
 
 
-def page_put(NewText, MainTitle):
+def page_put(newtext, maintitle):
     printt(" page_put: <br>")
     # try:
-    title = ec_de_code(MainTitle, "decode")
+    title = ec_de_code(maintitle, "decode")
     # ---
     summ = "" if "workibrahem" in sys.argv else "بوت:تجربة تحديث بيانات اللاعب"
     # ---
-    printt(f" page_put {MainTitle}:<br>")
+    printt(f" page_put {maintitle}:<br>")
     # print_test2( NewText )
     # ---
     # headers=headers,
@@ -116,7 +111,7 @@ def page_put(NewText, MainTitle):
                 "action": "edit",
                 "format": "json",
                 "title": title,
-                "text": NewText,
+                "text": newtext,
                 "summary": summ,
                 "bot": 1,
                 "nocreate": 1,
@@ -134,7 +129,7 @@ def page_put(NewText, MainTitle):
             # printo( r4.text )
         elif "abusefilter-disallowed" in r4.text and returntext[1]:
             texts = "</br>خطأ عند تعديل الصفحة، قم بنسخ المحتوى أدناه إلى الصفحة:</br>"
-            texts += make_dada(NewText, MainTitle)
+            texts += make_dada(newtext, maintitle)
             printo(texts)
         else:
             printo(r4.text)

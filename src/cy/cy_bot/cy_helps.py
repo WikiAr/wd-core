@@ -2,8 +2,10 @@
 from .cy_helps import printt, CheckTempalteInPageText, printo, print_test2, ec_de_code, TEST, make_dada, get_temp_arg
 
 """
+
 import sys
 import urllib.parse
+
 import wikitextparser as wtp
 
 qu_2018 = """SELECT
@@ -45,7 +47,7 @@ SELECT ?item  ?itemlab ?jerseylab ?p17lab
                                     }
 
 } } """
-# ---
+
 q22u = """SELECT
     ?item ?p17lab ?itemlab ?jersey_1 ?jersey_2 ?p642label ?p585 ?p582 ?p580
     WHERE {
@@ -76,12 +78,12 @@ q22u = """SELECT
                                         }
 
     }   } """
-# ---
+
 TEST = {1: False, 2: False}
-# ---
+
 if "test" in sys.argv:
     TEST[1] = True
-# ---
+
 if "test2" in sys.argv:
     TEST[2] = True
 
@@ -104,13 +106,13 @@ def ec_de_code(tt, type):
     return fao
 
 
-def make_dada(NewText, MainTitle):
-    url = "https://" + "ar.wikipedia.org/w/index.php?title=" + ec_de_code(MainTitle, "decode") + "&action=submit"
+def make_dada(newtext, maintitle):
+    url = "https://" + "ar.wikipedia.org/w/index.php?title=" + ec_de_code(maintitle, "decode") + "&action=submit"
     t = f"<form id='editform' name='editform' method='POST' action='{url}'>"
-    t += f"<textarea id='wikitext-new' class='form-control' name='wpTextbox1'>{NewText}</textarea>"
+    t += f"<textarea id='wikitext-new' class='form-control' name='wpTextbox1'>{newtext}</textarea>"
     t += """
 <input type='hidden' name='wpSummary' value='تحديث نتائج اللاعب'/>
-<input id='btn-saveandreturn' type='submit' class='btn' name='wpDiff' value='Save &amp; Return' title='Open the edit interface in a new tab/window, then quietly return to the main page.'/>
+<input id='btn-saveandreturn' type='submit' class='btn' name='wpDiff' value='Save &amp; default_return' title='Open the edit interface in a new tab/window, then quietly return to the main page.'/>
 <input id='wpPreview' type='submit' class='btn-lg' tabindex='5' title='[p]' accesskey='p' name='wpPreview' value='Preview changes'/>
 <input id='wpDiff' type='submit' class='btn-lg' tabindex='7' name='wpDiff' value='show changes' accesskey='v' title='show changes.'/>
 </form>"""
@@ -140,15 +142,13 @@ def printo(s):
         print(ec_de_code(s, "encode"))
     except BaseException:
         print("")
-        if "workibrahem" in sys.argv:
-            print(s)
 
 
 def CheckTempalteInPageText(text):
     printt("**CheckTempalteInPageText: <br>")
     if not text:
         printt(" * no text.<br>")
-        return
+        return None
     # ---
     parser = wtp.parse(text)
     # ---
@@ -192,14 +192,14 @@ def find_cy_temp(text):
     # ---
     start_pos = text.find(start)
     if start_pos < 0:
-        return
+        return None
     # ---
     end_pos = text.find(end)
     if end_pos < 0:
-        return
+        return None
     # ---
     if end_pos < start_pos:
-        return
+        return None
     # ---
     end_pos += len(end)
     # ---

@@ -1,12 +1,11 @@
-"""
-
-"""
-import sys
+""" """
 
 import logging
-logger = logging.getLogger(__name__)
+import sys
 
 from nep import si3
+
+logger = logging.getLogger(__name__)
 
 # 32500000   اكتمل حتى
 # 32897048  متبقي حتى
@@ -84,8 +83,7 @@ def WorkNew():
         si3.ISRE(qitem, num, lenth)
 
 
-# ---
 # python3 core8/pwb.py nep/work_new
-# ---
+
 if __name__ == "__main__":
     WorkNew()

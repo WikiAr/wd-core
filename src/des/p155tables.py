@@ -441,7 +441,7 @@ Sports_Keys_For_Label = {
     "wushu racing": "سباق ووشو",
     "xiangqi": "الشطرنج الصيني",
     "xiangqi racing": "سباق الشطرنج الصيني",
-    "yacht racing": "سباقات اليخوت"
+    "yacht racing": "سباقات اليخوت",
 }
 Sports_Keys_For_Team = {
     "acrobatic gymnastics": "للجمباز الاكروباتيكي",
@@ -874,17 +874,17 @@ Sports_Keys_For_Team = {
     "wushu racing": "لسباق ووشو",
     "xiangqi": "للشطرنج الصيني",
     "xiangqi racing": "لسباق الشطرنج الصيني",
-    "yacht racing": "لسباقات اليخوت"
+    "yacht racing": "لسباقات اليخوت",
 }
 
 Sports_Keys_Lab = Sports_Keys_For_Label
 Sports_Keys_Team = Sports_Keys_For_Team
-# ---
+
 cccccups = {
     "FIS Alpine Ski World Cup": "كأس العالم للتزلج على المنحدرات الثلجية",
     "alpine skiing world cup": "كأس العالم للتزلج على المنحدرات الثلجية",
 }
-# ---
+
 Mako_keys_4 = {
     "ice dance": "الرقص على الجليد",
     "freestyle pursuit": "مطاردة حرة",
@@ -901,7 +901,7 @@ Mako_keys_4 = {
     "Cross country": "التزلج الريفي",
     "team race": "سباق الفريق",
 }
-# ---
+
 Mako_keys2 = {
     "free skating": "تزلج حر",
     # "pair skating" : "التزلج الفني على الجليد" ,
@@ -932,7 +932,7 @@ Mako_keys2 = {
     "super cruiserweight": "وزن الطراد سوبر",
     # ---
 }
-# ---
+
 Mako_keys = {
     "tennis at the summer olympics": "كرة المضرب في الألعاب الأولمبية الصيفية",
     "tennis at the winter olympics": "كرة المضرب في الألعاب الأولمبية الشتوية",
@@ -946,7 +946,7 @@ Mako_keys = {
     "ladies' singles free skating": "تزلج حر فردي للسيدات",
     "men's singles free skating": "تزلج حر فردي للرجال",
 }
-# ---
+
 International_Federation = {
     "FIL World Luge Championships": "كأس العالم للزحف الثلجي",
     "FIL under 23 World Luge Championships": "كأس العالم للزحف الثلجي تحت 23 سنة",
@@ -1186,7 +1186,7 @@ International_Federation = {
     "FINA World Swimming Championships": "بطولة العالم للسباحة",
     "FINA World Aquatics Championships": "بطولة العالم للألعاب المائية",
 }
-# ---
+
 olympics = {
     "Women's 500 m time trial": "سباق 500 متر ضد الساعة للسيدات",
     "Women's individual pursuit": "سباق المطاردة الفردية للسيدات",
@@ -1217,7 +1217,7 @@ olympics = {
     "Men's team pursuit": "سباق المطاردة الفرقية",
     "Men's team sprint": "سباق السرعة الفردية للفرق",
 }
-# ---
+
 for fff, ffflab in Sports_Keys_Team.items():  # – winter youth olympics
     # cccccups["%s world Championships" %  fff.lower() ] = "بطولة العالم %s"  % ffflab
     cccccups[f"{fff.lower()} world championships"] = f"بطولة العالم {ffflab}"
@@ -1227,7 +1227,7 @@ for fff, ffflab in Sports_Keys_Team.items():  # – winter youth olympics
     cccccups[f"{fff.lower()} world men's championships"] = f"بطولة العالم {ffflab} للرجال"
     cccccups[f"world women's {fff.lower()} championships"] = f"بطولة العالم {ffflab} للسيدات"
     cccccups[f"{fff.lower()} world women's championships"] = f"بطولة العالم {ffflab} للسيدات"
-# ---
+
 for fff, ffflab in Sports_Keys_Lab.items():  # – winter youth olympics
     olympics[f"{fff.lower()} at the summer olympics"] = f"{ffflab} في الألعاب الأولمبية الصيفية"
     olympics[f"{fff.lower()} at the winter youth olympics"] = f"{ffflab} في الألعاب الأولمبية الشبابية الشتوية"
@@ -1235,7 +1235,7 @@ for fff, ffflab in Sports_Keys_Lab.items():  # – winter youth olympics
     Mako_keys_4[f" mens's {fff.lower()}"] = f"{ffflab} للرجال"
     Mako_keys_4[f" womens's {fff.lower()}"] = f"{ffflab} للسيدات"
     # Mako_keys_4[ fff.lower() ] = ffflab
-# ---
+
 # individual
 # jumping
 keys_1 = {
@@ -1252,7 +1252,7 @@ keys_1 = {
     "men's": "رجال",
     # ---
 }  # men's individual road race
-# ---
+
 keys_2 = {
     "tournament": "مسابقة",
     # "single" : "فردي",
@@ -1274,7 +1274,7 @@ keys_2 = {
     "coxless": "رباعي",
     "jumping": "قفز",
 }
-# ---
+
 keys_3 = {
     "road race": "سباق الطريق",
     "pursuit": "مطاردة",
@@ -1284,7 +1284,7 @@ keys_3 = {
     "sculls": "تجديف",
     "pair": "مزدوج",
 }
-# ---
+
 for start in keys_1:  # –
     for suff in keys_2:  # –
         lab_ke = f"{keys_2[suff]} {keys_1[start]}"
@@ -1304,4 +1304,3 @@ for start in keys_1:  # –
             # ---
             ke2 = f"{suff} {su3}"
             Mako_keys2[ke2.lower()] = lab_ke2
-# ---

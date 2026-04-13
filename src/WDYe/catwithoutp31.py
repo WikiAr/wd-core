@@ -8,16 +8,16 @@ python3 core8/pwb.py WDYe/catwithoutp31
 
 """
 import logging
-logger = logging.getLogger(__name__)
 import re
-from wd_api import wd_desc
-from wd_api import wd_bot
 
-# ---
-from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-# ---
+from bots_subs.hi_api import HimoAPIBot
+from bots_subs.wd_api import wd_bot, wd_sparql_bot
+from bots_subs.wd_api.wd_bot import Get_infos_wikidata
+from bots_subs.wd_api.wd_desc import work_api_desc
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
+
+logger = logging.getLogger(__name__)
+WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
 
 Tras = {
     "Q4167836": DescraptionsTable.get("Wikimedia category") or Qid_Descraptions.get("Q4167836") or {},
@@ -26,7 +26,7 @@ Tras = {
 
 # python pwb.py np/d -family:wikidata -lang:wikidata -newpages:10
 # python pwb.py np/d -family:wikidata -lang:wikidata -ns:0 -start:Q32000000
-# ---
+
 quaries = {
     "ar": """ SELECT ?item
         WHERE
@@ -47,6 +47,57 @@ quaries = {
 }
 
 
+def Get_Sitelinks_From_wikidata(site, title, ssite="", ids="", props="", add_props=None, return_main_table=False):
+    # ---
+    sitewiki = site
+    if site.find("wiki") == -1:
+        sitewiki = f"{site}wiki"
+    # ---
+    params = {
+        "action": "wbgetentities",
+        "props": "sitelinks",
+        # "props": "sitelinks|templates",
+        "sites": sitewiki,
+        "titles": title,
+        "normalize": 1,
+        # "tlnamespace": "10",
+        # "tllimit": "max",
+        # "tltemplates": "Template:Category redirect",
+    }
+    # ---
+    if props:
+        params["props"] = props
+    # ---
+    if isinstance(add_props, (list, tuple)):
+        for x in add_props:
+            if x not in params["props"]:
+                params["props"] += f"|{x}"
+    # ---
+    if ids:
+        params["ids"] = ids
+        del params["sites"]
+        del params["titles"]
+    # ---
+    table = Get_infos_wikidata(params)
+    # ---
+    if return_main_table:
+        return table
+    # ---
+    if table:
+        table["site"] = sitewiki
+    # ---
+    ssite2 = ssite
+    if not ssite.endswith("wiki"):
+        ssite2 += "wiki"
+    # ---
+    if ssite:
+        sitelinks = table.get("sitelinks", {})
+        result = sitelinks.get(ssite) or sitelinks.get(ssite2) or ""
+        return result
+    # ---
+    return table
+
+
 def work_one_item(q):
     # ---
     # claims
@@ -54,7 +105,7 @@ def work_one_item(q):
     # ---
     P31 = P31[0] if P31 and isinstance(P31, list) else ""
     # ---
-    links = wd_bot.Get_Sitelinks_from_qid(ids=q)
+    links = Get_Sitelinks_From_wikidata("", "", ssite="", ids=q)
     # ---
     labels = wd_bot.Get_item_descriptions_or_labels(q, "labels")
     descriptions = wd_bot.Get_item_descriptions_or_labels(q, "descriptions")
@@ -85,11 +136,15 @@ def work_one_item(q):
         catdesc["en-ca"] = catdesc["en"]
         catdesc["en-gb"] = catdesc["en"]
     # ---
-    NewDesc = {str(lang): {"language": str(lang), "value": str(catdesc[lang])} for lang in catdesc.keys() if lang not in descriptions.keys()}
+    NewDesc = {
+        str(lang): {"language": str(lang), "value": str(catdesc[lang])}
+        for lang in catdesc.keys()
+        if lang not in descriptions.keys()
+    }
     # ---
     if NewDesc:
         logger.info(f"<<lightyellow>>* adding descriptions to :{q} ")
-        wd_desc.work_api_desc(NewDesc, q)
+        work_api_desc(NewDesc, q)
     else:
         logger.info(f"<<lightred>>* work 2 :{q} no descriptions to add.")
 
@@ -99,7 +154,7 @@ def main():
     for qua_a in quaries:
         qua = quaries[qua_a]
         # ---
-        json1 = wd_bot.wd_sparql_generator_url(qua, returnq=True)
+        json1 = wd_sparql_bot.wd_sparql_generator_url(qua, returnq=True)
         # ---
         total = len(json1)
         # ---

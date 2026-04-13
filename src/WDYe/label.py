@@ -5,24 +5,24 @@ import pywikibot
 from pywikibot import pagegenerators as pg
 
 replacedesc = {
-    'ar': [
-        'سياسي أميركي',
-        '',
+    "ar": [
+        "سياسي أميركي",
+        "",
     ]
 }
 taxondescs = {
     # 'American politician' :{'ar':'سياسي أمريكي'},
-    'scientific article': {'ar': 'مقالة بحثية'},  # مقالة علمية
-    'family name': {'ar': 'اسم العائلة'},
-    'male given name': {'ar': 'اسم مذكر معطى'},
-    'badminton championships': {'ar': 'بطولة كرة الريشة'},
-    'gene of the species Rattus norvegicus': {'ar': 'جين من أنواع الجرذ النرويجي'},
-    'Spanish politician': {'ar': 'سياسي إسباني'},
-    'German politician': {'ar': 'سياسي ألماني'},
-    'x!y~z': {'ar': ''},
+    "scientific article": {"ar": "مقالة بحثية"},  # مقالة علمية
+    "family name": {"ar": "اسم العائلة"},
+    "male given name": {"ar": "اسم مذكر معطى"},
+    "badminton championships": {"ar": "بطولة كرة الريشة"},
+    "gene of the species Rattus norvegicus": {"ar": "جين من أنواع الجرذ النرويجي"},
+    "Spanish politician": {"ar": "سياسي إسباني"},
+    "German politician": {"ar": "سياسي ألماني"},
+    "x!y~z": {"ar": ""},
 }
 # default_query='claim[31:16521]'  #all taxons
-default_language = 'ar'
+default_language = "ar"
 
 # global variables
 items2do = 0
@@ -31,24 +31,24 @@ missing_dict = {}
 
 
 def preee(wditem, data, site):
-    wditem.editEntity(data, summary=f'Bot: Add Arabic label: {site}')
+    wditem.editEntity(data, summary=f"Bot: Add Arabic label: {site}")
 
 
 def one_q_item(wditem):
     global items2do
     items2do -= 1
-    if 'arwiki' in wditem.sitelinks:
+    if "arwiki" in wditem.sitelinks:
         # print(ma)
         # site = ma.title
         # if site:
         # print(site)
-        if 'ar' in wditem.labels:  # وصف انجليزي متوفر في ويكي بيانات
+        if "ar" in wditem.labels:  # وصف انجليزي متوفر في ويكي بيانات
             print(f" تسمية عربية متوفرة: {wditem.labels['ar']} ")
         else:
             print(f"--- يتم العمل على العنصر {wditem} ")
-            ma = wditem.sitelinks['arwiki']
+            ma = wditem.sitelinks["arwiki"]
             print(f"-- التسمية :  {ma} ")
-            data = {'labels': {'ar': ma}}
+            data = {"labels": {"ar": ma}}
             # preee(wditem, data, site)
             preee(wditem, data, ma)
 
@@ -58,10 +58,10 @@ def one_q_item(wditem):
 def action_item2(wditem):
     global items2do
     items2do -= 1
-    if 'arwiki' in wditem.sitelinks:
-        ma = wditem.sitelinks['arwiki']
-    if 'ar' in wditem.sitelinks:
-        ma = wditem.sitelinks['arwiki']
+    if "arwiki" in wditem.sitelinks:
+        ma = wditem.sitelinks["arwiki"]
+    if "ar" in wditem.sitelinks:
+        ma = wditem.sitelinks["arwiki"]
         # print(ma)
         # site = ma.title
         # if site:
@@ -106,7 +106,7 @@ def addorreplace(wditem):
 
 
 def wd_sparql_generator(query):
-    wikidatasite = pywikibot.Site('wikidata', 'wikidata')
+    wikidatasite = pywikibot.Site("wikidata", "wikidata")
     generator = pg.WikidataSPARQLPageGenerator(query, site=wikidatasite)
     for wd in generator:
         wd.get(get_redirect=True)
@@ -131,7 +131,7 @@ def main():
         # except BaseException:
         # pass
         # print('%s pass' % (wditem)
-    print(f'Items done: {itemsdone}')
+    print(f"Items done: {itemsdone}")
 
 
 if __name__ == "__main__":

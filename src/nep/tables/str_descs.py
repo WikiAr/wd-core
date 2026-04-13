@@ -3,8 +3,19 @@
 from nep.tables.str_descs import descs, entities, countries, genese, make_nn
 """
 
+from bots_subs.wd_api import wd_bot
+from nep.bots.helps import (
+    Get_label_from_item,
+    get_label_txt,
+    get_mainsnak,
+)
+from nep.bots.its import (
+    its_a_generalthing,
+    its_a_thing_located_in_country,
+    its_something_in_a_country,
+    its_something_in_an_entity,
+)
 
-# ---
 descs = {
     "Q1149652": {"org": ["", "district"], "desc": "district in India"},
     # ---
@@ -132,7 +143,7 @@ countries = {
     "Q742421": {"org": ["", "theatergezelschap"], "desc": "theatergezelschap"},
     "Q985488": {"org": ["bewonersgemeenschap", ""], "desc": "bewonersgemeenschap"},
 }
-# ---
+
 genese = {
     "Q1002697": {"org": ["periodiek", ""], "desc": "", "desc_in": "periodiek over", "pid": "P641"},
     "Q1004": {"org": ["stripverhaal", ""], "desc": "stripverhaal", "desc_in": "stripverhaal من سلسلة ", "pid": "P179"},
@@ -141,25 +152,26 @@ genese = {
     "Q178122": {"org": ["aria", ""], "desc": "aria", "desc_in": "aria van ", "pid": "P86"},
     "Q21014462": {"org": ["cellijn", ""], "desc": "", "desc_in": "cellijn van een ", "pid": "P703"},
     "Q2668072": {"org": ["", ""], "desc": "collectie", "desc_in": "collectie uit ", "pid": "P195"},
-    "Q4502142": {"org": ["visueel kunstwerk", ""], "desc": "visueel kunstwerk", "desc_in": "visueel kunstwerk in collectie ", "pid": "P195"},
-    "Q50386450": {"org": ["opera-personage", ""], "desc": "opera-personage", "desc_in": "opera-personage uit ", "pid": "P1441"},
-    "Q5633421": {"org": ["", "tijdschrift", "wetenschappelijk tijdschrift"], "desc": "", "desc_in": "wetenschappelijk tijdschrift van ", "pid": "P123"},
+    "Q4502142": {
+        "org": ["visueel kunstwerk", ""],
+        "desc": "visueel kunstwerk",
+        "desc_in": "visueel kunstwerk in collectie ",
+        "pid": "P195",
+    },
+    "Q50386450": {
+        "org": ["opera-personage", ""],
+        "desc": "opera-personage",
+        "desc_in": "opera-personage uit ",
+        "pid": "P1441",
+    },
+    "Q5633421": {
+        "org": ["", "tijdschrift", "wetenschappelijk tijdschrift"],
+        "desc": "",
+        "desc_in": "wetenschappelijk tijdschrift van ",
+        "pid": "P123",
+    },
     "Q6451276": {"org": ["CSR-rapport", ""], "desc": "CSR-rapport", "desc_in": "CSR-rapport over ", "pid": "P921"},
 }
-# ---
-from wd_api import wd_bot
-
-from nep.bots.its import (
-    its_a_generalthing,
-    its_a_thing_located_in_country,
-    its_something_in_a_country,
-    its_something_in_an_entity,
-)
-from nep.bots.helps import (
-    get_label_txt,
-    Get_label_from_item,
-    get_mainsnak,
-)
 
 lng_canbeused = [
     "en",

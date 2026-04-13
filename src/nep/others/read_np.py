@@ -1,25 +1,21 @@
-"""
+""" """
 
-"""
-
+import logging
 import sys
 from pathlib import Path
 
-import logging
-logger = logging.getLogger(__name__)
-
-# ---
+from nep.others import read_json
 from nep.si3 import (
+    Geo_List,
     Qids_translate,
-    space_list_and_other,
     others_list,
     others_list_2,
-    Geo_List,
+    space_list_and_other,
 )
-from nep.others import read_json
 
-# ---
 Dir = Path(__file__).parent
+
+logger = logging.getLogger(__name__)
 
 
 def read_new_types_file():
@@ -57,16 +53,26 @@ def read_new_types_file():
     # ---Geo_List
     logger.info("===================")
     for yy, xh in PP:
-        if yy > number and xh not in Qids_translate.keys() and xh not in Known and xh not in space_list_and_other and xh not in others_list and xh not in others_list_2 and xh not in Geo_List:
+        if (
+            yy > number
+            and xh not in Qids_translate.keys()
+            and xh not in Known
+            and xh not in space_list_and_other
+            and xh not in others_list
+            and xh not in others_list_2
+            and xh not in Geo_List
+        ):
             # logger.info( '* %d\t \t{{Q|%s}}' % (yy, xh) )
-            logger.info("*'%s':{'ar':'{{#invoke:Wikidata2|labelIn|ar|%s}}', 'en':'{{#invoke:Wikidata2|labelIn|en|%s}}' }, # %d" % (xh, xh, xh, yy))
+            logger.info(
+                "*'%s':{'ar':'{{#invoke:Wikidata2|labelIn|ar|%s}}', 'en':'{{#invoke:Wikidata2|labelIn|en|%s}}' }, # %d"
+                % (xh, xh, xh, yy)
+            )
     logger.info("===================")
     # ---
     print("done")
 
 
-# ---
 # python3 core8/pwb.py nep/read_np
-# ---
+
 if __name__ == "__main__":
     read_new_types_file()

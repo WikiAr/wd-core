@@ -1,11 +1,12 @@
-"""
-"""
+""" """
+
 import datetime
 import json
 import logging
 import os
-import requests
 from pathlib import Path
+
+import requests
 
 logger = logging.getLogger(__name__)
 

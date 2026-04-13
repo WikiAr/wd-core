@@ -17,33 +17,19 @@ ORDER BY DESC(?count)
 #LIMIT 3000
 """
 
-# ---
-
 
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
-# ---
+
 #
 
 import logging
-logger = logging.getLogger(__name__)
-
-# import sys
-# import urllib
-# import urllib.request
-# import urllib.parse
-# ---
 import sys
 
-# ---
-# ---
-from wd_api import wd_bot
+from bots_subs.wd_api import wd_bot, wd_desc, wd_sparql_bot
 
-# ---
-from wd_api import wd_desc
+logger = logging.getLogger(__name__)
 
-# wd_desc.wwdesc(NewDesc, qid, i, fixlang, ask="", tage='')
-# wd_desc.work_api_desc(NewDesc, qid)
-# ---
+
 quuu = {
     "species of beetle": """
 SELECT DISTINCT
@@ -67,15 +53,13 @@ SELECT DISTINCT
 }
 LIMIT 100000""",
 }
-# ---
 
 
 # newdesc.work22(q , topic, translations)
 
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
-# ---
-# from API.replacement import replacement
-# ---
+
+
 translations = {
     "species of beetle": {
         "it": "specie di coleotteri",
@@ -122,7 +106,7 @@ def mam():
     Quarry = quuu[topic]
     if sys.argv and "OFFSET" in sys.argv:
         Quarry = f"{Quarry} OFFSET 100000"
-    json = wd_bot.wd_sparql_generator_url(Quarry, returnq=True)
+    json = wd_sparql_bot.wd_sparql_generator_url(Quarry, returnq=True)
     lenth = len(json)
     # topic = 'Wikinews article'
     # ---

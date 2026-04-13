@@ -3,24 +3,9 @@
 from nep.space_others import Make_space_desc, Make_others_desc
 """
 
-import re
 import logging
-logger = logging.getLogger(__name__)
+import re
 
-# ---
-
-from nep.new_way import P1433_ids, do_P1433_ids
-
-# ---
-from nep.tables.lists import (
-    bldiat,
-    Space_tab,
-    p50s,
-    songs_type,
-    others_list,
-    qura,
-    Geo_entity,
-)
 from nep.bots.its import (
     its_a_computergame,
     its_a_film,
@@ -32,6 +17,19 @@ from nep.bots.its import (
     its_something_in_an_entity,
     its_songs,
 )
+from nep.new_way import P1433_ids, do_P1433_ids
+from nep.tables.lists import (
+    Geo_entity,
+    Space_tab,
+    bldiat,
+    others_list,
+    p50s,
+    qura,
+    songs_type,
+)
+
+logger = logging.getLogger(__name__)
+
 
 def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     my_description = ""
@@ -125,6 +123,7 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     logger.info("Make space desc:[%s]" % my_description)
     # ---
     return my_description
+
 
 def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     my_description = ""

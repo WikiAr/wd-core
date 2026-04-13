@@ -7,30 +7,18 @@
 
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
+
 
 import logging
-logger = logging.getLogger(__name__)
-from wd_api import wd_bot
-
-# ---
 import sys
 
-# ---
+from bots_subs.hi_api import HimoAPIBot
+from bots_subs.wd_api import wd_sparql_bot
 
-# ---
+logger = logging.getLogger(__name__)
+WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
 
 
-# ---
-# ---
-from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-# ---
-
-# ---
 Limit = {1: "500"}
 
 
@@ -38,13 +26,13 @@ def main():
     # python pwb.py wd/category
     # ---
     for arg in sys.argv:
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---
-        if arg in ['-limit', 'limit']:
+        if arg in ["-limit", "limit"]:
             Limit[1] = value
-            logger.info(f'<<lightred>> Limit = {value}.')
+            logger.info(f"<<lightred>> Limit = {value}.")
             # ---#
-    Quaa = '''
+    Quaa = """
 SELECT DISTINCT
 ?cat
 (concat("" , str(?item_ar) , ''  )  as ?ar_name)
@@ -63,21 +51,21 @@ WHERE {
 
   FILTER ( str(?cat_en) = str(?change_name) )
 }
-LIMIT '''
+LIMIT """
     Quaa += Limit[1]
     logger.info(Quaa)
-    sparql = wd_bot.sparql_generator_url(Quaa)
+    sparql = wd_sparql_bot.sparql_generator_url(Quaa)
     # ---
     Table = {}
     for item in sparql:
-        q = item['cat'].split("/entity/")[1]
+        q = item["cat"].split("/entity/")[1]
         Table[q] = item["ar_name"]
     for num, (item, value_) in enumerate(Table.items(), start=1):
         # if num < 2:
         logger.info(f'<<lightgreen>> {num}/{len(Table.keys())} item:"{item}" ')
         # logger.info( Table[item] )
         if value_:
-            lab = f'تصنيف:{Table[item]}'
+            lab = f"تصنيف:{Table[item]}"
             WD_API_Bot.Labels_API(item, lab, "ar", False, Or_Alii=True)
 
     # ---
@@ -85,4 +73,3 @@ LIMIT '''
 
 if __name__ == "__main__":
     main()
-# ---

@@ -1,9 +1,9 @@
 import json
-import requests
 import os
-
-from tqdm import tqdm
 from pathlib import Path
+
+import requests
+from tqdm import tqdm
 
 env_path = Path(__file__).parent / ".env2"
 
@@ -23,7 +23,7 @@ def dump_all(cache_file, data):
     print("<<green>> dump_all():")
 
     # حفظ ملف JSON المحدث
-    with open(cache_file, 'w', encoding='utf-8') as file:
+    with open(cache_file, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
 
     print(" Dump saved to: data_translated.json")
@@ -31,10 +31,7 @@ def dump_all(cache_file, data):
 
 def translate_text(text):
     """ترجمة النص من الإنجليزية إلى العربية باستخدام OpenRouter API"""
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json"
-    }
+    headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
 
     prompt = (
         "ترجم النص التالي ترجمة عربية طبيعية موجزة ومناسبة لوصف/وسم ويكي بيانات:\n\n"
@@ -48,16 +45,19 @@ def translate_text(text):
     payload = {
         "model": MODEL,
         "messages": [
-            {"role": "system", "content": "You are a professional translator. Translate the following English text to Arabic accurately and naturally."},
-            {"role": "user", "content": prompt}
-        ]
+            {
+                "role": "system",
+                "content": "You are a professional translator. Translate the following English text to Arabic accurately and naturally.",
+            },
+            {"role": "user", "content": prompt},
+        ],
     }
 
     try:
         response = requests.post(API_URL, headers=headers, json=payload, timeout=5)
         response.raise_for_status()
         result = response.json()
-        translation = result['choices'][0]['message']['content'].strip()
+        translation = result["choices"][0]["message"]["content"].strip()
         return translation
     except Exception as e:
         print(f" error: {e}")
@@ -67,20 +67,22 @@ def translate_text(text):
 cache_file = Path(__file__).parent / "cache_data_new.json"
 
 # تحميل ملف JSON
-with open(cache_file, 'r', encoding='utf-8') as file:
+with open(cache_file, "r", encoding="utf-8") as file:
     data = json.load(file)
 
 n = 0
 
-data_to_translate = {x: v for x, v in data.items() if not v.get("label", {}).get("ar") or not v.get("description", {}).get("ar")}
+data_to_translate = {
+    x: v for x, v in data.items() if not v.get("label", {}).get("ar") or not v.get("description", {}).get("ar")
+}
 
 
 for prop_id, prop_data in tqdm(data_to_translate.items()):
     # ---
     n += 1
     # ---
-    ar_label = prop_data.get('label', {}).get('ar', '')
-    ar_desc = prop_data.get('description', {}).get('ar', '')
+    ar_label = prop_data.get("label", {}).get("ar", "")
+    ar_desc = prop_data.get("description", {}).get("ar", "")
     # ---
     if ar_label and ar_desc:
         continue
@@ -88,8 +90,8 @@ for prop_id, prop_data in tqdm(data_to_translate.items()):
     if n % 10 == 0:
         dump_all(cache_file, data)
     # ---
-    en_label = prop_data.get('label', {}).get('en', '')
-    en_desc = prop_data.get('description', {}).get('en', '')
+    en_label = prop_data.get("label", {}).get("en", "")
+    en_desc = prop_data.get("description", {}).get("en", "")
     # ---
     # ترجمة التسمية إذا كان الحقل العربي فارغًا
     if en_label and not ar_label:
@@ -99,7 +101,7 @@ for prop_id, prop_data in tqdm(data_to_translate.items()):
         translation = translate_text(en_label)
         # ---
         if translation:
-            data[prop_id]['label']['ar'] = translation
+            data[prop_id]["label"]["ar"] = translation
             # ---
             print(f"-> result: ({translation})")
 
@@ -111,7 +113,7 @@ for prop_id, prop_data in tqdm(data_to_translate.items()):
         translation = translate_text(en_desc)
         # ---
         if translation:
-            data[prop_id]['description']['ar'] = translation
+            data[prop_id]["description"]["ar"] = translation
             # ---
             print(f"-> result: ({translation})")
 

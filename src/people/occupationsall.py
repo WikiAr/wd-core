@@ -15,16 +15,11 @@ https://github.com/emijrp/wikidata/blob/master/human.descriptions.py
 
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-from pathlib import Path
 import json
+from pathlib import Path
 
-# ---
 Dir = Path(__file__).parent
-# ---
+
 translationsOccupations = {}
 tra_occ_2 = {
     "~ critic": {
@@ -106,12 +101,12 @@ tra_occ_2 = {
         "sq": {"male": "shkrimtar për fëmijë ~", "female": "shkrimtare për fëmijë ~"},
     },
 }
-# ---
+
 with open(f"{Dir}/translationsOccupations.json", "r", encoding="utf-8") as f:
     translationsOccupations = json.load(f)
-# ---
+
 translationsOccupations.update(tra_occ_2)
-# ---
+
 translationsOccupations_new = {
     "~ Indigenous artist": {
         "ar": {"male": "فنان سكان أصليون ~", "female": "فنانة سكان أصليون ~"},
@@ -568,25 +563,25 @@ translationsOccupations_new = {
         "es": {"male": "ornitólogo ~", "female": "ornitóloga ~"},
     },
 }
-# ---
+
 translations_all = {**translationsOccupations, **translationsOccupations}
-# ---
+
 # for x in translationsOccupations:
 # if "ar" not in translationsOccupations[x]:
 # print( x )
-# ---
+
 for x, yy in translationsOccupations_new.items():
     if "ar" in yy:
         translationsOccupations[x] = yy
     translations_all[x] = yy
-# ---
+
 """
 from stub.list import tempse_all
-# ---
+
 arl = {}
 for x in tempse_all:
     arl[x.strip().lower()] = tempse_all[x]["ar"]
-# ---
+
 for x in New_Keys_occ:
     if "ar" not in translationsOccupations[x]:
         x2 = x.replace("~","").strip().lower()
@@ -594,16 +589,14 @@ for x in New_Keys_occ:
         if ar2:
             print( "        '%s': {" % x )
             print("            'ar': { 'male': '%s ~', 'female': '%s ~' },\n" % ( ar2 , ar2 ) )
-# ---
+
 """
 
-# ---
+
 for yy in translationsOccupations.values():
     if "ar" in yy and yy["ar"]["male"] == yy["ar"]["female"]:
         print(f" male:{yy['ar']['male']} == female")
-# ---
 
-# ---
 
 if __name__ == "__main__":
     # python3 core8/pwb.py people/occupationsall

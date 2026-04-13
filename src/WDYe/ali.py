@@ -4,33 +4,17 @@
 اضافة تسميات بناءاً على الاسم الأول واسم العائلة
 
 """
-#
-# (C) Ibrahem Qasim, 2022
-#
-from wd_api import wd_bot
-from api_sql import sql
-
 import logging
-logger = logging.getLogger(__name__)
-
-# import pywikibot.data.wikidataquery as wdquery
-# used in logfiles, unicoded strings
-# ---
 import sys
 
-# ---
-File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
-# ---
-try:
-    from himo_api import New_Himo_API
-    WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-except ImportError:
-    logger.info('<<lightred>> Can\'t import New_Himo_API')
-# ---
-ask = {1: True}
-OFFSET = {1: '   '}
-Limit = {1: ' limit 100 '}
-# ---
+from bots_subs.hi_api import HimoAPIBot
+from bots_subs.wd_api import wd_sparql_bot
+
+logger = logging.getLogger(__name__)
+
+WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
+Limit = {1: " limit 100 "}
+
 names = [
     "Q307288",  # عبد الملك
     "Q307378",  # عبد الرحمن
@@ -91,7 +75,7 @@ names = [
     "Q56597708",  # عبد النور
     "Q56870624",  # عبد القوي
 ]
-# ---
+
 fafafa = """عبد الملك
 عبد الرحمن
 عبد الله
@@ -150,9 +134,9 @@ fafafa = """عبد الملك
 عبد العزيز
 عبد النور
 عبد القوي"""
-# ---
+
 Quarry = {
-    1: '''
+    1: """
 
 SELECT ?item ?label
 WHERE {
@@ -164,12 +148,12 @@ WHERE {
 
 
     }
-'''
+"""
 }
 
 
 def action_one(q, ar):
-    logger.info(f'<<lightblue>>> {q}:{ar} ')
+    logger.info(f"<<lightblue>>> {q}:{ar} ")
     ar2 = ar
     if ar.find("عبد ") != -1:
         ar2 = ar.replace("عبد ", "عبد")
@@ -178,39 +162,26 @@ def action_one(q, ar):
 
 
 def workqua(qua):
-    qua = qua + OFFSET[1]
     # ---
     qua = qua + Limit[1]
     logger.info(qua)
     # ---
-    sparql = wd_bot.sparql_generator_url(qua)
-    total = len(sparql)
+    sparql = wd_sparql_bot.sparql_generator_url(qua)
+    # ---
     for pa in sparql:
-        # pa = pigenerator[page]
-        pa['item'] = pa['item'].split('/entity/')[1]
-        action_one(pa['item'], pa['label'])
-
-
-# ---
-queries = '''use wikidatawiki_p;
-SELECT term_full_entity_id , term_text
-from wb_terms
-WHERE term_entity_type = 'item'
-AND term_language = 'ar'#en#ar#
-AND term_type = 'label' #description#label#
-AND term_text like "%عبد_%"
-LIMIT 500
-;'''
+        pa["item"] = pa["item"].split("/entity/")[1]
+        # ---
+        action_one(pa["item"], pa["label"])
 
 
 def mains():
-    logger.info('start with query')
+    logger.info("start with query")
     # ---
     FFF = True
     # ---
     # ---
     for arg in sys.argv:
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---
         if arg.startswith("names"):
             # ---
@@ -238,39 +209,13 @@ def mains():
                     logger.info(f'acd: "{tart}"')
                     qsa = Quarry[1].replace("#sr", f"{tart}\n#sr")
                     workqua(qsa)
-        elif arg.startswith("sql"):
-            for uu in fafafa.split("\n"):
-                if uu:
-                    fff = queries.replace("عبد_", uu)
-                    tart3 = sql.Make_sql_2_rows(fff, wiki="wikidata")
-                    logger.info(f'tart3: "{tart3}"')
-                    for te in tart3:
-                        action_one(te[1], te[2])
         # ---
-        # python pwb.py wd/ali ss:340662
-        elif arg == "ss":
-            fff = queries
-            tart3 = wd_bot.get_quarry_results(value, get_rows=2)
-            FFF = False
-            # logger.info( 'tart3: "%s"' % tart3 )
-            for te in tart3:
-                action_one(te, tart3[te])
-        # ---
-        if arg == 'limit':
+        if arg == "limit":
             Limit[1] = f" limit {value}"
     # ---
-    '''fff = queries
-    tart3 = wd_bot.get_quarry_results("340662", get_rows=2)
-    FFF = False
-    #logger.info( 'tart3: "%s"' % tart3 )
-    for te in tart3 :
-        action_one( te , tart3[ te ] )
-    # ---'''
     if FFF:
         workqua(Quarry[1])
 
 
-# ---
 if __name__ == "__main__":
     mains()
-# ---

@@ -5,29 +5,19 @@
 
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-
-import re
 import logging
-logger = logging.getLogger(__name__)
-from wd_api import wd_bot
-
-# ---
+import re
 import sys
 
-# ---
-# ---
-# ---
-from himo_api import New_Himo_API
-WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
-# ---
+from bots_subs.hi_api import HimoAPIBot
+from bots_subs.wd_api import wd_sparql_bot
 
-# ---
+logger = logging.getLogger(__name__)
+WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
+
+
 SaveR = {1: False}
-# ---
+
 main_table = {
     "Q4167836": {
         "كرواتيون": "كروات",
@@ -37,10 +27,10 @@ main_table = {
     },
     "Q5": {"جلاسر": "غلاسر"},
 }
-# ---
+
 allise = {}
 qid_table = {}
-# ---
+
 for qid in main_table:
     for lab in main_table[qid]:
         # ---
@@ -71,18 +61,18 @@ def WORK(item, table, type):
         if SaveR[1]:
             WD_API_Bot.Alias_API(item, [arlab2], "ar", False)
         else:
-            sa = input(f'<<lightyellow>>bot: Add Alias ([y]es, [N]o, [a]ll): for item {item}')
-            if sa in ['y', "a", '']:
+            sa = input(f"<<lightyellow>>bot: Add Alias ([y]es, [N]o, [a]ll): for item {item}")
+            if sa in ["y", "a", ""]:
                 WD_API_Bot.Alias_API(item, [arlab2], "ar", False)
             else:
-                logger.info(' bot: wrong answer')
+                logger.info(" bot: wrong answer")
 
     # ---
 
 
 Limit = {1: "10"}
-# ---
-Quaa = '''SELECT ?item ?label ?alias
+
+Quaa = """SELECT ?item ?label ?alias
     WHERE
     {
       #?item wdt:P31 wd:Q4167836.
@@ -92,7 +82,7 @@ Quaa = '''SELECT ?item ?label ?alias
       FILTER(LANG(?label) = "ar").
       FILTER(CONTAINS(?label, "%s")).
     }
-    LIMIT '''
+    LIMIT """
 
 
 def WORK_table(qid, tables):
@@ -101,18 +91,18 @@ def WORK_table(qid, tables):
         qua = Quaa % (qid, peo)
         qua = qua + Limit[1]
         # logger.info( qua )
-        sparql = wd_bot.sparql_generator_url(qua, printq=True)
+        sparql = wd_sparql_bot.sparql_generator_url(qua, printq=True)
         # logger.info( sparql )
         # ---
         Table = {}
         for item in sparql:
-            q = item['item'].split("/entity/")[1]
+            q = item["item"].split("/entity/")[1]
             if q not in Table:
                 Table[q] = {}
             for tab in item:
                 if tab not in Table[q]:
                     Table[q][tab] = []
-                if tab != 'item':
+                if tab != "item":
                     Table[q][tab].append(item[tab])
         for num, (item, value) in enumerate(Table.items(), start=1):
             # if num < 2:
@@ -137,20 +127,20 @@ def main():
     qnew = ""
     # ---
     for arg in sys.argv:
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---#Depth[1]
         if arg == "p":
             val = value
         elif arg == "q":
             qnew = value
         # ---
-        if arg == 'always':
+        if arg == "always":
             SaveR[1] = True
-            logger.info('<<lightred>> SaveR = True.')
+            logger.info("<<lightred>> SaveR = True.")
         # ---#limit[1]
-        if arg in ['-limit', 'limit']:
+        if arg in ["-limit", "limit"]:
             Limit[1] = value
-            logger.info(f'<<lightred>> Limit = {value}.')
+            logger.info(f"<<lightred>> Limit = {value}.")
     # ---
     if val:
         val2 = allise.get(val, "")
@@ -169,4 +159,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# ---

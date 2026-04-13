@@ -10,21 +10,16 @@ python pwb.py des/book
 
 """
 
-#
-# (C) Ibrahem Qasim, 2022
-#
-#
-import re
-import pywikibot
-import sys
 import logging
+import re
+import sys
+
+from bots_subs.wd_api import wd_bot
+from bots_subs.wd_api.wd_desc import work_api_desc
+from bots_subs.wd_api.wd_sparql_bot import sparql_generator_big_results
+
 logger = logging.getLogger(__name__)
 
-from wd_api import wd_sparql_bot
-from wd_api import wd_desc
-from wd_api import wd_bot
-
-# ---
 AskSave = {1: True}
 """Qlist['Q19389637'] = {# مقالة سيرة ذاتية
                 'ar' : 'مقالة سيرة ذاتية' ,
@@ -70,6 +65,7 @@ Qlist = {
     },
 }
 
+
 def one_book_item(Qid, pa, lang, keys):
     item = wd_bot.Get_Item_API_From_Qid(pa["item"])
     if not item:
@@ -113,13 +109,13 @@ def one_book_item(Qid, pa, lang, keys):
             if saaa in ["y", "a", ""]:
                 if saaa == "a":
                     AskSave[1] = False
-                wd_desc.work_api_desc(NewDesc, qitem)
+                work_api_desc(NewDesc, qitem)
             else:
                 logger.info("* rong answer")
         else:
-            wd_desc.work_api_desc(NewDesc, qitem)
+            work_api_desc(NewDesc, qitem)
 
-# ---
+
 Comma = {
     "an": " y ",
     "ar": "/",
@@ -141,6 +137,7 @@ Comma = {
     "en": ", ",
 }
 Comma2 = {"ar": "، و", "en": ", ", "de": ", ", "fr": ", ", "nl": ", "}
+
 
 def GetQuery(Qid, lang, keys):
     P50 = "P175" if Qid == "Q482994" else "P50"
@@ -177,6 +174,7 @@ def GetQuery(Qid, lang, keys):
     # ---
     return ur
 
+
 def Gquery2(json1):
     table = {}
     # table = []
@@ -188,10 +186,10 @@ def Gquery2(json1):
         table[q] = s
     return table
 
-# ---
+
 Off = {1: 0}
 limit = {1: 0}
-# ---
+
 for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
@@ -201,12 +199,13 @@ for arg in sys.argv:
     elif arg == "off":
         Off[1] = int(value)
 
+
 def WorkWithOneLang(Qid, lang, keys):
     logger.info("*<<lightyellow>> WorkWithOneLang: ")
     # ---
     query = GetQuery(Qid, lang, keys)
     # ---
-    PageList = wd_sparql_bot.sparql_generator_big_results(query, offset=Off[1], limit=limit[1], alllimit=0)
+    PageList = sparql_generator_big_results(query, offset=Off[1], limit=limit[1], alllimit=0)
     # ---
     logger.info("* PageList: ")
     SAO = Qlist[Qid][lang]
@@ -218,8 +217,26 @@ def WorkWithOneLang(Qid, lang, keys):
         logger.info(f"<<lightblue>>> {lang} \"{SAO}\" :{num}/{total} : {pa['item']}")
         one_book_item(Qid, pa, lang, keys)
 
-# ---
-by_list = {"ar": "من تأليف", "en": "by", "fr": "de", "de": "von", "nl": "van", "ca": "per", "cs": "od", "la": "ab", "it": "da", "io": "da", "eo": "de", "da": "af", "pl": "przez", "ro": "de", "es": "por", "sv": "av"}
+
+by_list = {
+    "ar": "من تأليف",
+    "en": "by",
+    "fr": "de",
+    "de": "von",
+    "nl": "van",
+    "ca": "per",
+    "cs": "od",
+    "la": "ab",
+    "it": "da",
+    "io": "da",
+    "eo": "de",
+    "da": "af",
+    "pl": "przez",
+    "ro": "de",
+    "es": "por",
+    "sv": "av",
+}
+
 
 def MakeDesc(Qid, pa, lang):
     # for lang in language:
@@ -257,6 +274,7 @@ def MakeDesc(Qid, pa, lang):
             description = False
     return description
 
+
 def main():
     # ---
     for arg in sys.argv:
@@ -280,7 +298,6 @@ def main():
             # logger.info( Qlist[Qid][lang] )
             WorkWithOneLang(Qid, lang, keys)
 
-# ---
+
 if __name__ == "__main__":
     main()
-# ---
