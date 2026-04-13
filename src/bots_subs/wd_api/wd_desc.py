@@ -36,7 +36,7 @@ def del_keys(d):
     return d
 
 
-def wwdesc(NewDesc, qid, i, fixlang, ask="", tage=""):
+def wwdesc(newdesc, qid, i, fixlang, ask="", tage=""):
     """Process and update descriptions for a given query ID.
 
     This function takes a dictionary of new descriptions and processes it to
@@ -61,20 +61,20 @@ def wwdesc(NewDesc, qid, i, fixlang, ask="", tage=""):
     """
 
     # ---
-    NewDesc = del_keys(NewDesc)
+    newdesc = del_keys(newdesc)
     # ---
     queries_list = []
     # ---
-    for x in NewDesc.keys():
+    for x in newdesc.keys():
         if x not in fixlang:
             queries_list.append(x)
     # ---
     queries_list.sort()
     # ---
-    data = {"descriptions": NewDesc}
+    data = {"descriptions": newdesc}
     data3 = json.JSONEncoder().encode(data)
     # ---
-    langes = list(NewDesc.keys())
+    langes = list(newdesc.keys())
     # ---
     if len(langes) == 2 and "en-gb" in langes and "en-ca" in langes:
         logger.info("wwdesc: only en-gb and en-ca, Skipp... ")
@@ -89,7 +89,7 @@ def wwdesc(NewDesc, qid, i, fixlang, ask="", tage=""):
     # ---
     if fixlang:
         for ii in fixlang:
-            if ii not in NewDesc.keys():
+            if ii not in newdesc.keys():
                 fixlang.remove(str(ii))
                 logger.info(f'remove "{ii}" from fixlang because it\'s not in NewDesc')
         # ---
@@ -109,18 +109,18 @@ def wwdesc(NewDesc, qid, i, fixlang, ask="", tage=""):
         return
     # ---
     value = ""
-    if "ar" in NewDesc:
-        value = NewDesc["ar"]["value"]
+    if "ar" in newdesc:
+        value = newdesc["ar"]["value"]
     elif queries_list:
         try:
             key = queries_list[0]
-            value = f"{NewDesc[key]['value']}@{key}"
+            value = f"{newdesc[key]['value']}@{key}"
         except Exception as e:
             logger.exception("Exception:", exc_info=True)
             value = ""
     # ---
     logger.info(
-        f'* wd_desc.py wwdesc "{qid}" try number:"{i}", len NewDesc:"{len(NewDesc)}", len queries_list:"{len(queries_list)}"'
+        f'* wd_desc.py wwdesc "{qid}" try number:"{i}", len NewDesc:"{len(newdesc)}", len queries_list:"{len(queries_list)}"'
     )
     # ---
     logger.info(f'*work_api_desc {str(qid)} "{value}": try "{i}",{menet}:')
@@ -139,13 +139,13 @@ def wwdesc(NewDesc, qid, i, fixlang, ask="", tage=""):
     if "success" in skipp:
         # logger.info(summary)
         logger.info(f"<<lightgreen>> **{qid} true. {summary}")
-        return True, NewDesc
+        return True, newdesc
     # ---
     if ("using the same description text" in skipp) and ("associated with language code" in skipp):
         skipp = skipp.split("using the same description text")[0].split("associated with language code")[1]
         skipplang = skipp.strip().split(",")
         # ---
-        NewDesc2 = NewDesc
+        NewDesc2 = newdesc
         if len(skipplang) != 0:
             logger.info(f'skiping languages: "{str(skipplang)}"')
             # logger.info(keys)
@@ -159,7 +159,7 @@ def wwdesc(NewDesc, qid, i, fixlang, ask="", tage=""):
         # ---
     elif "wikibase-api-invalid-json" in skipp:
         logger.info('<<lightred>> - "wikibase-api-invalid-json" ')
-        logger.info(NewDesc)
+        logger.info(newdesc)
 
     elif err_wait in skipp:
         logger.info(f'<<lightred>> {file_name} - "{err_wait} time.sleep(5) " ')
