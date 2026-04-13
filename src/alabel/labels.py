@@ -12,7 +12,7 @@ python3 core8/pwb.py alabel/labels -limit:20
 import logging
 import sys
 
-from api_sql import wiki_sql
+from bots_subs import wiki_sql
 from himo_api import New_Himo_API
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 Limit = {1: ""}
 
 
-# result = wiki_sql.sql_new(qua, wiki="", printqua=False)
+# result = wiki_sql.sql_new(qua, wiki="")
 
 # TODO: Table 'wikidatawiki_p.wbt_item_terms' doesn't exist
 
@@ -63,8 +63,10 @@ if Limit[1]:
 def main():
     # python3 core8/pwb.py alabel/labels -limit:20
     # ---
+    logger.info(Quaa)
+    # ---
     try:
-        result = wiki_sql.sql_new(Quaa, wiki="wikidata", printqua=True)
+        result = wiki_sql.sql_new(Quaa, wiki="wikidata")
     except Exception as e:
         print(f"Exception: {e}")
         return

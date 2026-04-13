@@ -26,10 +26,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# import sys
-# import urllib
-# import urllib.request
-# import urllib.parse
 
 import sys
 
@@ -67,7 +63,6 @@ LIMIT 100000""",
 
 # newdesc.mainfromQuarry2( topic , Quarry, translations)
 
-# from API.replacement import replacement
 
 translations = {
     "species of beetle": {

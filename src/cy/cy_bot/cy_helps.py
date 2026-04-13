@@ -112,7 +112,7 @@ def make_dada(newtext, maintitle):
     t += f"<textarea id='wikitext-new' class='form-control' name='wpTextbox1'>{newtext}</textarea>"
     t += """
 <input type='hidden' name='wpSummary' value='تحديث نتائج اللاعب'/>
-<input id='btn-saveandreturn' type='submit' class='btn' name='wpDiff' value='Save &amp; Return' title='Open the edit interface in a new tab/window, then quietly return to the main page.'/>
+<input id='btn-saveandreturn' type='submit' class='btn' name='wpDiff' value='Save &amp; default_return' title='Open the edit interface in a new tab/window, then quietly return to the main page.'/>
 <input id='wpPreview' type='submit' class='btn-lg' tabindex='5' title='[p]' accesskey='p' name='wpPreview' value='Preview changes'/>
 <input id='wpDiff' type='submit' class='btn-lg' tabindex='7' name='wpDiff' value='show changes' accesskey='v' title='show changes.'/>
 </form>"""
@@ -142,8 +142,6 @@ def printo(s):
         print(ec_de_code(s, "encode"))
     except BaseException:
         print("")
-        if "workibrahem" in sys.argv:
-            print(s)
 
 
 def CheckTempalteInPageText(text):

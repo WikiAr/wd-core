@@ -27,8 +27,6 @@ from cy_bot.cy_api import GetPageText, page_put
 from cy_bot.cy_helps import TEST, printo, printt
 from cy_bot.do_text import do_One_Page
 
-workibrahem = "workibrahem" in sys.argv
-
 br = "</br>"
 
 

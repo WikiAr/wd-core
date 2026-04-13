@@ -3,7 +3,6 @@ from wd_api import newdesc
 from desc_dicts.descraptions import DescraptionsTable
 
 translations = {"Wikimedia template": DescraptionsTable["Wikimedia template"]}
-# import pywikibot
 
 # item = pywikibot.ItemPage(repo, 'Q20509009')
 # item.get()

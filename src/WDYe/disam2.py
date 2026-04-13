@@ -11,7 +11,7 @@ import json
 import logging
 
 import pywikibot
-from API import open_url
+from bots_subs import open_url
 from wd_api import wd_bot, wd_desc
 
 from desc_dicts.descraptions import DescraptionsTable
@@ -87,8 +87,6 @@ limit 1"""
 
 wikidatasite = pywikibot.Site("wikidata", "wikidata")
 repo = wikidatasite.data_repository()
-
-# open_url.open_the_url( url )
 
 
 def mainfromQuarry2():

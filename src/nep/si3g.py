@@ -54,7 +54,7 @@ import sys
 import time
 from pathlib import Path
 
-import gent
+import wd_gent
 from api_page import load_main_api
 
 from nep import si3
@@ -142,7 +142,7 @@ def mainwithcat2():
         lista = api_new.UserContribs(user, limit=user_limit, namespace=namespaces, ucshow="new")
     # ---
     if not lista:
-        lista = gent.get_gent_list()
+        lista = wd_gent.get_gent_list()
         # lista = [page.title(as_link=False) for page in genet]
     # ---
     try:

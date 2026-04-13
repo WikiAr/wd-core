@@ -17,7 +17,6 @@ import time
 
 logger = logging.getLogger(__name__)
 
-# from nep import si3
 from wd_api import wd_bot
 
 from nep.wr_people import work_people

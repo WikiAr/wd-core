@@ -17,7 +17,7 @@ tfj run jsubp4 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py
 import logging
 import sys
 
-import gent
+import wd_gent
 import tqdm
 import wikitextparser as wtp
 from api_page import load_main_api
@@ -169,7 +169,7 @@ def split_pages(pages, parts=4):
         parts_dict[f"p{i+1}"] = pages[start_index:end_index]
         start_index = end_index
 
-    # Return the specified part or the original list
+    # default_return the specified part or the original list
     for part_name, part_pages in parts_dict.items():
         if part_name in sys.argv:
             logger.info(f"<<yellow>> part: {part_name}: {len(part_pages):,}")
@@ -179,7 +179,7 @@ def split_pages(pages, parts=4):
 
 
 def main2():
-    generator = gent.get_gent_list()  # noqa: B026
+    generator = wd_gent.get_gent_list()
     # ---
     list_of_pages = list(tqdm.tqdm(generator))
     # ---

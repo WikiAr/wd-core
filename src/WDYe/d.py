@@ -25,8 +25,6 @@ SELECT DISTINCT
 LIMIT 20000""",
 }
 
-# from API.replacement import replacement
-
 translations = {
     "species of beetle": {
         "it": "specie di coleotteri",

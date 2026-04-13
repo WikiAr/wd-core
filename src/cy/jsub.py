@@ -22,7 +22,7 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 
 """
 
-import gent
+import wd_gent
 from api_page import load_main_api
 from cy_bot.do_text import do_One_Page
 
@@ -72,7 +72,7 @@ def onep(title):
 
 
 def main2():
-    generator = gent.get_gent_list()  # noqa: B026
+    generator = wd_gent.get_gent_list()
     # ---
     for numb, pagetitle in enumerate(generator, start=1):
         print(f"page: {numb} : {pagetitle}")

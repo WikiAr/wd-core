@@ -12,7 +12,6 @@ from datetime import datetime
 
 import requests
 
-# from .cy_helps import printt
 
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 
