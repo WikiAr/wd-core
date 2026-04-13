@@ -26,6 +26,7 @@ import logging
 
 import sys
 
+from bots_subs.wd_api import wd_sparql_bot
 from bots_subs.wd_api import wd_bot, wd_desc
 
 logger = logging.getLogger(__name__)
@@ -107,7 +108,7 @@ def mam():
     Quarry = quuu[topic]
     if sys.argv and "OFFSET" in sys.argv:
         Quarry = f"{Quarry} OFFSET 100000"
-    json = wd_bot.wd_sparql_generator_url(Quarry, returnq=True)
+    json = wd_sparql_bot.wd_sparql_generator_url(Quarry, returnq=True)
     lenth = len(json)
     # topic = 'Wikinews article'
     # ---
