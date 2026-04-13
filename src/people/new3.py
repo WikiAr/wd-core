@@ -181,7 +181,7 @@ def check_quarry_new(tab):
             print(qua)
             print("qua .")
         # ---
-        json = wd_bot.sparql_generator_url(qua)
+        json = wd_bot.sparql_generator_url_Z(qua)
         # ---
         New_Json.extend(iter(json))
     # ---
@@ -377,7 +377,7 @@ def Main_Test():
     # ---
 
     # ---
-    wd_bot.sparql_generator_url(qua)
+    wd_bot.sparql_generator_url_Z(qua)
 
 
 if __name__ == "__main__":

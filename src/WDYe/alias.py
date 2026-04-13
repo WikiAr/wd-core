@@ -91,7 +91,7 @@ def WORK_table(qid, tables):
         qua = Quaa % (qid, peo)
         qua = qua + Limit[1]
         # logger.info( qua )
-        sparql = wd_bot.sparql_generator_url(qua, printq=True)
+        sparql = wd_bot.sparql_generator_url_Z(qua, printq=True)
         # logger.info( sparql )
         # ---
         Table = {}

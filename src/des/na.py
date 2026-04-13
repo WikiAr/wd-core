@@ -286,7 +286,7 @@ def main():
         logger.info(f"quuu : {number}/{len(qya)} key:{key}")
         logger.info(quuu)
         # ---
-        json1 = wd_bot.sparql_generator_url(quuu)
+        json1 = wd_bot.sparql_generator_url_Z(quuu)
         action(json1)
 
 

@@ -58,7 +58,7 @@ def make_tax_des_new(item):
     if "err" in sys.argv:
         logger.info(nan)
     # ---
-    bs = wd_bot.sparql_generator_url(nan)
+    bs = wd_bot.sparql_generator_url_Z(nan)
     # ---
     if bs != []:
         bs = bs[0]

@@ -101,7 +101,7 @@ def work22(q, topic, translations):
 def mainfromQuarry(topic, Quarry, translations):
     # logger.info( '*<<lightyellow>> mainfromQuarry:' )
     # Quarry = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q17633526.}'
-    json = wd_bot.sparql_generator_url(Quarry)
+    json = wd_bot.sparql_generator_url_Z(Quarry)
     lenth = len(json)
     num = 0
     # ---
@@ -113,7 +113,7 @@ def mainfromQuarry(topic, Quarry, translations):
 
 
 def Quarry_with_item_langs(p31, Quarry, translations):
-    json = wd_bot.sparql_generator_url(Quarry)
+    json = wd_bot.sparql_generator_url_Z(Quarry)
     lenth = len(json)
     num = 0
     # ---

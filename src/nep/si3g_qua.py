@@ -137,7 +137,7 @@ def main():
         # ---
         print(line)
         # ---
-        lista = wd_bot.sparql_generator_url(qua)
+        lista = wd_bot.sparql_generator_url_Z(qua)
         # ---
         for num, tab in enumerate(lista, start=1):
             qid = tab["qid"]

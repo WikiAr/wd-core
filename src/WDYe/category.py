@@ -54,7 +54,7 @@ WHERE {
 LIMIT """
     Quaa += Limit[1]
     logger.info(Quaa)
-    sparql = wd_bot.sparql_generator_url(Quaa)
+    sparql = wd_bot.sparql_generator_url_Z(Quaa)
     # ---
     Table = {}
     for item in sparql:

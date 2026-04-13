@@ -215,7 +215,7 @@ def WorkWithOneLang(Qid, lang, keys):
     quary = quary + "\n limit %d" % limit
     logger.info(quary)
     # ---
-    PageList = wd_bot.sparql_generator_url(quary, key="item")
+    PageList = wd_bot.sparql_generator_url_Z(quary, key="item")
     # ---
     total = len(PageList)
     # ---

@@ -154,7 +154,7 @@ def work_one_json(json1, topic_ar, p31, p31_langs):
 
 
 def work_one_quarry(quarry, p31, p31_desc):
-    json1 = wd_bot.sparql_generator_url(quarry)
+    json1 = wd_bot.sparql_generator_url_Z(quarry)
     # ---
     quarry_result_lenth = len(json1)
     # ---

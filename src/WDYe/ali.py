@@ -166,7 +166,7 @@ def workqua(qua):
     qua = qua + Limit[1]
     logger.info(qua)
     # ---
-    sparql = wd_bot.sparql_generator_url(qua)
+    sparql = wd_bot.sparql_generator_url_Z(qua)
     # ---
     for pa in sparql:
         pa["item"] = pa["item"].split("/entity/")[1]
