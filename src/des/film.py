@@ -12,8 +12,6 @@ import logging
 import re
 
 import pywikibot
-
-
 from wd_api import wd_bot, wd_desc
 
 logger = logging.getLogger(__name__)

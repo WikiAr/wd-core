@@ -10,7 +10,6 @@
 
 
 import logging
-
 import sys
 
 from himo_api import New_Himo_API

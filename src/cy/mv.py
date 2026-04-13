@@ -15,14 +15,12 @@ tfj run jsubp4 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py
 """
 
 import logging
-
-import wikitextparser as wtp
-from newapi.page import MainPage
-
 import sys
 
 import gent
 import tqdm
+import wikitextparser as wtp
+from newapi.page import MainPage
 
 logger = logging.getLogger(__name__)
 

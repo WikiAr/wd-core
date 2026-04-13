@@ -46,9 +46,7 @@ import re
 import sys
 
 from himo_api import New_Himo_API
-from wd_api import wd_sparql_bot
-
-from wd_api import get_property_for_list, qs_bot, wd_bot
+from wd_api import get_property_for_list, qs_bot, wd_bot, wd_sparql_bot
 
 from des.contries2 import ContriesTable2
 from des.places import placesTable

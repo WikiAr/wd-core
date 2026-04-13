@@ -4,7 +4,6 @@ import logging
 import sys
 from pathlib import Path
 
-
 from nep.others import read_json
 from nep.si3 import (
     Geo_List,

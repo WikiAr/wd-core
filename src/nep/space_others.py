@@ -28,7 +28,6 @@ from nep.tables.lists import (
     songs_type,
 )
 
-
 logger = logging.getLogger(__name__)
 
 

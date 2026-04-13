@@ -6,7 +6,6 @@ import logging
 import sys
 
 from himo_api import New_Himo_API
-
 from wd_api import wd_bot
 
 from desc_dicts.taxones import lab_for_p171, labforP105, tax_translations, taxone_list
