@@ -24,7 +24,8 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 
 import gent
 from cy_bot.do_text import do_One_Page
-from newapi.page import MainPage
+
+from api_page import load_main_api
 
 skip_titles = [
     "قالب:نتيجة سباق الدراجات",
@@ -37,7 +38,9 @@ def onep(title):
     if title in skip_titles:
         return
     # ---
-    page = MainPage(title, "ar", family="wikipedia")
+    ar_api = load_main_api("ar", "wikipedia")
+    # ---
+    page = ar_api.MainPage(title)
     # ---
     if not page.exists():
         return

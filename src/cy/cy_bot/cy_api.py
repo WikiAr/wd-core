@@ -1,19 +1,15 @@
 #!/usr/bin/python3
 """
 
-from .cy_api import page_put, GetPageText
-
 """
 
 import sys
-
-# import urlencode
 from urllib.parse import urlencode
-
 import requests
 
-from . import useraccount
 from .cy_helps import TEST, ec_de_code, make_dada, printo, printt
+
+from . import useraccount
 
 api_url = "https://" + "ar.wikipedia.org/w/api.php"
 username = useraccount.username
@@ -95,14 +91,14 @@ def login():
 login()
 
 
-def page_put(NewText, MainTitle):
+def page_put(newtext, maintitle):
     printt(" page_put: <br>")
     # try:
-    title = ec_de_code(MainTitle, "decode")
+    title = ec_de_code(maintitle, "decode")
     # ---
     summ = "" if "workibrahem" in sys.argv else "بوت:تجربة تحديث بيانات اللاعب"
     # ---
-    printt(f" page_put {MainTitle}:<br>")
+    printt(f" page_put {maintitle}:<br>")
     # print_test2( NewText )
     # ---
     # headers=headers,
@@ -116,7 +112,7 @@ def page_put(NewText, MainTitle):
                 "action": "edit",
                 "format": "json",
                 "title": title,
-                "text": NewText,
+                "text": newtext,
                 "summary": summ,
                 "bot": 1,
                 "nocreate": 1,
@@ -134,7 +130,7 @@ def page_put(NewText, MainTitle):
             # printo( r4.text )
         elif "abusefilter-disallowed" in r4.text and returntext[1]:
             texts = "</br>خطأ عند تعديل الصفحة، قم بنسخ المحتوى أدناه إلى الصفحة:</br>"
-            texts += make_dada(NewText, MainTitle)
+            texts += make_dada(newtext, maintitle)
             printo(texts)
         else:
             printo(r4.text)

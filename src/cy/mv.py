@@ -17,10 +17,12 @@ tfj run jsubp4 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py
 import logging
 import sys
 
-import gent
 import tqdm
 import wikitextparser as wtp
-from newapi.page import MainPage
+
+import gent
+
+from api_page import load_main_api
 
 logger = logging.getLogger(__name__)
 
@@ -50,13 +52,16 @@ def add_id_to_text(item, text):
 def move_it_to_temp(title, item, text):
     # ---
     if not text:
-        return
+        return None
+    # ---
+    ar_api = load_main_api("ar", "wikipedia")
+    temp_page = ar_api.MainPage('Main Page Title')
     # ---
     temp_title = f"قالب:نتيجة سباق الدراجات/{title}"
     # ---
     text = add_id_to_text(item, text)
     # ---
-    temp_page = MainPage(temp_title, "ar", family="wikipedia")
+    temp_page = ar_api.MainPage(temp_title)
     # ---
     if temp_page.exists():
         do = temp_page.save(text, summary="بوت:تجربة تحديث بيانات اللاعب")
@@ -72,14 +77,14 @@ def find_cy_temp(text):
     # ---
     start_pos = text.find(start)
     if start_pos < 0:
-        return
+        return None
     # ---
     end_pos = text.find(end)
     if end_pos < 0:
-        return
+        return None
     # ---
     if end_pos < start_pos:
-        return
+        return None
     # ---
     end_pos += len(end)
     # ---
@@ -109,7 +114,8 @@ def one_page_work(title, text, item):
 
 def onep(title):
     # ---
-    page = MainPage(title, "ar", family="wikipedia")
+    ar_api = load_main_api("ar", "wikipedia")
+    page = ar_api.MainPage(title)
     # ---
     if not page.exists():
         return

@@ -3,6 +3,19 @@
 from nep.tables.str_descs import descs, entities, countries, genese, make_nn
 """
 
+from wd_api import wd_bot
+
+from nep.bots.helps import (
+    Get_label_from_item,
+    get_label_txt,
+    get_mainsnak,
+)
+from nep.bots.its import (
+    its_a_generalthing,
+    its_a_thing_located_in_country,
+    its_something_in_a_country,
+    its_something_in_an_entity,
+)
 
 descs = {
     "Q1149652": {"org": ["", "district"], "desc": "district in India"},
@@ -160,20 +173,6 @@ genese = {
     },
     "Q6451276": {"org": ["CSR-rapport", ""], "desc": "CSR-rapport", "desc_in": "CSR-rapport over ", "pid": "P921"},
 }
-
-from wd_api import wd_bot
-
-from nep.bots.helps import (
-    Get_label_from_item,
-    get_label_txt,
-    get_mainsnak,
-)
-from nep.bots.its import (
-    its_a_generalthing,
-    its_a_thing_located_in_country,
-    its_something_in_a_country,
-    its_something_in_an_entity,
-)
 
 lng_canbeused = [
     "en",
