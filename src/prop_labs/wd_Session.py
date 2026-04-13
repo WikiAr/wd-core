@@ -14,6 +14,7 @@ import json
 import argparse
 import requests
 import logging
+
 logger = logging.getLogger(__name__)
 
 from pathlib import Path
@@ -31,9 +32,7 @@ from translate_bot import translate_en_to_ar
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"
 MW_API = "https://www.wikidata.org/w/api.php"
 
-HEADERS_API = {
-    "User-Agent": "WD-Ar-Props-Filler/1.0 (contact: your-email@example.com)"
-}
+HEADERS_API = {"User-Agent": "WD-Ar-Props-Filler/1.0 (contact: your-email@example.com)"}
 
 username = User_tables_ibrahem["username"]
 password = User_tables_ibrahem["password"]
@@ -45,6 +44,7 @@ ask_user = {1: False}
 if "ask" in sys.argv:
     ask_user[1] = True
     sys.argv.remove("ask")
+
 
 class WikidataSession:
     def __init__(self, username: str, password: str):

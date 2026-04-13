@@ -6,7 +6,7 @@ from wd_api import newdesc
 
 
 quuu = {
-    'species of beetle': """
+    "species of beetle": """
 SELECT DISTINCT
 ?item ?en2 WHERE {
   BIND("espèce de coléoptères"@fr AS ?fr) ?item schema:description ?fr.
@@ -15,7 +15,7 @@ SELECT DISTINCT
   #OPTIONAL { ?item schema:description ?en2. FILTER((LANG(?en2)) = "en") }
 }
 LIMIT 20000""",
-    'species of insect': """
+    "species of insect": """
 SELECT DISTINCT
 ?item ?en2 WHERE {
   BIND("espèce de coléoptères"@fr AS ?fr) ?item schema:description ?fr.
@@ -29,17 +29,15 @@ LIMIT 20000""",
 # from API.replacement import replacement
 
 translations = {
-    'species of beetle': {
-        'it': 'specie di coleotteri',
-        'fr': 'espèces de coléoptères',
+    "species of beetle": {
+        "it": "specie di coleotteri",
+        "fr": "espèces de coléoptères",
     },
-    'species of insect': {
-        'it': 'specie di insetti',
-        'fr': "espèces d'insectes",
+    "species of insect": {
+        "it": "specie di insetti",
+        "fr": "espèces d'insectes",
     },
 }
-
-
 
 
 # newdesc.mainfromQuarry ( topic, Quarry, translations)
@@ -48,4 +46,3 @@ translations = {
 if __name__ == "__main__":
     for x in translations:
         newdesc.mainfromQuarry(x, quuu[x], translations)
-

@@ -19,7 +19,6 @@ menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 Stage = {"": ""}
 
 
-
 def get_query_results(query):
     # ---
     query = re.sub(r"\n\s+", "\n", query)

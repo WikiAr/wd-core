@@ -1,6 +1,5 @@
-"""
+""" """
 
-"""
 import sys
 from nep import si3
 
@@ -57,7 +56,6 @@ def Main_Test():
         print(sa)
         #make_scientific_art(item, 'Q13442814', num)
     """
-
 
 
 # python3 core8/pwb.py nep/test_si3

@@ -54,6 +54,7 @@ python3 core8/pwb.py nep/si3g -newpages:200 ask
 #
 import sys
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -62,7 +63,6 @@ sys.argv.append("-lang:wikidata")
 
 import time
 from pathlib import Path
-
 
 
 import gent
@@ -75,6 +75,7 @@ api_new = NEW_API("www", family="wikidata")
 main_dir1 = f"{str(Path(__file__).parent.parent)}/"
 
 logger.info(f"<<lightyellow>> main_dir1 = {main_dir1}")
+
 
 def mainwithcat2():
     logger.info("*<<lightred>> > mainwithcat2:")
@@ -165,6 +166,7 @@ def mainwithcat2():
     delta = int(final - start)
     # ---
     logger.info(f"si3.py mainwithcat2 done in {delta} seconds")
+
 
 if __name__ == "__main__":
     mainwithcat2()

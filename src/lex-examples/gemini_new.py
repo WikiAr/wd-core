@@ -35,12 +35,14 @@ for surah in tqdm(surahs):
             if word not in words_to_add:
                 words_to_add[word] = []
             # ---
-            words_to_add[word].append({
-                "sura": surah["number"],
-                "sura_name": surah["name"],
-                "aya": ayah["numberInSurah"],
-                "text": ayah["text"]
-            })
+            words_to_add[word].append(
+                {
+                    "sura": surah["number"],
+                    "sura_name": surah["name"],
+                    "aya": ayah["numberInSurah"],
+                    "text": ayah["text"],
+                }
+            )
 
 
 def search_in_quran_new(word):
@@ -68,7 +70,7 @@ def get_forms_from_lexeme(lexeme_id):
         if not arabic_value:
             continue
 
-        if 'claims' in form and 'P5831' in form['claims']:
+        if "claims" in form and "P5831" in form["claims"]:
             already_has += 1
         else:
             matches = search_in_quran_new(arabic_value)
@@ -80,7 +82,7 @@ def get_forms_from_lexeme(lexeme_id):
 
 def get_results(query):
     user_agent = "WDQS-example Python/%s.%s" % (sys.version_info[0], sys.version_info[1])
-    endpoint_url = 'https://query.wikidata.org/sparql'
+    endpoint_url = "https://query.wikidata.org/sparql"
     # TODO adjust user agent; see https://w.wiki/CX6
     sparql = SPARQLWrapper(endpoint_url, agent=user_agent)
     sparql.setQuery(query)
@@ -131,7 +133,7 @@ def get_arabic_lexemes_new():
     # ---
     data = get_results(sparql_query)
     # ---
-    data = {x["item"] : int(x["forms"]) for x in data}
+    data = {x["item"]: int(x["forms"]) for x in data}
     # ---
     # sort data by forms
     # data = dict(sorted(data.items(), key=lambda item: item[1], reverse=True))

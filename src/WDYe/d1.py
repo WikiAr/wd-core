@@ -18,13 +18,12 @@ ORDER BY DESC(?count)
 """
 
 
-
-
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 
 #
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 # import sys
@@ -33,7 +32,6 @@ logger = logging.getLogger(__name__)
 # import urllib.parse
 
 import sys
-
 
 
 from wd_api import wd_bot
@@ -67,7 +65,6 @@ SELECT DISTINCT
 }
 LIMIT 100000""",
 }
-
 
 
 # newdesc.work22(q , topic, translations)

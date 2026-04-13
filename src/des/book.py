@@ -18,6 +18,7 @@ import re
 import pywikibot
 import sys
 import logging
+
 logger = logging.getLogger(__name__)
 
 from wd_api import wd_sparql_bot
@@ -69,6 +70,7 @@ Qlist = {
         "nl": "muziekalbum",
     },
 }
+
 
 def one_book_item(Qid, pa, lang, keys):
     item = wd_bot.Get_Item_API_From_Qid(pa["item"])
@@ -142,6 +144,7 @@ Comma = {
 }
 Comma2 = {"ar": "، و", "en": ", ", "de": ", ", "fr": ", ", "nl": ", "}
 
+
 def GetQuery(Qid, lang, keys):
     P50 = "P175" if Qid == "Q482994" else "P50"
     # ---
@@ -177,6 +180,7 @@ def GetQuery(Qid, lang, keys):
     # ---
     return ur
 
+
 def Gquery2(json1):
     table = {}
     # table = []
@@ -201,6 +205,7 @@ for arg in sys.argv:
     elif arg == "off":
         Off[1] = int(value)
 
+
 def WorkWithOneLang(Qid, lang, keys):
     logger.info("*<<lightyellow>> WorkWithOneLang: ")
     # ---
@@ -219,7 +224,25 @@ def WorkWithOneLang(Qid, lang, keys):
         one_book_item(Qid, pa, lang, keys)
 
 
-by_list = {"ar": "من تأليف", "en": "by", "fr": "de", "de": "von", "nl": "van", "ca": "per", "cs": "od", "la": "ab", "it": "da", "io": "da", "eo": "de", "da": "af", "pl": "przez", "ro": "de", "es": "por", "sv": "av"}
+by_list = {
+    "ar": "من تأليف",
+    "en": "by",
+    "fr": "de",
+    "de": "von",
+    "nl": "van",
+    "ca": "per",
+    "cs": "od",
+    "la": "ab",
+    "it": "da",
+    "io": "da",
+    "eo": "de",
+    "da": "af",
+    "pl": "przez",
+    "ro": "de",
+    "es": "por",
+    "sv": "av",
+}
+
 
 def MakeDesc(Qid, pa, lang):
     # for lang in language:
@@ -257,6 +280,7 @@ def MakeDesc(Qid, pa, lang):
             description = False
     return description
 
+
 def main():
     # ---
     for arg in sys.argv:
@@ -283,4 +307,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -15,6 +15,7 @@ import random
 import sys
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 # from nep import si3
@@ -98,6 +99,7 @@ def get_qua():
     # ---
     return qua
 
+
 def one_item(qid, num):
     # {'item': 'http://www.wikidata.org/entity/Q21457154', 'qid': 'Q21457154'}
     item = wd_bot.Get_Item_API_From_Qid(qid, props="claims|descriptions|labels")
@@ -112,6 +114,7 @@ def one_item(qid, num):
     ardes = descriptions.get("ar", "")
     # ---
     work_people(item, "", num, ardes)
+
 
 def main():
     logger.info("*<<lightred>> > main:")
@@ -149,6 +152,7 @@ def main():
                 time.sleep(1)
     # ---
     print_new_jobs()
+
 
 if __name__ == "__main__":
     main()

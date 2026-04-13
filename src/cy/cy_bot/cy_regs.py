@@ -5,6 +5,7 @@ from .cy_regs import make_data_new
 python3 I:/core/bots/wd_core/cy/cy_bot/cy_regs.py
 
 """
+
 import wikitextparser as wtp
 
 from .cy_helps import get_temp_arg

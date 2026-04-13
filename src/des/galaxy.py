@@ -20,4 +20,3 @@ translations = {"Q318": DescraptionsTable.get("galaxy") or Qid_Descraptions.get(
 for q in translations:
     quarry = "SELECT ?item WHERE { ?item wdt:P31 wd:%s.} limit 50000" % q
     newdesc.mainfromQuarry2(q, quarry, translations)
-

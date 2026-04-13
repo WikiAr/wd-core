@@ -3,8 +3,6 @@
 #
 
 
-
-
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)
 
 #
@@ -85,7 +83,6 @@ limit 1"""
     for num, q in enumerate(json1, start=1):
         logger.info(f'<<lightyellow>>*mainfromQuarry: {num}/{lenth} topic:"{topic}" , q:"{q}".')
         work2(q, topic)
-
 
 
 wikidatasite = pywikibot.Site("wikidata", "wikidata")

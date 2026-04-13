@@ -64,7 +64,9 @@ def work_railway(wditem, p31, q=""):
     if not Claims:
         Claims = wd_bot.Get_Item_API_From_Qid(q).get("claims", {})
     # ---
-    P17_qid = Get_P_API_id(Claims, "P17", onlyone=True)  # Claims.get('P17',[{}])[0].get("mainsnak",{}).get("datavalue",{}).get("value",{}).get("id",'')
+    P17_qid = Get_P_API_id(
+        Claims, "P17", onlyone=True
+    )  # Claims.get('P17',[{}])[0].get("mainsnak",{}).get("datavalue",{}).get("value",{}).get("id",'')
     P131_qid = Get_P_API_id(Claims, "P131", onlyone=True)
     # ---
     p17_labels, p131_labels = {}, {}
@@ -148,6 +150,3 @@ def work_railway(wditem, p31, q=""):
     wd_desc.work_api_desc(newdesc, q)
     # ---
     return ""
-
-
-

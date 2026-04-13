@@ -1,6 +1,7 @@
 """
 # https://www.wikidata.org/wiki/User:Mr._Ibrahem/descraptions.json?action=raw
 """
+
 import functools
 import logging
 from pathlib import Path

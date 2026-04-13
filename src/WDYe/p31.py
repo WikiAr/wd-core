@@ -12,10 +12,12 @@ python pwb.py c30/p31 enwiki
 #
 
 from himo_api import New_Himo_API
+
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -26,7 +28,7 @@ from api_sql import sql as c18sql
 
 
 # use arwiki_p;
-mainquarry = '''
+mainquarry = """
 SELECT p.page_title,
        pp_value
 FROM page AS p,
@@ -59,7 +61,7 @@ WHERE p.page_namespace = 14
     AND wdp.page_is_redirect = 0
 GROUP BY p.page_title #order BY ll_from
 #LIMIT 2000;
-'''
+"""
 
 
 WIKI = {1: "arwiki"}
@@ -76,12 +78,12 @@ def main2(*args):
     result = []
     # ---
     for arg in sys.argv:
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---
-        if arg == 'limit':
+        if arg == "limit":
             quarry = f"{quarry}\n LIMIT {value};"
         # ---
-        if arg == 'enwiki':
+        if arg == "enwiki":
             WIKI[1] = "enwiki"
     # ---
     logger.info(quarry)
@@ -92,7 +94,5 @@ def main2(*args):
         treat_page(result[title])
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main2()
-

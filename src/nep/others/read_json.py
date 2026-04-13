@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-
-"""
+""" """
 
 
 import json as JJson
@@ -11,8 +9,10 @@ import traceback
 
 logger = logging.getLogger(__name__)
 
+
 def printo(s):
     logger.info(s)
+
 
 def read_bad_list(file):
     try:
@@ -30,7 +30,7 @@ def read_bad_list(file):
         print(f'Good JJson "{file}"')
         return List
     except Exception as e:
-        logger.exception('Exception:', exc_info=True)
+        logger.exception("Exception:", exc_info=True)
         # ---
         List = []
         with open(file) as listt:
@@ -48,6 +48,7 @@ def read_bad_list(file):
     # ---
     return False
 
+
 def read_bad_json(file):
     try:
         with open(file) as listt:
@@ -56,7 +57,7 @@ def read_bad_json(file):
         print(f'Good JJson "{file}"')
         return done_list7
     except Exception as e:
-        logger.exception('Exception:', exc_info=True)
+        logger.exception("Exception:", exc_info=True)
         lala = {}
         with open(file, "r", encoding="utf-8-sig") as listt2:
             lala = listt2.read()
@@ -70,6 +71,7 @@ def read_bad_json(file):
     # ---
     return {}
 
+
 def main(file, Type):
     try:
         if Type == "dict":
@@ -79,10 +81,9 @@ def main(file, Type):
         else:
             print(f"* unknow type :{Type}")
     except Exception as e:
-        logger.exception('Exception:', exc_info=True)
+        logger.exception("Exception:", exc_info=True)
     return False
 
 
 if __name__ == "__main__":
     main("{}", "dict")
-

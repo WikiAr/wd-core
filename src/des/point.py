@@ -16,10 +16,10 @@ from wd_api import wd_bot
 
 from himo_api import New_Himo_API
 import logging
+
 logger = logging.getLogger(__name__)
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
-
 
 
 bylangs = False  # False#True
@@ -27,6 +27,7 @@ bylangs = False  # False#True
 limits = {1: "1000"}
 
 items_done = []
+
 
 def action(json1):
     try:
@@ -69,8 +70,7 @@ def action(json1):
 
 
 Quarry = {
-    "y":
-        """
+    "y": """
 SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
  ?label WHERE {
     ?item wdt:P31 ?pp.
@@ -79,14 +79,15 @@ SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
     #?item wdt:P641/wdt:P279 wd:Q2215841.
     FILTER NOT EXISTS { ?item wdt:P585 ?P585. }
     FILTER NOT EXISTS { ?item wdt:P580 ?P580. }
-    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007C20)\\d\\d") )
+    #?item rdfs:label ?l . FILTER( REGEX(?l, "(1[89]\u007c20)\\d\\d") )
     ?item rdfs:label ?label . FILTER( REGEX(?label, "(\\d\\d\\d\\d)") )
     #%s
-    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007C20)\\d\\d") )
+    #?item rdfs:label ?l . FILTER(lang(?l) = "en" && REGEX(?l, "(1[89]\u007c20)\\d\\d") )
 }
 #LIMIT 2
 """
 }
+
 
 def main():
     # ---
@@ -136,4 +137,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

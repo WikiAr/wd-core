@@ -19,6 +19,7 @@ from wd_api import wd_bot
 from wd_api import newdesc
 from des.railway import railway_tables, work_railway
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -122,6 +123,7 @@ quarry_list = [
 
 qlist_done = []
 
+
 def work_one_json(json1, topic_ar, p31, p31_langs):
     # ---
     json_lenth = len(json1)
@@ -150,6 +152,7 @@ def work_one_json(json1, topic_ar, p31, p31_langs):
         else:
             newdesc.work22(q, p31, desc_table)
 
+
 def work_one_quarry(quarry, p31, p31_desc):
     json1 = wd_bot.sparql_generator_url(quarry)
     # ---
@@ -162,6 +165,7 @@ def work_one_quarry(quarry, p31, p31_desc):
     work_one_json(json1, topic_ar, p31, p31_langs)
     # ---
     return quarry_result_lenth
+
 
 def main():
     # lenth of desc_table and quarry_list
@@ -192,6 +196,7 @@ def main():
                 logger.info(quarry)
             # ---
             quarry_result_lenth = work_one_quarry(quarry, p31, p31_desc)
+
 
 if __name__ == "__main__":
     main()

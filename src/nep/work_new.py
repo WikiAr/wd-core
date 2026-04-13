@@ -1,9 +1,9 @@
-"""
+""" """
 
-"""
 import sys
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 from nep import si3
@@ -82,7 +82,6 @@ def WorkNew():
     for num, q in enumerate(list, start=1):
         qitem = f"Q{q}"
         si3.ISRE(qitem, num, lenth)
-
 
 
 # python3 core8/pwb.py nep/work_new

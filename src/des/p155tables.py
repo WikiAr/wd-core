@@ -441,7 +441,7 @@ Sports_Keys_For_Label = {
     "wushu racing": "سباق ووشو",
     "xiangqi": "الشطرنج الصيني",
     "xiangqi racing": "سباق الشطرنج الصيني",
-    "yacht racing": "سباقات اليخوت"
+    "yacht racing": "سباقات اليخوت",
 }
 Sports_Keys_For_Team = {
     "acrobatic gymnastics": "للجمباز الاكروباتيكي",
@@ -874,7 +874,7 @@ Sports_Keys_For_Team = {
     "wushu racing": "لسباق ووشو",
     "xiangqi": "للشطرنج الصيني",
     "xiangqi racing": "لسباق الشطرنج الصيني",
-    "yacht racing": "لسباقات اليخوت"
+    "yacht racing": "لسباقات اليخوت",
 }
 
 Sports_Keys_Lab = Sports_Keys_For_Label
@@ -1304,4 +1304,3 @@ for start in keys_1:  # –
             # ---
             ke2 = f"{suff} {su3}"
             Mako_keys2[ke2.lower()] = lab_ke2
-

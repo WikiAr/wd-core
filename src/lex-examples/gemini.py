@@ -37,17 +37,20 @@ for surah in tqdm(surahs):
             if word not in words_to_add:
                 words_to_add[word] = []
             # ---
-            words_to_add[word].append({
-                "sura": surah["number"],
-                "sura_name": surah["name"],
-                "aya": ayah["numberInSurah"],
-                "text": ayah["text"]
-            })
+            words_to_add[word].append(
+                {
+                    "sura": surah["number"],
+                    "sura_name": surah["name"],
+                    "aya": ayah["numberInSurah"],
+                    "text": ayah["text"],
+                }
+            )
 
 
 def search_in_quran_new(word):
     results = words_to_add.get(word, [])
     return results
+
 
 # دالة جلب الأشكال من Wikidata
 
@@ -72,7 +75,7 @@ def get_forms_from_lexeme(lexeme_id):
         if not arabic_value:
             continue
 
-        if 'claims' in form and 'P5831' in form['claims']:
+        if "claims" in form and "P5831" in form["claims"]:
             already_has += 1
         else:
             matches = search_in_quran_new(arabic_value)

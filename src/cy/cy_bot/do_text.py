@@ -9,7 +9,16 @@ import wikitextparser as wtp
 
 
 from .cy_regs import make_data_new
-from .cy_helps import get_temps_str, get_temp_arg, printt, print_test2, find_cy_temp, printo, TEST, CheckTempalteInPageText
+from .cy_helps import (
+    get_temps_str,
+    get_temp_arg,
+    printt,
+    print_test2,
+    find_cy_temp,
+    printo,
+    TEST,
+    CheckTempalteInPageText,
+)
 from .cy_sparql import GetSparql
 
 
@@ -114,19 +123,39 @@ def findflag(race, flag):
 def fix_label(label):
     label = label.strip()
 
-    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال", r"سباق الطريق في بطولة العالم \g<1>", label)
+    label = re.sub(
+        r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
+        r"سباق الطريق في بطولة العالم \g<1>",
+        label,
+    )
 
-    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – سيدات فردي سباق الطريق", r"سباق الطريق للسيدات في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
+    label = re.sub(
+        r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – سيدات فردي سباق الطريق",
+        r"سباق الطريق للسيدات في ركوب الدراجات الأولمبية الصيفية \g<1>",
+        label,
+    )
 
-    label = re.sub(r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – فريق رجال سباق الطريق", r"سباق الطريق لفرق الرجال في ركوب الدراجات الأولمبية الصيفية \g<1>", label)
+    label = re.sub(
+        r"ركوب الدراجات في الألعاب الأولمبية الصيفية (\d+) – فريق رجال سباق الطريق",
+        r"سباق الطريق لفرق الرجال في ركوب الدراجات الأولمبية الصيفية \g<1>",
+        label,
+    )
 
     # بطولة العالم لسباق الدراجات على الطريق 1966 – سباق الطريق الفردي للرجال
-    label = re.sub(r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال", r"سباق الطريق للرجال في بطولة العالم \g<1>", label)
+    label = re.sub(
+        r"بطولة العالم لسباق الدراجات على الطريق (\d+) – سباق الطريق الفردي للرجال",
+        r"سباق الطريق للرجال في بطولة العالم \g<1>",
+        label,
+    )
 
     label = re.sub(r"سباق الطريق المداري ", "سباق الطريق ", label)
     label = re.sub(r"(بطولة [\s\w]+) الوطنية ", r"\g<1> ", label)
-    label = re.sub(r"^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label)
-    label = re.sub(r"^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label)
+    label = re.sub(
+        r"^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label
+    )
+    label = re.sub(
+        r"^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label
+    )
 
     # سباق الطريق للسيدات في ركوب الدراجات في الألعاب الأولمبية الصيفية 2016
     label = re.sub(r"في ركوب الدراجات في الألعاب الأولمبية ", "في ركوب الدراجات الأولمبية ", label)
@@ -234,19 +263,58 @@ def fix_results(table):
     results2 = {}
     # ---
     tata = {
-        "head": {"vars": ["item", "p17lab", "itemlab", "jersey_1", "jersey_2", "jersey_3", "jersey_4", "p642label", "p585", "p582", "p580", "rankP4323", "rankP2321", "rankP4320", "rankP3494", "title"]},
+        "head": {
+            "vars": [
+                "item",
+                "p17lab",
+                "itemlab",
+                "jersey_1",
+                "jersey_2",
+                "jersey_3",
+                "jersey_4",
+                "p642label",
+                "p585",
+                "p582",
+                "p580",
+                "rankP4323",
+                "rankP2321",
+                "rankP4320",
+                "rankP3494",
+                "title",
+            ]
+        },
         "results": {
             "bindings": [
                 {
                     "item": {"type": "uri", "value": "http://www.wikidata.org/entity/Q53557910"},
                     "title": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
-                    "p580": {"datatype": "http://www.w3.org/2001/XMLSchema#dateTime", "type": "literal", "value": "2018-05-25T00:00:00Z"},
-                    "p582": {"datatype": "http://www.w3.org/2001/XMLSchema#dateTime", "type": "literal", "value": "2018-05-26T00:00:00Z"},
+                    "p580": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                        "type": "literal",
+                        "value": "2018-05-25T00:00:00Z",
+                    },
+                    "p582": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                        "type": "literal",
+                        "value": "2018-05-26T00:00:00Z",
+                    },
                     "p17lab": {"xml:lang": "ar", "type": "literal", "value": "إستونيا"},
                     "itemlab": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
-                    "rankP2321": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "2"},
-                    "rankP4323": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "1"},
-                    "rankP3494": {"datatype": "http://www.w3.org/2001/XMLSchema#decimal", "type": "literal", "value": "1"},
+                    "rankP2321": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                        "type": "literal",
+                        "value": "2",
+                    },
+                    "rankP4323": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                        "type": "literal",
+                        "value": "1",
+                    },
+                    "rankP3494": {
+                        "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+                        "type": "literal",
+                        "value": "1",
+                    },
                     "p642label": {"xml:lang": "ar", "type": "literal", "value": "الفائز وفقاً لترتيب النقاط"},
                     "jersey_1": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},
                     "jersey_2": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},

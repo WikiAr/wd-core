@@ -49,19 +49,17 @@ from wd_api import wd_bot
 
 from wd_api import wd_desc
 import logging
+
 logger = logging.getLogger(__name__)
-
-
-
 
 
 Testing = {1: False}
 
 genders = {
-    'Q6581097': 'male',
-    'Q2449503': 'male',  # transgender male
-    'Q6581072': 'female',
-    'Q1052281': 'female',  # transgender female
+    "Q6581097": "male",
+    "Q2449503": "male",  # transgender male
+    "Q6581072": "female",
+    "Q1052281": "female",  # transgender female
 }
 genders_list = sorted([[x, y] for x, y in genders.items()])
 
@@ -71,8 +69,8 @@ Tab = {
     "Occupations": oc.translationsOccupations,
 }
 
-logger.info(f'len of Nationalities = {len(translationsNationalities.keys())}')
-logger.info(f'len of Occupations = {len(oc.translationsOccupations.keys())}')
+logger.info(f"len of Nationalities = {len(translationsNationalities.keys())}")
+logger.info(f"len of Occupations = {len(oc.translationsOccupations.keys())}")
 time.sleep(1)
 
 qualimit = {1: 20}
@@ -86,42 +84,43 @@ offset = {1: 0}
 # python3 core8/pwb.py people/new3 -nat:American
 for arg in sys.argv:
     # ---
-    arg, _, value = arg.partition(':')
+    arg, _, value = arg.partition(":")
     # ---
-    if arg in ['limit', '-limit']:
+    if arg in ["limit", "-limit"]:
         limit[1] = value
     # ---
-    if arg in ['qualimit', '-qualimit']:
+    if arg in ["qualimit", "-qualimit"]:
         qualimit[1] = int(value)
     # ---
-    if arg in ['off', '-off']:
+    if arg in ["off", "-off"]:
         offset[1] = int(value)
     # ---
-    if arg == 'occnew':
+    if arg == "occnew":
         Tab["Occupations"] = oc.translationsOccupations_new
     # ---
-    if arg in ['nat', '-nat']:
+    if arg in ["nat", "-nat"]:
         value = value.replace("_", " ")
         if value in translationsNationalities:
             Tab["Nationalities"] = {value: translationsNationalities[value]}
         else:
             print(f"nat value:({value}) not in translationsNationalities")
     # ---
-    if arg in ['job', '-job']:
+    if arg in ["job", "-job"]:
         value = "~ " + value.replace("_", " ")
         if value in oc.translationsOccupations:
             Tab["Occupations"] = {value: oc.translationsOccupations[value]}
         else:
             print(f"job value:({value}) not in oc.translationsOccupations")
 
-targetlangs2 = ['ar']
-targetlangs = ['ar', 'bn', 'ca', 'es', 'fr', 'gl', 'he']
+targetlangs2 = ["ar"]
+targetlangs = ["ar", "bn", "ca", "es", "fr", "gl", "he"]
 
 W_check = {1: True}
 
+
 def check_quarry_new(tab):
     # ---
-    logger.info(f'check quarry_new: {len(tab)} jobs')
+    logger.info(f"check quarry_new: {len(tab)} jobs")
     # logger.info( tab  )
     # ---
     tabe = {}
@@ -161,7 +160,7 @@ def check_quarry_new(tab):
         # logger.info( "@@".join( tabe[numb] ) )
         logger.info(f"find qua for {len(value)} description.")
         # ---
-        qua = '''SELECT
+        qua = """SELECT
     (concat(strafter(str(?item),"/entity/")) as ?q)#?item
     (GROUP_CONCAT(DISTINCT(LANG(?des2)); separator=",") as ?deskey)
     (GROUP_CONCAT(DISTINCT(?des); separator=",") as ?desc)
@@ -175,7 +174,7 @@ def check_quarry_new(tab):
     }
     group by ?item
     #limit 1000
-    ''' % " ".join(
+    """ % " ".join(
             f'"{f}"@en "{f.lower()}"@en' for f in tabe[numb]
         )
         # ---
@@ -183,9 +182,9 @@ def check_quarry_new(tab):
             qua += f"\n limit {limit[1]}"
         # ---
         if "printcheck" in sys.argv or numb == 0:
-            print('qua :.')
+            print("qua :.")
             print(qua)
-            print('qua .')
+            print("qua .")
         # ---
         json = wd_bot.sparql_generator_url(qua)
         # ---
@@ -197,6 +196,7 @@ def check_quarry_new(tab):
 translations_o = {1: {}, 2: {}}
 translations_for_nat = {1: {}}
 
+
 def make_Tabs(tabs):
     # من هذا البوت
     # TraOc = translationsOccupations
@@ -206,7 +206,7 @@ def make_Tabs(tabs):
     TraOc = tabs["Occupations"]
     # ---
     # skipnatkey = 'american'.lower()
-    skipnatkey = ''
+    skipnatkey = ""
     # ---
     translations_o[1] = {}
     translations_o[2] = {}
@@ -225,7 +225,7 @@ def make_Tabs(tabs):
         newkeys = 0
         # ---
         for occupkey, occupdic in TraOc.items():  # المهن
-            kkkk = re.sub(r'~', natkey, occupkey)
+            kkkk = re.sub(r"~", natkey, occupkey)
             translations_o[1][kkkk] = {}
             # ---
             male_k = ""
@@ -237,21 +237,21 @@ def make_Tabs(tabs):
                     # ---
                     nat_ln = natdic[translang]
                     # ---
-                    femalee = ''
-                    malee = ''
+                    femalee = ""
+                    malee = ""
                     # ---
-                    if nat_ln['male'] and occ_dict['male']:
-                        malee = occ_dict['male'].replace('~', nat_ln['male'])
+                    if nat_ln["male"] and occ_dict["male"]:
+                        malee = occ_dict["male"].replace("~", nat_ln["male"])
                     # ---
-                    if nat_ln['female'] and occ_dict['female']:
-                        femalee = occ_dict['female'].replace('~', nat_ln['female'])
+                    if nat_ln["female"] and occ_dict["female"]:
+                        femalee = occ_dict["female"].replace("~", nat_ln["female"])
                     # ---
                     if translang == "en":
                         male_k = malee
                         female_k = femalee
                     # ---
                     if malee or femalee:
-                        translations_o[1][kkkk][translang] = {'male': malee, 'female': femalee}
+                        translations_o[1][kkkk][translang] = {"male": malee, "female": femalee}
                     # ---
             # ---
             if translations_o[1][kkkk] != {}:
@@ -274,23 +274,23 @@ def make_Tabs(tabs):
         # ---
         # logger.info( '<<lightpurple>> new way adding %d keys for lang %s' % (newkeys,natkey) )
     # ---
-    logger.info('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
-    logger.info('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
-    logger.info('<<lightpurple>> people/new3.py adding %d keys for langs.' % allnewkeys)
+    logger.info("<<lightpurple>> people/new3.py adding %d keys for langs." % allnewkeys)
+    logger.info("<<lightpurple>> people/new3.py adding %d keys for langs." % allnewkeys)
+    logger.info("<<lightpurple>> people/new3.py adding %d keys for langs." % allnewkeys)
     # ---
     for occupkey, occupdic in TraOc.items():  # المهن
-        kkkk = occupkey.replace('~', '').strip()
+        kkkk = occupkey.replace("~", "").strip()
         # ---
         # print(kkkk)
         # ---
-        if 'ar' in occupdic.keys():
+        if "ar" in occupdic.keys():
             # ---
-            malee = occupdic['ar']['male'].replace('~', '').strip()
-            femalee = occupdic['ar']['female'].replace('~', '').strip()
+            malee = occupdic["ar"]["male"].replace("~", "").strip()
+            femalee = occupdic["ar"]["female"].replace("~", "").strip()
             # ---
             if kkkk.lower() not in translations_o[2]:
                 translations_o[2][kkkk.lower()] = {}
-            translations_o[2][kkkk.lower()]["ar"] = {'male': malee, 'female': femalee}
+            translations_o[2][kkkk.lower()]["ar"] = {"male": malee, "female": femalee}
 
 
 make_Tabs(Tab)
@@ -298,13 +298,14 @@ translations_o_lower = translations_o[2]
 
 q_dones = []
 
+
 def start_one_nat(nat_tab):
     # ---
     check = check_quarry_new(nat_tab)
     # ---
     total_nat = len(check)
     # ---
-    logger.info(' find %d qid in check quarry new.' % total_nat)
+    logger.info(" find %d qid in check quarry new." % total_nat)
     # ---
     c = 0
     # ---
@@ -316,29 +317,34 @@ def start_one_nat(nat_tab):
         endesc = x["desc"]
         # ---
         if q in q_dones:
-            logger.info(f'<<lightpurple>>*q {q} in q_dones')
+            logger.info(f"<<lightpurple>>*q {q} in q_dones")
             continue
         # ---
         q_dones.append(q)
         # ---
-        logger.info('<<lightpurple>>*Action %d from %d; q:%s,endesc:%s.==' % (c, total_nat, q.ljust(10), endesc))
+        logger.info("<<lightpurple>>*Action %d from %d; q:%s,endesc:%s.==" % (c, total_nat, q.ljust(10), endesc))
         # ---
         x_table = translations_o_lower.get(endesc.lower())
         # ---
         genderlabel = genders.get(p21, "male")
         # ---
         descriptions_keys = sorted(x["deskey"].split(","))
-        NewDesc = {lang: {"language": lang, "value": x_table[lang][genderlabel]} for lang in x_table.keys() if lang not in descriptions_keys}
+        NewDesc = {
+            lang: {"language": lang, "value": x_table[lang][genderlabel]}
+            for lang in x_table.keys()
+            if lang not in descriptions_keys
+        }
         # ---
         if NewDesc != {}:
             wd_desc.work_api_desc(NewDesc, q)
+
 
 def mainnat(Tabs):  # translations_for_nat
     # ---
     # python pwb.py people/new3 mainnat -nat:American
     #
     # ---
-    logger.info('<<lightpurple>>------------\n mainnat :')
+    logger.info("<<lightpurple>>------------\n mainnat :")
     # ---
     if Tabs != {}:
         make_Tabs(Tabs)
@@ -357,7 +363,7 @@ def mainnat(Tabs):  # translations_for_nat
         nat_tab = translations_for_nat[1][nat]
         # ---
         Queries += 1
-        logger.info('<<lightyellow>>  *nat %d from %d; nat:%s.==' % (Queries, len(list_na), nat))
+        logger.info("<<lightyellow>>  *nat %d from %d; nat:%s.==" % (Queries, len(list_na), nat))
         # ---
         if Queries < offset[1]:
             continue
@@ -366,8 +372,12 @@ def mainnat(Tabs):  # translations_for_nat
         # ---
     logger.info("انتهت بنجاح")
 
+
 def Main_Test():
-    qua = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097' + ' . ?item schema:description "Argentinian actor"@en.  '
+    qua = (
+        "SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097"
+        + ' . ?item schema:description "Argentinian actor"@en.  '
+    )
     qua += 'OPTIONAL { ?item schema:description ?de. FILTER(LANG(?de) = "fr"). } FILTER (!BOUND(?de)) }'
     # ---
 
@@ -380,4 +390,3 @@ if __name__ == "__main__":
         Main_Test()
     else:
         mainnat({})
-

@@ -29,7 +29,6 @@ sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 
 """
 
 
-
 def do_qua(qid, prop="", ad="", ar_values=""):
     qua = "SELECT ?item WHERE {\n"
     # ---
@@ -56,7 +55,6 @@ def do_qua(qid, prop="", ad="", ar_values=""):
     qua += "}"
     # ---
     return qua
-
 
 
 # SPARQLSE = {tt: main_quarry % tt for tt in Qid_Descraptions}
@@ -215,7 +213,6 @@ for st in Space_tab:
 SPARQLSE["Q11424"] = do_qua("Q11424", prop="wdt:P57", ad="")
 
 
-
 # موسم رياضي
 SPARQLSE[
     "Q27020041"
@@ -276,7 +273,9 @@ for qid, va in P1433_ids.items():
     # ---
     # if "doar" in sys.argv: print(f"python3 core8/pwb.py neq/nldes3 a2r sparql:{qid} all:1000 doar")
 
-SPARQLSE["Q13442814"] = """SELECT ?item WHERE {
+SPARQLSE[
+    "Q13442814"
+] = """SELECT ?item WHERE {
   VALUES ?itemar {
     "مقالة علمية"@ar
     "مقالة بحثية"@ar

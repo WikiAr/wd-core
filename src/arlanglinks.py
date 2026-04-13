@@ -16,8 +16,6 @@ Dump_Dir = f"{Himo_Dir}/dumps"
 print(f"Himo_Dir:{Himo_Dir}, Dump_Dir:{Dump_Dir}")
 
 
-
-
 dump_file = f"{Dump_Dir}/langlinks.json"
 
 qua = """select
@@ -67,4 +65,3 @@ for i in range(1, all):
     print(f"len of table:{len(table)}")
     # ---
     json.dump(table, open(dump_file, "w", encoding="utf-8"))
-

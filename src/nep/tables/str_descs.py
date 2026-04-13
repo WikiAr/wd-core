@@ -4,7 +4,6 @@ from nep.tables.str_descs import descs, entities, countries, genese, make_nn
 """
 
 
-
 descs = {
     "Q1149652": {"org": ["", "district"], "desc": "district in India"},
     # ---
@@ -141,9 +140,24 @@ genese = {
     "Q178122": {"org": ["aria", ""], "desc": "aria", "desc_in": "aria van ", "pid": "P86"},
     "Q21014462": {"org": ["cellijn", ""], "desc": "", "desc_in": "cellijn van een ", "pid": "P703"},
     "Q2668072": {"org": ["", ""], "desc": "collectie", "desc_in": "collectie uit ", "pid": "P195"},
-    "Q4502142": {"org": ["visueel kunstwerk", ""], "desc": "visueel kunstwerk", "desc_in": "visueel kunstwerk in collectie ", "pid": "P195"},
-    "Q50386450": {"org": ["opera-personage", ""], "desc": "opera-personage", "desc_in": "opera-personage uit ", "pid": "P1441"},
-    "Q5633421": {"org": ["", "tijdschrift", "wetenschappelijk tijdschrift"], "desc": "", "desc_in": "wetenschappelijk tijdschrift van ", "pid": "P123"},
+    "Q4502142": {
+        "org": ["visueel kunstwerk", ""],
+        "desc": "visueel kunstwerk",
+        "desc_in": "visueel kunstwerk in collectie ",
+        "pid": "P195",
+    },
+    "Q50386450": {
+        "org": ["opera-personage", ""],
+        "desc": "opera-personage",
+        "desc_in": "opera-personage uit ",
+        "pid": "P1441",
+    },
+    "Q5633421": {
+        "org": ["", "tijdschrift", "wetenschappelijk tijdschrift"],
+        "desc": "",
+        "desc_in": "wetenschappelijk tijdschrift van ",
+        "pid": "P123",
+    },
     "Q6451276": {"org": ["CSR-rapport", ""], "desc": "CSR-rapport", "desc_in": "CSR-rapport over ", "pid": "P921"},
 }
 

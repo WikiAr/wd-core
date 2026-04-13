@@ -17,6 +17,7 @@ SELECT ?item ?dem WHERE {
 import sys
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 job_to_qid = {
@@ -382,17 +383,28 @@ nat_to_qid = {
 qid_to_p27 = {q: n for n, q in nat_to_qid.items() if n != "" and q != ""}
 qid_to_job = {q: n for n, q in job_to_qid.items() if n != "" and q != ""}
 
+
 def get_claim_id(item, prop):
-    claim = item.get("claims", {}).get(prop, [{}])[0].get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "")
+    claim = (
+        item.get("claims", {})
+        .get(prop, [{}])[0]
+        .get("mainsnak", {})
+        .get("datavalue", {})
+        .get("value", {})
+        .get("id", "")
+    )
     return claim
+
 
 def get_claim_ids(item, prop):
     claims = item.get("claims", {}).get(prop, [])
     claim_ids = [claim.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", "") for claim in claims]
     return claim_ids
 
+
 new_jobs = {}
 new_nats = {}
+
 
 def get_topic(item):
     # ---
@@ -435,6 +447,7 @@ def get_topic(item):
     logger.info(f"<<yellow>> lab:{lab} add 'returnlab' to sys.argv to use it..!!")
     # ---
     return ""
+
 
 def print_new_jobs():
     lists = [[y, x] for x, y in new_jobs.items()]

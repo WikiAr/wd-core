@@ -15,10 +15,8 @@ Q24862
 import re
 import pywikibot
 import logging
+
 logger = logging.getLogger(__name__)
-
-
-
 
 
 from wd_api import wd_desc
@@ -31,6 +29,7 @@ repo = wikidatasite.data_repository()
 AskSave = {1: True}
 
 # def AddDes( item , pa , lang , Qid , keys):
+
 
 def one_film_item(Qid, pa, lang, keys):
     item = getwditem(pa["item"])
@@ -80,6 +79,7 @@ def one_film_item(Qid, pa, lang, keys):
         else:
             wd_desc.work_api_desc(NewDesc, qitem)
 
+
 def getwditem(qitem):
     try:
         item = pywikibot.ItemPage(repo, qitem)
@@ -110,6 +110,7 @@ Comma = {
     "en": ", ",
 }
 Comma2 = {"ar": "، و", "en": ", ", "de": ", ", "fr": ", ", "nl": ", "}
+
 
 def GetQuery(Qid, lang, keys):
     # ---
@@ -148,6 +149,7 @@ def GetQuery(Qid, lang, keys):
     # ---
     return ur
 
+
 def Gquery2(json1):
     table = {}
     # table = []
@@ -179,11 +181,13 @@ xsxsx = {
     "ro": "film din ~YEAR~ regizat de ~AUTHOR~",
     "sv": "film från ~YEAR~ regisserad av ~AUTHOR~",
 }
-filmform = {"film": {
-    "ar": "فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~",
-    "en": "~YEAR~ film by ~AUTHOR~",
-    "nl": "film uit ~YEAR~ van ~AUTHOR~",
-}}
+filmform = {
+    "film": {
+        "ar": "فيلم أُصدر سنة ~YEAR~، من إخراج ~AUTHOR~",
+        "en": "~YEAR~ film by ~AUTHOR~",
+        "nl": "film uit ~YEAR~ van ~AUTHOR~",
+    }
+}
 
 quaua = """SELECT #DISTINCT
 ?item ?ar ?nl ?en ?endes  ?dates ?auths
@@ -202,6 +206,7 @@ MINUS {?item schema:description ?itemDes filter(lang(?itemDes) = "ar")}# FILTER(
 SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en". ?auths rdfs:label ?ar }}
 
 """
+
 
 def WorkWithOneLang(Qid, lang, keys):
     logger.info("*<<lightyellow>> WorkWithOneLang: ")
@@ -230,7 +235,25 @@ def WorkWithOneLang(Qid, lang, keys):
         one_film_item(Qid, PageList[pa], lang, keys)
 
 
-by_list = {"ar": "من تأليف", "en": "by", "fr": "de", "de": "von", "nl": "van", "ca": "per", "cs": "od", "la": "ab", "it": "da", "io": "da", "eo": "de", "da": "af", "pl": "przez", "ro": "de", "es": "por", "sv": "av"}
+by_list = {
+    "ar": "من تأليف",
+    "en": "by",
+    "fr": "de",
+    "de": "von",
+    "nl": "van",
+    "ca": "per",
+    "cs": "od",
+    "la": "ab",
+    "it": "da",
+    "io": "da",
+    "eo": "de",
+    "da": "af",
+    "pl": "przez",
+    "ro": "de",
+    "es": "por",
+    "sv": "av",
+}
+
 
 def MakeDesc(Qid, pa, lang):
     # for lang in language:
@@ -276,6 +299,7 @@ def MakeDesc(Qid, pa, lang):
             description = False
     return description
 
+
 def films():
     logger.info("films: ")
     Q = "film"
@@ -286,4 +310,3 @@ def films():
 
 if __name__ == "__main__":
     films()
-

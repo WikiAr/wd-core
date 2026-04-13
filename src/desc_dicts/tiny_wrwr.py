@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-
-"""
+""" """
 from desc_dicts.descraptions import Qid_Desc
 
 tiny_wrwr = {
@@ -94,4 +92,3 @@ tiny_wrwr = {
 for ps in tiny_wrwr:
     if ps in Qid_Desc:
         print(ps)
-

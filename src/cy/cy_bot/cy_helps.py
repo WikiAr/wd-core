@@ -2,6 +2,7 @@
 from .cy_helps import printt, CheckTempalteInPageText, printo, print_test2, ec_de_code, TEST, make_dada, get_temp_arg
 
 """
+
 import sys
 import urllib.parse
 import wikitextparser as wtp

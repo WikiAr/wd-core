@@ -49,6 +49,7 @@ limit 100
 import re
 import sys
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -56,6 +57,7 @@ from wd_api import wd_sparql_bot
 
 
 from himo_api import New_Himo_API
+
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 
 from wd_api import qs_bot
@@ -148,6 +150,7 @@ for arg in sys.argv:
         QSlimit[1] = int(value)
     # ---
 
+
 def descqs(q, value, lang):
     if len(New_QS[1]) < QSlimit[1]:
         qsline = f'{q}|D{lang}|"{value}"'
@@ -157,6 +160,7 @@ def descqs(q, value, lang):
         logger.info(f"<<lightgreen>> Add {len(New_QS[1])} line to quickstatements")
         qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
+
 
 def Add_desc(q, value, lang):
     # ---
@@ -170,6 +174,7 @@ def Add_desc(q, value, lang):
         descqs(q, value, lang)
     else:
         WD_API_Bot.Des_API(q, value, lang, ask="")
+
 
 def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
@@ -259,6 +264,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     # ---
     Add_desc(q, arlabel2, lang)
 
+
 def work_one_place(place):
     lang = "ar"
     # ---
@@ -289,6 +295,7 @@ def work_one_place(place):
         # ---
         work_one_item(start, lang, tab, c, total)
 
+
 def mainoo():
     # ---
     kee = sorted(placesTable2.keys())
@@ -307,6 +314,7 @@ def mainoo():
     if New_QS[1] != []:
         qs_bot.QS_line("||".join(New_QS[1]), user="Mr.Ibrahembot")
         New_QS[1] = []
+
 
 if __name__ == "__main__":
     mainoo()

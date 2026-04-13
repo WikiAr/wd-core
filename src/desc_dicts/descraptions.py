@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-
-"""
+""" """
 
 from desc_dicts.descraptions_dict import Scientific_descraptions
 from desc_dicts.descraptions_dict_new import get_data
@@ -42,7 +40,10 @@ Qid_Desc = {
     "Q189118": {"ar": "نوع خلية", "en": "cell type"},  # 6946
     "Q40231": {"ar": "انتخابات", "en": "election"},  # 6680
     "Q2188189": {"ar": "عمل موسيقي", "en": "musical work"},  # 6391
-    "Q105774620": {"ar": "قانون برلمان المملكة المتحدة", "en": "Public General Act of the Parliament of the United Kingdom"},
+    "Q105774620": {
+        "ar": "قانون برلمان المملكة المتحدة",
+        "en": "Public General Act of the Parliament of the United Kingdom",
+    },
     "Q7604693": {"ar": "القواعد القانونية لأيرلندا الشمالية", "en": "Statutory Rules of Northern Ireland"},  # 13624
     "Q427087": {"ar": "حمض نووي ريبوزي غير مشفر", "en": "non-coding RNA"},  # 698
     "Q18340514": {"ar": "مقالة عن أحداث في سنة أو فترة زمنية محددة", "en": "events in a specific year or time period"},
@@ -61,91 +62,29 @@ Qid_Desc = {
 }
 
 Space_Desc = {
-    "Q44559": {
-        "ar": "كوكب خارج المجموعة الشمسية",
-        "en": "extrasolar planet"
-    },
-    "Q13890": {
-        "ar": "نجم مزدوج",
-        "en": "double star"
-    },
-    "Q83373": {
-        "ar": "نجم زائف",
-        "en": "quasar"
-    },
-    "Q46587": {
-        "ar": "نواة مجرة نشطة",
-        "en": "active galactic nucleus"
-    },
-    "Q6999": {
-        "ar": "جرم فلكي",
-        "en": "astronomical object"
-    },
-    "Q13632": {
-        "ar": "سديم كوكبي",
-        "en": "planetary nebula"
-    },
-    "Q1931185": {
-        "ar": "مصدر راديو فلكي",
-        "en": "astronomical radio source"
-    },
-    "Q71963409": {
-        "ar": "تجمع مجري مدمج",
-        "en": "compact group of galaxies"
-    },
-    "Q67206691": {
-        "ar": "مصدر أشعة تحت حمراء",
-        "en": "infrared source"
-    },
-    "Q3863": {
-        "ar": "كويكب",
-        "en": "asteroid"
-    },
-    "Q1153690": {
-        "ar": "نجم متغير طويل",
-        "en": "long period variable"
-    },
-    "Q168845": {
-        "ar": "عنقود نجمي",
-        "en": "star cluster"
-    },
-    "Q1457376": {
-        "ar": "كسوف نجم ثنائي",
-        "en": "eclipsing binary star"
-    },
-    "Q15917122": {
-        "ar": "نجم متغير دوار",
-        "en": "rotating variable star"
-    },
-    "Q1332364": {
-        "ar": "متغير بيضاوي دوار",
-        "en": "rotating ellipsoidal variable"
-    },
-    "Q204194": {
-        "ar": "سديم مظلم",
-        "en": "dark nebula"
-    },
-    "Q130019": {
-        "ar": "نجم كربوني",
-        "en": "carbon star"
-    },
-    "Q6243": {
-        "ar": "نجم متغير",
-        "en": "variable star"
-    },
-    "Q115518": {
-        "ar": "مجرة ذات سطوع سطحي منخفض",
-        "en": "low-surface-brightness galaxy"
-    }
+    "Q44559": {"ar": "كوكب خارج المجموعة الشمسية", "en": "extrasolar planet"},
+    "Q13890": {"ar": "نجم مزدوج", "en": "double star"},
+    "Q83373": {"ar": "نجم زائف", "en": "quasar"},
+    "Q46587": {"ar": "نواة مجرة نشطة", "en": "active galactic nucleus"},
+    "Q6999": {"ar": "جرم فلكي", "en": "astronomical object"},
+    "Q13632": {"ar": "سديم كوكبي", "en": "planetary nebula"},
+    "Q1931185": {"ar": "مصدر راديو فلكي", "en": "astronomical radio source"},
+    "Q71963409": {"ar": "تجمع مجري مدمج", "en": "compact group of galaxies"},
+    "Q67206691": {"ar": "مصدر أشعة تحت حمراء", "en": "infrared source"},
+    "Q3863": {"ar": "كويكب", "en": "asteroid"},
+    "Q1153690": {"ar": "نجم متغير طويل", "en": "long period variable"},
+    "Q168845": {"ar": "عنقود نجمي", "en": "star cluster"},
+    "Q1457376": {"ar": "كسوف نجم ثنائي", "en": "eclipsing binary star"},
+    "Q15917122": {"ar": "نجم متغير دوار", "en": "rotating variable star"},
+    "Q1332364": {"ar": "متغير بيضاوي دوار", "en": "rotating ellipsoidal variable"},
+    "Q204194": {"ar": "سديم مظلم", "en": "dark nebula"},
+    "Q130019": {"ar": "نجم كربوني", "en": "carbon star"},
+    "Q6243": {"ar": "نجم متغير", "en": "variable star"},
+    "Q115518": {"ar": "مجرة ذات سطوع سطحي منخفض", "en": "low-surface-brightness galaxy"},
 }
 
 Space_Descraptions = {
-    "Q523": {
-        "ar": "نجم",
-        "en": "star",
-        "nl": "ster",
-        "sl": "zvezda"
-    },
+    "Q523": {"ar": "نجم", "en": "star", "nl": "ster", "sl": "zvezda"},
     "Q318": {
         "ar": "مجرة",
         "nl": "sterrenstelsel",
@@ -164,8 +103,8 @@ Space_Descraptions = {
         "ca": "galàxia",
         "ast": "galaxa",
         "ga": "réaltra",
-        "hr": "galaktika"
-    }
+        "hr": "galaktika",
+    },
 }
 
 Taxon_Descraptions = {
@@ -368,10 +307,7 @@ Taxon_Descraptions = {
     },
 }
 
-Space_Descraptions.update({
-    k: {"ar": val["ar"]}
-    for k, val in Space_Desc.items()
-})
+Space_Descraptions.update({k: {"ar": val["ar"]} for k, val in Space_Desc.items()})
 
 many_lang_qid_desc = get_data("descraptions")
 replace_descraptions = get_data("replace_descraptions")
@@ -380,10 +316,7 @@ replace_descraptions = get_data("replace_descraptions")
 # ======================
 
 # Qid_Descraptions used in many codes within `wd_core`
-Qid_Descraptions = {
-    qid: {"ar": labs["ar"]}
-    for qid, labs in Qid_Desc.items()
-}
+Qid_Descraptions = {qid: {"ar": labs["ar"]} for qid, labs in Qid_Desc.items()}
 
 Qid_Descraptions.update(many_lang_qid_desc)
 
@@ -391,15 +324,10 @@ Qid_Descraptions.update(many_lang_qid_desc)
 # DescraptionsTable
 # ======================
 
-DescraptionsTable.update({
-    labs["en"]: {"ar": labs["ar"]}
-    for qid, labs in Qid_Desc.items()
-})
+DescraptionsTable.update({labs["en"]: {"ar": labs["ar"]} for qid, labs in Qid_Desc.items()})
 
-DescraptionsTable.update({
-    labse.get("en"): labse
-    for _, labse in many_lang_qid_desc.items()
-    if labse.get("en", "") != ""
-})
+DescraptionsTable.update(
+    {labse.get("en"): labse for _, labse in many_lang_qid_desc.items() if labse.get("en", "") != ""}
+)
 
 DescraptionsTable.update(Space_Descraptions)

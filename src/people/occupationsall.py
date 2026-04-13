@@ -603,8 +603,6 @@ for yy in translationsOccupations.values():
         print(f" male:{yy['ar']['male']} == female")
 
 
-
-
 if __name__ == "__main__":
     # python3 core8/pwb.py people/occupationsall
     for k in translationsOccupations.keys():

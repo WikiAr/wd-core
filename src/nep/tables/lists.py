@@ -34,7 +34,6 @@ from nep.tables.lists import space_list_and_other, others_list, Space_tab, other
 'Q163740':		{	'ar':'منظمة غير ربحية', 'en':'nonprofit organization' }, # 18634
 """
 
-
 from desc_dicts.descraptions import Space_Descraptions
 
 
@@ -206,7 +205,6 @@ p50s = {
 }
 
 
-
 # حركة فردية
 
 # رواية
@@ -357,8 +355,6 @@ for q in qura:
     others_list[q] = {"ar": qura[q]["P31"], "en": ""}
 
 
-
-
 songs_type = {
     "Q7366": "أغنية",
     "Q482994": "ألبوم",
@@ -372,7 +368,6 @@ for son in songs_type:
     others_list[son] = {"ar": songs_type[son], "en": ""}
 
 
-
 # مقالة سيرة ذاتية
 
 # biografisch artikel
@@ -382,7 +377,6 @@ for son in songs_type:
 
 
 # مجرة
-
 
 
 # كسوف نجم ثنائي
@@ -431,5 +425,3 @@ space_list_and_other_2 = {
 # ---x
 
 # أغنية
-
-

@@ -30,6 +30,7 @@ import json
 import argparse
 import requests
 import logging
+
 logger = logging.getLogger(__name__)
 
 from tqdm import tqdm
@@ -50,9 +51,7 @@ from translate_bot import translate_en_to_ar
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"
 MW_API = "https://www.wikidata.org/w/api.php"
 
-HEADERS_API = {
-    "User-Agent": "WD-Ar-Props-Filler/1.0 (contact: your-email@example.com)"
-}
+HEADERS_API = {"User-Agent": "WD-Ar-Props-Filler/1.0 (contact: your-email@example.com)"}
 
 username = User_tables_ibrahem["username"]
 password = User_tables_ibrahem["password"]
@@ -60,6 +59,7 @@ password = User_tables_ibrahem["password"]
 # =========================
 # ترجمات: اختر مزوّدك
 # =========================
+
 
 # =========================
 # WDQS: جلب خصائص بلا وسم عربي
@@ -110,6 +110,7 @@ def fetch_props_missing_ar(limit: int, offset: int = 0) -> List[dict]:
     # ---
     return results
 
+
 # =========================
 # منطق التنفيذ
 # =========================
@@ -140,10 +141,12 @@ if cache_file.exists():
         if pid_data["description"]["ar"]:
             already_translated[pid_data["description"]["en"]] = pid_data["description"]["ar"]
 
+
 def translate_en_to_ar_wrap(text):
     if already_translated.get(text):
         return already_translated[text]
     return translate_en_to_ar(text)
+
 
 def dump_all():
     logger.info("<<green>> dump_all():")
@@ -154,6 +157,7 @@ def dump_all():
     with cache_file_labels.open("w", encoding="utf-8") as f:
         json.dump(cache_data_labels, f, ensure_ascii=False, indent=4)
 
+
 def start(args):
     if not args.dry_run and (not username or not password):
         raise SystemExit("الرجاء ضبط WD_USERNAME و WD_PASSWORD في متغيرات البيئة أو استخدم --dry-run.")
@@ -162,7 +166,7 @@ def start(args):
     # ---
     if args.cache:
         props = results_cache
-        props = props[:args.limit]
+        props = props[: args.limit]
     else:
         props = fetch_props_missing_ar(limit=args.limit, offset=args.offset)
     # ---
@@ -188,21 +192,18 @@ def start(args):
 
     for n, p in enumerate(tqdm(props), 1):
         # ---
-        if n % 100 == 0 :
+        if n % 100 == 0:
             dump_all()
         # ---
         pid, en_label, en_desc = p["id"], p["en_label"], p["en_desc"]
         # ---
-        cache_data.setdefault(pid, {
-            "label" : {
-                "en": en_label,
-                "ar": ""
+        cache_data.setdefault(
+            pid,
+            {
+                "label": {"en": en_label, "ar": ""},
+                "description": {"en": en_desc, "ar": ""},
             },
-            "description" : {
-                "en": en_desc,
-                "ar": ""
-            },
-        })
+        )
         # ---
         cache_data[pid].setdefault("saved", {"label": False, "description": False})
         # ---
@@ -289,12 +290,12 @@ def start(args):
 
     print(f"[*] finished. labels added: {done_labels}, descriptions added: {done_descs}")
 
+
 def main():
     ap = argparse.ArgumentParser(description="Fill Arabic labels/descriptions for Wikidata properties.")
     ap.add_argument("--limit", type=int, default=200, help="عدد الخصائص المطلوب جلبها من WDQS")
     ap.add_argument("--offset", type=int, default=0, help="إزاحة في نتائج WDQS")
-    ap.add_argument("--only", choices=["labels", "descriptions", "both"], default="both",
-                    help="حدّد ما الذي ستعمل عليه")
+    ap.add_argument("--only", choices=["labels", "descriptions", "both"], default="both", help="حدّد ما الذي ستعمل عليه")
 
     ap.add_argument("--dry-run", action="store_true", help="لا يرسل أي تعديلات، فقط يعرض ما سيفعله")
 
@@ -307,6 +308,7 @@ def main():
 
     start(args)
     dump_all()
+
 
 if __name__ == "__main__":
     main()

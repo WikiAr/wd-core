@@ -8,6 +8,7 @@ python3 core8/pwb.py WDYe/catwithoutp31
 
 """
 import logging
+
 logger = logging.getLogger(__name__)
 import re
 from wd_api import wd_desc
@@ -15,6 +16,7 @@ from wd_api import wd_bot
 
 
 from himo_api import New_Himo_API
+
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
 
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
@@ -85,7 +87,11 @@ def work_one_item(q):
         catdesc["en-ca"] = catdesc["en"]
         catdesc["en-gb"] = catdesc["en"]
     # ---
-    NewDesc = {str(lang): {"language": str(lang), "value": str(catdesc[lang])} for lang in catdesc.keys() if lang not in descriptions.keys()}
+    NewDesc = {
+        str(lang): {"language": str(lang), "value": str(catdesc[lang])}
+        for lang in catdesc.keys()
+        if lang not in descriptions.keys()
+    }
     # ---
     if NewDesc:
         logger.info(f"<<lightyellow>>* adding descriptions to :{q} ")

@@ -6,6 +6,7 @@ import sys
 
 from himo_api import New_Himo_API
 import logging
+
 logger = logging.getLogger(__name__)
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="bot", www="www")
@@ -27,6 +28,7 @@ for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
             if natkey.strip() and natar.strip():
                 kkey = tax_key.replace("~", natkey)
                 tax_translations_lower[kkey.lower()] = tax_lab.replace("~", natar)
+
 
 def make_tax_des_new(item):
     q = item["q"]
@@ -81,6 +83,7 @@ def make_tax_des_new(item):
                 P171ar = lab_for_p171[P171]
                 ar_lab = f"{P105ar} {P171ar}"
                 WD_API_Bot.Des_API(q, ar_lab, "ar")
+
 
 def work_taxon_desc(item, endesc):
     # ---

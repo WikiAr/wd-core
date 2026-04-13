@@ -11,19 +11,18 @@ python3 core8/pwb.py alabel/labels -limit:20
 
 import sys
 import logging
+
 logger = logging.getLogger(__name__)
 
 
-
-
 from himo_api import New_Himo_API
+
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 
 from api_sql import wiki_sql
 
 
 Limit = {1: ""}
-
 
 
 # result = wiki_sql.sql_new(qua, wiki="", printqua=False)
@@ -62,6 +61,7 @@ for arg in sys.argv:
 if Limit[1]:
     Quaa += f"limit {Limit[1]}"
 
+
 def main():
     # python3 core8/pwb.py alabel/labels -limit:20
     # ---
@@ -89,6 +89,7 @@ def main():
         if page:
             # WD_API_Bot.Labels_API(qid, page, "ar", False, Or_Alii=True)
             WD_API_Bot.Add_Labels_if_not_there(qid, page, "ar", False)
+
 
 if __name__ == "__main__":
     if "test" in sys.argv:

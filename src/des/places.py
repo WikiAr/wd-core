@@ -364,6 +364,3 @@ placesTable["Q44782"] = {"ar": "ميناء", "en": "port"}
 # placesTable[""] = { "ar" : "" , "en" : "" }
 # placesTable[""] = { "ar" : "" , "en" : "" }
 placesTable["Q34379419"] = {"ar": "منطقة رملية", "en": "sand area"}
-
-
-

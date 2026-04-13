@@ -11,6 +11,7 @@ from wd_api import wd_bot
 from api_sql import sql
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 # import pywikibot.data.wikidataquery as wdquery
@@ -23,13 +24,14 @@ File_name_to_check = {1: "name/LOG/name_to_check.log.csv"}
 
 try:
     from himo_api import New_Himo_API
+
     WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
 except ImportError:
-    logger.info('<<lightred>> Can\'t import New_Himo_API')
+    logger.info("<<lightred>> Can't import New_Himo_API")
 
 ask = {1: True}
-OFFSET = {1: '   '}
-Limit = {1: ' limit 100 '}
+OFFSET = {1: "   "}
+Limit = {1: " limit 100 "}
 
 names = [
     "Q307288",  # عبد الملك
@@ -152,7 +154,7 @@ fafafa = """عبد الملك
 عبد القوي"""
 
 Quarry = {
-    1: '''
+    1: """
 
 SELECT ?item ?label
 WHERE {
@@ -164,12 +166,12 @@ WHERE {
 
 
     }
-'''
+"""
 }
 
 
 def action_one(q, ar):
-    logger.info(f'<<lightblue>>> {q}:{ar} ')
+    logger.info(f"<<lightblue>>> {q}:{ar} ")
     ar2 = ar
     if ar.find("عبد ") != -1:
         ar2 = ar.replace("عبد ", "عبد")
@@ -187,12 +189,11 @@ def workqua(qua):
     total = len(sparql)
     for pa in sparql:
         # pa = pigenerator[page]
-        pa['item'] = pa['item'].split('/entity/')[1]
-        action_one(pa['item'], pa['label'])
+        pa["item"] = pa["item"].split("/entity/")[1]
+        action_one(pa["item"], pa["label"])
 
 
-
-queries = '''use wikidatawiki_p;
+queries = """use wikidatawiki_p;
 SELECT term_full_entity_id , term_text
 from wb_terms
 WHERE term_entity_type = 'item'
@@ -200,17 +201,17 @@ AND term_language = 'ar'#en#ar#
 AND term_type = 'label' #description#label#
 AND term_text like "%عبد_%"
 LIMIT 500
-;'''
+;"""
 
 
 def mains():
-    logger.info('start with query')
+    logger.info("start with query")
     # ---
     FFF = True
     # ---
     # ---
     for arg in sys.argv:
-        arg, _, value = arg.partition(':')
+        arg, _, value = arg.partition(":")
         # ---
         if arg.startswith("names"):
             # ---
@@ -256,21 +257,19 @@ def mains():
             for te in tart3:
                 action_one(te, tart3[te])
         # ---
-        if arg == 'limit':
+        if arg == "limit":
             Limit[1] = f" limit {value}"
     # ---
-    '''fff = queries
+    """fff = queries
     tart3 = wd_bot.get_quarry_results("340662", get_rows=2)
     FFF = False
     #logger.info( 'tart3: "%s"' % tart3 )
     for te in tart3 :
         action_one( te , tart3[ te ] )
-    # ---'''
+    # ---"""
     if FFF:
         workqua(Quarry[1])
 
 
-
 if __name__ == "__main__":
     mains()
-

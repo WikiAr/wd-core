@@ -19,6 +19,7 @@ from wd_api import wd_bot
 
 from himo_api import New_Himo_API
 import logging
+
 logger = logging.getLogger(__name__)
 
 WD_API_Bot = New_Himo_API.NewHimoAPIBot(mr_or_bot="mr", www="www")
@@ -33,12 +34,12 @@ Limit = {1: "100"}
 yes_answer = ["y", "a", "", "Y", "A", "all"]
 
 
-
 log_done = []
 
 years = r"(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)"
 tests_en = r"[abcdefghijklmnopqrstuvwxyz]"
 tests_ar = r"[ابتثجحخدذرزسشصضطظعغفقكلمنهويأآإىءئؤة1234567890\–\-\.]"
+
 
 def make_newlabel(label, ar, en):
     # ---
@@ -83,28 +84,70 @@ def make_newlabel(label, ar, en):
     for oll in olympics:
         newlabel = re.sub(oll, olympics[oll], newlabel, flags=re.IGNORECASE)
     # ---
-    newlabel = re.sub(r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) time trial", r" سباق \g<1> ضد الساعة للرجال ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race", r" سباق الطريق \g<1> للرجال ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase", r" رجال \g<1> متر حواجز خيول ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase", r" رجال \g<1> متر حواجز خيول ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles", r" رجال \g<1> متر حواجز ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk", r" رجال \g<1> متر مشي ", newlabel, flags=re.IGNORECASE)
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) time trial",
+        r" سباق \g<1> ضد الساعة للرجال ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race", r" سباق الطريق \g<1> للرجال ", newlabel, flags=re.IGNORECASE
+    )
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase",
+        r" رجال \g<1> متر حواجز خيول ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase",
+        r" رجال \g<1> متر حواجز خيول ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles", r" رجال \g<1> متر حواجز ", newlabel, flags=re.IGNORECASE
+    )
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk", r" رجال \g<1> متر مشي ", newlabel, flags=re.IGNORECASE
+    )
     newlabel = re.sub(r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m)", r" رجال \g<1> متر ", newlabel, flags=re.IGNORECASE)
     newlabel = re.sub(r" men\'s (\d+|\d+\.\d+) metre", r" رجال \g<1> متر ", newlabel, flags=re.IGNORECASE)
     newlabel = re.sub(r" men\'s (\d+|\d+\.\d+) kg", r" رجال \g<1> كجم ", newlabel, flags=re.IGNORECASE)
     newlabel = re.sub(r" men\'s (\d+|\d+\.\d+) kilometres", r" رجال \g<1> كيلوجرام ", newlabel, flags=re.IGNORECASE)
     # ---
-    newlabel = re.sub(r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) time trial", r" سباق \g<1> ضد الساعة للسيدات ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race", r" سباق الطريق \g<1> للسيدات ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase", r" سيدات \g<1> متر حواجز خيول ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles", r" سيدات \g<1> متر حواجز ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk", r" سيدات \g<1> متر مشي ", newlabel, flags=re.IGNORECASE)
+    newlabel = re.sub(
+        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) time trial",
+        r" سباق \g<1> ضد الساعة للسيدات ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race",
+        r" سباق الطريق \g<1> للسيدات ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase",
+        r" سيدات \g<1> متر حواجز خيول ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles", r" سيدات \g<1> متر حواجز ", newlabel, flags=re.IGNORECASE
+    )
+    newlabel = re.sub(
+        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk", r" سيدات \g<1> متر مشي ", newlabel, flags=re.IGNORECASE
+    )
     newlabel = re.sub(r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m)", r" سيدات \g<1> متر ", newlabel, flags=re.IGNORECASE)
     newlabel = re.sub(r" women\'s (\d+|\d+\.\d+) metre", r" سيدات \g<1> متر ", newlabel, flags=re.IGNORECASE)
     newlabel = re.sub(r" women\'s (\d+|\d+\.\d+) kg", r" سيدات \g<1> كجم ", newlabel, flags=re.IGNORECASE)
     newlabel = re.sub(r" women\'s (\d+|\d+\.\d+) kilometres", r" سيدات \g<1> كيلوجرام ", newlabel, flags=re.IGNORECASE)
     # ---
-    newlabel = re.sub(r" (\d|\d+|\d+\.\d+) to (\d|\d+|\d+\.\d+) ton", r" \g<1> إلى \g<2> طن", newlabel, flags=re.IGNORECASE)
+    newlabel = re.sub(
+        r" (\d|\d+|\d+\.\d+) to (\d|\d+|\d+\.\d+) ton", r" \g<1> إلى \g<2> طن", newlabel, flags=re.IGNORECASE
+    )
     # ---
     # newlabel2 = newlabel
     # ---
@@ -118,8 +161,12 @@ def make_newlabel(label, ar, en):
         newlabel = re.sub(xx, Mako_keys2[xx], newlabel, flags=re.IGNORECASE)
     # ---
     newlabel = re.sub(r"at the summer olympics", "في الألعاب الأولمبية الصيفية", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r"at the summer youth olympics", "في الألعاب الأولمبية الشبابية الصيفية", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r"at the winter youth olympics", "في الألعاب الأولمبية الشبابية الشتوية", newlabel, flags=re.IGNORECASE)
+    newlabel = re.sub(
+        r"at the summer youth olympics", "في الألعاب الأولمبية الشبابية الصيفية", newlabel, flags=re.IGNORECASE
+    )
+    newlabel = re.sub(
+        r"at the winter youth olympics", "في الألعاب الأولمبية الشبابية الشتوية", newlabel, flags=re.IGNORECASE
+    )
     newlabel = re.sub(r"at the winter olympics", "في الألعاب الأولمبية الشتوية", newlabel, flags=re.IGNORECASE)
     # ---
     for aeo in Mako_keys_4:
@@ -188,30 +235,73 @@ def make_newlabel(label, ar, en):
     # ---
     return newlabel.strip()
 
+
 def Item(item):
     # ---
     q = item["item"]
     # ---#
     # item[''] = re.sub(r"shooting at the 2016 summer olympics"  , "" , item['dden'], flags = re.IGNORECASE  )
-    item["dden"] = re.sub(r"(.*) at the (\d+) (Winter|summer) olympics", r"\g<2> \g<1> at the \g<3> olympics", item["dden"], flags=re.IGNORECASE)
-    item["label"] = re.sub(r"(.*) at the (\d+) (Winter|summer) olympics", r"\g<2> \g<1> at the \g<3> olympics", item["label"], flags=re.IGNORECASE)
-    item["dden"] = re.sub(r"(.*) at the (\d+) (Winter|summer) youth olympics", r"\g<2> \g<1> at the \g<3> youth olympics", item["dden"], flags=re.IGNORECASE)
-    item["label"] = re.sub(r"(.*) at the (\d+) (Winter|summer) youth olympics", r"\g<2> \g<1> at the \g<3> youth olympics", item["label"], flags=re.IGNORECASE)
+    item["dden"] = re.sub(
+        r"(.*) at the (\d+) (Winter|summer) olympics",
+        r"\g<2> \g<1> at the \g<3> olympics",
+        item["dden"],
+        flags=re.IGNORECASE,
+    )
+    item["label"] = re.sub(
+        r"(.*) at the (\d+) (Winter|summer) olympics",
+        r"\g<2> \g<1> at the \g<3> olympics",
+        item["label"],
+        flags=re.IGNORECASE,
+    )
+    item["dden"] = re.sub(
+        r"(.*) at the (\d+) (Winter|summer) youth olympics",
+        r"\g<2> \g<1> at the \g<3> youth olympics",
+        item["dden"],
+        flags=re.IGNORECASE,
+    )
+    item["label"] = re.sub(
+        r"(.*) at the (\d+) (Winter|summer) youth olympics",
+        r"\g<2> \g<1> at the \g<3> youth olympics",
+        item["label"],
+        flags=re.IGNORECASE,
+    )
     # ---
     lline = ",".join([f"{x}:{item[x]}" for x in item])
     logger.info(lline)
     # ---
-    en = re.sub(r"^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) ", "", item["dden"], flags=re.IGNORECASE)
+    en = re.sub(
+        r"^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) ",
+        "",
+        item["dden"],
+        flags=re.IGNORECASE,
+    )
     if en == item["dden"]:
-        en = re.sub(r" (\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)$", "", item["dden"], flags=re.IGNORECASE)
+        en = re.sub(
+            r" (\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)$",
+            "",
+            item["dden"],
+            flags=re.IGNORECASE,
+        )
     en = en.strip()
     # ---
-    ar = re.sub(r"^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) ", "", item["ddar"], flags=re.IGNORECASE)
+    ar = re.sub(
+        r"^(\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d) ",
+        "",
+        item["ddar"],
+        flags=re.IGNORECASE,
+    )
     if ar == item["ddar"]:
-        ar = re.sub(r" (\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)$", "", ar, flags=re.IGNORECASE)
+        ar = re.sub(
+            r" (\d\d\d\d\–\d\d\d\d|\d\d\d\d\-\d\d\d\d|\d\d\d\d\–\d\d|\d\d\d\d\-\d\d|\d\d\d\d)$",
+            "",
+            ar,
+            flags=re.IGNORECASE,
+        )
     ar = ar.strip()
     if Usema[1]:
-        if (ar == item["ddar"].strip() and ar.lower().strip() != "") or (en == item["dden"].strip() and en.lower().strip() != ""):
+        if (ar == item["ddar"].strip() and ar.lower().strip() != "") or (
+            en == item["dden"].strip() and en.lower().strip() != ""
+        ):
             logger.info("<<lightred>> ar == item['ddar'] or en == item['dden'] ")
             logger.info(f"<<lightred>> en:{en},dden:{item['dden']} ")
             logger.info(f"<<lightred>> ar:{ar},ddar:{item['ddar']} ")
@@ -239,11 +329,10 @@ def Item(item):
 
     # ---
 
+
 Quarry = {
-    "use":
-        "",
-    0:
-        """
+    "use": "",
+    0: """
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
   ?item wdt:P31/wdt:P279* wd:Q27020041.
@@ -256,8 +345,7 @@ WHERE {
   #sr
 }
 LIMIT """,
-    1:
-        """
+    1: """
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  # ?item wdt:P31 wd:Q27020041.
@@ -269,8 +357,7 @@ WHERE {
   #sr
 }
 LIMIT """,
-    2:
-        """
+    2: """
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  #  values ?dd { wd:Q27792093 }
@@ -291,8 +378,7 @@ WHERE {
 
 }
 LIMIT  """,
-    3:
-        """
+    3: """
 SELECT DISTINCT ?item ?label
 ?dden ?ddar
 WHERE {
@@ -306,8 +392,7 @@ WHERE {
 
 }
 LIMIT  """,
-    4:
-        """
+    4: """
 SELECT DISTINCT ?item ?label
 ?dden ?ddar
 WHERE {
@@ -320,8 +405,7 @@ WHERE {
     #sr
 }
 LIMIT  """,
-    5:
-        """
+    5: """
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  #  values ?dd { wd:Q27792093 }
@@ -338,8 +422,7 @@ WHERE {
 
 }
 LIMIT  """,
-    6:
-        """
+    6: """
 SELECT DISTINCT ?item ?dden ?ddar ?label
 WHERE {
  #  values ?dd { wd:Q27792093 }
@@ -357,8 +440,7 @@ WHERE {
 }
 LIMIT
 """,
-    7:
-        """
+    7: """
 SELECT DISTINCT ?item ?label ?dden ?ddar
 WHERE {
     ?item rdfs:label ?label filter (lang(?label) = "en") .
@@ -370,8 +452,7 @@ WHERE {
     FILTER NOT EXISTS {?item rdfs:label ?ar filter (lang(?ar) = "ar")} .
 }
 LIMIT  """,
-    8:
-        """
+    8: """
 SELECT ?item ?ddar ?dden ?label
 WHERE {
   ?io wdt:P31 wd:Q27020041.
@@ -390,6 +471,7 @@ LIMIT
 }
 
 Quarry["use"] = Quarry[2]
+
 
 def main():
     # ---
@@ -444,7 +526,9 @@ def main():
         # ---
         if arg == "sky":
             # Quarry['use']  = Quarry['use'].replace("#sr" , "?item (wdt:P3450|wdt:P361) ?P361. ?P361 (wdt:P3450|wdt:P361) wd:Q285389. \n#sr\n" )
-            Quarry["use"] = Quarry["use"].replace("#sr", "?item (wdt:P31|wdt:P361) ?P361. ?P361 (wdt:P31/wdt:P279*|wdt:P361) wd:Q18536594. \n#sr\n")
+            Quarry["use"] = Quarry["use"].replace(
+                "#sr", "?item (wdt:P31|wdt:P361) ?P361. ?P361 (wdt:P31/wdt:P279*|wdt:P361) wd:Q18536594. \n#sr\n"
+            )
         # ---
         if arg == "save":
             Ask[1] = False
@@ -478,6 +562,7 @@ def main():
     for num, (item, tabj) in enumerate(Table.items(), start=1):
         logger.info('<<lightblue>> %d/%d item:"%s" ' % (num, len(Table.keys()), item))
         Item(tabj)
+
 
 def test():
     # cc = "2010 World Figure Skating Championships - ladies' singles free skating"

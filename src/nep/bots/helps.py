@@ -5,6 +5,7 @@ Usage:
 
 from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_female_for_p17, Get_label, get_label_txt, get_lng_description, Get_label_from_item, get_mainsnak
 """
+
 import os
 import sys
 import json
@@ -86,7 +87,7 @@ def log_new_types(lists):
             json.dump(tabe, nfile)
     # Handle the exception and log the traceback.
     except Exception as e:
-        logger.exception('Exception:', exc_info=True)
+        logger.exception("Exception:", exc_info=True)
 
 
 def Get_label(qid):

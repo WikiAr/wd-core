@@ -18,11 +18,13 @@ import wikitextparser as wtp
 from newapi.page import MainPage
 
 import logging
+
 logger = logging.getLogger(__name__)
 
 import tqdm
 import sys
 import gent
+
 
 def add_id_to_text(item, text):
     parser = wtp.parse(text)
@@ -45,6 +47,7 @@ def add_id_to_text(item, text):
     # ---
     return text
 
+
 def move_it_to_temp(title, item, text):
     # ---
     if not text:
@@ -62,6 +65,7 @@ def move_it_to_temp(title, item, text):
         do = temp_page.Create(text, summary="بوت:تجربة تحديث بيانات اللاعب")
     # ---
     return do
+
 
 def find_cy_temp(text):
     start = "{{نتيجة سباق الدراجات/بداية"
@@ -82,6 +86,7 @@ def find_cy_temp(text):
     # ---
     return text[start_pos:end_pos]
 
+
 def one_page_work(title, text, item):
     # ---
     cy_temp = find_cy_temp(text)
@@ -101,6 +106,7 @@ def one_page_work(title, text, item):
         text = text.replace(cy_temp, new_temp)
     # ---
     return text
+
 
 def onep(title):
     # ---
@@ -146,6 +152,7 @@ def onep(title):
     if new_text:
         page.save(newtext=new_text, summary="بوت:تجربة تحديث بيانات اللاعب")
 
+
 def split_pages(pages, parts=4):
     length = len(pages)
     part_size = length // parts
@@ -167,6 +174,7 @@ def split_pages(pages, parts=4):
 
     return pages
 
+
 def main2(*args):
     generator = gent.get_gent(listonly=True, *args)
     # ---
@@ -177,6 +185,7 @@ def main2(*args):
     for numb, pagetitle in enumerate(list_of_pages, start=1):
         logger.info(f"<<yellow>> page: {numb}/{len(list_of_pages)} : {pagetitle}")
         onep(pagetitle)
+
 
 if __name__ == "__main__":
     main2()

@@ -19,6 +19,7 @@ from nep.nldesc import action_one_item
 from neq.quarries import SPARQLSE
 from wd_api import wd_sparql_bot
 import logging
+
 logger = logging.getLogger(__name__)
 
 sparqler = {1: ""}
@@ -54,6 +55,7 @@ for arg in sys.argv:
         sparqler[1] = value
         logger.info(f'sparqler[1] = "{sparqler[1]}"')
 
+
 def just_get_ar(label):
     parts = label.split("@@")
     arabic_parts = [part for part in parts if part.lower() == re.sub(r"[a-z@]", "", part.lower()) and part]
@@ -64,6 +66,7 @@ def just_get_ar(label):
         return claim_str
 
     return ""
+
 
 def get_sparql_queries():
     if sparqler[1].strip() == "" or "allkeys" in sys.argv:
@@ -86,6 +89,7 @@ def get_sparql_queries():
     # ---
     return quaries
 
+
 def process_item(wd, n, total_reads):
     q = wd["item"].split("/entity/")[1]
     # ---
@@ -94,6 +98,7 @@ def process_item(wd, n, total_reads):
     claim_str = just_get_ar(wd.get("lab", ""))
     # ---
     action_one_item("ar", q, claimstr=claim_str)
+
 
 def main():
     sparql_queries = get_sparql_queries()
@@ -107,11 +112,14 @@ def main():
         if Offq[1] > 0 and Offq[1] > query_num:
             continue
         # ---
-        pigenerator = wd_sparql_bot.sparql_generator_big_results(sparql_query, offset=Off[1], limit=limit[1], alllimit=totallimit[1])
+        pigenerator = wd_sparql_bot.sparql_generator_big_results(
+            sparql_query, offset=Off[1], limit=limit[1], alllimit=totallimit[1]
+        )
         # ---
         for n, wd in enumerate(pigenerator, start=1):
             logger.info("<<lightblue>> ============")
             process_item(wd, n, len(pigenerator))
+
 
 if __name__ == "__main__":
     if "test" in sys.argv:

@@ -53,7 +53,6 @@ Scientific_descraptions = {
     "zh": "年学术文章",  # 年论文
     "zh-hans": "年学术文章",  # same as zh
     "wuu": "年学术文章",  # same as zh
-
     # ---
     "zh-hant": "年學術文章",  # 年論文
     "yue": "年學術文章",  # same as zh-hant
@@ -997,8 +996,8 @@ many_lang_qid_desc = {
         "zh-hk": "年份",
         "zh-mo": "年份",
         "zh-sg": "年份",
-        "zh-tw": "年份"
-    }
+        "zh-tw": "年份",
+    },
 }
 
 many_lang_qid_desc["Q11266439"] = {  # Wikimedia template#Q11753321
@@ -1476,5 +1475,5 @@ replace_desc = {
         "kategorija Wikimedije": "kategorija Wikimedie",
         "razločitvena stran Wikimedije": "razločitvena stran Wikimedie",
         "seznam Wikimedije": "seznam Wikimedie",
-    }
+    },
 }
