@@ -2,22 +2,26 @@
 """ """
 
 import sys
+import os
 from urllib.parse import urlencode
 
 import requests
 
-from . import useraccount
 from .cy_helps import TEST, ec_de_code, make_dada, printo, printt
 
+username = os.getenv("WIKIPEDIA_BOT_USERNAME", "")
+password = os.getenv("WIKIPEDIA_BOT_PASSWORD", "")
+
+hiacc = os.getenv("WIKIPEDIA_HIMO_USERNAME", "")
+hipass = os.getenv("WIKIPEDIA_HIMO_PASSWORD", "")
+
 api_url = "https://" + "ar.wikipedia.org/w/api.php"
-username = useraccount.username
-password = useraccount.password
 
 workibrahem = False
 
 if "workibrahem" in sys.argv:
-    username = useraccount.hiacc
-    password = useraccount.hipass
+    username = hiacc
+    password = hipass
     workibrahem = True
     print("workibrahem active")
 

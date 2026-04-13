@@ -6,16 +6,16 @@
 import json
 import sys
 
-from .. import qs_bot
 from ..utils import lag_bot
 from ..utils.out_json import outbot_json
-
-Main_User = {1: ""}
-Save_2020_wd = {1: False}
+from bots_subs.qs_bot import QS_line
 
 import logging
 
 logger = logging.getLogger(__name__)
+
+Main_User = {1: ""}
+Save_2020_wd = {1: False}
 
 
 def ask_put(s):
@@ -108,7 +108,7 @@ class WD_Descriptions:
                 return self.Des_API(Qid, desc, lang, rea=False)
             elif "descqs" in sys.argv:
                 qsline = f'{Qid}|D{lang}|"{desc}"'
-                qs_bot.QS_line(qsline, user="Mr.Ibrahembot")
+                QS_line(qsline, user="Mr.Ibrahembot")
 
     def New_Mult_Des(self, q, data2, summary, ret, nowait=False):
         # ---

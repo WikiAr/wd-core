@@ -1,7 +1,5 @@
 """
 
-from .wd_bots.submit_bot import submitAPI
-
 """
 
 import logging
