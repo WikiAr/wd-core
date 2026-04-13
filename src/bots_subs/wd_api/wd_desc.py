@@ -169,22 +169,22 @@ def wwdesc(newdesc, qid, i, fixlang, ask="", tage=""):
         logger.info(skipp)
 
 
-def work_api_desc(NewDesc, qid, fixlang=[]):
+def work_api_desc(newdesc, qid, fixlang=[]):
     # ---
-    NewDesc = del_keys(NewDesc)
+    newdesc = del_keys(newdesc)
     # ---
-    langes = list(NewDesc.keys())
+    langes = list(newdesc.keys())
     # ---
     lang_to_skip = ["tg-latn", "en-gb", "en-ca"]
     # ---
     if len(langes) == 1:
-        lang = list(NewDesc.keys())[0]
+        lang = list(newdesc.keys())[0]
         # ---
         if lang in lang_to_skip:
             logger.info(f'work_api_desc:"{qid}" only en-gb and en-ca, Skipp... ')
             return
         # ---
-        onedesc = NewDesc[lang]["value"]
+        onedesc = newdesc[lang]["value"]
         logger.info(f'work_api_desc:"{qid}" only one desc"{lang}:{onedesc}"')
         WD_API_Bot.Des_API(qid, onedesc, lang)
         return
@@ -194,8 +194,8 @@ def work_api_desc(NewDesc, qid, fixlang=[]):
         return
     # ---
     for fix in fixlang:
-        if fix not in NewDesc.keys():
+        if fix not in newdesc.keys():
             fixlang.remove(str(fix))
     fixlang.sort()
     # ---
-    wwdesc(NewDesc, qid, 1, fixlang)
+    wwdesc(newdesc, qid, 1, fixlang)
