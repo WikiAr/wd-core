@@ -27,7 +27,7 @@ if "workibrahem" in sys.argv:
 
 headers = {"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"}
 
-session = {1: requests.Session(), "csrftoken": ""}
+session = {1: requests.session(), "csrftoken": ""}
 session[1].headers.update(headers)
 
 returntext = {1: True}

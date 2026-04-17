@@ -7,7 +7,7 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-Session_t = {1: requests.Session()}
+Session_t = {1: requests.session()}
 
 
 def submitAPI(params):

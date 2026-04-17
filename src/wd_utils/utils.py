@@ -19,7 +19,7 @@ def load_data_from_url(page_name="descraptions.json"):
 
     headers = {"User-Agent": "Himo bot/1.0 (https://himo.toolforge.org/; tools.himo@toolforge.org)"}
     try:
-        session = requests.Session()
+        session = requests.session()
         request = session.get(url, headers=headers)
         if request.status_code == 200:
             data = json.loads(request.text)
