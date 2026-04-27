@@ -150,17 +150,25 @@ def fix_label(label):
     label = re.sub(r"سباق الطريق المداري ", "سباق الطريق ", label)
     label = re.sub(r"(بطولة [\s\w]+) الوطنية ", r"\g<1> ", label)
     label = re.sub(
-        r"^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label
+        r"^(سباق\s*.*? في بطولة العالم)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$",
+        r"\g<1> \g<3>",
+        label,
     )
     label = re.sub(
-        r"^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$", r"\g<1> \g<3>", label
+        r"^(سباق\s*.*? في بطولة [\s\w]+)\s*(لسباق الدراجات على الطريق|للدراجات) (.*?)$",
+        r"\g<1> \g<3>",
+        label,
     )
 
     # سباق الطريق للسيدات في ركوب الدراجات في الألعاب الأولمبية الصيفية 2016
     label = re.sub(r"في ركوب الدراجات في الألعاب الأولمبية ", "في ركوب الدراجات الأولمبية ", label)
 
     # في ركوب الدراجات في دورة ألعاب الكومنولث
-    label = re.sub(r"ركوب الدراجات في دورة ألعاب الكومنولث", "ركوب الدراجات في دورة الكومنولث", label)
+    label = re.sub(
+        r"ركوب الدراجات في دورة ألعاب الكومنولث",
+        "ركوب الدراجات في دورة الكومنولث",
+        label,
+    )
     label = re.sub(r"\s+", " ", label)
     return label
 
@@ -285,8 +293,15 @@ def fix_results(table):
         "results": {
             "bindings": [
                 {
-                    "item": {"type": "uri", "value": "http://www.wikidata.org/entity/Q53557910"},
-                    "title": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
+                    "item": {
+                        "type": "uri",
+                        "value": "http://www.wikidata.org/entity/Q53557910",
+                    },
+                    "title": {
+                        "xml:lang": "ar",
+                        "type": "literal",
+                        "value": "طواف أستونيا 2018",
+                    },
                     "p580": {
                         "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
                         "type": "literal",
@@ -298,7 +313,11 @@ def fix_results(table):
                         "value": "2018-05-26T00:00:00Z",
                     },
                     "p17lab": {"xml:lang": "ar", "type": "literal", "value": "إستونيا"},
-                    "itemlab": {"xml:lang": "ar", "type": "literal", "value": "طواف أستونيا 2018"},
+                    "itemlab": {
+                        "xml:lang": "ar",
+                        "type": "literal",
+                        "value": "طواف أستونيا 2018",
+                    },
                     "rankP2321": {
                         "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
                         "type": "literal",
@@ -314,10 +333,23 @@ def fix_results(table):
                         "type": "literal",
                         "value": "1",
                     },
-                    "p642label": {"xml:lang": "ar", "type": "literal", "value": "الفائز وفقاً لترتيب النقاط"},
-                    "jersey_1": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},
-                    "jersey_2": {"type": "literal", "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}"},
-                    "jersey_4": {"type": "literal", "value": "{{JOJOJO|Jersey%20red.svg|قميص أحمر، تصنيف النقاط}}"},
+                    "p642label": {
+                        "xml:lang": "ar",
+                        "type": "literal",
+                        "value": "الفائز وفقاً لترتيب النقاط",
+                    },
+                    "jersey_1": {
+                        "type": "literal",
+                        "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}",
+                    },
+                    "jersey_2": {
+                        "type": "literal",
+                        "value": "{{JOJOJO|Jersey%20white.svg|قميص أبيض، أفضل شاب}}",
+                    },
+                    "jersey_4": {
+                        "type": "literal",
+                        "value": "{{JOJOJO|Jersey%20red.svg|قميص أحمر، تصنيف النقاط}}",
+                    },
                 }
             ]
         },
@@ -569,9 +601,17 @@ def work_tano(text, maintitle):
             if liner not in new_lines[maintitle].keys():
                 removed_line += 1
     # ---
-    states[maintitle] = {"new_line": new_line, "same_line": same_line, "removed_line": removed_line}
+    states[maintitle] = {
+        "new_line": new_line,
+        "same_line": same_line,
+        "removed_line": removed_line,
+    }
     # ---
-    liner = "new_line:%d,same_line:%d,removed_line:%d" % (new_line, same_line, removed_line)
+    liner = "new_line:%d,same_line:%d,removed_line:%d" % (
+        new_line,
+        same_line,
+        removed_line,
+    )
     # ---
     if maintitle in remove_date and remove_date[maintitle] != 0:
         liner += ",removed_line_date:%d" % remove_date[maintitle]

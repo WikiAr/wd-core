@@ -125,7 +125,14 @@ def Get_Item_API_From_Qid(q, sites="", titles="", props=""):
         params["sites"] = sitecode
         params["normalize"] = 1
     # ---
-    table = {"sitelinks": {}, "aliases": {}, "labels": {}, "descriptions": {}, "claims": {}, "q": ""}
+    table = {
+        "sitelinks": {},
+        "aliases": {},
+        "labels": {},
+        "descriptions": {},
+        "claims": {},
+        "q": "",
+    }
     json1 = submitAPI(params)
     # ---
     if not json1:

@@ -26,7 +26,18 @@ file_name = os.path.basename(__file__)
 menet = datetime.now().strftime("%Y-%b-%d  %H:%M:%S")
 
 # [[Topic:Xr8nyeau0ysm1zop]]
-langs_to_del = ["en-gb", "en-ca", "de-at", "de-ch", "zh-cn", "zh-sg", "zh-my", "zh-hk", "zh-mo", "zh-tw"]
+langs_to_del = [
+    "en-gb",
+    "en-ca",
+    "de-at",
+    "de-ch",
+    "zh-cn",
+    "zh-sg",
+    "zh-my",
+    "zh-hk",
+    "zh-mo",
+    "zh-tw",
+]
 
 
 def del_keys(d):

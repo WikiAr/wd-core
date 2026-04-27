@@ -227,7 +227,10 @@ xsxsxsx = {
     "Q948866": {"ar": "نيوكوب", "en": "Nieuwkoop"},  # 423
     "Q10003": {"ar": "هاكسبيرخن", "en": "Haaksbergen"},  # 422
     "Q613989": {"ar": "داوفن", "en": "Duiven"},  # 421
-    "Q9855": {"ar": "نونن، خيرفن آن نيدرفيتن", "en": "Nuenen, Gerwen en Nederwetten"},  # 421
+    "Q9855": {
+        "ar": "نونن، خيرفن آن نيدرفيتن",
+        "en": "Nuenen, Gerwen en Nederwetten",
+    },  # 421
     "Q9848": {"ar": "لاربيك", "en": "Laarbeek"},  # 419
     "Q210234": {"ar": "زاودهورن", "en": "Zuidhorn"},  # 413
     "Q9856": {"ar": "أويرشخوت", "en": "Oirschot"},  # 412
@@ -309,7 +312,10 @@ xsxsxsx = {
     "Q9877": {"ar": "فالره", "en": "Waalre"},  # 311
     "Q835096": {"ar": "ليك", "en": "Leek"},  # 309
     "Q9853": {"ar": "مل آن سينت هوبرت", "en": "Mill en Sint Hubert"},  # 308
-    "Q571198": {"ar": "كوليميلاند أن نيوكراوزلاند", "en": "Kollumerland en Nieuwkruisland"},  # 306
+    "Q571198": {
+        "ar": "كوليميلاند أن نيوكراوزلاند",
+        "en": "Kollumerland en Nieuwkruisland",
+    },  # 306
     "Q848324": {"ar": "فورسخوتن", "en": "Voorschoten"},  # 303
     "Q9787": {"ar": "نوت", "en": "Nuth"},  # 303
     "Q952206": {"ar": "ميدن- دلفلاند", "en": "Midden-Delfland"},  # 302

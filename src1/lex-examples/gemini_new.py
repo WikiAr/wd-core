@@ -82,7 +82,10 @@ def get_forms_from_lexeme(lexeme_id):
 
 
 def get_results(query):
-    user_agent = "WDQS-example Python/%s.%s" % (sys.version_info[0], sys.version_info[1])
+    user_agent = "WDQS-example Python/%s.%s" % (
+        sys.version_info[0],
+        sys.version_info[1],
+    )
     endpoint_url = "https://query.wikidata.org/sparql"
     # TODO adjust user agent; see https://w.wiki/CX6
     sparql = SPARQLWrapper(endpoint_url, agent=user_agent)

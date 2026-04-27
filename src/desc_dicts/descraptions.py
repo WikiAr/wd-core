@@ -18,7 +18,10 @@ Qid_Desc = {
     "Q1580166": {"ar": "مدخلة قاموس", "en": "dictionary entry"},  # 57490
     "Q11060274": {"ar": "طباعة فنية", "en": "print"},  # 40547
     "Q220659": {"ar": "قطع أثرية", "en": "archaeological artifact"},  # 29283
-    "Q1539532": {"ar": "موسم نادي رياضي", "en": "sports season of a sports club"},  # 20501
+    "Q1539532": {
+        "ar": "موسم نادي رياضي",
+        "en": "sports season of a sports club",
+    },  # 20501
     "Q30612": {"ar": "تجربة سريرية", "en": "clinical trial"},  # 339121
     "Q152450": {"ar": "انتخابات محلية", "en": "municipal election"},  # 14289
     "Q15632617": {"ar": "إنسان خيالي", "en": "fictional human"},  # 13940
@@ -44,11 +47,20 @@ Qid_Desc = {
         "ar": "قانون برلمان المملكة المتحدة",
         "en": "Public General Act of the Parliament of the United Kingdom",
     },
-    "Q7604693": {"ar": "القواعد القانونية لأيرلندا الشمالية", "en": "Statutory Rules of Northern Ireland"},  # 13624
+    "Q7604693": {
+        "ar": "القواعد القانونية لأيرلندا الشمالية",
+        "en": "Statutory Rules of Northern Ireland",
+    },  # 13624
     "Q427087": {"ar": "حمض نووي ريبوزي غير مشفر", "en": "non-coding RNA"},  # 698
-    "Q18340514": {"ar": "مقالة عن أحداث في سنة أو فترة زمنية محددة", "en": "events in a specific year or time period"},
+    "Q18340514": {
+        "ar": "مقالة عن أحداث في سنة أو فترة زمنية محددة",
+        "en": "events in a specific year or time period",
+    },
     "Q7604686": {"ar": "صك قانوني في المملكة المتحدة", "en": "UK Statutory Instrument"},
-    "Q820655": {"ar": "قانون تشريعي", "en": "statute"},  # python3 core8/pwb.py np/nldes3 sparql:Q820655
+    "Q820655": {
+        "ar": "قانون تشريعي",
+        "en": "statute",
+    },  # python3 core8/pwb.py np/nldes3 sparql:Q820655
     "Q207694": {"ar": "متحف فني", "en": "art museum"},
     "Q27032363": {"ar": "أرشيف صور", "en": "photo archive"},
     "Q7187": {"ar": "جين", "en": "gene"},
@@ -80,7 +92,10 @@ Space_Desc = {
     "Q204194": {"ar": "سديم مظلم", "en": "dark nebula"},
     "Q130019": {"ar": "نجم كربوني", "en": "carbon star"},
     "Q6243": {"ar": "نجم متغير", "en": "variable star"},
-    "Q115518": {"ar": "مجرة ذات سطوع سطحي منخفض", "en": "low-surface-brightness galaxy"},
+    "Q115518": {
+        "ar": "مجرة ذات سطوع سطحي منخفض",
+        "en": "low-surface-brightness galaxy",
+    },
 }
 
 Space_Descraptions = {

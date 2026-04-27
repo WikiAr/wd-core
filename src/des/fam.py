@@ -18,7 +18,11 @@ import tqdm
 
 from bots_subs.wd_api import newdesc, wd_sparql_bot
 from des.railway import railway_tables, work_railway
-from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions, Space_Descraptions
+from desc_dicts.descraptions import (
+    DescraptionsTable,
+    Qid_Descraptions,
+    Space_Descraptions,
+)
 
 logger = logging.getLogger(__name__)
 

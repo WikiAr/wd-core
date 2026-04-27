@@ -138,7 +138,18 @@ class WD_Descriptions:
         if ret:
             return str(r4)
 
-    def New_Mult_Des_2(self, q, data2, summary, ret, ask=False, rea=True, nowait=False, tage="", return_result=False):
+    def New_Mult_Des_2(
+        self,
+        q,
+        data2,
+        summary,
+        ret,
+        ask=False,
+        rea=True,
+        nowait=False,
+        tage="",
+        return_result=False,
+    ):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""
@@ -190,7 +201,13 @@ class WD_Descriptions:
             # ---
             if cf == "reagain" and rea:
                 return self.New_Mult_Des_2(
-                    q, data2, summary, ret, rea=False, tage=tage, return_result=(return_result or ret)
+                    q,
+                    data2,
+                    summary,
+                    ret,
+                    rea=False,
+                    tage=tage,
+                    return_result=(return_result or ret),
                 )
         # ---
         if ret or return_result:

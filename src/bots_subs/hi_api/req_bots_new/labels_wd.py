@@ -72,7 +72,17 @@ class WD_Labels:
             logger.exception("Exception:", exc_info=True)
 
     def Labels_API(
-        self, Qid, label, lang, ret, Or_Alii=False, change_des=False, number=0, nowait=False, tage="", remove=False
+        self,
+        Qid,
+        label,
+        lang,
+        ret,
+        Or_Alii=False,
+        change_des=False,
+        number=0,
+        nowait=False,
+        tage="",
+        remove=False,
     ):
         # ---
         if lag_bot.bad_lag(nowait):

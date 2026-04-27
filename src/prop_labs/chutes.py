@@ -12,7 +12,10 @@ with open(env_path, "r") as f:
 
 async def invoke_chute():
 
-    headers = {"Authorization": "Bearer " + api_token, "Content-Type": "application/json"}
+    headers = {
+        "Authorization": "Bearer " + api_token,
+        "Content-Type": "application/json",
+    }
 
     body = {
         "model": "zai-org/GLM-4.5-Air",
@@ -40,7 +43,10 @@ async def invoke_chute():
 
 async def invoke_chute2():
 
-    headers = {"Authorization": "Bearer " + api_token, "Content-Type": "application/json"}
+    headers = {
+        "Authorization": "Bearer " + api_token,
+        "Content-Type": "application/json",
+    }
 
     body = {
         "model": "openai/gpt-oss-20b",

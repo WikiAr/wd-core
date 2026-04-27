@@ -42,7 +42,11 @@ def fixrow(row):
     row = re.sub(r"</strong><strong>", " ", row)
     row = re.sub(r"<strong>", "", row)
     row = re.sub(r"</strong>", "", row)
-    row = re.sub(r'<td class="views-field views-field-field-hadaf-value views-align-center" >', "<tdss>", row)
+    row = re.sub(
+        r'<td class="views-field views-field-field-hadaf-value views-align-center" >',
+        "<tdss>",
+        row,
+    )
     # logger.info( row )
     # ---
     if row.find('<td class="views-field views-field-title views-align-center" >') != -1:
@@ -89,7 +93,11 @@ def Fix_List(list_data):
     # if ar.find(" (الجمع:") != -1 :
     # ---
     FFA = r"(الجمع|ج|جمعها|)(\=|\:)(.*)"
-    mattes = [r"^(.*)\(" + FFA + r"\)$", r"^(.*)\[" + FFA + r"\]$", r"^(.*)\[" + FFA + r"\]$"]
+    mattes = [
+        r"^(.*)\(" + FFA + r"\)$",
+        r"^(.*)\[" + FFA + r"\]$",
+        r"^(.*)\[" + FFA + r"\]$",
+    ]
     # ---
     comas = ["،", ";", "؛"]
     # comas = ["، ", "; " , "؛ "]

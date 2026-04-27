@@ -93,7 +93,10 @@ def work2(q, topic):
                         logger.info(f'<<lightyellow>> {lang}:replace "{value}" by: "{replacement[lang]}".')
                         fixlang.append(lang)
                 else:
-                    NewDesc[lang] = {"language": lang, "value": translations[topic][lang]}
+                    NewDesc[lang] = {
+                        "language": lang,
+                        "value": translations[topic][lang],
+                    }
                     # addedlangs.append(lang)
             # ---
             # logger.info( '<<lightyellow>>  NewDesc' + str(NewDesc) )

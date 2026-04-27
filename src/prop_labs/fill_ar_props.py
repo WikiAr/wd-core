@@ -124,7 +124,13 @@ if cache_file.exists():
         cache_data = json.load(f)
     # ---
     for pid, pid_data in cache_data.items():
-        results_cache.append({"id": pid, "en_label": pid_data["label"]["en"], "en_desc": pid_data["description"]["en"]})
+        results_cache.append(
+            {
+                "id": pid,
+                "en_label": pid_data["label"]["en"],
+                "en_desc": pid_data["description"]["en"],
+            }
+        )
         # ---
         if pid_data["label"]["ar"]:
             already_translated[pid_data["label"]["en"]] = pid_data["label"]["ar"]
@@ -286,11 +292,21 @@ def main():
     ap = argparse.ArgumentParser(description="Fill Arabic labels/descriptions for Wikidata properties.")
     ap.add_argument("--limit", type=int, default=200, help="عدد الخصائص المطلوب جلبها من WDQS")
     ap.add_argument("--offset", type=int, default=0, help="إزاحة في نتائج WDQS")
-    ap.add_argument("--only", choices=["labels", "descriptions", "both"], default="both", help="حدّد ما الذي ستعمل عليه")
+    ap.add_argument(
+        "--only",
+        choices=["labels", "descriptions", "both"],
+        default="both",
+        help="حدّد ما الذي ستعمل عليه",
+    )
 
     ap.add_argument("--dry-run", action="store_true", help="لا يرسل أي تعديلات، فقط يعرض ما سيفعله")
 
-    ap.add_argument("--sleep", type=float, default=0.1, help="زمن انتظار (ثوانٍ) بين الطلبات للاحترام")
+    ap.add_argument(
+        "--sleep",
+        type=float,
+        default=0.1,
+        help="زمن انتظار (ثوانٍ) بين الطلبات للاحترام",
+    )
 
     ap.add_argument("--dumpen", action="store_true", help="just dump en")
     ap.add_argument("--cache", action="store_true", help="use cache not sparql")

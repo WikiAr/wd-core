@@ -9,7 +9,14 @@ from nep.tables.quarries import SPARQLSE
 import sys
 
 from desc_dicts.descraptions import Qid_Descraptions
-from nep.tables.lists import Space_tab, Taton_list, others_list, p50s, songs_type, space_list_and_other_2
+from nep.tables.lists import (
+    Space_tab,
+    Taton_list,
+    others_list,
+    p50s,
+    songs_type,
+    space_list_and_other_2,
+)
 
 p31_only_quarry = "select ?item where {?item wdt:P31 wd:%s}"
 
@@ -156,7 +163,11 @@ if "yuy" in sys.argv:
 # ---Q8054
 
 # بروتين
-SPARQLSE["Q8054"] = do_qua("Q8054", prop="(wdt:P702|wdt:P703)", ad="FILTER NOT EXISTS {?item wdt:P31 wd:Q11173}")
+SPARQLSE["Q8054"] = do_qua(
+    "Q8054",
+    prop="(wdt:P702|wdt:P703)",
+    ad="FILTER NOT EXISTS {?item wdt:P31 wd:Q11173}",
+)
 
 if "yuy" in sys.argv:
     SPARQLSE[

@@ -19,7 +19,14 @@ from nep.bots.tax_desc import work_taxon_desc
 from nep.new_way import P1433_en_to_qid, P1433_ids, do_P1433_ids
 from nep.space_others import Make_others_desc, Make_space_desc
 from nep.tables.lists import others_list, others_list_2, space_list_and_other
-from nep.tables.si_tables import Add_en_labels, Geo_List, MainTestTable, Qids_translate, new_types, offsetbg
+from nep.tables.si_tables import (
+    Add_en_labels,
+    Geo_List,
+    MainTestTable,
+    Qids_translate,
+    new_types,
+    offsetbg,
+)
 from nep.wr_people import work_people
 from people.people_get_topic import print_new_jobs
 
@@ -217,7 +224,14 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
             break
         # ---
         elif P31 in Geo_List and placesTable.get(P31, {}).get("ar"):
-            work_one_item(placesTable.get(P31, {}).get("ar"), "ar", {"q": item["q"]}, 0, 1, findlab=True)
+            work_one_item(
+                placesTable.get(P31, {}).get("ar"),
+                "ar",
+                {"q": item["q"]},
+                0,
+                1,
+                findlab=True,
+            )
             break
         # ---
         elif P31 == "Q13442814":
