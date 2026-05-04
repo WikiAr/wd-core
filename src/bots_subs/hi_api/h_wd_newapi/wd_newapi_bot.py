@@ -4,7 +4,7 @@ import logging
 import sys
 import time
 
-from newapi import Login
+from newapi import WikiLoginClient
 
 from ..utils import lag_bot
 from ..utils.handle_wd_errors import WD_ERRORS_HANDLER
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class WdAPI(WD_ERRORS_HANDLER):
     def __init__(self, login_bot, mr_or_bot="bot"):
         # ---
-        self.login_bot: Login = login_bot
+        self.login_bot: WikiLoginClient = login_bot
         # ---
         self.lang = "test" if "testwikidata" in sys.argv else "www"
         self.family = "wikidata"
