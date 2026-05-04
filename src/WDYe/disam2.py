@@ -33,7 +33,7 @@ replacement["fa"] = {
 
 def work2(q, topic):
     # ---
-    # OOutPut( '<<lightyellow>> **newdesc: work2:'  + q)
+    # logger.info( '<<lightyellow>> **newdesc: work2:'  + q)
     # ItemDescriptions = {}
     # ---
     ItemDescriptions = wd_bot.Get_item_descriptions_or_labels(q, "descriptions")

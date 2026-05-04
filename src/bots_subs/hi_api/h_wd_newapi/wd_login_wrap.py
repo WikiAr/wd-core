@@ -4,12 +4,12 @@ import os
 import sys
 
 try:
-    from newapi import ALL_APIS
+    from newapi import AllAPIS
 except ImportError:
     sys.path.append("I:/core/bots/new/newapi_bot")
-    from newapi import ALL_APIS
+    from newapi import AllAPIS
 
-from newapi import Login
+from newapi import WikiLoginClient
 
 
 def _load_credentials(mr_or_bot) -> dict[str, str]:
@@ -37,7 +37,7 @@ def _load_credentials(mr_or_bot) -> dict[str, str]:
     return User_tables_bot if mr_or_bot == "bot" else User_tables_ibrahem
 
 
-def log_in_wikidata(mr_or_bot="bot", www="www") -> Login:
+def log_in_wikidata(mr_or_bot="bot", www="www") -> WikiLoginClient:
     # ---
     users_data = _load_credentials(mr_or_bot)
     # ---
@@ -46,7 +46,7 @@ def log_in_wikidata(mr_or_bot="bot", www="www") -> Login:
     if www != "www":
         www2 = www
     # ---
-    api = ALL_APIS(
+    api = AllAPIS(
         lang=www2,
         family="wikidata",
         username=users_data["username"],

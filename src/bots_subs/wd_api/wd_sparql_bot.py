@@ -104,7 +104,15 @@ def wd_sparql_generator_url(quary, returnq=False):
     return items
 
 
-def sparql_generator_url(quary, printq=False, add_date=True, key="", geterror=False, returndict=False, returnq=False):
+def sparql_generator_url(
+    quary,
+    printq=False,
+    add_date=True,
+    key="",
+    geterror=False,
+    returndict=False,
+    returnq=False,
+):
     # ---
     if add_date:
         quary = f"{quary}\n#{str(menet)}"

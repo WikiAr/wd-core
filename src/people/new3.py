@@ -246,7 +246,10 @@ def make_Tabs(tabs):
                         female_k = femalee
                     # ---
                     if malee or femalee:
-                        translations_o[1][kkkk][translang] = {"male": malee, "female": femalee}
+                        translations_o[1][kkkk][translang] = {
+                            "male": malee,
+                            "female": femalee,
+                        }
                     # ---
             # ---
             if translations_o[1][kkkk] != {}:

@@ -125,7 +125,14 @@ def Get_Item_API_From_Qid(q, sites="", titles="", props=""):
         params["sites"] = sitecode
         params["normalize"] = 1
     # ---
-    table = {"sitelinks": {}, "aliases": {}, "labels": {}, "descriptions": {}, "claims": {}, "q": ""}
+    table = {
+        "sitelinks": {},
+        "aliases": {},
+        "labels": {},
+        "descriptions": {},
+        "claims": {},
+        "q": "",
+    }
     json1 = submitAPI(params)
     # ---
     if not json1:
@@ -179,7 +186,7 @@ def Get_Property_API(q="", p="", titles="", sites=""):
     # ---
     for claims in claims_p:
         datavalue = claims.get("mainsnak", {}).get("datavalue", {})
-        # Type = datavalue.get("type", False)
+        # request_type = datavalue.get("type", False)
         value = datavalue.get("value", "")
         # ---
         if isinstance(value, dict):

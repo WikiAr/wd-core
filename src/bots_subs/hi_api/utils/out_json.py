@@ -108,7 +108,11 @@ def outbot_json_bot(err):
                     "messages": [
                         {
                             "name": "wikibase-validator-label-with-description-conflict",
-                            "parameters": ["منحوتة1", "ar", "[[Q116681602|Q116681602]]"],
+                            "parameters": [
+                                "منحوتة1",
+                                "ar",
+                                "[[Q116681602|Q116681602]]",
+                            ],
                             "html": {
                                 "*": 'العنصر <a href="/wiki/Q116681602" title="Q116681602">Q116681602</a> له وسم «منحوتة1» يرتبط برمز اللغة ar باستخدام نفس نص الوصف.'
                             },

@@ -44,7 +44,14 @@ class WikidataSession:
 
     def _get_login_token(self) -> str:
         r = self.s.get(
-            MW_API, params={"action": "query", "meta": "tokens", "type": "login", "format": "json"}, timeout=60
+            MW_API,
+            params={
+                "action": "query",
+                "meta": "tokens",
+                "type": "login",
+                "format": "json",
+            },
+            timeout=60,
         )
         r.raise_for_status()
         return r.json()["query"]["tokens"]["logintoken"]
@@ -69,7 +76,14 @@ class WikidataSession:
 
         # CSRF token
         r2 = self.s.get(
-            MW_API, params={"action": "query", "meta": "tokens", "type": "csrf", "format": "json"}, timeout=60
+            MW_API,
+            params={
+                "action": "query",
+                "meta": "tokens",
+                "type": "csrf",
+                "format": "json",
+            },
+            timeout=60,
         )
         r2.raise_for_status()
         self.csrf_token = r2.json()["query"]["tokens"]["csrftoken"]

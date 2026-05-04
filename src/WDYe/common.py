@@ -110,11 +110,6 @@ queriestest = {
     + ' wdt:P31 wd:Q101352 ; wdt:P31 ?instance .  OPTIONAL { ?item schema:description ?itemabel. FILTER((LANG(?itemabel)) = "ar") } FILTER(!BOUND(?itemabel))}',
 }
 
-
-def OOutPut(ss):
-    logger.info(ss)
-
-
 qq = {"Hebrew calendar year": f'{SELECT} wdt:P31 wd:Q577  . ?item schema:description "Hebrew calendar year"@en.{GROUP}'}
 
 

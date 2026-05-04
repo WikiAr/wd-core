@@ -51,12 +51,24 @@ tra_occ_2 = {
     "~ university teacher": {
         "ar": {"male": "أستاذ جامعي ~", "female": "أستاذة جامعية ~"},
         "bn": {"male": "~ বিশ্ববিদ্যালয়ের শিক্ষক", "female": "~ বিশ্ববিদ্যালয়ের শিক্ষিকা"},
-        "ca": {"male": "professor d'universitat ~", "female": "professora d'universitat ~"},
+        "ca": {
+            "male": "professor d'universitat ~",
+            "female": "professora d'universitat ~",
+        },
         "en": {"male": "~ university teacher", "female": "~ university teacher"},
-        "es": {"male": "profesor universitario ~", "female": "profesora universitaria ~"},
+        "es": {
+            "male": "profesor universitario ~",
+            "female": "profesora universitaria ~",
+        },
         "et": {"male": "~ ülikooli õppejõud", "female": "~ ülikooli õppejõud"},
-        "fr": {"male": "professeur d'université ~", "female": "professeure d'université ~"},
-        "gl": {"male": "profesor universitario ~", "female": "profesora universitaria ~"},
+        "fr": {
+            "male": "professeur d'université ~",
+            "female": "professeure d'université ~",
+        },
+        "gl": {
+            "male": "profesor universitario ~",
+            "female": "profesora universitaria ~",
+        },
         "he": {"male": "מרצה באוניברסיטה ~", "female": "מרצה באוניברסיטה ~"},
         "ro": {"male": "profesor universitar ~", "female": "profesoară universitară ~"},
         "sq": {"male": "profesor universitar ~", "female": "profesore universitare ~"},
@@ -90,14 +102,29 @@ tra_occ_2 = {
     "~ children's writer": {
         "ar": {"male": "كاتب أدب أطفال ~", "female": "كاتبة أدب أطفال ~"},
         "bn": {"male": "~ শিশু সাহিত্যিক", "female": "~ শিশু সাহিত্যিক"},
-        "ca": {"male": "escriptor de literatura infantil ~", "female": "escriptora de literatura infantil ~"},
+        "ca": {
+            "male": "escriptor de literatura infantil ~",
+            "female": "escriptora de literatura infantil ~",
+        },
         "en": {"male": "~ children's writer", "female": "~ children's writer"},
-        "es": {"male": "escritor de literatura infantil ~", "female": "escritora de literatura infantil ~"},
+        "es": {
+            "male": "escritor de literatura infantil ~",
+            "female": "escritora de literatura infantil ~",
+        },
         "et": {"male": "~ lastekirjanik", "female": "~ lastekirjanik"},
-        "fr": {"male": "auteur de littérature d'enfance ~", "female": "auteure de littérature d'enfance ~"},
-        "gl": {"male": "escritor de literatura infantil ~", "female": "escritora de literatura infantil ~"},
+        "fr": {
+            "male": "auteur de littérature d'enfance ~",
+            "female": "auteure de littérature d'enfance ~",
+        },
+        "gl": {
+            "male": "escritor de literatura infantil ~",
+            "female": "escritora de literatura infantil ~",
+        },
         "he": {"male": "סופר ילדים ~", "female": "סופרת ילדים ~"},
-        "ro": {"male": "scriitor de literatură pentru copii ~", "female": "scriitoare de literatură pentru copii ~"},
+        "ro": {
+            "male": "scriitor de literatură pentru copii ~",
+            "female": "scriitoare de literatură pentru copii ~",
+        },
         "sq": {"male": "shkrimtar për fëmijë ~", "female": "shkrimtare për fëmijë ~"},
     },
 }
@@ -118,7 +145,10 @@ translationsOccupations_new = {
     },
     "~ former military officer": {
         "ar": {"male": "ضابط عسكري سابق ~", "female": "ضابطة عسكرية سابقة ~"},
-        "en": {"male": "~ former military officer", "female": "~ former military officer"},
+        "en": {
+            "male": "~ former military officer",
+            "female": "~ former military officer",
+        },
     },
     "~ researcher": {
         "ar": {"male": "باحث ~", "female": "باحثة ~"},
@@ -133,7 +163,10 @@ translationsOccupations_new = {
         "en": {"male": "~ military officer", "female": "~ military officer"},
     },
     "~ medievalist": {
-        "ar": {"male": "مختص في الدراسات القروسطية ~", "female": "مختصة في الدراسات القروسطية ~"},
+        "ar": {
+            "male": "مختص في الدراسات القروسطية ~",
+            "female": "مختصة في الدراسات القروسطية ~",
+        },
         "en": {"male": "~ medievalist", "female": "~ medievalist"},
         "es": {"male": "medievalista ~", "female": "medievalista ~"},
     },
@@ -170,12 +203,18 @@ translationsOccupations_new = {
     "~ racing driver": {
         "ar": {"male": "سائق سباق ~", "female": "سائقة سباق ~"},
         "en": {"male": "~ racing driver", "female": "~ racing driver"},
-        "es": {"male": "piloto de automovilismo ~", "female": "piloto de automovilismo ~"},
+        "es": {
+            "male": "piloto de automovilismo ~",
+            "female": "piloto de automovilismo ~",
+        },
     },
     "~ basketball coach": {
         "ar": {"male": "مدرب كرة سلة ~", "female": "مدربة كرة سلة ~"},
         "en": {"male": "~ basketball coach", "female": "~ basketball coach"},
-        "es": {"male": "entrenador de baloncesto ~", "female": "entrenadora de baloncesto ~"},
+        "es": {
+            "male": "entrenador de baloncesto ~",
+            "female": "entrenadora de baloncesto ~",
+        },
     },
     "~ violinist": {
         "ar": {"male": "عازف كمان ~", "female": "عازفة كمان ~"},
@@ -390,12 +429,18 @@ translationsOccupations_new = {
     "~ ice hockey player": {
         "ar": {"male": "لاعب هوكي الجليد ~", "female": "لاعبة هوكي الجليد ~"},
         "en": {"male": "~ ice hockey player", "female": "~ ice hockey player"},
-        "es": {"male": "jugador de hockey sobre hielo ~", "female": "jugadora de hockey sobre hielo ~"},
+        "es": {
+            "male": "jugador de hockey sobre hielo ~",
+            "female": "jugadora de hockey sobre hielo ~",
+        },
     },
     "~ field hockey player": {
         "ar": {"male": "لاعب هوكي الحقل ~", "female": "لاعبة هوكي الحقل ~"},
         "en": {"male": "~ field hockey player", "female": "~ field hockey player"},
-        "es": {"male": "jugador de hockey sobre hierba ~", "female": "jugadora de hockey sobre hierba ~"},
+        "es": {
+            "male": "jugador de hockey sobre hierba ~",
+            "female": "jugadora de hockey sobre hierba ~",
+        },
     },
     "~ geneticist": {
         "ar": {"male": "عالم وراثة ~", "female": "عالمة وراثة ~"},
@@ -425,7 +470,10 @@ translationsOccupations_new = {
     "~ legal historian": {
         "ar": {"male": "مؤرخ قانون ~", "female": "مؤرخة قانون ~"},
         "en": {"male": "~ legal historian", "female": "~ legal historian"},
-        "es": {"male": "historiador del derecho ~", "female": "historiadora del derecho ~"},
+        "es": {
+            "male": "historiador del derecho ~",
+            "female": "historiadora del derecho ~",
+        },
     },
     "~ librarian": {
         "ar": {"male": "أمين مكتبة ~", "female": "أمينة مكتبة ~"},
@@ -444,7 +492,10 @@ translationsOccupations_new = {
     },
     "~ association football referee": {
         "ar": {"male": "حكم كرة قدم ~", "female": "حكمة كرة قدم ~"},
-        "en": {"male": "~ association football referee", "female": "~ association football referee"},
+        "en": {
+            "male": "~ association football referee",
+            "female": "~ association football referee",
+        },
         "es": {"male": "árbitro de fútbol ~", "female": "árbitra de fútbol ~"},
     },
     "~ anatomist": {
@@ -500,7 +551,10 @@ translationsOccupations_new = {
     "~ motorcycle racer": {
         "ar": {"male": "متسابق دراجات نارية ~", "female": "متسابقة دراجات نارية ~"},
         "en": {"male": "~ motorcycle racer", "female": "~ motorcycle racer"},
-        "es": {"male": "piloto de motociclismo ~", "female": "piloto de motociclismo ~"},
+        "es": {
+            "male": "piloto de motociclismo ~",
+            "female": "piloto de motociclismo ~",
+        },
     },
     "~ musicologist": {
         "ar": {"male": "عالم موسيقي ~", "female": "عالمة موسيقي ~"},

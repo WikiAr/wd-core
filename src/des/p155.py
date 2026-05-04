@@ -92,11 +92,8 @@ def make_newlabel(label, ar, en):
         flags=re.IGNORECASE,
     )
     newlabel = re.sub(
-        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race", r" سباق الطريق \g<1> للرجال ", newlabel, flags=re.IGNORECASE
-    )
-    newlabel = re.sub(
-        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase",
-        r" رجال \g<1> متر حواجز خيول ",
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) road race",
+        r" سباق الطريق \g<1> للرجال ",
         newlabel,
         flags=re.IGNORECASE,
     )
@@ -107,15 +104,42 @@ def make_newlabel(label, ar, en):
         flags=re.IGNORECASE,
     )
     newlabel = re.sub(
-        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles", r" رجال \g<1> متر حواجز ", newlabel, flags=re.IGNORECASE
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) steeplechase",
+        r" رجال \g<1> متر حواجز خيول ",
+        newlabel,
+        flags=re.IGNORECASE,
     )
     newlabel = re.sub(
-        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk", r" رجال \g<1> متر مشي ", newlabel, flags=re.IGNORECASE
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles",
+        r" رجال \g<1> متر حواجز ",
+        newlabel,
+        flags=re.IGNORECASE,
     )
-    newlabel = re.sub(r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m)", r" رجال \g<1> متر ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" men\'s (\d+|\d+\.\d+) metre", r" رجال \g<1> متر ", newlabel, flags=re.IGNORECASE)
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk",
+        r" رجال \g<1> متر مشي ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+)\s*(?:metres|m)",
+        r" رجال \g<1> متر ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+) metre",
+        r" رجال \g<1> متر ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
     newlabel = re.sub(r" men\'s (\d+|\d+\.\d+) kg", r" رجال \g<1> كجم ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" men\'s (\d+|\d+\.\d+) kilometres", r" رجال \g<1> كيلوجرام ", newlabel, flags=re.IGNORECASE)
+    newlabel = re.sub(
+        r" men\'s (\d+|\d+\.\d+) kilometres",
+        r" رجال \g<1> كيلوجرام ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
     # ---
     newlabel = re.sub(
         r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) time trial",
@@ -136,18 +160,47 @@ def make_newlabel(label, ar, en):
         flags=re.IGNORECASE,
     )
     newlabel = re.sub(
-        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles", r" سيدات \g<1> متر حواجز ", newlabel, flags=re.IGNORECASE
+        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) hurdles",
+        r" سيدات \g<1> متر حواجز ",
+        newlabel,
+        flags=re.IGNORECASE,
     )
     newlabel = re.sub(
-        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk", r" سيدات \g<1> متر مشي ", newlabel, flags=re.IGNORECASE
+        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m) walk",
+        r" سيدات \g<1> متر مشي ",
+        newlabel,
+        flags=re.IGNORECASE,
     )
-    newlabel = re.sub(r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m)", r" سيدات \g<1> متر ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" women\'s (\d+|\d+\.\d+) metre", r" سيدات \g<1> متر ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" women\'s (\d+|\d+\.\d+) kg", r" سيدات \g<1> كجم ", newlabel, flags=re.IGNORECASE)
-    newlabel = re.sub(r" women\'s (\d+|\d+\.\d+) kilometres", r" سيدات \g<1> كيلوجرام ", newlabel, flags=re.IGNORECASE)
+    newlabel = re.sub(
+        r" women\'s (\d+|\d+\.\d+)\s*(?:metres|m)",
+        r" سيدات \g<1> متر ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" women\'s (\d+|\d+\.\d+) metre",
+        r" سيدات \g<1> متر ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" women\'s (\d+|\d+\.\d+) kg",
+        r" سيدات \g<1> كجم ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r" women\'s (\d+|\d+\.\d+) kilometres",
+        r" سيدات \g<1> كيلوجرام ",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
     # ---
     newlabel = re.sub(
-        r" (\d|\d+|\d+\.\d+) to (\d|\d+|\d+\.\d+) ton", r" \g<1> إلى \g<2> طن", newlabel, flags=re.IGNORECASE
+        r" (\d|\d+|\d+\.\d+) to (\d|\d+|\d+\.\d+) ton",
+        r" \g<1> إلى \g<2> طن",
+        newlabel,
+        flags=re.IGNORECASE,
     )
     # ---
     # newlabel2 = newlabel
@@ -161,14 +214,30 @@ def make_newlabel(label, ar, en):
     for xx in Mako_keys2:
         newlabel = re.sub(xx, Mako_keys2[xx], newlabel, flags=re.IGNORECASE)
     # ---
-    newlabel = re.sub(r"at the summer olympics", "في الألعاب الأولمبية الصيفية", newlabel, flags=re.IGNORECASE)
     newlabel = re.sub(
-        r"at the summer youth olympics", "في الألعاب الأولمبية الشبابية الصيفية", newlabel, flags=re.IGNORECASE
+        r"at the summer olympics",
+        "في الألعاب الأولمبية الصيفية",
+        newlabel,
+        flags=re.IGNORECASE,
     )
     newlabel = re.sub(
-        r"at the winter youth olympics", "في الألعاب الأولمبية الشبابية الشتوية", newlabel, flags=re.IGNORECASE
+        r"at the summer youth olympics",
+        "في الألعاب الأولمبية الشبابية الصيفية",
+        newlabel,
+        flags=re.IGNORECASE,
     )
-    newlabel = re.sub(r"at the winter olympics", "في الألعاب الأولمبية الشتوية", newlabel, flags=re.IGNORECASE)
+    newlabel = re.sub(
+        r"at the winter youth olympics",
+        "في الألعاب الأولمبية الشبابية الشتوية",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
+    newlabel = re.sub(
+        r"at the winter olympics",
+        "في الألعاب الأولمبية الشتوية",
+        newlabel,
+        flags=re.IGNORECASE,
+    )
     # ---
     for aeo in Mako_keys_4:
         newlabel = re.sub(f" {aeo}", f" {Mako_keys_4[aeo]}", newlabel, flags=re.IGNORECASE)
@@ -528,7 +597,8 @@ def main():
         if arg == "sky":
             # Quarry['use']  = Quarry['use'].replace("#sr" , "?item (wdt:P3450|wdt:P361) ?P361. ?P361 (wdt:P3450|wdt:P361) wd:Q285389. \n#sr\n" )
             Quarry["use"] = Quarry["use"].replace(
-                "#sr", "?item (wdt:P31|wdt:P361) ?P361. ?P361 (wdt:P31/wdt:P279*|wdt:P361) wd:Q18536594. \n#sr\n"
+                "#sr",
+                "?item (wdt:P31|wdt:P361) ?P361. ?P361 (wdt:P31/wdt:P279*|wdt:P361) wd:Q18536594. \n#sr\n",
             )
         # ---
         if arg == "save":

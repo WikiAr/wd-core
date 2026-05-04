@@ -208,7 +208,10 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
         labr = others_list[type_of_item]["ar"]
         if orig_desc in [labr, ""]:
             my_description = its_something_in_a_country(wditem, labr)
-            if type_of_item in qura and my_description in [qura[type_of_item]["P31"], ""]:
+            if type_of_item in qura and my_description in [
+                qura[type_of_item]["P31"],
+                "",
+            ]:
                 my_description = "{} في {}".format(qura[type_of_item]["P31"], qura[type_of_item]["P17"])
     # ---
     if not my_description:

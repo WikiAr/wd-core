@@ -72,7 +72,17 @@ class WD_Labels:
             logger.exception("Exception:", exc_info=True)
 
     def Labels_API(
-        self, Qid, label, lang, ret, Or_Alii=False, change_des=False, number=0, nowait=False, tage="", remove=False
+        self,
+        Qid,
+        label,
+        lang,
+        ret,
+        Or_Alii=False,
+        change_des=False,
+        number=0,
+        nowait=False,
+        tage="",
+        remove=False,
     ):
         # ---
         if lag_bot.bad_lag(nowait):
@@ -120,7 +130,7 @@ class WD_Labels:
         if d == "warn":
             logger.exception("Exception:", exc_info=True)
 
-    def Add_Labels_if_not_there(self, Qid, label, lang, ASK="", Or_Alii=False, nowait=False):
+    def Add_Labels_if_not_there(self, Qid, label, lang, ask="", Or_Alii=False, nowait=False):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""
@@ -154,7 +164,7 @@ class WD_Labels:
             logger.info(f'<<purple>> already there "mul" lab "{mul_labels}" in {Qid}')
             return False
         # ---
-        if ASK or "ask" in sys.argv and label_ask[1]:
+        if ask or "ask" in sys.argv and label_ask[1]:
             asa = ask_put(f'<<lightyellow>>: Do you want add "{label}" to "{Qid}"?')
             if asa == "a":
                 label_ask[1] = False

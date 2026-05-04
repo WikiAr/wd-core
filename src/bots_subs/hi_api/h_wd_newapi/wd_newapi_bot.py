@@ -4,7 +4,7 @@ import logging
 import sys
 import time
 
-from newapi import Login
+from newapi import WikiLoginClient
 
 from ..utils import lag_bot
 from ..utils.handle_wd_errors import WD_ERRORS_HANDLER
@@ -12,10 +12,10 @@ from ..utils.handle_wd_errors import WD_ERRORS_HANDLER
 logger = logging.getLogger(__name__)
 
 
-class WD_API(WD_ERRORS_HANDLER):
+class WdAPI(WD_ERRORS_HANDLER):
     def __init__(self, login_bot, mr_or_bot="bot"):
         # ---
-        self.login_bot: Login = login_bot
+        self.login_bot: WikiLoginClient = login_bot
         # ---
         self.lang = "test" if "testwikidata" in sys.argv else "www"
         self.family = "wikidata"
@@ -24,7 +24,7 @@ class WD_API(WD_ERRORS_HANDLER):
         # ---
         WD_ERRORS_HANDLER.__init__(self)
         # ---
-        logger.info(f"<<lightgreen>> WD_API: {mr_or_bot}, {self.usernamex=} \n")
+        logger.info(f"<<lightgreen>> WdAPI: {mr_or_bot}, {self.usernamex=} \n")
 
     def post_to_newapi(self, params={}, data={}, tage="", editgroups="", max_retry=0, **kwargs):
         # ---
@@ -33,7 +33,7 @@ class WD_API(WD_ERRORS_HANDLER):
         # ---
         params = self.filter_data(params, tage=tage, editgroups=editgroups)
         # ---
-        results = self.login_bot.post_params(params, Type="get", GET_CSRF=True, do_error=False, max_retry=max_retry)
+        results = self.login_bot.post_params(params, request_type="get", get_csrf=True, do_error=False, max_retry=max_retry)
         # ---
         if results.get("servedby"):
             results["servedby"] = ""
