@@ -42,7 +42,7 @@ class WD_ERRORS_HANDLER:
         err_code = error.get("code", "")
         err_info = error.get("info", "")
         # ---
-        tt = f"<<lightred>>{function} ERROR: <<defaut>>code:{err_code}."
+        tt = f"<<lightred>>{function} ERROR: <<default>>code:{err_code}."
         logger.info(tt)
         # ---["protectedpage", 'تأخير البوتات 3 ساعات', False]
         if err_code == "abusefilter-disallowed":
@@ -79,7 +79,7 @@ class WD_ERRORS_HANDLER:
             return False
         # ---
         params["data"] = {}
-        logger.info(f"<<lightred>>{function} ERROR: <<defaut>>info: {err_info}, {params=}")
+        logger.info(f"<<lightred>>{function} ERROR: <<default>>info: {err_info}, {params=}")
         # ---
         if "raise" in sys.argv:
             raise Exception(error)

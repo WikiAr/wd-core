@@ -125,7 +125,7 @@ def mainwithcat2():
             namespaces = value
     # ---
     api = load_main_api("www", "wikidata")
-    api_new = api.NEW_API()
+    api_new = api.NewApi()
     # ---
     if file:
         if not file.startswith(main_dir1):

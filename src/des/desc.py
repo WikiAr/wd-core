@@ -164,7 +164,7 @@ def get_property_label_for_qids(properties, List):
         print(text)
     # ---
     api = load_main_api("ar")
-    jso = api.NEW_API().Parse_Text(text, "ويكيبيديا:ملعب")
+    jso = api.NewApi().Parse_Text(text, "ويكيبيديا:ملعب")
     # ---
     if not jso:
         logger.info('get_property_label_for_qids: jso == ""')

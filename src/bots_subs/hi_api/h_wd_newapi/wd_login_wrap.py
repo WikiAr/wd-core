@@ -4,10 +4,10 @@ import os
 import sys
 
 try:
-    from newapi import ALL_APIS
+    from newapi import AllAPIS
 except ImportError:
     sys.path.append("I:/core/bots/new/newapi_bot")
-    from newapi import ALL_APIS
+    from newapi import AllAPIS
 
 from newapi import Login
 
@@ -46,7 +46,7 @@ def log_in_wikidata(mr_or_bot="bot", www="www") -> Login:
     if www != "www":
         www2 = www
     # ---
-    api = ALL_APIS(
+    api = AllAPIS(
         lang=www2,
         family="wikidata",
         username=users_data["username"],

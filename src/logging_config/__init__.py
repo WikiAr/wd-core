@@ -143,7 +143,7 @@ def prepare_log_file(log_file: str | None, project_logger: logging.Logger) -> Pa
 
 def setup_logging(
     name: str = __name__,
-    level: str = "DEBUG",
+    level: str = "INFO",
     log_file: str | None = None,
     propagate: bool = False,
 ) -> None:

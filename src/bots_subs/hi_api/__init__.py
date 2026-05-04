@@ -3,7 +3,7 @@
 from newapi import Login
 
 from .h_wd_newapi.wd_login_wrap import log_in_wikidata
-from .h_wd_newapi.wd_newapi_bot import WD_API
+from .h_wd_newapi.wd_newapi_bot import WdAPI
 from .req_bots_new import claims_wd, descriptions_wd, labels_wd
 
 
@@ -12,7 +12,7 @@ class HimoAPIBot:
         # ---
         self.login_bot: Login = log_in_wikidata(mr_or_bot=mr_or_bot, www=www)
         # ---
-        self.wdapi_new = WD_API(self.login_bot, mr_or_bot=mr_or_bot)
+        self.wdapi_new = WdAPI(self.login_bot, mr_or_bot=mr_or_bot)
         # ---
         self.session_post = self.wdapi_new.post_to_newapi
 
