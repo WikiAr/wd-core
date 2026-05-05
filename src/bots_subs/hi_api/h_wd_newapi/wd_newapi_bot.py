@@ -33,7 +33,7 @@ class WdAPI(WD_ERRORS_HANDLER):
         # ---
         params = self.filter_data(params, tage=tage, editgroups=editgroups)
         # ---
-        results = self.login_bot.post_params(params, request_type="get", get_csrf=True, do_error=False, max_retry=max_retry)
+        results = self.login_bot.post_params(params, method="get", get_csrf=True, do_error=False, max_retry=max_retry)
         # ---
         if results.get("servedby"):
             results["servedby"] = ""
