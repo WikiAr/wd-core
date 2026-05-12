@@ -20,7 +20,7 @@ class WdAPI(WD_ERRORS_HANDLER):
         self.lang = "test" if "testwikidata" in sys.argv else "www"
         self.family = "wikidata"
         # ---
-        self.usernamex = self.login_bot.user_login
+        self.usernamex = self.login_bot.username
         # ---
         WD_ERRORS_HANDLER.__init__(self)
         # ---
