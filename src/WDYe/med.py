@@ -13,7 +13,7 @@ import sys
 import urllib
 import urllib.parse
 
-from api_page import load_main_api
+from shared.api_page import load_main_api
 from bots_subs import open_url
 from bots_subs.hi_api import HimoAPIBot
 from bots_subs.wd_api import wd_sparql_bot

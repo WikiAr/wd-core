@@ -46,7 +46,7 @@ import logging
 import re
 import sys
 
-from api_page import load_main_api
+from shared.api_page import load_main_api
 from bots_subs.hi_api import HimoAPIBot
 from bots_subs.qs_bot import QS_line
 from bots_subs.wd_api import wd_bot
