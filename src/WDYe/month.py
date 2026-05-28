@@ -37,8 +37,3 @@ def main_from_quarry(topic):
     if sys.argv and "OFFSET" in sys.argv:
         Quarry = f"{Quarry} OFFSET 100000"
     newdesc.mainfromQuarry2(topic, Quarry, translations)
-
-
-if __name__ == "__main__":
-    main_from_quarry("island in Indonesia")
-    main_from_quarry("month")

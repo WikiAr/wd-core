@@ -7,7 +7,6 @@ import sys
 from unittest.mock import MagicMock, patch
 
 import pytest
-
 from pytest_socket import disable_socket
 
 

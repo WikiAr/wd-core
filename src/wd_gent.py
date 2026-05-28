@@ -7,9 +7,10 @@ from typing import Iterable
 import pywikibot
 from pywikibot import pagegenerators
 
-from api_page import load_main_api
+from shared.api_page import load_main_api
 
 logger = logging.getLogger(__name__)
+
 
 def fetch_user_new_pages(limit="max", namespace="0", user=""):
     api = load_main_api("www", "wikidata")

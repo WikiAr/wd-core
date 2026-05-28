@@ -24,8 +24,6 @@ translations = {
 # newdesc.mainfromQuarry2( topic, Quarry, translations)
 # newdesc.Quarry_with_item_langs( p31, Quarry, translations)
 
-# from API.replacement import replacement
-
 
 def work2_with_replacement(item, topic, translations, replacement_ke):
     item.get()

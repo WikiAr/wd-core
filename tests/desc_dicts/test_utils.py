@@ -3,7 +3,6 @@ import json
 import os
 
 import pytest
-
 from src.wd_utils.utils import (
     are_dates_same,
     get_file_date,

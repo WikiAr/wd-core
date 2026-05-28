@@ -1,8 +1,10 @@
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/WikiAr/wd-core)
 
-# wd-core
+# wd_core
 
-wikidata core
+A Wikidata bot framework focused on programmatically enriching Wikidata items with Arabic-language (and multilingual) labels, descriptions, aliases, and claims. Queries Wikidata via SPARQL, identifies items needing Arabic metadata, generates translations through lookup tables and AI (Google Gemini), and writes results back via the Wikidata API.
+
+Deployed to [Wikimedia Toolforge](https://toolforge.org/).
 
 ## New Feature: Dump File Reader and Descriptions Adder
 
@@ -43,19 +45,19 @@ This feature generates a table that displays the number of labels, descriptions,
 -   The `read_dump` command may take a long time to run for large dump files.
 -   The `add_descriptions` command may not add descriptions to all new Wikidata items if there are too many new items.
 
-# Entry points:
+## Shared Module Dependencies
 
--   [src/alabel/labels.py](src/alabel/labels.py)
+This repo imports shared modules from [`shared/`](https://github.com/MrIbrahem/arwiki_shared): `himo_api`, `wd_api`, `logging_config`, `new_all`, `gent`, `likeapi`.
 
--   [src/cy/jsub.py](src/cy/jsub.py)
+Note: `wd_core` also has its own internal `bots_subs/hi_api/` and `bots_subs/wd_api/` layers. The `newapi` package (external) provides `WikiLoginClient` and `AllAPIS`.
 
--   [src/des/fam.py](src/des/fam.py)
+## Entry Points
 
--   [src/nep/si3g.py](src/nep/si3g.py)
--   [src/nep/si3g_qua.py](src/nep/si3g_qua.py)
-
--   [src/neq/nldes3.py](src/neq/nldes3.py)
-
--   [src/people/new3.py](src/people/new3.py)
-
--   [src/lex-examples/gemini_new.py](src/lex-examples/gemini_new.py)
+-   [src/alabel/labels.py](src/alabel/labels.py) -- Arabic labels from sitelinks
+-   [src/cy/jsub.py](src/cy/jsub.py) -- Cycling race results bot
+-   [src/des/fam.py](src/des/fam.py) -- Generic description adder
+-   [src/nep/si3g.py](src/nep/si3g.py) -- Main description bot (new pages)
+-   [src/nep/si3g_qua.py](src/nep/si3g_qua.py) -- SPARQL-based people descriptions
+-   [src/neq/nldes3.py](src/neq/nldes3.py) -- Missing Arabic description finder
+-   [src/people/new3.py](src/people/new3.py) -- People description bot
+-   [src/prop_labs/fill_ar_props.py](src/prop_labs/fill_ar_props.py) -- AI-powered property translation

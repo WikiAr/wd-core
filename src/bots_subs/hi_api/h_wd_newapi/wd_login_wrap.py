@@ -3,13 +3,7 @@
 import os
 import sys
 
-try:
-    from newapi import AllAPIS
-except ImportError:
-    sys.path.append("I:/core/bots/new/newapi_bot")
-    from newapi import AllAPIS
-
-from newapi import WikiLoginClient
+from newapi import AllAPIS, WikiLoginClient
 
 
 def _load_credentials(mr_or_bot) -> dict[str, str]:
