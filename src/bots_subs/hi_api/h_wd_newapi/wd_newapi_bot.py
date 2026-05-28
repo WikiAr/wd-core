@@ -33,7 +33,12 @@ class WdAPI(WD_ERRORS_HANDLER):
         # ---
         params = self.filter_data(params, tage=tage, editgroups=editgroups)
         # ---
-        results = self.login_bot.post_params(params, method="get", get_csrf=True, do_error=False, max_retry=max_retry)
+        try:
+            results = self.login_bot.client_request(
+                params, method="get", get_csrf=True, do_error=False, max_retry=max_retry,)
+        except Exception as e:
+            logger.error(f"<<purple>>post_to_newapi: <<red>> {e}")
+            results = {}
         # ---
         if results.get("servedby"):
             results["servedby"] = ""
@@ -44,7 +49,8 @@ class WdAPI(WD_ERRORS_HANDLER):
         if error_code == "maxlag" and max_retry < 4:
             self.lag_work(error)
             # ---
-            logger.info(f"<<purple>>post_to_newapi: <<red>> lag_work: {max_retry=}")
+            logger.info(
+                f"<<purple>>post_to_newapi: <<red>> lag_work: {max_retry=}")
             # ---
             return self.post_to_newapi(params=params, tage=tage, editgroups=editgroups, max_retry=max_retry + 1)
         # ---
@@ -52,7 +58,8 @@ class WdAPI(WD_ERRORS_HANDLER):
             # ---
             er = self.handle_err_wd(error, function="", params=params)
             # ---
-            logger.info(f"<<purple>>post_to_newapi: <<red>> handle_err_wd: {er}")
+            logger.info(
+                f"<<purple>>post_to_newapi: <<red>> handle_err_wd: {er}")
             # return er
         # ---
         success = results.get("success", 0)
@@ -62,7 +69,8 @@ class WdAPI(WD_ERRORS_HANDLER):
             # {"entity":{"sitelinks":{"arwiki":{}},"id":"Q97928551","type":"item","lastrevid":1242627521,"nochange":""},"success":1}
             # ---
             if lag_bot.newsleep[1] != 0:
-                logger.info(f"<<lightgreen>> ** true. sleep({lag_bot.newsleep[1]})")
+                logger.info(
+                    f"<<lightgreen>> ** true. sleep({lag_bot.newsleep[1]})")
                 time.sleep(lag_bot.newsleep[1])
             else:
                 logger.info("<<lightgreen>> ** true.")
