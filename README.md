@@ -47,7 +47,7 @@ This feature generates a table that displays the number of labels, descriptions,
 
 ## Shared Module Dependencies
 
-This repo imports shared modules from `shared/`: `himo_api`, `wd_api`, `logging_config`, `new_all`, `gent`, `likeapi`.
+This repo imports shared modules from [`shared/`](https://github.com/MrIbrahem/arwiki_shared): `himo_api`, `wd_api`, `logging_config`, `new_all`, `gent`, `likeapi`.
 
 Note: `wd_core` also has its own internal `bots_subs/hi_api/` and `bots_subs/wd_api/` layers. The `newapi` package (external) provides `WikiLoginClient` and `AllAPIS`.
 
