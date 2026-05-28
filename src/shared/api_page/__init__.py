@@ -1,5 +1,5 @@
 """
-from api_page import load_main_api
+from shared.API_page import load_main_api
 api = load_main_api("en", "wikipedia")
 page = api.MainPage('Main Page Title')
 cat_members = api.CatDepth('Category Title')

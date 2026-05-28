@@ -2,7 +2,7 @@
 """
 Output JSON handling
 
-This module provides functions for handling JSON output from API calls.
+This module provides functions for handling JSON output from shared.API calls.
 """
 
 import logging

@@ -3,11 +3,6 @@
 import os
 import sys
 
-try:
-    from newapi import AllAPIS
-except ImportError:
-    sys.path.append("I:/BOTS_SUPER/REPO/src/shared/newapi_bot")
-    
 from newapi import AllAPIS
 from newapi import WikiLoginClient
 

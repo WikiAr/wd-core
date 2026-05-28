@@ -3,8 +3,6 @@
 
 """
 
-from wd_Session import WikidataSession
-
 """
 
 import logging

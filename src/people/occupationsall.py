@@ -632,9 +632,3 @@ for x, yy in translationsOccupations_new.items():
 for yy in translationsOccupations.values():
     if "ar" in yy and yy["ar"]["male"] == yy["ar"]["female"]:
         print(f" male:{yy['ar']['male']} == female")
-
-
-if __name__ == "__main__":
-    # python3 core8/pwb.py people/occupationsall
-    for k in translationsOccupations.keys():
-        print(f'\t"{k}" : "",')
