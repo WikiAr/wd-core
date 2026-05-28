@@ -372,6 +372,25 @@ The codebase is functional but suffers from pervasive quality issues across all 
 
 ---
 
+## Shared Module Dependencies
+
+This repo imports the following shared modules from `shared/`:
+
+| Module | Import | Usage |
+|--------|--------|-------|
+| `himo_api` | `from himo_api import New_Himo_API` | Wikidata bot API (`NewHimoAPIBot`) for authenticated item editing |
+| `wd_api` | `from wd_api import wd_sparql_bot` | Wikidata SPARQL queries for item discovery |
+| `logging_config` | `from logging_config import setup_logging` | Colored logging with Toolforge config |
+| `new_all` | `from new_all import ...` | Unified bot runner/orchestrator |
+| `gent` | `from gent import ...` | Generator list utilities for page iteration |
+| `likeapi` | `from likeapi import ...` | Template processing, references, encoding |
+
+Note: `wd_core` also has its own internal `bots_subs/hi_api/` and `bots_subs/wd_api/` layers that provide Wikidata API access. The shared modules above are used for supplementary functionality and the `newapi` package (external) provides `WikiLoginClient` and `AllAPIS`.
+
+See [`shared/`](../shared/) for module-level READMEs and architecture reviews.
+
+---
+
 ## Final Evaluation
 
 ### Overall Project Score: 4/10
