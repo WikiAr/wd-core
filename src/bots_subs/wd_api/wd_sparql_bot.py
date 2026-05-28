@@ -1,10 +1,11 @@
 """ """
 
+import json
 import logging
 import sys
 from datetime import datetime
-import json
 from urllib.error import HTTPError, URLError
+
 from SPARQLWrapper import JSON, SPARQLWrapper
 
 logger = logging.getLogger(__name__)

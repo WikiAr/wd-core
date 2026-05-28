@@ -25,7 +25,6 @@ translations = {
 # newdesc.Quarry_with_item_langs( p31, Quarry, translations)
 
 
-
 def work2_with_replacement(item, topic, translations, replacement_ke):
     item.get()
     # logger.info( '<<lightyellow>> **newdesc: work2:'  + item.title(as_link=False))

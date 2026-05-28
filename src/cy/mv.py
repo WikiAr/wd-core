@@ -18,9 +18,9 @@ import logging
 import sys
 
 import tqdm
+import wd_gent
 import wikitextparser as wtp
 
-import wd_gent
 from shared.api_page import load_main_api
 
 logger = logging.getLogger(__name__)

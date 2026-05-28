@@ -22,9 +22,9 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 
 """
 
+import wd_gent
 from cy_bot.do_text import do_One_Page
 
-import wd_gent
 from shared.api_page import load_main_api
 
 skip_titles = [
