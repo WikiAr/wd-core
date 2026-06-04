@@ -8,7 +8,6 @@ from pathlib import Path
 
 from bots_subs import wiki_sql
 
-# Dump_Dir = Path(__file__).parent                      # /data/project/himo/bots/dump_core/dump/labels
 Himo_Dir = Path(__file__).parent.parent.parent.parent  # Dump_Dir:/data/project/himo
 
 Dump_Dir = "/data/project/himo/bots/dumps"
