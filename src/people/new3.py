@@ -192,7 +192,7 @@ translations_o = {1: {}, 2: {}}
 translations_for_nat = {1: {}}
 
 
-def make_Tabs(tabs):
+def make_Tabs(tabs) -> None:
     # من هذا البوت
     # TraOc = translationsOccupations
     TraNat = tabs["Nationalities"]
@@ -297,7 +297,7 @@ translations_o_lower = translations_o[2]
 q_dones = []
 
 
-def start_one_nat(nat_tab):
+def start_one_nat(nat_tab) -> None:
     # ---
     check = check_quarry_new(nat_tab)
     # ---
@@ -337,7 +337,7 @@ def start_one_nat(nat_tab):
             work_api_desc(NewDesc, q)
 
 
-def mainnat(Tabs):  # translations_for_nat
+def mainnat(Tabs) -> None:  # translations_for_nat
     # ---
     # python pwb.py people/new3 mainnat -nat:American
     #
@@ -371,7 +371,7 @@ def mainnat(Tabs):  # translations_for_nat
     logger.info("انتهت بنجاح")
 
 
-def Main_Test():
+def Main_Test() -> None:
     qua = (
         "SELECT ?item WHERE { ?item wdt:P31 wd:Q5 . ?item wdt:P21 wd:Q6581097"
         + ' . ?item schema:description "Argentinian actor"@en.  '

@@ -72,7 +72,7 @@ def Make_railway_desc(wditem, p31):
     return work_railway(wditem, p31)
 
 
-def action_one_P131_item(lng, oneitem):
+def action_one_P131_item(lng, oneitem) -> int:
     global totaledits
     if lng in oneitem.get("descriptions", {}):
         nld = oneitem.get("descriptions", {}).get(lng, "")
@@ -133,7 +133,7 @@ def action_one_P131_item(lng, oneitem):
     return 0
 
 
-def Add_desc(q, value, lang):
+def Add_desc(q, value, lang) -> None:
     WD_API_Bot.Des_API(q, value, lang, ask="")
 
 

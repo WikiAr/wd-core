@@ -29,7 +29,7 @@ if "ask" in sys.argv:
 
 
 class WikidataSession:
-    def __init__(self, username: str, password: str):
+    def __init__(self, username: str, password: str) -> None:
         self.s = requests.session()
         self.s.headers.update(HEADERS_API)
         self.username = username

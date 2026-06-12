@@ -138,13 +138,13 @@ if cache_file.exists():
             already_translated[pid_data["description"]["en"]] = pid_data["description"]["ar"]
 
 
-def translate_en_to_ar_wrap(text):
+def translate_en_to_ar_wrap(text: str):
     if already_translated.get(text):
         return already_translated[text]
     return translate_en_to_ar(text)
 
 
-def dump_all():
+def dump_all() -> None:
     logger.info("<<green>> dump_all():")
 
     with cache_file.open("w", encoding="utf-8") as f:
@@ -287,7 +287,7 @@ def start(args):
     print(f"[*] finished. labels added: {done_labels}, descriptions added: {done_descs}")
 
 
-def main():
+def main() -> None:
     ap = argparse.ArgumentParser(description="Fill Arabic labels/descriptions for Wikidata properties.")
     ap.add_argument("--limit", type=int, default=200, help="عدد الخصائص المطلوب جلبها من WDQS")
     ap.add_argument("--offset", type=int, default=0, help="إزاحة في نتائج WDQS")

@@ -19,7 +19,7 @@ MODEL = "openai/gpt-3.5-turbo"  # يمكنك تغيير النموذج حسب ا
 MODEL = "z-ai/glm-4.5-air:free"  # يمكنك تغيير النموذج حسب الحاجة
 
 
-def dump_all(cache_file, data):
+def dump_all(cache_file, data) -> None:
     print("<<green>> dump_all():")
 
     # حفظ ملف JSON المحدث
@@ -29,7 +29,7 @@ def dump_all(cache_file, data):
     print(" Dump saved to: data_translated.json")
 
 
-def translate_text(text):
+def translate_text(text: str):
     """ترجمة النص من الإنجليزية إلى العربية باستخدام OpenRouter API"""
     headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
 

@@ -50,7 +50,7 @@ def find_lag(err) -> None:
     time.sleep(FFa_lag[1] + 1)
 
 
-def make_sleep_def():
+def make_sleep_def() -> None:
     # ---
     frr = int(time.time() - Find_Lag[2])
     # ---
@@ -119,7 +119,7 @@ def make_sleep_def():
         newsleep[1] = fain
 
 
-def do_lag():
+def do_lag() -> None:
     GG = False
     # ---
     numb = 0
@@ -149,7 +149,7 @@ def do_lag():
             GG = False
 
 
-def bad_lag(nowait):
+def bad_lag(nowait) -> bool:
     # ---
     if "testwikidata" in sys.argv:
         return False

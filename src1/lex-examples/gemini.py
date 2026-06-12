@@ -48,7 +48,7 @@ for surah in tqdm(surahs):
             )
 
 
-def search_in_quran_new(word):
+def search_in_quran_new(word: str):
     results = words_to_add.get(word, [])
     return results
 
@@ -128,7 +128,7 @@ def get_arabic_lexemes():
     return lexemes
 
 
-def start():
+def start() -> None:
     lexemes = get_arabic_lexemes()
     for lexeme_id in tqdm(lexemes):
         extracted = get_forms_from_lexeme(lexeme_id)
@@ -137,7 +137,7 @@ def start():
                 json.dump(extracted, f, ensure_ascii=False, indent=2)
 
 
-def test():
+def test() -> None:
     lexeme_id = "L1478647"
     extracted = get_forms_from_lexeme(lexeme_id)
 

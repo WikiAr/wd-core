@@ -98,7 +98,7 @@ def get_qua():
     return qua
 
 
-def one_item(qid, num):
+def one_item(qid, num: int) -> None:
     # {'item': 'http://www.wikidata.org/entity/Q21457154', 'qid': 'Q21457154'}
     item = wd_bot.Get_Item_API_From_Qid(qid, props="claims|descriptions|labels")
     # ---
@@ -114,7 +114,7 @@ def one_item(qid, num):
     work_people(item, "", num, ardes)
 
 
-def main():
+def main() -> None:
     logger.info("*<<lightred>> > main:")
     # ---
     base_qua = get_qua()

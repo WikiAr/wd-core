@@ -26,7 +26,7 @@ from shared.api_page import load_main_api
 logger = logging.getLogger(__name__)
 
 
-def add_id_to_text(item, text):
+def add_id_to_text(item, text: str):
     parser = wtp.parse(text)
     # ---
     for template in parser.templates:
@@ -48,7 +48,7 @@ def add_id_to_text(item, text):
     return text
 
 
-def move_it_to_temp(title, item, text):
+def move_it_to_temp(title, item, text: str):
     # ---
     if not text:
         return None
@@ -70,7 +70,7 @@ def move_it_to_temp(title, item, text):
     return do
 
 
-def find_cy_temp(text):
+def find_cy_temp(text: str):
     start = "{{نتيجة سباق الدراجات/بداية"
     end = "{{نتيجة سباق الدراجات/نهاية}}"
     # ---
@@ -90,7 +90,7 @@ def find_cy_temp(text):
     return text[start_pos:end_pos]
 
 
-def one_page_work(title, text, item):
+def one_page_work(title, text: str, item):
     # ---
     cy_temp = find_cy_temp(text)
     # ---
@@ -111,7 +111,7 @@ def one_page_work(title, text, item):
     return text
 
 
-def onep(title):
+def onep(title) -> None:
     # ---
     ar_api = load_main_api("ar", "wikipedia")
     page = ar_api.MainPage(title)
@@ -157,7 +157,7 @@ def onep(title):
         page.save(newtext=new_text, summary="بوت:تجربة تحديث بيانات اللاعب")
 
 
-def split_pages(pages, parts=4):
+def split_pages(pages, parts: int=4):
     length = len(pages)
     part_size = length // parts
     remaining = length % parts
@@ -179,7 +179,7 @@ def split_pages(pages, parts=4):
     return pages
 
 
-def main2():
+def main2() -> None:
     generator = wd_gent.get_gent_list()
     # ---
     list_of_pages = list(tqdm.tqdm(generator))

@@ -118,7 +118,7 @@ qq = {"Hebrew calendar year": f'{SELECT} wdt:P31 wd:Q577  . ?item schema:descrip
 limiTa = ["Wikimedia category", "Wikimedia disambiguation page"]
 
 
-def main():
+def main() -> None:
     logger.info("*<<lightyellow>> main:")
     queries_list = sorted(list(queries.keys()))
     lenth = len(queries_list)
@@ -141,7 +141,7 @@ def main():
     logger.info("Finished successfully")
 
 
-def Main_Test():
+def Main_Test() -> None:
     wikidatasite = pywikibot.Site("wikidata", "wikidata")
     repo = wikidatasite.data_repository()
     # ---

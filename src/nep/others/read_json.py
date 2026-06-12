@@ -9,7 +9,7 @@ import re
 logger = logging.getLogger(__name__)
 
 
-def printo(s):
+def printo(s) -> None:
     logger.info(s)
 
 

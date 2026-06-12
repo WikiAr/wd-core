@@ -33,7 +33,7 @@ from people.people_get_topic import print_new_jobs
 logger = logging.getLogger(__name__)
 
 
-def work_a_desc(NewDesc, qid, fixlang):
+def work_a_desc(NewDesc, qid, fixlang) -> str:
     # ---
     if MainTestTable[1] or "dd" in sys.argv:
         logger.info("<<lightyellow>> Without save:")
@@ -44,7 +44,7 @@ def work_a_desc(NewDesc, qid, fixlang):
     work_api_desc(NewDesc, qid, fixlang=fixlang)
 
 
-def make_scientific_art(item, P31, num):
+def make_scientific_art(item, P31, num: int) -> None:
     # ---
     table = make_scientific_article(item, P31, num, TestTable=MainTestTable[1])
     # ---
@@ -55,7 +55,7 @@ def make_scientific_art(item, P31, num):
     work_a_desc(NewDesc, qid, rep_langs)
 
 
-def do_P1433_new_list(item, p31):
+def do_P1433_new_list(item, p31) -> None:
     # ---
     logger.info(" do_P1433_new_list: ")
     # ---
@@ -74,7 +74,7 @@ def do_P1433_new_list(item, p31):
         print("do_P1433_new_list nothing to add. ")
 
 
-def work_new_list(item, p31, ardes):
+def work_new_list(item, p31, ardes) -> None:
     # ---
     logger.info(f" work_new_list: {ardes=}")
     # ---
@@ -119,7 +119,7 @@ def work_new_list(item, p31, ardes):
         print("work_new_list nothing to add. ")
 
 
-def work_qid_desc(item, topic, num):
+def work_qid_desc(item, topic, num: int) -> None:
     logger.info("<<lightyellow>>  work_qid_desc: ")
     q = item["q"]
     descriptions = item.get("descriptions", {})
@@ -152,7 +152,7 @@ def work_qid_desc(item, topic, num):
     work_a_desc(NewDesc, q, [])
 
 
-def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
+def ISRE(qitem, num: int, lenth, no_donelist: bool=True, P31_list: bool=False, get_nl_des: bool=True):
     # ---
     logger.info(f"--- *<<lightyellow>> >{num}/{lenth}: q:{qitem}")
     # ---
@@ -251,7 +251,7 @@ def ISRE(qitem, num, lenth, no_donelist=True, P31_list=False, get_nl_des=True):
             new_types[P31] += 1
 
 
-def print_new_types():
+def print_new_types() -> None:
     lists = [[y, x] for x, y in new_types.items()]
     lists.sort(reverse=True)
     # ---

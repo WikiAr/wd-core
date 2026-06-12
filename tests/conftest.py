@@ -11,5 +11,5 @@ from pytest_socket import disable_socket
 
 
 @pytest.fixture(autouse=True)
-def stop_nets():
+def stop_nets() -> None:
     disable_socket(allow_unix_socket=True)

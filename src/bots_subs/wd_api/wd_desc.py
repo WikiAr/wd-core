@@ -180,7 +180,7 @@ def wwdesc(newdesc, qid, i, fixlang, ask="", tage=""):
         logger.info(skipp)
 
 
-def work_api_desc(newdesc, qid, fixlang=[]):
+def work_api_desc(newdesc, qid, fixlang=[]) -> None:
     # ---
     newdesc = del_keys(newdesc)
     # ---

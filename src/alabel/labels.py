@@ -60,7 +60,7 @@ if Limit[1]:
     Quaa += f"limit {Limit[1]}"
 
 
-def main():
+def main() -> None:
     # python3 core8/pwb.py alabel/labels -limit:20
     # ---
     logger.info(Quaa)

@@ -185,7 +185,7 @@ def get_property_label_for_qids(properties, List):
     return newtabe
 
 
-def descqs(q, value, lang):
+def descqs(q, value, lang) -> None:
     if len(New_QS[1]) < QSlimit[1]:
         qsline = f'{q}|D{lang}|"{value}"'
         New_QS[1].append(qsline)
@@ -196,7 +196,7 @@ def descqs(q, value, lang):
         New_QS[1] = []
 
 
-def Add_desc(q, value, lang):
+def Add_desc(q, value, lang) -> str:
     # ---
     if q in q_list_done:
         logger.info("q in q_list_done")
@@ -210,7 +210,7 @@ def Add_desc(q, value, lang):
         WD_API_Bot.Des_API(q, value, lang, ask="")
 
 
-def work_one_item(start, lang, tab, c, total, findlab=False):
+def work_one_item(start, lang, tab, c, total: int, findlab: bool=False) -> str:
     # ---
     """work_one_item used in np/si3.py"""
     # ---
@@ -292,7 +292,7 @@ def work_one_item(start, lang, tab, c, total, findlab=False):
     Add_desc(q, arlabel2, lang)
 
 
-def work_one_place(place):
+def work_one_place(place) -> str:
     lang = "ar"
     # ---
     start = placestable2[place].get(lang, "")
@@ -323,7 +323,7 @@ def work_one_place(place):
         work_one_item(start, lang, tab, c, total)
 
 
-def mainoo():
+def mainoo() -> None:
     # ---
     kee = sorted(placestable2.keys())
     # ---

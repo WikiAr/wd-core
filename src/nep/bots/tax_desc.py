@@ -25,7 +25,7 @@ for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
                 tax_translations_lower[kkey.lower()] = tax_lab.replace("~", natar)
 
 
-def make_tax_des_new(item):
+def make_tax_des_new(item) -> str:
     q = item["q"]
     # ---
     P171 = Get_P_API_id(item, "P171")
@@ -80,7 +80,7 @@ def make_tax_des_new(item):
                 WD_API_Bot.Des_API(q, ar_lab, "ar")
 
 
-def work_taxon_desc(item, endesc):
+def work_taxon_desc(item, endesc) -> None:
     # ---
     ardesc = tax_translations_lower.get(endesc.lower(), "")  # .get("ar", '')
     q = item["q"]

@@ -135,10 +135,10 @@ def make_labsdb_dbs_p(wiki):
 def sql_connect_pymysql(
     query,
     db="",
-    host="",
-    update=False,
+    host: str="",
+    update: bool=False,
     default_return=None,
-    return_dict=False,
+    return_dict: bool=False,
     values=None,
 ):
     # ---
@@ -196,10 +196,10 @@ def sql_connect_pymysql(
 def make_sql_connect(
     query,
     db="",
-    host="",
-    update=False,
+    host: str="",
+    update: bool=False,
     default_return=None,
-    return_dict=False,
+    return_dict: bool=False,
     values=None,
 ):
     # ---

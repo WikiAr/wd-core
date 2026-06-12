@@ -21,7 +21,7 @@ if dump_file.exists():
             cache_data[obj["en"]] = obj["ar"]
 
 
-def save_cache(en, ar):
+def save_cache(en, ar) -> None:
     with jsonlines.open(dump_file, mode="a") as writer:
         writer.write({"en": en, "ar": ar})
     cache_data[en] = ar

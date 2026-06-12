@@ -448,7 +448,7 @@ def get_topic(item):
     return ""
 
 
-def print_new_jobs():
+def print_new_jobs() -> None:
     lists = [[y, x] for x, y in new_jobs.items()]
     lists.sort(reverse=True)
     # ---

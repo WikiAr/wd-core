@@ -49,7 +49,7 @@ ranks_label = {
 Work_with_Stage = {}
 
 
-def template_params(text, title):
+def template_params(text: str, title):
     # ---
     parser = wtp.parse(text)
     # ---
@@ -119,7 +119,7 @@ def findflag(race, flag):
     return flag
 
 
-def fix_label(label):
+def fix_label(label: str):
     label = label.strip()
 
     label = re.sub(
@@ -566,7 +566,7 @@ def make_new_section(qid, title):
     return texxt
 
 
-def work_tano(text, maintitle):
+def work_tano(text: str, maintitle):
     # ---
     lines[maintitle] = make_data_new(text)
     # ---
@@ -620,7 +620,7 @@ def work_tano(text, maintitle):
     return liner
 
 
-def make_new_text(item, title, text):
+def make_new_text(item, title, text: str):
     # ---
     Newsect = make_new_section(item, title)
     # ---
@@ -662,7 +662,7 @@ def make_new_text(item, title, text):
     return text
 
 
-def do_One_Page(title, text, item=""):
+def do_One_Page(title, text: str, item=""):
     # ---
     Check = CheckTempalteInPageText(text)
     # ---

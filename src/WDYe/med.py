@@ -261,7 +261,7 @@ def Get_item_table2(enlab):
 Looogs = {}
 
 
-def looog():
+def looog() -> None:
     log2 = {x: Looogs[x] for x in Looogs if Looogs[x] != []}
     # ---
     text2 = ""
@@ -290,7 +290,7 @@ def looog():
         EngPage.save(newtext=newtext, summary="update.", nocreate=1)
 
 
-def WORK(item, table):
+def WORK(item, table) -> None:
     # logger.info( item )
     logger.info(table)
     # ---
@@ -369,7 +369,7 @@ def WORK(item, table):
 Limit = {1: "500"}
 
 
-def main():
+def main() -> None:
     # python3 core8/pwb.py WDYe/med
     # python3 core8/pwb.py WDYe/med short
     # python3 core8/pwb.py WDYe/med  ta:horror

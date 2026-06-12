@@ -10,7 +10,7 @@ with open(env_path, "r") as f:
     api_token = f.read().strip()
 
 
-async def invoke_chute():
+async def invoke_chute() -> None:
 
     headers = {
         "Authorization": "Bearer " + api_token,
@@ -41,7 +41,7 @@ async def invoke_chute():
                         print(f"Error parsing chunk: {e}")
 
 
-async def invoke_chute2():
+async def invoke_chute2() -> None:
 
     headers = {
         "Authorization": "Bearer " + api_token,

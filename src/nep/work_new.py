@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 # 32897048  متبقي حتى
 
 
-def WorkNew():
+def WorkNew() -> None:
     start = 32700000
     ATend = 32500000
     # ---

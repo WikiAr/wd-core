@@ -119,20 +119,20 @@ def make_dada(newtext, maintitle):
     return t
 
 
-def print_test2(s):
+def print_test2(s) -> None:
     if TEST[2]:
         # logger.info(s)
         print(s)
 
 
-def printt(s):
+def printt(s) -> None:
     SS = False
     if SS or "test" in sys.argv or "test2" in sys.argv:
         # logger.info(s)
         print(s)
 
 
-def printo(s):
+def printo(s) -> None:
     # ---
     if "test" in sys.argv or "test2" in sys.argv or "ask" in sys.argv:
         print(s)
@@ -144,7 +144,7 @@ def printo(s):
         print("")
 
 
-def CheckTempalteInPageText(text):
+def CheckTempalteInPageText(text: str):
     printt("**CheckTempalteInPageText: <br>")
     if not text:
         printt(" * no text.<br>")
@@ -186,7 +186,7 @@ def CheckTempalteInPageText(text):
     return True
 
 
-def find_cy_temp(text):
+def find_cy_temp(text: str):
     start = "{{نتيجة سباق الدراجات/بداية"
     end = "{{نتيجة سباق الدراجات/نهاية}}"
     # ---
@@ -206,7 +206,7 @@ def find_cy_temp(text):
     return text[start_pos:end_pos]
 
 
-def get_temps_str(text, temp_name):
+def get_temps_str(text: str, temp_name: str):
     # ---
     parser = wtp.parse(text)
     # ---

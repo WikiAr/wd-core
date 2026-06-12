@@ -22,7 +22,7 @@ WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
 Limit = {1: "500"}
 
 
-def main():
+def main() -> None:
     # python pwb.py wd/category
     # ---
     for arg in sys.argv:

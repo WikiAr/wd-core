@@ -179,7 +179,7 @@ def Monthname(lang, month):
     return False
 
 
-def Make_uk_desc(desc):
+def Make_uk_desc(desc: str):
     return desc
 
 
@@ -287,7 +287,7 @@ def make_scientific_desc(lang, date, precision):
     return desc
 
 
-def make_scientific_article(item, p31, num, TestTable=False):
+def make_scientific_article(item, p31, num: int, TestTable: bool=False):
     # ---
     tablem = {"descriptions": {}, "qid": "", "fixlang": []}
     # ---

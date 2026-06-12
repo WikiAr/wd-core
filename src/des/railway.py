@@ -26,7 +26,7 @@ railway_tables = {
 }
 
 
-def Get_P_API_id(claims, P, onlyone=False):
+def Get_P_API_id(claims, P, onlyone: bool=False):
     # ---
     lista = []
     # ---

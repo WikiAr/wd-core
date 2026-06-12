@@ -127,7 +127,7 @@ quarry_list = [
 qlist_done = []
 
 
-def work_one_json(json1, topic_ar, p31, p31_langs):
+def work_one_json(json1, topic_ar, p31, p31_langs) -> None:
     # ---
     json_lenth = len(json1)
     # ---
@@ -170,7 +170,7 @@ def work_one_quarry(quarry, p31, p31_desc):
     return quarry_result_lenth
 
 
-def main():
+def main() -> None:
     # lenth of desc_table and quarry_list
     all_lenth = len(quarry_list) * len(desc_table)
     # ---

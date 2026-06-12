@@ -37,7 +37,7 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     return laste
 
 
-def its_something_in_an_entity(wdi, something):
+def its_something_in_an_entity(wdi, something) -> str:
     # 'P131'    #P131
     # 'P17'   #P17
     # ---
@@ -148,7 +148,7 @@ def its_an_episode(lng, wditem):
     return ""
 
 
-def its_a_computergame(lng, wditem):
+def its_a_computergame(lng, wditem) -> str:
     logger.info(" its_a_computergame ")
     if "P178" in wditem.get("claims", {}):  # المطور
         LNKdeveloper = get_mainsnak(wditem.get("claims", {}).get("P178")[0])  # .getTarget()
@@ -301,7 +301,7 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=""):
     return laste
 
 
-def its_a_thing_located_in_country(wditem, countryname, thing):
+def its_a_thing_located_in_country(wditem, countryname: str, thing) -> str:
     if "P131" in wditem.get("claims", {}):
         LNKcommunity = get_mainsnak(wditem.get("claims", {}).get("P131")[0])  # .getTarget()
         label = Get_label(LNKcommunity)
@@ -312,7 +312,7 @@ def its_a_thing_located_in_country(wditem, countryname, thing):
     return f"{thing} في {countryname}"
 
 
-def its_a_film(wditem):
+def its_a_film(wditem) -> str:
     # ---
     directorname = ""
     # ---

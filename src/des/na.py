@@ -26,7 +26,7 @@ limits = {1: "1000"}
 items_done = []
 
 
-def action(json1):
+def action(json1) -> None:
     try:
         total = len(json1)
     except BaseException:
@@ -222,7 +222,7 @@ WHERE {
 }
 
 
-def main():
+def main() -> None:
     # ---
     # python pwb.py des/na
     # python pwb.py des/na Deaths

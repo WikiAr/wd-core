@@ -8,7 +8,7 @@ from .req_bots_new import claims_wd, descriptions_wd, labels_wd
 
 
 class HimoAPIBot:
-    def __init__(self, mr_or_bot="bot", www="www"):
+    def __init__(self, mr_or_bot="bot", www="www") -> None:
         # ---
         self.login_bot: WikiLoginClient = log_in_wikidata(mr_or_bot=mr_or_bot, www=www)
         # ---

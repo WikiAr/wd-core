@@ -46,7 +46,7 @@ for surah in tqdm(surahs):
             )
 
 
-def search_in_quran_new(word):
+def search_in_quran_new(word: str):
     results = words_to_add.get(word, [])
     return results
 
@@ -155,7 +155,7 @@ all_already_has = 0
 time_parts = time.time()
 
 
-def print_status():
+def print_status() -> None:
     global time_parts
     # ---
     in_time = time.time() - time_parts

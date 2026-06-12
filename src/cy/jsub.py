@@ -33,7 +33,7 @@ skip_titles = [
 ]
 
 
-def onep(title):
+def onep(title) -> None:
     # ---
     if title in skip_titles:
         return
@@ -72,7 +72,7 @@ def onep(title):
         page.save(newtext=new_text, summary="بوت:تجربة تحديث بيانات اللاعب")
 
 
-def main2():
+def main2() -> None:
     generator = wd_gent.get_gent_list()
     # ---
     for numb, pagetitle in enumerate(generator, start=1):

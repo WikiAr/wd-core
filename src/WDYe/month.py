@@ -31,7 +31,7 @@ translations = {
 }
 
 
-def main_from_quarry(topic):
+def main_from_quarry(topic) -> None:
     logger.info("*<<lightyellow>> main_from_quarry:")
     Quarry = quuu["month"] % topic
     if sys.argv and "OFFSET" in sys.argv:

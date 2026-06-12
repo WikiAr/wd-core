@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 class ClassGetURL:
-    def __init__(self, url):
+    def __init__(self, url) -> None:
         self.start = time.time()
         self.url = url
         self.html = ""

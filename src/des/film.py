@@ -25,7 +25,7 @@ AskSave = {1: True}
 # def AddDes( item , pa , lang , Qid , keys):
 
 
-def one_film_item(Qid, pa, lang, keys):
+def one_film_item(Qid, pa, lang, keys) -> None:
     item = getwditem(pa["item"])
     if not item:
         return
@@ -202,7 +202,7 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en". ?auths rdfs:
 """
 
 
-def WorkWithOneLang(Qid, lang, keys):
+def WorkWithOneLang(Qid, lang, keys) -> None:
     logger.info("*<<lightyellow>> WorkWithOneLang: ")
     limit = 200
     # limit = '10000'
@@ -294,7 +294,7 @@ def MakeDesc(Qid, pa, lang):
     return description
 
 
-def films():
+def films() -> None:
     logger.info("films: ")
     Q = "film"
     # for lang in language:

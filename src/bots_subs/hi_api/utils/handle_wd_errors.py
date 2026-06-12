@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class WdErrorsHandler:
-    def __init__(self):
+    def __init__(self) -> None:
         logger.info("class WdErrorsHandler:")
 
     def handle_err_wd(

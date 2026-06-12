@@ -321,7 +321,7 @@ def its_a_tabon_in_thailand(lng, wditem):
     return ""
 
 
-def its_a_publication(wditem):
+def its_a_publication(wditem) -> str:
     if "P921" in wditem.get("claims", {}):
         its_a_generalthing(wditem, "", "over", "P921")
     if "P123" in wditem.get("claims", {}):
@@ -345,7 +345,7 @@ def its_a_fictional_character(wditem):
         return ""
 
 
-def its_a_discography(lng, wditem):
+def its_a_discography(lng, wditem) -> str:
     if "P175" in wditem.get("claims", {}):
         artistLNK = get_mainsnak(wditem.get("claims", {}).get("P175")[0])  # .getTarget()
         if artistLNK is not None:
@@ -359,7 +359,7 @@ def its_a_discography(lng, wditem):
     return ""
 
 
-def its_a_composition(lng, wditem):
+def its_a_composition(lng, wditem) -> str:
     """
     find composer P86
     """

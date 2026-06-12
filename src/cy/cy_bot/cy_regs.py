@@ -11,7 +11,7 @@ import wikitextparser as wtp
 from .cy_helps import get_temp_arg
 
 
-def make_data_new(text):
+def make_data_new(text: str):
     # ---
     tab = {}
     # ---
@@ -49,7 +49,7 @@ def make_data_new(text):
     return tab
 
 
-def test():
+def test() -> None:
     text = """{{نتيجة سباق الدراجات/سطر4
 |qid = Q110775370
 |السباق = 2022 Tour de Romandie Féminin

@@ -9,12 +9,12 @@ itemsdone = 0
 missing_dict = {}
 
 
-def fixlabel(oldlabel):
+def fixlabel(oldlabel: str):
     new = oldlabel.replace("٠", "0").replace("١", "1").replace("٢", "2").replace("٣", "3").replace("٤", "4")
     return new.replace("٥", "5").replace("٦", "6").replace("٧", "7").replace("٨", "8").replace("٩", "9")
 
 
-def one_item(wditem):
+def one_item(wditem) -> int:
     global items2do
     items2do -= 1
     if wditem.labels:  # تسميات موجودة
@@ -35,7 +35,7 @@ def wd_sparql_generator(query):
         yield wd
 
 
-def main():
+def main() -> None:
     global itemsdone
     itemsdone = 0
     max = 10

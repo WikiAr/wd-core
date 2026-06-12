@@ -51,7 +51,7 @@ def StartOnePage(title) -> None:
     return page_put(NewText, title)
 
 
-def main():
+def main() -> None:
     # ---
     title = ""
     # ---

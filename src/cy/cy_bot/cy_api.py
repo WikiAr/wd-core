@@ -90,7 +90,7 @@ def login():
 login()
 
 
-def page_put(newtext, maintitle):
+def page_put(newtext, maintitle) -> None:
     printt(" page_put: <br>")
     # try:
     title = ec_de_code(maintitle, "decode")

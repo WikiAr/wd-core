@@ -3,6 +3,7 @@
 import logging
 
 from .submit_bot import submitAPI
+from typing import Sequence
 
 logger = logging.getLogger(__name__)
 
@@ -11,7 +12,7 @@ def format_sitelinks(sitelinks):
     return {x["site"]: x["title"] for d, x in sitelinks.items()}
 
 
-def format_labels_descriptions(labels):
+def format_labels_descriptions(labels: Sequence[str]):
     return {x["language"]: x["value"] for _, x in labels.items()}
 
 

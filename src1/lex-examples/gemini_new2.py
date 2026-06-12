@@ -41,7 +41,7 @@ for surah in tqdm(surahs):
             )
 
 
-def search_in_quran_new(word):
+def search_in_quran_new(word: str):
     results = words_to_add.get(word, [])
     return results
 
@@ -100,7 +100,7 @@ def get_results(query):
     return result
 
 
-def get_arabic_lexemes_new(limit, offset):
+def get_arabic_lexemes_new(limit: int, offset: int):
     # ---
     sparql_query = """
         SELECT ?item ?category (CONCAT(
@@ -134,7 +134,7 @@ def get_arabic_lexemes_new(limit, offset):
     return result
 
 
-def start():
+def start() -> None:
     # ---
     limit = 50
     offset = 0

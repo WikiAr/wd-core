@@ -47,7 +47,7 @@ quaries = {
 }
 
 
-def Get_Sitelinks_From_wikidata(site, title, ssite="", ids="", props="", add_props=None, return_main_table=False):
+def Get_Sitelinks_From_wikidata(site, title, ssite="", ids="", props="", add_props=None, return_main_table: bool=False):
     # ---
     sitewiki = site
     if site.find("wiki") == -1:
@@ -98,7 +98,7 @@ def Get_Sitelinks_From_wikidata(site, title, ssite="", ids="", props="", add_pro
     return table
 
 
-def work_one_item(q):
+def work_one_item(q) -> None:
     # ---
     # claims
     P31 = wd_bot.Get_Property_API(q=q, p="P31")
@@ -149,7 +149,7 @@ def work_one_item(q):
         logger.info(f"<<lightred>>* work 2 :{q} no descriptions to add.")
 
 
-def main():
+def main() -> None:
     # ---
     for qua_a in quaries:
         qua = quaries[qua_a]
