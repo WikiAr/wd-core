@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 class WdAPI(WdErrorsHandler):
-    def __init__(self, login_bot, mr_or_bot="bot") -> None:
+    def __init__(self, login_bot, mr_or_bot: str="bot") -> None:
         # ---
         self.login_bot: WikiLoginClient = login_bot
         # ---
@@ -26,7 +26,7 @@ class WdAPI(WdErrorsHandler):
         # ---
         logger.info(f"<<lightgreen>> WdAPI: {mr_or_bot}, {self.usernamex=} \n")
 
-    def post_to_newapi(self, params={}, data={}, tage="", editgroups="", max_retry: int=0, **kwargs):
+    def post_to_newapi(self, params={}, data={}, tage: str="", editgroups: str="", max_retry: int=0, **kwargs):
         # ---
         if not params and data:
             params = data

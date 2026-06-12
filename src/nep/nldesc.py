@@ -137,7 +137,7 @@ def Add_desc(q, value, lang) -> None:
     WD_API_Bot.Des_API(q, value, lang, ask="")
 
 
-def action_one_item(lngr, q, item={}, claimstr=""):
+def action_one_item(lngr, q, item={}, claimstr: str=""):
     global items2do
     global totaledits
     # ---

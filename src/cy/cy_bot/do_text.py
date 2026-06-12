@@ -662,7 +662,7 @@ def make_new_text(item, title, text: str):
     return text
 
 
-def do_One_Page(title, text: str, item=""):
+def do_One_Page(title, text: str, item: str=""):
     # ---
     Check = CheckTempalteInPageText(text)
     # ---

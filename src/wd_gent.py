@@ -12,7 +12,7 @@ from shared.api_page import load_main_api
 logger = logging.getLogger(__name__)
 
 
-def fetch_user_new_pages(limit: int="max", namespace="0", user=""):
+def fetch_user_new_pages(limit: int="max", namespace: str="0", user: str=""):
     api = load_main_api("www", "wikidata")
     new_api = api.NewApi()
     generator = new_api.Get_Newpages(limit=limit, namespace=namespace, user=user)

@@ -36,7 +36,7 @@ class WD_Descriptions:
         self.session_post = self.wdapi_new.post_to_newapi
         # pass
 
-    def Des_API(self, Qid, desc: str, lang, ask="", rea: bool=True, nowait: bool=False):
+    def Des_API(self, Qid, desc: str, lang, ask: str="", rea: bool=True, nowait: bool=False):
         """Set the description for a given item in a specified language.
 
         This function updates the description of an item identified by its Qid
@@ -147,7 +147,7 @@ class WD_Descriptions:
         ask: bool=False,
         rea: bool=True,
         nowait: bool=False,
-        tage="",
+        tage: str="",
         return_result: bool=False,
     ):
         # ---

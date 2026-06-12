@@ -134,7 +134,7 @@ def make_labsdb_dbs_p(wiki):
 
 def sql_connect_pymysql(
     query,
-    db="",
+    db: str="",
     host: str="",
     update: bool=False,
     default_return=None,
@@ -195,7 +195,7 @@ def sql_connect_pymysql(
 
 def make_sql_connect(
     query,
-    db="",
+    db: str="",
     host: str="",
     update: bool=False,
     default_return=None,
@@ -230,7 +230,7 @@ def make_sql_connect(
 
 def sql_new(
     queries,
-    wiki="",
+    wiki: str="",
     values=None,
 ):
     # ---

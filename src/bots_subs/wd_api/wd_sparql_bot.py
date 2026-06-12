@@ -109,7 +109,7 @@ def sparql_generator_url(
     quary,
     printq: bool=False,
     add_date: bool=True,
-    key="",
+    key: str="",
     geterror: bool=False,
     returndict: bool=False,
     returnq: bool=False,

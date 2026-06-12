@@ -50,7 +50,7 @@ def action(json1) -> None:
             logger.info(f" <<lightred>> * q in items_done. {q}")
 
 
-def make_quarry(ar_suff="", item_p31_cat="", en_suff="", en_priff=""):
+def make_quarry(ar_suff: str="", item_p31_cat: str="", en_suff: str="", en_priff: str=""):
     quaaa = """
 #تسمية تصانيف مواليد في
 SELECT DISTINCT  #?item ?label ?item_ar

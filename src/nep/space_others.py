@@ -31,7 +31,7 @@ from nep.tables.lists import (
 logger = logging.getLogger(__name__)
 
 
-def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
+def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr: str=""):
     my_description = ""
     # ---
     if type_of_item == "Q2467461":
@@ -125,7 +125,7 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
     return my_description
 
 
-def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr=""):
+def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr: str=""):
     my_description = ""
     # ---
     # logger.info( "Make others desc:P31:%s" % type_of_item )

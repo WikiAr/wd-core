@@ -31,7 +31,7 @@ def _load_credentials(mr_or_bot) -> dict[str, str]:
     return User_tables_bot if mr_or_bot == "bot" else User_tables_ibrahem
 
 
-def log_in_wikidata(mr_or_bot="bot", www="www") -> WikiLoginClient:
+def log_in_wikidata(mr_or_bot: str="bot", www: str="www") -> WikiLoginClient:
     # ---
     users_data = _load_credentials(mr_or_bot)
     # ---
