@@ -6,11 +6,16 @@ import sys
 logger = logging.getLogger(__name__)
 
 
-class WD_ERRORS_HANDLER:
+class WdErrorsHandler:
     def __init__(self):
-        logger.info("class WD_ERRORS_HANDLER:")
+        logger.info("class WdErrorsHandler:")
 
-    def handle_err_wd(self, error: dict, function: str = "", params: dict = None):
+    def handle_err_wd(
+            self,
+            error: dict,
+            function: str = "",
+            params: dict | None = None,
+        ):
         """Handle errors related to the specified function.
 
         This method processes an error dictionary returned from an API call,

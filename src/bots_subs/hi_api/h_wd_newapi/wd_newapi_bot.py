@@ -7,12 +7,12 @@ import time
 from newapi import WikiLoginClient
 
 from ..utils import lag_bot
-from ..utils.handle_wd_errors import WD_ERRORS_HANDLER
+from ..utils.handle_wd_errors import WdErrorsHandler
 
 logger = logging.getLogger(__name__)
 
 
-class WdAPI(WD_ERRORS_HANDLER):
+class WdAPI(WdErrorsHandler):
     def __init__(self, login_bot, mr_or_bot="bot"):
         # ---
         self.login_bot: WikiLoginClient = login_bot
@@ -22,7 +22,7 @@ class WdAPI(WD_ERRORS_HANDLER):
         # ---
         self.usernamex = self.login_bot.username
         # ---
-        WD_ERRORS_HANDLER.__init__(self)
+        WdErrorsHandler.__init__(self)
         # ---
         logger.info(f"<<lightgreen>> WdAPI: {mr_or_bot}, {self.usernamex=} \n")
 
