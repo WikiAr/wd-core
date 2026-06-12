@@ -11,7 +11,7 @@ import requests
 logger = logging.getLogger(__name__)
 
 
-def load_data_from_url(page_name: str="descraptions.json"):
+def load_data_from_url(page_name: str = "descraptions.json"):
     if not page_name.endswith(".json"):
         page_name = f"{page_name}.json"
 

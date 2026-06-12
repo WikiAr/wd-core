@@ -37,7 +37,7 @@ sparql_query = 'select * {{SELECT ?item ?itemDescription WHERE {{ ?item wdt:P31 
 """
 
 
-def do_qua(qid, prop: str="", ad: str="", ar_values: str=""):
+def do_qua(qid, prop: str = "", ad: str = "", ar_values: str = ""):
     qua = "SELECT ?item WHERE {\n"
     # ---
     if ar_values:

@@ -26,7 +26,7 @@ railway_tables = {
 }
 
 
-def Get_P_API_id(claims, P, onlyone: bool=False):
+def Get_P_API_id(claims, P, onlyone: bool = False):
     # ---
     lista = []
     # ---
@@ -40,7 +40,7 @@ def Get_P_API_id(claims, P, onlyone: bool=False):
     return "" if onlyone else lista
 
 
-def work_railway(wditem, p31, q: str=""):
+def work_railway(wditem, p31, q: str = ""):
     # ---
     if "railway" not in sys.argv:
         return

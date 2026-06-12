@@ -152,7 +152,7 @@ def work_qid_desc(item, topic, num: int) -> None:
     work_a_desc(NewDesc, q, [])
 
 
-def ISRE(qitem, num: int, lenth, no_donelist: bool=True, P31_list: bool=False, get_nl_des: bool=True):
+def ISRE(qitem, num: int, lenth, no_donelist: bool = True, P31_list: bool = False, get_nl_des: bool = True):
     # ---
     logger.info(f"--- *<<lightyellow>> >{num}/{lenth}: q:{qitem}")
     # ---

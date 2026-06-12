@@ -36,7 +36,7 @@ def get_claim_id(item, prop):
     )
 
 
-def work_people2(item, topic, num: int=0, years: str=""):
+def work_people2(item, topic, num: int = 0, years: str = ""):
     # ---
     q = item["q"]
     # ---

@@ -18,7 +18,7 @@ qs_tokenbot = os.getenv("QS_TOKEN_BOT", "")
 logger = logging.getLogger(__name__)
 
 
-def QS_line(line, user: str="Mr. Ibrahem") -> bool:
+def QS_line(line, user: str = "Mr. Ibrahem") -> bool:
     # ---
     # https://quickstatements.toolforge.org/api.php?format=v1&action=import&compress=1&submit=1&batchname=df&username=Mr.Ibrahembot&token=$2&data=Q24173161|Dar|"جين في متفطرة خراجية"
     # ---

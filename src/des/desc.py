@@ -210,7 +210,7 @@ def Add_desc(q, value, lang) -> str:
         WD_API_Bot.Des_API(q, value, lang, ask="")
 
 
-def work_one_item(start, lang, tab, c, total: int, findlab: bool=False) -> str:
+def work_one_item(start, lang, tab, c, total: int, findlab: bool = False) -> str:
     # ---
     """work_one_item used in np/si3.py"""
     # ---

@@ -21,7 +21,7 @@ class WD_Claims:
         self.session_post = self.wdapi_new.post_to_newapi
         # pass
 
-    def add_quall(self, Claimid, quall_prop, valueline, hashx: str="", nowait: bool=False):
+    def add_quall(self, Claimid, quall_prop, valueline, hashx: str = "", nowait: bool = False):
         """Add a qualifier to a claim.
 
         This function adds a specified qualifier to a given claim identified by
@@ -86,7 +86,7 @@ class WD_Claims:
         # ---
         return d
 
-    def _Set_Quall(self, js, quall_prop, quall_id, nowait: bool=False):
+    def _Set_Quall(self, js, quall_prop, quall_id, nowait: bool = False):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""
@@ -131,7 +131,7 @@ class WD_Claims:
         # ---
         return Claimid
 
-    def _Set_Quall2(self, js, qualifiers, nowait: bool=False) -> str:
+    def _Set_Quall2(self, js, qualifiers, nowait: bool = False) -> str:
         # ---
         if lag_bot.bad_lag(nowait):
             return ""
@@ -186,7 +186,7 @@ class WD_Claims:
             # ---
             self.add_quall(Claimid, quall_prop, valueline)
 
-    def Claim_API2(self, uid, proprty, numeric, qualifiers=[], nowait: bool=False):
+    def Claim_API2(self, uid, proprty, numeric, qualifiers=[], nowait: bool = False):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""
@@ -233,7 +233,7 @@ class WD_Claims:
         if qualifiers != []:
             self._Set_Quall2(r4, qualifiers)
 
-    def Claim_API_time(self, q, proprty, precision: int=9, year: str="", strtime: str="", nowait: bool=False):
+    def Claim_API_time(self, q, proprty, precision: int = 9, year: str = "", strtime: str = "", nowait: bool = False):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""

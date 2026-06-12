@@ -1,9 +1,9 @@
 """ """
 
 import logging
+from typing import Sequence
 
 from .submit_bot import submitAPI
-from typing import Sequence
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +50,7 @@ def Get_infos_wikidata(params):
     return table
 
 
-def Get_item_descriptions_or_labels(q, ty: str="descriptions or labels"):
+def Get_item_descriptions_or_labels(q, ty: str = "descriptions or labels"):
     """Retrieve item descriptions or labels from a given entity ID.
 
     This function queries an API to obtain either descriptions or labels for
@@ -104,7 +104,7 @@ def Get_item_descriptions_or_labels(q, ty: str="descriptions or labels"):
     return table
 
 
-def Get_Item_API_From_Qid(q, sites: str="", titles: str="", props: str=""):
+def Get_Item_API_From_Qid(q, sites: str = "", titles: str = "", props: str = ""):
     # "sites": "arwiki",
     # "titles": "ويكيبيديا:مشروع_ويكي_بيانات",
     # url = 'wikidata.org/w/api.php?action=wbgetentities&ids=' + q + '&format=json'
@@ -160,7 +160,7 @@ def Get_Item_API_From_Qid(q, sites: str="", titles: str="", props: str=""):
     return table
 
 
-def Get_Property_API(q: str="", p: str="", titles: str="", sites: str=""):
+def Get_Property_API(q: str = "", p: str = "", titles: str = "", sites: str = ""):
     # url = 'https://www.wikidata.org/w/api.php?action=wbgetclaims&entity=' + q + '&property=' + p + '&format=json'
     # json1 = tools.loads_json( html)
     # ---

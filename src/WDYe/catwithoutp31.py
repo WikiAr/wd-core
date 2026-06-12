@@ -47,7 +47,9 @@ quaries = {
 }
 
 
-def Get_Sitelinks_From_wikidata(site, title, ssite: str="", ids: str="", props: str="", add_props=None, return_main_table: bool=False):
+def Get_Sitelinks_From_wikidata(
+    site, title, ssite: str = "", ids: str = "", props: str = "", add_props=None, return_main_table: bool = False
+):
     # ---
     sitewiki = site
     if site.find("wiki") == -1:

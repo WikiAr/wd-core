@@ -15,7 +15,7 @@ from nep.bots.helps import (
 logger = logging.getLogger(__name__)
 
 
-def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr: str=""):
+def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr: str = ""):
     # ---
     pp = wditem.get("claims", {}).get(myclaim, [])
     # ---
@@ -168,7 +168,7 @@ def its_a_computergame(lng, wditem) -> str:
     return ""
 
 
-def its_a_sports_season(wditem, claimstr: str=""):
+def its_a_sports_season(wditem, claimstr: str = ""):
     # ---
     # LNKsport=wditem.get('claims',{}).get('P3450')[0].get('mainsnak',{}).get('datavalue',{}).get('value',{}).get('id','')#.getTarget()
     # ---
@@ -199,7 +199,7 @@ def its_a_sports_season(wditem, claimstr: str=""):
     return laste
 
 
-def its_songs(type_of_item, wditem, shortstr, claimstr: str=""):
+def its_songs(type_of_item, wditem, shortstr, claimstr: str = ""):
     # my_description = its_a_generalthing( wditem , da , '%s من أداء ' % da ,'P175')
     myclaim = "P175"
     # ---
@@ -253,7 +253,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr: str=""):
     return laste
 
 
-def its_a_p50(type_of_item, wditem, shortstr, claimstr: str=""):
+def its_a_p50(type_of_item, wditem, shortstr, claimstr: str = ""):
     myclaim = "P50"
     # ---
     P136 = get_mainsnak(wditem.get("claims", {}).get("P136", [{}])[0])

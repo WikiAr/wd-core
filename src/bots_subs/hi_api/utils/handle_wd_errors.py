@@ -11,11 +11,11 @@ class WdErrorsHandler:
         logger.info("class WdErrorsHandler:")
 
     def handle_err_wd(
-            self,
-            error: dict,
-            function: str = "",
-            params: dict | None = None,
-        ):
+        self,
+        error: dict,
+        function: str = "",
+        params: dict | None = None,
+    ):
         """Handle errors related to the specified function.
 
         This method processes an error dictionary returned from an API call,

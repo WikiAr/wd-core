@@ -36,7 +36,7 @@ class WD_Descriptions:
         self.session_post = self.wdapi_new.post_to_newapi
         # pass
 
-    def Des_API(self, Qid, desc: str, lang, ask: str="", rea: bool=True, nowait: bool=False):
+    def Des_API(self, Qid, desc: str, lang, ask: str = "", rea: bool = True, nowait: bool = False):
         """Set the description for a given item in a specified language.
 
         This function updates the description of an item identified by its Qid
@@ -109,7 +109,7 @@ class WD_Descriptions:
                 qsline = f'{Qid}|D{lang}|"{desc}"'
                 QS_line(qsline, user="Mr.Ibrahembot")
 
-    def New_Mult_Des(self, q, data2, summary, ret, nowait: bool=False):
+    def New_Mult_Des(self, q, data2, summary, ret, nowait: bool = False):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""
@@ -144,11 +144,11 @@ class WD_Descriptions:
         data2,
         summary,
         ret,
-        ask: bool=False,
-        rea: bool=True,
-        nowait: bool=False,
-        tage: str="",
-        return_result: bool=False,
+        ask: bool = False,
+        rea: bool = True,
+        nowait: bool = False,
+        tage: str = "",
+        return_result: bool = False,
     ):
         # ---
         if lag_bot.bad_lag(nowait):

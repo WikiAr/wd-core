@@ -52,7 +52,7 @@ def get_query_data(query):
     return data
 
 
-def wd_sparql_generator_url(quary, returnq: bool=False):
+def wd_sparql_generator_url(quary, returnq: bool = False):
     """Generate a list of unique item identifiers from a SPARQL query.
 
     This function takes a SPARQL query as input, executes it to retrieve
@@ -107,12 +107,12 @@ def wd_sparql_generator_url(quary, returnq: bool=False):
 
 def sparql_generator_url(
     quary,
-    printq: bool=False,
-    add_date: bool=True,
-    key: str="",
-    geterror: bool=False,
-    returndict: bool=False,
-    returnq: bool=False,
+    printq: bool = False,
+    add_date: bool = True,
+    key: str = "",
+    geterror: bool = False,
+    returndict: bool = False,
+    returnq: bool = False,
 ):
     # ---
     if add_date:
@@ -174,7 +174,7 @@ def sparql_generator_url(
     return qlist
 
 
-def sparql_generator_big_results(spq, offset: int=0, limit: int=5000, alllimit: int=0):
+def sparql_generator_big_results(spq, offset: int = 0, limit: int = 5000, alllimit: int = 0):
     """Generate a list of results from a SPARQL query with pagination support.
 
     This function executes a SPARQL query and retrieves results in batches,

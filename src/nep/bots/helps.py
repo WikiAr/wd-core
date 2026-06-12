@@ -132,7 +132,7 @@ def get_female_for_p17(contry_lab, tyy):
     return lab
 
 
-def get_label_txt(lng, wdi, property, array: int=0, fallback: bool=False):
+def get_label_txt(lng, wdi, property, array: int = 0, fallback: bool = False):
     if property in wdi.get("claims", {}):
         if len(wdi.get("claims", {}).get(property, "")) > array:
             lnkProperty = wdi.get("claims", {}).get(property)[array].getTarget()

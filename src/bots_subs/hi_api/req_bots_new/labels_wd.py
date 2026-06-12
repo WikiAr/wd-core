@@ -36,7 +36,7 @@ class WD_Labels:
         self.Des_API_funcs = Des_API
         # pass
 
-    def Alias_API(self, Qid, Alias, lang, ret, Remove=[], nowait: bool=False):
+    def Alias_API(self, Qid, Alias, lang, ret, Remove=[], nowait: bool = False):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""
@@ -77,12 +77,12 @@ class WD_Labels:
         label: str,
         lang,
         ret,
-        Or_Alii: bool=False,
-        change_des: bool=False,
-        number: int=0,
-        nowait: bool=False,
-        tage: str="",
-        remove: bool=False,
+        Or_Alii: bool = False,
+        change_des: bool = False,
+        number: int = 0,
+        nowait: bool = False,
+        tage: str = "",
+        remove: bool = False,
     ):
         # ---
         if lag_bot.bad_lag(nowait):
@@ -130,7 +130,9 @@ class WD_Labels:
         if d == "warn":
             logger.exception("Exception:", exc_info=True)
 
-    def Add_Labels_if_not_there(self, Qid, label: str, lang, ask: str="", Or_Alii: bool=False, nowait: bool=False):
+    def Add_Labels_if_not_there(
+        self, Qid, label: str, lang, ask: str = "", Or_Alii: bool = False, nowait: bool = False
+    ):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""

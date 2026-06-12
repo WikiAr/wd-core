@@ -287,7 +287,7 @@ def make_scientific_desc(lang, date, precision):
     return desc
 
 
-def make_scientific_article(item, p31, num: int, TestTable: bool=False):
+def make_scientific_article(item, p31, num: int, TestTable: bool = False):
     # ---
     tablem = {"descriptions": {}, "qid": "", "fixlang": []}
     # ---

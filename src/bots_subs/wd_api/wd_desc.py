@@ -47,7 +47,7 @@ def del_keys(d):
     return d
 
 
-def wwdesc(newdesc, qid, i, fixlang, ask: str="", tage: str=""):
+def wwdesc(newdesc, qid, i, fixlang, ask: str = "", tage: str = ""):
     """Process and update descriptions for a given query ID.
 
     This function takes a dictionary of new descriptions and processes it to

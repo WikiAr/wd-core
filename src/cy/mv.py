@@ -157,7 +157,7 @@ def onep(title) -> None:
         page.save(newtext=new_text, summary="بوت:تجربة تحديث بيانات اللاعب")
 
 
-def split_pages(pages, parts: int=4):
+def split_pages(pages, parts: int = 4):
     length = len(pages)
     part_size = length // parts
     remaining = length % parts
