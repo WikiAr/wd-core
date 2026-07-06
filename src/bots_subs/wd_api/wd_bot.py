@@ -1,7 +1,7 @@
 """ """
 
 import logging
-from typing import Sequence
+
 
 from .submit_bot import submitAPI
 
@@ -12,7 +12,7 @@ def format_sitelinks(sitelinks):
     return {x["site"]: x["title"] for d, x in sitelinks.items()}
 
 
-def format_labels_descriptions(labels: Sequence[str]):
+def format_labels_descriptions(labels: str):
     return {x["language"]: x["value"] for _, x in labels.items()}
 
 

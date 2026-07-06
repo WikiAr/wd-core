@@ -8,7 +8,7 @@ python3 core8/pwb.py des/ru_st_2_latin test
 """
 
 import sys
-from typing import Sequence
+
 
 import pywikibot
 from bots_subs.hi_api import HimoAPIBot
@@ -332,7 +332,7 @@ def change_one_lab(text: str, lang):
     return new_lab
 
 
-def make_en_label(labels: Sequence[str], q, Add: bool = False):
+def make_en_label(labels: str, q, Add: bool = False):
     org_lab = ""
     new_lab = ""
     # ---
