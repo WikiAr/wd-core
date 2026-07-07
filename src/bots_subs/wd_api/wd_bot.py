@@ -2,7 +2,6 @@
 
 import logging
 
-
 from .submit_bot import submitAPI
 
 logger = logging.getLogger(__name__)

@@ -97,11 +97,11 @@ def get_temp_arg(temp, arg):
     return ""
 
 
-def ec_de_code(tt, type):
+def ec_de_code(tt, z_type):
     fao = tt
-    if type == "encode":
+    if z_type == "encode":
         fao = urllib.parse.quote(tt)
-    elif type == "decode":
+    elif z_type == "decode":
         fao = urllib.parse.unquote(tt)
     return fao
 
