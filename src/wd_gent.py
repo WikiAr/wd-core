@@ -6,7 +6,6 @@ from typing import Iterable
 
 import pywikibot
 from pywikibot import pagegenerators
-
 from shared.api_page import load_main_api
 
 logger = logging.getLogger(__name__)

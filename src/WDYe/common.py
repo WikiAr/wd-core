@@ -12,6 +12,7 @@ python pwb.py wd/common
 import logging
 
 import pywikibot
+
 from bots_subs.wd_api import newdesc
 from desc_dicts.descraptions import DescraptionsTable
 

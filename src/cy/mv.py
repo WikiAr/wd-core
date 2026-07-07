@@ -18,10 +18,10 @@ import logging
 import sys
 
 import tqdm
-import wd_gent
 import wikitextparser as wtp
-
 from shared.api_page import load_main_api
+
+import wd_gent
 
 logger = logging.getLogger(__name__)
 
