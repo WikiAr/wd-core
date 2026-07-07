@@ -25,7 +25,7 @@ limits = {1: "1000"}
 items_done = []
 
 
-def action(json1):
+def action(json1) -> None:
     try:
         total = len(json1)
     except BaseException:
@@ -85,7 +85,7 @@ SELECT (concat(strafter(str(?item),"/entity/"))  as ?item_q)
 }
 
 
-def main():
+def main() -> None:
     # ---
     # python pwb.py des/point -limit:2
     # ---

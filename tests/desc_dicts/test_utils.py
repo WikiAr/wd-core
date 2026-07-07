@@ -1,8 +1,6 @@
-import datetime
 import json
 import os
 
-import pytest
 from src.wd_utils.utils import (
     are_dates_same,
     get_file_date,
@@ -11,21 +9,21 @@ from src.wd_utils.utils import (
 )
 
 
-def test_load_data_from_url():
+def test_load_data_from_url() -> None:
     """
     no need to test requests
     """
 
 
 class TestCheckDate:
-    def test_check_date(self):
+    def test_check_date(self) -> None:
         # Test with a valid date string
         today = "2023-01-01"
         assert are_dates_same(today, "2023-01-01") is True
 
 
 class TestGetFileDate:
-    def test_get_file_date_existing_file(self, tmp_path):
+    def test_get_file_date_existing_file(self, tmp_path) -> None:
         """Test get_file_date with an existing file."""
         test_file = tmp_path / "test.json"
         test_file.write_text('{"key": "value"}')
@@ -39,7 +37,7 @@ class TestGetFileDate:
         # Verify it's a reasonable year
         assert int(result[:4]) >= 2020
 
-    def test_get_file_date_nonexistent_file(self, tmp_path):
+    def test_get_file_date_nonexistent_file(self, tmp_path) -> None:
         """Test get_file_date with a non-existent file."""
         nonexistent_file = tmp_path / "nonexistent.json"
 
@@ -47,7 +45,7 @@ class TestGetFileDate:
 
         assert result == ""
 
-    def test_get_file_date_directory(self, tmp_path):
+    def test_get_file_date_directory(self, tmp_path) -> None:
         """Test get_file_date with a directory (edge case)."""
         test_dir = tmp_path / "test_dir"
         test_dir.mkdir()
@@ -59,7 +57,7 @@ class TestGetFileDate:
 
 
 class TestOpenFileJson:
-    def test_open_file_json_existing_valid_file(self, tmp_path):
+    def test_open_file_json_existing_valid_file(self, tmp_path) -> None:
         """Test open_file_json with an existing valid JSON file."""
         test_file = tmp_path / "test.json"
         expected_data = {"key": "value", "number": 42}
@@ -69,7 +67,7 @@ class TestOpenFileJson:
 
         assert result == expected_data
 
-    def test_open_file_json_nonexistent_file(self, tmp_path):
+    def test_open_file_json_nonexistent_file(self, tmp_path) -> None:
         """Test open_file_json with a non-existent file."""
         nonexistent_file = tmp_path / "nonexistent.json"
 
@@ -77,7 +75,7 @@ class TestOpenFileJson:
 
         assert result == {}
 
-    def test_open_file_json_invalid_json(self, tmp_path):
+    def test_open_file_json_invalid_json(self, tmp_path) -> None:
         """Test open_file_json with an invalid JSON file."""
         test_file = tmp_path / "invalid.json"
         test_file.write_text("not valid json {")
@@ -86,7 +84,7 @@ class TestOpenFileJson:
 
         assert result == {}
 
-    def test_open_file_json_empty_file(self, tmp_path):
+    def test_open_file_json_empty_file(self, tmp_path) -> None:
         """Test open_file_json with an empty file."""
         test_file = tmp_path / "empty.json"
         test_file.write_text("")
@@ -95,7 +93,7 @@ class TestOpenFileJson:
 
         assert result == {}
 
-    def test_open_file_json_empty_json_object(self, tmp_path):
+    def test_open_file_json_empty_json_object(self, tmp_path) -> None:
         """Test open_file_json with an empty JSON object."""
         test_file = tmp_path / "empty_obj.json"
         test_file.write_text("{}")
@@ -104,7 +102,7 @@ class TestOpenFileJson:
 
         assert result == {}
 
-    def test_open_file_json_array(self, tmp_path):
+    def test_open_file_json_array(self, tmp_path) -> None:
         """Test open_file_json with a JSON array."""
         test_file = tmp_path / "array.json"
         expected_data = [1, 2, 3]
@@ -116,7 +114,7 @@ class TestOpenFileJson:
 
 
 class TestOpenFileJsonCheckTime:
-    def test_open_file_json_check_time_same_day(self, tmp_path):
+    def test_open_file_json_check_time_same_day(self, tmp_path) -> None:
         """Test open_file_json_check_time when file was modified today."""
         import time
 
@@ -132,7 +130,7 @@ class TestOpenFileJsonCheckTime:
 
         assert result == expected_data
 
-    def test_open_file_json_check_time_nonexistent_file(self, tmp_path):
+    def test_open_file_json_check_time_nonexistent_file(self, tmp_path) -> None:
         """Test open_file_json_check_time with a non-existent file."""
         nonexistent_file = tmp_path / "nonexistent.json"
 
@@ -140,7 +138,7 @@ class TestOpenFileJsonCheckTime:
 
         assert result == {}
 
-    def test_open_file_json_check_time_old_file(self, tmp_path, mocker):
+    def test_open_file_json_check_time_old_file(self, tmp_path, mocker) -> None:
         """Test open_file_json_check_time when file has an old modification date."""
         test_file = tmp_path / "old.json"
         test_file.write_text(json.dumps({"key": "value"}))
@@ -154,7 +152,7 @@ class TestOpenFileJsonCheckTime:
         # Should return empty dict because file date doesn't match today
         assert result == {}
 
-    def test_open_file_json_check_time_invalid_json(self, tmp_path):
+    def test_open_file_json_check_time_invalid_json(self, tmp_path) -> None:
         """Test open_file_json_check_time with invalid JSON content."""
         import time
 

@@ -7,15 +7,15 @@ logger = logging.getLogger(__name__)
 
 
 class WdErrorsHandler:
-    def __init__(self):
+    def __init__(self) -> None:
         logger.info("class WdErrorsHandler:")
 
     def handle_err_wd(
-            self,
-            error: dict,
-            function: str = "",
-            params: dict | None = None,
-        ):
+        self,
+        error: dict,
+        function: str = "",
+        params: dict | None = None,
+    ):
         """Handle errors related to the specified function.
 
         This method processes an error dictionary returned from an API call,
@@ -83,8 +83,10 @@ class WdErrorsHandler:
             logger.info("<<lightred>> ** maxlag. ")
             return False
         # ---
-        params["data"] = {}
-        logger.info(f"<<lightred>>{function} ERROR: <<default>>info: {err_info}, {params=}")
+        params_v = params if params else {}
+        params_v["data"] = {}
+        # ---
+        logger.info(f"<<lightred>>{function} ERROR: <<default>>info: {err_info}, {params_v=}")
         # ---
         if "raise" in sys.argv:
             raise Exception(error)

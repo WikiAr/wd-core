@@ -42,7 +42,7 @@ tests_en = r"[abcdefghijklmnopqrstuvwxyz]"
 tests_ar = r"[ابتثجحخدذرزسشصضطظعغفقكلمنهويأآإىءئؤة1234567890\–\-\.]"
 
 
-def make_newlabel(label, ar, en):
+def make_newlabel(label: str, ar, en):
     # ---
     logger.info(f'<<lightblue>>make_newlabel label:"{label}",ar:"{ar}",en:"{en}" ')
     newlabel = ""
@@ -306,7 +306,7 @@ def make_newlabel(label, ar, en):
     return newlabel.strip()
 
 
-def Item(item):
+def Item(item) -> str:
     # ---
     q = item["item"]
     # ---#
@@ -543,7 +543,7 @@ LIMIT
 Quarry["use"] = Quarry[2]
 
 
-def main():
+def main() -> None:
     # ---
     # python pwb.py des/p155 qua0 P17:Q145
     # python pwb.py des/p155 qua0
@@ -635,7 +635,7 @@ def main():
         Item(tabj)
 
 
-def test():
+def test() -> None:
     # cc = "2010 World Figure Skating Championships - ladies' singles free skating"
     # ar = make_newlabel( cc , '' , '' )
     # ar = make_newlabel( "2020 Volleyball at the Summer olympics" , 'الألعاب الأولمبية الصيفية 2020' , '2020 Summer Olympics' )

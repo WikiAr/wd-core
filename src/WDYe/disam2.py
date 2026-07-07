@@ -30,7 +30,7 @@ replacement["fa"] = {
 }
 
 
-def work2(q, topic):
+def work2(q, topic) -> None:
     # ---
     # logger.info( '<<lightyellow>> **newdesc: work2:'  + q)
     # ItemDescriptions = {}
@@ -64,13 +64,8 @@ def work2(q, topic):
     work_api_desc(NewDesc, q)
 
 
-def mainfromQuarry():
+def mainfromQuarry() -> None:
     logger.info("*<<lightyellow>> mainfromQuarry:")
-    Quarry = """SELECT DISTINCT ?item
-WHERE {
-  ?item schema:description "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا"@fa.
-}
-limit 10000"""
 
     Quarry2 = """SELECT ?item
 WHERE {VALUES (?item) {(wd:Q29976539) }
@@ -89,7 +84,7 @@ wikidatasite = pywikibot.Site("wikidata", "wikidata")
 repo = wikidatasite.data_repository()
 
 
-def mainfromQuarry2():
+def mainfromQuarry2() -> None:
     logger.info("*<<lightyellow>> mainfromQuarry:")
     # ---
     # quarrr = '207388'

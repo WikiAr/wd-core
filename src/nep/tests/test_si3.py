@@ -7,7 +7,7 @@ from nep import si3
 si3.MainTestTable[1] = True
 
 
-def Main_Test():
+def Main_Test() -> None:
     # python core8/pwb.py nep/test_si3 -page:Q122652815
     # python core8/pwb.py nep/test_si3
     print("<<lightyellow>> Main_Test :")

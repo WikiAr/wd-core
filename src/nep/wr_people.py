@@ -17,7 +17,7 @@ from people.people_get_topic import get_topic
 logger = logging.getLogger(__name__)
 
 
-def add_only_ar(q, ara):
+def add_only_ar(q, ara) -> None:
     # ---
     tab = {"ar": {"language": "ar", "value": ara}}
     work_api_desc(tab, q, fixlang=[])
@@ -36,7 +36,7 @@ def get_claim_id(item, prop):
     )
 
 
-def work_people2(item, topic, num=0, years=""):
+def work_people2(item, topic, num: int = 0, years: str = ""):
     # ---
     q = item["q"]
     # ---
@@ -64,7 +64,7 @@ def work_people2(item, topic, num=0, years=""):
     # ---
     if not p21_c:
         print(f" work_people2 p21_c == {p21_c} ")
-        return
+        return None
     # ---
     for lang, lang_tab in taber.items():
         # ---
@@ -76,14 +76,14 @@ def work_people2(item, topic, num=0, years=""):
     # ---
     if not NewDesc:
         print(" work_people nothing to add. ")
-        return
+        return None
     # ---
     logger.info(f"<<lightyellow>> **{num}: work_people:{q}  ({topic})")
     # ---
     work_api_desc(NewDesc, q, fixlang=[])
 
 
-def work_people(item, topic, num, ardes):
+def work_people(item, topic, num: int, ardes):
     q = item["q"]
     # ---
     topic = topic.lower().strip() or get_topic(item).lower()

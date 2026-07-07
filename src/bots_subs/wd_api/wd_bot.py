@@ -11,7 +11,7 @@ def format_sitelinks(sitelinks):
     return {x["site"]: x["title"] for d, x in sitelinks.items()}
 
 
-def format_labels_descriptions(labels):
+def format_labels_descriptions(labels: str):
     return {x["language"]: x["value"] for _, x in labels.items()}
 
 
@@ -49,7 +49,7 @@ def Get_infos_wikidata(params):
     return table
 
 
-def Get_item_descriptions_or_labels(q, ty="descriptions or labels"):
+def Get_item_descriptions_or_labels(q, ty: str = "descriptions or labels"):
     """Retrieve item descriptions or labels from a given entity ID.
 
     This function queries an API to obtain either descriptions or labels for
@@ -103,7 +103,7 @@ def Get_item_descriptions_or_labels(q, ty="descriptions or labels"):
     return table
 
 
-def Get_Item_API_From_Qid(q, sites="", titles="", props=""):
+def Get_Item_API_From_Qid(q, sites: str = "", titles: str = "", props: str = ""):
     # "sites": "arwiki",
     # "titles": "ويكيبيديا:مشروع_ويكي_بيانات",
     # url = 'wikidata.org/w/api.php?action=wbgetentities&ids=' + q + '&format=json'
@@ -159,7 +159,7 @@ def Get_Item_API_From_Qid(q, sites="", titles="", props=""):
     return table
 
 
-def Get_Property_API(q="", p="", titles="", sites=""):
+def Get_Property_API(q: str = "", p: str = "", titles: str = "", sites: str = ""):
     # url = 'https://www.wikidata.org/w/api.php?action=wbgetclaims&entity=' + q + '&property=' + p + '&format=json'
     # json1 = tools.loads_json( html)
     # ---

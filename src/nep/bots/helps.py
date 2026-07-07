@@ -52,11 +52,11 @@ def Get_P_API_time(item, P):
         return qlist[0]
     # ---
     sasa = [x["time"].split("-")[0].split("+0000000")[1] for x in qlist if x["time"].startswith("+0000000")]
-    Faso = {i: "" for i in sasa}
+    Faso = dict.fromkeys(sasa, "")
     return qlist[0] if len(Faso.keys()) == 1 else False
 
 
-def log_new_types(lists):
+def log_new_types(lists) -> str:
     # ---
     if "nolog" in sys.argv:
         return ""
@@ -87,7 +87,7 @@ def log_new_types(lists):
         with open(jsonfils, "w", encoding="utf-8") as nfile:
             json.dump(tabe, nfile)
     # Handle the exception and log the traceback.
-    except Exception as e:
+    except Exception:
         logger.exception("Exception:", exc_info=True)
 
 
@@ -132,7 +132,7 @@ def get_female_for_p17(contry_lab, tyy):
     return lab
 
 
-def get_label_txt(lng, wdi, property, array=0, fallback=False):
+def get_label_txt(lng, wdi, property, array: int = 0, fallback: bool = False):
     if property in wdi.get("claims", {}):
         if len(wdi.get("claims", {}).get(property, "")) > array:
             lnkProperty = wdi.get("claims", {}).get(property)[array].getTarget()

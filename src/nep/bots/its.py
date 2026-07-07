@@ -15,7 +15,7 @@ from nep.bots.helps import (
 logger = logging.getLogger(__name__)
 
 
-def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
+def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr: str = ""):
     # ---
     pp = wditem.get("claims", {}).get(myclaim, [])
     # ---
@@ -37,7 +37,7 @@ def its_a_generalthing(wditem, shortstr, longdescrstr, myclaim, claimstr=""):
     return laste
 
 
-def its_something_in_an_entity(wdi, something):
+def its_something_in_an_entity(wdi, something) -> str:
     # 'P131'    #P131
     # 'P17'   #P17
     # ---
@@ -148,7 +148,7 @@ def its_an_episode(lng, wditem):
     return ""
 
 
-def its_a_computergame(lng, wditem):
+def its_a_computergame(lng, wditem) -> str:
     logger.info(" its_a_computergame ")
     if "P178" in wditem.get("claims", {}):  # المطور
         LNKdeveloper = get_mainsnak(wditem.get("claims", {}).get("P178")[0])  # .getTarget()
@@ -168,7 +168,7 @@ def its_a_computergame(lng, wditem):
     return ""
 
 
-def its_a_sports_season(wditem, claimstr=""):
+def its_a_sports_season(wditem, claimstr: str = ""):
     # ---
     # LNKsport=wditem.get('claims',{}).get('P3450')[0].get('mainsnak',{}).get('datavalue',{}).get('value',{}).get('id','')#.getTarget()
     # ---
@@ -199,7 +199,7 @@ def its_a_sports_season(wditem, claimstr=""):
     return laste
 
 
-def its_songs(type_of_item, wditem, shortstr, claimstr=""):
+def its_songs(type_of_item, wditem, shortstr, claimstr: str = ""):
     # my_description = its_a_generalthing( wditem , da , '%s من أداء ' % da ,'P175')
     myclaim = "P175"
     # ---
@@ -253,7 +253,7 @@ def its_songs(type_of_item, wditem, shortstr, claimstr=""):
     return laste
 
 
-def its_a_p50(type_of_item, wditem, shortstr, claimstr=""):
+def its_a_p50(type_of_item, wditem, shortstr, claimstr: str = ""):
     myclaim = "P50"
     # ---
     P136 = get_mainsnak(wditem.get("claims", {}).get("P136", [{}])[0])
@@ -301,7 +301,7 @@ def its_a_p50(type_of_item, wditem, shortstr, claimstr=""):
     return laste
 
 
-def its_a_thing_located_in_country(wditem, countryname, thing):
+def its_a_thing_located_in_country(wditem, countryname: str, thing) -> str:
     if "P131" in wditem.get("claims", {}):
         LNKcommunity = get_mainsnak(wditem.get("claims", {}).get("P131")[0])  # .getTarget()
         label = Get_label(LNKcommunity)
@@ -312,7 +312,7 @@ def its_a_thing_located_in_country(wditem, countryname, thing):
     return f"{thing} في {countryname}"
 
 
-def its_a_film(wditem):
+def its_a_film(wditem) -> str:
     # ---
     directorname = ""
     # ---

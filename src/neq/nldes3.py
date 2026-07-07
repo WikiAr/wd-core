@@ -55,7 +55,7 @@ for arg in sys.argv:
         logger.info(f'sparqler[1] = "{sparqler[1]}"')
 
 
-def just_get_ar(label):
+def just_get_ar(label: str):
     parts = label.split("@@")
     arabic_parts = [part for part in parts if part.lower() == re.sub(r"[a-z@]", "", part.lower()) and part]
 
@@ -76,7 +76,6 @@ def get_sparql_queries():
     quaries = []
     # ---
     for x in quas:
-        quaa = f"SELECT ?item WHERE {{ ?item wdt:P31 wd:{x} . FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') }} }}"
         # ---
         in_sp = SPARQLSE.get(x)
         # ---
@@ -89,7 +88,7 @@ def get_sparql_queries():
     return quaries
 
 
-def process_item(wd, n, total_reads):
+def process_item(wd, n, total_reads) -> None:
     q = wd["item"].split("/entity/")[1]
     # ---
     logger.info(f"p{n}/{total_reads} q:{q}")
@@ -99,7 +98,7 @@ def process_item(wd, n, total_reads):
     action_one_item("ar", q, claimstr=claim_str)
 
 
-def main():
+def main() -> None:
     sparql_queries = get_sparql_queries()
     # ---
     random.shuffle(sparql_queries)

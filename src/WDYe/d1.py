@@ -74,7 +74,7 @@ translations = {
 }
 
 
-def work2(q, topic):
+def work2(q, topic) -> None:
     # ---
     ItemDescriptions = wd_bot.Get_item_descriptions_or_labels(q, "descriptions")
     # ---
@@ -103,7 +103,7 @@ def work2(q, topic):
             wd_desc.wwdesc(NewDesc, q, 1, fixlang, ask=False)
 
 
-def mam():
+def mam() -> None:
     topic = "species of insect"
     logger.info("*<<lightyellow>> mainfromQuarry:")
     Quarry = quuu[topic]

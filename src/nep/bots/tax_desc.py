@@ -25,7 +25,7 @@ for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
                 tax_translations_lower[kkey.lower()] = tax_lab.replace("~", natar)
 
 
-def make_tax_des_new(item):
+def make_tax_des_new(item) -> str:
     q = item["q"]
     # ---
     P171 = Get_P_API_id(item, "P171")
@@ -39,19 +39,19 @@ def make_tax_des_new(item):
     if not P105ar:
         return ""
     # ---
-    nan = """SELECT DISTINCT ?item ?P171 ?item105
-    WHERE {
-        BIND(wd:Q111771064 AS ?item)
-    VALUES ?P171 {
-    %s
-    }
+    tata = " ".join([f"wd:{x}" for x in lab_for_p171.keys()])
+    # ---
+    nan = f"""SELECT DISTINCT ?item ?P171 ?item105
+        WHERE {{
+            BIND(wd:Q111771064 AS ?item)
+        VALUES ?P171 {{
+        {tata}
+        }}
         ?item wdt:P31 wd:Q16521.
         ?item wdt:P171* ?P171.
         ?P171 wdt:P105 wd:Q37517.
         ?item wdt:P105 ?item105.
-    }""" % " ".join(
-        [f"wd:{x}" for x in lab_for_p171.keys()]
-    )
+    }}"""
     nan = nan.replace("Q111771064", q)
     # ---
     if "err" in sys.argv:
@@ -80,7 +80,7 @@ def make_tax_des_new(item):
                 WD_API_Bot.Des_API(q, ar_lab, "ar")
 
 
-def work_taxon_desc(item, endesc):
+def work_taxon_desc(item, endesc) -> None:
     # ---
     ardesc = tax_translations_lower.get(endesc.lower(), "")  # .get("ar", '')
     q = item["q"]

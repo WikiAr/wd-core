@@ -66,7 +66,7 @@ Qlist = {
 }
 
 
-def one_book_item(Qid, pa, lang, keys):
+def one_book_item(Qid, pa, lang, keys) -> None:
     item = wd_bot.Get_Item_API_From_Qid(pa["item"])
     if not item:
         return
@@ -167,7 +167,7 @@ def GetQuery(Qid, lang, keys):
     else:
         ur += f' ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") .'
     # ---
-    ur += '\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang
+    ur += f'\nOPTIONAL {{?item schema:description ?itemDes filter(lang(?itemDes) = "{lang}")}}'
     ur += "FILTER(!BOUND(?itemDes))  }\n GROUP BY ?item "
     # ---
     # logger.info(ur)
@@ -200,7 +200,7 @@ for arg in sys.argv:
         Off[1] = int(value)
 
 
-def WorkWithOneLang(Qid, lang, keys):
+def WorkWithOneLang(Qid, lang, keys) -> None:
     logger.info("*<<lightyellow>> WorkWithOneLang: ")
     # ---
     query = GetQuery(Qid, lang, keys)
@@ -275,7 +275,7 @@ def MakeDesc(Qid, pa, lang):
     return description
 
 
-def main():
+def main() -> None:
     # ---
     for arg in sys.argv:
         # ---

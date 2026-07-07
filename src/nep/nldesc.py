@@ -72,7 +72,7 @@ def Make_railway_desc(wditem, p31):
     return work_railway(wditem, p31)
 
 
-def action_one_P131_item(lng, oneitem):
+def action_one_P131_item(lng, oneitem) -> int:
     global totaledits
     if lng in oneitem.get("descriptions", {}):
         nld = oneitem.get("descriptions", {}).get(lng, "")
@@ -133,11 +133,13 @@ def action_one_P131_item(lng, oneitem):
     return 0
 
 
-def Add_desc(q, value, lang):
+def Add_desc(q, value, lang) -> None:
     WD_API_Bot.Des_API(q, value, lang, ask="")
 
 
-def action_one_item(lngr, q, item={}, claimstr=""):
+def action_one_item(lngr, q, item=None, claimstr: str = ""):
+    if item is None:
+        item = {}
     global items2do
     global totaledits
     # ---
@@ -168,7 +170,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
     items2do -= 1
     # ---
     if "P31" not in claims:
-        return
+        return None
     # ---
     type_ids = claims.get("P31", {})
     # ---
@@ -199,7 +201,7 @@ def action_one_item(lngr, q, item={}, claimstr=""):
             do_P1433_new_list(wditem, P31)
             break
         # ---
-        logger.info("o_type: [%s]" % type_of_item)
+        logger.info(f"o_type: [{type_of_item}]")
         # ---
         if type_of_item:
             if type_of_item == "Q7604686":

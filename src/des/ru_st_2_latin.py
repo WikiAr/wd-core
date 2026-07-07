@@ -290,7 +290,7 @@ letters_to_latin = {
 }
 
 
-def add_new_label(q, enlabel):
+def add_new_label(q, enlabel: str) -> None:
     # ---
     if not enlabel:
         return
@@ -311,7 +311,7 @@ liste = {
 }
 
 
-def change_one_lab(text, lang):
+def change_one_lab(text: str, lang):
     table = letters_to_latin[lang]
     # ---
     new_lab = "".join([table.get(i, i) for i in text])
@@ -331,7 +331,7 @@ def change_one_lab(text, lang):
     return new_lab
 
 
-def make_en_label(labels, q, Add=False):
+def make_en_label(labels: str, q, Add: bool = False):
     org_lab = ""
     new_lab = ""
     # ---
@@ -351,7 +351,7 @@ def make_en_label(labels, q, Add=False):
     return new_lab
 
 
-def main():
+def main() -> None:
     # ---
     query = """SELECT ?item
 WHERE {  ?item wdt:P495 wd:Q403.

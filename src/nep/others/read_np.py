@@ -18,7 +18,7 @@ Dir = Path(__file__).parent
 logger = logging.getLogger(__name__)
 
 
-def read_new_types_file():
+def read_new_types_file() -> None:
     # ---
     # python3 core8/pwb.py nep/si3 read
     # python3 core8/pwb.py nep/si3 read -file:nep/new_types11.json

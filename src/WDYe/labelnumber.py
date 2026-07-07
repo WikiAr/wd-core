@@ -9,7 +9,7 @@ itemsdone = 0
 missing_dict = {}
 
 
-def onee_item(wditem):
+def onee_item(wditem) -> int:
     global items2do
     items2do -= 1
     if wditem.labels:  # تسميات موجودة
@@ -29,7 +29,7 @@ def wd_sparql_generator(query):
         yield wd
 
 
-def main():
+def main() -> None:
     global itemsdone
     itemsdone = 0
     max = 10

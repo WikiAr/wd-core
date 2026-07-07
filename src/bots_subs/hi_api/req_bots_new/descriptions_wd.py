@@ -31,12 +31,12 @@ def ask_put(s):
 
 
 class WD_Descriptions:
-    def __init__(self, wdapi_new):
+    def __init__(self, wdapi_new) -> None:
         self.wdapi_new = wdapi_new
         self.session_post = self.wdapi_new.post_to_newapi
         # pass
 
-    def Des_API(self, Qid, desc, lang, ask="", rea=True, nowait=False):
+    def Des_API(self, Qid, desc: str, lang, ask: str = "", rea: bool = True, nowait: bool = False):
         """Set the description for a given item in a specified language.
 
         This function updates the description of an item identified by its Qid
@@ -64,7 +64,7 @@ class WD_Descriptions:
         # ---
         if not desc.strip():
             logger.info("<<red>> Des_API desc is empty.")
-            return
+            return None
         # ---
         # save the edit
         out = (
@@ -109,7 +109,7 @@ class WD_Descriptions:
                 qsline = f'{Qid}|D{lang}|"{desc}"'
                 QS_line(qsline, user="Mr.Ibrahembot")
 
-    def New_Mult_Des(self, q, data2, summary, ret, nowait=False):
+    def New_Mult_Des(self, q, data2, summary, ret, nowait: bool = False):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""
@@ -144,11 +144,11 @@ class WD_Descriptions:
         data2,
         summary,
         ret,
-        ask=False,
-        rea=True,
-        nowait=False,
-        tage="",
-        return_result=False,
+        ask: bool = False,
+        rea: bool = True,
+        nowait: bool = False,
+        tage: str = "",
+        return_result: bool = False,
     ):
         # ---
         if lag_bot.bad_lag(nowait):

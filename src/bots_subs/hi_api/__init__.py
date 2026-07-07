@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ """
+
 from newapi import WikiLoginClient
 
 from .h_wd_newapi.wd_login_wrap import log_in_wikidata
@@ -8,7 +9,7 @@ from .req_bots_new import claims_wd, descriptions_wd, labels_wd
 
 
 class HimoAPIBot:
-    def __init__(self, mr_or_bot="bot", www="www"):
+    def __init__(self, mr_or_bot: str = "bot", www: str = "www") -> None:
         # ---
         self.login_bot: WikiLoginClient = log_in_wikidata(mr_or_bot=mr_or_bot, www=www)
         # ---

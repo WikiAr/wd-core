@@ -26,8 +26,7 @@ for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
     # ---
-    if arg.startswith("-"):
-        arg = arg[1:]
+    arg = arg.removeprefix("-")
     # ---
     if arg.lower() in ["offset", "off"]:
         print(f"offsetbg[1] = int({value})")

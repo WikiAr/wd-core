@@ -30,14 +30,16 @@ def ask_put(s):
 
 
 class WD_Labels:
-    def __init__(self, wdapi_new, Des_API):
+    def __init__(self, wdapi_new, Des_API) -> None:
         self.wdapi_new = wdapi_new
         self.session_post = self.wdapi_new.post_to_newapi
         self.Des_API_funcs = Des_API
         # pass
 
-    def Alias_API(self, Qid, Alias, lang, ret, Remove=[], nowait=False):
+    def Alias_API(self, Qid, Alias, lang, ret, Remove=None, nowait: bool = False):
         # ---
+        if Remove is None:
+            Remove = []
         if lag_bot.bad_lag(nowait):
             return ""
         # ---
@@ -74,15 +76,15 @@ class WD_Labels:
     def Labels_API(
         self,
         Qid,
-        label,
+        label: str,
         lang,
         ret,
-        Or_Alii=False,
-        change_des=False,
-        number=0,
-        nowait=False,
-        tage="",
-        remove=False,
+        Or_Alii: bool = False,
+        change_des: bool = False,
+        number: int = 0,
+        nowait: bool = False,
+        tage: str = "",
+        remove: bool = False,
     ):
         # ---
         if lag_bot.bad_lag(nowait):
@@ -130,7 +132,9 @@ class WD_Labels:
         if d == "warn":
             logger.exception("Exception:", exc_info=True)
 
-    def Add_Labels_if_not_there(self, Qid, label, lang, ask="", Or_Alii=False, nowait=False):
+    def Add_Labels_if_not_there(
+        self, Qid, label: str, lang, ask: str = "", Or_Alii: bool = False, nowait: bool = False
+    ):
         # ---
         if lag_bot.bad_lag(nowait):
             return ""

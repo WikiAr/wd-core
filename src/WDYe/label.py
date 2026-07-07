@@ -30,11 +30,11 @@ itemsdone = 0
 missing_dict = {}
 
 
-def preee(wditem, data, site):
+def preee(wditem, data, site) -> None:
     wditem.editEntity(data, summary=f"Bot: Add Arabic label: {site}")
 
 
-def one_q_item(wditem):
+def one_q_item(wditem) -> int:
     global items2do
     items2do -= 1
     if "arwiki" in wditem.sitelinks:
@@ -55,13 +55,13 @@ def one_q_item(wditem):
     return 1
 
 
-def action_item2(wditem):
+def action_item2(wditem) -> int:
     global items2do
     items2do -= 1
     if "arwiki" in wditem.sitelinks:
-        ma = wditem.sitelinks["arwiki"]
+        wditem.sitelinks["arwiki"]
     if "ar" in wditem.sitelinks:
-        ma = wditem.sitelinks["arwiki"]
+        wditem.sitelinks["arwiki"]
         # print(ma)
         # site = ma.title
         # if site:
@@ -113,7 +113,7 @@ def wd_sparql_generator(query):
         yield wd
 
 
-def main():
+def main() -> None:
     global itemsdone
     itemsdone = 0
     print("- بدء المهمة")

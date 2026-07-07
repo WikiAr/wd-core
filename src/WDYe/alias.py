@@ -43,14 +43,14 @@ for qid in main_table:
         qid_table[labe] = qid
 
 
-def WORK(item, table, type):
+def WORK(item, table, type) -> None:
     # logger.info( item )
     logger.info(table)
     # logger.info( '<<lightgreen>> item:"%s" ' % item )
     # ---
     arlab = table["label"][0]
     arlab2 = arlab
-    alias = table["alias"]
+    # alias = table["alias"]
     if type in allise:
         logger.info(f'<<lightgreen>> type:"{type}" in allise:"{allise[type]}" ')
         arlab2 = re.sub(f"^{type} ", f"{allise[type]} ", arlab2)
@@ -85,7 +85,7 @@ Quaa = """SELECT ?item ?label ?alias
     LIMIT """
 
 
-def WORK_table(qid, tables):
+def WORK_table(qid, tables) -> None:
     # qid = qid_table.get( peo , "" )
     for peo in tables:
         qua = Quaa % (qid, peo)
@@ -111,7 +111,7 @@ def WORK_table(qid, tables):
             WORK(item, value, peo)
 
 
-def main():
+def main() -> None:
     # python pwb.py wd/med mainkey subcats
     # python pwb.py wd/med short subcats
     # python pwb.py wd/med subcats ta:horror

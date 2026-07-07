@@ -152,7 +152,7 @@ WHERE {
 }
 
 
-def action_one(q, ar):
+def action_one(q, ar) -> None:
     logger.info(f"<<lightblue>>> {q}:{ar} ")
     ar2 = ar
     if ar.find("عبد ") != -1:
@@ -161,7 +161,7 @@ def action_one(q, ar):
         WD_API_Bot.Alias_API(q, [ar2], "ar", False)
 
 
-def workqua(qua):
+def workqua(qua) -> None:
     # ---
     qua = qua + Limit[1]
     logger.info(qua)
@@ -174,7 +174,7 @@ def workqua(qua):
         action_one(pa["item"], pa["label"])
 
 
-def mains():
+def mains() -> None:
     logger.info("start with query")
     # ---
     FFF = True

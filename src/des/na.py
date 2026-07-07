@@ -26,7 +26,7 @@ limits = {1: "1000"}
 items_done = []
 
 
-def action(json1):
+def action(json1) -> None:
     try:
         total = len(json1)
     except BaseException:
@@ -50,7 +50,7 @@ def action(json1):
             logger.info(f" <<lightred>> * q in items_done. {q}")
 
 
-def make_quarry(ar_suff="", item_p31_cat="", en_suff="", en_priff=""):
+def make_quarry(ar_suff: str = "", item_p31_cat: str = "", en_suff: str = "", en_priff: str = ""):
     quaaa = """
 #تسمية تصانيف مواليد في
 SELECT DISTINCT  #?item ?label ?item_ar
@@ -222,7 +222,7 @@ WHERE {
 }
 
 
-def main():
+def main() -> None:
     # ---
     # python pwb.py des/na
     # python pwb.py des/na Deaths

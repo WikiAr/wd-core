@@ -47,7 +47,7 @@ def del_keys(d):
     return d
 
 
-def wwdesc(newdesc, qid, i, fixlang, ask="", tage=""):
+def wwdesc(newdesc, qid, i, fixlang, ask: str = "", tage: str = ""):
     """Process and update descriptions for a given query ID.
 
     This function takes a dictionary of new descriptions and processes it to
@@ -89,7 +89,7 @@ def wwdesc(newdesc, qid, i, fixlang, ask="", tage=""):
     # ---
     if len(langes) == 2 and "en-gb" in langes and "en-ca" in langes:
         logger.info("wwdesc: only en-gb and en-ca, Skipp... ")
-        return
+        return None
     # ---
     # dlangs = ','.join(queries_list)
     # summary = ('Bot: - Add descriptions:(%d langs) %s' % ( len(queries_list), str(dlangs) )) #ملخص العمل
@@ -117,7 +117,7 @@ def wwdesc(newdesc, qid, i, fixlang, ask="", tage=""):
     # ---
     if queries_list == [] and fixlang == []:
         logger.info("  *** no addedlangs")
-        return
+        return None
     # ---
     value = ""
     if "ar" in newdesc:
@@ -126,7 +126,7 @@ def wwdesc(newdesc, qid, i, fixlang, ask="", tage=""):
         try:
             key = queries_list[0]
             value = f"{newdesc[key]['value']}@{key}"
-        except Exception as e:
+        except Exception:
             logger.exception("Exception:", exc_info=True)
             value = ""
     # ---
@@ -143,7 +143,7 @@ def wwdesc(newdesc, qid, i, fixlang, ask="", tage=""):
     # ---
     if not skipp:
         logger.info("<<lightred>> - no skipp ")
-        return
+        return None
     # ---
     err_wait = "احترازًا من الإساء، يُحظر إجراء هذا الفعل مرات كثيرة في فترةٍ زمنية قصيرة، ولقد تجاوزت هذا الحد"
     # ---
@@ -180,8 +180,10 @@ def wwdesc(newdesc, qid, i, fixlang, ask="", tage=""):
         logger.info(skipp)
 
 
-def work_api_desc(newdesc, qid, fixlang=[]):
+def work_api_desc(newdesc, qid, fixlang=None) -> None:
     # ---
+    if fixlang is None:
+        fixlang = []
     newdesc = del_keys(newdesc)
     # ---
     langes = list(newdesc.keys())

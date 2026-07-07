@@ -25,5 +25,5 @@ quarry2 = "SELECT ?item  WHERE {  ?item wdt:P31 wd:Q4167836.}"
 # newdesc.mainfromQuarry( topic , quarry2, translations)
 
 for ll in list:
-    quarry = "SELECT ?item  WHERE {  ?item wdt:P31 wd:%s.}" % ll
+    quarry = f"SELECT ?item  WHERE {{  ?item wdt:P31 wd:{ll}.}}"
     newdesc.mainfromQuarry2(topic, quarry, translations)

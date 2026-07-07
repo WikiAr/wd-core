@@ -69,7 +69,7 @@ main_dir1 = f"{str(Path(__file__).parent.parent)}/"
 logger.info(f"<<lightyellow>> main_dir1 = {main_dir1}")
 
 
-def mainwithcat2():
+def mainwithcat2() -> None:
     logger.info("*<<lightred>> > mainwithcat2:")
     # ---
     # python3 core8/pwb.py nep/si3g -newpages:10

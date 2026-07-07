@@ -25,7 +25,7 @@ AskSave = {1: True}
 # def AddDes( item , pa , lang , Qid , keys):
 
 
-def one_film_item(Qid, pa, lang, keys):
+def one_film_item(Qid, pa, lang, keys) -> None:
     item = getwditem(pa["item"])
     if not item:
         return
@@ -202,7 +202,7 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en". ?auths rdfs:
 """
 
 
-def WorkWithOneLang(Qid, lang, keys):
+def WorkWithOneLang(Qid, lang, keys) -> None:
     logger.info("*<<lightyellow>> WorkWithOneLang: ")
     limit = 200
     # limit = '10000'
@@ -260,7 +260,7 @@ def MakeDesc(Qid, pa, lang):
     if lang not in by_list:
         logger.info(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
-    co = "من أداء " if (Qid == "Q482994") and (lang == "ar") else f"{by_list[lang]} "
+    "من أداء " if (Qid == "Q482994") and (lang == "ar") else f"{by_list[lang]} "
     # ---
     if (lang in pa) and (pa[lang] != ""):
         if auth := pa[lang]:
@@ -294,7 +294,7 @@ def MakeDesc(Qid, pa, lang):
     return description
 
 
-def films():
+def films() -> None:
     logger.info("films: ")
     Q = "film"
     # for lang in language:

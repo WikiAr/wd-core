@@ -11,7 +11,7 @@ import requests
 logger = logging.getLogger(__name__)
 
 
-def load_data_from_url(page_name="descraptions.json"):
+def load_data_from_url(page_name: str = "descraptions.json"):
     if not page_name.endswith(".json"):
         page_name = f"{page_name}.json"
 
@@ -75,7 +75,7 @@ def open_file_json_check_time(file_path: Path):
     return data
 
 
-def save_json_data(file_path, data):
+def save_json_data(file_path, data) -> None:
     try:
         with open(file_path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)

@@ -26,7 +26,7 @@ railway_tables = {
 }
 
 
-def Get_P_API_id(claims, P, onlyone=False):
+def Get_P_API_id(claims, P, onlyone: bool = False):
     # ---
     lista = []
     # ---
@@ -40,10 +40,10 @@ def Get_P_API_id(claims, P, onlyone=False):
     return "" if onlyone else lista
 
 
-def work_railway(wditem, p31, q=""):
+def work_railway(wditem, p31, q: str = ""):
     # ---
     if "railway" not in sys.argv:
-        return
+        return None
     # ---
     if not wditem:
         wditem = wd_bot.Get_Item_API_From_Qid(q)
@@ -83,7 +83,7 @@ def work_railway(wditem, p31, q=""):
     }
     # ---
     if not to_do_descs:
-        return
+        return None
     # ---
     wditem_desc = wditem.get("descriptions", {})
     newdesc = {}
@@ -136,7 +136,7 @@ def work_railway(wditem, p31, q=""):
     # ---
     if not newdesc:
         print("nothing to add..")
-        return
+        return None
     # ---
     # een = ['en-gb', 'en-ca']
     # ---

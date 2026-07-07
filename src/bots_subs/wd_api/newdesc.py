@@ -25,12 +25,12 @@ translations = {
 # newdesc.Quarry_with_item_langs( p31, Quarry, translations)
 
 
-def work2_with_replacement(item, topic, translations, replacement_ke):
+def work2_with_replacement(item, topic, translations, replacement_ke) -> None:
     item.get()
     # logger.info( '<<lightyellow>> **newdesc: work2:'  + item.title(as_link=False))
     # ItemDescriptions = {}
     # ---
-    keys1 = sorted([x for x in translations[topic].keys()])
+    keys1 = sorted(translations[topic].keys())
     # ---
     if "en" in keys1:
         keys1.append("en-gb")
@@ -61,9 +61,9 @@ def work2_with_replacement(item, topic, translations, replacement_ke):
     wd_desc.work_api_desc(NewDesc, q)
 
 
-def work22(q, topic, translations):
+def work22(q, topic, translations) -> None:
     # ---
-    keys = sorted([x for x in translations[topic].keys()])
+    keys = sorted(translations[topic].keys())
     if "en" in keys:
         keys.append("en-gb")
         keys.append("en-ca")
@@ -89,7 +89,7 @@ def work22(q, topic, translations):
     wd_desc.work_api_desc(NewDesc, q)
 
 
-def mainfromQuarry(topic, Quarry, translations):
+def mainfromQuarry(topic, Quarry, translations) -> None:
     # logger.info( '*<<lightyellow>> mainfromQuarry:' )
     # Quarry = 'SELECT ?item WHERE { ?item wdt:P31 wd:Q17633526.}'
     json = wd_sparql_bot.sparql_generator_url(Quarry)
@@ -103,7 +103,7 @@ def mainfromQuarry(topic, Quarry, translations):
         work22(q, topic, translations)
 
 
-def Quarry_with_item_langs(p31, Quarry, translations):
+def Quarry_with_item_langs(p31, Quarry, translations) -> None:
     json = wd_sparql_bot.sparql_generator_url(Quarry)
     lenth = len(json)
     num = 0
@@ -123,13 +123,13 @@ def Quarry_with_item_langs(p31, Quarry, translations):
             work22(q, p31, translations)
 
 
-def mainfromQuarry2(topic, Quarry, translations):
+def mainfromQuarry2(topic, Quarry, translations) -> None:
     mainfromQuarry(topic, Quarry, translations)
 
 
-def work2(item, topic, translations):
+def work2(item, topic, translations) -> None:
     # ---
-    keys = sorted([x for x in translations[topic].keys()])
+    keys = sorted(translations[topic].keys())
     if "en" in keys:
         keys.append("en-gb")
         keys.append("en-ca")
