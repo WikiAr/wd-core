@@ -155,9 +155,7 @@ def check_quarry_new(tab):
         # logger.info( "@@".join( tabe[numb] ) )
         logger.info(f"find qua for {len(value)} description.")
         # ---
-        data_str = " ".join(
-            f'"{f}"@en "{f.lower()}"@en' for f in tabe[numb]
-        )
+        data_str = " ".join(f'"{f}"@en "{f.lower()}"@en' for f in tabe[numb])
         # ---
         qua = f"""SELECT
             (concat(strafter(str(?item),"/entity/")) as ?q)#?item

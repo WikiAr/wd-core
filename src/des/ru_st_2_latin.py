@@ -10,9 +10,8 @@ python3 core8/pwb.py des/ru_st_2_latin test
 import sys
 
 import pywikibot
-from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
-
 from bots_subs.hi_api import HimoAPIBot
+from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
 
 WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
 

@@ -83,8 +83,10 @@ class WdErrorsHandler:
             logger.info("<<lightred>> ** maxlag. ")
             return False
         # ---
-        params["data"] = {}
-        logger.info(f"<<lightred>>{function} ERROR: <<default>>info: {err_info}, {params=}")
+        params_v = params if params else {}
+        params_v["data"] = {}
+        # ---
+        logger.info(f"<<lightred>>{function} ERROR: <<default>>info: {err_info}, {params_v=}")
         # ---
         if "raise" in sys.argv:
             raise Exception(error)

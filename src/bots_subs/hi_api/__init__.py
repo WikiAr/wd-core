@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ """
+
 from newapi import WikiLoginClient
 
 from .h_wd_newapi.wd_login_wrap import log_in_wikidata

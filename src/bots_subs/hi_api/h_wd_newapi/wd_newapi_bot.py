@@ -12,21 +12,26 @@ from ..utils.handle_wd_errors import WdErrorsHandler
 logger = logging.getLogger(__name__)
 
 
-class WdAPI(WdErrorsHandler):
-    def __init__(self, login_bot, mr_or_bot: str = "bot") -> None:
+class WdAPI:
+    def __init__(
+        self,
+        login_bot: WikiLoginClient,
+        mr_or_bot: str = "bot",
+    ) -> None:
         # ---
-        self.login_bot: WikiLoginClient = login_bot
+        self.wd_error_handler = WdErrorsHandler()
+        self.login_bot = login_bot
         # ---
         self.lang = "test" if "testwikidata" in sys.argv else "www"
         self.family = "wikidata"
         # ---
         self.usernamex = self.login_bot.username
         # ---
-        WdErrorsHandler.__init__(self)
-        # ---
         logger.info(f"<<lightgreen>> WdAPI: {mr_or_bot}, {self.usernamex=} \n")
 
-    def post_to_newapi(self, params=None, data=None, tage: str = "", editgroups: str = "", max_retry: int = 0, **kwargs):
+    def post_to_newapi(
+        self, params=None, data=None, tage: str = "", editgroups: str = "", max_retry: int = 0, **kwargs
+    ):
         # ---
         if data is None:
             data = {}
@@ -64,7 +69,7 @@ class WdAPI(WdErrorsHandler):
         # ---
         if error:
             # ---
-            er = self.handle_err_wd(error, function="", params=params)
+            er = self.wd_error_handler.handle_err_wd(error, function="", params=params)
             # ---
             logger.info(f"<<purple>>post_to_newapi: <<red>> handle_err_wd: {er}")
             # return er

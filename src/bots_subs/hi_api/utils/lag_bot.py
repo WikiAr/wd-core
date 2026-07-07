@@ -45,7 +45,7 @@ def find_lag(err) -> None:
     else:
         logger.info(f"<<lightpurple>> lagese == FFa_lag[1] ({FFa_lag[1]})")
     # ---
-    logger.info(f"<<lightred>> max lag: sleep for {lagese+1} secound.")
+    logger.info(f"<<lightred>> max lag: sleep for {lagese + 1} secound.")
     # ---
     time.sleep(FFa_lag[1] + 1)
 
