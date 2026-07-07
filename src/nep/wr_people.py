@@ -64,7 +64,7 @@ def work_people2(item, topic, num: int = 0, years: str = ""):
     # ---
     if not p21_c:
         print(f" work_people2 p21_c == {p21_c} ")
-        return
+        return None
     # ---
     for lang, lang_tab in taber.items():
         # ---
@@ -76,7 +76,7 @@ def work_people2(item, topic, num: int = 0, years: str = ""):
     # ---
     if not NewDesc:
         print(" work_people nothing to add. ")
-        return
+        return None
     # ---
     logger.info(f"<<lightyellow>> **{num}: work_people:{q}  ({topic})")
     # ---

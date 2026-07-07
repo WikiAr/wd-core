@@ -61,7 +61,7 @@ def read_bad_json(file):
         # ---
         fa = str(lala)
         fa = fa.split("{")[1].split("}")[0]
-        fa = f"{{fa}}"
+        fa = "{fa}"
         wd_file = json.loads(fa)
         print(f'Bad json "{file}"')
         return wd_file

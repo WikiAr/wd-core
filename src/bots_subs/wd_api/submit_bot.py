@@ -46,7 +46,7 @@ def submitAPI(params):
     except requests.exceptions.ReadTimeout:
         logger.info(f"ReadTimeout: {mainurl}")
 
-    except Exception as e:
+    except Exception:
         logger.exception("Exception:", exc_info=True)
         _known_exceptions = [
             "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",

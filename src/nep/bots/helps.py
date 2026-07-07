@@ -52,7 +52,7 @@ def Get_P_API_time(item, P):
         return qlist[0]
     # ---
     sasa = [x["time"].split("-")[0].split("+0000000")[1] for x in qlist if x["time"].startswith("+0000000")]
-    Faso = {i: "" for i in sasa}
+    Faso = dict.fromkeys(sasa, "")
     return qlist[0] if len(Faso.keys()) == 1 else False
 
 
@@ -87,7 +87,7 @@ def log_new_types(lists) -> str:
         with open(jsonfils, "w", encoding="utf-8") as nfile:
             json.dump(tabe, nfile)
     # Handle the exception and log the traceback.
-    except Exception as e:
+    except Exception:
         logger.exception("Exception:", exc_info=True)
 
 

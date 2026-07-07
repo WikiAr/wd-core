@@ -168,7 +168,7 @@ def action_one_item(lngr, q, item={}, claimstr: str = ""):
     items2do -= 1
     # ---
     if "P31" not in claims:
-        return
+        return None
     # ---
     type_ids = claims.get("P31", {})
     # ---

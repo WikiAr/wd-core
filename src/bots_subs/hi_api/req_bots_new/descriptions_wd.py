@@ -64,7 +64,7 @@ class WD_Descriptions:
         # ---
         if not desc.strip():
             logger.info("<<red>> Des_API desc is empty.")
-            return
+            return None
         # ---
         # save the edit
         out = (

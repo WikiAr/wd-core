@@ -165,7 +165,7 @@ def ISRE(qitem, num: int, lenth, no_donelist: bool = True, P31_list: bool = Fals
     # ---
     if not item:
         logger.info(f'*<<lightred>> >{num} error with item "{q}" < :')
-        return
+        return None
     # ---
     if item.get("q", q) != q:
         q = item.get("q", q)

@@ -30,8 +30,7 @@ for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
     # ---
-    if arg.startswith("-"):
-        arg = arg[1:]
+    arg = arg.removeprefix("-")
     # ---
     if arg == "limit":
         limit[1] = value

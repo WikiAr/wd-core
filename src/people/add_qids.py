@@ -36,7 +36,7 @@ WHERE {
 
 """
 
-from people.people_get_topic import job_to_qid, nat_to_qid
+from people.people_get_topic import job_to_qid
 
 uux = {
     "academic": "Q3400985",
