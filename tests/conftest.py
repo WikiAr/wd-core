@@ -3,7 +3,6 @@ Test configuration for the test-suite.
 Common fixtures for mocking API, DB, and other dependencies.
 """
 
-
 import pytest
 from pytest_socket import disable_socket
 
