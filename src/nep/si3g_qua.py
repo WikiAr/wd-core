@@ -106,7 +106,7 @@ def one_item(qid, num: int) -> None:
         return
     # ---
     descriptions = item.get("descriptions", {})
-    endes = descriptions.get("en", "")
+    descriptions.get("en", "")
     # ---
     ardes = descriptions.get("ar", "")
     # ---

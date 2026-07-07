@@ -261,7 +261,7 @@ def MakeDesc(Qid, pa, lang):
     if lang not in by_list:
         logger.info(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
-    co = "من أداء " if (Qid == "Q482994") and (lang == "ar") else f"{by_list[lang]} "
+    "من أداء " if (Qid == "Q482994") and (lang == "ar") else f"{by_list[lang]} "
     # ---
     if (lang in pa) and (pa[lang] != ""):
         if auth := pa[lang]:

@@ -39,7 +39,6 @@ def translate_text(text: str):
         "- لا تضف تعليقات.\n"
     )
     # ---
-    prompt2 = f"Translate to Arabic: {text}"
     # ---
     payload = {
         "model": MODEL,

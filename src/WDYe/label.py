@@ -59,9 +59,9 @@ def action_item2(wditem) -> int:
     global items2do
     items2do -= 1
     if "arwiki" in wditem.sitelinks:
-        ma = wditem.sitelinks["arwiki"]
+        wditem.sitelinks["arwiki"]
     if "ar" in wditem.sitelinks:
-        ma = wditem.sitelinks["arwiki"]
+        wditem.sitelinks["arwiki"]
         # print(ma)
         # site = ma.title
         # if site:

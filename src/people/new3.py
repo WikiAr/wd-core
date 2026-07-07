@@ -155,23 +155,25 @@ def check_quarry_new(tab):
         # logger.info( "@@".join( tabe[numb] ) )
         logger.info(f"find qua for {len(value)} description.")
         # ---
-        qua = """SELECT
-    (concat(strafter(str(?item),"/entity/")) as ?q)#?item
-    (GROUP_CONCAT(DISTINCT(LANG(?des2)); separator=",") as ?deskey)
-    (GROUP_CONCAT(DISTINCT(?des); separator=",") as ?desc)
-    (GROUP_CONCAT(DISTINCT(strafter(str(?p211),"/entity/")); separator=",") as ?p21)
-    WHERE {
-        values ?des { %s }
-        ?item wdt:P31 wd:Q5 .
-        ?item wdt:P21 ?p211.
-        ?item schema:description ?des.
-        ?item schema:description ?des2.
-    }
-    group by ?item
-    #limit 1000
-    """ % " ".join(
+        data_str = " ".join(
             f'"{f}"@en "{f.lower()}"@en' for f in tabe[numb]
         )
+        # ---
+        qua = f"""SELECT
+            (concat(strafter(str(?item),"/entity/")) as ?q)#?item
+            (GROUP_CONCAT(DISTINCT(LANG(?des2)); separator=",") as ?deskey)
+            (GROUP_CONCAT(DISTINCT(?des); separator=",") as ?desc)
+            (GROUP_CONCAT(DISTINCT(strafter(str(?p211),"/entity/")); separator=",") as ?p21)
+            WHERE {{
+                values ?des {{ {data_str} }}
+                ?item wdt:P31 wd:Q5 .
+                ?item wdt:P21 ?p211.
+                ?item schema:description ?des.
+                ?item schema:description ?des2.
+            }}
+            group by ?item
+            #limit 1000
+            """
         # ---
         if limit[1]:
             qua += f"\n limit {limit[1]}"

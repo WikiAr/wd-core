@@ -73,18 +73,17 @@ for p50 in p50s:
     SPARQLSE[f"{p50}dfd"] = do_qua(p50, prop="wdt:P50")
 
     SPARQLSE[p50] = (
-        """
+        f"""
         SELECT DISTINCT
             ?item
             (GROUP_CONCAT(DISTINCT(STR(?labe)); separator="@@") as ?lab)
-        WHERE {
-            ?item wdt:P31 wd:%s .
+        WHERE {{
+            ?item wdt:P31 wd:{p50} .
             ?item wdt:P50 ?pp.
             ?pp rdfs:label ?labe . FILTER((LANG(?labe)) = "ar") .
-            FILTER(NOT EXISTS {?item schema:description ?des.FILTER((LANG(?des)) = "ar")})
-            }
+            FILTER(NOT EXISTS {{?item schema:description ?des.FILTER((LANG(?des)) = "ar")}})
+            }}
             GROUP BY ?item """
-        % p50
     )
 
 

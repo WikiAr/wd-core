@@ -70,7 +70,7 @@ def Get_Sitelinks_From_wikidata(
     if props:
         params["props"] = props
     # ---
-    if isinstance(add_props, (list, tuple)):
+    if isinstance(add_props, list | tuple):
         for x in add_props:
             if x not in params["props"]:
                 params["props"] += f"|{x}"

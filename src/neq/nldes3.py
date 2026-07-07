@@ -76,7 +76,6 @@ def get_sparql_queries():
     quaries = []
     # ---
     for x in quas:
-        quaa = f"SELECT ?item WHERE {{ ?item wdt:P31 wd:{x} . FILTER NOT EXISTS {{ ?item schema:description ?itemar. FILTER((LANG(?itemar)) = 'ar') }} }}"
         # ---
         in_sp = SPARQLSE.get(x)
         # ---

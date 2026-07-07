@@ -268,7 +268,8 @@ def looog() -> None:
     # ---
     for x, value in log2.items():
         q = "{{Q| " + x + "}}"
-        text2 += "\n|-\n| %s || {{" % q
+        text2 += f"\n|-\n| {q} ||"
+        text2 += "{{"
         text2 += f"Label | {x} | en"
         text2 += "}} ||"
         text2 += ",".join(value) + "\n"

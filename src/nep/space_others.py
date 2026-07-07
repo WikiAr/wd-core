@@ -94,7 +94,7 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr: str = ""):
     elif type_of_item in Space_tab:
         labr = Space_tab[type_of_item]
         if orig_desc in [labr, ""]:
-            my_description = its_a_generalthing(wditem, labr, "%s في " % labr, "P59")
+            my_description = its_a_generalthing(wditem, labr, f"{labr} في ", "P59")
     # ---
     elif type_of_item == "Q2831984":  # ألبوم قصص مصورة uit de serie P179
         if orig_desc in ["", "ألبوم قصص مصورة"]:
@@ -120,7 +120,7 @@ def Make_space_desc(lng, wditem, type_of_item, orig_desc, claimstr: str = ""):
         my_description = ""
         logger.info(f"test:[{test}] != my_description[{my_description}]")
     # ---
-    logger.info("Make space desc:[%s]" % my_description)
+    logger.info(f"Make space desc:[{my_description}]")
     # ---
     return my_description
 
@@ -144,7 +144,7 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr: str = ""):
     elif type_of_item in bldiat:
         my_description = its_a_thing_located_in_country(wditem, bldiat[type_of_item], "بلدية")
         if my_description in ["بلدية", ""]:
-            my_description = "بلدية في %s" % bldiat[type_of_item]
+            my_description = f"بلدية في {bldiat[type_of_item]}"
     # ---
     # أغاني وألبومات صوتية وما شابهه
     elif type_of_item in songs_type:
@@ -159,7 +159,7 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr: str = ""):
     elif type_of_item in Geo_entity:
         labr = Geo_entity[type_of_item]
         if orig_desc in [labr, ""]:
-            my_description = its_something_in_an_entity(wditem, "%s في" % labr)
+            my_description = its_something_in_an_entity(wditem, f"{labr} في")
     # ---
     elif type_of_item == "Q8502":  # a جبل
         if orig_desc in ["جبل", ""]:

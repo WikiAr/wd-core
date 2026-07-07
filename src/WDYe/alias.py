@@ -50,7 +50,7 @@ def WORK(item, table, type) -> None:
     # ---
     arlab = table["label"][0]
     arlab2 = arlab
-    alias = table["alias"]
+    # alias = table["alias"]
     if type in allise:
         logger.info(f'<<lightgreen>> type:"{type}" in allise:"{allise[type]}" ')
         arlab2 = re.sub(f"^{type} ", f"{allise[type]} ", arlab2)

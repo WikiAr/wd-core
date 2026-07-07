@@ -36,8 +36,10 @@ class WD_Labels:
         self.Des_API_funcs = Des_API
         # pass
 
-    def Alias_API(self, Qid, Alias, lang, ret, Remove=[], nowait: bool = False):
+    def Alias_API(self, Qid, Alias, lang, ret, Remove=None, nowait: bool = False):
         # ---
+        if Remove is None:
+            Remove = []
         if lag_bot.bad_lag(nowait):
             return ""
         # ---

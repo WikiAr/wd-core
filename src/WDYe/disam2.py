@@ -67,11 +67,6 @@ def work2(q, topic) -> None:
 
 def mainfromQuarry() -> None:
     logger.info("*<<lightyellow>> mainfromQuarry:")
-    Quarry = """SELECT DISTINCT ?item
-WHERE {
-  ?item schema:description "یک صفحهٔ ابهام\\u200cزدایی در ویکی\\u200cپدیا"@fa.
-}
-limit 10000"""
 
     Quarry2 = """SELECT ?item
 WHERE {VALUES (?item) {(wd:Q29976539) }

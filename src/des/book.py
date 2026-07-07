@@ -167,7 +167,7 @@ def GetQuery(Qid, lang, keys):
     else:
         ur += f' ?auths rdfs:label ?auth{lang} filter (lang(?auth{lang}) = "{lang}") .'
     # ---
-    ur += '\nOPTIONAL {?item schema:description ?itemDes filter(lang(?itemDes) = "%s")}' % lang
+    ur += f'\nOPTIONAL {{?item schema:description ?itemDes filter(lang(?itemDes) = "{lang}")}}'
     ur += "FILTER(!BOUND(?itemDes))  }\n GROUP BY ?item "
     # ---
     # logger.info(ur)

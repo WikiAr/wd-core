@@ -30,7 +30,7 @@ def work2_with_replacement(item, topic, translations, replacement_ke) -> None:
     # logger.info( '<<lightyellow>> **newdesc: work2:'  + item.title(as_link=False))
     # ItemDescriptions = {}
     # ---
-    keys1 = sorted([x for x in translations[topic].keys()])
+    keys1 = sorted(translations[topic].keys())
     # ---
     if "en" in keys1:
         keys1.append("en-gb")
@@ -63,7 +63,7 @@ def work2_with_replacement(item, topic, translations, replacement_ke) -> None:
 
 def work22(q, topic, translations) -> None:
     # ---
-    keys = sorted([x for x in translations[topic].keys()])
+    keys = sorted(translations[topic].keys())
     if "en" in keys:
         keys.append("en-gb")
         keys.append("en-ca")
@@ -129,7 +129,7 @@ def mainfromQuarry2(topic, Quarry, translations) -> None:
 
 def work2(item, topic, translations) -> None:
     # ---
-    keys = sorted([x for x in translations[topic].keys()])
+    keys = sorted(translations[topic].keys())
     if "en" in keys:
         keys.append("en-gb")
         keys.append("en-ca")

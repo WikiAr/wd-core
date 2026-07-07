@@ -186,8 +186,10 @@ class WD_Claims:
             # ---
             self.add_quall(Claimid, quall_prop, valueline)
 
-    def Claim_API2(self, uid, proprty, numeric, qualifiers=[], nowait: bool = False):
+    def Claim_API2(self, uid, proprty, numeric, qualifiers=None, nowait: bool = False):
         # ---
+        if qualifiers is None:
+            qualifiers = []
         if lag_bot.bad_lag(nowait):
             return ""
         # ---

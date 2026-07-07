@@ -26,8 +26,12 @@ class WdAPI(WdErrorsHandler):
         # ---
         logger.info(f"<<lightgreen>> WdAPI: {mr_or_bot}, {self.usernamex=} \n")
 
-    def post_to_newapi(self, params={}, data={}, tage: str = "", editgroups: str = "", max_retry: int = 0, **kwargs):
+    def post_to_newapi(self, params=None, data=None, tage: str = "", editgroups: str = "", max_retry: int = 0, **kwargs):
         # ---
+        if data is None:
+            data = {}
+        if params is None:
+            params = {}
         if not params and data:
             params = data
         # ---

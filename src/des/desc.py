@@ -154,7 +154,8 @@ def get_property_label_for_qids(properties, List):
     # ---
     for qid in List:
         num += 1
-        lino = "{{subst:user:Mr._Ibrahem/line2|%s" % qid
+        lino = "{{"
+        lino += f"subst:user:Mr._Ibrahem/line2|{qid}"
         for prop in properties:
             lino += f"|{prop}"
         lino += "}}\n"

@@ -121,7 +121,7 @@ limiTa = ["Wikimedia category", "Wikimedia disambiguation page"]
 
 def main() -> None:
     logger.info("*<<lightyellow>> main:")
-    queries_list = sorted(list(queries.keys()))
+    queries_list = sorted(queries.keys())
     lenth = len(queries_list)
     for numb, topic in enumerate(queries_list, start=1):
         if topic in DescraptionsTable:

@@ -39,19 +39,19 @@ def make_tax_des_new(item) -> str:
     if not P105ar:
         return ""
     # ---
-    nan = """SELECT DISTINCT ?item ?P171 ?item105
-    WHERE {
-        BIND(wd:Q111771064 AS ?item)
-    VALUES ?P171 {
-    %s
-    }
+    tata = " ".join([f"wd:{x}" for x in lab_for_p171.keys()])
+    # ---
+    nan = f"""SELECT DISTINCT ?item ?P171 ?item105
+        WHERE {{
+            BIND(wd:Q111771064 AS ?item)
+        VALUES ?P171 {{
+        {tata}
+        }}
         ?item wdt:P31 wd:Q16521.
         ?item wdt:P171* ?P171.
         ?P171 wdt:P105 wd:Q37517.
         ?item wdt:P105 ?item105.
-    }""" % " ".join(
-        [f"wd:{x}" for x in lab_for_p171.keys()]
-    )
+    }}"""
     nan = nan.replace("Q111771064", q)
     # ---
     if "err" in sys.argv:
