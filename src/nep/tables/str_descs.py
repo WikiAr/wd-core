@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 """ """
 
-from wd_api import wd_bot
-
-from nep.bots.helps import (
+from wd_core.nep.bots.helps import (
     Get_label_from_item,
     get_label_txt,
     get_mainsnak,
 )
-from nep.bots.its import (
+from wd_core.nep.bots.its import (
     its_a_generalthing,
     its_a_thing_located_in_country,
     its_something_in_a_country,
     its_something_in_an_entity,
 )
+from wd_core.wd_api import wd_bot
 
 descs = {
     "Q1149652": {"org": ["", "district"], "desc": "district in India"},

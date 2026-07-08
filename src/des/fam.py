@@ -11,14 +11,14 @@ import random
 import sys
 
 import tqdm
-from wd_api import newdesc, wd_sparql_bot
 
-from des.railway import railway_tables, work_railway
-from desc_dicts.descraptions import (
+from wd_core.des.railway import railway_tables, work_railway
+from wd_core.desc_dicts.descraptions import (
     DescraptionsTable,
     Qid_Descraptions,
     Space_Descraptions,
 )
+from wd_core.wd_api import newdesc, wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 

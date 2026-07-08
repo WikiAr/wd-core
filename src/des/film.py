@@ -12,8 +12,9 @@ import logging
 import re
 
 import pywikibot
-from wd_api import wd_sparql_bot
-from wd_api.wd_desc import work_api_desc
+
+from wd_core.wd_api import wd_sparql_bot
+from wd_core.wd_api.wd_desc import work_api_desc
 
 logger = logging.getLogger(__name__)
 

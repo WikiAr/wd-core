@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 #
 """
-from des.railway import railway_tables, work_railway#work_railway( item, P31, q='' )
+from wd_core.des.railway import railway_tables, work_railway#work_railway( item, P31, q='' )
 
 """
 #
 
 import sys
 
-from wd_api import wd_bot
-from wd_api.wd_desc import work_api_desc
-
-from des.ru_st_2_latin import make_en_label
+from wd_core.des.ru_st_2_latin import make_en_label
+from wd_core.wd_api import wd_bot
+from wd_core.wd_api.wd_desc import work_api_desc
 
 # enlabel = make_en_label(labels, Add=False)
 

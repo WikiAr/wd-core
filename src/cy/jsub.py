@@ -9,8 +9,8 @@ https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_d
 
 from shared.api_page import load_main_api
 
-from cy.cy_bot.do_text import do_One_Page
 from wd_core import wd_gent
+from wd_core.cy.cy_bot.do_text import do_One_Page
 
 skip_titles = [
     "قالب:نتيجة سباق الدراجات",

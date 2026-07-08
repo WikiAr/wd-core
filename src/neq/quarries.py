@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
 
-from nep.tables.quarries import SPARQLSE
+from wd_core.nep.tables.quarries import SPARQLSE
 
 """
 
 import sys
 
-from desc_dicts.descraptions import Qid_Descraptions
-from nep.new_way import P1433_ids
-from nep.tables.lists import (
+from wd_core.desc_dicts.descraptions import Qid_Descraptions
+from wd_core.nep.new_way import P1433_ids
+from wd_core.nep.tables.lists import (
     Space_tab,
     Taton_list,
     others_list,

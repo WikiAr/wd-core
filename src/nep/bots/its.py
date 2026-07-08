@@ -2,14 +2,13 @@
 
 import logging
 
-from wd_api import wd_bot
-
-from nep.bots.helps import (
+from wd_core.nep.bots.helps import (
     Get_label,
     Get_label_from_item,
     get_female_for_p17,
     get_mainsnak,
 )
+from wd_core.wd_api import wd_bot
 
 logger = logging.getLogger(__name__)
 

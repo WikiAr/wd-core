@@ -36,11 +36,10 @@ import re
 import sys
 import time
 
-from wd_api import wd_sparql_bot
-from wd_api.wd_desc import work_api_desc
-
-from people import occupationsall as oc
-from people.Nationalities import TRANSLATIONS_NATIONALITIES
+from wd_core.people import occupationsall as oc
+from wd_core.people.Nationalities import TRANSLATIONS_NATIONALITIES
+from wd_core.wd_api import wd_sparql_bot
+from wd_core.wd_api.wd_desc import work_api_desc
 
 logger = logging.getLogger(__name__)
 

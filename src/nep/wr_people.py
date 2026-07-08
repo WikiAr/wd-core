@@ -1,19 +1,18 @@
 #!/usr/bin/python3
 """
 
-from nep.wr_people import work_people
+from wd_core.nep.wr_people import work_people
 
 """
 
 import logging
 import re
 
-from wd_api.wd_desc import work_api_desc
-
-from nep.tables.lists import en_des_to_ar
-from nep.tables.si_tables import genders
-from people.new3 import translations_o
-from people.people_get_topic import get_topic
+from wd_core.nep.tables.lists import en_des_to_ar
+from wd_core.nep.tables.si_tables import genders
+from wd_core.people.new3 import translations_o
+from wd_core.people.people_get_topic import get_topic
+from wd_core.wd_api.wd_desc import work_api_desc
 
 logger = logging.getLogger(__name__)
 

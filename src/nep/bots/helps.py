@@ -8,11 +8,10 @@ import os
 import sys
 from pathlib import Path
 
-from wd_api import wd_bot
-
-from nep.others import read_json
-from nep.tables.cash import labels_cach
-from nep.tables.nats import nationalities
+from wd_core.nep.others import read_json
+from wd_core.nep.tables.cash import labels_cach
+from wd_core.nep.tables.nats import nationalities
+from wd_core.wd_api import wd_bot
 
 logger = logging.getLogger(__name__)
 

@@ -6,10 +6,9 @@ import random
 import sys
 import time
 
-from wd_api import wd_bot, wd_sparql_bot
-
-from nep.wr_people import work_people
-from people.people_get_topic import print_new_jobs, qid_to_job, qid_to_p27
+from wd_core.nep.wr_people import work_people
+from wd_core.people.people_get_topic import print_new_jobs, qid_to_job, qid_to_p27
+from wd_core.wd_api import wd_bot, wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 

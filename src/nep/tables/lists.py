@@ -2,10 +2,10 @@
 This module defines mappings and SPARQL queries for various entities.
 It is used for [describe the purpose] in the context of [describe the context].
 
-from nep.tables.lists import p50s, space_list_and_other, Taton_list, Space_tab, others_list_2, others_list, GEO_ENTITY, bldiat, qura, songs_type, space_list_and_other_2, Taton_list
+from wd_core.nep.tables.lists import p50s, space_list_and_other, Taton_list, Space_tab, others_list_2, others_list, GEO_ENTITY, bldiat, qura, songs_type, space_list_and_other_2, Taton_list
 
 in si3.py :
-from nep.tables.lists import space_list_and_other, others_list, Space_tab, others_list_2
+from wd_core.nep.tables.lists import space_list_and_other, others_list, Space_tab, others_list_2
 'Q43305660':	{	'ar':'براءة اختراع أمريكية', 'en':'United States Patent' }, # 341036
 'Q191067':		{	'ar':'مقالة', 'en':'article' }, # 271264
 'Q47461344':	{	'ar':'عمل مكتوب', 'en':'written work' }, # 129452
@@ -34,7 +34,7 @@ from nep.tables.lists import space_list_and_other, others_list, Space_tab, other
 'Q163740':		{	'ar':'منظمة غير ربحية', 'en':'nonprofit organization' }, # 18634
 """
 
-from desc_dicts.descraptions import Space_Descraptions
+from wd_core.desc_dicts.descraptions import Space_Descraptions
 
 en_des_to_ar_no_lower = {
     "Royal Dutch East indies Army personel": "أفراد جيش جزر الهند الشرقية الملكية الهولندية",

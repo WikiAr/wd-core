@@ -9,9 +9,8 @@ python pwb.py des/galaxy
 
 """
 
-from wd_api import newdesc
-
-from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
+from wd_core.desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
+from wd_core.wd_api import newdesc
 
 # newdesc.mainfromQuarry2( topic , quarry, translations)
 

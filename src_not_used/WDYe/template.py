@@ -1,4 +1,5 @@
 from bots_subs.wd_api import newdesc
+
 from desc_dicts.descraptions import DescraptionsTable
 
 translations = {"Wikimedia template": DescraptionsTable["Wikimedia template"]}

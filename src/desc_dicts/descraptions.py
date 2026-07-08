@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ """
 
-from desc_dicts.descraptions_dict import Scientific_descraptions
-from desc_dicts.descraptions_dict_new import get_data
+from wd_core.desc_dicts.descraptions_dict import Scientific_descraptions
+from wd_core.desc_dicts.descraptions_dict_new import get_data
 
 DescraptionsTable = {
     "scientific article": Scientific_descraptions,

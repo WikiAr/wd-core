@@ -2,10 +2,10 @@
 
 import sys
 
-from des.places import PLACES_TABLE
-from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
-from desc_dicts.descraptions_dict import Scientific_descraptions
-from nep.tables.lists import others_list
+from wd_core.des.places import PLACES_TABLE
+from wd_core.desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
+from wd_core.desc_dicts.descraptions_dict import Scientific_descraptions
+from wd_core.nep.tables.lists import others_list
 
 genders = {
     "Q6581097": "male",

@@ -6,12 +6,11 @@ import re
 import sys
 
 from shared.himo_api import HimoAPIBot
-from wd_api import wd_bot
 
-from des.railway import railway_tables, work_railway
-from desc_dicts.descraptions import Qid_Descraptions
-from nep.bots.helps import get_mainsnak
-from nep.bots.its import (
+from wd_core.des.railway import railway_tables, work_railway
+from wd_core.desc_dicts.descraptions import Qid_Descraptions
+from wd_core.nep.bots.helps import get_mainsnak
+from wd_core.nep.bots.its import (
     its_a_computergame,
     its_a_generalthing,
     its_a_sports_season,
@@ -19,17 +18,18 @@ from nep.bots.its import (
     its_something_in_a_country,
     its_something_in_an_entity,
 )
-from nep.bots.tax_desc import work_taxon_desc
-from nep.new_way import P1433_en_to_qid, P1433_ids, do_P1433_ids
-from nep.si3 import do_P1433_new_list, make_scientific_art
-from nep.space_others import Make_others_desc, Make_space_desc
-from nep.tables.lists import (
+from wd_core.nep.bots.tax_desc import work_taxon_desc
+from wd_core.nep.new_way import P1433_en_to_qid, P1433_ids, do_P1433_ids
+from wd_core.nep.si3 import do_P1433_new_list, make_scientific_art
+from wd_core.nep.space_others import Make_others_desc, Make_space_desc
+from wd_core.nep.tables.lists import (
     others_list,
     others_list_2,
     space_list_and_other,
 )
-from nep.tables.str_descs import make_nn
-from nep.wr_people import work_people
+from wd_core.nep.tables.str_descs import make_nn
+from wd_core.nep.wr_people import work_people
+from wd_core.wd_api import wd_bot
 
 WdApiBot = HimoAPIBot(mr_or_bot="bot", www="www")
 logger = logging.getLogger(__name__)
