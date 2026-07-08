@@ -4,10 +4,12 @@
 from nep.bots.scientific_article import make_scientific_article
 
 """
+
 import logging
 import re
 
 import dateutil.parser
+
 from desc_dicts.descraptions_dict import Scientific_descraptions
 from nep.bots.helps import Get_P_API_time
 
@@ -287,7 +289,7 @@ def make_scientific_desc(lang, date, precision):
     return desc
 
 
-def make_scientific_article(item, p31, num: int, TestTable: bool = False):
+def make_scientific_article(item, p31, num: int, testtable: bool = False):
     # ---
     tablem = {"descriptions": {}, "qid": "", "fixlang": []}
     # ---
@@ -323,13 +325,13 @@ def make_scientific_article(item, p31, num: int, TestTable: bool = False):
         if desc:
             translations[lang] = desc
     # ---
-    if TestTable:
-        logger.info(f'<<lightgreen>> {translations["en"]}:{translations["da"]}')
+    if testtable:
+        logger.info(f"<<lightgreen>> {translations['en']}:{translations['da']}")
         logger.info(translations["en"])
         logger.info(translations["da"])
         logger.info(translations["ar"])
     # ---
-    NewDesc = {}
+    new_desc_data = {}
     addedlangs = []
     replacelang = []
     # ---
@@ -347,7 +349,7 @@ def make_scientific_article(item, p31, num: int, TestTable: bool = False):
         _ar_descs = ["مقالة علمية", "مقالة بحثية"]
         # ---
         if lang not in item_descriptions.keys():
-            NewDesc[lang] = {"language": lang, "value": lang_e}
+            new_desc_data[lang] = {"language": lang, "value": lang_e}
             addedlangs.append(lang)
         # ---
         # elif item_desc == ses_desc or (lang == "ar" and item_desc in ar_descs):  # or (lang == "bn"  and ):  # to fix bn descraptions
@@ -359,20 +361,20 @@ def make_scientific_article(item, p31, num: int, TestTable: bool = False):
                     lang_e = lang_e.replace("scholarly article", item_desc)
                 # ---
                 logger.info(f'<<lightyellow>> replace desc "{item_desc}"@{lang}. by :{lang_e}')
-                NewDesc[lang] = {"language": lang, "value": lang_e}
+                new_desc_data[lang] = {"language": lang, "value": lang_e}
                 addedlangs.append(lang)
         # ---
         # fix some error
         elif pubdate["month"] == "11" and lang in Month_Table:
             if item_desc.find(Month_Table[lang]["12"]) != -1:
                 logger.info(f'<<lightyellow>> find error desc "{item_desc}"@{lang}.')
-                NewDesc[lang] = {"language": lang, "value": lang_e}
+                new_desc_data[lang] = {"language": lang, "value": lang_e}
                 replacelang.append(lang)
     # ---
-    # logger.info( '<<lightyellow>> make_scientific_article' + str(NewDesc) )
+    # logger.info( '<<lightyellow>> make_scientific_article' + str(new_desc_data) )
     if addedlangs or replacelang:
         # logger.info( '<<lightyellow>> **%d: make_scientific_article: %s  %s'  %(num , item["q"] , p31))
-        tablem["descriptions"] = NewDesc
+        tablem["descriptions"] = new_desc_data
         tablem["qid"] = q
         tablem["fixlang"] = replacelang
     else:

@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ """
+
 from desc_dicts.descraptions import Qid_Desc
 
 tiny_wrwr = {

@@ -1,22 +1,13 @@
 #!/usr/bin/python3
-"""
-python3 core8/pwb.py neq/nldes3 a2r sparql:Q13433827,Q265158,Q191067,Q19389637,Q953806 all:1000 doar
+""" """
 
-python3 core8/pwb.py neq/nldes3 a2r sparql:Q953806 ask all:100 doar
-
-python3 core8/pwb.py neq/nldes3 test
-
-python3 core8/pwb.py neq/nldes3 a2r sparql:dfd ask
-python3 core8/pwb.py neq/nldes3 a2r sparql:Q7889 ask
-python3 core8/pwb.py neq/nldes3 a2r sparql:Q7889 ask
-
-"""
 import logging
 import random
 import re
 import sys
 
-from bots_subs.wd_api.wd_sparql_bot import sparql_generator_big_results
+from wd_api.wd_sparql_bot import sparql_generator_big_results
+
 from nep.nldesc import action_one_item
 from neq.quarries import SPARQLSE
 

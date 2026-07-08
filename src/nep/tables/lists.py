@@ -2,7 +2,7 @@
 This module defines mappings and SPARQL queries for various entities.
 It is used for [describe the purpose] in the context of [describe the context].
 
-from nep.tables.lists import p50s, space_list_and_other, Taton_list, Space_tab, others_list_2, others_list, Geo_entity, bldiat, qura, songs_type, space_list_and_other_2, Taton_list
+from nep.tables.lists import p50s, space_list_and_other, Taton_list, Space_tab, others_list_2, others_list, GEO_ENTITY, bldiat, qura, songs_type, space_list_and_other_2, Taton_list
 
 in si3.py :
 from nep.tables.lists import space_list_and_other, others_list, Space_tab, others_list_2
@@ -101,7 +101,7 @@ all_types_list = [
     "Q207628",  # compositie
 ]
 
-simple_set_byP131 = [
+simple_set_byp131 = [
     "Q24764",
     "Q70208",
     "Q127448",
@@ -172,7 +172,7 @@ simple_set_byP131 = [
     "",
 ]
 
-Geo_entity = {
+GEO_ENTITY = {
     "Q4989906": "معلم تذكاري",
     "Q13424466": "ميناء طبيعي",
     "Q30022": "مقهى",
@@ -301,8 +301,8 @@ others_list = {
     # 'Q11424':{"ar":"فيلم", "en":"" },
 }
 
-for geo in Geo_entity:
-    others_list[geo] = {"ar": Geo_entity[geo], "en": ""}
+for geo in GEO_ENTITY:
+    others_list[geo] = {"ar": GEO_ENTITY[geo], "en": ""}
 
 bldiat = {
     "Q484170": "فرنسا",  # a 37477
@@ -326,7 +326,7 @@ bldiat = {
 }
 
 for vv in bldiat:
-    others_list[vv] = {"ar": f"بلدية في {bldiat[vv]}" ""}
+    others_list[vv] = {"ar": f"بلدية في {bldiat[vv]}"}
 
 qura = {
     "Q21672098": {"P17": "أوكرانيا", "P31": "قرية"},

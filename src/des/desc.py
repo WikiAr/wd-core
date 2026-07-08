@@ -2,24 +2,10 @@
 """
 #!/usr/bin/env python3
 
-python3 core8/pwb.py des/desc limit:1000 optional
-python3 core8/pwb.py des/desc limit:1000 optional place:Q173387 save #قبر
-python3 core8/pwb.py des/desc limit:1000 optional place:Q918230 save #فيلا رومانية
-python3 core8/pwb.py des/desc limit:1000 optional place:Q641226 #صالة
-python3 core8/pwb.py des/desc limit:1000 optional place:Q483110 #ملعب
-python3 core8/pwb.py des/desc limit:1000 optional place:Q1329623 #مركز ثقافي
-python3 core8/pwb.py des/desc limit:1000 optional place:Q1154710 #استاد كرة قدم
-python3 core8/pwb.py des/desc limit:1000 optional place:Q12518 #برج
-python3 core8/pwb.py des/desc limit:1000 optional place:Q2225692 #منطقة سكنية في أندونوسيا
-python3 core8/pwb.py des/desc limit:1000 optional place:Q185113
 
 أوصاف مناطق جغرافية
 
-python3 core8/pwb.py des/desc  limit:2000 offplace:85
-python3 core8/pwb.py des/desc limit:2000 offplace:100 qslimit:5000
-python3 core8/pwb.py des/desc limit:2000 qslimit:2000 alllimit:10000
 
-python3 core8/pwb.py des/desc limit:2000 qslimit:5000 alllimit:10000
 
 SELECT DISTINCT
 (GROUP_CONCAT(DISTINCT(STRAFTER(STR(?item), "/entity/")); separator="@@") as ?q) #(CONCAT(STRAFTER(STR(?item), "/entity/")) AS ?q)
@@ -46,22 +32,22 @@ import logging
 import re
 import sys
 
-from bots_subs.hi_api import HimoAPIBot
-from bots_subs.qs_bot import QS_line
-from bots_subs.wd_api import wd_bot
-from bots_subs.wd_api.wd_sparql_bot import sparql_generator_big_results
-from des.contries2 import ContriesTable2
-from des.places import placesTable
-
 from shared.api_page import load_main_api
+from shared.himo_api import HimoAPIBot
+from shared.qs_bot import QS_line
+from wd_api import wd_bot
+from wd_api.wd_sparql_bot import sparql_generator_big_results
 
-WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
+from des.contries2 import ContriesTable2
+from des.places import PLACES_TABLE
+
+WdApiBot = HimoAPIBot(mr_or_bot="bot", www="www")
 
 logger = logging.getLogger(__name__)
 
 
-# placesTable = {"Q29701762": {"ar": "مستوطنة"}}
-placestable2 = {fg: placesTable[fg] for fg in placesTable}
+# PLACES_TABLE = {"Q29701762": {"ar": "مستوطنة"}}
+placestable2 = {fg: PLACES_TABLE[fg] for fg in PLACES_TABLE}
 
 q_list_done = []
 New_QS = {1: []}
@@ -130,10 +116,8 @@ for arg in sys.argv:
     elif arg == "offplace":
         offset_place[1] = int(value)
     # ---
-    # python3 core8/pwb.py des/desc descqs limit:4000 optional place:Q185113
-    # python3 core8/pwb.py des/desc descqs limit:1000 place:Q8054
-    if arg == "place" and value in placesTable:
-        placestable2 = {value: placesTable[value]}
+    if arg == "place" and value in PLACES_TABLE:
+        placestable2 = {value: PLACES_TABLE[value]}
     # ---
     if arg == "alllimit":
         alllimit[1] = int(value)
@@ -144,7 +128,7 @@ for arg in sys.argv:
     # ---
 
 
-def get_property_label_for_qids(properties, List):
+def get_property_label_for_qids(properties, list_data):
     # ---
     # logger.info('start get_property_label_for_qids:' )
     # ---
@@ -152,7 +136,7 @@ def get_property_label_for_qids(properties, List):
     # ---
     num = 0
     # ---
-    for qid in List:
+    for qid in list_data:
         num += 1
         lino = "{{"
         lino += f"subst:user:Mr._Ibrahem/line2|{qid}"
@@ -208,7 +192,7 @@ def Add_desc(q, value, lang) -> str:
     if "descqs" in sys.argv:
         descqs(q, value, lang)
     else:
-        WD_API_Bot.Des_API(q, value, lang, ask="")
+        WdApiBot.des_api(q, value, lang, ask="")
 
 
 def work_one_item(start, lang, tab, c, total: int, findlab: bool = False) -> str:

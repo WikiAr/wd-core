@@ -3,17 +3,14 @@
 """
 from des.railway import railway_tables, work_railway#work_railway( item, P31, q='' )
 
-python3 core8/pwb.py des/fam railway Q55678
-python3 core8/pwb.py des/fam railway Q728937
-python3 core8/pwb.py des/fam railway Q784159
-python3 core8/pwb.py des/fam railway Q55488
 """
 #
 
 import sys
 
-from bots_subs.wd_api import wd_bot
-from bots_subs.wd_api.wd_desc import work_api_desc
+from wd_api import wd_bot
+from wd_api.wd_desc import work_api_desc
+
 from des.ru_st_2_latin import make_en_label
 
 # enlabel = make_en_label(labels, Add=False)
@@ -26,11 +23,11 @@ railway_tables = {
 }
 
 
-def Get_P_API_id(claims, P, onlyone: bool = False):
+def Get_P_API_id(claims, pid, onlyone: bool = False):
     # ---
     lista = []
     # ---
-    for c in claims.get(P, {}):
+    for c in claims.get(pid, {}):
         q = c.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id")
         if q:
             lista.append(q)
@@ -55,7 +52,7 @@ def work_railway(wditem, p31, q: str = ""):
     labels = wditem.get("labels", {})
     if labels.get("en", "") == "":
         print("item enlabel == ''")
-        make_en_label(labels, q, Add=True)
+        make_en_label(labels, q, add_it=True)
     # ---
     Claims = wditem.get("claims", {})
     # ---
@@ -93,7 +90,7 @@ def work_railway(wditem, p31, q: str = ""):
         "p131": {"ar": p131_labels.get("ar", ""), "en": p131_labels.get("en", "")},
     }
     # ---
-    P31_list = Get_P_API_id(Claims, "P31")
+    p31_list = Get_P_API_id(Claims, "P31")
     # ---
     for lang, des in to_do_descs.items():
         if not des:
@@ -126,7 +123,7 @@ def work_railway(wditem, p31, q: str = ""):
         # ---
         desc_n = des
         if p17_desc:
-            if p31 != "Q728937" and "Q728937" not in P31_list and p131_desc:
+            if p31 != "Q728937" and "Q728937" not in p31_list and p131_desc:
                 desc_n = lang_format[lang][2].format(des, p131_desc, p17_desc)
             else:
                 desc_n = lang_format[lang][1].format(des, p17_desc)

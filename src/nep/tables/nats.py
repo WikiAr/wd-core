@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-from nep.tables.nats import nationalities
-"""
+""" """
 
 nationalities = {
     "آيسلندا": {"man": "آيسلندي", "women": "آيسلندية"},

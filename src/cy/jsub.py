@@ -1,31 +1,16 @@
 #!/usr/bin/python3
 """
-tfj run jsubx --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py cy/jsub -ns:10 -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات/قوالب"
 
-python3 core8/pwb.py cy/jsub -page:جيروين_بلايلفينس ask
-python3 core8/pwb.py cy/jsub -page:إديتا_بوتشينسكايتي
-python3 core8/pwb.py cy/jsub -page:
-python3 core8/pwb.py cy/jsub -page:قالب:نتيجة_سباق_الدراجات/ميغيل_إندوراين
-python3 core8/pwb.py cy/jsub -page:قالب:نتيجة_سباق_الدراجات/ألبيرتو_كونتادور
-python3 core8/pwb.py cy/jsub -page:
-python3 core8/pwb.py cy/jsub -page:
-python3 core8/pwb.py cy/jsub -page:كريس_فروم
 
-python3 core8/pwb.py cy/jsub -ref:قالب:نتيجة_سباق_الدراجات/بداية
-python3 core8/pwb.py cy/jsub -cat:
-python3 core8/pwb.py cy/jsub -ns:10 -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات/قوالب
-python3 core8/pwb.py cy/jsub -cat:
-python3 core8/pwb.py cy/jsub -cat:
-python3 core8/pwb.py cy/jsub -cat:تصنيف:سجل_فوز_دراج_من_ويكي_بيانات
 
 https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_data_from_Arabic-Wikipedia
 
 """
 
-import wd_gent
-from cy_bot.do_text import do_One_Page
-
 from shared.api_page import load_main_api
+
+from cy.cy_bot.do_text import do_One_Page
+from wd_core import wd_gent
 
 skip_titles = [
     "قالب:نتيجة سباق الدراجات",

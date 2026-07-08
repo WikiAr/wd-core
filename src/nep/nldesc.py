@@ -5,8 +5,9 @@ import logging
 import re
 import sys
 
-from bots_subs.hi_api import HimoAPIBot
-from bots_subs.wd_api import wd_bot
+from shared.himo_api import HimoAPIBot
+from wd_api import wd_bot
+
 from des.railway import railway_tables, work_railway
 from desc_dicts.descraptions import Qid_Descraptions
 from nep.bots.helps import get_mainsnak
@@ -30,7 +31,7 @@ from nep.tables.lists import (
 from nep.tables.str_descs import make_nn
 from nep.wr_people import work_people
 
-WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
+WdApiBot = HimoAPIBot(mr_or_bot="bot", www="www")
 logger = logging.getLogger(__name__)
 
 items2do = 0  # global parameter to print progress
@@ -134,7 +135,7 @@ def action_one_P131_item(lng, oneitem) -> int:
 
 
 def Add_desc(q, value, lang) -> None:
-    WD_API_Bot.Des_API(q, value, lang, ask="")
+    WdApiBot.des_api(q, value, lang, ask="")
 
 
 def action_one_item(lngr, q, item=None, claimstr: str = ""):

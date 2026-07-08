@@ -1,10 +1,6 @@
 #!/usr/bin/python3
 """
 
-python3 core8/pwb.py people/new3
-python3 core8/pwb.py people/new3 -job:rules_footballer ask
-python3 core8/pwb.py people/new3 -nat:Yemeni ask
-python3 core8/pwb.py people/new3 -nat:American limit:200
 
 SELECT *
 WHERE {
@@ -40,10 +36,11 @@ import re
 import sys
 import time
 
-import people.occupationsall as oc
-from bots_subs.wd_api import wd_sparql_bot
-from bots_subs.wd_api.wd_desc import work_api_desc
-from people.Nationalities import translationsNationalities
+from wd_api import wd_sparql_bot
+from wd_api.wd_desc import work_api_desc
+
+from people import occupationsall as oc
+from people.Nationalities import TRANSLATIONS_NATIONALITIES
 
 logger = logging.getLogger(__name__)
 
@@ -60,23 +57,18 @@ genders_list = sorted([[x, y] for x, y in genders.items()])
 
 
 Tab = {
-    "Nationalities": translationsNationalities,
-    "Occupations": oc.translationsOccupations,
+    "Nationalities": TRANSLATIONS_NATIONALITIES,
+    "Occupations": oc.TRANSLATIONS_OCCUPATIONS,
 }
 
-logger.info(f"len of Nationalities = {len(translationsNationalities.keys())}")
-logger.info(f"len of Occupations = {len(oc.translationsOccupations.keys())}")
+logger.info(f"len of Nationalities = {len(TRANSLATIONS_NATIONALITIES.keys())}")
+logger.info(f"len of Occupations = {len(oc.TRANSLATIONS_OCCUPATIONS.keys())}")
 time.sleep(1)
 
 qualimit = {1: 20}
 limit = {1: ""}
 offset = {1: 0}
 
-# python3 core8/pwb.py people/new3 occnew
-# python3 core8/pwb.py people/new3 -job:researcher
-# python3 core8/pwb.py people/new3 -nat:Yemeni -job:footballer
-# python3 core8/pwb.py people/new3 -nat:American occnew
-# python3 core8/pwb.py people/new3 -nat:American
 for arg in sys.argv:
     # ---
     arg, _, value = arg.partition(":")
@@ -91,21 +83,21 @@ for arg in sys.argv:
         offset[1] = int(value)
     # ---
     if arg == "occnew":
-        Tab["Occupations"] = oc.translationsOccupations_new
+        Tab["Occupations"] = oc.TRANSLATIONS_OCCUPATIONS_NEW
     # ---
     if arg in ["nat", "-nat"]:
         value = value.replace("_", " ")
-        if value in translationsNationalities:
-            Tab["Nationalities"] = {value: translationsNationalities[value]}
+        if value in TRANSLATIONS_NATIONALITIES:
+            Tab["Nationalities"] = {value: TRANSLATIONS_NATIONALITIES[value]}
         else:
-            print(f"nat value:({value}) not in translationsNationalities")
+            print(f"nat value:({value}) not in TRANSLATIONS_NATIONALITIES")
     # ---
     if arg in ["job", "-job"]:
         value = "~ " + value.replace("_", " ")
-        if value in oc.translationsOccupations:
-            Tab["Occupations"] = {value: oc.translationsOccupations[value]}
+        if value in oc.TRANSLATIONS_OCCUPATIONS:
+            Tab["Occupations"] = {value: oc.TRANSLATIONS_OCCUPATIONS[value]}
         else:
-            print(f"job value:({value}) not in oc.translationsOccupations")
+            print(f"job value:({value}) not in oc.TRANSLATIONS_OCCUPATIONS")
 
 targetlangs2 = ["ar"]
 targetlangs = ["ar", "bn", "ca", "es", "fr", "gl", "he"]
@@ -139,8 +131,6 @@ def check_quarry_new(tab):
         if d not in tabe:
             tabe[d] = []
         # ---
-        # python3 core8/pwb.py people/new3 -nat:Algerian limit:500 qualimit:15
-        # python3 core8/pwb.py people/new3 -nat:American limit:50 qualimit:10
         if len(tabe[d]) < qualimit[1]:
             tabe[d].append(x)
         else:
@@ -194,7 +184,7 @@ translations_for_nat = {1: {}}
 
 def make_Tabs(tabs) -> None:
     # من هذا البوت
-    # TraOc = translationsOccupations
+    # TraOc = TRANSLATIONS_OCCUPATIONS
     TraNat = tabs["Nationalities"]
     # ---
     # من البوتات الأخرى
@@ -327,25 +317,25 @@ def start_one_nat(nat_tab) -> None:
         genderlabel = genders.get(p21, "male")
         # ---
         descriptions_keys = sorted(x["deskey"].split(","))
-        NewDesc = {
+        new_desc_data = {
             lang: {"language": lang, "value": x_table[lang][genderlabel]}
             for lang in x_table.keys()
             if lang not in descriptions_keys
         }
         # ---
-        if NewDesc != {}:
-            work_api_desc(NewDesc, q)
+        if new_desc_data != {}:
+            work_api_desc(new_desc_data, q)
 
 
-def mainnat(Tabs) -> None:  # translations_for_nat
+def mainnat(tabs) -> None:  # translations_for_nat
     # ---
     # python pwb.py people/new3 mainnat -nat:American
     #
     # ---
     logger.info("<<lightpurple>>------------\n mainnat :")
     # ---
-    if Tabs != {}:
-        make_Tabs(Tabs)
+    if tabs != {}:
+        make_Tabs(tabs)
     # ---
     Queries = 0
     # ---

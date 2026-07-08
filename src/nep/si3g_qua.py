@@ -1,21 +1,13 @@
 #!/usr/bin/python3
-"""
-tfj run egy --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q79"
+""" """
 
-python3 core8/pwb.py nep/si3g_qua returnlab -lang:ar
-
-python3 core8/pwb.py nep/si3g_qua returnlab
-
-python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q1028
-python3 core8/pwb.py nep/si3g_qua returnlab -p27:Q79
-
-"""
 import logging
 import random
 import sys
 import time
 
-from bots_subs.wd_api import wd_bot, wd_sparql_bot
+from wd_api import wd_bot, wd_sparql_bot
+
 from nep.wr_people import work_people
 from people.people_get_topic import print_new_jobs, qid_to_job, qid_to_p27
 

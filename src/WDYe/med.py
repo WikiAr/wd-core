@@ -13,11 +13,11 @@ import sys
 import urllib
 import urllib.parse
 
+from shared.api_page import load_main_api
+
 from bots_subs import open_url
 from bots_subs.hi_api import HimoAPIBot
 from bots_subs.wd_api import wd_sparql_bot
-
-from shared.api_page import load_main_api
 
 WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
 

@@ -1,18 +1,14 @@
 #!/usr/bin/python3
-"""
-
-python3 core8/pwb.py des/numb
-
-"""
+""" """
 
 import logging
 
-from bots_subs.hi_api import HimoAPIBot
-from bots_subs.wd_api import wd_bot, wd_sparql_bot
+from shared.himo_api import HimoAPIBot
+from wd_api import wd_bot, wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 
-WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
+WdApiBot = HimoAPIBot(mr_or_bot="bot", www="www")
 
 
 limit = {1: 0}
@@ -26,8 +22,8 @@ FILTER NOT EXISTS {?item schema:description ?ar filter (lang(?ar) = "ar")} .
 json1 = wd_sparql_bot.sparql_generator_url(quarry)
 total = len(json1)
 for c, q in enumerate(json1, start=1):
-    Qid = q["q"]
-    logger.info(f"work {c} from {total} , {Qid}")
-    descriptions = wd_bot.Get_item_descriptions_or_labels(Qid, "descriptions")
+    qid_str = q["q"]
+    logger.info(f"work {c} from {total} , {qid_str}")
+    descriptions = wd_bot.Get_item_descriptions_or_labels(qid_str, "descriptions")
     if "ar" not in descriptions:
-        WD_API_Bot.Des_API(Qid, "عدد أولي", "ar", ask="")
+        WdApiBot.des_api(qid_str, "عدد أولي", "ar", ask="")
