@@ -1,9 +1,5 @@
 """
 Import the traceback and pywikibot modules to handle exceptions.
-
-Usage:
-
-from nep.bots.helps import Get_P_API_id, Get_P_API_time, log_new_types, get_female_for_p17, Get_label, get_label_txt, get_lng_description, Get_label_from_item, get_mainsnak
 """
 
 import json
@@ -12,7 +8,8 @@ import os
 import sys
 from pathlib import Path
 
-from bots_subs.wd_api import wd_bot
+from wd_api import wd_bot
+
 from nep.others import read_json
 from nep.tables.cash import labels_cach
 from nep.tables.nats import nationalities
@@ -23,11 +20,11 @@ Dir = Path(__file__).parent.parent
 lng_canbeused = []
 
 
-def Get_P_API_id(item, P):
+def Get_P_API_id(item, pid):
     # ---
     # q = 'claims' in item and item['claims'][P]['mainsnak']['datavalue']['value']['id'] or False
     lista = []
-    claims = item.get("claims", {}).get(P, {})
+    claims = item.get("claims", {}).get(pid, {})
     for c in claims:
         if q := c.get("mainsnak", {}).get("datavalue", {}).get("value", {}).get("id", False):
             lista.append(q)
@@ -35,12 +32,12 @@ def Get_P_API_id(item, P):
     return lista
 
 
-def Get_P_API_time(item, P):
+def Get_P_API_time(item, pid):
     qlist = []
     # ---
     if not item or not isinstance(item, dict):
         return False
-    claims = item.get("claims", {}).get(P, [])
+    claims = item.get("claims", {}).get(pid, [])
     for PP31 in claims:
         vv = PP31.get("mainsnak", {}).get("datavalue", {}).get("value", {})
         if isinstance(vv, dict) and vv.get("time"):

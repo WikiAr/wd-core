@@ -60,7 +60,7 @@ Qid_Desc = {
     "Q820655": {
         "ar": "قانون تشريعي",
         "en": "statute",
-    },  # python3 core8/pwb.py np/nldes3 sparql:Q820655
+    },
     "Q207694": {"ar": "متحف فني", "en": "art museum"},
     "Q27032363": {"ar": "أرشيف صور", "en": "photo archive"},
     "Q7187": {"ar": "جين", "en": "gene"},

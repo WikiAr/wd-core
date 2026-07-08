@@ -5,18 +5,17 @@
 
 """
 
-
 import logging
 import re
 import sys
 
-from bots_subs.hi_api import HimoAPIBot
-from bots_subs.wd_api import wd_sparql_bot
+from shared.himo_api import HimoAPIBot
+from wd_api import wd_sparql_bot
 
 logger = logging.getLogger(__name__)
 
 
-WD_API_Bot = HimoAPIBot(mr_or_bot="mr", www="www")
+WdApiBot = HimoAPIBot(mr_or_bot="mr", www="www")
 
 
 bylangs = False  # False#True
@@ -45,7 +44,7 @@ def action(json1) -> None:
                 logger.info(f'  * ar_lab:"{ar_lab}",en_name:"{en_name}"')
                 c += 1
                 logger.info(f'  * action {c}/{total} "{q}"')
-                WD_API_Bot.Labels_API(q, ar_lab, "ar", False, Or_Alii=True)
+                WdApiBot.Labels_API(q, ar_lab, "ar", False, or_alii=True)
         else:
             logger.info(f" <<lightred>> * q in items_done. {q}")
 
@@ -74,8 +73,8 @@ WHERE {
     return quaaa
 
 
-Quarry = {
-    "items": """# تسمية  عناصر طبقاً لاسم التصنيف
+quarry = {
+    "items1": """# تسمية  عناصر طبقاً لاسم التصنيف
 SELECT DISTINCT #?item ?label ?cat_ar
 (concat("" , strafter(str(?item),"/entity/") , "")  as ?item_q)
 (concat( (strafter(str(?cat_ar),"تصنيف:")) )  as ?ar_name)
@@ -255,12 +254,12 @@ def main() -> None:
             logger.info(f"<<lightred>>>>  limit ( {value} )  ")
             limits[1] = value
         # ---
-        if arg in Quarry:
-            logger.info(f"<<lightred>>>>  use Quarry:{arg} . ")
-            qya[arg] = Quarry[arg]
+        if arg in quarry:
+            logger.info(f"<<lightred>>>>  use quarry:{arg} . ")
+            qya[arg] = quarry[arg]
     # ---
     if not qya:
-        qya = Quarry
+        qya = quarry
     for number, key in enumerate(qya, start=1):
         quuu = qya[key]
         for arg in sys.argv:

@@ -8,7 +8,8 @@ from nep.wr_people import work_people
 import logging
 import re
 
-from bots_subs.wd_api.wd_desc import work_api_desc
+from wd_api.wd_desc import work_api_desc
+
 from nep.tables.lists import en_des_to_ar
 from nep.tables.si_tables import genders
 from people.new3 import translations_o
@@ -58,7 +59,7 @@ def work_people2(item, topic, num: int = 0, years: str = ""):
     # ---
     descriptions = item.get("descriptions", {})
     # ---
-    NewDesc = {}
+    new_desc_data = {}
     # ---
     p21_c = genders.get(p21)
     # ---
@@ -69,18 +70,18 @@ def work_people2(item, topic, num: int = 0, years: str = ""):
     for lang, lang_tab in taber.items():
         # ---
         if lang_tab.get(p21_c) and lang not in descriptions.keys():
-            NewDesc[lang] = {"language": lang, "value": lang_tab.get(p21_c)}
+            new_desc_data[lang] = {"language": lang, "value": lang_tab.get(p21_c)}
             # ---
             if years and lang in ["en", "ar", "en-ca", "en-gb"]:
-                NewDesc[lang]["value"] += years
+                new_desc_data[lang]["value"] += years
     # ---
-    if not NewDesc:
+    if not new_desc_data:
         print(" work_people nothing to add. ")
         return None
     # ---
     logger.info(f"<<lightyellow>> **{num}: work_people:{q}  ({topic})")
     # ---
-    work_api_desc(NewDesc, q, fixlang=[])
+    work_api_desc(new_desc_data, q, fixlang=[])
 
 
 def work_people(item, topic, num: int, ardes):

@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """ """
 
-
-tax_translations = {
+TAX_TRANSLATIONS = {
     "Branch of": "فرع من",
     "Capaxorder of": "رتبة كبرى من",
     "Class of": "طائفة من",
@@ -75,7 +74,7 @@ tax_translations = {
     "Variety of": "ضَرْب من",
 }
 
-taxone_list = {
+TAXONE_LIST = {
     "~ isopod": "~ متماثلات الأرجل",
     "~ alga": "~ الطحالب",
     "~ algae": "~ الطحالب",
@@ -129,7 +128,7 @@ taxone_list = {
     "~ worms": "~ الديدان",
 }
 
-lab_for_p171 = {
+LAB_FOR_P171 = {
     "Q1390": "من الحشرات",
     "Q5113": "من الطيور",
     "Q10908": "من البرمائيات",
@@ -272,7 +271,7 @@ lab_for_p171 = {
     "Q11937877": "من القشريات المتعددة",
 }
 
-labforP105 = {
+LAB_FOR_P105 = {
     "Q7432": "نوع",
     "Q34740": "جنس",
     "Q68947": "نويع",

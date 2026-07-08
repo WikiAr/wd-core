@@ -3,17 +3,16 @@
 from des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)
 
-python3 core8/pwb.py des/ru_st_2_latin test
 
 """
 
 import sys
 
 import pywikibot
-from bots_subs.hi_api import HimoAPIBot
 from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
+from shared.himo_api import HimoAPIBot
 
-WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
+WdApiBot = HimoAPIBot(mr_or_bot="bot", www="www")
 
 letters_to_latin = {
     "ru": {
@@ -299,7 +298,7 @@ def add_new_label(q, enlabel: str) -> None:
     # ---
     data = {"labels": labels}
     # ---
-    WD_API_Bot.New_Mult_Des(q, data, "Bot: cyrillic2latin-labels", False)
+    WdApiBot.New_Mult_Des(q, data, "Bot: cyrillic2latin-labels", False)
 
 
 # abcd = "abcdefghijklmnopqrstuvwxyz".split('')
@@ -331,7 +330,7 @@ def change_one_lab(text: str, lang):
     return new_lab
 
 
-def make_en_label(labels: str, q, Add: bool = False):
+def make_en_label(labels: str, q, add_it: bool = False):
     org_lab = ""
     new_lab = ""
     # ---
@@ -345,7 +344,7 @@ def make_en_label(labels: str, q, Add: bool = False):
             break
     # ---
     if new_lab:
-        if Add:
+        if add_it:
             add_new_label(q, new_lab)
     # ---
     return new_lab

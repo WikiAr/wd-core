@@ -1,15 +1,14 @@
 #!/usr/bin/python3
-"""
-from nep.si3 import do_P1433_new_list, work_new_list, make_scientific_art
-"""
+""" """
 
 import logging
 import sys
 
-from bots_subs.wd_api import wd_bot
-from bots_subs.wd_api.wd_desc import work_api_desc
+from wd_api import wd_bot
+from wd_api.wd_desc import work_api_desc
+
 from des.desc import work_one_item
-from des.places import placesTable
+from des.places import PLACES_TABLE
 from des.railway import railway_tables, work_railway
 from des.ru_st_2_latin import make_en_label
 from desc_dicts.descraptions_dict_new import get_data
@@ -33,26 +32,26 @@ from people.people_get_topic import print_new_jobs
 logger = logging.getLogger(__name__)
 
 
-def work_a_desc(NewDesc, qid, fixlang) -> str:
+def work_a_desc(new_desc_data, qid, fixlang) -> str:
     # ---
     if MainTestTable[1] or "dd" in sys.argv:
         logger.info("<<lightyellow>> Without save:")
-        logger.info(NewDesc.keys())
-        logger.info(NewDesc)
+        logger.info(new_desc_data.keys())
+        logger.info(new_desc_data)
         return ""
     # ---
-    work_api_desc(NewDesc, qid, fixlang=fixlang)
+    work_api_desc(new_desc_data, qid, fixlang=fixlang)
 
 
-def make_scientific_art(item, P31, num: int) -> None:
+def make_scientific_art(item, p31, num: int) -> None:
     # ---
-    table = make_scientific_article(item, P31, num, TestTable=MainTestTable[1])
+    table = make_scientific_article(item, p31, num, testtable=MainTestTable[1])
     # ---
-    NewDesc = table["descriptions"]
+    new_desc_data = table["descriptions"]
     qid = table["qid"]
     rep_langs = table["fixlang"]
     # ---
-    work_a_desc(NewDesc, qid, rep_langs)
+    work_a_desc(new_desc_data, qid, rep_langs)
 
 
 def do_P1433_new_list(item, p31) -> None:
@@ -60,16 +59,16 @@ def do_P1433_new_list(item, p31) -> None:
     logger.info(" do_P1433_new_list: ")
     # ---
     q = item["q"]
-    NewDesc = {}
+    new_desc_data = {}
     # ---
     orig_desc = item.get("descriptions", {}).get("ar", "")
     # ---
     ar_desc = do_P1433_ids(item, p31, orig_desc)
     # ---
     if ar_desc:
-        NewDesc["ar"] = {"language": "ar", "value": ar_desc}
+        new_desc_data["ar"] = {"language": "ar", "value": ar_desc}
         logger.info(f"<<lightyellow>> ** do_P1433_new_list p31:{p31}")
-        work_a_desc(NewDesc, q, [])
+        work_a_desc(new_desc_data, q, [])
     else:
         print("do_P1433_new_list nothing to add. ")
 
@@ -79,15 +78,15 @@ def work_new_list(item, p31, ardes) -> None:
     logger.info(f" work_new_list: {ardes=}")
     # ---
     q = item["q"]
-    NewDesc = {}
+    new_desc_data = {}
     # ---
-    gg = Qids_translate.get(p31) or others_list.get(p31) or placesTable.get(p31) or {}
+    gg = Qids_translate.get(p31) or others_list.get(p31) or PLACES_TABLE.get(p31) or {}
     ggx = {}
     # ---
     for lang in ggx.keys():
         if lang not in item.get("descriptions", {}).keys():
             if gg[lang]:
-                NewDesc[lang] = {"language": lang, "value": gg[lang]}
+                new_desc_data[lang] = {"language": lang, "value": gg[lang]}
     # ---
     orig_desc = item.get("descriptions", {}).get("ar", "")
     en_desc = item.get("descriptions", {}).get("en", "")
@@ -109,12 +108,12 @@ def work_new_list(item, p31, ardes) -> None:
     # ---
     # if ar_desc and ardes != ar_desc :
     if ar_desc:
-        NewDesc["ar"] = {"language": "ar", "value": ar_desc}
+        new_desc_data["ar"] = {"language": "ar", "value": ar_desc}
     # ---
-    # logger.info( '<<lightyellow>>  NewDesc' + str(NewDesc) )
-    if NewDesc != {}:
+    # logger.info( '<<lightyellow>>  new_desc_data' + str(new_desc_data) )
+    if new_desc_data != {}:
         logger.info(f"<<lightyellow>> ** work_new_list p31:{p31}")
-        work_a_desc(NewDesc, q, [])
+        work_a_desc(new_desc_data, q, [])
     else:
         print("work_new_list nothing to add. ")
 
@@ -123,7 +122,7 @@ def work_qid_desc(item, topic, num: int) -> None:
     logger.info("<<lightyellow>>  work_qid_desc: ")
     q = item["q"]
     descriptions = item.get("descriptions", {})
-    NewDesc = {}
+    new_desc_data = {}
     addedlangs = []
     # ---
     replace_descraptions = get_data("replace_descraptions")
@@ -134,25 +133,25 @@ def work_qid_desc(item, topic, num: int) -> None:
         # ---
         if lang not in descriptions.keys():
             # descriptions[lang] = Qids_translate[topic][lang]
-            NewDesc[lang] = {"language": lang, "value": Qids_translate[topic][lang]}
+            new_desc_data[lang] = {"language": lang, "value": Qids_translate[topic][lang]}
             addedlangs.append(lang)
         elif descriptions[lang] in des_for_lang:
             orgdisc = descriptions[lang]
-            NewDesc[lang] = {"language": lang, "value": des_for_lang[orgdisc]}
+            new_desc_data[lang] = {"language": lang, "value": des_for_lang[orgdisc]}
     # ---
-    if not NewDesc:
+    if not new_desc_data:
         print("work_qid_desc nothing to add. ")
         return
     # ---
-    if len(NewDesc) < 5:
-        logger.info(f"<<lightyellow>> len of NewDesc < 5: ({str(NewDesc)})")
+    if len(new_desc_data) < 5:
+        logger.info(f"<<lightyellow>> len of new_desc_data < 5: ({str(new_desc_data)})")
         return
     # ---
     logger.info(f"<<lightyellow>> **{num}: work_qid_desc:{q}  ({topic})")
-    work_a_desc(NewDesc, q, [])
+    work_a_desc(new_desc_data, q, [])
 
 
-def ISRE(qitem, num: int, lenth, no_donelist: bool = True, P31_list: bool = False, get_nl_des: bool = True):
+def ISRE(qitem, num: int, lenth, no_donelist: bool = True, p31_list: bool = False, get_nl_des: bool = True):
     # ---
     logger.info(f"--- *<<lightyellow>> >{num}/{lenth}: q:{qitem}")
     # ---
@@ -175,12 +174,12 @@ def ISRE(qitem, num: int, lenth, no_donelist: bool = True, P31_list: bool = Fals
         labels = item.get("labels", {})
         if labels.get("en", "") == "":
             logger.info("item enlabel == ''")
-            make_en_label(labels, q, Add=Add_en_labels[1])
+            make_en_label(labels, q, add_it=Add_en_labels[1])
     # ---
     P31_table = []
     # ---
-    if P31_list and P31_list != [] and isinstance(P31_list, list):
-        P31_table = P31_list
+    if p31_list and p31_list != [] and isinstance(p31_list, list):
+        P31_table = p31_list
     else:
         P31_table = Get_P_API_id(item, "P31")
     # ---
@@ -223,9 +222,9 @@ def ISRE(qitem, num: int, lenth, no_donelist: bool = True, P31_list: bool = Fals
             work_new_list(item, P31, ardes)
             break
         # ---
-        elif P31 in Geo_List and placesTable.get(P31, {}).get("ar"):
+        elif P31 in Geo_List and PLACES_TABLE.get(P31, {}).get("ar"):
             work_one_item(
-                placesTable.get(P31, {}).get("ar"),
+                PLACES_TABLE.get(P31, {}).get("ar"),
                 "ar",
                 {"q": item["q"]},
                 0,

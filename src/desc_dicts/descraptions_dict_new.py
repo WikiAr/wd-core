@@ -7,7 +7,8 @@ import logging
 from pathlib import Path
 
 from desc_dicts.descraptions_dict import many_lang_qid_desc, replace_desc
-from wd_utils.utils import load_data_from_url, open_file_json_check_time, save_json_data
+
+from .utils import load_data_from_url, open_file_json_check_time, save_json_data
 
 logger = logging.getLogger(__name__)
 

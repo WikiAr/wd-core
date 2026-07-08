@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """ """
+
 import logging
 import sys
 from typing import Iterable
 
 import pywikibot
 from pywikibot import pagegenerators
-
 from shared.api_page import load_main_api
 
 logger = logging.getLogger(__name__)
@@ -20,7 +20,6 @@ def fetch_user_new_pages(limit: int = "max", namespace: str = "0", user: str = "
 
 
 def getusernewpages():
-    # python3 core8/pwb.py wd_gent -mynewpages:10 -ns:0
     usernewpages = ""
     ns = ""
     limit = 100

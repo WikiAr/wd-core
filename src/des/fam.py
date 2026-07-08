@@ -3,10 +3,6 @@
 #
 """
 جميع الأوصاف
-python3 core8/pwb.py des/fam Q55678
-python3 core8/pwb.py des/fam Q7889
-python3 core8/pwb.py des/fam Q318
-python3 core8/pwb.py des/fam
 
 """
 
@@ -15,7 +11,8 @@ import random
 import sys
 
 import tqdm
-from bots_subs.wd_api import newdesc, wd_sparql_bot
+from wd_api import newdesc, wd_sparql_bot
+
 from des.railway import railway_tables, work_railway
 from desc_dicts.descraptions import (
     DescraptionsTable,
@@ -26,7 +23,7 @@ from desc_dicts.descraptions import (
 logger = logging.getLogger(__name__)
 
 
-desc_table = {
+DESC_TABLE = {
     "Q318": Space_Descraptions.get("Q318", {}),
     "Q523": Space_Descraptions.get("Q523", {}),
     "Q3863": Space_Descraptions.get("Q3863", {}),
@@ -64,30 +61,30 @@ desc_table = {
     "Q15145755": DescraptionsTable.get("Wikimedia module", {}),  # Module test cases
     "Q18711811": DescraptionsTable.get("Wikimedia module", {}),  # map data module
     "Q24046192": DescraptionsTable.get("Wikimedia category", {}),
-    # 'Q8502' : placesTable.get('Q8502', {}),     # جبل
-    # 'Q39614' : placesTable.get('Q39614', {}),   # مقبرة
-    # 'Q79007' : placesTable.get('Q79007', {}),   # شارع
+    # 'Q8502' : PLACES_TABLE.get('Q8502', {}),     # جبل
+    # 'Q39614' : PLACES_TABLE.get('Q39614', {}),   # مقبرة
+    # 'Q79007' : PLACES_TABLE.get('Q79007', {}),   # شارع
 }
 
-desc_table["Q726242"] = {"ar": "نجم"}
-desc_table["Q2247863"] = {"ar": "نجم"}
-desc_table["Q66619666"] = {"ar": "نجم"}
-desc_table["Q72803622"] = {"ar": "نجم"}
+DESC_TABLE["Q726242"] = {"ar": "نجم"}
+DESC_TABLE["Q2247863"] = {"ar": "نجم"}
+DESC_TABLE["Q66619666"] = {"ar": "نجم"}
+DESC_TABLE["Q72803622"] = {"ar": "نجم"}
 
 for x, dd in railway_tables.items():
-    desc_table[x] = dd
+    DESC_TABLE[x] = dd
 
-for x in desc_table:
+for x in DESC_TABLE:
     if x in sys.argv:
-        desc_table = {x: desc_table[x]}
+        DESC_TABLE = {x: DESC_TABLE[x]}
         break
 
 temp_table = {}
 
-if len(desc_table) > 1:
-    # chose randomly 5 of the desc_table
+if len(DESC_TABLE) > 1:
+    # chose randomly 5 of the DESC_TABLE
     # ---
-    liste = list(desc_table.keys())
+    liste = list(DESC_TABLE.keys())
     # ---
     list2 = random.sample(liste, 10)
     # ---
@@ -96,9 +93,9 @@ if len(desc_table) > 1:
     random.shuffle(list2)
     # ---
     for x in list2:
-        temp_table[x] = desc_table[x]
+        temp_table[x] = DESC_TABLE[x]
     # ---
-    desc_table = temp_table
+    DESC_TABLE = temp_table
 
 quarry_o = """
     SELECT DISTINCT ?item ?langs
@@ -150,10 +147,10 @@ def work_one_json(json1, topic_ar, p31, p31_langs) -> None:
         # ---
         if p31 in railway_tables:
             work_railway({}, p31, q=q)
-        # elif p31 in placesTable:
+        # elif p31 in PLACES_TABLE:
         # work_railway( {}, p31, q=q )
         else:
-            newdesc.work22(q, p31, desc_table)
+            newdesc.work22(q, p31, DESC_TABLE)
 
 
 def work_one_quarry(quarry, p31, p31_desc):
@@ -171,12 +168,12 @@ def work_one_quarry(quarry, p31, p31_desc):
 
 
 def main() -> None:
-    # lenth of desc_table and quarry_list
-    all_lenth = len(quarry_list) * len(desc_table)
+    # lenth of DESC_TABLE and quarry_list
+    all_lenth = len(quarry_list) * len(DESC_TABLE)
     # ---
     numb = 0
     # ---
-    for p31, p31_desc in desc_table.items():
+    for p31, p31_desc in DESC_TABLE.items():
         # ---
         quarry_result_lenth = 0
         # ---

@@ -9,11 +9,11 @@ python pwb.py des/galaxy
 
 """
 
+from wd_api import newdesc
 
-from bots_subs.wd_api import newdesc
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 
-# newdesc.mainfromQuarry2( topic , Quarry, translations)
+# newdesc.mainfromQuarry2( topic , quarry, translations)
 
 translations = {"Q318": DescraptionsTable.get("galaxy") or Qid_Descraptions.get("Q318") or {}}
 

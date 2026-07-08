@@ -33,8 +33,9 @@ from typing import List
 from SPARQLWrapper import JSON, SPARQLWrapper
 from tqdm import tqdm
 from translate_bot import translate_en_to_ar
-from wd_core_useraccount import User_tables_ibrahem
 from wd_Session import WikidataSession
+
+from wd_core_useraccount import User_tables_ibrahem
 
 logger = logging.getLogger(__name__)
 

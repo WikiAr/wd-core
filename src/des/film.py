@@ -12,8 +12,8 @@ import logging
 import re
 
 import pywikibot
-from bots_subs.wd_api import wd_sparql_bot
-from bots_subs.wd_api.wd_desc import work_api_desc
+from wd_api import wd_sparql_bot
+from wd_api.wd_desc import work_api_desc
 
 logger = logging.getLogger(__name__)
 
@@ -22,14 +22,14 @@ repo = wikidatasite.data_repository()
 
 AskSave = {1: True}
 
-# def AddDes( item , pa , lang , Qid , keys):
+# def AddDes( item , pa , lang , qid_str , keys):
 
 
-def one_film_item(Qid, pa, lang, keys) -> None:
+def one_film_item(qid_str, pa, lang, keys) -> None:
     item = getwditem(pa["item"])
     if not item:
         return
-    # desc = MakeDesc(Qid, auth, lang)
+    # desc = MakeDesc(qid_str, auth, lang)
     # Summary= 'Bot: - Add descriptions: '+ lang
     keys = sorted(keys)
     # ---
@@ -37,7 +37,7 @@ def one_film_item(Qid, pa, lang, keys) -> None:
     logger.info(f"keys:{str(keys)}")
     # ---
     descriptions = item.descriptions
-    NewDesc = {}
+    new_desc_data = {}
     addedlangs = []
     # ---
     for lang in keys:
@@ -46,9 +46,9 @@ def one_film_item(Qid, pa, lang, keys) -> None:
             lang2 = lang
 
             # ---
-            if MakeDesc(Qid, pa, lang2):
-                des = MakeDesc(Qid, pa, lang2)
-                NewDesc[lang] = {"language": lang, "value": des}
+            if MakeDesc(qid_str, pa, lang2):
+                des = MakeDesc(qid_str, pa, lang2)
+                new_desc_data[lang] = {"language": lang, "value": des}
                 dns = ""
                 if "endes" in pa:
                     dns = pa["endes"]
@@ -61,17 +61,17 @@ def one_film_item(Qid, pa, lang, keys) -> None:
         qitem = item.title(as_link=False)
         if AskSave[1]:
             logger.info(f"================== + {addedlangs}")
-            for lan, value in NewDesc.items():
-                logger.info(f"""lang:{lan}, value: \"{value['value']}\"""")
+            for lan, value in new_desc_data.items():
+                logger.info(f"""lang:{lan}, value: \"{value["value"]}\"""")
             saaa = input(" Add as descriptions? ")
             if saaa in ["y", "a", ""]:
                 if saaa == "a":
                     AskSave[1] = False
-                work_api_desc(NewDesc, qitem)
+                work_api_desc(new_desc_data, qitem)
             else:
                 logger.info("* rong answer")
         else:
-            work_api_desc(NewDesc, qitem)
+            work_api_desc(new_desc_data, qitem)
 
 
 def getwditem(qitem):
@@ -106,7 +106,7 @@ Comma = {
 Comma2 = {"ar": "، و", "en": ", ", "de": ", ", "fr": ", ", "nl": ", "}
 
 
-def GetQuery(Qid, lang, keys):
+def GetQuery(qid_str, lang, keys):
     # ---
     P50 = "P57"
     # ---
@@ -202,7 +202,7 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en". ?auths rdfs:
 """
 
 
-def WorkWithOneLang(Qid, lang, keys) -> None:
+def WorkWithOneLang(qid_str, lang, keys) -> None:
     logger.info("*<<lightyellow>> WorkWithOneLang: ")
     limit = 200
     # limit = '10000'
@@ -211,7 +211,7 @@ def WorkWithOneLang(Qid, lang, keys) -> None:
     # try:
     # ---
     quary = quaua
-    # quary = GetQuery(Qid , lang, keys)
+    # quary = GetQuery(qid_str , lang, keys)
     quary = quary + "\n limit %d" % limit
     logger.info(quary)
     # ---
@@ -223,10 +223,10 @@ def WorkWithOneLang(Qid, lang, keys) -> None:
     for num, pa in enumerate(PageList.keys(), start=1):
         logger.info(pa)
         PageList[pa]["item"] = pa.split("/entity/")[1]
-        SAO = filmform[Qid][lang]
+        SAO = filmform[qid_str][lang]
         logger.info("<<lightblue>>> %s (%s) :%s/%d : %s" % (lang, SAO, num, total, PageList[pa]["item"]))
         # ---
-        one_film_item(Qid, PageList[pa], lang, keys)
+        one_film_item(qid_str, PageList[pa], lang, keys)
 
 
 by_list = {
@@ -249,7 +249,7 @@ by_list = {
 }
 
 
-def MakeDesc(Qid, pa, lang):
+def MakeDesc(qid, pa, lang):
     # for lang in language:
     # auth
     description = False
@@ -260,12 +260,12 @@ def MakeDesc(Qid, pa, lang):
     if lang not in by_list:
         logger.info(f'<<lightblue>>> cant find "by" in by_list for lang: "{lang}"')
         return False
-    "من أداء " if (Qid == "Q482994") and (lang == "ar") else f"{by_list[lang]} "
+    "من أداء " if (qid == "Q482994") and (lang == "ar") else f"{by_list[lang]} "
     # ---
     if (lang in pa) and (pa[lang] != ""):
         if auth := pa[lang]:
-            if lang in filmform[Qid]:
-                des = filmform[Qid][lang]
+            if lang in filmform[qid]:
+                des = filmform[qid][lang]
                 YEAR = pa["dates"]
                 YEARS = YEAR  # .split(',')
                 endes = pa["endes"][0]

@@ -1,52 +1,6 @@
 #!/usr/bin/python3
 """
-tfj run new1 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -family:wikidata -lang:wikidata -start:Q500"
-
-tfj run ghu --mem 1Gi --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -newpages:40000"
-tfj run ghu --mem 1Gi --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py nep/si3g -usercontribs:Ghuron"
-tfj run Q482994 --image python3.9 --command "$HOME/local/bin/python3 core8/pwb.py neq/nldes3 a2r sparql:Q482994"
-
 إضافة وصف لعناصر ويكي بيانات الجديدة
-
-python3 core8/pwb.py nep/si3g -ns:0 -offset:5000 -newpages:10000
-
-python3 core8/pwb.py nep/si3g -newpages:200
-python3 core8/pwb.py nep/si3g -newpages:100 ask
-
-python3 core8/pwb.py nep/si3g ask -page:Q21205603
-python3 core8/pwb.py nep/si3g ask -page:Q130316095
-python3 core8/pwb.py nep/si3g ask -page:Q130340916
-python3 core8/pwb.py nep/si3g ask -page:Q21032508
-python3 core8/pwb.py nep/si3g -page:
-python3 core8/pwb.py nep/si3g -page:
-python3 core8/pwb.py nep/si3g -page:Q301263
-python3 core8/pwb.py nep/si3g -page:
-python3 core8/pwb.py nep/si3g -page:
-python3 core8/pwb.py nep/si3g -page:Q131442910
-python3 core8/pwb.py nep/si3g -page:Q130212038
-python3 core8/pwb.py nep/si3g -page:Q129594209
-python3 core8/pwb.py nep/si3g -page:Q112167358
-python3 core8/pwb.py nep/si3g -page:Q122652815
-python3 core8/pwb.py nep/si3g -page:Q113510544
-python3 core8/pwb.py nep/si3g -page:Q111771063
-python3 core8/pwb.py nep/si3g -start:Q98512481
-python3 core8/pwb.py nep/si3g -start:Q97950000
-python3 core8/pwb.py nep/si3g -start:Q97949000
-python3 core8/pwb.py nep/si3g -start:Q111771064 err
-
-python3 core8/pwb.py nep/si3g -newpages:200
-
-python pwb.py nep/si3g -newpages:200
-python3 core8/pwb.py nep/si3g -newpages:200 ask
-
-# python3 core8/pwb.py nep/si3g -newpages:50
-# python3 core8/pwb.py nep/si3g -newpages:500
-# python pwb.py nep/si3g -newpages:100
-# python3 core8/pwb.py nep/si3g -limit:3000 -ns:0 -usercontribs:Research_Bot
-# python3 core8/pwb.py nep/si3g -limit:6000 -ns:0 -usercontribs:Succu
-# python3 core8/pwb.py nep/si3g -limit:6000 -ns:0 -usercontribs:LargeDatasetBot
-# python3 core8/pwb.py nep/si3g -limit:6000 -ns:0 -usercontribs:Research_Bot
-
 """
 
 import logging
@@ -54,10 +8,10 @@ import sys
 import time
 from pathlib import Path
 
-import wd_gent
-from nep import si3
-
 from shared.api_page import load_main_api
+
+from nep import si3
+from wd_core import wd_gent
 
 logger = logging.getLogger(__name__)
 
@@ -72,9 +26,6 @@ logger.info(f"<<lightyellow>> main_dir1 = {main_dir1}")
 def mainwithcat2() -> None:
     logger.info("*<<lightred>> > mainwithcat2:")
     # ---
-    # python3 core8/pwb.py nep/si3g -newpages:10
-    # python3 core8/pwb.py nep/si3g -newpages:1000
-    # python3 core8/pwb.py nep/si3g -newpages:20000
     # ---
     start = time.time()
     # ---
@@ -98,27 +49,15 @@ def mainwithcat2() -> None:
         elif arg == "-newpages":
             newpages = value
         # ---
-        # python3 core8/pwb.py nep/si3g -file:dump/artest/Q7187.txt
-        # python3 core8/pwb.py nep/si3g -file:dump/artest/Q1457376.txt
         if arg == "-file":
             file = value
         # ---
-        # python3 core8/pwb.py nep/si3g -artest:Q523
-        # python3 core8/pwb.py nep/si3g -artest:Q318
-        # python3 core8/pwb.py nep/si3g -artest:Q13442814
-        # python3 core8/pwb.py nep/si3g -artest:Q21672098
-        # python3 core8/pwb.py nep/si3g -artest:Q1516079
-        # python3 core8/pwb.py nep/si3g -artest:Q427087
-        # python3 core8/pwb.py nep/si3g -artest:Q79007
-        # python3 core8/pwb.py nep/si3g -artest:Q7187
         if arg == "-artest":
             file = f"dump/artest/{value}.txt"
         # ---
         if arg == "-page":
             lista.append(value)
         # ---
-        # python3 core8/pwb.py nep/si3g -ns:0 -usercontribs:Edoderoobot
-        # python3 core8/pwb.py nep/si3g -ns:0 -usercontribs:Ghuron
         if arg in ["-user", "-usercontribs"]:
             user = value
         # ---

@@ -53,7 +53,7 @@ def template_params(text: str, title):
     # ---
     parser = wtp.parse(text)
     # ---
-    Qid = ""
+    qid_str = ""
     results = False
     # ---
     for template in parser.templates:
@@ -80,13 +80,13 @@ def template_params(text: str, title):
             t_id = get_temp_arg(template, "id")
             if t_id:
                 printt("** found currect line")
-                Qid = t_id
-                printt(f"id: {Qid}")
+                qid_str = t_id
+                printt(f"id: {qid_str}")
                 results = True
             # ---
             break
     # ---
-    return Qid, results
+    return qid_str, results
 
 
 def findflag(race, flag):
@@ -647,15 +647,15 @@ def make_new_text(item, title, text: str):
     Newsect = Frist + "\n" + Newsect + "{{نتيجة سباق الدراجات/نهاية}}"
     Newsect = re.sub(r"\n\n{{نتيجة سباق الدراجات/نهاية}}", "\n{{نتيجة سباق الدراجات/نهاية}}", Newsect)
     # ---
-    NewText = text.replace(old_sect, Newsect)
+    new_text = text.replace(old_sect, Newsect)
     # ---
     printt(f"showDiff of page: {title}<br>")
     # ---
     if title not in states:
         return text
     # ---
-    if states[title]["new_line"] != 0 or states[title]["removed_line"] != 0 and text != NewText:
-        return NewText
+    if states[title]["new_line"] != 0 or states[title]["removed_line"] != 0 and text != new_text:
+        return new_text
     else:
         printo("nodiff")
     # ---
@@ -672,10 +672,10 @@ def do_One_Page(title, text: str, item: str = ""):
     # ---
     printt("**Isre: ")
     # ---
-    Qid, QidinTemplate = template_params(text, title)
+    qid_str, QidinTemplate = template_params(text, title)
     # ---
     if QidinTemplate:
-        item = Qid
+        item = qid_str
     # ---
     if not item:
         hte = "<!-- Can't find item in page :\"" + title + '" --> '
@@ -690,15 +690,15 @@ def do_One_Page(title, text: str, item: str = ""):
     # ---
     printt(f"**item: {item}")
     # ---
-    NewText = make_new_text(item, title, text)
+    new_text = make_new_text(item, title, text)
     # ---
-    if not NewText:
+    if not new_text:
         ur = f'<a href="https://www.wikidata.org/wiki/{item}">{item}</a>.'
         printo(f"لا توجد نتائج لهذه الصفحة تأكد من صحة معرف ويكي بيانات: {ur}.")
         return text
     # ---
-    if NewText == "nodiff":
+    if new_text == "nodiff":
         printo("nodiff")
         return text
     # ---
-    return NewText
+    return new_text

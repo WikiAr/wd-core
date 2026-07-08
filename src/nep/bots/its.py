@@ -1,10 +1,9 @@
-"""
-from nep.bots.its import its_a_composition, its_a_computergame, its_a_discography, its_a_fictional_character, its_a_film, its_a_generalthing, its_a_headquarted_thing, its_a_p50, its_a_publication, its_a_sports_season, its_a_tabon_in_thailand, its_a_taxon, its_a_thing_located_in_country, its_an_audio_drama, its_an_episode, its_canton_of_France, its_something_in_a_country, its_something_in_an_entity, its_songs
-"""
+""" """
 
 import logging
 
-from bots_subs.wd_api import wd_bot
+from wd_api import wd_bot
+
 from nep.bots.helps import (
     Get_label,
     Get_label_from_item,

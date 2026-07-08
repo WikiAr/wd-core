@@ -5,10 +5,10 @@ from nep.tables.quarries import SPARQLSE
 
 """
 
-
 import sys
 
 from desc_dicts.descraptions import Qid_Descraptions
+from nep.new_way import P1433_ids
 from nep.tables.lists import (
     Space_tab,
     Taton_list,
@@ -72,8 +72,9 @@ SPARQLSE = {tt: do_qua(tt) for tt in Qid_Descraptions}
 for p50 in p50s:
     SPARQLSE[f"{p50}dfd"] = do_qua(p50, prop="wdt:P50")
 
-    SPARQLSE[p50] = (
-        f"""
+    SPARQLSE[
+        p50
+    ] = f"""
         SELECT DISTINCT
             ?item
             (GROUP_CONCAT(DISTINCT(STR(?labe)); separator="@@") as ?lab)
@@ -84,7 +85,6 @@ for p50 in p50s:
             FILTER(NOT EXISTS {{?item schema:description ?des.FILTER((LANG(?des)) = "ar")}})
             }}
             GROUP BY ?item """
-    )
 
 
 # رواية
@@ -266,9 +266,6 @@ SPARQLSE["Q7889"] = do_qua("Q7889", prop="(wdt:P178|wdt:P179)", ad="")
 # أغنية
 SPARQLSE["Q7366"] = do_qua("Q7366", prop="wdt:P175", ad="")
 
-
-from nep.new_way import P1433_ids
-
 for qid, va in P1433_ids.items():
     prop = "|".join([f"wdt:{p['p']}" for p in va["props"]])
     prop = f"({prop})"
@@ -282,7 +279,6 @@ for qid, va in P1433_ids.items():
         qua = do_qua(qid, prop=prop, ad="", ar_values=ar_values.strip())
         SPARQLSE[qid] = qua
     # ---
-    # if "doar" in sys.argv: print(f"python3 core8/pwb.py neq/nldes3 a2r sparql:{qid} all:1000 doar")
 
 SPARQLSE[
     "Q13442814"

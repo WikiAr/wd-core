@@ -20,7 +20,7 @@ from pathlib import Path
 
 Dir = Path(__file__).parent
 
-translationsOccupations = {}
+TRANSLATIONS_OCCUPATIONS = {}
 tra_occ_2 = {
     "~ critic": {
         "ar": {"male": "ناقد ~", "female": "ناقدة ~"},
@@ -130,11 +130,11 @@ tra_occ_2 = {
 }
 
 with open(f"{Dir}/translationsOccupations.json", "r", encoding="utf-8") as f:
-    translationsOccupations = json.load(f)
+    TRANSLATIONS_OCCUPATIONS = json.load(f)
 
-translationsOccupations.update(tra_occ_2)
+TRANSLATIONS_OCCUPATIONS.update(tra_occ_2)
 
-translationsOccupations_new = {
+TRANSLATIONS_OCCUPATIONS_NEW = {
     "~ Indigenous artist": {
         "ar": {"male": "فنان سكان أصليون ~", "female": "فنانة سكان أصليون ~"},
         "en": {"male": "~ Indigenous artist", "female": "~ Indigenous artist"},
@@ -618,17 +618,13 @@ translationsOccupations_new = {
     },
 }
 
-translations_all = {**translationsOccupations, **translationsOccupations}
+translations_all = {**TRANSLATIONS_OCCUPATIONS, **TRANSLATIONS_OCCUPATIONS}
 
-# for x in translationsOccupations:
-# if "ar" not in translationsOccupations[x]:
-# print( x )
-
-for x, yy in translationsOccupations_new.items():
+for x, yy in TRANSLATIONS_OCCUPATIONS_NEW.items():
     if "ar" in yy:
-        translationsOccupations[x] = yy
+        TRANSLATIONS_OCCUPATIONS[x] = yy
     translations_all[x] = yy
 
-for yy in translationsOccupations.values():
+for yy in TRANSLATIONS_OCCUPATIONS.values():
     if "ar" in yy and yy["ar"]["male"] == yy["ar"]["female"]:
         print(f" male:{yy['ar']['male']} == female")

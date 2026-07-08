@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-from nep.space_others import Make_space_desc, Make_others_desc
-"""
+""" """
 
 import logging
 import re
@@ -19,7 +17,7 @@ from nep.bots.its import (
 )
 from nep.new_way import P1433_ids, do_P1433_ids
 from nep.tables.lists import (
-    Geo_entity,
+    GEO_ENTITY,
     Space_tab,
     bldiat,
     others_list,
@@ -156,8 +154,8 @@ def Make_others_desc(lng, wditem, type_of_item, orig_desc, claimstr: str = ""):
         if orig_desc in ["شارع", ""]:
             my_description = its_something_in_an_entity(wditem, "شارع في")
     # ---
-    elif type_of_item in Geo_entity:
-        labr = Geo_entity[type_of_item]
+    elif type_of_item in GEO_ENTITY:
+        labr = GEO_ENTITY[type_of_item]
         if orig_desc in [labr, ""]:
             my_description = its_something_in_an_entity(wditem, f"{labr} في")
     # ---

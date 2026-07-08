@@ -138,7 +138,7 @@ ORDER BY DESC (?ct) (?value)
 
 """
 
-placesTable = {
+PLACES_TABLE = {
     "Q108325": {"ar": "مصلى كنسي"},
     "Q1093829": {"ar": "مدينة"},
     "Q1115575": {"ar": "أبرشية مدنية"},
@@ -336,31 +336,31 @@ placesTable = {
     "Q569500": {"ar": "مركز صحي", "en": ""},
     "Q39614": {"ar": "مقبرة", "en": "cemetery"},
 }
-placesTable["Q8054"] = {"ar": "بروتين"}
+PLACES_TABLE["Q8054"] = {"ar": "بروتين"}
 
-placesTable["Q207524"] = {"ar": "جزيرة صغيرة", "en": "islet"}
-placesTable["Q22698"] = {"ar": "متنزه", "en": "park"}
-# placesTable["Q34795826"] = { "ar" : "" , "en" : "moor" }
-placesTable["Q211748"] = {"ar": "حقل نفط", "en": "oilfield"}
+PLACES_TABLE["Q207524"] = {"ar": "جزيرة صغيرة", "en": "islet"}
+PLACES_TABLE["Q22698"] = {"ar": "متنزه", "en": "park"}
+# PLACES_TABLE["Q34795826"] = { "ar" : "" , "en" : "moor" }
+PLACES_TABLE["Q211748"] = {"ar": "حقل نفط", "en": "oilfield"}
 
-placesTable["Q1248784"] = {"ar": "مطار", "en": "airport"}
-# placesTable["Q591942"] = { "ar" : "فرع" , "en" : "distributary" }
-placesTable["Q105190"] = {"ar": "سد مائي", "en": "levee"}
-placesTable["Q532"] = {"ar": "قرية", "en": "village"}
-placesTable["Q820477"] = {"ar": "منجم", "en": "mine"}
+PLACES_TABLE["Q1248784"] = {"ar": "مطار", "en": "airport"}
+# PLACES_TABLE["Q591942"] = { "ar" : "فرع" , "en" : "distributary" }
+PLACES_TABLE["Q105190"] = {"ar": "سد مائي", "en": "levee"}
+PLACES_TABLE["Q532"] = {"ar": "قرية", "en": "village"}
+PLACES_TABLE["Q820477"] = {"ar": "منجم", "en": "mine"}
 
-placesTable["Q46831"] = {"ar": "سلسلة جبلية", "en": "mountains"}
-placesTable["Q150784"] = {"ar": "أخدود", "en": "canyon"}
-placesTable["Q27590"] = {"ar": "براح", "en": "heath"}
-placesTable["Q37901"] = {"ar": "مضيق", "en": "strait"}
-placesTable["Q107679"] = {"ar": "جرف", "en": "cliff"}
-placesTable["Q170321"] = {"ar": "منطقة رطبة", "en": "wetland"}
-placesTable["Q75520"] = {"ar": "هضبة", "en": "plateau"}
-placesTable["Q2935978"] = {"ar": "قناة ري", "en": "irrigation canal"}
-placesTable["Q190429"] = {"ar": "منخفض", "en": "depression"}
-placesTable["Q44782"] = {"ar": "ميناء", "en": "port"}
-# placesTable[""] = { "ar" : "" , "en" : "" }
-# placesTable[""] = { "ar" : "" , "en" : "" }
-# placesTable[""] = { "ar" : "" , "en" : "" }
-# placesTable[""] = { "ar" : "" , "en" : "" }
-placesTable["Q34379419"] = {"ar": "منطقة رملية", "en": "sand area"}
+PLACES_TABLE["Q46831"] = {"ar": "سلسلة جبلية", "en": "mountains"}
+PLACES_TABLE["Q150784"] = {"ar": "أخدود", "en": "canyon"}
+PLACES_TABLE["Q27590"] = {"ar": "براح", "en": "heath"}
+PLACES_TABLE["Q37901"] = {"ar": "مضيق", "en": "strait"}
+PLACES_TABLE["Q107679"] = {"ar": "جرف", "en": "cliff"}
+PLACES_TABLE["Q170321"] = {"ar": "منطقة رطبة", "en": "wetland"}
+PLACES_TABLE["Q75520"] = {"ar": "هضبة", "en": "plateau"}
+PLACES_TABLE["Q2935978"] = {"ar": "قناة ري", "en": "irrigation canal"}
+PLACES_TABLE["Q190429"] = {"ar": "منخفض", "en": "depression"}
+PLACES_TABLE["Q44782"] = {"ar": "ميناء", "en": "port"}
+# PLACES_TABLE[""] = { "ar" : "" , "en" : "" }
+# PLACES_TABLE[""] = { "ar" : "" , "en" : "" }
+# PLACES_TABLE[""] = { "ar" : "" , "en" : "" }
+# PLACES_TABLE[""] = { "ar" : "" , "en" : "" }
+PLACES_TABLE["Q34379419"] = {"ar": "منطقة رملية", "en": "sand area"}

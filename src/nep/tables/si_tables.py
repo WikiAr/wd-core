@@ -1,10 +1,8 @@
-"""
-from nep.tables.si_tables import genders, MainTestTable, new_types, offsetbg, Qids_translate, Add_en_labels, Geo_List
-"""
+""" """
 
 import sys
 
-from des.places import placesTable
+from des.places import PLACES_TABLE
 from desc_dicts.descraptions import DescraptionsTable, Qid_Descraptions
 from desc_dicts.descraptions_dict import Scientific_descraptions
 from nep.tables.lists import others_list
@@ -74,4 +72,4 @@ Add_en_labels = {}
 
 Add_en_labels[1] = "addenlabel" in sys.argv
 
-Geo_List = list(placesTable.keys())
+Geo_List = list(PLACES_TABLE.keys())

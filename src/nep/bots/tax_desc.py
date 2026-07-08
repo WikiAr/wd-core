@@ -1,25 +1,25 @@
 #!/usr/bin/python3
-"""
-from nep.bots.tax_desc import work_taxon_desc
-"""
+""" """
+
 import logging
 import sys
 
-from bots_subs.hi_api import HimoAPIBot
-from bots_subs.wd_api import wd_sparql_bot
-from desc_dicts.taxones import lab_for_p171, labforP105, tax_translations, taxone_list
+from shared.himo_api import HimoAPIBot
+from wd_api import wd_sparql_bot
+
+from desc_dicts.taxones import LAB_FOR_P105, LAB_FOR_P171, TAX_TRANSLATIONS, TAXONE_LIST
 from nep.bots.helps import Get_P_API_id
 
 logger = logging.getLogger(__name__)
 
-WD_API_Bot = HimoAPIBot(mr_or_bot="bot", www="www")
+WdApiBot = HimoAPIBot(mr_or_bot="bot", www="www")
 
 tax_translations_lower = {}
 
-for tax_key, tax_lab in taxone_list.items():  # الأصنوفة
+for tax_key, tax_lab in TAXONE_LIST.items():  # الأصنوفة
     if tax_lab.strip() and tax_key.strip():
-        for natkey in sorted(tax_translations.keys()):  # النوع
-            natar = tax_translations[natkey]
+        for natkey in sorted(TAX_TRANSLATIONS.keys()):  # النوع
+            natar = TAX_TRANSLATIONS[natkey]
             if natkey.strip() and natar.strip():
                 kkey = tax_key.replace("~", natkey)
                 tax_translations_lower[kkey.lower()] = tax_lab.replace("~", natar)
@@ -34,12 +34,12 @@ def make_tax_des_new(item) -> str:
         return ""
     # ---
     P105 = Get_P_API_id(item, "P105")
-    P105ar = next((labforP105[p] for p in P105 if p in labforP105), "")
+    P105ar = next((LAB_FOR_P105[p] for p in P105 if p in LAB_FOR_P105), "")
     # ---
     if not P105ar:
         return ""
     # ---
-    tata = " ".join([f"wd:{x}" for x in lab_for_p171.keys()])
+    tata = " ".join([f"wd:{x}" for x in LAB_FOR_P171.keys()])
     # ---
     nan = f"""SELECT DISTINCT ?item ?P171 ?item105
         WHERE {{
@@ -74,10 +74,10 @@ def make_tax_des_new(item) -> str:
             item105 = bs["item105"].split("/entity/")[1]
             P171 = bs["P171"].split("/entity/")[1]
             # ---
-            if P171 in lab_for_p171.keys():
-                P171ar = lab_for_p171[P171]
+            if P171 in LAB_FOR_P171.keys():
+                P171ar = LAB_FOR_P171[P171]
                 ar_lab = f"{P105ar} {P171ar}"
-                WD_API_Bot.Des_API(q, ar_lab, "ar")
+                WdApiBot.des_api(q, ar_lab, "ar")
 
 
 def work_taxon_desc(item, endesc) -> None:
@@ -90,4 +90,4 @@ def work_taxon_desc(item, endesc) -> None:
         print(f" no ardesc for en:{endesc}.")
         make_tax_des_new(item)
 
-    WD_API_Bot.Des_API(q, ardesc, "ar")
+    WdApiBot.des_api(q, ardesc, "ar")
