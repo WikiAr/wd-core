@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ """
 
-from nep.bots.its import its_a_generalthing
+from wd_core.nep.bots.its import its_a_generalthing
 
 P1433_ids = {
     "Q13433827": {

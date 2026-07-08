@@ -1,6 +1,6 @@
 """
 
-from des.ru_st_2_latin import make_en_label
+from wd_core.des.ru_st_2_latin import make_en_label
 # enlabel = make_en_label(labels, q, Add=False)
 
 

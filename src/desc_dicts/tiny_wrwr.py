@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ """
 
-from desc_dicts.descraptions import Qid_Desc
+from wd_core.desc_dicts.descraptions import Qid_Desc
 
 tiny_wrwr = {
     "Q1260524": {"ar": "وقت من اليوم", "en": ""},  # 68707

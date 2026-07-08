@@ -6,10 +6,9 @@ import random
 import re
 import sys
 
-from wd_api.wd_sparql_bot import sparql_generator_big_results
-
-from nep.nldesc import action_one_item
-from neq.quarries import SPARQLSE
+from wd_core.nep.nldesc import action_one_item
+from wd_core.neq.quarries import SPARQLSE
+from wd_core.wd_api.wd_sparql_bot import sparql_generator_big_results
 
 logger = logging.getLogger(__name__)
 

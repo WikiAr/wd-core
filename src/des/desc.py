@@ -35,11 +35,11 @@ import sys
 from shared.api_page import load_main_api
 from shared.himo_api import HimoAPIBot
 from shared.qs_bot import QS_line
-from wd_api import wd_bot
-from wd_api.wd_sparql_bot import sparql_generator_big_results
 
-from des.contries2 import ContriesTable2
-from des.places import PLACES_TABLE
+from wd_core.des.contries2 import ContriesTable2
+from wd_core.des.places import PLACES_TABLE
+from wd_core.wd_api import wd_bot
+from wd_core.wd_api.wd_sparql_bot import sparql_generator_big_results
 
 WdApiBot = HimoAPIBot(mr_or_bot="bot", www="www")
 

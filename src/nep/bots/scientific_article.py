@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 
-from nep.bots.scientific_article import make_scientific_article
+from wd_core.nep.bots.scientific_article import make_scientific_article
 
 """
 
@@ -10,8 +10,8 @@ import re
 
 import dateutil.parser
 
-from desc_dicts.descraptions_dict import Scientific_descraptions
-from nep.bots.helps import Get_P_API_time
+from wd_core.desc_dicts.descraptions_dict import Scientific_descraptions
+from wd_core.nep.bots.helps import Get_P_API_time
 
 logger = logging.getLogger(__name__)
 

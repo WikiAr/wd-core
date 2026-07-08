@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
 
-from people.people_get_topic import job_to_qid, nat_to_qid
-from people.people_get_topic import get_topic
-from people.people_get_topic import print_new_jobs
+from wd_core.people.people_get_topic import job_to_qid, nat_to_qid
+from wd_core.people.people_get_topic import get_topic
+from wd_core.people.people_get_topic import print_new_jobs
 
 
 SELECT ?item ?dem WHERE {

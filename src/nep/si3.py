@@ -4,21 +4,18 @@
 import logging
 import sys
 
-from wd_api import wd_bot
-from wd_api.wd_desc import work_api_desc
-
-from des.desc import work_one_item
-from des.places import PLACES_TABLE
-from des.railway import railway_tables, work_railway
-from des.ru_st_2_latin import make_en_label
-from desc_dicts.descraptions_dict_new import get_data
-from nep.bots.helps import Get_P_API_id, log_new_types
-from nep.bots.scientific_article import make_scientific_article
-from nep.bots.tax_desc import work_taxon_desc
-from nep.new_way import P1433_en_to_qid, P1433_ids, do_P1433_ids
-from nep.space_others import Make_others_desc, Make_space_desc
-from nep.tables.lists import others_list, others_list_2, space_list_and_other
-from nep.tables.si_tables import (
+from wd_core.des.desc import work_one_item
+from wd_core.des.places import PLACES_TABLE
+from wd_core.des.railway import railway_tables, work_railway
+from wd_core.des.ru_st_2_latin import make_en_label
+from wd_core.desc_dicts.descraptions_dict_new import get_data
+from wd_core.nep.bots.helps import Get_P_API_id, log_new_types
+from wd_core.nep.bots.scientific_article import make_scientific_article
+from wd_core.nep.bots.tax_desc import work_taxon_desc
+from wd_core.nep.new_way import P1433_en_to_qid, P1433_ids, do_P1433_ids
+from wd_core.nep.space_others import Make_others_desc, Make_space_desc
+from wd_core.nep.tables.lists import others_list, others_list_2, space_list_and_other
+from wd_core.nep.tables.si_tables import (
     Add_en_labels,
     Geo_List,
     MainTestTable,
@@ -26,8 +23,10 @@ from nep.tables.si_tables import (
     new_types,
     offsetbg,
 )
-from nep.wr_people import work_people
-from people.people_get_topic import print_new_jobs
+from wd_core.nep.wr_people import work_people
+from wd_core.people.people_get_topic import print_new_jobs
+from wd_core.wd_api import wd_bot
+from wd_core.wd_api.wd_desc import work_api_desc
 
 logger = logging.getLogger(__name__)
 

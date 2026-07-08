@@ -6,7 +6,7 @@ import functools
 import logging
 from pathlib import Path
 
-from desc_dicts.descraptions_dict import many_lang_qid_desc, replace_desc
+from wd_core.desc_dicts.descraptions_dict import many_lang_qid_desc, replace_desc
 
 from .utils import load_data_from_url, open_file_json_check_time, save_json_data
 

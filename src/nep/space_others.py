@@ -4,7 +4,7 @@
 import logging
 import re
 
-from nep.bots.its import (
+from wd_core.nep.bots.its import (
     its_a_computergame,
     its_a_film,
     its_a_generalthing,
@@ -15,8 +15,8 @@ from nep.bots.its import (
     its_something_in_an_entity,
     its_songs,
 )
-from nep.new_way import P1433_ids, do_P1433_ids
-from nep.tables.lists import (
+from wd_core.nep.new_way import P1433_ids, do_P1433_ids
+from wd_core.nep.tables.lists import (
     GEO_ENTITY,
     Space_tab,
     bldiat,

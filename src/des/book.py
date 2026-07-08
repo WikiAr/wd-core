@@ -12,9 +12,9 @@ import logging
 import re
 import sys
 
-from wd_api import wd_bot
-from wd_api.wd_desc import work_api_desc
-from wd_api.wd_sparql_bot import sparql_generator_big_results
+from wd_core.wd_api import wd_bot
+from wd_core.wd_api.wd_desc import work_api_desc
+from wd_core.wd_api.wd_sparql_bot import sparql_generator_big_results
 
 logger = logging.getLogger(__name__)
 
