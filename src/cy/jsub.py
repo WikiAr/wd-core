@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """
 
-
-
 https://www.wikidata.org/wiki/Wikidata:Pywikibot_-_Python_3_Tutorial/Gathering_data_from_Arabic-Wikipedia
 
 """

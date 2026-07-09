@@ -3,12 +3,12 @@
 
 """ """
 
+import os
 import logging
 import sys
 from typing import Dict, List
 
 import requests
-from wd_core_useraccount import User_tables_ibrahem
 
 logger = logging.getLogger(__name__)
 WDQS_ENDPOINT = "https://query.wikidata.org/sparql"
@@ -16,8 +16,8 @@ MW_API = "https://www.wikidata.org/w/api.php"
 
 HEADERS_API = {"User-Agent": "WD-Ar-Props-Filler/1.0 (contact: your-email@example.com)"}
 
-username = User_tables_ibrahem["username"]
-password = User_tables_ibrahem["password"]
+username = os.getenv("WIKIPEDIA_HIMO_USERNAME", "")
+password = os.getenv("WIKIPEDIA_HIMO_PASSWORD", "")
 
 # =========================
 # MediaWiki: جلسة وتوكينات

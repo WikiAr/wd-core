@@ -26,6 +26,7 @@ Wikidata Properties Arabic Labels/Descriptions Filler
 import argparse
 import json
 import logging
+import os
 import time
 from pathlib import Path
 from typing import List
@@ -33,7 +34,6 @@ from typing import List
 from SPARQLWrapper import JSON, SPARQLWrapper
 from tqdm import tqdm
 from translate_bot import translate_en_to_ar
-from wd_core_useraccount import User_tables_ibrahem
 from wd_Session import WikidataSession
 
 logger = logging.getLogger(__name__)
@@ -43,8 +43,8 @@ MW_API = "https://www.wikidata.org/w/api.php"
 
 HEADERS_API = {"User-Agent": "WD-Ar-Props-Filler/1.0 (contact: your-email@example.com)"}
 
-username = User_tables_ibrahem["username"]
-password = User_tables_ibrahem["password"]
+username = os.getenv("WIKIPEDIA_HIMO_USERNAME", "")
+password = os.getenv("WIKIPEDIA_HIMO_PASSWORD", "")
 
 # =========================
 # ترجمات: اختر مزوّدك
