@@ -13,7 +13,6 @@ import logging
 
 import pywikibot
 from bots_subs.wd_api import newdesc
-
 from desc_dicts.descraptions import DescraptionsTable
 
 logger = logging.getLogger(__name__)

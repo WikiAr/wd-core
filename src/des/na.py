@@ -10,7 +10,6 @@ import re
 import sys
 
 from shared.himo_api import HimoAPIBot
-
 from wd_core.wd_api import wd_sparql_bot
 
 logger = logging.getLogger(__name__)

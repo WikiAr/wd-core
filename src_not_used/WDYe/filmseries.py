@@ -5,7 +5,6 @@
 
 
 from bots_subs.wd_api import newdesc
-
 from desc_dicts.descraptions import DescraptionsTable
 
 #   newdesc.mainfromQuarry2( topic , Quarry, translations)

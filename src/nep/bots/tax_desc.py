@@ -5,7 +5,6 @@ import logging
 import sys
 
 from shared.himo_api import HimoAPIBot
-
 from wd_core.desc_dicts.taxones import LAB_FOR_P105, LAB_FOR_P171, TAX_TRANSLATIONS, TAXONE_LIST
 from wd_core.nep.bots.helps import Get_P_API_id
 from wd_core.wd_api import wd_sparql_bot

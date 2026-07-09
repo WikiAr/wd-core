@@ -6,7 +6,6 @@ import re
 import sys
 
 from shared.himo_api import HimoAPIBot
-
 from wd_core.des.railway import railway_tables, work_railway
 from wd_core.desc_dicts.descraptions import Qid_Descraptions
 from wd_core.nep.bots.helps import get_mainsnak

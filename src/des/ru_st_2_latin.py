@@ -10,6 +10,7 @@ import sys
 
 import pywikibot
 from pywikibot.pagegenerators import WikidataSPARQLPageGenerator
+
 from shared.himo_api import HimoAPIBot
 
 WdApiBot = HimoAPIBot(mr_or_bot="bot", www="www")
